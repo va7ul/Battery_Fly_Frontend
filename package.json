@@ -1,14 +1,14 @@
 {
-  "name": "react-app-template",
+  "name": "battery-fly-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://va7ul.github.io/react-app-template/",
+  "homepage": "https://va7ul.github.io/Battery_Fly_Frontend/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.3"
   },
