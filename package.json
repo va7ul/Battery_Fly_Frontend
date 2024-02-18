@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://va7ul.github.io/Battery_Fly_Frontend/",
   "dependencies": {
-    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
     "@reduxjs/toolkit": "^2.2.1",
