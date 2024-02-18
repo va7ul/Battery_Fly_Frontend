@@ -2,5 +2,5 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src", "src/components/Styles/GlobalStyled.js"]
+  "include": ["src", "src/styles/GlobalStyled.js"]
 }

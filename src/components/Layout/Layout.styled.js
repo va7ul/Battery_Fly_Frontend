@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { hidden } from '../Styles/GlobalStyled';
+import { hidden } from '../../styles/GlobalStyled';
 
 export const Container = styled.div`
   max-width: 320px;
