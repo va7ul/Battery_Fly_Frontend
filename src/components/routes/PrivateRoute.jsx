@@ -17,3 +17,4 @@ export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
     Component
   );
 };
+// console.log(1);
