@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Container } from './Layout.styled';
+import { Container } from '../layout/Layout.styled';
+import { Footer } from './footer/Footer';
 // import { MenuAppBar } from 'components/Appbar/AppBar';
 
 export const Layout = () => {
@@ -25,8 +26,7 @@ export const Layout = () => {
         </section>
       </main>
       <footer>
-        <hr />
-        ...footer in development
+        <Footer />
       </footer>
     </>
   );

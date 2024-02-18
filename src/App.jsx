@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
-import { PrivateRoute } from 'routes/PrivateRoute';
-import { Layout } from 'components/Layout/Layout';
+import { PrivateRoute } from 'components/routes/PrivateRoute';
+import { Layout } from 'components/layout/Layout';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 // import { refreshUser } from 'redux/auth/authOperations.js';
 
