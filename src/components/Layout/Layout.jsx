@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Container } from './Layout.styled';
-import { Footer } from './footer/Footer';
-import { Header } from './header/Header';
+import { Footer } from './Footer/Footer';
+import { Header } from './Header/Header';
 
 // import { MenuAppBar } from 'components/Appbar/AppBar';
 

@@ -6,3 +6,4 @@ export const Footer = () => {
     </>
   );
 };
+// console.log(1);
