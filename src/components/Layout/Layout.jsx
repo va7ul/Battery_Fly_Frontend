@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Container } from '../layout/Layout.styled';
+import { Container } from '../Layout/Layout.styled';
 import { Footer } from './footer/Footer';
 // import { MenuAppBar } from 'components/Appbar/AppBar';
 
