@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
-} from '../redux/auth/authSelectors';
+} from '../../redux/auth/authSelectors';
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const location = useLocation();
