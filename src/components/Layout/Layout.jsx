@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Container } from './Layout.styled';
-import { Footer } from '../../components/Layout/Footer/Footer';
-import { Header } from '../../components/Layout/Header/Header';
+import { Footer } from '../../components/Footer/Footer';
+import { Header } from '../../components/Header/Header';
 
 // import { MenuAppBar } from 'components/Appbar/AppBar';
 // ghbvt
