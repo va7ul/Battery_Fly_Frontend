@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/102.6e2c7dca.chunk.js","mappings":"oJAIA,UAJsB,WACpB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,iBACd,C","sources":["pages/Batteries32650Page.jsx"],"sourcesContent":["const Type32650Page = () => {\n  return <div>Type32650Page</div>;\n};\n\nexport default Type32650Page;\n"],"names":["_jsx","children"],"sourceRoot":""}

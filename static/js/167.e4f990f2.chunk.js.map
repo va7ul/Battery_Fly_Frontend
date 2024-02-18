@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/167.e4f990f2.chunk.js","mappings":"oJAIA,UAJoB,WAClB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,eACd,C","sources":["pages/DevicesPage.jsx"],"sourcesContent":["const DevicesPage = () => {\n  return <div>DevicesPage</div>;\n};\n\nexport default DevicesPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

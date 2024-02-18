@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[84],{84:function(e,n,t){t.r(n);var r=t(329);n.default=function(){return(0,r.jsx)("div",{children:"DeliveryPaymentPage"})}}}]);
+//# sourceMappingURL=84.d7d136d0.chunk.js.map

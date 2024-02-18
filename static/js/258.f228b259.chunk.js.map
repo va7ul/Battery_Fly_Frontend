@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/258.f228b259.chunk.js","mappings":"oJAIA,UAJ4B,WAC1B,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,uBACd,C","sources":["pages/BatteriesForFPVPage.jsx"],"sourcesContent":["const BatteriesForFPVPage = () => {\n  return <div>BatteriesForFPVPage</div>;\n};\n\nexport default BatteriesForFPVPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
