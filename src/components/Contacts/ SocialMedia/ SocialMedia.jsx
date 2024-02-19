@@ -1,6 +1,8 @@
+import { List } from "./SocialMedia.styled"
+
 export const SocialMedia = () => { 
     return (
-        <ul>
+        <List>
                <li>
               <a href="">
               insta
@@ -16,6 +18,6 @@ export const SocialMedia = () => {
               telega
               </a>
             </li>
-        </ul>
+        </List>
     )
 }
