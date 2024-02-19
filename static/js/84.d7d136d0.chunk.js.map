@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/84.d7d136d0.chunk.js","mappings":"kJAIA,UAJ4B,WAC1B,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,uBACd,C","sources":["pages/DeliveryPaymentPage.jsx"],"sourcesContent":["const DeliveryPaymentPage = () => {\n  return <div>DeliveryPaymentPage</div>;\n};\n\nexport default DeliveryPaymentPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
