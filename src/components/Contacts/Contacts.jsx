@@ -1,4 +1,5 @@
 import { SocialMedia } from "./ SocialMedia/ SocialMedia"
+import sprite from '../../../src/assets/images/sprite.svg';
 import { Container, Desc, Tel, Text, TextTel, Title } from "./Contacts.styled"
 
 export const Contacts = () => { 
@@ -18,7 +19,10 @@ export const Contacts = () => {
             <Desc>batteryfly@gmail.com</Desc>
             <SocialMedia />
             <Text>Адреса точки видачі</Text>
-              <Desc>м. Львів вул. Китайська, 14</Desc>
+            <Desc>м. Львів вул. Китайська, 14</Desc>
+             <svg>
+            <use href={`${sprite}#warm`}></use>
+          </svg>
         </Container>
     )
 }
