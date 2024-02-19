@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  /* margin: 0 auto; */
   padding: 20px 30px;
-  background-image: linear-gradient(
-    180deg,
-    rgba(251, 208, 110, 0.04),
-    rgba(251, 208, 110, 0.39) 43.212%,
-    rgba(251, 208, 110, 0) 95.5%
-  );
-
+  /* margin: 0 auto; */
   @media screen and (min-width: 1280px) {
     padding: 0 110px;
+    background-image: linear-gradient(
+      180deg,
+      rgba(251, 208, 110, 0.04),
+      rgba(251, 208, 110, 0.39) 43.212%,
+      rgba(251, 208, 110, 0) 95.5%
+    );
   }
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -84,5 +84,19 @@ export const List = styled.ul`
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+  }
+`;
+
+export const Icon = styled.svg`
+  position: absolute;
+  fill: #f2c94c;
+  top: -25px;
+  right: 10px;
+  width: 60px;
+  height: auto;
+
+  @media screen and (min-width: 1280px) {
+    top: 0;
+    width: 100px;
   }
 `;
