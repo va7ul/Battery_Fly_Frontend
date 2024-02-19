@@ -4,19 +4,19 @@ export const SocialMedia = () => {
     return (
         <List>
                <li>
-              <a href="">
+              {/* <a> */}
               insta
-              </a>
+              {/* </a> */}
             </li>
               <li>
-              <a href="">
+              {/* <a> */}
             viber
-              </a>
+              {/* </a> */}
             </li>
               <li>
-              <a href="">
+              {/* <a> */}
               telega
-              </a>
+              {/* </a> */}
             </li>
         </List>
     )
