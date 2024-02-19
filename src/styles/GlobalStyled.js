@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 import { createGlobalStyle, css } from 'styled-components';
 import 'modern-normalize';
 
-export const theme = createTheme({
+export const themeMUI = createTheme({
   breakpoints: {
     values: {
       desktop: 1280,
@@ -96,7 +96,7 @@ export const theme = createTheme({
 // },
 // });
 
-export const themeStyledComponent = {
+export const theme = {
   colors: {
     textPrimary: 'rgba(31, 31, 31, 1)',
     textDisabled: 'rgba(157, 157, 157, 1)',
@@ -121,8 +121,8 @@ export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: ${themeStyledComponent.colors.background};
-  color: ${themeStyledComponent.colors.textPrimary}; 
+  background-color: ${theme.colors.background};
+  color: ${theme.colors.textPrimary}; 
   font-size: 20px;
   font-weight: 400;
   line-height: 1.2;
@@ -163,7 +163,9 @@ a
 }
 
 button {
-    cursor: pointer;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
 }
 
 /* input::-webkit-outer-spin-button,
