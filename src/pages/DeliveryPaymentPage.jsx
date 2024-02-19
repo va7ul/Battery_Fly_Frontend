@@ -1,5 +1,7 @@
+import { DeliveryPayment } from 'components/DeliveryPaymentPage/DeliveryPayment';
+
 const DeliveryPaymentPage = () => {
-  return <div>DeliveryPaymentPage</div>;
+  return <DeliveryPayment />;
 };
 
 export default DeliveryPaymentPage;
