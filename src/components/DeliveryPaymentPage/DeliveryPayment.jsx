@@ -9,14 +9,11 @@ import {
   List,
 } from './DeliveryPayment.styled';
 
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-
 export const DeliveryPayment = () => {
   return (
     <Container>
       <Wrapper>
         <Title>Доставка та оплата</Title>
-        <LocalShippingIcon />
         <Section>
           <SubTitle>Доставка</SubTitle>
           <Sntc>Самовивіз</Sntc>
