@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[246],{246:function(t,e,n){n.r(e);var r=n(329);e.default=function(){return(0,r.jsx)("div",{children:"ContactsPage"})}}}]);
-//# sourceMappingURL=246.60b26249.chunk.js.map
