@@ -12,15 +12,17 @@ export const theme = createTheme({
     secondary: {
       main: 'rgba(244, 170, 0, 1)',
     },
+    svgColor: {
+      main: 'rgba(255, 187, 37, 1)',
+    },
     background: {
-      paper: '#FBD06E',
-      default: '#F7F7F7',
+      paper: 'rgba(251, 208, 110, 1)',
+      default: 'rgba(247, 247, 247, 1)',
     },
     text: {
       primary: 'rgba(31, 31, 31, 1)',
       disabled: 'rgba(157, 157, 157, 1)',
-      secondary: 'rgba(0, 0, 0, 1)',
-      hint: 'rgba(2, 2, 2, 1)',
+      secondary: 'rgba(165, 165, 165, 1)',
     },
     warning: {
       main: 'rgba(228, 219, 0, 1)',
@@ -32,16 +34,16 @@ export const theme = createTheme({
       main: 'rgba(20, 211, 16, 1)',
     },
     primary: {
-      main: '#388e3c',
+      main: 'rgba(247, 247, 247, 1)',
     },
   },
   typography: {
     fontFamily: 'Inter',
     fontSize: 20,
-    fontWeightLight: 300,
     htmlFontSize: 20,
-    fontWeightBold: 700,
+    fontWeightLight: 300,
     fontWeightMedium: 600,
+    fontWeightBold: 700,
     h2: {
       fontWeight: 700,
     },
@@ -96,42 +98,38 @@ export const theme = createTheme({
 
 export const themeStyledComponent = {
   colors: {
-    mainColor: 'rgba(0, 0, 0, 1)',
+    textPrimary: 'rgba(31, 31, 31, 1)',
+    textDisabled: 'rgba(157, 157, 157, 1)',
+    greyOutput: 'rgba(144, 144, 144, 1)',
+    greyPlaysholder: 'rgba(165, 165, 165, 1)',
+    secondary: 'rgba(244, 170, 0, 1)',
+    svgColor: 'rgba(255, 187, 37, 1)',
+    background: 'rgba(247, 247, 247, 1)',
+    backgroundPaper: 'rgba(251, 208, 110, 1)',
+
+    warning: 'rgba(228, 219, 0, 1)',
+    error: 'rgba(255, 0, 0, 1)',
+    success: 'rgba(20, 211, 16, 1)',
+  },
+  transition: {
+    main: 'transition-dur-and-func: 250ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
 };
 
 export const GlobalStyle = createGlobalStyle`
-:root{
-/* --primary-color-white:#FFFFFF; 
---primary-color-black-one:#050505;
---primary-color-violet:#B6C3FF;
---primary-color-black-two:#0F0F0F;
---primary-color-lite-green:#45FFBC;
---primary-color-grey:#B6B6B6;
---primary-color-green-lite:#E3FFA8;
 
---secondary-color-grey-one:#292928;
---secondary-color-pink:#FFC4F7;
---secondary-color-yellow:#FFF3B7;
-
-
---main-font-size: 14px;
---main-line-height:1.4;
---main-letter-spacing:0.02em; 
---transition-dur-and-func: 250ms cubic-bezier(0.4, 0, 0.2, 1); */
-}
-
-
-
-/* body {
+body {
   margin: 0;
-  font-family: 'Poppins400', sans-serif;
-  background-color: var(--primary-color-black-one);
-  color: var(--primary-color-white); 
-  font-size: var(--main-font-size);
-  line-height: var(--main-line-height);
-  letter-spacing: var(--main-letter-spacing);
-} */
+  font-family: 'Inter', sans-serif;
+  background-color: ${themeStyledComponent.colors.background};
+  color: ${themeStyledComponent.colors.textPrimary}; 
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 h1,
 h2,
