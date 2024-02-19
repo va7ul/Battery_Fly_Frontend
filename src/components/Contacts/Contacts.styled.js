@@ -35,3 +35,23 @@ export const Desc = styled.a`
   font-size: 10px;
   margin-bottom: 9px;
 `;
+export const IconTop = styled.svg`
+  position: absolute;
+  width: 132.59px;
+  height: 75.02px;
+  left: 206.15px;
+  top: 125px;
+  z-index: 1;
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  fill: rgba(251, 208, 110, 0.72);
+`;
+
+export const IconBottom = styled.svg`
+  position: absolute;
+  width: 125px;
+  height: 70.73px;
+  left: 266.08px;
+  top: 176px;
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+  fill: rgba(245, 255, 129, 0.62);
+`;

@@ -1,6 +1,7 @@
-import { SocialMedia } from "./ SocialMedia/ SocialMedia"
+
 import sprite from '../../../src/assets/images/sprite.svg';
-import { Container, Desc, Tel, Text, TextTel, Title } from "./Contacts.styled"
+import { SocialMedia } from './SocialMedia/SocialMedia';
+import { Container, Desc, IconBottom, IconTop, Tel, Text, TextTel, Title } from "./Contacts.styled"
 
 export const Contacts = () => { 
     return (
@@ -20,9 +21,13 @@ export const Contacts = () => {
             <SocialMedia />
             <Text>Адреса точки видачі</Text>
             <Desc>м. Львів вул. Китайська, 14</Desc>
-             <svg>
+             <IconTop>
             <use href={`${sprite}#warm`}></use>
-          </svg>
+            </IconTop>
+            <IconBottom>
+            <use href={`${sprite}#warm`}></use>
+          </IconBottom>
         </Container>
+        // hhh
     )
 }
