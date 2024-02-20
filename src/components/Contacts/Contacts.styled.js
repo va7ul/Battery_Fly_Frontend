@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   color: ${props => props.theme.colors.secondary};
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
@@ -25,7 +25,7 @@ export const Title = styled.h2`
 
 export const Text = styled.p`
   font-size: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 `;
 
 export const List = styled.ul`
@@ -33,7 +33,7 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 6px;
   font-size: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 `;
 
 export const Item = styled.li`
@@ -42,8 +42,7 @@ export const Item = styled.li`
 
 export const Box = styled.div`
   font-size: 10px;
-  margin-bottom: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   cursor: pointer;
 
   &:hover {
