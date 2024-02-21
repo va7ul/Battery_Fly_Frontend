@@ -1,14 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { MobileMenu } from './MobileMenu/MobileMenu';
+import { useMediaQuery } from 'react-responsive';
+import { Navigation } from './Navigation/Navigation';
 //  jjj
 export const Header = () => {
+  const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+
   return (
     <>
-      <NavLink to="/">+38 (063) 435 01 37</NavLink>
-      <NavLink to="/about">Про нас</NavLink>
-      <NavLink to="/assortment">Асортимент</NavLink>
-      <NavLink to="/delivery-and-payment">Доставка та оплата</NavLink>
-      <NavLink to="/contacts">Контакти</NavLink>
-      <hr />
+      {mobileVersion ? (
+        <MobileMenu />
+      ) : (
+        <nav>
+          <ul>
+            <Navigation />
+          </ul>
+        </nav>
+      )}
+
+      {/* <NavLink to="/">+38 (063) 435 01 37</NavLink> */}
     </>
   );
 };
