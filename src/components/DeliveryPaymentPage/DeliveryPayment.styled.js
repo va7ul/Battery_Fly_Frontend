@@ -63,11 +63,18 @@ export const Sntc = styled.p`
   }
 `;
 
-export const NovaPost = styled.p`
-  font-size: 12px;
+export const NPTitle = styled.p`
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  height: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
 
   @media screen and (min-width: 1280px) {
-    font-size: 25px;
+    height: 40px;
+    font-size: 30px;
   }
 `;
 
@@ -88,13 +95,22 @@ export const List = styled.ul`
   }
 `;
 
+export const Link = styled.a`
+  font-weight: 500;
+  text-decoration: underline;
+  margin-left: 3px;
+  text-transform: uppercase;
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+  }
+`;
+
 export const IconShipping = styled.svg`
   position: absolute;
   fill: ${props => props.theme.colors.svgColor};
   top: -25px;
   right: 10px;
-  width: 82px;
-  height: auto;
   -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
   @media screen and (min-width: 1280px) {
@@ -116,13 +132,11 @@ export const IconSquares = styled.svg`
   }
 `;
 
-export const Link = styled.a`
-  font-weight: 500;
-  text-decoration: underline;
-  margin-left: 3px;
-  transition: ${props => props.theme.transition.main};
+export const NPIcon = styled.svg`
+  width: 20px;
+  fill: ${props => props.theme.colors.textPrimary};
 
-  &:hover {
-    color: ${props => props.theme.colors.secondary};
+  @media screen and (min-width: 1280px) {
+    width: 40px;
   }
 `;
