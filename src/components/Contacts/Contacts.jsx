@@ -1,7 +1,8 @@
 
-import sprite from '../../../src/assets/images/sprite.svg';
 import { SocialMedia } from './SocialMedia/SocialMedia';
-import { Container, IconBottom, IconTop, Text, Title, List, Box, Item } from "./Contacts.styled"
+import { Container, Text, Title, List, Box, BoxAddress, Item, ImgBot, ImgTop } from "./Contacts.styled";
+import warmTop from '../../assets/images/warmTop.png';
+import warmBottom from '../../assets/images/warmBottom.png';
 
 export const Contacts = () => {
     return (
@@ -22,19 +23,15 @@ export const Contacts = () => {
             </Box>
             <SocialMedia />
             <Text>Адреса точки видачі:</Text>
-            <Box>
+            <BoxAddress>
                 <a
                     href="https://maps.app.goo.gl/jQbQeDxkykSUxha9A"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                 >м. Львів вул. Китайська, 14</a>
-            </Box>
-            <IconTop>
-                <use href={`${sprite}#warm`}></use>
-            </IconTop>
-            <IconBottom>
-                <use href={`${sprite}#warm`}></use>
-            </IconBottom>
+            </BoxAddress>
+                <ImgTop src={warmTop} alt='warm' />
+                <ImgBot src={warmBottom} alt='warm' />
         </Container>
     )
 };
