@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  @media screen and (min-width: 320px) {
-    padding: 0px 30px 0px 30px;
-    position: relative;
-  }
+  padding: 0px 30px 0px 30px;
+  position: relative;
 
   @media screen and (min-width: 1280px) {
     padding: 0px 110px 0px 110px;

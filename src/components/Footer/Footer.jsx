@@ -1,8 +1,9 @@
+import { Container } from "./Footer.styled";
+
 export const Footer = () => {
   return (
-    <>
-      <hr />
+    <Container>
       ...footer in development
-    </>
+    </Container>
   );
 };
