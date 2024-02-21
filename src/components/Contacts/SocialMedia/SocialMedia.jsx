@@ -1,19 +1,22 @@
+import { useMediaQuery } from 'react-responsive';
 import { FaViber } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { Item, List } from "./SocialMedia.styled"
 
 export const SocialMedia = () => {
+  const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+
   return (
     <List>
       <Item>
-          <FaInstagram />
+        {mobileVersion ? <FaInstagram size={20}/> : <FaInstagram size={32}/>}
       </Item>
       <Item>
-          <FaViber />
+          {mobileVersion ? <FaViber size={20}/> : <FaViber size={32}/>}
       </Item>
       <Item>
-          <FaTelegramPlane />
+          {mobileVersion ? <FaTelegramPlane size={20}/> : <FaTelegramPlane size={32}/>}
       </Item>
     </List>
   )
