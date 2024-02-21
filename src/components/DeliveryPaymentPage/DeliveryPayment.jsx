@@ -7,7 +7,8 @@ import {
   Sntc,
   Descr,
   List,
-  Icon,
+  IconShipping,
+  IconSquares,
 } from './DeliveryPayment.styled';
 
 import sprite from '../../assets/images/sprite.svg';
@@ -16,9 +17,12 @@ export const DeliveryPayment = () => {
   return (
     <Container>
       <Wrapper>
-        <Icon>
+        <IconShipping>
           <use href={`${sprite}#shipping-car`}></use>
-        </Icon>
+        </IconShipping>
+        <IconSquares>
+          <use href={`${sprite}#squares`}></use>
+        </IconSquares>
         <Title>Доставка та оплата</Title>
         <Section>
           <SubTitle>Доставка</SubTitle>
