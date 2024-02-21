@@ -9,6 +9,7 @@ import {
   List,
   IconShipping,
   IconSquares,
+  Link,
 } from './DeliveryPayment.styled';
 
 import sprite from '../../assets/images/sprite.svg';
@@ -34,9 +35,18 @@ export const DeliveryPayment = () => {
           <Sntc>Нова пошта</Sntc>
           <Descr>
             Вартість доставки оплачується за тарифами Нової Пошти. Статус
-            доставки замовлення можна відстежити ТУТ. Також доставляємо у
-            поштомати Нової пошти. Актуальний список відділень НП, що працюють
-            ТУТ
+            доставки замовлення можна відстежити
+            <Link href="https://tracking.novaposhta.ua/#/uk/" target="_blank">
+              ТУТ
+            </Link>
+            . Також доставляємо у поштомати Нової пошти. Актуальний список
+            відділень НП, що працюють
+            <Link
+              href="https://r51797.geo.novaposhta.ua/office/nearest"
+              target="_blank"
+            >
+              ТУТ
+            </Link>
           </Descr>
         </Section>
         <Section>
