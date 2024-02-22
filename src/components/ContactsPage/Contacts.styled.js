@@ -18,7 +18,6 @@ export const Title = styled.h2`
     font-size: 40px;
     font-weight: 800;
     margin-bottom: 40px;
-    /* line-height: 48px; */
   }
 `;
 
@@ -58,8 +57,20 @@ export const Item = styled.li`
 `;
 
 export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 36px;
+    gap: 20px;
+  }
+`;
+
+export const Div = styled.div`
   font-size: 10px;
-  margin-bottom: 6px;
+
   cursor: pointer;
 
   &:hover {
@@ -67,7 +78,6 @@ export const Box = styled.div`
   }
   @media screen and (min-width: 1280px) {
     font-size: 20px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -95,7 +105,7 @@ export const ImgTop = styled.img`
     width: 370.07px;
     height: 209.38px;
     right: 200px;
-    top: 210px;
+    top: 235px;
   }
 `;
 
@@ -111,6 +121,6 @@ export const ImgBot = styled.img`
     width: 370.07px;
     height: 209.38px;
     right: -9px;
-    bottom: -20px;
+    bottom: -44px;
   }
 `;

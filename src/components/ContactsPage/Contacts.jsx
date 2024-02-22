@@ -1,6 +1,6 @@
 
-import { SocialMedia } from './SocialMedia/SocialMedia';
-import { Container, Text, Title, List, Box, BoxAddress, Item, ImgBot, ImgTop } from "./Contacts.styled";
+import { SocialMedia } from '../SocialMedia/SocialMedia';
+import { Container, Text, Title, List, Box, BoxAddress, Item, ImgBot, ImgTop, Div } from "./Contacts.styled";
 import warmTop from '../../assets/images/warmTop.png';
 import warmBottom from '../../assets/images/warmBottom.png';
 
@@ -19,16 +19,19 @@ export const Contacts = () => {
             </List>
             <Text>Пишіть:</Text>
             <Box>
-                <a href="mailto:batteryfly@gmail.com">batteryfly@gmail.com</a>
+                <Div>
+                    <a href="mailto:batteryfly@meta.com">batteryfly@meta.com</a>
+                </Div>
+                <SocialMedia />
             </Box>
-            <SocialMedia />
+            
             <Text>Адреса точки видачі:</Text>
             <BoxAddress>
                 <a
-                    href="https://maps.app.goo.gl/jQbQeDxkykSUxha9A"
+                    href="https://maps.app.goo.gl/HVQb7UZCPnmQ73356"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                >м. Львів вул. Китайська, 14</a>
+                >м. Львів, Зелена, 109</a>
             </BoxAddress>
                 <ImgTop src={warmTop} alt='warm' />
                 <ImgBot src={warmBottom} alt='warm' />
