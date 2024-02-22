@@ -10,13 +10,13 @@ export const SocialMedia = () => {
   return (
     <List>
       <Item>
-        {mobileVersion ? <FaInstagram size={20}/> : <FaInstagram size={32}/>}
+        {mobileVersion ? <FaInstagram size={20}/> : <FaInstagram size={24}/>}
       </Item>
       <Item>
-          {mobileVersion ? <FaViber size={20}/> : <FaViber size={32}/>}
+          {mobileVersion ? <FaViber size={20}/> : <FaViber size={24}/>}
       </Item>
       <Item>
-          {mobileVersion ? <FaTelegramPlane size={20}/> : <FaTelegramPlane size={32}/>}
+          {mobileVersion ? <FaTelegramPlane size={20}/> : <FaTelegramPlane size={24}/>}
       </Item>
     </List>
   )
