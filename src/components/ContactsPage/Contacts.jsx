@@ -20,7 +20,7 @@ export const Contacts = () => {
             <Text>Пишіть:</Text>
             <Box>
                 <Div>
-                    <a href="mailto:batteryfly@gmail.com">batteryfly@gmail.com</a>
+                    <a href="mailto:batteryfly@meta.com">batteryfly@meta.com</a>
                 </Div>
                 <SocialMedia />
             </Box>
@@ -28,10 +28,10 @@ export const Contacts = () => {
             <Text>Адреса точки видачі:</Text>
             <BoxAddress>
                 <a
-                    href="https://maps.app.goo.gl/jQbQeDxkykSUxha9A"
+                    href="https://maps.app.goo.gl/HVQb7UZCPnmQ73356"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                >м. Львів вул. Китайська, 14</a>
+                >м. Львів, Зелена, 109</a>
             </BoxAddress>
                 <ImgTop src={warmTop} alt='warm' />
                 <ImgBot src={warmBottom} alt='warm' />
