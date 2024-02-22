@@ -24,6 +24,6 @@ export const Link = styled(NavLink)`
   }
 
   @media screen and (min-width: 1280px) {
-    /* font-size: var(--main-font-size); */
+    font-size: 15px;
   }
 `;
