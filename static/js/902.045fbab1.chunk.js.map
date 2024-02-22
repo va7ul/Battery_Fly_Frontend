@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/902.045fbab1.chunk.js","mappings":"sJAIA,UAJkB,WAChB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,aACd,C","sources":["pages/AboutPage.jsx"],"sourcesContent":["const AboutPage = () => {\n  return <div>AboutPage</div>;\n};\n\nexport default AboutPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

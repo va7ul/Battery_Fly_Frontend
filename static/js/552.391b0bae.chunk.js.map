@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/552.391b0bae.chunk.js","mappings":"oJAIA,UAJqB,WACnB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,gBACd,C","sources":["pages/CheckoutPage.jsx"],"sourcesContent":["const CheckoutPage = () => {\n  return <div>CheckoutPage</div>;\n};\n\nexport default CheckoutPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

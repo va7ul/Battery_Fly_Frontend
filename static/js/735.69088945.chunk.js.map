@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/735.69088945.chunk.js","mappings":"oJAIA,UAJiB,WACf,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,YACd,C","sources":["pages/ItemPage.jsx"],"sourcesContent":["const ItemPage = () => {\n  return <div>ItemPage</div>;\n};\n\nexport default ItemPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

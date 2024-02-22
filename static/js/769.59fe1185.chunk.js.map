@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/769.59fe1185.chunk.js","mappings":"sJAIA,UAJ0B,WACxB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,qBACd,C","sources":["pages/OrdersHistoryPage.jsx"],"sourcesContent":["const OrdersHistoryPage = () => {\n  return <div>OrdersHistoryPage</div>;\n};\n\nexport default OrdersHistoryPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

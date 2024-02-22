@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/497.c240f47a.chunk.js","mappings":"oJAIA,UAJ6B,WAC3B,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,wBACd,C","sources":["pages/BatteriesForToysPage.jsx"],"sourcesContent":["const BatteriesForToysPage = () => {\n  return <div>BatteriesForToysPage</div>;\n};\n\nexport default BatteriesForToysPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

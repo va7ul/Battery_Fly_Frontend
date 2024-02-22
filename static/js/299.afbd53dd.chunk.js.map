@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/299.afbd53dd.chunk.js","mappings":"oJAIA,UAJsB,WACpB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,iBACd,C","sources":["pages/BatteriesLiIonPage.jsx"],"sourcesContent":["const TypeLiIonPage = () => {\n  return <div>TypeLiIonPage</div>;\n};\n\nexport default TypeLiIonPage;\n"],"names":["_jsx","children"],"sourceRoot":""}

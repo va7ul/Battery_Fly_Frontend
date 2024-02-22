@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/336.c6bf65c2.chunk.js","mappings":"oJAIA,UAJsB,WACpB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,iBACd,C","sources":["pages/Batteries18650Page.jsx"],"sourcesContent":["const Type18650Page = () => {\n  return <div>Type18650Page</div>;\n};\n\nexport default Type18650Page;\n"],"names":["_jsx","children"],"sourceRoot":""}
