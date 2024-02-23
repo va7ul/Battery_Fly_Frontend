@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Logo } from './MobileMenu.styled';
+import { Logo, Button } from './MobileMenu.styled';
 import logo from '../../../assets/images/logo.png';
 import { Navigation } from '../Navigation/Navigation';
 
@@ -9,15 +9,11 @@ export const MobileMenu = () => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(!isOpen)}>
+      <Button onClick={() => setIsOpen(!isOpen)}>
         <GiHamburgerMenu />
-      </button>
+      </Button>
       <Logo src={logo} alt="logo" />
-      <nav>
-        <ul>
-          <Navigation />
-        </ul>
-      </nav>
+      <Navigation />
     </div>
   );
 };
