@@ -4,6 +4,7 @@ import { hidden } from '../../styles/GlobalStyled';
 export const Container = styled.div`
   max-width: 360px;
   margin: 0 auto;
+  
   /* for example */
   /* background: ${props => props.theme.colors.error}; */
 

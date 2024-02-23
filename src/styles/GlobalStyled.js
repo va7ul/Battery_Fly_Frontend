@@ -107,12 +107,18 @@ export const theme = {
     background: 'rgba(247, 247, 247, 1)',
     backgroundPaper: 'rgba(251, 208, 110, 1)',
 
+    gradient: 'linear-gradient(rgba(255, 208, 100, 1), rgba(251, 208, 110, 0))',
+    gradientHover:
+      'linear-gradient(rgba(255, 177, 0, 1), rgba(251, 208, 110, 0))',
+    gradientBlack:
+      'linear-gradient(rgba(51, 51, 51, 1), rgba(75, 75, 75, 0.49))',
+
     warning: 'rgba(228, 219, 0, 1)',
     error: 'rgba(255, 0, 0, 1)',
     success: 'rgba(20, 211, 16, 1)',
   },
   transition: {
-    main: 'transition-dur-and-func: 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    main: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
 };
 
