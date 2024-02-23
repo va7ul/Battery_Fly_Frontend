@@ -1,5 +1,5 @@
-import { Text } from '../BaseComponents/Text/Text';
-import { Title } from '../BaseComponents/Title/Title';
+import { Text } from '../SharedComponents/Text/Text';
+import { Title } from '../SharedComponents/Title/Title';
 
 export const Mission = () => {
   return (

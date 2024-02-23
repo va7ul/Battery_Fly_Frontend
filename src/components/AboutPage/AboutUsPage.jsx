@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import { AboutButteryFly } from './AboutButteryFly/AboutButteryFly';
 import { Mission } from './Mission/Mission';
 import { Valuables } from './Valuables/Valuables';
+import valuables from '../../utils/json/about-page-valuables.json';
 
 export const AboutUsPage = () => {
   return (
@@ -18,7 +19,7 @@ export const AboutUsPage = () => {
         <Mission />
       </Grid>
       <Grid item xs={6}>
-        <Valuables />
+        <Valuables valuables={valuables} />
       </Grid>
     </Grid>
   );
