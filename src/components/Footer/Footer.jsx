@@ -1,8 +1,24 @@
+import { Container, Logo, Box, Wrapper, Div } from "./Footer.styled";
+import logo from '../../assets/images/logo.png'
+import { Contacts } from "./Contacts";
+import { TimeTable } from "./TimeTable";
+import { Confidential } from "./Confidential";
+import { ForClients } from "./ForClients";
+
 export const Footer = () => {
   return (
-    <>
-      <hr />
-      ...footer in development
-    </>
+    <Wrapper>
+      <Logo src={logo} alt='logo' />
+      <Container>
+        <Box>
+          <Contacts />
+          <Div>
+            <TimeTable />
+            <Confidential />
+          </Div>
+        </Box>
+        <ForClients />
+      </Container>
+    </Wrapper>
   );
 };

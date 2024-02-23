@@ -16,13 +16,11 @@ export const Layout = () => {
           <Header />
         </header>
         <main>
-          <section>
-            <Container>
-              <Suspense fallback={null}>
-                <Outlet />
-              </Suspense>
-            </Container>
-          </section>
+          <Container>
+            <Suspense fallback={null}>
+              <Outlet />
+            </Suspense>
+          </Container>
         </main>
         <footer>
           <Footer />
