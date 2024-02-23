@@ -1,24 +1,21 @@
-import { StyledLink, Nav, NavList } from './Navigation.styled';
+import { StyledLink, Nav, NavList, Item } from './Navigation.styled';
 
 export const Navigation = () => {
   return (
     <Nav>
       <NavList>
-        <li>
+        <Item>
           <StyledLink to="/about">Про нас</StyledLink>
-        </li>
-        <li>
+        </Item>
+        <Item>
           <StyledLink to="/assortment">Асортимент</StyledLink>
-        </li>
-        <li>
+        </Item>
+        <Item>
           <StyledLink to="/delivery-and-payment">Доставка та оплата</StyledLink>
-        </li>
-        <li>
+        </Item>
+        <Item>
           <StyledLink to="/contacts">Контакти</StyledLink>
-        </li>
-        <li>
-          <StyledLink to="/contacts">Кошик</StyledLink>
-        </li>
+        </Item>
       </NavList>
     </Nav>
   );
