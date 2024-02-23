@@ -21,7 +21,7 @@ export const StyledList = styled.ul`
 
 export const StyledListCard = styled.li`
   width: 280px;
-  height: 430px;
+  /* height: 450px; */
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(rgba(213, 213, 213, 1), rgba(241, 241, 241, 0));

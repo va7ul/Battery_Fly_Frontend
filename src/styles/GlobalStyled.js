@@ -165,13 +165,22 @@ img {
 a
  {
   color: currentColor;
-  text-decoration: none;
+  text-decoration: none; 
+  
+  &:hover{
+    transition: ${theme.transition.main};
+  }
+
 }
 
 button {
   margin: 0;
   padding: 0;
   cursor: pointer;
+
+  &:hover{
+    transition: ${theme.transition.main};
+  }
 }
 
 /* input::-webkit-outer-spin-button,
