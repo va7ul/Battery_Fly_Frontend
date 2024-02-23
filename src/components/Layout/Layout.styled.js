@@ -4,7 +4,7 @@ import { hidden } from '../../styles/GlobalStyled';
 export const Container = styled.div`
   max-width: 360px;
   margin: 0 auto;
-  
+
   /* for example */
   /* background: ${props => props.theme.colors.error}; */
 
@@ -23,7 +23,6 @@ export const StyledHeader = styled.header`
   top: 0;
   display: flex;
   max-width: 390px;
-  height: 100vh;
   z-index: 1;
 
   background-color: ${props => props.theme.colors.background};
