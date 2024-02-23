@@ -7,7 +7,11 @@ import {
   Sntc,
   Descr,
   List,
-  Icon,
+  IconShipping,
+  IconSquares,
+  Link,
+  NPTitle,
+  NPIcon,
 } from './DeliveryPayment.styled';
 
 import sprite from '../../assets/images/sprite.svg';
@@ -16,9 +20,12 @@ export const DeliveryPayment = () => {
   return (
     <Container>
       <Wrapper>
-        <Icon>
+        <IconShipping width="82px">
           <use href={`${sprite}#shipping-car`}></use>
-        </Icon>
+        </IconShipping>
+        <IconSquares>
+          <use href={`${sprite}#squares`}></use>
+        </IconSquares>
         <Title>Доставка та оплата</Title>
         <Section>
           <SubTitle>Доставка</SubTitle>
@@ -27,12 +34,26 @@ export const DeliveryPayment = () => {
             При оформленні замовлення через Інтернет-магазин, ми уточнимо час,
             коли ви зможете отримати замовлення на точці видачі.
           </Descr>
-          <Sntc>Нова пошта</Sntc>
+          <NPTitle>
+            <NPIcon>
+              <use href={`${sprite}#nova_poshta`}></use>
+            </NPIcon>
+            Нова пошта
+          </NPTitle>
           <Descr>
             Вартість доставки оплачується за тарифами Нової Пошти. Статус
-            доставки замовлення можна відстежити ТУТ. Також доставляємо у
-            поштомати Нової пошти. Актуальний список відділень НП, що працюють
-            ТУТ
+            доставки замовлення можна відстежити
+            <Link href="https://tracking.novaposhta.ua/#/uk/" target="_blank">
+              тут
+            </Link>
+            . Також доставляємо у поштомати Нової пошти. Актуальний список
+            відділень НП, що працюють
+            <Link
+              href="https://r51797.geo.novaposhta.ua/office/nearest"
+              target="_blank"
+            >
+              тут
+            </Link>
           </Descr>
         </Section>
         <Section>

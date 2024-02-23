@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 20px 30px;
-  /* margin: 0 auto; */
+
   @media screen and (min-width: 1280px) {
     padding: 0 110px;
     background-image: linear-gradient(
@@ -27,9 +27,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: rgb(244, 170, 0);
   font-size: 16px;
   font-weight: 600;
+  color: ${props => props.theme.colors.secondary};
 
   @media screen and (min-width: 1280px) {
     font-size: 40px;
@@ -47,10 +47,8 @@ export const Section = styled.section`
 `;
 
 export const SubTitle = styled.h3`
-  color: #050505;
   font-size: 15px;
   font-weight: 600;
-  line-height: 1.22;
 
   @media screen and (min-width: 1280px) {
     font-size: 36px;
@@ -58,18 +56,30 @@ export const SubTitle = styled.h3`
 `;
 
 export const Sntc = styled.p`
-  color: #050505;
   font-size: 12px;
-  line-height: 1.2;
 
   @media screen and (min-width: 1280px) {
     font-size: 25px;
   }
 `;
 
+export const NPTitle = styled.p`
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  height: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+
+  @media screen and (min-width: 1280px) {
+    height: 40px;
+    font-size: 30px;
+  }
+`;
+
 export const Descr = styled.p`
   font-size: 10px;
-  line-height: 1.2;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
@@ -79,24 +89,54 @@ export const Descr = styled.p`
 export const List = styled.ul`
   list-style: inside;
   font-size: 10px;
-  line-height: 1.2;
-  color: #050505;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
   }
 `;
 
-export const Icon = styled.svg`
+export const Link = styled.a`
+  font-weight: 500;
+  text-decoration: underline;
+  margin-left: 3px;
+  text-transform: uppercase;
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+  }
+`;
+
+export const IconShipping = styled.svg`
   position: absolute;
-  fill: #f2c94c;
+  fill: ${props => props.theme.colors.svgColor};
   top: -25px;
   right: 10px;
-  width: 60px;
-  height: auto;
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
+`;
+
+export const IconSquares = styled.svg`
+  display: none;
 
   @media screen and (min-width: 1280px) {
-    top: 0;
-    width: 100px;
+    display: block;
+    position: absolute;
+    left: 30%;
+    bottom: 60px;
+    -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
+    fill: ${props => props.theme.colors.textPrimary};
+  }
+`;
+
+export const NPIcon = styled.svg`
+  width: 20px;
+  fill: ${props => props.theme.colors.textPrimary};
+
+  @media screen and (min-width: 1280px) {
+    width: 40px;
   }
 `;
