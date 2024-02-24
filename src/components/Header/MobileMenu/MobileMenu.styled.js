@@ -6,3 +6,10 @@ export const Button = styled.button`
   outline: none;
   border: none;
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 16px 0;
+`;
