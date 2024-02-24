@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Button } from './MobileMenu.styled';
+import { Button, Wrapper } from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
 import Drawer from '@mui/material/Drawer';
 import { Logo } from '../Logo/Logo';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,18 +24,26 @@ export const MobileMenu = () => {
         open={isOpen}
         onClose={toggleDrawer(false)}
         sx={{
-          '& .MuiPaper-root': {
+          '& .MuiDrawer-paper': {
             bgcolor: 'background.default',
             width: 360,
+            pl: '20px',
+            pr: '20px',
           },
           width: 360,
         }}
       >
-        <Logo />
+        <Wrapper>
+          <Button type="button" onClick={toggleDrawer(false)}>
+            <ArrowBackIosIcon
+              sx={{
+                color: 'text.primary',
+              }}
+            />
+          </Button>
+          <Logo />
+        </Wrapper>
         <Navigation />
-        <Button type="button" onClick={toggleDrawer(false)}>
-          CLOSE
-        </Button>
       </Drawer>
     </div>
   );
