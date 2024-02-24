@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Logo, Button } from './MobileMenu.styled';
-import logo from '../../../assets/images/logo.png';
+import { Button } from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
 import Drawer from '@mui/material/Drawer';
+import { Logo } from '../Logo/Logo';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ export const MobileMenu = () => {
       <Button onClick={toggleDrawer(true)}>
         <GiHamburgerMenu />
       </Button>
-      <Logo src={logo} alt="logo" />
+      <Logo />
 
       <Drawer
         open={isOpen}
@@ -30,7 +30,7 @@ export const MobileMenu = () => {
           width: 360,
         }}
       >
-        <Logo src={logo} alt="logo" />
+        <Logo />
         <Navigation />
         <Button type="button" onClick={toggleDrawer(false)}>
           CLOSE
