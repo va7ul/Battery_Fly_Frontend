@@ -2,7 +2,6 @@ import { Grid} from '@mui/material';
 import { Categories } from './Categories/Categories';
 import { Hero } from './Hero/Hero';
 import { OurServices } from './OurServices/OurServices';
-import { Sales } from './Sales/Sales';
 import { WhyChooseUs } from './WhyChooseUs/WhyChooseUs';
 
 
@@ -21,9 +20,6 @@ export const MainPageLayuot = () => {
         </Grid>
         <Grid>
           <Categories />
-        </Grid>
-        <Grid>
-          <Sales />
         </Grid>
         <Grid>
           <OurServices />
