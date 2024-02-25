@@ -1,9 +1,9 @@
 import { StyledLink, Nav, NavList, Item } from './Navigation.styled';
 
-export const Navigation = () => {
+export const Navigation = ({ setIsOpen }) => {
   return (
     <Nav>
-      <NavList>
+      <NavList onClick={() => setIsOpen(false)}>
         <Item>
           <StyledLink to="/main">Головна</StyledLink>
         </Item>
