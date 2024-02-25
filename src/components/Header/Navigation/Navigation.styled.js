@@ -23,9 +23,6 @@ export const StyledLink = styled(NavLink)`
 
 export const Nav = styled.nav`
   justify-content: start;
-  @media screen and (min-width: 1280px) {
-    margin-left: 57px;
-  }
 `;
 
 export const NavList = styled.ul`
