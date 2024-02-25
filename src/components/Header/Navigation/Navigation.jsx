@@ -5,6 +5,9 @@ export const Navigation = () => {
     <Nav>
       <NavList>
         <Item>
+          <StyledLink to="/main">Головна</StyledLink>
+        </Item>
+        <Item>
           <StyledLink to="/about">Про нас</StyledLink>
         </Item>
         <Item>
