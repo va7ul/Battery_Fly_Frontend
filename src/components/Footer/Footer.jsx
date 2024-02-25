@@ -4,6 +4,7 @@ import { Contacts } from "./Contacts";
 import { TimeTable } from "./TimeTable";
 import { Confidential } from "./Confidential";
 import { ForClients } from "./ForClients";
+// import { MultiButton } from "components/MultiButton/MultiButton";
 
 export const Footer = () => {
   return (
@@ -19,6 +20,8 @@ export const Footer = () => {
         </Box>
         <ForClients />
       </Container>
+      {/* <MultiButton /> */}
     </Wrapper>
+    
   );
 };
