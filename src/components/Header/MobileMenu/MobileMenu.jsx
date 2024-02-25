@@ -4,13 +4,13 @@ import {
   BurgerButton,
   MenuWrap,
   HeaderWrap,
-  FeedbackButton,
   ArrowButton,
 } from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
 import Drawer from '@mui/material/Drawer';
 import { Logo } from '../Logo/Logo';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { MobileToolBar } from '../MobileToolBar/MobileToolBar';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,7 @@ export const MobileMenu = () => {
           <MenuIcon />
         </BurgerButton>
         <Logo />
-        <FeedbackButton type="button">Зв'язатися</FeedbackButton>
+        <MobileToolBar />
       </HeaderWrap>
 
       <Drawer
@@ -35,11 +35,10 @@ export const MobileMenu = () => {
         sx={{
           '& .MuiDrawer-paper': {
             bgcolor: 'background.default',
-            width: 360,
+            width: '360px',
             pl: '20px',
             pr: '20px',
           },
-          // width: 360,
         }}
       >
         <MenuWrap>
