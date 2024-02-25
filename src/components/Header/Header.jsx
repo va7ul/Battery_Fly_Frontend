@@ -1,7 +1,7 @@
 import { MobileMenu } from './MobileMenu/MobileMenu';
 import { useMediaQuery } from 'react-responsive';
 import { Navigation } from './Navigation/Navigation';
-import { StyledHeader } from './Header.styled';
+import { StyledHeader, DesktopWrapper } from './Header.styled';
 import { Logo } from './Logo/Logo';
 
 export const Header = () => {
@@ -12,10 +12,10 @@ export const Header = () => {
       {mobileVersion ? (
         <MobileMenu />
       ) : (
-        <>
+        <DesktopWrapper>
           <Logo />
           <Navigation />
-        </>
+        </DesktopWrapper>
       )}
     </StyledHeader>
   );
