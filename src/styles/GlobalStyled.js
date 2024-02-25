@@ -5,6 +5,8 @@ import 'modern-normalize';
 export const themeMUI = createTheme({
   breakpoints: {
     values: {
+      xs: 0,
+      mobile: 360,
       desktop: 1280,
     },
   },
@@ -12,11 +14,11 @@ export const themeMUI = createTheme({
     secondary: {
       main: 'rgba(244, 170, 0, 1)',
     },
-    svgColor: {
-      main: 'rgba(255, 187, 37, 1)',
-    },
+    // svgColor: {
+    //   main: 'rgba(251, 208, 110, 1)', поки не використовується
+    // },
     background: {
-      paper: 'rgba(251, 208, 110, 1)',
+      paper: 'rgba(244, 170, 0, 0.8)',
       default: 'rgba(247, 247, 247, 1)',
     },
     text: {
@@ -98,14 +100,15 @@ export const themeMUI = createTheme({
 
 export const theme = {
   colors: {
-    textPrimary: 'rgba(31, 31, 31, 1)',
-    textDisabled: 'rgba(157, 157, 157, 1)',
-    greyOutput: 'rgba(144, 144, 144, 1)',
-    greyPlaysholder: 'rgba(165, 165, 165, 1)',
-    secondary: 'rgba(244, 170, 0, 1)',
-    svgColor: 'rgba(255, 187, 37, 1)',
-    background: 'rgba(247, 247, 247, 1)',
-    backgroundPaper: 'rgba(251, 208, 110, 1)',
+    textPrimary: 'rgba(31, 31, 31, 1)', // колір тексту чорний
+    textDisabled: 'rgba(157, 157, 157, 1)', //колір плейсхолдерів, неактивного тексту світло сірий
+    greyOutput: 'rgba(144, 144, 144, 1)', // ??? поки не використовується
+    greyPlaysholder: 'rgba(165, 165, 165, 1)', // ??? поки не використовується
+    greyBackgroundPaper: 'rgba(225, 225, 225, 1)', // колір фону нотаток світло сірий
+    secondary: 'rgba(244, 170, 0, 1)', // колір ел. при ховері, активних посилань та заливки svg темно оранжевий
+    backgroundPaper: 'rgba(244, 170, 0, 0.8)', // колір кнопок та ел. без ховера світло оранжевий
+    background: 'rgba(247, 247, 247, 1)', // колір фону сторінки білий
+    // svgColor: 'rgba(251, 208, 110, 1)', вже не використовується
 
     gradient: 'linear-gradient(rgba(255, 208, 100, 1), rgba(251, 208, 110, 0))',
     gradientHover:
@@ -137,19 +140,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+h1, h2, h3, h4, h5, h6, p {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-ul,
-ol {
+ul, ol, li {
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
@@ -166,21 +162,14 @@ a
  {
   color: currentColor;
   text-decoration: none; 
-  
-  &:hover{
-    transition: ${theme.transition.main};
-  }
-
+  transition: ${theme.transition.main};
 }
 
 button {
   margin: 0;
   padding: 0;
   cursor: pointer;
-
-  &:hover{
-    transition: ${theme.transition.main};
-  }
+  transition: ${theme.transition.main};
 }
 
 /* input::-webkit-outer-spin-button,
