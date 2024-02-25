@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Box = styled.div``;
+export const Wrapper = styled.div`
+padding-bottom: 30px;`
+
+
+export const Box = styled.div`
+height: 70px`;
 
 export const SmallTitle = styled.h3`
   font-size: 10px;

@@ -1,4 +1,4 @@
-import { Title, Wrapper } from "./Hero.styled";
+import { HighlightedText, Title, Wrapper } from "./Hero.styled";
 
 export const Hero = () => {
   return (
@@ -6,7 +6,7 @@ export const Hero = () => {
       <Wrapper>
         <Title>
           Широкий спектр продуктів і послуг у сфері
-          <p>Li-Ion акумуляторів</p>
+          <HighlightedText>Li-Ion акумуляторів</HighlightedText>
         </Title>
       </Wrapper>
     </section>

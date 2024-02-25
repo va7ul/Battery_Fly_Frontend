@@ -1,22 +1,25 @@
-import { ListItem } from "@mui/material";
-import { Text } from "../SharedComponents/Text/Text";
-import { Title } from "../SharedComponents/Title/Title";
-import { List } from "./WhyChooseUs.styled";
-import { WhyChooseUsCard } from "../WhyChooseUsCard/WhyChooseUsCard";
-
-
+import { Text } from '../SharedComponents/Text/Text';
+import { Title } from '../SharedComponents/Title/Title';
+import { Box, List, ListItem } from './WhyChooseUs.styled';
+import { WhyChooseUsCard } from '../WhyChooseUsCard/WhyChooseUsCard';
 
 export const WhyChooseUs = ({ reasons }) => {
   return (
     <>
-      <Title>Чому обирають нас?</Title>
-      <Text>
-        Наші переваги: впевність у якості, доступна ціна та гарантія. Ми
-        прагнемо надавати нашим клієнтам належну вартість та впевненість у
-        якості продукції, яку ми пропонуємо. Наш бізнес вирізняється завдяки
-        кільком ключовим перевагам, які роблять нас найкращим вибором у сфері
-        Li-Ion акумуляторів:
-      </Text>
+      <Box>
+        <Title>Чому обирають нас?</Title>
+        <Text>
+          Наші переваги: впевність у якості, доступна ціна та гарантія.
+        </Text>
+        <Text>
+          Ми прагнемо надавати нашим клієнтам належну вартість та впевненість у
+          якості продукції, яку ми пропонуємо.
+        </Text>
+        <Text>
+          Наш бізнес вирізняється завдяки кільком ключовим перевагам, які
+          роблять нас найкращим вибором у сфері Li-Ion акумуляторів:
+        </Text>
+      </Box>
       <List>
         {reasons.map((item, idx) => (
           <ListItem key={idx}>
