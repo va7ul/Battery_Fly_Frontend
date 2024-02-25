@@ -4,11 +4,10 @@ export const Box = styled.div``;
 
 export const SmallTitle = styled.h3`
   font-size: 10px;
-  font-weight: 500px;
+  font-weight: 600;
 `;
 
 export const Icon = styled.svg`
-  height: 14px;
-  width: 14px;
-  fill: ${props => props.theme.colors.svgColor};
+  height: 20px;
+  width: 20px;
 `;

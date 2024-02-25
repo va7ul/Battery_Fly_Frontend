@@ -3,7 +3,8 @@ import { Categories } from './Categories/Categories';
 import { Hero } from './Hero/Hero';
 import { OurServices } from './OurServices/OurServices';
 import { WhyChooseUs } from './WhyChooseUs/WhyChooseUs';
-
+import services from '../../utils/json/main-page-our-services.json';
+import reasons from '../../utils/json/main-page-why-choose-us.json';
 
 
 export const MainPageLayuot = () => {
@@ -22,10 +23,10 @@ export const MainPageLayuot = () => {
           <Categories />
         </Grid>
         <Grid>
-          <OurServices />
+          <OurServices services={services} />
         </Grid>
         <Grid>
-          <WhyChooseUs />
+          <WhyChooseUs reasons={reasons} />
         </Grid>
       </Grid>
     </>
