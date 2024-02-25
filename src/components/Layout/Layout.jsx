@@ -12,9 +12,7 @@ export const Layout = () => {
   return (
     <>
       <ThemeProvider theme={themeMUI}>
-        <header>
-          <Header />
-        </header>
+        <Header />
         <main>
           <Container>
             <Suspense fallback={null}>
