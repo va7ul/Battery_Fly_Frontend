@@ -6,25 +6,23 @@ import { Container } from './Layout.styled';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../../components/Header/Header';
 
-// import { MenuAppBar } from 'components/Appbar/AppBar';
-
 export const Layout = () => {
   return (
     <>
       <ThemeProvider theme={themeMUI}>
-        <header>
-          <Header />
-        </header>
-        <main>
-          <Container>
-            <Suspense fallback={null}>
-              <Outlet />
-            </Suspense>
-          </Container>
-        </main>
-        <footer>
-          <Footer />
-        </footer>
+      <header>
+        <Header />
+      </header>
+      <main>
+        <Container>
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
+        </Container>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
       </ThemeProvider>
     </>
   );
