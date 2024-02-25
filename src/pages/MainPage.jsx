@@ -1,5 +1,7 @@
+import { MainPageLayuot } from "components/MainPage/MainPageLayuot";
+
 const MainPage = () => {
-  return <div>MainPage</div>;
+  return <MainPageLayuot />;
 };
 
 export default MainPage;

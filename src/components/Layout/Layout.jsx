@@ -10,19 +10,17 @@ export const Layout = () => {
   return (
     <>
       <ThemeProvider theme={themeMUI}>
-      <header>
         <Header />
-      </header>
-      <main>
-        <Container>
-          <Suspense fallback={null}>
-            <Outlet />
-          </Suspense>
-        </Container>
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+        <main>
+          <Container>
+            <Suspense fallback={null}>
+              <Outlet />
+            </Suspense>
+          </Container>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </ThemeProvider>
     </>
   );

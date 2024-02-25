@@ -1,0 +1,18 @@
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+padding-bottom: 30px;`
+
+
+export const Box = styled.div`
+height: 70px`;
+
+export const SmallTitle = styled.h3`
+  font-size: 10px;
+  font-weight: 600;
+`;
+
+export const Icon = styled.svg`
+  height: 20px;
+  width: 20px;
+`;
