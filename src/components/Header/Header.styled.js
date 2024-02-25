@@ -5,7 +5,7 @@ export const StyledHeader = styled.header`
   left: 0;
   top: 0;
   display: flex;
-  max-width: 390px;
+  max-width: 360px;
   z-index: 1;
 
   background-color: ${props => props.theme.colors.background};
