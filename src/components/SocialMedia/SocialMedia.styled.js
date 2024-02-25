@@ -11,16 +11,15 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  /* color: ${props => props.theme.colors.secondary};
-  opacity: 0.7; */
-  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${props => props.theme.colors.secondary};
+  opacity: 0.8;
+  transition: ${props => props.theme.transition.main};
   cursor: pointer;
   display: block;
   height: 20px;
 
   &:hover {
     opacity: 1;
-    color: ${props => props.theme.colors.secondary};
     transform: scale(1.05);
   }
 
