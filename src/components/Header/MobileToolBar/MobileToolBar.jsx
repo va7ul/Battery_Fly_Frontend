@@ -9,12 +9,9 @@ export const MobileToolBar = () => {
       <FeedbackButton type="button">Зв'язатися</FeedbackButton>
       <Button type="button">
         <ShoppingCartOutlinedIcon
-
-        //   sx={{
-        //     '& .MuiIcon-root': {
-        //       color: 'red',
-        //     },
-        //   }}
+          sx={{
+            color: 'svgColor.main',
+          }}
         />
       </Button>
       <Button type="button">
