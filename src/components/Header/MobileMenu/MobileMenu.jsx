@@ -1,6 +1,12 @@
 import { useState } from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { Button, Wrapper } from './MobileMenu.styled';
+import MenuIcon from '@mui/icons-material/Menu';
+import {
+  BurgerButton,
+  MenuWrap,
+  HeaderWrap,
+  FeedbackButton,
+  ArrowButton,
+} from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
 import Drawer from '@mui/material/Drawer';
 import { Logo } from '../Logo/Logo';
@@ -15,10 +21,13 @@ export const MobileMenu = () => {
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>
-        <GiHamburgerMenu />
-      </Button>
-      <Logo />
+      <HeaderWrap>
+        <BurgerButton onClick={toggleDrawer(true)}>
+          <MenuIcon />
+        </BurgerButton>
+        <Logo />
+        <FeedbackButton type="button">Зв'язатися</FeedbackButton>
+      </HeaderWrap>
 
       <Drawer
         open={isOpen}
@@ -30,19 +39,19 @@ export const MobileMenu = () => {
             pl: '20px',
             pr: '20px',
           },
-          width: 360,
+          // width: 360,
         }}
       >
-        <Wrapper>
-          <Button type="button" onClick={toggleDrawer(false)}>
+        <MenuWrap>
+          <ArrowButton type="button" onClick={toggleDrawer(false)}>
             <ArrowBackIosIcon
               sx={{
                 color: 'text.primary',
               }}
             />
-          </Button>
+          </ArrowButton>
           <Logo />
-        </Wrapper>
+        </MenuWrap>
         <Navigation />
       </Drawer>
     </div>
