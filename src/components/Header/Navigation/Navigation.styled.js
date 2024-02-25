@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const Item = styled.li`
   font-size: 15px;
   color: ${props => props.theme.colors.textPrimary};
-  transition: color ${props => props.theme.transition.main};
+  /* transition: color ${props => props.theme.transition.main}; */
 
   &:hover {
     color: ${props => props.theme.colors.secondary};
