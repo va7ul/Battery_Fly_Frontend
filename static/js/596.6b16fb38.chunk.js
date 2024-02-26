@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[596],{4596:function(e,t,f){f(2791);t.Z=f.p+"static/media/sprite.9b2655e7f595106af73663d56c24af13.svg"}}]);
-//# sourceMappingURL=596.6b16fb38.chunk.js.map
