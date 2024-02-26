@@ -1,10 +1,13 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 10px;
+  }
 `;
 
 export const Title = styled.h4`
@@ -16,12 +19,8 @@ export const Title = styled.h4`
   }
 `;
 
-export const Link = styled(NavLink)`
+export const Text = styled.p`
   font-size: 10px;
-
-  &:hover {
-    color: ${props => props.theme.colors.secondary};
-  }
 
   @media screen and (min-width: 1280px) {
     font-size: 15px;
