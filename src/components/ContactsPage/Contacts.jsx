@@ -1,5 +1,5 @@
 
-import { SocialMedia } from '../SocialMedia/SocialMedia';
+import { SocialMedia } from './SocialMedia/SocialMedia';
 import { Container, Text, Title, List, Box, BoxAddress, Item, ImgBot, ImgTop, Div } from "./Contacts.styled";
 import warmTop from '../../assets/images/warmTop.png';
 import warmBottom from '../../assets/images/warmBottom.png';
@@ -30,8 +30,8 @@ export const Contacts = () => {
                     rel="noopener noreferrer nofollow"
                 >м. Львів, Зелена, 109</a>
             </BoxAddress>
-                <ImgTop src={warmTop} alt='warm' />
-                <ImgBot src={warmBottom} alt='warm' />
+            <ImgTop src={warmTop} alt='warm' />
+            <ImgBot src={warmBottom} alt='warm' />
         </Container>
-    )
+    );
 };

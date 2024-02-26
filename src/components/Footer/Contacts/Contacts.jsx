@@ -1,4 +1,4 @@
-import { SocialMedia } from "components/SocialMedia/SocialMedia";
+import { SocialMediaFooter } from "../SocialMediaFooter/SocialMediaFooter";
 import { Title, Text, Box } from "./Contacts.styled";
 
 export const Contacts = () => {
@@ -11,7 +11,7 @@ export const Contacts = () => {
             <Text>
                 <a href="mailto:batteryfly@meta.com">batteryfly@meta.com</a>
             </Text>
-            <SocialMedia />
+            <SocialMediaFooter />
         </Box>
     );
 };
