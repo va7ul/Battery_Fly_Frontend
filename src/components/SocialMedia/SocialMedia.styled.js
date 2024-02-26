@@ -3,10 +3,8 @@ import styled from 'styled-components';
 export const List = styled.ul`
   display: flex;
   gap: 6px;
-  /* margin-bottom: 12px; */
 
   @media screen and (min-width: 1280px) {
-    /* margin-bottom: 36px; */
   }
 `;
 
@@ -16,7 +14,7 @@ export const Item = styled.li`
   transition: ${props => props.theme.transition.main};
   cursor: pointer;
   display: block;
-  height: 20px;
+  height: 24px;
 
   &:hover {
     opacity: 1;
@@ -24,6 +22,6 @@ export const Item = styled.li`
   }
 
   @media screen and (min-width: 1280px) {
-    height: 24px;
+    height: 34px;
   }
 `;
