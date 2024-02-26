@@ -6,8 +6,6 @@ import { Container } from './Layout.styled';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../../components/Header/Header';
 
-// import { MenuAppBar } from 'components/Appbar/AppBar';
-
 export const Layout = () => {
   return (
     <>
