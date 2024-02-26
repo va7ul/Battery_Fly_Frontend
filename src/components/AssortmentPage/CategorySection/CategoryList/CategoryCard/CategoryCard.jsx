@@ -12,7 +12,7 @@ import {
   CounterBtn,
   CounterInput,
   AddToBasketBtn,
-  GoToBasketBtn,
+  // GoToBasketBtn,
 } from './CategoryCard.styled';
 
 export const CategoryCard = () => {
