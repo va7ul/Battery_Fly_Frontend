@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   gap: 12px;
   flex-direction: column;
   align-items: center;
+  z-index: 100;
 `;
 
 export const List = styled.ul`
