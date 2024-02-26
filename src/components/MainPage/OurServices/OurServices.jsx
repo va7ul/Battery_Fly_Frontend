@@ -1,29 +1,32 @@
-import { Box, Button, MobileStepper, Paper, Typography, useTheme } from '@mui/material';
 import { OurServicesCard } from '../OurServicesCard/OurServicesCard';
 import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
 import { Text } from '../SharedComponents/Text/Text';
 import { Title } from '../SharedComponents/Title/Title';
-import { Holder, List, ListItem, Wrapper } from './OurServices.styled';
+import { Button, ButtonWrapper, Holder, List, ListItem, Wrapper } from './OurServices.styled';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
+import { useState } from 'react';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+const numberOfVisibleCards = 2;
 
 export const OurServices = ({ services }) => {
-   const theme = useTheme();
-   const [activeStep, setActiveStep] = React.useState(0);
-   const maxSteps = images.length;
+  const [activeStep, setActiveStep] = useState(0);
+  const maxSteps = Math.round(services.length / numberOfVisibleCards);
 
-   const handleNext = () => {
-     setActiveStep(prevActiveStep => prevActiveStep + 1);
-   };
+  if (activeStep > maxSteps) {
+    setActiveStep(0);
+  }
 
-   const handleBack = () => {
-     setActiveStep(prevActiveStep => prevActiveStep - 1);
-   };
+  if (activeStep === -1) {
+    setActiveStep(maxSteps);
+  }
 
-   const handleStepChange = step => {
-     setActiveStep(step);
-   };
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
   return (
     <MainWrapper>
       <Wrapper>
@@ -35,85 +38,22 @@ export const OurServices = ({ services }) => {
           </Text>
           <Text>Наш бізнес охоплює наступні напрямки:</Text>
         </Holder>
-        <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-          <Paper
-            square
-            elevation={0}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              height: 50,
-              pl: 2,
-              bgcolor: 'background.default',
-            }}
-          >
-            <Typography>{images[activeStep].label}</Typography>
-          </Paper>
-          <AutoPlaySwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={activeStep}
-            onChangeIndex={handleStepChange}
-            enableMouseEvents
-          >
-            {images.map((step, index) => (
-              <div key={step.label}>
-                {Math.abs(activeStep - index) <= 2 ? (
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 255,
-                      display: 'block',
-                      maxWidth: 400,
-                      overflow: 'hidden',
-                      width: '100%',
-                    }}
-                    src={step.imgPath}
-                    alt={step.label}
-                  />
-                ) : null}
-              </div>
-            ))}
-          </AutoPlaySwipeableViews>
-          <MobileStepper
-            steps={maxSteps}
-            position="static"
-            activeStep={activeStep}
-            nextButton={
-              <Button
-                size="small"
-                onClick={handleNext}
-                disabled={activeStep === maxSteps - 1}
-              >
-                Next
-                {theme.direction === 'rtl' ? (
-                  <KeyboardArrowLeft />
-                ) : (
-                  <KeyboardArrowRight />
-                )}
-              </Button>
-            }
-            backButton={
-              <Button
-                size="small"
-                onClick={handleBack}
-                disabled={activeStep === 0}
-              >
-                {theme.direction === 'rtl' ? (
-                  <KeyboardArrowRight />
-                ) : (
-                  <KeyboardArrowLeft />
-                )}
-                Back
-              </Button>
-            }
-          />
-        </Box>
+        <ButtonWrapper>
+          <Button type="button" onClick={handleBack}>
+            <KeyboardArrowLeft />
+          </Button>
+          <Button type="button" onClick={handleNext}>
+            <KeyboardArrowRight />
+          </Button>
+        </ButtonWrapper>
         <List>
-          {services.map((item, idx) => (
-            <ListItem key={idx}>
-              <OurServicesCard text={item} />
-            </ListItem>
-          ))}
+          <ListItem onClick={handleBack}>
+            <OurServicesCard text={services[activeStep]} />
+          </ListItem>
+
+          <ListItem onClick={handleNext}>
+            <OurServicesCard text={services[activeStep + 1]} />
+          </ListItem>
         </List>
       </Wrapper>
     </MainWrapper>

@@ -1,8 +1,15 @@
 import { Text } from '../SharedComponents/Text/Text';
 import { Title } from '../SharedComponents/Title/Title';
-import { Box, List, ListItem } from './WhyChooseUs.styled';
+import {
+  Box,
+  Holder,
+  IconHope,
+  List,
+  ListItem,
+} from './WhyChooseUs.styled';
 import { WhyChooseUsCard } from '../WhyChooseUsCard/WhyChooseUsCard';
 import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
+import sprite from '../../../assets/images/sprite.svg';
 
 export const WhyChooseUs = ({ reasons }) => {
   return (
@@ -23,13 +30,24 @@ export const WhyChooseUs = ({ reasons }) => {
           </Text>
         </Box>
       </MainWrapper>
-      <List>
-        {reasons.map((item, idx) => (
-          <ListItem key={idx}>
-            <WhyChooseUsCard text={item} />
-          </ListItem>
-        ))}
-      </List>
+      <Holder>
+        <IconHope>
+          <use href={`${sprite}#icon-about-hope`}></use>
+        </IconHope>
+        {/* <IconVerticalSpiral>
+          <use href={`${sprite}#icon-main-vertical-spiral`}></use>
+        </IconVerticalSpiral>
+        <IconSpiral>
+          <use href={`${sprite}#icon-about-spiral`}></use>
+        </IconSpiral> */}
+        <List>
+          {reasons.map((item, idx) => (
+            <ListItem key={idx}>
+              <WhyChooseUsCard text={item} />
+            </ListItem>
+          ))}
+        </List>
+      </Holder>
     </>
   );
 };

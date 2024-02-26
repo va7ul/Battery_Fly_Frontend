@@ -4,6 +4,10 @@ export const Box = styled.div`
   margin-bottom: 20px;
 `;
 
+export const Holder = styled.div`
+  position: relative;
+`;
+
 export const List = styled.ul`
   display: grid;
   gap: 22px;
@@ -23,4 +27,27 @@ export const ListItem = styled.li`
     position: relative;
     left: 100px;
   }
+`;
+
+export const IconHope = styled.svg`
+  height: 35px;
+  width: 35px;
+  position: absolute;
+  bottom: 208px;
+  left: 16px;
+  fill: ${props => props.theme.colors.secondary};
+`;
+export const IconVerticalSpiral = styled.svg`
+  width: 60px;
+  height: 104px;
+  position: absolute;
+  bottom: 208px;
+  left: 16px;
+`;
+export const IconSpiral = styled.svg`
+  width: 98px;
+  height: 104px;
+  position: absolute;
+  bottom: 208px;
+  left: 16px;
 `;
