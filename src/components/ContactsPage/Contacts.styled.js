@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 0px 30px 0px 30px;
+  padding: 0px 20px 0px 20px;
   position: relative;
 
   @media screen and (min-width: 1280px) {
@@ -24,6 +24,7 @@ export const Title = styled.h2`
 export const Text = styled.p`
   font-size: 12px;
   margin-bottom: 6px;
+  font-weight: 600;
 
   @media screen and (min-width: 1280px) {
     font-size: 25px;
@@ -96,16 +97,15 @@ export const BoxAddress = styled.div`
 export const ImgTop = styled.img`
   position: absolute;
   width: 132.59px;
-  right: 45px;
-  top: 48px;
+  right: 60px;
+  top: 28px;
   z-index: 1;
-  fill: rgba(251, 208, 110, 0.72);
 
   @media screen and (min-width: 1280px) {
     width: 370.07px;
     height: 209.38px;
-    right: 200px;
-    top: 235px;
+    right: 220px;
+    top: 150px;
   }
 `;
 
@@ -113,14 +113,13 @@ export const ImgBot = styled.img`
   position: absolute;
   width: 125px;
   height: 70.73px;
-  right: -3px;
-  bottom: 38px;
-  fill: rgba(245, 255, 129, 0.62);
+  right: -1px;
+  bottom: 30px;
 
   @media screen and (min-width: 1280px) {
     width: 370.07px;
     height: 209.38px;
-    right: -9px;
-    bottom: -44px;
+    right: -3px;
+    bottom: -40px;
   }
 `;
