@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  margin-left: 38px;
 `;
 
 export const FeedbackButton = styled.button`
@@ -22,7 +23,6 @@ export const FeedbackButton = styled.button`
 
 export const Button = styled.button`
   display: block;
-  width: 20px;
   background-color: transparent;
   border: none;
 `;
