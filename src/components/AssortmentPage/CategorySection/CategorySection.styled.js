@@ -54,7 +54,6 @@ export const StyledLink = styled.a`
   color: ${getColor};
   display: inline-flex;
   gap: 15px;
-  /* transition: ${props => props.theme.transition.main}; */
 
   &:hover {
     color: ${props => props.theme.colors.secondary};
@@ -78,7 +77,7 @@ export const StyledLink = styled.a`
     fill: ${getColor};
     width: 30px;
     height: 19px;
-    /* transition: ${props => props.theme.transition.main}; */
+    transition: ${props => props.theme.transition.main};
 
     @media screen and (min-width: 1280px) {
       width: 50px;

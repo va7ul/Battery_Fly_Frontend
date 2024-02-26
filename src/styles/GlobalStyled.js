@@ -121,7 +121,7 @@ export const theme = {
     success: 'rgba(20, 211, 16, 1)',
   },
   transition: {
-    main: '250ms cubic-bezier(0.4, 0, 0.2, 1)',
+    main: '500ms cubic-bezier(0.4, 0, 0.2, 1)',
   },
 };
 
@@ -195,4 +195,59 @@ export const hidden = css`
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+`;
+
+export const gradientTransitionCard = css`
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(rgba(255, 225, 156, 1), rgba(251, 208, 110, 0));
+    transition: ${theme.transition.main};
+    z-index: 1;
+    opacity: 0;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  div {
+    position: relative;
+    z-index: 2;
+  }
+`;
+
+// встав змінну нижче в css свого елемента для transition з градієнтом!!!
+export const gradientTransitionBtn = css`
+  // position: relative; додай на свій елемент ховеру
+  // z-index: 0; додай на свій елемент ховеру
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 225, 156, 1), rgba(251, 208, 110, 0));
+    transition: ${theme.transition.main};
+    z-index: 1;
+    opacity: 0;
+    //   &::after {border-radius: 20px;} - додай свій радіус таким чином
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  //і перенеси весь свій контент всередину span
+  span {
+    position: relative;
+    z-index: 2;
+  }
 `;
