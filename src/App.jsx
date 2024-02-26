@@ -28,7 +28,7 @@ const BatteriesForToysPage = lazy(() =>
 );
 const DevicesPage = lazy(() => import('pages/DevicesPage.jsx'));
 const MaterialsPage = lazy(() => import('pages/MaterialsPage.jsx'));
-const ItemPage = lazy(() => import('pages/ItemPage.jsx'));
+const CardPage = lazy(() => import('pages/CardPage.jsx'));
 const DeliveryPaymentPage = lazy(() => import('pages/DeliveryPaymentPage.jsx'));
 const ContactsPage = lazy(() => import('pages/ContactsPage.jsx'));
 const CheckoutPage = lazy(() => import('pages/CheckoutPage.jsx'));
@@ -65,7 +65,7 @@ export const App = () => {
         <Route path="/batteries-for-toys" element={<BatteriesForToysPage />} />
         <Route path="/devices" element={<DevicesPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
-        <Route path="/items/:itemId" element={<ItemPage />} />
+        <Route path="/assortment/1" element={<CardPage />} />
         <Route
           path="/profile"
           element={
