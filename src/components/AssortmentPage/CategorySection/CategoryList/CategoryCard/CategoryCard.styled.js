@@ -1,4 +1,4 @@
-import { FaHeart } from 'react-icons/fa';
+// import { FaHeart } from 'react-icons/fa';
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import styled, { css } from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
