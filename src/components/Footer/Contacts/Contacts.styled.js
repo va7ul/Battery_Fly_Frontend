@@ -22,6 +22,10 @@ export const Title = styled.h4`
 export const Text = styled.p`
   font-size: 10px;
 
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+  }
+
   @media screen and (min-width: 1280px) {
     font-size: 15px;
   }
