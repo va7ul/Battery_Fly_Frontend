@@ -23,23 +23,23 @@ export const Title = styled.h2`
 
 export const Text = styled.p`
   font-size: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 
   @media screen and (min-width: 1280px) {
     font-size: 25px;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
   }
 `;
 
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   font-size: 10px;
   margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 36px;
   }
 `;
@@ -59,12 +59,12 @@ export const Item = styled.li`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
     margin-bottom: 36px;
-    gap: 20px;
+    gap: 10px;
   }
 `;
 
