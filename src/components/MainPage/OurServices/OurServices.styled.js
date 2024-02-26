@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
 `;
 
 
-export const Box = styled.div`
-margin-bottom: 20px;
+export const Holder = styled.div`
+  margin-bottom: 20px;
 `;
 
 export const List = styled.ul`
