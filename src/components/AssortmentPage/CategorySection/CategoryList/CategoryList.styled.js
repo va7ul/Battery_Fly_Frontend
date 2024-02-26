@@ -1,29 +1,36 @@
 import styled from 'styled-components';
+import { gradientTransitionCard } from 'styles/GlobalStyled';
 
-export const StyledExample = styled.div`
-  padding-left: 30px;
-  background: ${props => props.theme.colors.gradientBlack};
-
-  /* for example */
-  /* background: ${props => props.theme.colors.error}; */ /* &:hover {
-    color: ${props => props.theme.colors.error};
-    transition: ${props => props.theme.transition.main};
-  } */
-  @media screen and (min-width: 1280px) {
-    padding-left: 110px;
+const getCardSize = props => {
+  if (props.category === 'Акції') {
+    return '290px';
   }
-`;
+  return '250px';
+};
 
 export const StyledList = styled.ul`
-  display: flex;
+  display: grid;
   gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 `;
 
 export const StyledListCard = styled.li`
-  width: 250px;
-  /* height: 480px; */
-  border-radius: 20px;
+  max-width: ${getCardSize};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(rgba(213, 213, 213, 1), rgba(241, 241, 241, 0));
   padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 0;
+  transition: ${props => props.theme.transition.main};
+  cursor: pointer;
+
+  ${gradientTransitionCard}
+  &::after {
+    border-radius: 20px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

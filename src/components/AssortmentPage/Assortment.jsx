@@ -1,5 +1,4 @@
 import { CategorySection } from './CategorySection/CategorySection';
-import { SaleSection } from './SaleSection/SaleSection';
 import { StyledPageTitle } from './Assortment.styled';
 
 export const Assortment = () => {
@@ -16,13 +15,9 @@ export const Assortment = () => {
   return (
     <>
       <StyledPageTitle>Асортимент</StyledPageTitle>
-      {categories.map(category =>
-        category === 'Акції' ? (
-          <SaleSection />
-        ) : (
-          <CategorySection category={category} />
-        )
-      )}
+      {categories.map(category => (
+        <CategorySection key={category} category={category} />
+      ))}
     </>
   );
 };
