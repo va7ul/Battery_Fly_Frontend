@@ -42,12 +42,12 @@ export const CategoryCard = () => {
             </div>
           </CounterBtn>
         </CounterWrapper>
-        {/* <AddToBasketBtn>
+        <AddToBasketBtn>
           <div>Додати у кошик</div>
-        </AddToBasketBtn> */}
-        <GoToBasketBtn>
+        </AddToBasketBtn>
+        {/* <GoToBasketBtn>
           <div>Перейти у кошик</div>
-        </GoToBasketBtn>
+        </GoToBasketBtn> */}
       </ContentWrapper>
     </>
   );
