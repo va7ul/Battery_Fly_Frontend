@@ -13,9 +13,6 @@ export const Contacts = () => {
                 <Item>
                     <a href="tel:+380634350137">+38 (063) 435 01 37</a>
                 </Item>
-                <Item>
-                    <a href="tel:+380634350137">+38 (063) 435 01 37</a>
-                </Item>
             </List>
             <Text>Пишіть:</Text>
             <Box>
