@@ -17,6 +17,7 @@ export const ListItem = styled.li`
   width: 190px;
   padding: 16px;
   position: relative;
+  box-shadow: 0px 17px 17px 0px rgba(0, 0, 0, 0.07);
 
   &:nth-child(2n) {
     position: relative;
