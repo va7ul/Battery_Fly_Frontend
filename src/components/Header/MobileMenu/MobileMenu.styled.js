@@ -10,8 +10,8 @@ export const BurgerButton = styled.button`
 `;
 export const MenuWrap = styled.div`
   display: flex;
-  padding: 10px 0;
-  gap: 100px;
+  padding: 10px 15px;
+  align-items: center;
 `;
 
 export const ArrowButton = styled.button`
@@ -19,9 +19,17 @@ export const ArrowButton = styled.button`
   justify-content: start;
   width: 24px;
   margin: 0;
+  margin-right: 80px;
   background-color: transparent;
   outline: none;
   border: none;
+
+  & svg {
+    width: 18px;
+    height: 18px;
+    fill: transparent;
+    stroke: ${props => props.theme.colors.textPrimary};
+  }
 `;
 
 export const HeaderWrap = styled.div`
