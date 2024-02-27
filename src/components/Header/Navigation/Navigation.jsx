@@ -1,4 +1,10 @@
-import { StyledLink, NavList, Item, HopeIcon } from './Navigation.styled';
+import {
+  StyledLink,
+  NavList,
+  Item,
+  HopeIcon,
+  CartButton,
+} from './Navigation.styled';
 import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../assets/images/sprite.svg';
 
@@ -47,6 +53,22 @@ export const Navigation = ({ setIsOpen }) => {
             </HopeIcon>
           )}
           <StyledLink to="/contacts">Контакти</StyledLink>
+        </Item>
+        <Item>
+          {mobileVersion && (
+            <HopeIcon>
+              <use href={`${sprite}#icon-Hope`}></use>
+            </HopeIcon>
+          )}
+          <CartButton type="button">Кошик</CartButton>
+        </Item>
+        <Item>
+          {mobileVersion && (
+            <HopeIcon>
+              <use href={`${sprite}#icon-Hope`}></use>
+            </HopeIcon>
+          )}
+          <StyledLink to="/favorites">Обране</StyledLink>
         </Item>
       </NavList>
     </nav>
