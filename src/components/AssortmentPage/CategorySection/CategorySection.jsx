@@ -16,7 +16,7 @@ export const CategorySection = ({ category }) => {
             <use href={`${sprite}#icon-arrow-right`} />
           </svg>
         </StyledLink>
-        <CategoryList />
+        <CategoryList category={category} />
       </StyledContainer>
     </StyledSection>
   );

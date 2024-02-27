@@ -2,7 +2,7 @@ import { CategoryCard } from './CategoryCard/CategoryCard';
 import { StyledList, StyledListCard } from './CategoryList.styled';
 
 export const CategoryList = ({ category }) => {
-  const cards = ['first', 'second', 'third', 'fourth'];
+  const cards = ['second', 'third', 'fourth'];
   return (
     <StyledList>
       {cards.map(card => (
