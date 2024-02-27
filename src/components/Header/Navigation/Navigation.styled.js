@@ -3,8 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 export const Item = styled.li`
   font-size: 15px;
+  padding: 8px 0;
   color: ${props => props.theme.colors.textPrimary};
-  /* transition: color ${props => props.theme.transition.main}; */
+  border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
 
   &:hover {
     color: ${props => props.theme.colors.secondary};
@@ -12,6 +13,15 @@ export const Item = styled.li`
 
   @media screen and (min-width: 1280px) {
     font-weight: 600;
+    border: none;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 27px;
   }
 `;
 
@@ -21,18 +31,17 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const Nav = styled.nav`
-  justify-content: start;
-`;
-
 export const NavList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  align-items: center;
+  align-items: start;
 
   @media screen and (min-width: 1280px) {
     gap: 30px;
     flex-direction: row;
   }
+`;
+
+export const HopeIcon = styled.svg`
+  width: 14px;
 `;
