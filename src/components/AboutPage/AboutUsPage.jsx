@@ -3,24 +3,23 @@ import { AboutButteryFly } from './AboutButteryFly/AboutButteryFly';
 import { Mission } from './Mission/Mission';
 import { Valuables } from './Valuables/Valuables';
 import valuables from '../../utils/json/about-page-valuables.json';
+import { MainWrapper } from './SharedComponents/MainWrapper/MainWrapper';
+
 
 export const AboutUsPage = () => {
   return (
-    <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Grid item xs={6}>
-        <AboutButteryFly />
+    <MainWrapper>
+      <Grid container>
+        <Grid item xs={12}>
+          <AboutButteryFly />
+        </Grid>
+        <Grid item xs={12}>
+          <Mission />
+        </Grid>
+        <Grid item xs={12}>
+          <Valuables valuables={valuables} />
+        </Grid>
       </Grid>
-      <Grid item xs={6}>
-        <Mission />
-      </Grid>
-      <Grid item xs={6}>
-        <Valuables valuables={valuables} />
-      </Grid>
-    </Grid>
+    </MainWrapper>
   );
 };
