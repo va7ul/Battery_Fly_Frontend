@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   width: 100%;
   max-height: 234px;
   background-color: ${props => props.theme.colors.textPrimary};

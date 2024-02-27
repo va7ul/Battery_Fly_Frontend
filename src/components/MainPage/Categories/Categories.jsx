@@ -5,6 +5,7 @@ import transport from '../../../assets/images/main-for-transport.png';
 import toys from '../../../assets/images/main-for-toys.png';
 import { List } from './Categories.styled';
 import { Link } from 'react-router-dom';
+import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
 
 
 const categories = [
@@ -16,7 +17,7 @@ const categories = [
   {
     imgUrl: `${butteries}`,
     description: 'Готові батареї',
-    path: '/materials',
+    path: '/assembly',
   },
   {
     imgUrl: `${fpv}`,
@@ -37,19 +38,21 @@ const categories = [
 
 export const Categories = () => {
   return (
-    <List>
-      {categories.map((item, idx) => (
-        <li key={idx}>
-          <Link to={item.path}>
-            <img
-              src={item.imgUrl}
-              alt={item.description}
-              width="66"
-              height="46"
-            />
-          </Link>
-        </li>
-      ))}
-    </List>
+    <MainWrapper>
+      <List>
+        {categories.map((item, idx) => (
+          <li key={idx}>
+            <Link to={item.path}>
+              <img
+                src={item.imgUrl}
+                alt={item.description}
+                width="60"
+                height="46"
+              />
+            </Link>
+          </li>
+        ))}
+      </List>
+    </MainWrapper>
   );
 };
