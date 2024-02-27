@@ -8,9 +8,17 @@ export const BurgerButton = styled.button`
   border: none;
   margin-right: 8px;
 `;
+export const MenuWrap = styled.div`
+  display: flex;
+  padding: 10px 0;
+  gap: 100px;
+`;
 
 export const ArrowButton = styled.button`
+  display: flex;
+  justify-content: start;
   width: 24px;
+  margin: 0;
   background-color: transparent;
   outline: none;
   border: none;
@@ -19,11 +27,4 @@ export const ArrowButton = styled.button`
 export const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
-`;
-
-export const MenuWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 16px 0;
 `;
