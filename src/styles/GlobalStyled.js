@@ -168,6 +168,7 @@ a
 button {
   margin: 0;
   padding: 0;
+  border: transparent;
   cursor: pointer;
   transition: ${theme.transition.main};
 }
@@ -234,7 +235,7 @@ export const gradientTransitionBtn = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(255, 225, 156, 1), rgba(251, 208, 110, 0));
+    background: ${theme.colors.gradientHover};
     transition: ${theme.transition.main};
     z-index: 1;
     opacity: 0;
@@ -245,8 +246,8 @@ export const gradientTransitionBtn = css`
     opacity: 1;
   }
 
-  //і перенеси весь свій контент всередину span
-  span {
+  //і перенеси весь свій контент всередину div
+  div {
     position: relative;
     z-index: 2;
   }
