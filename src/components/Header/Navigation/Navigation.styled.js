@@ -64,3 +64,20 @@ export const CartButton = styled.button`
     }
   }
 `;
+
+export const ArrowButton = styled.button`
+  display: flex;
+  width: 24px;
+  margin: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transform: rotate(180deg);
+
+  & svg {
+    width: 11px;
+    height: 11px;
+    fill: transparent;
+    stroke: ${props => props.theme.colors.textPrimary};
+  }
+`;

@@ -4,6 +4,7 @@ import {
   Item,
   HopeIcon,
   CartButton,
+  ArrowButton,
 } from './Navigation.styled';
 import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../assets/images/sprite.svg';
@@ -37,6 +38,13 @@ export const Navigation = ({ setIsOpen }) => {
             </HopeIcon>
           )}
           <StyledLink to="/assortment">Асортимент</StyledLink>
+          {mobileVersion && (
+            <ArrowButton type="button">
+              <svg>
+                <use href={`${sprite}#arrow-left`}></use>
+              </svg>
+            </ArrowButton>
+          )}
         </Item>
         <Item>
           {mobileVersion && (
