@@ -47,7 +47,7 @@ export const MobileMenu = () => {
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
           </ArrowButton>
-          <Logo />
+          <Logo setIsOpen={setIsOpen} />
         </MenuWrap>
         <Navigation setIsOpen={setIsOpen} />
       </Drawer>
