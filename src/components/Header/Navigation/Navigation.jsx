@@ -1,13 +1,14 @@
 import {
-  StyledLink,
+  // StyledLink,
   NavList,
   Item,
   HopeIcon,
   CartButton,
-  ArrowButton,
+  // ArrowButton,
 } from './Navigation.styled';
 import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../assets/images/sprite.svg';
+import { NavItem } from './NavItem/NavItem';
 
 export const Navigation = ({ setIsOpen }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
@@ -15,53 +16,11 @@ export const Navigation = ({ setIsOpen }) => {
   return (
     <nav>
       <NavList onClick={() => setIsOpen(false)}>
-        <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
-          <StyledLink to="/main">Головна</StyledLink>
-        </Item>
-        <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
-          <StyledLink to="/about">Про нас</StyledLink>
-        </Item>
-        <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
-          <StyledLink to="/assortment">Асортимент</StyledLink>
-          {mobileVersion && (
-            <ArrowButton type="button">
-              <svg>
-                <use href={`${sprite}#arrow-left`}></use>
-              </svg>
-            </ArrowButton>
-          )}
-        </Item>
-        <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
-          <StyledLink to="/delivery-and-payment">Доставка та оплата</StyledLink>
-        </Item>
-        <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
-          <StyledLink to="/contacts">Контакти</StyledLink>
-        </Item>
+        <NavItem page="/main" title="Головна" />
+        <NavItem page="/about" title="Про нас" />
+        <NavItem page="/assortment" title="Асортимент" />
+        <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
+        <NavItem page="/contacts" title="Контакти" />
         <Item>
           {mobileVersion && (
             <HopeIcon>
@@ -70,14 +29,7 @@ export const Navigation = ({ setIsOpen }) => {
           )}
           <CartButton type="button">Кошик</CartButton>
         </Item>
-        <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
-          <StyledLink to="/favorites">Обране</StyledLink>
-        </Item>
+        <NavItem page="/favorites" title="Обране" />
       </NavList>
     </nav>
   );
