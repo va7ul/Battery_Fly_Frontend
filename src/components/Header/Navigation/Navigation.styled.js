@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 export const Item = styled.li`
   font-size: 15px;
@@ -12,7 +12,7 @@ export const Item = styled.li`
   @media screen and (min-width: 1280px) {
     font-weight: 600;
     border: none;
-    padding: 0;
+    padding: 34px 0;
     &:hover {
       color: ${props => props.theme.colors.secondary};
     }
@@ -30,11 +30,11 @@ export const Item = styled.li`
   }
 `;
 
-export const StyledLink = styled(NavLink)`
-  &.active {
-    color: ${props => props.theme.colors.secondary};
-  }
-`;
+// export const StyledLink = styled(NavLink)`
+//   &.active {
+//     color: ${props => props.theme.colors.secondary};
+//   }
+// `;
 
 export const NavList = styled.ul`
   display: flex;
