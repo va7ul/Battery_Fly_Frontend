@@ -11,6 +11,12 @@ export const Wrapper = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; */
+  @media (min-width: 1280px) {
+    max-height: 590px;
+    padding-top: 142px;
+    padding-bottom: 238px;
+    /* padding-bottom: 142px; */
+  }
 `;
 
 export const Title = styled.h1`
@@ -21,7 +27,15 @@ export const Title = styled.h1`
   color: #636363;
   margin-left: 20px;
   margin-right: auto;
+
+  @media (min-width: 1280px) {
+    width: 510px;
+    font-size: 45px;
+    font-weight: 900;
+    margin-left: 110px;
+  }
 `;
+
 export const HighlightedText = styled.p`
   color: #9a927f;
 `;

@@ -1,6 +1,6 @@
-import { Text } from '../SharedComponents/Text/Text';
 import sprite from '../../../assets/images/sprite.svg';
 import { Icon, Wrapper } from './WhyChooseUsCard.styled';
+import { CardText } from '../SharedComponents/CardText/CardText';
 
 
 export const WhyChooseUsCard = ({ text: {text, icon } }) => {
@@ -9,7 +9,7 @@ export const WhyChooseUsCard = ({ text: {text, icon } }) => {
         <Icon>
           <use href={`${sprite}${icon}`}></use>
         </Icon>
-      <Text>{text}</Text>
+      <CardText>{text}</CardText>
     </Wrapper>
   );
 };

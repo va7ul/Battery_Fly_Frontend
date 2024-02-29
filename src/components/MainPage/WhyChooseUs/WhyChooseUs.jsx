@@ -4,6 +4,8 @@ import {
   Box,
   Holder,
   IconHope,
+  IconSpiral,
+  IconVerticalSpiral,
   List,
   ListItem,
 } from './WhyChooseUs.styled';
