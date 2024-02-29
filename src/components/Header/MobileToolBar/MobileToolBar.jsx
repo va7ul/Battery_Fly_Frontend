@@ -7,7 +7,9 @@ import LoginIcon from '@mui/icons-material/Login';
 export const MobileToolBar = () => {
   return (
     <Wrapper>
-      <FeedbackButton type="button">Зв'язатися</FeedbackButton>
+      <FeedbackButton type="button">
+        <div>Зв'язатися</div>
+      </FeedbackButton>
       <Button type="button">
         <ShoppingCartOutlinedIcon
           sx={{
