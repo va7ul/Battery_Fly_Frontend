@@ -1,15 +1,14 @@
-import { FeedbackButton, Wrapper, Button } from './MobileToolBar.styled';
+import { Wrapper, Button } from './MobileToolBar.styled';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 // import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LoginIcon from '@mui/icons-material/Login';
+import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
 
 export const MobileToolBar = () => {
   return (
     <Wrapper>
-      <FeedbackButton type="button">
-        <div>Зв'язатися</div>
-      </FeedbackButton>
+      <FeedBackButton />
       <Button type="button">
         <ShoppingCartOutlinedIcon
           sx={{
