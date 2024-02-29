@@ -56,7 +56,8 @@ export const SubTitle = styled.h3`
 `;
 
 export const Sntc = styled.p`
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 600;
 
   @media screen and (min-width: 1280px) {
     font-size: 25px;
@@ -106,29 +107,23 @@ export const Link = styled.a`
   }
 `;
 
-export const IconShipping = styled.svg`
+export const IconSquares = styled.svg`
+  display: block;
   position: absolute;
-  fill: ${props => props.theme.colors.svgColor};
-  top: -25px;
-  right: 10px;
+  width: 27px;
+  height: 27px;
+  right: 50px;
+  bottom: 56px;
+
   -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
   filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-`;
-
-export const IconSquares = styled.svg`
-  display: none;
+  fill: ${props => props.theme.colors.textPrimary};
 
   @media screen and (min-width: 1280px) {
-    display: block;
-    position: absolute;
-    left: 30%;
-    bottom: 60px;
-    -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
-    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.25));
-    fill: ${props => props.theme.colors.textPrimary};
+    width: 111px;
+    height: 111px;
+    left: 40%;
+    bottom: 80px;
   }
 `;
 
