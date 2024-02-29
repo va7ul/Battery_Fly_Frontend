@@ -1,6 +1,6 @@
 import { Text } from '../SharedComponents/Text/Text';
 import sprite from '../../../assets/images/sprite.svg';
-import { Box, Icon, SmallTitle, Wrapper } from './ValuablesCard.styled';
+import { Box, Icon, SmallTitle } from './ValuablesCard.styled';
 
 export const ValuablesCard = ({ text: { title, text, icon } }) => {
   return (
