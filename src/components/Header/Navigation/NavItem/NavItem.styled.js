@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { gradientTransitionBtn } from '../../../../styles/GlobalStyled';
 
 export const Item = styled.li`
   font-size: 15px;
@@ -24,7 +25,10 @@ export const Item = styled.li`
     align-items: center;
     gap: 27px;
 
-    &:hover {
+    position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+    &::after {
       background: ${props => props.theme.colors.gradient};
     }
   }

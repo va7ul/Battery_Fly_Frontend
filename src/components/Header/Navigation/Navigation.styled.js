@@ -16,7 +16,7 @@ export const CartButton = styled.button`
   border: none;
   font-size: 15px;
   font-weight: 600;
-
+  z-index: 2;
   @media screen and (min-width: 1280px) {
     &:hover {
       color: ${props => props.theme.colors.secondary};

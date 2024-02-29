@@ -26,7 +26,9 @@ export const Navigation = ({ setIsOpen }) => {
               <use href={`${sprite}#icon-Hope`}></use>
             </HopeIcon>
           )}
-          <CartButton type="button">Кошик</CartButton>
+          <CartButton type="button">
+            <div>Кошик</div>
+          </CartButton>
         </Item>
         <NavItem page="/favorites" title="Обране" />
       </NavList>

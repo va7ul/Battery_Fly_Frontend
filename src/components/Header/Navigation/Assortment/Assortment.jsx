@@ -13,7 +13,9 @@ export const Assortment = () => {
             <use href={`${sprite}#icon-Hope`}></use>
           </HopeIcon>
         )}
-        <StyledLink to="/assortment">Асортимент</StyledLink>
+        <StyledLink to="/assortment">
+          <div>Асортимент</div>
+        </StyledLink>
       </Item>
     </>
   );

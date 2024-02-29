@@ -12,7 +12,9 @@ export const NavItem = ({ title, page }) => {
           <use href={`${sprite}#icon-Hope`}></use>
         </HopeIcon>
       )}
-      <StyledLink to={page}>{title}</StyledLink>
+      <StyledLink to={page}>
+        <div>{title}</div>
+      </StyledLink>
     </Item>
   );
 };
