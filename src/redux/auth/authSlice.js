@@ -14,13 +14,13 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => builder,
   //   // signup
-  //   .addCase(registerUser.pending, handlePending)
-  //   .addCase(registerUser.fulfilled, handleRegisterLoginFulfield)
-  //   .addCase(registerUser.rejected, handleRejected)
+  //   .addCase(register.pending, handlePending)
+  //   .addCase(register.fulfilled, handleRegisterLoginFulfield)
+  //   .addCase(register.rejected, handleRejected)
   //   // signin
-  //   .addCase(loginUser.pending, handlePending)
-  //   .addCase(loginUser.fulfilled, handleRegisterLoginFulfield)
-  //   .addCase(loginUser.rejected, handleRejected)
+  //   .addCase(login.pending, handlePending)
+  //   .addCase(login.fulfilled, handleRegisterLoginFulfield)
+  //   .addCase(login.rejected, handleRejected)
   //   // logout
   //   .addCase(logOut.pending, handlePending)
   //   .addCase(logOut.fulfilled, handleLogoutFulfield)
@@ -29,22 +29,14 @@ const authSlice = createSlice({
   //   .addCase(forgotPassword.pending, handlePending)
   //   .addCase(forgotPassword.fulfilled, handleForgotPasswordFulfield)
   //   .addCase(forgotPassword.rejected, handleRejected)
+  //   // verifyEmail
+  //   .addCase(verifyEmail.pending, handlePending)
+  //   .addCase(verifyEmail.fulfilled, handleVerifyEmailFulfield)
+  //   .addCase(verifyEmail.rejected, handleRejected)
   //   // refreshUser
   //   .addCase(refreshUser.pending, handlePending)
   //   .addCase(refreshUser.fulfilled, handleRefreshUserFulfield)
   //   .addCase(refreshUser.rejected, handleRejected)
-  //   // updateUser
-  //   .addCase(updateUser.pending, handlePending)
-  //   .addCase(updateUser.fulfilled, handleUpdateUserFulfield)
-  //   .addCase(updateUser.rejected, handleRejected)
-  //   // updateGoal
-  //   .addCase(updateGoal.pending, handlePending)
-  //   .addCase(updateGoal.fulfilled, handleUpdateGoalFulfield)
-  //   .addCase(updateGoal.rejected, handleRejected)
-  //   // updatewWeight
-  //   .addCase(updateWeight.pending, handlePending)
-  //   .addCase(updateWeight.fulfilled, handleUpdateWeightFulfield)
-  //   .addCase(updateWeight.rejected, handleRejected),
 });
 
 export const authReducer = authSlice.reducer;

@@ -18,7 +18,7 @@ const BatteriesLiIonPage = lazy(() => import('pages/BatteriesLiIonPage.jsx'));
 const BatteriesLifepo4Page = lazy(() =>
   import('pages/BatteriesLifepo4Page.jsx')
 );
-const AssemblyPage = lazy(() => import('pages/AssemblyPage.jsx'));
+const AssemblyPage = lazy(() => import('pages/AssembliesPage.jsx'));
 const BatteriesForFPVPage = lazy(() => import('pages/BatteriesForFPVPage.jsx'));
 const BatteriesForTransportPage = lazy(() =>
   import('pages/BatteriesForTransportPage.jsx')
