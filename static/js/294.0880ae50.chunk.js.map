@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/294.0880ae50.chunk.js","mappings":"sJAIA,UAJkB,WAChB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,aACd,C","sources":["pages/SalesPage.jsx"],"sourcesContent":["const SalesPage = () => {\n  return <div>SalesPage</div>;\n};\n\nexport default SalesPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
