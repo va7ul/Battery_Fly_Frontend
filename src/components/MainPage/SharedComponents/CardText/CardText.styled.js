@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const Description = styled.p`
+export const Text = styled.p`
   font-size: 10px;
 
   @media (min-width: 1280px) {
-    font-size: 20px;
+    font-size: 14px;
   }
 `;

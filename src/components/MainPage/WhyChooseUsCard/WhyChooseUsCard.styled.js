@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div``;
 
 export const Icon = styled.svg`
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
   position: absolute;
-  top: -10px;
-  left: 20px;
+  top: -14px;
+  left: 16px;
 `;
