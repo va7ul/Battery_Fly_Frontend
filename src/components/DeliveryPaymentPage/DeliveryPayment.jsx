@@ -7,7 +7,6 @@ import {
   Sntc,
   Descr,
   List,
-  IconShipping,
   IconSquares,
   Link,
   NPTitle,
@@ -20,9 +19,6 @@ export const DeliveryPayment = () => {
   return (
     <Container>
       <Wrapper>
-        <IconShipping width="82px">
-          <use href={`${sprite}#shipping-car`}></use>
-        </IconShipping>
         <IconSquares>
           <use href={`${sprite}#squares`}></use>
         </IconSquares>

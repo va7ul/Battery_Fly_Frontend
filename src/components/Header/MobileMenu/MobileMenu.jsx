@@ -9,8 +9,8 @@ import {
 import { Navigation } from '../Navigation/Navigation';
 import Drawer from '@mui/material/Drawer';
 import { Logo } from '../Logo/Logo';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { MobileToolBar } from '../MobileToolBar/MobileToolBar';
+import sprite from '../../../assets/images/sprite.svg';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,13 +43,11 @@ export const MobileMenu = () => {
       >
         <MenuWrap>
           <ArrowButton type="button" onClick={toggleDrawer(false)}>
-            <ArrowBackIosIcon
-              sx={{
-                color: 'text.primary',
-              }}
-            />
+            <svg>
+              <use href={`${sprite}#arrow-left`}></use>
+            </svg>
           </ArrowButton>
-          <Logo />
+          <Logo setIsOpen={setIsOpen} />
         </MenuWrap>
         <Navigation setIsOpen={setIsOpen} />
       </Drawer>

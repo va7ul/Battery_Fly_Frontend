@@ -16,7 +16,7 @@ export const StyledHeader = styled.header`
     align-items: center;
     height: 64px;
     max-width: 1280px;
-    padding: 20px 100px;
+    padding: 0 100px;
   }
 `;
 

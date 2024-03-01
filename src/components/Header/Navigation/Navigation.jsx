@@ -1,25 +1,37 @@
-import { StyledLink, Nav, NavList, Item } from './Navigation.styled';
+import {
+  NavList,
+  CartButton,
+  // ArrowButton,
+} from './Navigation.styled';
+import { Item, HopeIcon } from './NavItem/NavItem.styled';
+import { useMediaQuery } from 'react-responsive';
+import sprite from '../../../assets/images/sprite.svg';
+import { NavItem } from './NavItem/NavItem';
+import { Assortment } from './Assortment/Assortment';
 
 export const Navigation = ({ setIsOpen }) => {
+  const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+
   return (
-    <Nav>
+    <nav>
       <NavList onClick={() => setIsOpen(false)}>
+        <NavItem page="/main" title="Головна" />
+        <NavItem page="/about" title="Про нас" />
+        <Assortment />
+        <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
+        <NavItem page="/contacts" title="Контакти" />
         <Item>
-          <StyledLink to="/main">Головна</StyledLink>
+          {mobileVersion && (
+            <HopeIcon>
+              <use href={`${sprite}#icon-Hope`}></use>
+            </HopeIcon>
+          )}
+          <CartButton type="button">
+            <div>Кошик</div>
+          </CartButton>
         </Item>
-        <Item>
-          <StyledLink to="/about">Про нас</StyledLink>
-        </Item>
-        <Item>
-          <StyledLink to="/assortment">Асортимент</StyledLink>
-        </Item>
-        <Item>
-          <StyledLink to="/delivery-and-payment">Доставка та оплата</StyledLink>
-        </Item>
-        <Item>
-          <StyledLink to="/contacts">Контакти</StyledLink>
-        </Item>
+        <NavItem page="/favorites" title="Обране" />
       </NavList>
-    </Nav>
+    </nav>
   );
 };

@@ -8,22 +8,31 @@ export const BurgerButton = styled.button`
   border: none;
   margin-right: 8px;
 `;
+export const MenuWrap = styled.div`
+  display: flex;
+  padding: 10px 15px;
+  align-items: center;
+`;
 
 export const ArrowButton = styled.button`
+  display: flex;
+  justify-content: start;
   width: 24px;
+  margin: 0;
+  margin-right: 80px;
   background-color: transparent;
   outline: none;
   border: none;
+
+  & svg {
+    width: 18px;
+    height: 18px;
+    fill: transparent;
+    stroke: ${props => props.theme.colors.textPrimary};
+  }
 `;
 
 export const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
-`;
-
-export const MenuWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 16px 0;
 `;
