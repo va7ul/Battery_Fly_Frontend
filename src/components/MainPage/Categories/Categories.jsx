@@ -3,10 +3,10 @@ import butteries from '../../../assets/images/main-butteries.png';
 import fpv from '../../../assets/images/main-for-fpv.png';
 import transport from '../../../assets/images/main-for-transport.png';
 import toys from '../../../assets/images/main-for-toys.png';
-import { List } from './Categories.styled';
+import { Image, List, ListItem, Subtitle } from './Categories.styled';
 import { Link } from 'react-router-dom';
 import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
-
+import { useMediaQuery } from 'react-responsive';
 
 const categories = [
   {
@@ -37,20 +37,22 @@ const categories = [
 ];
 
 export const Categories = () => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   return (
     <MainWrapper>
       <List>
         {categories.map((item, idx) => (
-          <li key={idx}>
+          <ListItem key={idx}>
             <Link to={item.path}>
-              <img
+              <Image
                 src={item.imgUrl}
                 alt={item.description}
                 width="60"
                 height="46"
               />
             </Link>
-          </li>
+            {!isBigScreen && <Subtitle>{item.description}</Subtitle>}
+          </ListItem>
         ))}
       </List>
     </MainWrapper>

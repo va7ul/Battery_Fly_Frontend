@@ -1,8 +1,11 @@
-import { Text } from '../SharedComponents/Text/Text';
 import sprite from '../../../assets/images/sprite.svg';
+import { CardText } from '../SharedComponents/CardText/CardText';
 import { Box, Icon, SmallTitle } from './OurServicesCard.styled';
 
+
+
 export const OurServicesCard = ({ text: { title, text, icon } }) => {
+ 
   return (
     <>
       <Box>
@@ -11,7 +14,7 @@ export const OurServicesCard = ({ text: { title, text, icon } }) => {
         </Icon>
         <SmallTitle>{title}</SmallTitle>
       </Box>
-      <Text>{text}</Text>
+      <CardText>{text}</CardText>
     </>
   );
 };
