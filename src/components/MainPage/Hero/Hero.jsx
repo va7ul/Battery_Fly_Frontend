@@ -1,5 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 import { HighlightedText, Title, Wrapper } from "./Hero.styled";
+import { FeedBackButton } from "components/Shared/FeedbackButton/FeedbackButton";
 
   
 
@@ -19,6 +20,7 @@ export const Hero = () => {
             <HighlightedText>Li-Ion акумуляторів</HighlightedText>
           </Title>
         )}
+        {isBigScreen && <FeedBackButton />}
       </Wrapper>
     </section>
   );
