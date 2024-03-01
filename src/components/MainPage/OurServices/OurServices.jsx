@@ -17,7 +17,7 @@ import { useState } from 'react';
 export const OurServices = ({ services, isCard }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const [activeStep, setActiveStep] = useState(0);
-
+  
   let numberOfVisibleCards = null;
 
   isBigScreen ? (numberOfVisibleCards = 4) : (numberOfVisibleCards = 2);

@@ -10,13 +10,28 @@ import {
   ListItem,
 } from './WhyChooseUs.styled';
 import { WhyChooseUsCard } from '../WhyChooseUsCard/WhyChooseUsCard';
-import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
 import sprite from '../../../assets/images/sprite.svg';
+import { Grid } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
+
+
 
 export const WhyChooseUs = ({ reasons }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   return (
-    <>
-      <MainWrapper>
+    <Grid
+      container
+      columnSpacing={7}
+      sx={{
+        '&.MuiGrid-container': {
+          background: isBigScreen
+            ? 'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0) 112.295%);'
+            : 'transparent',
+          height: '655px',
+        },
+      }}
+    >
+      <Grid item xs={12} desktop={5}>
         <Box>
           <Title>Чому обирають нас?</Title>
           <Text>
@@ -31,25 +46,31 @@ export const WhyChooseUs = ({ reasons }) => {
             роблять нас найкращим вибором у сфері Li-Ion акумуляторів:
           </Text>
         </Box>
-      </MainWrapper>
-      <Holder>
-        <IconHope>
-          <use href={`${sprite}#icon-about-hope`}></use>
-        </IconHope>
-        {/* <IconVerticalSpiral>
-          <use href={`${sprite}#icon-main-vertical-spiral`}></use>
-        </IconVerticalSpiral>
-        <IconSpiral>
-          <use href={`${sprite}#icon-about-spiral`}></use>
-        </IconSpiral> */}
-        <List>
-          {reasons.map((item, idx) => (
-            <ListItem key={idx}>
-              <WhyChooseUsCard text={item} />
-            </ListItem>
-          ))}
-        </List>
-      </Holder>
-    </>
+      </Grid>
+      <Grid item xs={12} desktop={7}>
+        <Holder>
+          <IconHope>
+            <use href={`${sprite}#icon-about-hope`}></use>
+          </IconHope>
+          {isBigScreen ?
+             (<IconVerticalSpiral>
+            <use href={`${sprite}#icon-main-vertical-spiral-desktop`}></use>
+          </IconVerticalSpiral>) :(
+          <IconVerticalSpiral>
+            <use href={`${sprite}#icon-main-vertical-spiral`}></use>
+          </IconVerticalSpiral>)}
+          <IconSpiral>
+            <use href={`${sprite}#icon-main-spiral-thin`}></use>
+          </IconSpiral>
+          <List>
+            {reasons.map((item, idx) => (
+              <ListItem key={idx}>
+                <WhyChooseUsCard text={item} />
+              </ListItem>
+            ))}
+          </List>
+        </Holder>
+      </Grid>
+    </Grid>
   );
 };
