@@ -49,7 +49,7 @@ export const MobileMenu = () => {
           </ArrowButton>
           <Logo setIsOpen={setIsOpen} />
         </MenuWrap>
-        <Navigation setIsOpen={setIsOpen} />
+        <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />
       </Drawer>
     </div>
   );

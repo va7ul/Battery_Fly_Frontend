@@ -9,12 +9,18 @@ import sprite from '../../../assets/images/sprite.svg';
 import { NavItem } from './NavItem/NavItem';
 import { Assortment } from './Assortment/Assortment';
 
-export const Navigation = ({ setIsOpen }) => {
+export const Navigation = ({ setIsOpen, isOpen }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+
+  const closeDrawer = () => {
+    if (isOpen) {
+      return setIsOpen(false);
+    }
+  };
 
   return (
     <nav>
-      <NavList onClick={() => setIsOpen(false)}>
+      <NavList onClick={closeDrawer}>
         <NavItem page="/main" title="Головна" />
         <NavItem page="/about" title="Про нас" />
         <Assortment />
