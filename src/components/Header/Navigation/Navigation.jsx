@@ -1,8 +1,4 @@
-import {
-  NavList,
-  CartButton,
-  // ArrowButton,
-} from './Navigation.styled';
+import { NavList, CartButton } from './Navigation.styled';
 import { Item, HopeIcon } from './NavItem/NavItem.styled';
 import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../assets/images/sprite.svg';
@@ -23,7 +19,7 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
       <NavList onClick={closeDrawer}>
         <NavItem page="/main" title="Головна" />
         <NavItem page="/about" title="Про нас" />
-        <Assortment />
+        <Assortment setIsOpen={setIsOpen} isOpen={isOpen} />
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
         <Item>
