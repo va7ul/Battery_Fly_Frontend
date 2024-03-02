@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const TypeLifepo4Page = () => {
-  return <div>TypeLifepo4Page</div>;
+  return <ProductsSection category={'Акумулятори LiFePo4'} />;
 };
 
 export default TypeLifepo4Page;

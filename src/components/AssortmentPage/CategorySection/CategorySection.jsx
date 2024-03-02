@@ -1,5 +1,6 @@
 import { CategoryList } from './CategoryList/CategoryList';
 import sprite from '../../../assets/images/sprite.svg';
+import { getPath } from 'utils/helpers/getCategoryPaths';
 import {
   StyledLink,
   StyledSection,
@@ -7,10 +8,11 @@ import {
 } from './CategorySection.styled';
 
 export const CategorySection = ({ category }) => {
+  const path = getPath(category);
   return (
     <StyledSection category={category}>
       <StyledContainer category={category}>
-        <StyledLink href={category} category={category}>
+        <StyledLink href={path} category={category}>
           <h2>{category}</h2>
           <svg>
             <use href={`${sprite}#icon-arrow-right`} />

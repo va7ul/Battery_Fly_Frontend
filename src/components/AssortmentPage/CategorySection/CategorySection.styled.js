@@ -49,7 +49,6 @@ export const StyledContainer = styled.div`
 
 export const StyledLink = styled.a`
   font-size: 16px;
-  font-weight: 600;
   margin-bottom: 15px;
   color: ${getColor};
   display: inline-flex;
@@ -71,6 +70,7 @@ export const StyledLink = styled.a`
 
   h2 {
     font-size: inherit;
+    font-weight: 600;
   }
 
   svg {

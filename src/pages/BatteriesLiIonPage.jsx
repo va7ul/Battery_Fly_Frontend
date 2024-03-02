@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const TypeLiIonPage = () => {
-  return <div>TypeLiIonPage</div>;
+  return <ProductsSection category={'Акумулятори Li-Ion'} />;
 };
 
 export default TypeLiIonPage;

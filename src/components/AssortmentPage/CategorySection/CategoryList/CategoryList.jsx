@@ -1,4 +1,4 @@
-import { CategoryCard } from './CategoryCard/CategoryCard';
+import { ProductsCard } from '../../../Shared/ProductsCard/ProductsCard';
 import { StyledList, StyledListCard } from './CategoryList.styled';
 
 export const CategoryList = ({ category }) => {
@@ -7,9 +7,7 @@ export const CategoryList = ({ category }) => {
     <StyledList>
       {cards.map(card => (
         <StyledListCard key={card} category={category}>
-          <div>
-            <CategoryCard />
-          </div>
+          <ProductsCard />
         </StyledListCard>
       ))}
     </StyledList>
