@@ -1,35 +1,19 @@
 import { Wrapper, Button } from './MobileToolBar.styled';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 // import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LoginIcon from '@mui/icons-material/Login';
 import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
+import { CartIcon } from 'components/Shared/CartIcon';
+import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 
 export const MobileToolBar = () => {
   return (
     <Wrapper>
       <FeedBackButton />
       <Button type="button">
-        <ShoppingCartOutlinedIcon
-          sx={{
-            color: 'background.paper',
-            width: '20px',
-            ' &:hover': {
-              color: 'secondary.main',
-            },
-          }}
-        />
+        <CartIcon />
       </Button>
       <Button type="button">
-        <FavoriteBorderSharpIcon
-          sx={{
-            color: 'background.paper',
-            width: '20px',
-            ' &:hover': {
-              color: 'secondary.main',
-            },
-          }}
-        />
+        <FavoriteIcon />
       </Button>
       <Button type="button">
         <LoginIcon

@@ -11,7 +11,6 @@ export const Item = styled.li`
   cursor: pointer;
 
   @media screen and (min-width: 1280px) {
-    font-weight: 600;
     border: none;
     padding: 34px 0;
     &:hover {
@@ -23,7 +22,6 @@ export const Item = styled.li`
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 27px;
 
     position: relative;
     z-index: 0;
@@ -43,4 +41,5 @@ export const StyledLink = styled(NavLink)`
 export const HopeIcon = styled.svg`
   width: 14px;
   height: 14px;
+  margin-right: 27px;
 `;
