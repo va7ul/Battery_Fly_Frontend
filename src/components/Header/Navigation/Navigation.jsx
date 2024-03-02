@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../assets/images/sprite.svg';
 import { NavItem } from './NavItem/NavItem';
 import { Assortment } from './Assortment/Assortment';
+import { CartIcon } from 'components/Shared/CartIcon';
 
 export const Navigation = ({ setIsOpen, isOpen }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
@@ -22,7 +23,7 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         <Assortment setIsOpen={setIsOpen} isOpen={isOpen} />
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
-        <Item style={{ padding: 0 }}>
+        <Item>
           {mobileVersion && (
             <HopeIcon>
               <use href={`${sprite}#icon-Hope`}></use>
@@ -30,6 +31,7 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
           )}
           <CartButton type="button">
             <div>Кошик</div>
+            {!mobileVersion && <CartIcon />}
           </CartButton>
         </Item>
         <NavItem page="/favorites" title="Обране" />
