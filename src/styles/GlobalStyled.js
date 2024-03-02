@@ -81,6 +81,12 @@ export const theme = {
 
 export const GlobalStyle = createGlobalStyle`
 
+html {
+  * {
+    color: ${theme.colors.textPrimary};
+  }
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -124,7 +130,8 @@ button {
   padding: 0;
   border: transparent;
   cursor: pointer;
-  transition: ${theme.transition.main};
+  transition: ${theme.transition.main};    
+  color: ${theme.colors.textPrimary};
 }
 
 /* input::-webkit-outer-spin-button,
