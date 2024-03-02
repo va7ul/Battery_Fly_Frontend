@@ -22,7 +22,7 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         <Assortment setIsOpen={setIsOpen} isOpen={isOpen} />
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
-        <Item>
+        <Item style={{ padding: 0 }}>
           {mobileVersion && (
             <HopeIcon>
               <use href={`${sprite}#icon-Hope`}></use>
