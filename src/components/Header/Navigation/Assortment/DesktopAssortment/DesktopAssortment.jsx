@@ -1,3 +1,5 @@
+import { StyledLink } from '../../NavItem/NavItem.styled';
+
 export const DesktopAssortment = () => {
-  return <div>Асортимент</div>;
+  return <StyledLink to="/assortment">Асортимент</StyledLink>;
 };
