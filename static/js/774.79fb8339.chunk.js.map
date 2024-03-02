@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/774.79fb8339.chunk.js","mappings":"sJAIA,UAJwB,WACtB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,mBACd,C","sources":["pages/BatteriesLifepo4Page.jsx"],"sourcesContent":["const TypeLifepo4Page = () => {\n  return <div>TypeLifepo4Page</div>;\n};\n\nexport default TypeLifepo4Page;\n"],"names":["_jsx","children"],"sourceRoot":""}
