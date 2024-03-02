@@ -81,12 +81,6 @@ export const theme = {
 
 export const GlobalStyle = createGlobalStyle`
 
-html {
-  * {
-    color: ${theme.colors.textPrimary};
-  }
-}
-
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
