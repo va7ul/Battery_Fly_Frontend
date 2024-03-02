@@ -20,7 +20,6 @@ export const CartIcon = () => {
             desktop: 15,
           },
           top: 5,
-          right: 2,
           p: 0,
         },
       }}
