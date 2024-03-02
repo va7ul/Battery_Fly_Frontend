@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const AssembliesPage = () => {
-  return <div>AssembliesPage</div>;
+  return <ProductsSection category={'Готові батареї'} />;
 };
 
 export default AssembliesPage;

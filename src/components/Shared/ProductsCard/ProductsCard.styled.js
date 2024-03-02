@@ -1,4 +1,3 @@
-// import { FaHeart } from 'react-icons/fa';
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import styled, { css } from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
@@ -57,6 +56,12 @@ export const IconHeart = styled(FaRegHeart)`
   }
 `;
 
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const IconFullHeart = styled(FaHeartCircleCheck)`
   /* ${iconStyle}; */
 
@@ -83,24 +88,20 @@ export const StyledImage = styled.img`
   }
 `;
 
-export const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5px;
-
-  @media screen and (min-width: 1280px) {
-    margin-top: 15px;
-  }
-`;
-
 export const CardTitle = styled.p`
   height: 36px;
   font-size: 10px;
+  margin-top: 5px;
+  transition: ${props => props.theme.transition.main};
 
   @media screen and (min-width: 1280px) {
     height: 72px;
     font-size: 20px;
+    margin-top: 15px;
+  }
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
   }
 `;
 
