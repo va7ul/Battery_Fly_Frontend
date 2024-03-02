@@ -18,13 +18,15 @@ import {
 export const ProductsCard = () => {
   return (
     <>
-      <IconHeart />
-      <IconFullHeart />
-      <StyledImage src="" alt="text" />
       <ContentWrapper>
-        <CardTitle>
-          Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
-        </CardTitle>
+        <IconHeart />
+        <IconFullHeart />
+        <a href="assortment/1">
+          <StyledImage src="" alt="text" />
+          <CardTitle>
+            Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
+          </CardTitle>
+        </a>
         <PriceContainer>
           <PriceNew>15000 грн</PriceNew>
           <PriceOld>18000 грн</PriceOld>

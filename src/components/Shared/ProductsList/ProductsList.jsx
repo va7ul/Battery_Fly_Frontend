@@ -8,9 +8,7 @@ export const ProductsList = () => {
     <StyledList>
       {cards.map(card => (
         <StyledListCard key={card}>
-          <div>
-            <ProductsCard />
-          </div>
+          <ProductsCard />
         </StyledListCard>
       ))}
     </StyledList>
