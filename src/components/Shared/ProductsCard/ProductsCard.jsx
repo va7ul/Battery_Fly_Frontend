@@ -13,9 +13,9 @@ import {
   CounterInput,
   AddToBasketBtn,
   // GoToBasketBtn,
-} from './CategoryCard.styled';
+} from './ProductsCard.styled';
 
-export const CategoryCard = () => {
+export const ProductsCard = () => {
   return (
     <>
       <IconHeart />
@@ -35,7 +35,7 @@ export const CategoryCard = () => {
               <FaMinus />
             </div>
           </CounterBtn>
-          <CounterInput placeholder="100 шт" />
+          <CounterInput placeholder="1 шт" />
           <CounterBtn>
             <div>
               <FaPlus />
