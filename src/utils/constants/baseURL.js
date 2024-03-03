@@ -1,1 +1,1 @@
-export const baseURL = 'https://healthy-life-backend-b6ck.onrender.com/api/';
+export const baseURL = 'https://battery-fly-backend.onrender.com/api/';

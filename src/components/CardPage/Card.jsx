@@ -6,8 +6,10 @@ import { FaMinus, FaPlus } from 'react-icons/fa6';
 // import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
 import { Wrapper, Title, Image, TextBox, Text, PriceBox, Price, Like, Desc, Subtitle, Input, Button, CounterBox, ButtonBox, BasketButton, OrderButton, Subject } from "./Card.styled";
+import { useEffect } from 'react';
 
 export const Card = () => {
+    useEffect(getOneProduct(),[])
 //   const [age, setAge] = useState('');
 
 //   const handleChange = (event) => {
