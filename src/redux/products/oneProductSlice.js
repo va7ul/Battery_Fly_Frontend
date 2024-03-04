@@ -3,8 +3,7 @@ import { getOneProduct } from '../products/productsOperations';
 
 const initialState = {
   oneProduct: {
-    name: '',
-    information: '',
+    result: {},
   },
   isLoading: false,
   error: null,
