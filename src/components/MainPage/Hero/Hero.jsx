@@ -10,12 +10,12 @@ export const Hero = () => {
       <Wrapper>
         {isBigScreen ? (
           <Title>
-            Пропонуємо широкий спектр продуктів і послуг у сфері
+            Пропонуємо широкий спектр продуктів і послуг у сфері 
             <HighlightedText>Li-Ion акумуляторів</HighlightedText>
           </Title>
         ) : (
           <Title>
-            Широкий спектр продуктів і послуг у сфері
+            Широкий спектр продуктів і послуг у сфері 
             <HighlightedText>Li-Ion акумуляторів</HighlightedText>
           </Title>
         )}

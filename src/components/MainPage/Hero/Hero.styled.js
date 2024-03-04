@@ -19,8 +19,8 @@ export const Wrapper = styled.section`
 `;
 
 export const Title = styled.h1`
-  width: 200px;
-  font-weight: 700;
+  width: 204px;
+  font-weight: 800;
   font-size: 15px;
   text-align: start;
   color: #636363;
@@ -29,7 +29,7 @@ export const Title = styled.h1`
 
   @media (min-width: 1280px) {
     width: 510px;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 900;
     margin-left: 110px;
     margin-bottom: 36px;

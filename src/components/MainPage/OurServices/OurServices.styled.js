@@ -34,7 +34,7 @@ export const ButtonWrapper = styled.div`
   gap: 8px;
   position: absolute;
   right: 40px;
-  top: 50px;
+  top: 58px;
 
   @media (min-width: 1280px) {
     grid-template-columns: 66px 66px;
@@ -85,15 +85,15 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   background: ${props => props.theme.colors.gradient};
   width: 154px;
-  height: 226px;
-  padding: 14px 10px;
+  height: 254px;
+  padding: 14px 10px 24px 10px;
   border-radius: 12px;
   box-shadow: 0px 17px 17px 0px rgba(0, 0, 0, 0.07);
 
   @media (min-width: 1280px) {
     width: 255px;
-    height: 344px;
-    padding: 18px 12px;
+    height: 360px;
+    padding: 18px 12px 28px 12px;
     border-radius: 20px;
   }
 `;
