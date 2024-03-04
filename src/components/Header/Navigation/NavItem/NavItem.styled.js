@@ -13,6 +13,12 @@ export const Item = styled.li`
   @media screen and (min-width: 1280px) {
     border: none;
     padding: 34px 0;
+    margin-right: 30px;
+
+    &:nth-child(6) {
+      margin-right: 6px;
+    }
+
     &:hover {
       color: ${props => props.theme.colors.secondary};
     }

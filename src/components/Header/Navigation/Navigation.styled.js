@@ -6,7 +6,6 @@ export const NavList = styled.ul`
   align-items: center;
 
   @media screen and (min-width: 1280px) {
-    gap: 30px;
     flex-direction: row;
   }
 `;
