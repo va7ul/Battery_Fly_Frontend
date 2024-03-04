@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Battery_Fly_Frontend/static/css/main.cd2e038f.css",
-    "main.js": "/Battery_Fly_Frontend/static/js/main.93eaaac6.js",
+    "main.js": "/Battery_Fly_Frontend/static/js/main.c1485e32.js",
     "static/js/887.eb6763ee.chunk.js": "/Battery_Fly_Frontend/static/js/887.eb6763ee.chunk.js",
     "static/js/582.f7d5e126.chunk.js": "/Battery_Fly_Frontend/static/js/582.f7d5e126.chunk.js",
     "static/js/469.4e65a737.chunk.js": "/Battery_Fly_Frontend/static/js/469.4e65a737.chunk.js",
@@ -36,7 +36,7 @@
     "static/media/main-for-fpv.png": "/Battery_Fly_Frontend/static/media/main-for-fpv.d6985b67b52b561b7d83.png",
     "index.html": "/Battery_Fly_Frontend/index.html",
     "main.cd2e038f.css.map": "/Battery_Fly_Frontend/static/css/main.cd2e038f.css.map",
-    "main.93eaaac6.js.map": "/Battery_Fly_Frontend/static/js/main.93eaaac6.js.map",
+    "main.c1485e32.js.map": "/Battery_Fly_Frontend/static/js/main.c1485e32.js.map",
     "887.eb6763ee.chunk.js.map": "/Battery_Fly_Frontend/static/js/887.eb6763ee.chunk.js.map",
     "582.f7d5e126.chunk.js.map": "/Battery_Fly_Frontend/static/js/582.f7d5e126.chunk.js.map",
     "469.4e65a737.chunk.js.map": "/Battery_Fly_Frontend/static/js/469.4e65a737.chunk.js.map",
@@ -65,6 +65,6 @@
   },
   "entrypoints": [
     "static/css/main.cd2e038f.css",
-    "static/js/main.93eaaac6.js"
+    "static/js/main.c1485e32.js"
   ]
 }
