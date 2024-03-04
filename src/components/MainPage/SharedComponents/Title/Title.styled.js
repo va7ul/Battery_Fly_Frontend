@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SecondaryTitle = styled.p`
+export const SecondaryTitle = styled.h2`
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 10px;

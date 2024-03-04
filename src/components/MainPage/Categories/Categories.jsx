@@ -50,8 +50,8 @@ export const Categories = () => {
                 width="60"
                 height="46"
               />
+                {!isBigScreen && <Subtitle>{item.description}</Subtitle>} 
             </Link>
-            {!isBigScreen && <Subtitle>{item.description}</Subtitle>}
           </ListItem>
         ))}
       </List>
