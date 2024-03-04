@@ -39,7 +39,7 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />
         ) : (
-          <NavLink to="/favorites">
+          <NavLink style={{ marginRight: '30px' }} to="/favorites">
             <FavoriteIcon />
           </NavLink>
         )}
