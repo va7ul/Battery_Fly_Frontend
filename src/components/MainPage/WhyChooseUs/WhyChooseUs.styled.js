@@ -8,7 +8,7 @@ export const Box = styled.div`
   @media (min-width: 1280px) {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 150px 52px 150px 110px;
+    padding: 150px 0px;
   }
 `;
 
@@ -16,12 +16,10 @@ export const Holder = styled.div`
   position: relative;
   @media (min-width: 1280px) {
     width: 612px;
-    height: 474px;
+    height: 472px;
     margin: 90px 0;
     background-color: #f7f7f7;
     border-radius: 20px;
-    padding-left: 0px;
-    padding-right: 110px;
   }
 `;
 

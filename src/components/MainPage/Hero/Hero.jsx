@@ -7,7 +7,6 @@ import { FeedBackButton } from "components/Shared/FeedbackButton/FeedbackButton"
 export const Hero = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   return (
-    <section>
       <Wrapper>
         {isBigScreen ? (
           <Title>
@@ -22,6 +21,5 @@ export const Hero = () => {
         )}
         {isBigScreen && <FeedBackButton />}
       </Wrapper>
-    </section>
   );
 };

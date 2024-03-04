@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   width: 100%;
   max-height: 234px;
   background-color: ${props => props.theme.colors.textPrimary};
@@ -36,6 +36,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const HighlightedText = styled.p`
+export const HighlightedText = styled.span`
+display: inline-block;
   color: #9a927f;
 `;

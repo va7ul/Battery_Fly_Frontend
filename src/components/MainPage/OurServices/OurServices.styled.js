@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   position: relative;
   width: 100%;
   margin: 0 auto 30px auto;
