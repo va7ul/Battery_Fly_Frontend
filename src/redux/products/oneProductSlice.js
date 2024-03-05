@@ -2,9 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getOneProduct } from '../products/productsOperations';
 
 const initialState = {
-  oneProduct: {
-    result: {},
-  },
+  result: {},
   isLoading: false,
   error: null,
 };
@@ -21,7 +19,7 @@ const oneProductSlice = createSlice({
       .addCase(getOneProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.oneProduct = action.payload;
+        state.result = action.payload.result;
       })
       .addCase(getOneProduct.rejected, (state, action) => {
         state.isLoading = false;

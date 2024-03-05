@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
 import { oneProductReducer } from './products/oneProductSlice';
+import { productsListReducer } from './products/productsListSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,10 +20,15 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const productsReducer = combineReducers({
+  oneProduct: oneProductReducer,
+  productsList: productsListReducer,
+});
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    products: oneProductReducer,
+    products: productsReducer,
     // recommendedFoods: recReducer, => ПРИКЛАД
   },
   middleware: getDefaultMiddleware =>
