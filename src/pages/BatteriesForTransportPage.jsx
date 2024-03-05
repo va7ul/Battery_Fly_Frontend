@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const BatteriesForTransportPage = () => {
-  return <div>BatteriesForTransportPage</div>;
+  return <ProductsSection category={'Батареї для електротранспорту'} />;
 };
 
 export default BatteriesForTransportPage;

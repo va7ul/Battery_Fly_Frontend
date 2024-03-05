@@ -1,9 +1,7 @@
-import { Card } from "components/CardPage/Card";
+import { Card } from 'components/CardPage/Card';
 
 const CardPage = () => {
-  return (
-    <Card />
-  )
+  return <Card />;
 };
 
 export default CardPage;

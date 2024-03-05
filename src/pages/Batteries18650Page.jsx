@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const Type18650Page = () => {
-  return <div>Type18650Page</div>;
+  return <ProductsSection category={'Акумулятори 18650'} />;
 };
 
 export default Type18650Page;

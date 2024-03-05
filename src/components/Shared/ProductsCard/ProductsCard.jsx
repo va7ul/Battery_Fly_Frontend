@@ -13,18 +13,20 @@ import {
   CounterInput,
   AddToBasketBtn,
   // GoToBasketBtn,
-} from './CategoryCard.styled';
+} from './ProductsCard.styled';
 
-export const CategoryCard = () => {
+export const ProductsCard = () => {
   return (
     <>
-      <IconHeart />
-      <IconFullHeart />
-      <StyledImage src="" alt="text" />
       <ContentWrapper>
-        <CardTitle>
-          Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
-        </CardTitle>
+        <IconHeart />
+        <IconFullHeart />
+        <a href="assortment/1">
+          <StyledImage src="" alt="text" />
+          <CardTitle>
+            Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
+          </CardTitle>
+        </a>
         <PriceContainer>
           <PriceNew>15000 грн</PriceNew>
           <PriceOld>18000 грн</PriceOld>
@@ -35,7 +37,7 @@ export const CategoryCard = () => {
               <FaMinus />
             </div>
           </CounterBtn>
-          <CounterInput placeholder="100 шт" />
+          <CounterInput placeholder="1 шт" />
           <CounterBtn>
             <div>
               <FaPlus />

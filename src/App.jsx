@@ -65,7 +65,7 @@ export const App = () => {
         <Route path="/batteries-for-toys" element={<BatteriesForToysPage />} />
         <Route path="/devices" element={<DevicesPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
-        <Route path="/assortment/1" element={<CardPage />} />
+        <Route path="/assortment/:cardId" element={<CardPage />} />
         <Route
           path="/profile"
           element={

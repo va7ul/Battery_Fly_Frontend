@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const DevicesPage = () => {
-  return <div>DevicesPage</div>;
+  return <ProductsSection category={'Прилади'} />;
 };
 
 export default DevicesPage;

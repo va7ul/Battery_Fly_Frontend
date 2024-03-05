@@ -28,5 +28,9 @@ export const Button = styled.button`
       rgb(255, 208, 100),
       rgba(251, 208, 110, 0) 112.295%
     );
+
+    &::after {
+      border-radius: 12px;
+    }
   }
 `;

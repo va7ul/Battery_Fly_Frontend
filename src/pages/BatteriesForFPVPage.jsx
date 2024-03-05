@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const BatteriesForFPVPage = () => {
-  return <div>BatteriesForFPVPage</div>;
+  return <ProductsSection category={'Батареї для FPV-дронів'} />;
 };
 
 export default BatteriesForFPVPage;

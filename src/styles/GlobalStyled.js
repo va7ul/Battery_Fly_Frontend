@@ -124,7 +124,8 @@ button {
   padding: 0;
   border: transparent;
   cursor: pointer;
-  transition: ${theme.transition.main};
+  transition: ${theme.transition.main};    
+  color: ${theme.colors.textPrimary};
 }
 
 /* input::-webkit-outer-spin-button,

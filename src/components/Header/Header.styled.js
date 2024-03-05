@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  position: sticky;
+  position: static;
   left: 0;
   top: 0;
   display: flex;
@@ -10,7 +10,8 @@ export const StyledHeader = styled.header`
   z-index: 1;
   padding: 15px 20px;
 
-  background-color: ${props => props.theme.colors.background};
+  background-color: rgba(213, 213, 213, 0.54);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
   @media screen and (min-width: 1280px) {
     align-items: center;
@@ -23,5 +24,4 @@ export const StyledHeader = styled.header`
 export const DesktopWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 57px;
 `;

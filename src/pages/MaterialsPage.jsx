@@ -1,5 +1,7 @@
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+
 const MaterialsPage = () => {
-  return <div>MaterialsPage</div>;
+  return <ProductsSection category={'Розхідні матеріали'} />;
 };
 
 export default MaterialsPage;

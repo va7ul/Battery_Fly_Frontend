@@ -213,7 +213,6 @@ export const getOneProduct = createAsyncThunk(
   async (productId, thunkApi) => {
     try {
       const { data } = await axios.get(`products/${productId}`);
-
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
