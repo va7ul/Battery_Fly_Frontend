@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 0px 20px 0px 20px;
+  padding: 15px 20px;
   position: relative;
 
   @media screen and (min-width: 1280px) {
-    padding: 0px 110px 0px 110px;
+    padding: 30px 110px;
   }
 `;
 
@@ -105,7 +105,7 @@ export const ImgTop = styled.img`
     width: 370.07px;
     height: 209.38px;
     right: 220px;
-    top: 150px;
+    top: 140px;
   }
 `;
 
@@ -120,6 +120,6 @@ export const ImgBot = styled.img`
     width: 370.07px;
     height: 209.38px;
     right: -3px;
-    bottom: -40px;
+    /* bottom: -40px; */
   }
 `;
