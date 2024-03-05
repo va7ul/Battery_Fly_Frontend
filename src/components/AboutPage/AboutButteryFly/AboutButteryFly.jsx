@@ -1,7 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
 import { Text } from '../SharedComponents/Text/Text';
-import { Wrapper } from '../SharedComponents/Wrapper/Wrapper';
-import { Box, Image, MainTitle } from './AboutButteryFly.styled';
+import { MainTitle, Wrapper } from './AboutButteryFly.styled';
 import battery from '../../../assets/images/about-us-battery.jpeg';
 import battery2x from '../../../assets/images/about-us-battery-2x.jpeg'
 import { Grid } from '@mui/material';
@@ -20,7 +19,8 @@ export const AboutButteryFly = () => {
             '&.MuiGrid-item': {
               paddingRight: isBigScreen && '18px',
               paddingTop: isBigScreen && '158px',
-              paddingBottom: isBigScreen && '178px',
+              paddingBottom: isBigScreen && '158px',
+              marginBottom: isBigScreen && '20px',
             },
           }}
         >
@@ -42,19 +42,20 @@ export const AboutButteryFly = () => {
             sx={{
               '&.MuiGrid-item': {
                 paddingLeft: isBigScreen && '90px',
-                paddingBottom: isBigScreen && '70px',
+                paddingBottom: isBigScreen && '40px',
+                marginBottom: isBigScreen && '20px',
               },
             }}
           >
-            <Box>
-              <Image
+            <div>
+              <img
                 src={battery}
                 srcSet={`${battery2x} 2x`}
                 alt="battery"
                 width="347"
                 height="446"
               />
-            </Box>
+            </div>
           </Grid>
         )}
       </Grid>
