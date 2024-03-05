@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
-  padding: 0px 20px;
+  padding: 15px 20px;
   max-width: 360px;
   margin: 0 auto;
 
   @media screen and (min-width: 1280px) {
-    padding: 0px 110px;
+    padding: 30px 110px;
     max-width: 1280px;
   }
 `;
