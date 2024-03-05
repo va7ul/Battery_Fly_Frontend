@@ -20,15 +20,15 @@ import {
   Price,
   Like,
   Desc,
-  Subtitle,
   Input,
   Button,
   CounterBox,
   ButtonBox,
   BasketButton,
   OrderButton,
-  Subject,
 } from './Card.styled';
+import { Capacity } from './Capacity';
+import { Information } from './Information';
 
 export const Card = () => {
     //   const [age, setAge] = useState('');
@@ -63,37 +63,10 @@ export const Card = () => {
                     <Like>Додати до списку бажань</Like>
                 </PriceBox>
                 <Desc>{description}</Desc>
-                <div>
-                    <div>
-                        <Subtitle>Ємність енергії:</Subtitle>
-                        <select name="capacity">
-                            <option>Виберіть опцію</option>
-                            <option>5 Ah</option>
-                            <option>10 Ah</option>
-                            <option>15 Ah</option>
-                        </select>
-                        {/* <Box sx={{ maxWidth: 106, height: 30, margin: '0px' }}>
-      <FormControl fullWidth sx={{ m: 1, minWidth: 106 }}>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-    </Box> */}
-                    </div>
-                    <div>
-                        <Desc>{information}</Desc>
-                    </div>
-                </div>
-               <CheckBox />
+
+                <Capacity />
+                <CheckBox />
+                
                 <CounterBox>
                     <Button>
                         <div>
@@ -115,14 +88,9 @@ export const Card = () => {
                         <div>Швидке замовлення</div>
                     </OrderButton>
                 </ButtonBox>
-                <div>
-                    <Subject>Опис</Subject>
-                    <Desc>
-                        information Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Cumque maiores accusantium eos mollitia esse deserunt sequi deleniti
-                        corporis quisquam atque.
-                    </Desc>
-                </div>
+
+                {information ? (<Information props={information} /> ) : (undefined)}
+             
             </Wrapper>
         </>
     );

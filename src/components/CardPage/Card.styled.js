@@ -226,3 +226,25 @@ export const Subject = styled.h2`
     font-size: 20px;
   }
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 14px;
+    margin-bottom: 38px;
+  }
+`;
+
+export const CapacityText = styled.p`
+  font-size: 10px;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+`;
