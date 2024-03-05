@@ -39,10 +39,8 @@ export const Image = styled.img`
 export const TextBox = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 15px;
   }
 `;
 
@@ -59,38 +57,35 @@ export const PriceBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
   }
 `;
 
 export const Price = styled.p`
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
 
   @media screen and (min-width: 1280px) {
-    font-size: 32px;
+    font-size: 20px;
   }
 `;
 
 export const Like = styled.p`
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 500;
   color: ${props => props.theme.colors.secondary};
 
   @media screen and (min-width: 1280px) {
-    font-size: 20px;
+    font-size: 15px;
   }
 `;
 
 export const Desc = styled.p`
   font-size: 10px;
-  margin-bottom: 15px;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -239,12 +234,37 @@ export const Container = styled.div`
   }
 `;
 
-export const CapacityText = styled.p`
-  font-size: 10px;
+export const OrderBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 15px;
+    margin-bottom: 34px;
+  }
+`;
+
+export const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const DescBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 15px;
 
   @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    margin-bottom: 25px;
+    gap: 20px;
+    margin-bottom: 10px;
   }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  gap: 80px;
 `;

@@ -1,97 +1,56 @@
 import { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
 import { getOneProduct } from '../../redux/products/productsOperations';
 import { CheckBox } from './Checkbox';
-// import { useState } from 'react';
-// import Box from '@mui/material/Box';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-import {
-  Wrapper,
-  Title,
-  Image,
-  TextBox,
-  Text,
-  PriceBox,
-  Price,
-  Like,
-  Desc,
-  Input,
-  Button,
-  CounterBox,
-  ButtonBox,
-  BasketButton,
-  OrderButton,
-} from './Card.styled';
 import { Capacity } from './Capacity';
 import { Information } from './Information';
+import { Order } from './Order';
+import {
+    Wrapper,
+    Box,
+  Title,
+  Image
+} from './Card.styled';
+import { Description } from './Description';
 
 export const Card = () => {
-    //   const [age, setAge] = useState('');
-
-    //   const handleChange = (event) => {
-    //     setAge(event.target.value);
-    //   };
-
+    const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
     const dispatch = useDispatch();
     
-    const { name, codeOfGood, description, image, price, quantity, information } = useSelector(selectOneProduct);
+    const { name, image, information } = useSelector(selectOneProduct);
 
     useEffect(() => {
         dispatch(getOneProduct('0099'));
     }, [dispatch]);
 
     return (
-        <>
+        mobileVersion ? (<Wrapper>
+            <Title>{name}</Title>
+            <Image src={image} alt={name} />
+               
+            <Description />
+            <Capacity />
+            <CheckBox />
+            <Order />
+
+            {information ? (<Information information={information} />) : (undefined)}
+             
+        </Wrapper>
+        ) : (
             <Wrapper>
                 <Title>{name}</Title>
-                <Image src={image} alt={name} />
-                <TextBox>
-                    {quantity > 0 ? (
-                        <Text>В наявності</Text>
-                    ) : (
-                        <Text>Немає в наявності</Text>
-                    )}
-                    <Text>Код товару: {codeOfGood}</Text>
-                </TextBox>
-                <PriceBox>
-                    <Price>{price} грн</Price>
-                    <Like>Додати до списку бажань</Like>
-                </PriceBox>
-                <Desc>{description}</Desc>
-
+                <Box>
+                    <Image src={image} alt={name} />
+                    <Description />
+                </Box>
                 <Capacity />
                 <CheckBox />
+                <Order />
+                {information ? (<Information information={information} />) : (undefined)}
                 
-                <CounterBox>
-                    <Button>
-                        <div>
-                            <FaMinus />
-                        </div>
-                    </Button>
-                    <Input type="number" min="1" placeholder="1 шт"></Input>
-                    <Button>
-                        <div>
-                            <FaPlus />
-                        </div>
-                    </Button>
-                </CounterBox>
-                <ButtonBox>
-                    <BasketButton>
-                        <div>В кошик</div>
-                    </BasketButton>
-                    <OrderButton>
-                        <div>Швидке замовлення</div>
-                    </OrderButton>
-                </ButtonBox>
-
-                {information ? (<Information props={information} /> ) : (undefined)}
-             
             </Wrapper>
-        </>
+        )
     );
 };

@@ -1,6 +1,18 @@
-import { Subtitle, CapacityText } from "./Card.styled";
+// import { useState } from 'react';
+// import Box from '@mui/material/Box';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import Select from '@mui/material/Select';
+import { Subtitle, Desc } from "./Card.styled";
 
 export const Capacity = () => {
+        //   const [age, setAge] = useState('');
+
+    //   const handleChange = (event) => {
+    //     setAge(event.target.value);
+    //   };
+
     return (
         <div>
             <Subtitle>Ємність енергії:</Subtitle>
@@ -26,7 +38,7 @@ export const Capacity = () => {
         </Select>
       </FormControl>
     </Box> */}      
-            <CapacityText>Desc Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos esse distinctio officia dolorum exercitationem doloribus, tempora facilis labore earum doloremque ipsa nisi, hic quos. Esse tenetur iure explicabo officiis laudantium.</CapacityText>
+            <Desc>Desc Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos esse distinctio officia dolorum exercitationem doloribus, tempora facilis labore earum doloremque ipsa nisi, hic quos. Esse tenetur iure explicabo officiis laudantium.</Desc>
         </div>
     );
 };
