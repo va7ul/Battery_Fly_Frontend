@@ -7,20 +7,6 @@ const getSectionBackground = props => {
   return 'inherit';
 };
 
-const getPaddingMob = props => {
-  if (props.category === 'Акції') {
-    return '15px';
-  }
-  return '30px';
-};
-
-const getPaddingDesc = props => {
-  if (props.category === 'Акції') {
-    return '30px';
-  }
-  return '60px';
-};
-
 const getColor = props => {
   if (props.category === 'Акції') {
     return props.theme.colors.backgroundPaper;
@@ -29,11 +15,13 @@ const getColor = props => {
 };
 
 export const StyledSection = styled.section`
-  padding-top: ${getPaddingMob};
+  padding-top: 15px;
+  padding-bottom: 15px;
   background: ${getSectionBackground};
 
   @media screen and (min-width: 1280px) {
-    padding-top: ${getPaddingDesc};
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 `;
 
@@ -54,9 +42,10 @@ export const StyledLink = styled.a`
   display: inline-flex;
   gap: 15px;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${props => props.theme.colors.secondary};
-    transform: scale(1.1);
+    transform: scale(1.05);
 
     svg {
       fill: ${props => props.theme.colors.secondary};
