@@ -4,7 +4,7 @@ import { List, ListItem } from './Valuables.styled';
 
 export const Valuables = ({ valuables }) => {
   return (
-    <>
+    <section>
       <Title>Наші цінності</Title>
       <List>
         {valuables.map((item, idx) => (
@@ -13,6 +13,6 @@ export const Valuables = ({ valuables }) => {
           </ListItem>
         ))}
       </List>
-    </>
+    </section>
   );
 };

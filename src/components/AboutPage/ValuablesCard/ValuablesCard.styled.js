@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 
 export const Box = styled.div`
-  height: 14px;
   display: flex;
   gap: 6px;
 `;
 
 export const SmallTitle = styled.h3`
   font-size: 12px;
-  font-weight: medium;
+  font-weight: 600;
   color: rgba(31, 31, 31, 0.9);
 `;
 

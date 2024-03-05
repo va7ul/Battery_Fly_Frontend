@@ -9,17 +9,9 @@ import { MainWrapper } from './SharedComponents/MainWrapper/MainWrapper';
 export const AboutUsPage = () => {
   return (
     <MainWrapper>
-      <Grid container>
-        <Grid item xs={12}>
           <AboutButteryFly />
-        </Grid>
-        <Grid item xs={12}>
           <Mission />
-        </Grid>
-        <Grid item xs={12}>
           <Valuables valuables={valuables} />
-        </Grid>
-      </Grid>
     </MainWrapper>
   );
 };
