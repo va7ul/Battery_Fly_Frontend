@@ -53,6 +53,7 @@ export const IconHeart = styled(FaRegHeart)`
   &:hover {
     color: ${props => props.theme.colors.secondary};
     transform: scale(1.5);
+    cursor: pointer;
   }
 `;
 
@@ -74,6 +75,7 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
   &:hover {
     color: ${props => props.theme.colors.secondary};
     transform: scale(1.5);
+    cursor: pointer;
   }
 `;
 
@@ -92,16 +94,11 @@ export const CardTitle = styled.p`
   height: 36px;
   font-size: 10px;
   margin-top: 5px;
-  transition: ${props => props.theme.transition.main};
 
   @media screen and (min-width: 1280px) {
     height: 72px;
     font-size: 20px;
     margin-top: 15px;
-  }
-
-  &:hover {
-    color: ${props => props.theme.colors.secondary};
   }
 `;
 
