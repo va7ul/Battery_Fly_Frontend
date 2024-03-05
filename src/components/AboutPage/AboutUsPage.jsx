@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material';
 import { AboutButteryFly } from './AboutButteryFly/AboutButteryFly';
 import { Mission } from './Mission/Mission';
 import { Valuables } from './Valuables/Valuables';
