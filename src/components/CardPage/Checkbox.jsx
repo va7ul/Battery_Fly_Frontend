@@ -2,6 +2,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
+import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
 import { Subtitle, Container } from './Card.styled';
 
@@ -14,7 +15,21 @@ const StyledFormGroup = styled(FormGroup)({
     },
     '& .MuiTypography-root': {
         fontSize: '10px',
+        [themeMUI.breakpoints.only('desktop')]: {
+            fontSize: '20px',
+        },
     }
+});
+
+const StyledCheckbox = styled(Checkbox)({
+    '& .MuiSvgIcon-root': {
+        width: '20px',
+        height: '20px',
+        [themeMUI.breakpoints.only('desktop')]: {
+            width: '30px',
+            height: '30px',
+        },
+    },
 });
 
 export const CheckBox = () => {
@@ -22,15 +37,15 @@ export const CheckBox = () => {
         <Container>
             <Subtitle>Додаткові послуги:</Subtitle>
             <StyledFormGroup sx={{
-                flexDirection: 'row', gap: '30px'
+                flexDirection: 'row', flexWrap: 'nowrap', gap: '30px'
             }}>
-                <FormControlLabel control={<Checkbox size='sm' sx={{
+                <FormControlLabel control={<StyledCheckbox sx={{
                     color: yellow[800],
                     '&.Mui-checked': {
                         color: yellow[800],
                     },
                 }} />} label="Герметизація" />
-                <FormControlLabel control={<Checkbox size='sm' sx={{
+                <FormControlLabel control={<StyledCheckbox sx={{
                     color: yellow[800],
                     '&.Mui-checked': {
                         color: yellow[800],
