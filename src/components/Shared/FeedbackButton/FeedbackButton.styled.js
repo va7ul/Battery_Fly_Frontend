@@ -23,11 +23,7 @@ export const Button = styled.button`
     padding: 16px 38px;
     border-radius: 12px;
     font-size: 24px;
-    background: linear-gradient(
-      180deg,
-      rgb(255, 208, 100),
-      rgba(251, 208, 110, 0) 112.295%
-    );
+    background: ${props => props.theme.colors.gradient};
 
     &::after {
       border-radius: 12px;
