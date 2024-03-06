@@ -387,3 +387,11 @@ export const Subject = styled.h2`
     font-size: 20px;
   }
 `;
+
+export const Info = styled.div`
+  font-size: 10px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;

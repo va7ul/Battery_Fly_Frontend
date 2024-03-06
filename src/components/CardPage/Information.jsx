@@ -1,11 +1,11 @@
-import { InfoBox, Subject, Desc } from "./Card.styled";
+import { InfoBox, Subject, Info } from "./Card.styled";
 
 export const Information = ({ information }) => {
     const newInfo = information.split(";")
     return (
         <InfoBox>
             <Subject>Опис</Subject>
-            <Desc>{newInfo.map(item => <li key={item}>{item}</li>)}</Desc>
+            <Info>{newInfo.map(item => <div key={item}><div>{item}</div><br /></div>)}</Info>
         </InfoBox>
     );
 };
