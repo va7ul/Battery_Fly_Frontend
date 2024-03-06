@@ -7,7 +7,6 @@ import { Grid } from '@mui/material';
 
 export const AboutButteryFly = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  // const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
   return (
     <section>
       <Grid container>

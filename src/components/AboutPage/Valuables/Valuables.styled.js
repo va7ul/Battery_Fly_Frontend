@@ -4,6 +4,12 @@ export const Box = styled.div`
   position: relative;
 `;
 
+export const Wrapper = styled.div`
+  @media (min-width: 1280px) {
+    margin-bottom: 60px;
+  }
+`;
+
 export const List = styled.ul`
   display: flex;
   gap: 10px;

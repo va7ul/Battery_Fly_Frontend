@@ -1,7 +1,14 @@
 import { useMediaQuery } from 'react-responsive';
 import { Title } from '../SharedComponents/Title/Title';
 import { ValuablesCard } from '../ValuablesCard/ValuablesCard';
-import { Box, IconRectangle, IconSpiral, List, ListItem } from './Valuables.styled';
+import {
+  Box,
+  IconRectangle,
+  IconSpiral,
+  List,
+  ListItem,
+  Wrapper,
+} from './Valuables.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 export const Valuables = ({ valuables }) => {
@@ -19,14 +26,16 @@ export const Valuables = ({ valuables }) => {
           </IconRectangle>
         </Box>
       )}
-      <Title>Наші цінності</Title>
-      <List>
-        {valuables.map((item, idx) => (
-          <ListItem key={idx}>
-            <ValuablesCard text={item} />
-          </ListItem>
-        ))}
-      </List>
+      <Wrapper>
+        <Title>Наші цінності</Title>
+        <List>
+          {valuables.map((item, idx) => (
+            <ListItem key={idx}>
+              <ValuablesCard text={item} />
+            </ListItem>
+          ))}
+        </List>
+      </Wrapper>
     </section>
   );
 };
