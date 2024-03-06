@@ -41,7 +41,7 @@ export const IconSpiral = styled.svg`
   width: 68px;
   height: 72px;
   position: absolute;
-  top: 164px;
+  top: 180px;
   right: -36px;
   stroke: ${props => props.theme.colors.textPrimary};
   fill: transparent;
