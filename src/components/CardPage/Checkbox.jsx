@@ -7,6 +7,9 @@ import { yellow } from '@mui/material/colors';
 import { Subtitle, Container } from './Card.styled';
 
 const StyledFormGroup = styled(FormGroup)({
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    gap: '30px',
     '& .MuiButtonBase-root': {
         padding: '0px 10px 0px 0px'
     },
@@ -36,9 +39,7 @@ export const CheckBox = () => {
     return (
         <Container>
             <Subtitle>Додаткові послуги:</Subtitle>
-            <StyledFormGroup sx={{
-                flexDirection: 'row', flexWrap: 'nowrap', gap: '30px'
-            }}>
+            <StyledFormGroup>
                 <FormControlLabel control={<StyledCheckbox sx={{
                     color: yellow[800],
                     '&.Mui-checked': {
