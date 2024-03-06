@@ -20,7 +20,7 @@ export const Card = () => {
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
     const dispatch = useDispatch();
     
-    const { name, information } = useSelector(selectOneProduct);
+    const { name, capacity, information } = useSelector(selectOneProduct);
 
     useEffect(() => {
         dispatch(getOneProduct('9'));
@@ -33,21 +33,20 @@ export const Card = () => {
 
             <ProductPhoto />
             <Description />
-            <Capacity />
+            {capacity ? (<Capacity />) : (undefined)}
             <CheckBox />
             <Order />
-
             {information ? (<Information information={information} />) : (undefined)}
              
         </Wrapper>
             
         ) : (
                 
-            <Wrapper>  
+            <Wrapper>
                 <Case>
                     <div>
                         <ProductPhoto />
-                        <Capacity />
+                        {capacity ? (<Capacity />) : (undefined)}
                     </div>
                     
                     <Box>
