@@ -1,44 +1,35 @@
-// import { useState } from 'react';
-// import Box from '@mui/material/Box';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-import { Subtitle, Desc } from "./Card.styled";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectOneProduct } from '../../redux/products/productsSelectors';
+import { setPrice } from '../../redux/products/oneProductSlice';
+import { CapacityBox, Subtitle, Desc } from "./Card.styled";
 
 export const Capacity = () => {
-        //   const [age, setAge] = useState('');
+    
+    const dispatch = useDispatch();
 
-    //   const handleChange = (event) => {
-    //     setAge(event.target.value);
-    //   };
+    const { capacity } = useSelector(selectOneProduct);
+    const capacityKeys = Object.keys(capacity);
+
+    const [descr, setDescr] = useState('');
+    
+    const handleSelect = (e) => {
+        setDescr(capacity[e.currentTarget.value].description);
+        dispatch(setPrice(capacity[e.currentTarget.value].price));
+    }
+    
+    const newDescr = descr.split(';');
 
     return (
-        <div>
+        <CapacityBox>
             <Subtitle>Ємність енергії:</Subtitle>
-            <select name="capacity">
+
+            <select onChange={handleSelect} name="capacity">
                 <option>Виберіть опцію</option>
-                <option>5 Ah</option>
-                <option>10 Ah</option>
-                <option>15 Ah</option>
+                {capacityKeys.map(item => <option key={item}>{item}</option>)}
             </select>
-            {/* <Box sx={{ maxWidth: 106, height: 30, margin: '0px' }}>
-      <FormControl fullWidth sx={{ m: 1, minWidth: 106 }}>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-    </Box> */}      
-            <Desc>Desc Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos esse distinctio officia dolorum exercitationem doloribus, tempora facilis labore earum doloremque ipsa nisi, hic quos. Esse tenetur iure explicabo officiis laudantium.</Desc>
-        </div>
+    
+            <Desc>{newDescr.map(item => <li key={item}>{item}</li>)}</Desc>
+        </CapacityBox>
     );
 };
