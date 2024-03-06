@@ -6,9 +6,11 @@ import {
   Text,
   PriceBox,
   Price,
+  LikeBox,
   Like,
   Desc,
-  Item
+  Item,
+  IconHeart
   } from "./Card.styled";
 
 export const Description = () => {
@@ -28,7 +30,10 @@ export const Description = () => {
             </TextBox>
             <PriceBox>
                 <Price>{price} грн</Price>
-                <Like>Додати до списку бажань</Like>
+                <LikeBox>
+                    <IconHeart />
+                    <Like>Додати до списку бажань</Like>
+                </LikeBox>
             </PriceBox>
             <Desc>{newDescription.map(i => <Item key={i}>{i}</Item>)}</Desc>
         </DescBox>
