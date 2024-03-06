@@ -43,13 +43,14 @@ export const Image = styled.img`
   max-width: 320px;
   height: 330px;
   margin-bottom: 5px;
-  border: 1px solid rgb(225, 225, 225);
+  border-radius: 12px;
 
   @media screen and (min-width: 1280px) {
     max-width: 520px;
     height: 525px;
-    margin-bottom: 30px;
+    border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 30px;
   }
 `;
 
@@ -166,7 +167,7 @@ export const Desc = styled.ul`
 `;
 
 export const Item = styled.li`
-  list-style: square;
+  list-style: outside;
 `;
 
 // Capacity
