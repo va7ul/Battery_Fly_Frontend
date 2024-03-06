@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
+// Card
+
 export const Wrapper = styled.div`
   padding: 15px 20px;
   max-width: 360px;
@@ -10,6 +12,17 @@ export const Wrapper = styled.div`
     padding: 30px 110px;
     max-width: 1280px;
   }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Case = styled.div`
+  display: flex;
+  gap: 90px;
+  margin-bottom: 30px;
 `;
 
 export const Title = styled.h1`
@@ -23,6 +36,7 @@ export const Title = styled.h1`
     margin-bottom: 10px;
   }
 `;
+//  ProductPhoto
 
 export const Image = styled.img`
   max-width: 320px;
@@ -33,6 +47,21 @@ export const Image = styled.img`
   @media screen and (min-width: 1280px) {
     max-width: 520px;
     height: 525px;
+    margin-bottom: 30px;
+  }
+`;
+
+// Description
+
+export const DescBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -59,6 +88,9 @@ export const PriceBox = styled.div`
   align-items: center;
 
   @media screen and (min-width: 1280px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 10px;
   }
 `;
 
@@ -67,7 +99,7 @@ export const Price = styled.p`
   font-weight: 600;
 
   @media screen and (min-width: 1280px) {
-    font-size: 20px;
+    font-size: 32px;
   }
 `;
 
@@ -77,16 +109,28 @@ export const Like = styled.p`
   color: ${props => props.theme.colors.secondary};
 
   @media screen and (min-width: 1280px) {
-    font-size: 15px;
+    font-size: 20px;
   }
 `;
 
-export const Desc = styled.p`
+export const Desc = styled.ul`
   font-size: 10px;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
   }
+`;
+
+export const Item = styled.li`
+  list-style: square;
+`;
+
+// Capacity
+
+export const CapacityBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 export const Subtitle = styled.p`
@@ -97,6 +141,39 @@ export const Subtitle = styled.p`
     font-size: 20px;
     font-weight: 600;
   }
+`;
+
+// CheckBox
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 14px;
+    margin-bottom: 38px;
+  }
+`;
+
+// Order
+
+export const OrderBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 15px;
+    margin-bottom: 0px;
+  }
+`;
+
+export const CounterBox = styled.div`
+  display: flex;
+  gap: 4px;
 `;
 
 export const Input = styled.input`
@@ -121,11 +198,6 @@ export const Input = styled.input`
     height: 50px;
     padding: 14px 20px;
   }
-`;
-
-export const CounterBox = styled.div`
-  display: flex;
-  gap: 4px;
 `;
 
 export const Button = styled.button`
@@ -207,6 +279,14 @@ export const OrderButton = styled.button`
   }
 `;
 
+// Information
+
+export const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 export const Subject = styled.h2`
   height: 30px;
   font-size: 15px;
@@ -220,51 +300,4 @@ export const Subject = styled.h2`
     height: 42px;
     font-size: 20px;
   }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 30px;
-
-  @media screen and (min-width: 1280px) {
-    gap: 14px;
-    margin-bottom: 38px;
-  }
-`;
-
-export const OrderBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-
-  @media screen and (min-width: 1280px) {
-    gap: 15px;
-    margin-bottom: 34px;
-  }
-`;
-
-export const InfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-export const DescBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 15px;
-
-  @media screen and (min-width: 1280px) {
-    gap: 20px;
-    margin-bottom: 10px;
-  }
-`;
-
-export const Box = styled.div`
-  display: flex;
-  gap: 80px;
 `;
