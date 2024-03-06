@@ -1,7 +1,14 @@
 import { useMediaQuery } from 'react-responsive';
 import { Text } from '../SharedComponents/Text/Text';
 import { Wrapper } from '../SharedComponents/Wrapper/Wrapper';
-import { Box, IconEllipse, IconHeavyWaves, IconSpiral, Title } from './Mission.styled';
+import {
+  Box,
+  IconEllipse,
+  IconHeavyWaves,
+  IconHope,
+  IconSpiralDesktop,
+  Title,
+} from './Mission.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 export const Mission = () => {
@@ -10,6 +17,11 @@ export const Mission = () => {
     <section>
       <Wrapper>
         <Box>
+          {!isBigScreen && 
+              <IconHope>
+                <use href={`${sprite}#icon-about-hope`}></use>
+              </IconHope>
+        }
           {isBigScreen && (
             <>
               <IconEllipse>
@@ -18,9 +30,9 @@ export const Mission = () => {
               <IconHeavyWaves>
                 <use href={`${sprite}#icon-about-heavy-waves`}></use>
               </IconHeavyWaves>
-              <IconSpiral>
+              <IconSpiralDesktop>
                 <use href={`${sprite}#icon-about-spiral-desktop`}></use>
-              </IconSpiral>
+              </IconSpiralDesktop>
             </>
           )}
           <Title>Наша місія</Title>

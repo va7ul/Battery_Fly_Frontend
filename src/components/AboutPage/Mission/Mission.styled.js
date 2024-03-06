@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
+  position: relative;
   @media (min-width: 1280px) {
     padding-top: 34px;
     padding-right: 364px;
@@ -8,7 +9,6 @@ export const Box = styled.div`
     padding-left: 90px;
     border-radius: 24px;
     background: ${props => props.theme.colors.gradient};
-    position: relative;
   }
 `;
 
@@ -26,6 +26,15 @@ export const Title = styled.h2`
   }
 `;
 
+export const IconHope = styled.svg`
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -8px;
+  left: 122px;
+  fill: #fbd06e;
+`;
+
 export const IconEllipse = styled.svg`
   @media (min-width: 1280px) {
     width: 123px;
@@ -37,6 +46,7 @@ export const IconEllipse = styled.svg`
     z-index: 1;
   }
 `;
+
 export const IconHeavyWaves = styled.svg`
   @media (min-width: 1280px) {
     width: 40px;
@@ -50,7 +60,7 @@ export const IconHeavyWaves = styled.svg`
   }
 `;
 
-export const IconSpiral = styled.svg`
+export const IconSpiralDesktop = styled.svg`
   @media (min-width: 1280px) {
     width: 175px;
     height: 219px;
