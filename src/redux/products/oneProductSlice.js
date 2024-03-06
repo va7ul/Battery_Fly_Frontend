@@ -2,7 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getOneProduct } from '../products/productsOperations';
 
 const initialState = {
-  result: {},
+  result: {
+    description: '',
+    capacity: {},
+    information: '',
+    price: '',
+  },
   isLoading: false,
   error: null,
 };
@@ -10,7 +15,11 @@ const initialState = {
 const oneProductSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    setPrice(state, action) {
+      state.result.price = action.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(getOneProduct.pending, state => {
@@ -27,4 +36,5 @@ const oneProductSlice = createSlice({
       }),
 });
 
+export const { setPrice } = oneProductSlice.actions;
 export const oneProductReducer = oneProductSlice.reducer;
