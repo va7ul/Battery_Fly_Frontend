@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Box = styled.div`
   position: relative;
@@ -8,12 +8,27 @@ export const List = styled.ul`
   display: flex;
   gap: 10px;
   flex-direction: column;
+
+  @media (min-width: 1280px) {
+    flex-direction: row;
+    gap: 12px;
+  }
 `;
 
 export const ListItem = styled.li`
   display: flex;
   gap: 10px;
   flex-direction: column;
+
+  @media (min-width: 1280px) {
+    gap: 32px;
+    background: ${props => props.theme.colors.gradient};
+    width: 256px;
+    height: 334px;
+    padding: 46px 18px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 25.8px 3px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 export const IconSpiral = styled.svg`
