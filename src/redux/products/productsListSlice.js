@@ -1,30 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getOneProduct } from '../products/productsOperations';
+import { getAssortment } from '../products/productsOperations';
 
 const initialState = {
-  result: {},
+  list: {},
   isLoading: false,
   error: null,
 };
 
-const oneProductSlice = createSlice({
+const productsListSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {},
   extraReducers: builder =>
     builder
-      .addCase(getOneProduct.pending, state => {
+      .addCase(getAssortment.pending, state => {
         state.isLoading = true;
       })
-      .addCase(getOneProduct.fulfilled, (state, action) => {
+      .addCase(getAssortment.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.result = action.payload.result;
+        state.list = action.payload;
       })
-      .addCase(getOneProduct.rejected, (state, action) => {
+      .addCase(getAssortment.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       }),
 });
 
-export const oneProductReducer = oneProductSlice.reducer;
+export const productsListReducer = productsListSlice.reducer;
