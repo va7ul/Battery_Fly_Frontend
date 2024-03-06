@@ -5,7 +5,7 @@ export const Information = ({ information }) => {
     return (
         <InfoBox>
             <Subject>Опис</Subject>
-            <Desc>{newInfo.map(item => <li key={item}>{item}</li>)}</Desc>
+            <Desc>{newInfo.map(item => <><li key={item}>{item}</li><br /></>)}</Desc>
         </InfoBox>
     );
 };
