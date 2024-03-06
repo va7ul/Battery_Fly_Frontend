@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 // Card
@@ -48,6 +49,7 @@ export const Image = styled.img`
     max-width: 520px;
     height: 525px;
     margin-bottom: 30px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
 `;
 
@@ -103,6 +105,48 @@ export const Price = styled.p`
   }
 `;
 
+export const IconHeart = styled(FaRegHeart)`
+  color: ${props => props.theme.colors.backgroundPaper};
+  transition: ${props => props.theme.transition.main};
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 38px;
+    height: 38px;
+  }
+`;
+
+export const IconFullHeart = styled(FaHeartCircleCheck)`
+  color: ${props => props.theme.colors.backgroundPaper};
+  transition: ${props => props.theme.transition.main};
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 38px;
+    height: 38px;
+  }
+`;
+
+export const LikeBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 14px;
+  }
+`;
+
 export const Like = styled.p`
   font-size: 10px;
   font-weight: 500;
@@ -143,13 +187,54 @@ export const Subtitle = styled.p`
   }
 `;
 
+export const SelectDiv = styled.select`
+  /* -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none; */
+  outline: none;
+  cursor: pointer;
+  width: 105px;
+  height: 30px;
+  padding: 8px;
+  font-size: 10px;
+  border: 1px solid ${props => props.theme.colors.textPrimary};
+  border-radius: 6px;
+  background: ${props => props.theme.colors.greyBackgroundPaper};
+
+  /* &::-ms-expand {
+    display: none;
+  } */
+  /* &:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 1px orange, 0px 0px 1px red;
+  } */
+
+  @media screen and (min-width: 1280px) {
+    width: 208px;
+    height: 42px;
+    padding: 7px 15px;
+    border-radius: 12px;
+    font-size: 20px;
+  }
+`;
+
+export const OptionsItem = styled.option`
+  padding: 8px;
+
+  &:checked {
+    background-color: red;
+  }
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 // CheckBox
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 1280px) {
     gap: 14px;
