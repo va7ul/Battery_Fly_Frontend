@@ -22,7 +22,7 @@ export const Box = styled.div`
 
 export const Case = styled.div`
   display: flex;
-  gap: 90px;
+  gap: 60px;
   margin-bottom: 30px;
 `;
 
@@ -39,13 +39,6 @@ export const Title = styled.h1`
 `;
 //  ProductPhoto
 
-export const PhotoBox = styled.div`
-  position: relative;
-
-  @media screen and (min-width: 1280px) {
-  }
-`;
-
 export const Image = styled.img`
   max-width: 320px;
   height: 330px;
@@ -58,41 +51,6 @@ export const Image = styled.img`
     border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-bottom: 30px;
-  }
-`;
-
-export const IconSquare = styled.svg`
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: -30px;
-  right: 0px;
-  fill: ${props => props.theme.colors.secondary};
-
-  @media (min-width: 1280px) {
-    width: 62px;
-    height: 62px;
-    top: 180px;
-    right: -560px;
-    z-index: 2;
-  }
-`;
-
-export const IconSpiral = styled.svg`
-  width: 35px;
-  height: 43px;
-  position: absolute;
-  top: -25px;
-  right: 18px;
-  stroke: ${props => props.theme.colors.textPrimary};
-  fill: transparent;
-
-  @media (min-width: 1280px) {
-    width: 62px;
-    height: 76px;
-    top: 190px;
-    right: -530px;
-    z-index: 2;
   }
 `;
 
@@ -181,6 +139,7 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
 `;
 
 export const LikeBox = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -197,6 +156,41 @@ export const Like = styled.p`
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+  }
+`;
+
+export const IconSquare = styled.svg`
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -387px;
+  left: 122px;
+  fill: ${props => props.theme.colors.secondary};
+
+  @media (min-width: 1280px) {
+    width: 62px;
+    height: 62px;
+    left: 438px;
+    top: -12px;
+    z-index: 2;
+  }
+`;
+
+export const IconSpiral = styled.svg`
+  width: 35px;
+  height: 43px;
+  position: absolute;
+  top: -381px;
+  left: 105px;
+  stroke: ${props => props.theme.colors.textPrimary};
+  fill: transparent;
+
+  @media (min-width: 1280px) {
+    width: 62px;
+    height: 76px;
+    left: 407px;
+    top: -1px;
+    z-index: 2;
   }
 `;
 
