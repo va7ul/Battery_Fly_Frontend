@@ -65,15 +65,15 @@ export const IconSquare = styled.svg`
   width: 35px;
   height: 35px;
   position: absolute;
-  /* top: 18px;
-  right: 24px; */
+  top: -30px;
+  right: 0px;
   fill: ${props => props.theme.colors.secondary};
 
   @media (min-width: 1280px) {
     width: 62px;
     height: 62px;
-    /* top: 170px;
-    right: -72px; */
+    top: 180px;
+    right: -560px;
     z-index: 2;
   }
 `;
@@ -82,16 +82,16 @@ export const IconSpiral = styled.svg`
   width: 35px;
   height: 43px;
   position: absolute;
-  /* top: 18px;
-  right: 24px; */
+  top: -25px;
+  right: 18px;
   stroke: ${props => props.theme.colors.textPrimary};
   fill: transparent;
 
   @media (min-width: 1280px) {
     width: 62px;
     height: 76px;
-    /* top: 170px;
-    right: -72px; */
+    top: 190px;
+    right: -530px;
     z-index: 2;
   }
 `;
