@@ -45,6 +45,7 @@ export const DesktopAssortment = () => {
             width: '414px',
             pl: '24px',
             pr: '72px',
+            borderRadius: '18px',
           },
         }}
       >
