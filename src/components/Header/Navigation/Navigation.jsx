@@ -1,12 +1,12 @@
 import { NavList, CartButton } from './Navigation.styled';
-import { Item, HopeIcon } from './NavItem/NavItem.styled';
+import { Item } from './NavItem/NavItem.styled';
 import { useMediaQuery } from 'react-responsive';
-import sprite from '../../../assets/images/sprite.svg';
 import { NavItem } from './NavItem/NavItem';
 import { Assortment } from './Assortment/Assortment';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { NavLink } from 'react-router-dom';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
+import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 
 export const Navigation = ({ setIsOpen, isOpen }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
@@ -26,11 +26,7 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
         <Item>
-          {mobileVersion && (
-            <HopeIcon>
-              <use href={`${sprite}#icon-Hope`}></use>
-            </HopeIcon>
-          )}
+          {mobileVersion && <HopeIconMobile />}
           <CartButton type="button">
             <div>Кошик</div>
             {!mobileVersion && <CartIcon />}

@@ -1,17 +1,13 @@
 import { useMediaQuery } from 'react-responsive';
-import sprite from '../../../../assets/images/sprite.svg';
-import { Item, StyledLink, HopeIcon } from './NavItem.styled';
+import { Item, StyledLink } from './NavItem.styled';
+import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 
 export const NavItem = ({ title, page }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   return (
     <Item>
-      {mobileVersion && (
-        <HopeIcon>
-          <use href={`${sprite}#icon-Hope`}></use>
-        </HopeIcon>
-      )}
+      {mobileVersion && <HopeIconMobile />}
       <StyledLink to={page}>
         <div>{title}</div>
       </StyledLink>
