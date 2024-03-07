@@ -43,9 +43,3 @@ export const StyledLink = styled(NavLink)`
     color: ${props => props.theme.colors.secondary};
   }
 `;
-
-export const HopeIcon = styled.svg`
-  width: 14px;
-  height: 14px;
-  margin-right: 27px;
-`;
