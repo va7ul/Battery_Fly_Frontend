@@ -9,6 +9,9 @@ export const Item = styled.li`
   padding: 18px 0;
   color: ${props => props.theme.colors.textPrimary};
 
+  &:not(:last-child) {
+    border-bottom: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
+  }
   @media screen and (min-width: 1280px) {
     font-weight: 400;
   }
