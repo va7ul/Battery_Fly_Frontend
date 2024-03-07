@@ -1,4 +1,4 @@
-import { MainPageLayuot } from "components/MainPage/MainPageLayuot";
+import { MainPageLayuot } from "components/MainPage/MainPageLayout";
 
 const MainPage = () => {
   return <MainPageLayuot />;

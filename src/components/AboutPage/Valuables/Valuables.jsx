@@ -1,18 +1,41 @@
+import { useMediaQuery } from 'react-responsive';
 import { Title } from '../SharedComponents/Title/Title';
 import { ValuablesCard } from '../ValuablesCard/ValuablesCard';
-import { List, ListItem } from './Valuables.styled';
+import {
+  Box,
+  IconRectangle,
+  IconSpiral,
+  List,
+  ListItem,
+  Wrapper,
+} from './Valuables.styled';
+import sprite from '../../../assets/images/sprite.svg';
 
 export const Valuables = ({ valuables }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+
   return (
-    <>
-      <Title>Наші цінності</Title>
-      <List>
-        {valuables.map((item, idx) => (
-          <ListItem key={idx}>
-            <ValuablesCard text={item} />
-          </ListItem>
-        ))}
-      </List>
-    </>
+    <section>
+      {!isBigScreen && (
+        <Box>
+          <IconSpiral>
+            <use href={`${sprite}#icon-about-spiral`}></use>
+          </IconSpiral>
+          <IconRectangle>
+            <use href={`${sprite}#icon-about-rectangle`}></use>
+          </IconRectangle>
+        </Box>
+      )}
+      <Wrapper>
+        <Title>Наші цінності</Title>
+        <List>
+          {valuables.map((item, idx) => (
+            <ListItem key={idx}>
+              <ValuablesCard text={item} />
+            </ListItem>
+          ))}
+        </List>
+      </Wrapper>
+    </section>
   );
 };
