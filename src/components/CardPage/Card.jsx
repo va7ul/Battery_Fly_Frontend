@@ -30,7 +30,6 @@ export const Card = () => {
         mobileVersion ? (<Wrapper>
 
             <Title>{name}</Title>
-
             <ProductPhoto />
             <Description />
             {capacity ? (<Capacity />) : (undefined)}

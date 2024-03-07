@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
+import sprite from '../../assets/images/sprite.svg';
 import {
   DescBox,
   TextBox,
@@ -10,7 +11,9 @@ import {
   Like,
   Desc,
   Item,
-  IconHeart
+  IconHeart,
+  IconSquare,
+  IconSpiral
   } from "./Card.styled";
 
 export const Description = () => {
@@ -33,6 +36,12 @@ export const Description = () => {
                 <LikeBox>
                     <IconHeart />
                     <Like>Додати до списку бажань</Like>
+                    <IconSquare>
+                        <use href={`${sprite}#icon-square`}></use>
+                    </IconSquare>
+                    <IconSpiral>
+                        <use href={`${sprite}#icon-Spiral_2`}></use>
+                    </IconSpiral>
                 </LikeBox>
             </PriceBox>
             <Desc>{newDescription.map(i => <Item key={i}>{i}</Item>)}</Desc>
