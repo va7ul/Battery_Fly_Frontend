@@ -52,10 +52,10 @@ export const OurServices = ({ services, isCard }) => {
       </Holder>
       <ButtonWrapper>
         <Button type="button" onClick={handleBack}>
-          <KeyboardArrowLeft />
+         <div> <KeyboardArrowLeft /></div>
         </Button>
         <Button type="button" onClick={handleNext}>
-          <KeyboardArrowRight />
+         <div> <KeyboardArrowRight /></div>
         </Button>
       </ButtonWrapper>
       <List>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.section`
   position: relative;
@@ -58,6 +59,13 @@ export const Button = styled.button`
     width: 66px;
     height: 66px;
     border-radius: 16px;
+    position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+
+    &::after {
+      border-radius: 16px;
+    }
   }
 
   svg {
