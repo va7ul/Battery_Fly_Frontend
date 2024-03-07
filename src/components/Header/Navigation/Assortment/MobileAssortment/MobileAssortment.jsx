@@ -7,10 +7,11 @@ import Drawer from '@mui/material/Drawer';
 export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   const [openSubDrawer, setOpenSubDrawer] = useState(false);
 
-  const handleClick = newOpen => () => {
+  const handleClick = newOpen => e => {
     if (isOpen) {
       setOpenSubDrawer(newOpen);
       setIsOpen(newOpen);
+      e.stopPropagation();
     }
   };
 
