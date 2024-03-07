@@ -39,6 +39,13 @@ export const Title = styled.h1`
 `;
 //  ProductPhoto
 
+export const PhotoBox = styled.div`
+  position: relative;
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
 export const Image = styled.img`
   max-width: 320px;
   height: 330px;
@@ -51,6 +58,41 @@ export const Image = styled.img`
     border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin-bottom: 30px;
+  }
+`;
+
+export const IconSquare = styled.svg`
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  /* top: 18px;
+  right: 24px; */
+  fill: ${props => props.theme.colors.secondary};
+
+  @media (min-width: 1280px) {
+    width: 62px;
+    height: 62px;
+    /* top: 170px;
+    right: -72px; */
+    z-index: 2;
+  }
+`;
+
+export const IconSpiral = styled.svg`
+  width: 35px;
+  height: 43px;
+  position: absolute;
+  /* top: 18px;
+  right: 24px; */
+  stroke: ${props => props.theme.colors.textPrimary};
+  fill: transparent;
+
+  @media (min-width: 1280px) {
+    width: 62px;
+    height: 76px;
+    /* top: 170px;
+    right: -72px; */
+    z-index: 2;
   }
 `;
 
