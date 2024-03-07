@@ -1,8 +1,8 @@
 import { ListItem } from './ListItem/ListItem';
 
-export const AssortmentList = () => {
+export const AssortmentList = ({ handleClick }) => {
   return (
-    <ul>
+    <ul onClick={handleClick(false)}>
       <ListItem page="/sales" title="Акції" />
       <ListItem page="/batteries" title="Акумулятори" />
       <ListItem page="/assembly" title="Готові батареї" />

@@ -3,6 +3,7 @@ import { ArrowButton, Wrapper } from './MobileAssortment.styled';
 import { StyledLink } from '../../NavItem/NavItem.styled';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
+import { AssortmentList } from '../AssortmentList/AssortmentList';
 
 export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   const [openSubDrawer, setOpenSubDrawer] = useState(false);
@@ -29,6 +30,7 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
         </svg>
       </ArrowButton>
       <Drawer
+        onClick={e => e.stopPropagation()}
         open={openSubDrawer}
         onClose={toggleSubDrawer(false)}
         sx={{
@@ -40,11 +42,7 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           },
         }}
       >
-        <ul>
-          <li>fd</li>
-          <li>hg</li>
-          <li>jk</li>
-        </ul>
+        <AssortmentList handleClick={handleClick} />
       </Drawer>
     </Wrapper>
   );
