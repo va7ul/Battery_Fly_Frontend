@@ -22,7 +22,7 @@ export const Box = styled.div`
 
 export const Case = styled.div`
   display: flex;
-  gap: 90px;
+  gap: 60px;
   margin-bottom: 30px;
 `;
 
@@ -139,6 +139,7 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
 `;
 
 export const LikeBox = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -155,6 +156,41 @@ export const Like = styled.p`
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+  }
+`;
+
+export const IconSquare = styled.svg`
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: -387px;
+  left: 122px;
+  fill: ${props => props.theme.colors.secondary};
+
+  @media (min-width: 1280px) {
+    width: 62px;
+    height: 62px;
+    left: 438px;
+    top: -12px;
+    z-index: 2;
+  }
+`;
+
+export const IconSpiral = styled.svg`
+  width: 35px;
+  height: 43px;
+  position: absolute;
+  top: -381px;
+  left: 105px;
+  stroke: ${props => props.theme.colors.textPrimary};
+  fill: transparent;
+
+  @media (min-width: 1280px) {
+    width: 62px;
+    height: 76px;
+    left: 407px;
+    top: -1px;
+    z-index: 2;
   }
 `;
 
