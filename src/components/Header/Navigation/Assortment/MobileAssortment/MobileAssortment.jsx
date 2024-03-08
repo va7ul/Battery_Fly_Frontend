@@ -1,16 +1,24 @@
 import sprite from '../../../../../assets/images/sprite.svg';
-import { ArrowButton, Wrapper } from './MobileAssortment.styled';
+import {
+  ArrowButton,
+  Wrapper,
+  Wrap,
+  BackButton,
+  TitleText,
+} from './MobileAssortment.styled';
 import { StyledLink } from '../../NavItem/NavItem.styled';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
+import { AssortmentList } from '../AssortmentList/AssortmentList';
 
 export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   const [openSubDrawer, setOpenSubDrawer] = useState(false);
 
-  const handleClick = newOpen => () => {
+  const handleClick = newOpen => e => {
     if (isOpen) {
       setOpenSubDrawer(newOpen);
       setIsOpen(newOpen);
+      e.stopPropagation();
     }
   };
 
@@ -20,7 +28,9 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
 
   return (
     <Wrapper>
-      <StyledLink to="/assortment">Асортимент</StyledLink>
+      <StyledLink to="/assortment">
+        <div>Асортимент</div>
+      </StyledLink>
 
       <ArrowButton type="button" onClick={handleClick(true)}>
         <svg>
@@ -28,6 +38,7 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
         </svg>
       </ArrowButton>
       <Drawer
+        onClick={e => e.stopPropagation()}
         open={openSubDrawer}
         onClose={toggleSubDrawer(false)}
         sx={{
@@ -39,11 +50,21 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           },
         }}
       >
-        <ul>
-          <li>fd</li>
-          <li>hg</li>
-          <li>jk</li>
-        </ul>
+        <Wrap>
+          <BackButton type="button" onClick={toggleSubDrawer(false)}>
+            <svg>
+              <use href={`${sprite}#arrow-left`}></use>
+            </svg>
+          </BackButton>
+          <TitleText>Асортимент</TitleText>
+        </Wrap>
+        <AssortmentList
+          handleClick={handleClick}
+          openSubDrawer={openSubDrawer}
+          setOpenSubDrawer={setOpenSubDrawer}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+        />
       </Drawer>
     </Wrapper>
   );
