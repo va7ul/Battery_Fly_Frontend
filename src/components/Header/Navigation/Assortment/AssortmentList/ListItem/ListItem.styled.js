@@ -8,7 +8,6 @@ export const Item = styled.li`
   font-weight: 500;
   font-size: 15px;
   padding: 8px 15px;
-  border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
   cursor: pointer;
 
   color: ${props => props.theme.colors.textPrimary};
@@ -30,6 +29,7 @@ export const Item = styled.li`
     width: 100%;
     display: flex;
     align-items: center;
+    border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
 
     position: relative;
     z-index: 0;
