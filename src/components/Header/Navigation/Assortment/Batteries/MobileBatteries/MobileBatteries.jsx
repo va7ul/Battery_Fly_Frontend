@@ -2,7 +2,14 @@ import { Drawer } from '@mui/material';
 import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../../NavItem/NavItem.styled';
-import { Wrapper, ArrowButton } from './MobileBatteries.styled';
+import {
+  Wrapper,
+  ArrowButton,
+  BatteriesWrap,
+  BatteriesButton,
+  TitleText,
+} from './MobileBatteries.styled';
+import { BatteriesList } from '../BatteriesList/BatteriesList';
 
 export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
   const [openThirdDrawer, setOpenThirdDrawer] = useState(false);
@@ -42,11 +49,18 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
           },
         }}
       >
-        <ul>
-          <li>dfkl</li>
-          <li>fgg</li>
-          <li>edr</li>
-        </ul>
+        <BatteriesWrap>
+          <BatteriesButton type="button" onClick={toggleThirdDrawer(false)}>
+            <svg>
+              <use href={`${sprite}#arrow-left`}></use>
+            </svg>
+          </BatteriesButton>
+          <TitleText>Акумулятори</TitleText>
+        </BatteriesWrap>
+        <BatteriesList
+          handleClick={handleClick}
+          openThirdDrawer={openThirdDrawer}
+        />
       </Drawer>
     </Wrapper>
   );
