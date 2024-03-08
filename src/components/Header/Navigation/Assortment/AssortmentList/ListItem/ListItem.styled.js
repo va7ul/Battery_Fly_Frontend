@@ -9,6 +9,7 @@ export const Item = styled.li`
   font-size: 15px;
   padding: 8px 15px;
   border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
+  cursor: pointer;
 
   color: ${props => props.theme.colors.textPrimary};
 
