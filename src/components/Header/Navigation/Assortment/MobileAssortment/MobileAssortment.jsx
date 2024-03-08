@@ -1,5 +1,11 @@
 import sprite from '../../../../../assets/images/sprite.svg';
-import { ArrowButton, Wrapper } from './MobileAssortment.styled';
+import {
+  ArrowButton,
+  Wrapper,
+  AssortmentWrap,
+  AssortmentButton,
+  TitleText,
+} from './MobileAssortment.styled';
 import { StyledLink } from '../../NavItem/NavItem.styled';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
@@ -42,7 +48,18 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           },
         }}
       >
-        <AssortmentList handleClick={handleClick} />
+        <AssortmentWrap>
+          <AssortmentButton type="button" onClick={toggleSubDrawer(false)}>
+            <svg>
+              <use href={`${sprite}#arrow-left`}></use>
+            </svg>
+          </AssortmentButton>
+          <TitleText>Асортимент</TitleText>
+        </AssortmentWrap>
+        <AssortmentList
+          handleClick={handleClick}
+          openSubDrawer={openSubDrawer}
+        />
       </Drawer>
     </Wrapper>
   );
