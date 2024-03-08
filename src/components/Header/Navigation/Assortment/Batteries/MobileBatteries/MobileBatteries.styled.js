@@ -27,13 +27,13 @@ export const ArrowButton = styled.button`
   }
 `;
 
-export const AssortmentWrap = styled.div`
+export const BatteriesWrap = styled.div`
   display: flex;
   padding: 10px 15px;
   align-items: center;
 `;
 
-export const AssortmentButton = styled.button`
+export const BatteriesButton = styled.button`
   display: flex;
   justify-content: start;
   width: 24px;
