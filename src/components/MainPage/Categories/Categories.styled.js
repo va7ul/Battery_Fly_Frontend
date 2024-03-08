@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-
 export const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, 60px);
@@ -49,7 +48,9 @@ export const Subtitle = styled.p`
     top: calc(100%);
     visibility: hidden;
     width: 200px;
-    transition: visibility 230ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0);
+    transition: visibility 220ms cubic-bezier(0.4, 0, 0.2, 1),
+      transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 
@@ -60,6 +61,7 @@ export const LinkToProducts = styled(Link)`
     & ${Image}:hover + ${Subtitle} {
       visibility: visible;
       width: 200px;
+      transform: scale(1);
     }
   }
 `;
