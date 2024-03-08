@@ -9,7 +9,9 @@ export const ListItem = ({ page, title }) => {
   return (
     <Item>
       {mobileVersion ? <HopeIconMobile /> : <HopeIconDesktop />}
-      <StyledLink to={page}>{title}</StyledLink>
+      <StyledLink to={page}>
+        <div>{title}</div>
+      </StyledLink>
     </Item>
   );
 };
