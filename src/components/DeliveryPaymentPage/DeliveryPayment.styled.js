@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 20px 20px;
+  padding: 20px 20px 8px;
   background-image: linear-gradient(
     180deg,
     rgba(251, 208, 110, 0.04),
