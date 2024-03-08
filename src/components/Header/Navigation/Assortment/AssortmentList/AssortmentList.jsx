@@ -1,8 +1,14 @@
 import { ListItem } from './ListItem/ListItem';
 
-export const AssortmentList = ({ handleClick }) => {
+export const AssortmentList = ({ handleClick, openSubDrawer }) => {
+  const closeSubDrawer = newOpen => {
+    if (openSubDrawer) {
+      return handleClick(newOpen);
+    }
+  };
+
   return (
-    <ul onClick={handleClick(false)}>
+    <ul onClick={closeSubDrawer(false)}>
       <ListItem page="/sales" title="Акції" />
       <ListItem page="/batteries" title="Акумулятори" />
       <ListItem page="/assembly" title="Готові батареї" />
