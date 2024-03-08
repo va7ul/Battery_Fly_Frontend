@@ -2,8 +2,8 @@ import sprite from '../../../../../assets/images/sprite.svg';
 import {
   ArrowButton,
   Wrapper,
-  AssortmentWrap,
-  AssortmentButton,
+  Wrap,
+  BackButton,
   TitleText,
 } from './MobileAssortment.styled';
 import { StyledLink } from '../../NavItem/NavItem.styled';
@@ -48,14 +48,14 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           },
         }}
       >
-        <AssortmentWrap>
-          <AssortmentButton type="button" onClick={toggleSubDrawer(false)}>
+        <Wrap>
+          <BackButton type="button" onClick={toggleSubDrawer(false)}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
-          </AssortmentButton>
+          </BackButton>
           <TitleText>Асортимент</TitleText>
-        </AssortmentWrap>
+        </Wrap>
         <AssortmentList
           handleClick={handleClick}
           openSubDrawer={openSubDrawer}
