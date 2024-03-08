@@ -1,6 +1,13 @@
+import { Batteries } from '../Batteries/Batteries';
 import { ListItem } from './ListItem/ListItem';
 
-export const AssortmentList = ({ handleClick, openSubDrawer }) => {
+export const AssortmentList = ({
+  handleClick,
+  openSubDrawer,
+  setOpenSubDrawer,
+  isOpen,
+  setIsOpen,
+}) => {
   const closeSubDrawer = newOpen => {
     if (openSubDrawer) {
       return handleClick(newOpen);
@@ -10,7 +17,12 @@ export const AssortmentList = ({ handleClick, openSubDrawer }) => {
   return (
     <ul onClick={closeSubDrawer(false)}>
       <ListItem page="/sales" title="Акції" />
-      <ListItem page="/batteries" title="Акумулятори" />
+      <Batteries
+        openSubDrawer={openSubDrawer}
+        setOpenSubDrawer={setOpenSubDrawer}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
       <ListItem page="/assembly" title="Готові батареї" />
       <ListItem page="/batteries-for-fpv" title="Батареї для FPV-дронів" />
       <ListItem

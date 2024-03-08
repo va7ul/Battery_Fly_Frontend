@@ -59,6 +59,9 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
         <AssortmentList
           handleClick={handleClick}
           openSubDrawer={openSubDrawer}
+          setOpenSubDrawer={setOpenSubDrawer}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
         />
       </Drawer>
     </Wrapper>
