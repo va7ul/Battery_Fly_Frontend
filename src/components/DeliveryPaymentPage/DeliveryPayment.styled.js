@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 20px 30px;
+  padding: 20px 20px 8px;
   background-image: linear-gradient(
     180deg,
     rgba(251, 208, 110, 0.04),
@@ -10,7 +10,7 @@ export const Container = styled.div`
   );
 
   @media screen and (min-width: 1280px) {
-    padding: 0 110px;
+    padding: 20px 110px;
   }
 `;
 
@@ -19,10 +19,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 
   @media screen and (min-width: 1280px) {
-    gap: 50px;
+    gap: 20px;
   }
 `;
 
@@ -42,7 +42,7 @@ export const Section = styled.section`
   gap: 10px;
 
   @media screen and (min-width: 1280px) {
-    gap: 40px;
+    gap: 20px;
   }
 `;
 
@@ -71,7 +71,7 @@ export const NPTitle = styled.p`
   height: 20px;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
 
   @media screen and (min-width: 1280px) {
     height: 40px;
@@ -88,11 +88,15 @@ export const Descr = styled.p`
 `;
 
 export const List = styled.ul`
-  list-style: inside;
   font-size: 10px;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+  }
+
+  & li {
+    list-style: inside;
+    margin-left: 5px;
   }
 `;
 
@@ -122,8 +126,8 @@ export const IconSquares = styled.svg`
   @media screen and (min-width: 1280px) {
     width: 111px;
     height: 111px;
-    left: 40%;
-    bottom: 80px;
+    right: 20px;
+    bottom: 110px;
   }
 `;
 
