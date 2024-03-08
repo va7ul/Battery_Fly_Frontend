@@ -5,10 +5,10 @@ import { StyledLink } from '../../../NavItem/NavItem.styled';
 import {
   Wrapper,
   ArrowButton,
-  BatteriesWrap,
-  BatteriesButton,
+  Wrap,
+  BackButton,
   TitleText,
-} from './MobileBatteries.styled';
+} from '../../MobileAssortment/MobileAssortment.styled';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 
 export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
@@ -29,7 +29,9 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
 
   return (
     <Wrapper>
-      <StyledLink to="/batteries">Акумулятори</StyledLink>
+      <StyledLink to="/batteries">
+        <div>Акумулятори</div>
+      </StyledLink>
 
       <ArrowButton type="button" onClick={handleClick(true)}>
         <svg>
@@ -49,14 +51,14 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
           },
         }}
       >
-        <BatteriesWrap>
-          <BatteriesButton type="button" onClick={toggleThirdDrawer(false)}>
+        <Wrap>
+          <BackButton type="button" onClick={toggleThirdDrawer(false)}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
-          </BatteriesButton>
+          </BackButton>
           <TitleText>Акумулятори</TitleText>
-        </BatteriesWrap>
+        </Wrap>
         <BatteriesList
           handleClick={handleClick}
           openThirdDrawer={openThirdDrawer}
