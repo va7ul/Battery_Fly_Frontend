@@ -1,6 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
 import { MobileBatteries } from './MobileBatteries/MobileBatteries';
-import { Item } from '../../NavItem/NavItem.styled';
+import { Item } from '../../Assortment/AssortmentList/ListItem/ListItem.styled';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 
 export const Batteries = ({
