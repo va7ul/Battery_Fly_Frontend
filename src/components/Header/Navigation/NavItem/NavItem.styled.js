@@ -39,6 +39,8 @@ export const Item = styled.li`
 `;
 
 export const StyledLink = styled(NavLink)`
+  width: 100%;
+
   &.active {
     color: ${props => props.theme.colors.secondary};
   }
