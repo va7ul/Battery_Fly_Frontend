@@ -1,26 +1,27 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { gradientTransitionBtn } from '../../../../styles/GlobalStyled';
+import styled from 'styled-components';
+import { gradientTransitionBtn } from '../../../../../../styles/GlobalStyled';
 
 export const Item = styled.li`
+  display: flex;
+  align-items: center;
+  font-weight: 500;
   font-size: 15px;
-  font-weight: 600;
   padding: 8px 15px;
-  color: ${props => props.theme.colors.textPrimary};
-  border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
   cursor: pointer;
 
-  @media screen and (min-width: 1280px) {
-    border: none;
-    padding: 34px 0;
-    margin-right: 30px;
+  color: ${props => props.theme.colors.textPrimary};
 
-    &:nth-child(6) {
-      margin-right: 6px;
-    }
+  @media screen and (min-width: 1280px) {
+    font-weight: 400;
+    padding: 18px 10px;
 
     &:hover {
       color: ${props => props.theme.colors.secondary};
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
     }
   }
 
@@ -28,6 +29,7 @@ export const Item = styled.li`
     width: 100%;
     display: flex;
     align-items: center;
+    border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
 
     position: relative;
     z-index: 0;

@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
 `;
 
 export const ArrowButton = styled.button`
-  box-sizing: content-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,4 +25,33 @@ export const ArrowButton = styled.button`
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
   }
+`;
+
+export const Wrap = styled.div`
+  display: flex;
+  padding: 10px 15px;
+  align-items: center;
+`;
+
+export const BackButton = styled.button`
+  display: flex;
+  justify-content: start;
+  width: 24px;
+  margin: 0;
+  margin-right: 80px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+
+  & svg {
+    width: 18px;
+    height: 18px;
+    fill: transparent;
+    stroke: ${props => props.theme.colors.textPrimary};
+  }
+`;
+
+export const TitleText = styled.p`
+  font-size: 16px;
+  font-weight: 600;
 `;

@@ -1,4 +1,3 @@
-import { useMediaQuery } from 'react-responsive';
 import { OurServicesCard } from '../OurServicesCard/OurServicesCard';
 import { Text } from '../SharedComponents/Text/Text';
 import { Title } from '../SharedComponents/Title/Title';
@@ -6,43 +5,34 @@ import {
   Button,
   ButtonWrapper,
   Holder,
-  List,
   ListItem,
   TextBox,
   Wrapper,
 } from './OurServices.styled';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
-import { useState } from 'react';
+import {useRef} from 'react';
 
-export const OurServices = ({ services, isCard }) => {
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [activeStep, setActiveStep] = useState(0);
-  
-  let numberOfVisibleCards = null;
+import { register } from 'swiper/element/bundle';
+register();
 
-  isBigScreen ? (numberOfVisibleCards = 4) : (numberOfVisibleCards = 2);
-  const maxSteps = Math.round(services.length / numberOfVisibleCards);
+export const OurServices = ({ services }) => {
+  const swiperElRef = useRef(null);
+  // useEffect(() => {
+  //   swiperElRef.current.addEventListener('swiperprogress', e => {
+  //     const [_, progress] = e.detail;
+  //     console.log(progress);
+  //   });
 
-  if (activeStep > maxSteps) {
-    setActiveStep(0);
-  }
+  //   swiperElRef.current.addEventListener('swiperslidechange', e => {
+  //     console.log('slide changed');
+  //   });
+  // }, []);
 
-  if (activeStep === -1) {
-    setActiveStep(maxSteps);
-  }
-
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
   return (
     <Wrapper>
       <Holder>
         <Title>Наші послуги</Title>
-        <TextBox >
+        <TextBox>
           <Text>
             Вітаємо вас на нашому сайті, де ми пропонуємо широкий спектр
             продуктів і послуг у сфері Li-Ion акумуляторів.
@@ -51,31 +41,60 @@ export const OurServices = ({ services, isCard }) => {
         </TextBox>
       </Holder>
       <ButtonWrapper>
-        <Button type="button" onClick={handleBack}>
-          <KeyboardArrowLeft />
+        <Button type="button" className="custom-prev-button">
+          <div>
+            <KeyboardArrowLeft />
+          </div>
         </Button>
-        <Button type="button" onClick={handleNext}>
-          <KeyboardArrowRight />
+        <Button type="button" className="custom-next-button">
+          <div>
+            <KeyboardArrowRight />
+          </div>
         </Button>
       </ButtonWrapper>
-      <List>
-        <ListItem onClick={handleBack}>
-          <OurServicesCard text={services[activeStep]} />
-        </ListItem>
-        <ListItem onClick={handleNext}>
-          <OurServicesCard text={services[activeStep + 1]} />
-        </ListItem>
-        {isBigScreen && (
-          <>
-            <ListItem onClick={handleBack}>
-              <OurServicesCard text={services[activeStep + 2]} />
-            </ListItem>
-            <ListItem onClick={handleNext}>
-              <OurServicesCard text={services[activeStep + 3]} />
-            </ListItem>
-          </>
-        )}
-      </List>
+
+      <swiper-container
+        ref={swiperElRef}
+        slides-per-view="2"
+        space-between="10"
+        navigation="true"
+        breakpoints={JSON.stringify({
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 34,
+          },
+        })}
+        navigation-next-el=".custom-next-button"
+        navigation-prev-el=".custom-prev-button"
+        autoplay-delay="5000"
+        loop={true}
+      >
+        <swiper-slide>
+          <ListItem>
+            <OurServicesCard text={services[0]} />
+          </ListItem>
+        </swiper-slide>
+        <swiper-slide>
+          <ListItem>
+            <OurServicesCard text={services[1]} />
+          </ListItem>
+        </swiper-slide>
+        <swiper-slide>
+          <ListItem>
+            <OurServicesCard text={services[2]} />
+          </ListItem>
+        </swiper-slide>
+        <swiper-slide>
+          <ListItem>
+            <OurServicesCard text={services[3]} />
+          </ListItem>
+        </swiper-slide>
+        <swiper-slide>
+          <ListItem>
+            <OurServicesCard text={services[4]} />
+          </ListItem>
+        </swiper-slide>
+      </swiper-container>
     </Wrapper>
   );
 };

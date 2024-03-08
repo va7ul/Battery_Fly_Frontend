@@ -1,11 +1,14 @@
-import { StyledLink } from '../../NavItem/NavItem.styled';
-import sprite from '../../../../../assets/images/sprite.svg';
-import { Wrapper, ArrowButton } from './DesktopAssortment.styled';
 import { useState } from 'react';
+import sprite from '../../../../../../assets/images/sprite.svg';
+import { StyledLink } from '../../../NavItem/NavItem.styled';
 import { Menu } from '@mui/material';
-import { AssortmentList } from '../AssortmentList/AssortmentList';
+import { BatteriesList } from '../BatteriesList/BatteriesList';
+import {
+  Wrapper,
+  ArrowButton,
+} from '../../DesktopAssortment/DesktopAssortment.styled';
 
-export const DesktopAssortment = () => {
+export const DesktopBatteries = () => {
   const [anchorEl, setAnchorEl] = useState();
 
   const handleClick = event => {
@@ -20,7 +23,7 @@ export const DesktopAssortment = () => {
 
   return (
     <Wrapper>
-      <StyledLink to="/assortment">Асортимент</StyledLink>
+      <StyledLink to="/batteries">Акумулятори</StyledLink>
       <ArrowButton
         type="button"
         aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -42,14 +45,14 @@ export const DesktopAssortment = () => {
         sx={{
           '& .MuiMenu-paper': {
             bgcolor: 'background.default',
-            width: '414px',
-            pl: '24px',
-            pr: '72px',
+            width: '185px',
+            pl: '20px',
+            pr: '20px',
             borderRadius: '18px',
           },
         }}
       >
-        <AssortmentList onClick={handleClose} />
+        <BatteriesList onClick={handleClose} />
       </Menu>
     </Wrapper>
   );

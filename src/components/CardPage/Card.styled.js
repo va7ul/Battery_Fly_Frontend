@@ -112,7 +112,7 @@ export const IconHeart = styled(FaRegHeart)`
 
   &:hover {
     color: ${props => props.theme.colors.secondary};
-    transform: scale(1.5);
+    transform: scale(1.2);
     cursor: pointer;
   }
 

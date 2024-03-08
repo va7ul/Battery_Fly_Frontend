@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.section`
   position: relative;
@@ -39,7 +40,7 @@ export const ButtonWrapper = styled.div`
   @media (min-width: 1280px) {
     grid-template-columns: 66px 66px;
     gap: 34px;
-    right: 134px;
+    right: 120px;
     top: 120px;
   }
 `;
@@ -58,6 +59,13 @@ export const Button = styled.button`
     width: 66px;
     height: 66px;
     border-radius: 16px;
+    position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+
+    &::after {
+      border-radius: 16px;
+    }
   }
 
   svg {
@@ -71,18 +79,8 @@ export const Button = styled.button`
   }
 `;
 
-export const List = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 154px);
-  gap: 10px;
 
-  @media (min-width: 1280px) {
-    grid-template-columns: repeat(auto-fit, 255px);
-    gap: 34px;
-  }
-`;
-
-export const ListItem = styled.li`
+export const ListItem = styled.div`
   background: ${props => props.theme.colors.gradient};
   width: 154px;
   height: 254px;
