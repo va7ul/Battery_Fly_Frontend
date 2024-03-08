@@ -28,7 +28,9 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
 
   return (
     <Wrapper>
-      <StyledLink to="/assortment">Асортимент</StyledLink>
+      <StyledLink to="/assortment">
+        <div>Асортимент</div>
+      </StyledLink>
 
       <ArrowButton type="button" onClick={handleClick(true)}>
         <svg>
