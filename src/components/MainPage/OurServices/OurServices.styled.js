@@ -4,12 +4,12 @@ import { gradientTransitionBtn } from 'styles/GlobalStyled';
 export const Wrapper = styled.section`
   position: relative;
   width: 100%;
-  margin: 0 auto 30px auto;
+  margin: 0 auto;
   padding: 0 20px;
 
   @media (min-width: 1280px) {
     max-width: 1280px;
-    margin: 0 auto 90px auto;
+    margin: 0 auto;
     padding: 0 30px 0 110px;
   }
 `;
@@ -86,7 +86,7 @@ export const ListItem = styled.div`
   height: 254px;
   padding: 14px 10px 24px 10px;
   border-radius: 12px;
-  box-shadow: 0px 17px 17px 0px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.07);
 
   @media (min-width: 1280px) {
     width: 255px;
