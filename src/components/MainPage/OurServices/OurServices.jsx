@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'react-responsive';
 import { OurServicesCard } from '../OurServicesCard/OurServicesCard';
 import { Text } from '../SharedComponents/Text/Text';
 import { Title } from '../SharedComponents/Title/Title';
@@ -10,23 +11,14 @@ import {
   Wrapper,
 } from './OurServices.styled';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
-import {useRef} from 'react';
+import { useRef } from 'react';
 
 import { register } from 'swiper/element/bundle';
 register();
 
 export const OurServices = ({ services }) => {
   const swiperElRef = useRef(null);
-  // useEffect(() => {
-  //   swiperElRef.current.addEventListener('swiperprogress', e => {
-  //     const [_, progress] = e.detail;
-  //     console.log(progress);
-  //   });
-
-  //   swiperElRef.current.addEventListener('swiperslidechange', e => {
-  //     console.log('slide changed');
-  //   });
-  // }, []);
+    const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (
     <Wrapper>
@@ -58,6 +50,7 @@ export const OurServices = ({ services }) => {
         slides-per-view="2"
         space-between="10"
         navigation="true"
+        grab-cursor="true"
         breakpoints={JSON.stringify({
           1280: {
             slidesPerView: 4,
@@ -68,6 +61,12 @@ export const OurServices = ({ services }) => {
         navigation-prev-el=".custom-prev-button"
         autoplay-delay="5000"
         loop={true}
+        inject-styles={JSON.stringify([
+          `.swiper{
+            height: ${!isBigScreen ? '284px' : '450px'};
+          }
+          `,
+        ])}
       >
         <swiper-slide>
           <ListItem>
