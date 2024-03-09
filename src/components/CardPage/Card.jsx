@@ -23,7 +23,7 @@ export const Card = () => {
     const { name, capacity, information } = useSelector(selectOneProduct);
 
     useEffect(() => {
-        dispatch(getOneProduct('9'));
+        dispatch(getOneProduct('1002'));
     }, [dispatch]);
 
     return (
