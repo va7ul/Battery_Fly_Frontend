@@ -7,7 +7,7 @@ export const ForClients = () => {
             <Link to='/about'>Про нас</Link>
             <Link to='/assortment'>Асортимент</Link>
             <Link to='/delivery-and-payment'>Доставка та оплата</Link>
-            <Link to='/'>Гарантії</Link>
+            <Link to='/guarantees'>Гарантії</Link>
             <Link to='/contacts'>Контакти</Link>
         </Box>
     );
