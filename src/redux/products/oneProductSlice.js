@@ -7,6 +7,7 @@ const initialState = {
     capacity: {},
     information: '',
     price: '',
+    image: [],
   },
   isLoading: false,
   error: null,

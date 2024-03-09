@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
+import { userReducer } from './user/userSlice';
 import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
 
@@ -28,8 +29,8 @@ const productsReducer = combineReducers({
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    user: userReducer,
     products: productsReducer,
-    // recommendedFoods: recReducer, => ПРИКЛАД
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

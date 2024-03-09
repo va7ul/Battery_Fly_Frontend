@@ -35,7 +35,7 @@ export const getFavorites = createAsyncThunk(
   'user/getFavorites',
   async (dataUser, thunkApi) => {
     try {
-      const { data } = await axios.get('user/favorites', dataUser);
+      const { data } = await axios.get('user/favorite', dataUser);
 
       return data;
     } catch (error) {
@@ -47,9 +47,9 @@ export const getFavorites = createAsyncThunk(
 
 export const addToFavorites = createAsyncThunk(
   'user/addToFavorites',
-  async (dataUser, thunkApi) => {
+  async (id, thunkApi) => {
     try {
-      const { data } = await axios.post(`user/favorites`, dataUser);
+      const { data } = await axios.post(`user/favorite`, id);
 
       return data;
     } catch (error) {
@@ -63,7 +63,7 @@ export const deleteFromFavorites = createAsyncThunk(
   'user/deleteFromFavorites',
   async (dataUser, id, thunkApi) => {
     try {
-      const { data } = await axios.delete(`user/favorites/${id}`, dataUser);
+      const { data } = await axios.delete(`user/favorite/${id}`, dataUser);
 
       return data;
     } catch (error) {

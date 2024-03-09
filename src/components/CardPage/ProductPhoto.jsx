@@ -7,6 +7,6 @@ export const ProductPhoto = () => {
     const { name, image } = useSelector(selectOneProduct);
 
     return (
-        <Image src={image} alt={name} />
+        <Image src={image[0]} alt={name} />
     );
 };
