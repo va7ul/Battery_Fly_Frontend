@@ -78,6 +78,12 @@ export const ListItem = styled.li`
       grid-column: 2;
       grid-row: 1;
     }
+
+    &:last-child svg {
+      height: 34px;
+      width: 34px;
+      top: -30px;
+    }
   }
 `;
 
