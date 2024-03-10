@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -10,9 +11,7 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin: 0;
-  margin-left: auto; */
-  width: 35px;
+  padding: 11px;
   background-color: transparent;
   outline: none;
   border: none;
@@ -24,6 +23,16 @@ export const ArrowButton = styled.button`
     height: 11px;
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
+    z-index: 2;
+  }
+
+  @media screen and (max-width: 1280px) {
+    position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+    &::after {
+      background: ${props => props.theme.colors.gradient};
+    }
   }
 `;
 
