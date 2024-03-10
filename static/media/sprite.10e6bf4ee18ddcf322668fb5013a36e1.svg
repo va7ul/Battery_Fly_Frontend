@@ -75,6 +75,9 @@
 <symbol id="arrow-left" viewBox="0 0 21 32">
 <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.6" d="M19.15 1.6l-17.71 14.757 17.709 14.757"></path>
 </symbol>
+<symbol id="arrow-right" viewBox="0 0 49 32">
+<path d="M34.792 19.279h-34.792v-6.558h34.792l-9.044-8.084 5.191-4.637 17.903 16-17.903 16-5.191-4.638 9.044-8.083z"></path>
+</symbol>
 <symbol id="icon-about-ellipse" viewBox="0 0 32 32">
 <path d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>
 </symbol>
