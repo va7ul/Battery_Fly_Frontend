@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
-import { StyledLink } from '../../../NavItem/NavItem.styled';
+import { StyledLink } from '../../AssortmentList/ListItem/ListItem.styled';
 import { Menu } from '@mui/material';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 import {
