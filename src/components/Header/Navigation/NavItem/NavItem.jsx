@@ -7,8 +7,8 @@ export const NavItem = ({ title, page }) => {
 
   return (
     <Item>
-      {mobileVersion && <HopeIconMobile />}
       <StyledLink to={page}>
+        {mobileVersion && <HopeIconMobile />}
         <div>{title}</div>
       </StyledLink>
     </Item>

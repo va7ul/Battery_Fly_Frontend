@@ -11,8 +11,8 @@ export const ListItem = ({ page, title }) => {
 
   return (
     <Item>
-      {mobileVersion ? <HopeIconMobile /> : <HopeIconDesktop />}
       <StyledLink to={page}>
+        {mobileVersion ? <HopeIconMobile /> : <HopeIconDesktop />}
         <div>{title}</div>
       </StyledLink>
     </Item>

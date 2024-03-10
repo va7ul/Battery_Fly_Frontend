@@ -25,8 +25,8 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
         <Item>
-          {mobileVersion && <HopeIconMobile />}
-          <CartButton type="button">
+          <CartButton type="button" onClick={() => console.log('norm')}>
+            {mobileVersion && <HopeIconMobile />}
             <div>Кошик</div>
             {!mobileVersion && <CartIcon />}
           </CartButton>

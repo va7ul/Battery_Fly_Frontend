@@ -1,9 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
 import { MobileBatteries } from './MobileBatteries/MobileBatteries';
 import { Item } from '../../Assortment/AssortmentList/ListItem/ListItem.styled';
-import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
+// import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 import { DesktopBatteries } from './DesktopBatteries/DesktopBatteries';
-import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
+// import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
 
 export const Batteries = ({
   openSubDrawer,
@@ -17,7 +17,7 @@ export const Batteries = ({
     <Item>
       {mobileVersion ? (
         <>
-          <HopeIconMobile />
+          {/* <HopeIconMobile /> */}
           <MobileBatteries
             openSubDrawer={openSubDrawer}
             setOpenSubDrawer={setOpenSubDrawer}
@@ -27,7 +27,8 @@ export const Batteries = ({
         </>
       ) : (
         <>
-          <HopeIconDesktop /> <DesktopBatteries />
+          {/* <HopeIconDesktop /> */}
+          <DesktopBatteries />
         </>
       )}
     </Item>
