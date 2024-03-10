@@ -5,22 +5,14 @@ import { gradientTransitionBtn } from '../../../../styles/GlobalStyled';
 export const Item = styled.li`
   font-size: 15px;
   font-weight: 600;
-  padding: 8px 15px;
-  color: ${props => props.theme.colors.textPrimary};
   border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
-  cursor: pointer;
 
   @media screen and (min-width: 1280px) {
     border: none;
-    padding: 34px 0;
     margin-right: 30px;
 
     &:nth-child(6) {
       margin-right: 6px;
-    }
-
-    &:hover {
-      color: ${props => props.theme.colors.secondary};
     }
   }
 
@@ -39,9 +31,21 @@ export const Item = styled.li`
 `;
 
 export const StyledLink = styled(NavLink)`
+  display: block;
   width: 100%;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: ${props => props.theme.colors.textPrimary};
 
   &.active {
     color: ${props => props.theme.colors.secondary};
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 34px 0;
+
+    &:hover {
+      color: ${props => props.theme.colors.secondary};
+    }
   }
 `;

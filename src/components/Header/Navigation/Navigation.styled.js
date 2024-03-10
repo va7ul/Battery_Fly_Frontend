@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavList = styled.ul`
@@ -14,6 +15,7 @@ export const NavList = styled.ul`
 export const CartButton = styled.button`
   display: flex;
   align-items: center;
+  padding: 8px 15px;
   background-color: transparent;
   border: none;
   font-size: 15px;
@@ -21,6 +23,12 @@ export const CartButton = styled.button`
   z-index: 2;
 
   @media screen and (min-width: 1280px) {
+    padding: 34px 0;
     color: ${props => props.theme.colors.backgroundPaper};
   }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  margin-right: 30px;
+  padding: 34px 0;
 `;
