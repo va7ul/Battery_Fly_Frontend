@@ -1,7 +1,6 @@
 import sprite from '../../../../../assets/images/sprite.svg';
 import {
   ArrowButton,
-  Wrapper,
   Wrap,
   BackButton,
   TitleText,
@@ -10,6 +9,7 @@ import { StyledLink } from '../../NavItem/NavItem.styled';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import { AssortmentList } from '../AssortmentList/AssortmentList';
+import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 
 export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   const [openSubDrawer, setOpenSubDrawer] = useState(false);
@@ -27,8 +27,9 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   };
 
   return (
-    <Wrapper>
+    <>
       <StyledLink to="/assortment">
+        <HopeIconMobile />
         <div>Асортимент</div>
       </StyledLink>
 
@@ -66,6 +67,6 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           isOpen={isOpen}
         />
       </Drawer>
-    </Wrapper>
+    </>
   );
 };

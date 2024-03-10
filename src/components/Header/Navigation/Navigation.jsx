@@ -1,10 +1,9 @@
-import { NavList, CartButton } from './Navigation.styled';
+import { NavList, CartButton, StyledNavLink } from './Navigation.styled';
 import { Item } from './NavItem/NavItem.styled';
 import { useMediaQuery } from 'react-responsive';
 import { NavItem } from './NavItem/NavItem';
 import { Assortment } from './Assortment/Assortment';
 import { CartIcon } from 'components/Shared/CartIcon';
-import { NavLink } from 'react-router-dom';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 
@@ -26,8 +25,8 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
         <Item>
-          {mobileVersion && <HopeIconMobile />}
-          <CartButton type="button">
+          <CartButton type="button" onClick={() => console.log('norm')}>
+            {mobileVersion && <HopeIconMobile />}
             <div>Кошик</div>
             {!mobileVersion && <CartIcon />}
           </CartButton>
@@ -35,9 +34,9 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />
         ) : (
-          <NavLink style={{ marginRight: '30px' }} to="/favorites">
+          <StyledNavLink to="/favorites">
             <FavoriteIcon />
-          </NavLink>
+          </StyledNavLink>
         )}
       </NavList>
     </nav>
