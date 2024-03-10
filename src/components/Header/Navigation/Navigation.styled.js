@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const NavList = styled.ul`
   display: flex;
@@ -27,6 +28,15 @@ export const CartButton = styled.button`
   @media screen and (min-width: 1280px) {
     padding: 34px 0;
     color: ${props => props.theme.colors.backgroundPaper};
+  }
+
+  @media screen and (max-width: 1280px) {
+    position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+    &::after {
+      background: ${props => props.theme.colors.gradient};
+    }
   }
 `;
 
