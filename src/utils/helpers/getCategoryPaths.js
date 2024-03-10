@@ -22,8 +22,8 @@ export const getPath = category => {
       return 'batteries-21700';
     case 'Акумулятори 32650':
       return 'batteries-32650';
-    case 'Акумулятори Li-Ion':
-      return 'batteries-li-ion';
+    case 'Акумулятори Li-Po':
+      return 'batteries-li-po';
     case 'Акумулятори LiFePo4':
       return 'batteries-lifepo4';
     default:
