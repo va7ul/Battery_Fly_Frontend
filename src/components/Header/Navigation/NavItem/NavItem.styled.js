@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { gradientTransitionBtn } from '../../../../styles/GlobalStyled';
+import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Item = styled.li`
   font-size: 15px;
   font-weight: 600;
   border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
-  padding-left: 15px;
-  padding-right: 15px;
+  /* padding-left: 15px; */
 
   @media screen and (min-width: 1280px) {
     border: none;
@@ -24,17 +23,18 @@ export const Item = styled.li`
     display: flex;
     align-items: center;
 
-    position: relative;
+    /* position: relative;
     z-index: 0;
     ${gradientTransitionBtn}
     &::after {
       background: ${props => props.theme.colors.gradient};
-    }
+    } */
   }
 `;
 
 export const StyledLink = styled(NavLink)`
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -50,6 +50,15 @@ export const StyledLink = styled(NavLink)`
 
     &:hover {
       color: ${props => props.theme.colors.secondary};
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+    &::after {
+      background: ${props => props.theme.colors.gradient};
     }
   }
 `;
