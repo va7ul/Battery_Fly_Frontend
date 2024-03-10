@@ -15,7 +15,9 @@ export const NavList = styled.ul`
 export const CartButton = styled.button`
   display: flex;
   align-items: center;
-  padding: 8px 15px;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
   background-color: transparent;
   border: none;
   font-size: 15px;

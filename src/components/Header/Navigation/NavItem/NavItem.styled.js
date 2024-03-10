@@ -6,6 +6,8 @@ export const Item = styled.li`
   font-size: 15px;
   font-weight: 600;
   border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
+  padding-left: 15px;
+  padding-right: 15px;
 
   @media screen and (min-width: 1280px) {
     border: none;
@@ -33,7 +35,8 @@ export const Item = styled.li`
 export const StyledLink = styled(NavLink)`
   display: block;
   width: 100%;
-  padding: 8px 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   cursor: pointer;
   color: ${props => props.theme.colors.textPrimary};
 
