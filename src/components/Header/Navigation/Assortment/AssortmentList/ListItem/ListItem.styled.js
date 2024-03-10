@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import { gradientTransitionBtn } from '../../../../../../styles/GlobalStyled';
 
 export const Item = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   font-weight: 500;
   font-size: 15px;
-  padding: 8px 15px;
+  /* padding-left: 15px; */
   cursor: pointer;
 
   color: ${props => props.theme.colors.textPrimary};
 
   @media screen and (min-width: 1280px) {
     font-weight: 400;
-    padding: 18px 10px;
 
     &:hover {
       color: ${props => props.theme.colors.secondary};
@@ -31,19 +31,35 @@ export const Item = styled.li`
     align-items: center;
     border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
 
+    /* position: relative;
+    z-index: 0;
+    ${gradientTransitionBtn}
+    &::after {
+      background: ${props => props.theme.colors.gradient};
+    } */
+  }
+`;
+
+export const StyledLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  &.active {
+    color: ${props => props.theme.colors.secondary};
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 18px 0;
+  }
+
+  @media screen and (max-width: 1280px) {
     position: relative;
     z-index: 0;
     ${gradientTransitionBtn}
     &::after {
       background: ${props => props.theme.colors.gradient};
     }
-  }
-`;
-
-export const StyledLink = styled(NavLink)`
-  width: 100%;
-
-  &.active {
-    color: ${props => props.theme.colors.secondary};
   }
 `;
