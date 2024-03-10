@@ -8,7 +8,7 @@ export const BatteryButton = styled.button`
   outline: none;
   border: none;
   position: absolute;
-  right: -20px;
+  right: 0;
 
   & svg {
     width: 29px;
