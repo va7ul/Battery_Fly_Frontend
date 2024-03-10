@@ -1,6 +1,6 @@
 import { CategoryList } from './CategoryList/CategoryList';
 import sprite from '../../../assets/images/sprite.svg';
-import { getPath } from 'utils/helpers/getCategoryPaths';
+import { getPath } from 'utils/helpers/index';
 import {
   StyledLink,
   StyledSection,

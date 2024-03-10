@@ -30,8 +30,9 @@ const btnStyle = css`
     border-radius: 20px;
   }
 
-  &:hover {
-    transform: scale(1.1);
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
   }
 
   @media screen and (min-width: 1280px) {
@@ -50,9 +51,10 @@ export const IconHeart = styled(FaRegHeart)`
   color: ${props => props.theme.colors.backgroundPaper};
   transition: ${props => props.theme.transition.main};
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${props => props.theme.colors.secondary};
-    transform: scale(1.5);
+    transform: scale(1.3);
     cursor: pointer;
   }
 `;
@@ -72,21 +74,22 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
   color: ${props => props.theme.colors.backgroundPaper};
   transition: ${props => props.theme.transition.main};
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${props => props.theme.colors.secondary};
-    transform: scale(1.5);
+    transform: scale(1.3);
     cursor: pointer;
   }
 `;
 
 export const StyledImage = styled.img`
   width: 100%;
-  height: 160px;
+  height: 140px;
   border-radius: 10px;
   background: gray;
 
   @media screen and (min-width: 1280px) {
-    height: 260px;
+    height: 220px;
   }
 `;
 
@@ -157,8 +160,9 @@ export const CounterBtn = styled.button`
     border-radius: 50%;
   }
 
-  &:hover {
-    transform: scale(1.2);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
   }
 
   @media screen and (min-width: 1280px) {

@@ -31,6 +31,7 @@ const MaterialsPage = lazy(() => import('pages/MaterialsPage.jsx'));
 const CardPage = lazy(() => import('pages/CardPage.jsx'));
 const DeliveryPaymentPage = lazy(() => import('pages/DeliveryPaymentPage.jsx'));
 const ContactsPage = lazy(() => import('pages/ContactsPage.jsx'));
+const GuaranteesPage = lazy(() => import('pages/GuaranteesPage.jsx'));
 const CheckoutPage = lazy(() => import('pages/CheckoutPage.jsx'));
 const UserProfilePage = lazy(() => import('pages/UserProfilePage.jsx'));
 const OrdersHistoryPage = lazy(() => import('pages/OrdersHistoryPage.jsx'));
@@ -47,6 +48,7 @@ export const App = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/delivery-and-payment" element={<DeliveryPaymentPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/guarantees" element={<GuaranteesPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/assortment" element={<AssortmentPage />} />
         <Route path="/sales" element={<SalesPage />} />

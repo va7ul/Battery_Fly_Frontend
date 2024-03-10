@@ -1,5 +1,8 @@
+import { useDispatch } from 'react-redux';
 import { CategorySection } from './CategorySection/CategorySection';
 import { StyledPageTitle } from './Assortment.styled';
+import { useEffect } from 'react';
+import { getAssortment } from '../../redux/products/productsOperations';
 
 export const Assortment = () => {
   const categories = [
@@ -12,6 +15,13 @@ export const Assortment = () => {
     'Прилади',
     'Розхідні матеріали',
   ];
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAssortment());
+  }, [dispatch]);
+
   return (
     <>
       <StyledPageTitle>Асортимент</StyledPageTitle>

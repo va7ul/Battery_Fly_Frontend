@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getAssortment } from '../products/productsOperations';
 
 const initialState = {
-  list: {},
+  allProducts: [],
   isLoading: false,
   error: null,
 };
@@ -19,7 +19,10 @@ const productsListSlice = createSlice({
       .addCase(getAssortment.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.list = action.payload;
+        state.allProducts = [
+          ...action.payload.products,
+          ...action.payload.productsZbirky,
+        ];
       })
       .addCase(getAssortment.rejected, (state, action) => {
         state.isLoading = false;
