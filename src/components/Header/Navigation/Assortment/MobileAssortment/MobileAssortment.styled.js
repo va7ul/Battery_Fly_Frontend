@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const ArrowButton = styled.button`
   display: flex;
   align-items: center;

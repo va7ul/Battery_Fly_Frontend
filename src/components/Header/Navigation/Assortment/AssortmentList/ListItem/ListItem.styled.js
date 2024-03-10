@@ -8,7 +8,6 @@ export const Item = styled.li`
   align-items: center;
   font-weight: 500;
   font-size: 15px;
-  /* padding-left: 15px; */
   cursor: pointer;
 
   color: ${props => props.theme.colors.textPrimary};
@@ -30,13 +29,6 @@ export const Item = styled.li`
     display: flex;
     align-items: center;
     border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
-
-    /* position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-    &::after {
-      background: ${props => props.theme.colors.gradient};
-    } */
   }
 `;
 

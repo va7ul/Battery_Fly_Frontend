@@ -1,7 +1,6 @@
 import sprite from '../../../../../assets/images/sprite.svg';
 import {
   ArrowButton,
-  // Wrapper,
   Wrap,
   BackButton,
   TitleText,
@@ -28,7 +27,6 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   };
 
   return (
-    // <Wrapper>
     <>
       <StyledLink to="/assortment">
         <HopeIconMobile />
@@ -70,6 +68,5 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
         />
       </Drawer>
     </>
-    // </Wrapper>
   );
 };

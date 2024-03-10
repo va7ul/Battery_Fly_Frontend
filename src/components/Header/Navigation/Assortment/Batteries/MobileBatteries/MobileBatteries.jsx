@@ -3,7 +3,6 @@ import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../../NavItem/NavItem.styled';
 import {
-  // Wrapper,
   ArrowButton,
   Wrap,
   BackButton,
@@ -29,7 +28,6 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
   };
 
   return (
-    // <Wrapper>
     <>
       <StyledLink to="/batteries">
         <HopeIconMobile />
@@ -68,6 +66,5 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
         />
       </Drawer>
     </>
-    // </Wrapper>
   );
 };

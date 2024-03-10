@@ -3,7 +3,6 @@ import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../AssortmentList/ListItem/ListItem.styled';
 import { Menu } from '@mui/material';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
-// import { Wrapper } from '../../DesktopAssortment/DesktopAssortment.styled';
 import { BatteryButton } from './DesktopBatteries.styled';
 import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
 
@@ -21,7 +20,6 @@ export const DesktopBatteries = () => {
   };
 
   return (
-    // <Wrapper>
     <>
       <HopeIconDesktop />
       <StyledLink to="/batteries">Акумулятори</StyledLink>
@@ -56,6 +54,5 @@ export const DesktopBatteries = () => {
         <BatteriesList onClick={handleClose} />
       </Menu>
     </>
-    // </Wrapper>
   );
 };

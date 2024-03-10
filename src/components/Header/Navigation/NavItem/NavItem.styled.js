@@ -6,7 +6,6 @@ export const Item = styled.li`
   font-size: 15px;
   font-weight: 600;
   border-top: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
-  /* padding-left: 15px; */
 
   @media screen and (min-width: 1280px) {
     border: none;
@@ -22,13 +21,6 @@ export const Item = styled.li`
     width: 100%;
     display: flex;
     align-items: center;
-
-    /* position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-    &::after {
-      background: ${props => props.theme.colors.gradient};
-    } */
   }
 `;
 
