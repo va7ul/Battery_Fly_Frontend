@@ -15,20 +15,20 @@ import {
   // GoToBasketBtn,
 } from './ProductsCard.styled';
 
-export const ProductsCard = () => {
+export const ProductsCard = ({ product }) => {
+  const { codeOfGood, image, name, price } = product;
+
   return (
     <>
       <ContentWrapper>
         <IconHeart />
         <IconFullHeart />
-        <a href="assortment/1">
-          <StyledImage src="" alt="text" />
-          <CardTitle>
-            Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
-          </CardTitle>
+        <a href={`assortment/${codeOfGood}`}>
+          <StyledImage loading="lazy" src={image[0]} alt={name} />
+          <CardTitle>{name}</CardTitle>
         </a>
         <PriceContainer>
-          <PriceNew>15000 грн</PriceNew>
+          <PriceNew>{price} грн</PriceNew>
           <PriceOld>18000 грн</PriceOld>
         </PriceContainer>
         <CounterWrapper>
