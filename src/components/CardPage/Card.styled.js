@@ -37,6 +37,7 @@ export const Title = styled.h1`
     margin-bottom: 10px;
   }
 `;
+
 //  ProductPhoto
 
 export const Image = styled.img`
@@ -221,47 +222,6 @@ export const Subtitle = styled.p`
   @media screen and (min-width: 1280px) {
     font-size: 20px;
     font-weight: 600;
-  }
-`;
-
-export const SelectDiv = styled.select`
-  /* -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none; */
-  outline: none;
-  cursor: pointer;
-  width: 105px;
-  height: 30px;
-  padding: 8px;
-  font-size: 10px;
-  border: 1px solid ${props => props.theme.colors.textPrimary};
-  border-radius: 6px;
-  background: ${props => props.theme.colors.greyBackgroundPaper};
-
-  /* &::-ms-expand {
-    display: none;
-  } */
-  /* &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 1px orange, 0px 0px 1px red;
-  } */
-
-  @media screen and (min-width: 1280px) {
-    width: 208px;
-    height: 42px;
-    padding: 7px 15px;
-    border-radius: 12px;
-    font-size: 20px;
-  }
-`;
-
-export const OptionsItem = styled.option`
-  padding: 8px;
-
-  &:checked {
-    background-color: red;
-  }
-  @media screen and (min-width: 1280px) {
   }
 `;
 
