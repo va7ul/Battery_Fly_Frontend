@@ -1,4 +1,5 @@
 import { FaMinus, FaPlus } from 'react-icons/fa6';
+import noImage from '../../../assets/images/no-image-available.webp';
 import {
   IconHeart,
   IconFullHeart,
@@ -18,13 +19,22 @@ import {
 export const ProductsCard = ({ product }) => {
   const { codeOfGood, image, name, price } = product;
 
+  const addDefaultImg = e => {
+    e.currentTarget.src = `${noImage}`;
+  };
+
   return (
     <>
       <ContentWrapper>
         <IconHeart />
         <IconFullHeart />
         <a href={`assortment/${codeOfGood}`}>
-          <StyledImage loading="lazy" src={image[0]} alt={name} />
+          <StyledImage
+            loading="lazy"
+            src={image[0]}
+            alt={name}
+            onError={addDefaultImg}
+          />
           <CardTitle>{name}</CardTitle>
         </a>
         <PriceContainer>
