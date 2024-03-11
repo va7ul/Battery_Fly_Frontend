@@ -34,6 +34,7 @@ export const Capacity = () => {
             <Subtitle>Ємність енергії:</Subtitle>
             <Select options={options}
                 onChange={handleSelect}
+                placeholder={"Виберіть опцію"}
                 styles={selectStyles}
             />
             <Desc>{newDescr.map(item => <li key={item}>{item}</li>)}</Desc>
