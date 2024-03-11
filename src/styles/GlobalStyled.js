@@ -207,3 +207,10 @@ export const gradientTransitionBtn = css`
     z-index: 2;
   }
 `;
+
+export const getSectionBackground = props => {
+  if (props.category === 'Акції') {
+    return 'linear-gradient(rgba(200, 200, 200, 0.04),rgba(255, 222, 147, 0.65),rgba(99, 99, 99, 0))';
+  }
+  return 'inherit';
+};

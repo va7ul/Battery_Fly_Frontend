@@ -1,16 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getSales } from '../redux/products/productsOperations';
+import { getBatterieslipo } from '../redux/products/productsOperations';
 import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
 
-const SalesPage = () => {
+const TypeLiPoPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSales());
+    dispatch(getBatterieslipo());
   }, [dispatch]);
 
-  return <ProductsSection category={'Акції'} />;
+  return <ProductsSection category={'Акумулятори Li-Po'} />;
 };
 
-export default SalesPage;
+export default TypeLiPoPage;
