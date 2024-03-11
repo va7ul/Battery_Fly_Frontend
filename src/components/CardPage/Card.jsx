@@ -23,7 +23,7 @@ export const Card = () => {
     const { name, capacity, information } = useSelector(selectOneProduct);
 
     useEffect(() => {
-        dispatch(getOneProduct('1002'));
+        dispatch(getOneProduct('1017'));
     }, [dispatch]);
 
     return (
@@ -33,7 +33,7 @@ export const Card = () => {
             <ProductPhoto />
             <Description />
             {capacity ? (<Capacity />) : (undefined)}
-            <CheckBox />
+            {capacity ? (<CheckBox />) : (undefined)}
             <Order />
             {information ? (<Information information={information} />) : (undefined)}
              
@@ -51,7 +51,7 @@ export const Card = () => {
                     <Box>
                         <Title>{name}</Title>
                         <Description />
-                        <CheckBox />
+                        {capacity ? (<CheckBox />) : (undefined)}
                         <Order />
                     </Box>
                 </Case>
