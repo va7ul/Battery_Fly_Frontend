@@ -206,6 +206,7 @@ export const Desc = styled.ul`
 
 export const Item = styled.li`
   list-style: outside;
+  margin-left: 16px;
 `;
 
 // CheckBox
