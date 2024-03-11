@@ -1,14 +1,16 @@
+import { useSelector } from 'react-redux';
+import { selectProducts } from '../../../redux/products/productsSelectors';
 import { ProductsCard } from '../ProductsCard/ProductsCard';
 import { StyledList, StyledListCard } from './ProductsList.styled';
 
 export const ProductsList = () => {
-  const cards = ['first', 'second', 'third', 'fourth', 'fifth'];
+  const products = useSelector(selectProducts);
 
   return (
     <StyledList>
-      {cards.map(card => (
-        <StyledListCard key={card}>
-          <ProductsCard />
+      {products.map(product => (
+        <StyledListCard key={product.codeOfGood}>
+          <ProductsCard product={product} />
         </StyledListCard>
       ))}
     </StyledList>
