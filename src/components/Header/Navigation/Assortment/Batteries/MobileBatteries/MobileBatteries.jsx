@@ -3,13 +3,13 @@ import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../../NavItem/NavItem.styled';
 import {
-  Wrapper,
   ArrowButton,
   Wrap,
   BackButton,
   TitleText,
 } from '../../MobileAssortment/MobileAssortment.styled';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
+import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 
 export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
   const [openThirdDrawer, setOpenThirdDrawer] = useState(false);
@@ -28,8 +28,9 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
   };
 
   return (
-    <Wrapper>
+    <>
       <StyledLink to="/batteries">
+        <HopeIconMobile />
         <div>Акумулятори</div>
       </StyledLink>
 
@@ -64,6 +65,6 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
           openThirdDrawer={openThirdDrawer}
         />
       </Drawer>
-    </Wrapper>
+    </>
   );
 };

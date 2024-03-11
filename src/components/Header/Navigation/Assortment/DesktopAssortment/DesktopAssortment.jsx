@@ -44,7 +44,7 @@ export const DesktopAssortment = () => {
             bgcolor: 'background.default',
             width: '414px',
             pl: '24px',
-            pr: '72px',
+            pr: '24px',
             borderRadius: '18px',
           },
         }}

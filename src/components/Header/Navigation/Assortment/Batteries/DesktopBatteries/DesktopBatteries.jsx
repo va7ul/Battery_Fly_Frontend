@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
-import { StyledLink } from '../../../NavItem/NavItem.styled';
+import { StyledLink } from '../../AssortmentList/ListItem/ListItem.styled';
 import { Menu } from '@mui/material';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
-import {
-  Wrapper,
-  ArrowButton,
-} from '../../DesktopAssortment/DesktopAssortment.styled';
+import { BatteryButton } from './DesktopBatteries.styled';
+import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
 
 export const DesktopBatteries = () => {
   const [anchorEl, setAnchorEl] = useState();
@@ -22,9 +20,10 @@ export const DesktopBatteries = () => {
   };
 
   return (
-    <Wrapper>
+    <>
+      <HopeIconDesktop />
       <StyledLink to="/batteries">Акумулятори</StyledLink>
-      <ArrowButton
+      <BatteryButton
         type="button"
         aria-owns={anchorEl ? 'simple-menu' : undefined}
         aria-haspopup="true"
@@ -32,9 +31,9 @@ export const DesktopBatteries = () => {
         onMouseOver={handleClick}
       >
         <svg>
-          <use href={`${sprite}#arrow-left`}></use>
+          <use href={`${sprite}#arrow-right`}></use>
         </svg>
-      </ArrowButton>
+      </BatteryButton>
 
       <Menu
         id="simple-menu"
@@ -54,6 +53,6 @@ export const DesktopBatteries = () => {
       >
         <BatteriesList onClick={handleClose} />
       </Menu>
-    </Wrapper>
+    </>
   );
 };
