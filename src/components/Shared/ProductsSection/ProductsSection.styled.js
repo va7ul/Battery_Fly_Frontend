@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+import { getSectionBackground } from 'styles/GlobalStyled';
 
 export const StyledContainer = styled.div`
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 15px 20px;
+  background: ${getSectionBackground};
 
   @media screen and (min-width: 1280px) {
-    padding-left: 110px;
-    padding-right: 110px;
+    padding: 15px 110px 30px;
   }
 `;
 
@@ -17,7 +17,7 @@ export const StyledTitle = styled.h2`
 
   @media screen and (min-width: 1280px) {
     margin-bottom: 30px;
+    margin-top: 40px;
     font-size: 32px;
-    margin-top: 30px;
   }
 `;

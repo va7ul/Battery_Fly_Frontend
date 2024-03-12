@@ -57,6 +57,11 @@ export const IconHeart = styled(FaRegHeart)`
     transform: scale(1.3);
     cursor: pointer;
   }
+
+  @media screen and (min-width: 1280px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -80,12 +85,17 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
     transform: scale(1.3);
     cursor: pointer;
   }
+
+  @media screen and (min-width: 1280px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const StyledImage = styled.img`
   width: 100%;
   height: 140px;
-  border-radius: 10px;
+  border-radius: 20px;
   background: gray;
 
   @media screen and (min-width: 1280px) {
@@ -94,13 +104,13 @@ export const StyledImage = styled.img`
 `;
 
 export const CardTitle = styled.p`
-  height: 36px;
+  height: 40px;
   font-size: 10px;
   margin-top: 5px;
 
   @media screen and (min-width: 1280px) {
     height: 72px;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 15px;
   }
 `;

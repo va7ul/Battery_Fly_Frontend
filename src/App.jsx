@@ -14,7 +14,7 @@ const BatteriesPage = lazy(() => import('pages/BatteriesPage.jsx'));
 const Batteries18650Page = lazy(() => import('pages/Batteries18650Page.jsx'));
 const Batteries21700Page = lazy(() => import('pages/Batteries21700Page.jsx'));
 const Batteries32650Page = lazy(() => import('pages/Batteries32650Page.jsx'));
-const BatteriesLiIonPage = lazy(() => import('pages/BatteriesLiIonPage.jsx'));
+const BatteriesLiPoPage = lazy(() => import('pages/BatteriesLipoPage.jsx'));
 const BatteriesLifepo4Page = lazy(() =>
   import('pages/BatteriesLifepo4Page.jsx')
 );
@@ -56,7 +56,7 @@ export const App = () => {
         <Route path="/batteries-18650" element={<Batteries18650Page />} />
         <Route path="/batteries-21700" element={<Batteries21700Page />} />
         <Route path="/batteries-32650" element={<Batteries32650Page />} />
-        <Route path="/batteries-li-ion" element={<BatteriesLiIonPage />} />
+        <Route path="/batteries-li-po" element={<BatteriesLiPoPage />} />
         <Route path="/batteries-lifepo4" element={<BatteriesLifepo4Page />} />
         <Route path="/assembly" element={<AssemblyPage />} />
         <Route path="/batteries-for-fpv" element={<BatteriesForFPVPage />} />
