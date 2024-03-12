@@ -4,11 +4,25 @@ import LoginIcon from '@mui/icons-material/Login';
 import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
+import { useState } from 'react';
+import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 
 export const MobileToolBar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
+
   return (
     <Wrapper>
-      <FeedBackButton />
+      <FeedBackButton handleOpenModal={handleOpenModal} />
+      <ModalFeedback
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
+      />
       <Button type="button">
         <CartIcon />
       </Button>

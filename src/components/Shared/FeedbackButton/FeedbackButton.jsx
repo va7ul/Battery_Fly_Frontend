@@ -1,8 +1,8 @@
 import { Button } from './FeedbackButton.styled';
 
-export const FeedBackButton = () => {
+export const FeedBackButton = ({ handleOpenModal }) => {
   return (
-    <Button type="button">
+    <Button type="button" onClick={handleOpenModal}>
       <div>Зв'язатися</div>
     </Button>
   );
