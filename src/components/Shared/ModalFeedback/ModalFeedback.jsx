@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
 // import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Btn, Label, StyledErrorMessage, StyledField, StyledForm, Text } from './ModalFeedback.styled';
+import { Btn, Label, StyledErrorMessage, StyledField, StyledForm, StyledTextField, Text } from './ModalFeedback.styled';
 import { Formik } from 'formik';
 
 const customStyles = {
@@ -28,13 +28,12 @@ ReactModal.setAppElement('#modal-root');
 
 
 const nameRegex =
-  "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-const numberRegex =
-  '\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}';
+  "[а-яА-Я]";
+const numberRegex = '[0-9]';
 const schema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
-    .max(70, 'Too Long!')
+    .max(20, 'Too Long!')
     .trim('Enter your name, please')
     .matches(nameRegex, 'Name is not valid')
     .required('Required'),
@@ -77,10 +76,15 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
           </Label>
           <Label>
             Коментар
-            <StyledField name="text" type="text" />
+            <StyledTextField
+              component="textarea"
+              name="text"
+            />
             <StyledErrorMessage name="text" component="div" />
           </Label>
-          <Btn type="submit">Зв'язатись</Btn>
+          <Btn type="submit">
+            <div>Зв'язатись</div>
+          </Btn>
         </StyledForm>
       </Formik>
     </ReactModal>
