@@ -15,7 +15,7 @@ import { Formik } from 'formik';
 const customStyles = {
   overlay: {
     zIndex: '200',
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
     border: '1px solid rgb(99, 99, 99)',

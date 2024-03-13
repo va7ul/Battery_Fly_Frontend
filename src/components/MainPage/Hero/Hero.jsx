@@ -24,21 +24,21 @@ export const Hero = () => {
       {isBigScreen ? (
         <Title>
           Пропонуємо широкий спектр продуктів і послуг у сфері
-          <HighlightedText>Li-po акумуляторів</HighlightedText>
+          <HighlightedText>Li-Ion акумуляторів</HighlightedText>
         </Title>
       ) : (
         <Title>
           Широкий спектр продуктів і послуг у сфері
-          <HighlightedText>Li-po акумуляторів</HighlightedText>
+          <HighlightedText>Li-Ion акумуляторів</HighlightedText>
         </Title>
       )}
       {isBigScreen && (
         <>
           <FeedBackButton handleOpenModal={handleOpenModal} />
           <ModalFeedback
-              isModalOpen={isModalOpen}
-              handleCloseModal={handleCloseModal}
-            />
+            isModalOpen={isModalOpen}
+            handleCloseModal={handleCloseModal}
+          />
         </>
       )}
     </Wrapper>
