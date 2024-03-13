@@ -38,11 +38,11 @@ export const ListItem = styled.li`
 `;
 
 export const IconSpiral = styled.svg`
-  width: 68px;
-  height: 72px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   top: 180px;
-  right: -36px;
+  right: -16px;
   stroke: ${props => props.theme.colors.textPrimary};
   fill: transparent;
   z-index: 1;
