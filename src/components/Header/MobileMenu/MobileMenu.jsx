@@ -7,10 +7,10 @@ import {
   ArrowButton,
 } from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
-import Drawer from '@mui/material/Drawer';
 import { Logo } from '../Logo/Logo';
 import { MobileToolBar } from '../MobileToolBar/MobileToolBar';
 import sprite from '../../../assets/images/sprite.svg';
+import { MobileDrawer } from 'components/Shared/MobileDrawer';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,18 +29,7 @@ export const MobileMenu = () => {
         <MobileToolBar />
       </HeaderWrap>
 
-      <Drawer
-        open={isOpen}
-        onClose={toggleDrawer(false)}
-        sx={{
-          '& .MuiDrawer-paper': {
-            bgcolor: 'background.default',
-            width: '360px',
-            pl: '20px',
-            pr: '20px',
-          },
-        }}
-      >
+      <MobileDrawer isOpen={isOpen} toggleDrawer={toggleDrawer}>
         <MenuWrap>
           <ArrowButton type="button" onClick={toggleDrawer(false)}>
             <svg>
@@ -50,7 +39,7 @@ export const MobileMenu = () => {
           <Logo setIsOpen={setIsOpen} isOpen={isOpen} />
         </MenuWrap>
         <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />
-      </Drawer>
+      </MobileDrawer>
     </div>
   );
 };

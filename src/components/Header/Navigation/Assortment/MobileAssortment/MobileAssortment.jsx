@@ -7,9 +7,9 @@ import {
 } from './MobileAssortment.styled';
 import { StyledLink } from '../../NavItem/NavItem.styled';
 import { useState } from 'react';
-import Drawer from '@mui/material/Drawer';
 import { AssortmentList } from '../AssortmentList/AssortmentList';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
+import { MobileDrawer } from 'components/Shared/MobileDrawer';
 
 export const MobileAssortment = ({ setIsOpen, isOpen }) => {
   const [openSubDrawer, setOpenSubDrawer] = useState(false);
@@ -38,19 +38,8 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           <use href={`${sprite}#arrow-left`}></use>
         </svg>
       </ArrowButton>
-      <Drawer
-        onClick={e => e.stopPropagation()}
-        open={openSubDrawer}
-        onClose={toggleSubDrawer(false)}
-        sx={{
-          '& .MuiDrawer-paper': {
-            bgcolor: 'background.default',
-            width: '360px',
-            pl: '20px',
-            pr: '20px',
-          },
-        }}
-      >
+
+      <MobileDrawer isOpen={openSubDrawer} toggleDrawer={toggleSubDrawer}>
         <Wrap>
           <BackButton type="button" onClick={toggleSubDrawer(false)}>
             <svg>
@@ -66,7 +55,7 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
           setIsOpen={setIsOpen}
           isOpen={isOpen}
         />
-      </Drawer>
+      </MobileDrawer>
     </>
   );
 };
