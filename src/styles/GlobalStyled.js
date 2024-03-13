@@ -128,7 +128,7 @@ button {
   color: ${theme.colors.textPrimary};
 }
 
-/* input::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -137,7 +137,7 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
     -moz-appearance: textfield;
      appearance: textfield;
-} */
+}
 `;
 
 export const hidden = css`
