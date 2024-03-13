@@ -45,13 +45,13 @@ export const Image = styled.img`
   max-width: 310px;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15); */
 
   @media screen and (min-width: 1280px) {
     max-width: 520px;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
   }
 `;
 
@@ -59,13 +59,13 @@ export const ImageSmall = styled.img`
   max-width: 50px;
   height: auto;
   border-radius: 6px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15); */
 
   @media screen and (min-width: 1280px) {
     max-width: 80px;
     /* height: auto; */
     border-radius: 8px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
   }
 `;
 
@@ -77,6 +77,10 @@ export const SliderDiv = styled.div`
   .slick-dots li {
     width: 50px;
     border-radius: 6px;
+  }
+
+  .slick-list {
+    cursor: grab;
   }
 
   .slick-prev:before,
@@ -91,7 +95,7 @@ export const SliderDiv = styled.div`
     .slick-dots li {
       width: 80px;
       border-radius: 12px;
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
     }
 
     .slick-prev:before,
