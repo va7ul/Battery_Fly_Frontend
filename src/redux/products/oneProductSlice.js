@@ -5,9 +5,11 @@ const initialState = {
   result: {
     description: '',
     capacity: {},
+    capacityKey: '',
     information: '',
     price: '',
     image: [],
+    // holder: '',
   },
   isLoading: false,
   error: null,
@@ -19,6 +21,9 @@ const oneProductSlice = createSlice({
   reducers: {
     setPrice(state, action) {
       state.result.price = action.payload;
+    },
+    setCapacityKey(state, action) {
+      state.result.capacityKey = action.payload;
     },
   },
   extraReducers: builder =>
@@ -37,5 +42,5 @@ const oneProductSlice = createSlice({
       }),
 });
 
-export const { setPrice } = oneProductSlice.actions;
+export const { setPrice, setCapacityKey } = oneProductSlice.actions;
 export const oneProductReducer = oneProductSlice.reducer;

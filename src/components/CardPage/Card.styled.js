@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import Select from 'react-select';
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
@@ -37,20 +38,70 @@ export const Title = styled.h1`
     margin-bottom: 10px;
   }
 `;
+
 //  ProductPhoto
 
 export const Image = styled.img`
-  max-width: 320px;
-  height: 330px;
-  margin-bottom: 5px;
+  max-width: 310px;
+  height: auto;
   border-radius: 12px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
 
   @media screen and (min-width: 1280px) {
     max-width: 520px;
-    height: 525px;
+    height: auto;
     border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+export const ImageSmall = styled.img`
+  max-width: 50px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+
+  @media screen and (min-width: 1280px) {
+    max-width: 80px;
+    /* height: auto; */
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+export const SliderDiv = styled.div`
+  width: 310px;
+  padding: 0px 0px 50px 0px;
+  margin: 0 auto;
+
+  .slick-dots li {
+    width: 50px;
+    border-radius: 6px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: ${props => props.theme.colors.secondary};
+  }
+  @media screen and (min-width: 1280px) {
+    width: 520px;
+    padding: 0px 0px 70px 0px;
     margin-bottom: 30px;
+
+    .slick-dots li {
+      width: 80px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      font-size: 40px;
+    }
+
+    .slick-prev {
+      left: -45px;
+    }
   }
 `;
 
@@ -160,14 +211,18 @@ export const Like = styled.p`
 `;
 
 export const IconSquare = styled.svg`
-  width: 35px;
+  display: none;
+  /* width: 35px;
   height: 35px;
   position: absolute;
   top: -387px;
   left: 122px;
-  fill: ${props => props.theme.colors.secondary};
+  fill: ${props => props.theme.colors.secondary}; */
 
   @media (min-width: 1280px) {
+    display: block;
+    position: absolute;
+    fill: ${props => props.theme.colors.secondary};
     width: 62px;
     height: 62px;
     left: 438px;
@@ -177,20 +232,25 @@ export const IconSquare = styled.svg`
 `;
 
 export const IconSpiral = styled.svg`
-  width: 35px;
+  display: none;
+  /* width: 35px;
   height: 43px;
   position: absolute;
   top: -381px;
   left: 105px;
   stroke: ${props => props.theme.colors.textPrimary};
-  fill: transparent;
+  fill: transparent; */
 
   @media (min-width: 1280px) {
+    display: block;
+    position: absolute;
     width: 62px;
     height: 76px;
     left: 407px;
     top: -1px;
     z-index: 2;
+    stroke: ${props => props.theme.colors.textPrimary};
+    fill: transparent;
   }
 `;
 
@@ -204,65 +264,7 @@ export const Desc = styled.ul`
 
 export const Item = styled.li`
   list-style: outside;
-`;
-
-// Capacity
-
-export const CapacityBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-export const Subtitle = styled.p`
-  font-size: 10px;
-  font-weight: 500;
-
-  @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    font-weight: 600;
-  }
-`;
-
-export const SelectDiv = styled.select`
-  /* -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none; */
-  outline: none;
-  cursor: pointer;
-  width: 105px;
-  height: 30px;
-  padding: 8px;
-  font-size: 10px;
-  border: 1px solid ${props => props.theme.colors.textPrimary};
-  border-radius: 6px;
-  background: ${props => props.theme.colors.greyBackgroundPaper};
-
-  /* &::-ms-expand {
-    display: none;
-  } */
-  /* &:focus {
-    outline: none;
-    box-shadow: 0px 0px 0px 1px orange, 0px 0px 1px red;
-  } */
-
-  @media screen and (min-width: 1280px) {
-    width: 208px;
-    height: 42px;
-    padding: 7px 15px;
-    border-radius: 12px;
-    font-size: 20px;
-  }
-`;
-
-export const OptionsItem = styled.option`
-  padding: 8px;
-
-  &:checked {
-    background-color: red;
-  }
-  @media screen and (min-width: 1280px) {
-  }
+  margin-left: 16px;
 `;
 
 // CheckBox
@@ -431,3 +433,105 @@ export const Info = styled.div`
     font-size: 20px;
   }
 `;
+
+// Capacity
+
+export const CapacityBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 10px;
+  font-weight: 500;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+    font-weight: 600;
+  }
+`;
+
+export const selectStyles = {
+  control: styles => ({
+    ...styles,
+    backgroundColor: 'rgba(225, 225, 225, 1)',
+    borderRadius: '6px',
+    borderStyle: 'none',
+    width: '132px',
+    maxHeight: '30px',
+    minHeight: '25px',
+    border: '1px solid rgb(31, 31, 31)',
+    ':hover': { borderColor: 'currentColor', boxShadow: 'none' },
+    '@media only screen and (min-width: 1280px)': {
+      width: '220px',
+      minHeight: '42px',
+      borderRadius: '12px',
+    },
+  }),
+  menu: styles => ({
+    ...styles,
+    backgroundColor: 'rgba(225, 225, 225, 1)',
+    fontSize: '10px',
+    width: '132px',
+    border: '1px solid rgb(31, 31, 31)',
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+      width: '220px',
+      borderRadius: '12px',
+    },
+  }),
+  input: styles => ({ ...styles, display: 'none' }),
+  option: (styles, { isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      backgroundColor: isFocused ? 'rgb(255, 208, 100)' : undefined,
+      color: !isDisabled
+        ? isSelected
+          ? 'rgb(31, 31, 31);'
+          : 'rgb(31, 31, 31);'
+        : undefined,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+      padding: '2px 8px',
+      ':active': {
+        ...styles[':active'],
+        backgroundColor: !isDisabled
+          ? isSelected
+            ? 'rgb(255, 208, 100)'
+            : 'rgb(255, 208, 100)'
+          : undefined,
+      },
+      '@media only screen and (min-width: 1280px)': {
+        borderRadius: '6px',
+      },
+    };
+  },
+  placeholder: styles => ({
+    ...styles,
+    fontSize: '10px',
+    padding: '0px 8px',
+    margin: 0,
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+    },
+  }),
+  indicatorsContainer: styles => ({
+    ...styles,
+    height: '30px',
+    width: '38px',
+    '@media only screen and (min-width: 1280px)': {
+      height: '42px',
+      width: '40px',
+    },
+  }),
+  valueContainer: styles => ({ ...styles, padding: 0 }),
+  singleValue: styles => ({
+    ...styles,
+    fontSize: '10px',
+    margin: 0,
+    padding: '8px',
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+    },
+  }),
+};
