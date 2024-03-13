@@ -6,7 +6,7 @@ export const Item = styled.li`
   position: relative;
   display: flex;
   align-items: center;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
   cursor: pointer;
 
