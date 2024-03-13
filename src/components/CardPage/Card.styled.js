@@ -43,8 +43,7 @@ export const Title = styled.h1`
 
 export const Image = styled.img`
   max-width: 320px;
-  height: 330px;
-  margin-bottom: 5px;
+  height: auto;
   border-radius: 12px;
 
   @media screen and (min-width: 1280px) {
