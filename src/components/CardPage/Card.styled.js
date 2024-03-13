@@ -42,16 +42,66 @@ export const Title = styled.h1`
 //  ProductPhoto
 
 export const Image = styled.img`
-  max-width: 320px;
+  max-width: 310px;
   height: auto;
   border-radius: 12px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
 
   @media screen and (min-width: 1280px) {
     max-width: 520px;
-    height: 525px;
+    height: auto;
     border-radius: 20px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+export const ImageSmall = styled.img`
+  max-width: 50px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+
+  @media screen and (min-width: 1280px) {
+    max-width: 80px;
+    /* height: auto; */
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+export const SliderDiv = styled.div`
+  width: 310px;
+  padding: 0px 0px 50px 0px;
+  margin: 0 auto;
+
+  .slick-dots li {
+    width: 50px;
+    border-radius: 6px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: ${props => props.theme.colors.secondary};
+  }
+  @media screen and (min-width: 1280px) {
+    width: 520px;
+    padding: 0px 0px 70px 0px;
     margin-bottom: 30px;
+
+    .slick-dots li {
+      width: 80px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      font-size: 40px;
+    }
+
+    .slick-prev {
+      left: -45px;
+    }
   }
 `;
 
@@ -161,14 +211,18 @@ export const Like = styled.p`
 `;
 
 export const IconSquare = styled.svg`
-  width: 35px;
+  display: none;
+  /* width: 35px;
   height: 35px;
   position: absolute;
   top: -387px;
   left: 122px;
-  fill: ${props => props.theme.colors.secondary};
+  fill: ${props => props.theme.colors.secondary}; */
 
   @media (min-width: 1280px) {
+    display: block;
+    position: absolute;
+    fill: ${props => props.theme.colors.secondary};
     width: 62px;
     height: 62px;
     left: 438px;
@@ -178,20 +232,25 @@ export const IconSquare = styled.svg`
 `;
 
 export const IconSpiral = styled.svg`
-  width: 35px;
+  display: none;
+  /* width: 35px;
   height: 43px;
   position: absolute;
   top: -381px;
   left: 105px;
   stroke: ${props => props.theme.colors.textPrimary};
-  fill: transparent;
+  fill: transparent; */
 
   @media (min-width: 1280px) {
+    display: block;
+    position: absolute;
     width: 62px;
     height: 76px;
     left: 407px;
     top: -1px;
     z-index: 2;
+    stroke: ${props => props.theme.colors.textPrimary};
+    fill: transparent;
   }
 `;
 
