@@ -1,10 +1,11 @@
 import Drawer from '@mui/material/Drawer';
 
-export const MobileDrawer = ({ children, isOpen, toggleDrawer }) => {
+export const MobileDrawer = ({ children, isOpen, closeDrawer, anchor }) => {
   return (
     <Drawer
       open={isOpen}
-      onClose={toggleDrawer(false)}
+      onClose={closeDrawer}
+      anchor={anchor}
       onClick={e => e.stopPropagation()}
       sx={{
         '& .MuiDrawer-paper': {

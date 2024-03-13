@@ -23,8 +23,10 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
     }
   };
 
-  const toggleThirdDrawer = newOpen => () => {
-    setOpenThirdDrawer(newOpen);
+  const closeThirdDrawer = () => {
+    if (openThirdDrawer) {
+      setOpenThirdDrawer(false);
+    }
   };
 
   return (
@@ -40,9 +42,13 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
         </svg>
       </ArrowButton>
 
-      <MobileDrawer isOpen={openThirdDrawer} toggleDrawer={toggleThirdDrawer}>
+      <MobileDrawer
+        isOpen={openThirdDrawer}
+        closeDrawer={closeThirdDrawer}
+        anchor="left"
+      >
         <Wrap>
-          <BackButton type="button" onClick={toggleThirdDrawer(false)}>
+          <BackButton type="button" onClick={closeThirdDrawer}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>

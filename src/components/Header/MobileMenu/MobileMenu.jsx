@@ -15,23 +15,29 @@ import { MobileDrawer } from 'components/Shared/MobileDrawer';
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDrawer = newOpen => () => {
-    setIsOpen(newOpen);
+  const openDrawer = () => {
+    setIsOpen(true);
+  };
+
+  const closeDrawer = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
   };
 
   return (
     <div>
       <HeaderWrap>
-        <BurgerButton onClick={toggleDrawer(true)}>
+        <BurgerButton onClick={openDrawer}>
           <MenuIcon />
         </BurgerButton>
         <Logo />
         <MobileToolBar />
       </HeaderWrap>
 
-      <MobileDrawer isOpen={isOpen} toggleDrawer={toggleDrawer}>
+      <MobileDrawer isOpen={isOpen} closeDrawer={closeDrawer} anchor="left">
         <MenuWrap>
-          <ArrowButton type="button" onClick={toggleDrawer(false)}>
+          <ArrowButton type="button" onClick={closeDrawer}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
