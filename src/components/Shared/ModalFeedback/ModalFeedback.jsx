@@ -7,14 +7,16 @@ import {
   StyledErrorMessage,
   StyledField,
   StyledForm,
+  StyledPhoneField,
   StyledTextField,
   Text,
 } from './ModalFeedback.styled';
 import { Formik } from 'formik';
+import { useState } from 'react';
 
 const customStyles = {
   overlay: {
-    zIndex: '200',
+    zIndex: '1',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
@@ -35,12 +37,12 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-const nameRegex = '[а-яА-Я]';
+const nameRegex = "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
 const numberRegex = '[0-9]';
 const schema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
-    .max(20, 'Too Long!')
+    .max(70, 'Too Long!')
     .trim('Enter your name, please')
     .matches(nameRegex, 'Name is not valid')
     .required('Required'),
@@ -50,6 +52,7 @@ const schema = Yup.object().shape({
 });
 
 export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
+  const [phone, setPhone] = useState('');
   return (
     <ReactModal
       isOpen={isModalOpen}
@@ -78,7 +81,12 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
 
           <Label>
             Телефон
-            <StyledField name="number" type="tel" />
+            <StyledPhoneField 
+              name="number"
+              defaultCountry="ua"
+              value={phone}
+              onChange={phone => setPhone(phone)}
+            />
             <StyledErrorMessage name="number" component="div" />
           </Label>
           <Label>
