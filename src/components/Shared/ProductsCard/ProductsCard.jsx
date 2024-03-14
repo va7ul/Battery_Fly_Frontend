@@ -1,5 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import noImage from '../../../assets/images/no-image-available.webp';
+import {
+  addItem,
+  // deleteItem,
+  // increaseQuantity,
+  // decreaseQuantity,
+  // changeQuantity,
+} from '../../../redux/basket/basketSlice';
 import {
   IconHeart,
   IconFullHeart,
@@ -15,13 +24,43 @@ import {
   AddToBasketBtn,
   // GoToBasketBtn,
 } from './ProductsCard.styled';
+// import { selectItems } from '../../../redux/basket/basketSelectors';
 
 export const ProductsCard = ({ product }) => {
   const { codeOfGood, image, name, price } = product;
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
   };
+
+  const plusOne = () => {
+    setQuantity(state => state + 1);
+  };
+
+  const minusOne = () => {
+    if (quantity > 1) {
+      setQuantity(state => state - 1);
+    }
+  };
+
+  const setValue = e => {
+    if (Number(e.target.value) > 0) {
+      setQuantity(Number(e.target.value));
+    }
+  };
+
+  const addToBasket = e => {
+    dispatch(addItem({ codeOfGood, image, name, quantity, price }));
+  };
+
+  // const basketItems = useSelector(selectItems);
+  // const findItem = () => {
+  //   console.log(
+  //     basketItems.find(basketItem => basketItem.codeOfGood === codeOfGood)
+  //   );
+  // };
 
   return (
     <>
@@ -38,23 +77,28 @@ export const ProductsCard = ({ product }) => {
           <CardTitle>{name}</CardTitle>
         </a>
         <PriceContainer>
-          <PriceNew>{price} грн</PriceNew>
+          <PriceNew>{price * quantity} грн</PriceNew>
           <PriceOld>18000 грн</PriceOld>
         </PriceContainer>
         <CounterWrapper>
-          <CounterBtn>
+          <CounterBtn onClick={minusOne}>
             <div>
               <FaMinus />
             </div>
           </CounterBtn>
-          <CounterInput placeholder="1 шт" />
-          <CounterBtn>
+          <CounterInput
+            onChange={setValue}
+            type="integer"
+            min="1"
+            value={quantity}
+          />
+          <CounterBtn onClick={plusOne}>
             <div>
               <FaPlus />
             </div>
           </CounterBtn>
         </CounterWrapper>
-        <AddToBasketBtn>
+        <AddToBasketBtn onClick={addToBasket}>
           <div>Додати у кошик</div>
         </AddToBasketBtn>
         {/* <GoToBasketBtn>
