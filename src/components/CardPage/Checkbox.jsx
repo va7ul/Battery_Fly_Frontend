@@ -51,7 +51,7 @@ export const CheckBox = () => {
         }
     };
 
-       const handleHolder = (e) => {
+    const handleHolder = (e) => {
            if (typeof price === 'number' && e.currentTarget.checked) {
                dispatch(setPrice(price + (capacity[capacityKey].holder * 2)));
            }
