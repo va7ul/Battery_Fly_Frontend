@@ -1,3 +1,4 @@
+// import { useDispatch } from 'react-redux';
 import {
   Item,
   Image,
@@ -6,11 +7,16 @@ import {
   Button,
   Input,
   Price,
+  CloseBtn,
 } from './CartItem.styled';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
-import { MdClose } from 'react-icons/md';
+import { FaMinus, FaPlus, FaXmark } from 'react-icons/fa6';
+// import { deleteItem } from '../../../../../redux/basket/basketSlice';
 
-export const CartItem = ({ item: { image, name, quantity, price } }) => {
+export const CartItem = ({
+  item: { codeOfGood, image, name, quantity, price },
+}) => {
+  //   const dispatch = useDispatch();
+
   return (
     <Item>
       <Image src={image} alt={name} />
@@ -25,6 +31,12 @@ export const CartItem = ({ item: { image, name, quantity, price } }) => {
         </Button>
       </QuantityWrap>
       <Price>{price}</Price>
+      <CloseBtn
+        type="button"
+        //   onClick={() => dispatch(deleteItem(codeOfGood))}
+      >
+        <FaXmark />
+      </CloseBtn>
     </Item>
   );
 };
