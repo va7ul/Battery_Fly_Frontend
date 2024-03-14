@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Item = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -56,4 +57,16 @@ export const Input = styled.input`
 export const Price = styled.p`
   font-size: 12px;
   font-weight: 400;
+`;
+
+export const CloseBtn = styled.button`
+  /* position: absolute; */
+  background: transparent;
+  /* right: 12px; */
+
+  & svg {
+    width: 16px;
+    height: 16px;
+    fill: ${props => props.theme.colors.textPrimary};
+  }
 `;
