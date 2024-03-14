@@ -40,8 +40,8 @@ const StyledCheckbox = styled(Checkbox)({
 
 export const CheckBox = () => {
   const dispatch = useDispatch();
-    const { price, capacity, capacityKey } = useSelector(selectOneProduct);
-
+    const { price, capacity, capacityKey, holder } = useSelector(selectOneProduct);
+   
     const handleSealing = (e) => {
         if (typeof price === 'number' && e.currentTarget.checked) {
             dispatch(setPrice(price + 100));    
@@ -51,7 +51,7 @@ export const CheckBox = () => {
         }
     };
 
-       const handleHolder = (e) => {
+    const handleHolder = (e) => {
            if (typeof price === 'number' && e.currentTarget.checked) {
                dispatch(setPrice(price + (capacity[capacityKey].holder * 2)));
            }
@@ -71,15 +71,17 @@ export const CheckBox = () => {
                     '&.Mui-checked': {
                         color: yellow[800],
                     },
-                }} />} label="Герметизація" />
-                <FormControlLabel control={<StyledCheckbox
+                    }} />} label="Герметизація" />
+            {holder ? ( <FormControlLabel control={<StyledCheckbox
                     onChange={handleHolder}
                     sx={{
                     color: yellow[800],
                     '&.Mui-checked': {
                         color: yellow[800],
                     },
-                }} />} label="Використовувати холдери" />
+                    }} />} label="Використовувати холдери" />) : (undefined
+                )}
+               
             </StyledFormGroup>
         </Container>
     );
