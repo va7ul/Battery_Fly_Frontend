@@ -17,15 +17,17 @@ export const MobileToolBar = () => {
     setIsModalOpen(false);
   }
 
-  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  function handleOpenCartModal() {
-    setIsCartModalOpen(true);
-  }
-  function handleCloseCartModal() {
-    setIsCartModalOpen(false);
-  }
+  const openDrawer = () => {
+    setIsCartOpen(true);
+  };
 
+  const closeDrawer = () => {
+    if (isCartOpen) {
+      setIsCartOpen(false);
+    }
+  };
   return (
     <Wrapper>
       <FeedBackButton handleOpenModal={handleOpenModal} />
@@ -33,13 +35,10 @@ export const MobileToolBar = () => {
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
       />
-      <Button type="button" onClick={handleOpenCartModal}>
+      <Button type="button" onClick={openDrawer}>
         <CartIcon />
       </Button>
-      <CartModal
-        isModalOpen={isCartModalOpen}
-        handleCloseModal={handleCloseCartModal}
-      />
+      <CartModal isOpen={isCartOpen} closeCartDrawer={closeDrawer} />
       <Button type="button">
         <FavoriteIcon />
       </Button>
