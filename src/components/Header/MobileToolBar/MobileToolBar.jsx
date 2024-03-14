@@ -9,12 +9,15 @@ import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 
 export const MobileToolBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-function handleOpenModal() {
-    setIsModalOpen(true);
-  }
-  function handleCloseModal() {
-    setIsModalOpen(false);
-  }
+  
+ const handleOpenModal = () => {
+   setIsModalOpen(true);
+   document.body.style.overflow = 'hidden';
+ };
+ const handleCloseModal = () => {
+   setIsModalOpen(false);
+   document.body.style.overflow = 'unset';
+ };
 
   return (
     <Wrapper>

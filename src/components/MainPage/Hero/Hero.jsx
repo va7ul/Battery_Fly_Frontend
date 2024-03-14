@@ -12,11 +12,13 @@ export const Hero = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  function handleOpenModal() {
+ const handleOpenModal =() => {
    setIsModalOpen(true);
+       document.body.style.overflow = 'hidden';
  }
-  function handleCloseModal() {
-    setIsModalOpen(false);
+ const handleCloseModal = ()=> {
+   setIsModalOpen(false);
+       document.body.style.overflow = 'unset';
   };
 
   return (
