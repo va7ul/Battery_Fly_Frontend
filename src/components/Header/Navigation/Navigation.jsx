@@ -12,18 +12,21 @@ import { CartModal } from 'components/Shared/CartModal/CartModal';
 export const Navigation = ({ setIsOpen, isOpen }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function handleOpenModal() {
-    setIsModalOpen(true);
-  }
-  function handleCloseModal() {
-    setIsModalOpen(false);
-  }
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const closeDrawer = () => {
     if (isOpen) {
-      return setIsOpen(false);
+      setIsOpen(false);
+    }
+  };
+
+  const openCartDrawer = () => {
+    setIsCartOpen(true);
+  };
+
+  const closeCartDrawer = () => {
+    if (isCartOpen) {
+      setIsCartOpen(false);
     }
   };
 
@@ -36,15 +39,12 @@ export const Navigation = ({ setIsOpen, isOpen }) => {
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
         <Item>
-          <CartButton type="button" onClick={handleOpenModal}>
+          <CartButton type="button" onClick={openCartDrawer}>
             {mobileVersion && <HopeIconMobile />}
             <div>Кошик</div>
             {!mobileVersion && <CartIcon />}
           </CartButton>
-          <CartModal
-            isModalOpen={isModalOpen}
-            handleCloseModal={handleCloseModal}
-          />
+          <CartModal isOpen={isCartOpen} closeCartDrawer={closeCartDrawer} />
         </Item>
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />
