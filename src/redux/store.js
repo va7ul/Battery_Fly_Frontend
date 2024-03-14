@@ -14,11 +14,18 @@ import { authReducer } from './auth/authSlice';
 import { userReducer } from './user/userSlice';
 import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
+import { basketReducer } from './basket/basketSlice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
+};
+
+const basketPersistConfig = {
+  key: 'basket',
+  storage,
+  whitelist: ['items', 'total'],
 };
 
 const productsReducer = combineReducers({
@@ -31,6 +38,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     user: userReducer,
     products: productsReducer,
+    basket: persistReducer(basketPersistConfig, basketReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

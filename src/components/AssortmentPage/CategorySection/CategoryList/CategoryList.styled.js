@@ -31,7 +31,7 @@ export const StyledListCard = styled.li`
   max-width: 154px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(rgba(213, 213, 213, 1), rgba(241, 241, 241, 0));
-  padding: 5px;
+  padding: 5px 5px 10px;
   border-radius: 20px;
   position: relative;
   z-index: 0;
@@ -48,7 +48,7 @@ export const StyledListCard = styled.li`
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 10px;
+    padding: 10px 10px 20px;
     max-width: ${getCardSize};
   }
 `;
