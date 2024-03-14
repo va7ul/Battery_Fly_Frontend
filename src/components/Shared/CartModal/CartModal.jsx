@@ -1,29 +1,18 @@
-import ReactModal from 'react-modal';
+import { EmptyCart } from './EmptyCart/EmptyCart';
+import { Title } from './CartModal.styled';
+import { MobileDrawer } from '../MobileDrawer';
 
-const customStyles = {
-  overlay: {
-    zIndex: '200',
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-  },
-  content: {
-    // maxWidth: '960px',
-    height: '90vh',
-    borderRadius: '8px',
-    borderColor: 'transparent',
-    padding: '25px 30px',
-    overflow: 'auto',
-    backgroundColor: '#f7f7f7',
-  },
-};
-
-export const CartModal = ({ isModalOpen, handleCloseModal }) => {
+export const CartModal = ({ isOpen, closeCartDrawer }) => {
   return (
-    <ReactModal
-      isOpen={isModalOpen}
-      onRequestClose={handleCloseModal}
-      style={customStyles}
-    >
-      <h3>Кошик</h3>
-    </ReactModal>
+    <>
+      <MobileDrawer
+        isOpen={isOpen}
+        closeDrawer={closeCartDrawer}
+        anchor="right"
+      >
+        <Title>Кошик</Title>
+        <EmptyCart />
+      </MobileDrawer>
+    </>
   );
 };
