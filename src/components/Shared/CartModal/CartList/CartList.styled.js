@@ -6,3 +6,10 @@ export const List = styled.ul`
   gap: 10px;
   margin-top: 20px;
 `;
+
+export const Text = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-left: auto;
+`;
