@@ -25,7 +25,7 @@ export const Card = () => {
 
     useEffect(() => {
         dispatch(getOneProduct(cardId));
-    }, [dispatch]);
+    }, [dispatch, cardId]);
 
     return (
         mobileVersion ? (<Wrapper>

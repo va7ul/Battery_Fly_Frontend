@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import Select from 'react-select';
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
@@ -43,40 +42,43 @@ export const Title = styled.h1`
 
 export const ImageBig = styled.img`
   width: 310px;
-  height: auto;
+  height: 200px;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
 
   @media screen and (min-width: 1280px) {
-    width: 518px;
-    height: auto;
+    min-width: 518px;
+    height: 390px;
     border-radius: 20px;
   }
 `;
 
 export const ImageSmall = styled.img`
   width: 50px;
-  height: auto;
+  height: 40px;
+  object-fit: contain;
   border-radius: 6px;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
 
   @media screen and (min-width: 1280px) {
     width: 80px;
-    /* height: auto; */
+    height: 60px;
     border-radius: 8px;
   }
 `;
 
 export const Image = styled.img`
   width: 320px;
-  height: auto;
+  height: 200px;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
   margin-bottom: 5px;
 
   @media screen and (min-width: 1280px) {
-    min-width: 520px;
-    height: auto;
+    min-width: 518px;
+    height: 390px;
     border-radius: 20px;
     margin-bottom: 30px;
   }
@@ -84,7 +86,7 @@ export const Image = styled.img`
 
 export const SliderDiv = styled.div`
   width: 310px;
-  padding: 0px 0px 54px 0px;
+  padding: 0px 0px 47px 0px;
   margin: 0 auto;
 
   .slick-dots li {
@@ -103,11 +105,17 @@ export const SliderDiv = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 518px;
-    padding: 0px 0px 74px 0px;
+    height: 400px;
+    padding: 0px 0px 62px 0px;
     margin-bottom: 30px;
+
+    .slick-dots {
+      bottom: -65px;
+    }
 
     .slick-dots li {
       width: 80px;
+      height: 60px;
       border-radius: 12px;
     }
 

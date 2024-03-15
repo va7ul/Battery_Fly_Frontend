@@ -1,5 +1,5 @@
-import { SocialMediaFooter } from "../SocialMediaFooter/SocialMediaFooter";
-import { Title, Text, Box } from "./Contacts.styled";
+import { SocialMediaFooter } from "./SocialMediaFooter";
+import { Title, Text, Box } from "./Footer.styled";
 
 export const Contacts = () => {
     return (

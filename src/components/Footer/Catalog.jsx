@@ -1,4 +1,4 @@
-import { Box, Title, Link } from "./Catalog.styled";
+import { Box, Title, Link } from "./Footer.styled";
 
 export const Catalog = () => {
     return (
