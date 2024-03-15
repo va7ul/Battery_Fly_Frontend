@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
 import {
   selectItems,
-  selectTotalPrice,
+  selectTotal,
 } from '../../../../redux/basket/basketSelectors';
 import { CartItem } from './CartItem/CartItem';
-import { List } from './CartList.styled';
+import { List, Text } from './CartList.styled';
 
 export const CartList = () => {
   const products = useSelector(selectItems);
-  const totalPrice = useSelector(selectTotalPrice);
+  const total = useSelector(selectTotal);
 
   return (
     <>
@@ -17,7 +17,7 @@ export const CartList = () => {
           <CartItem key={item.codeOfGood} item={item} />
         ))}
       </List>
-      <p>Загальна сума: {totalPrice}</p>
+      <Text>Загальна сума: {total}</Text>
     </>
   );
 };
