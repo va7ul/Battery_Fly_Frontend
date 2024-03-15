@@ -13,3 +13,8 @@ export const Text = styled.p`
   margin-top: 15px;
   margin-left: auto;
 `;
+
+export const Total = styled.span`
+  margin-left: 10px;
+  font-size: 16px;
+`;
