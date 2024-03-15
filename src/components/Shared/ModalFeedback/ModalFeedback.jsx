@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
   Btn,
+  DivErrorMessage,
   Label,
   PhoneFieldGlobalStyles,
   StyledErrorMessage,
@@ -15,6 +16,7 @@ import { useState } from 'react';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useMediaQuery } from 'react-responsive';
+import { PhoneNumberUtil } from 'google-libphonenumber';
 
 const customStyles = {
   overlay: {
@@ -41,22 +43,38 @@ ReactModal.setAppElement('#modal-root');
 
 const nameRegex =
   "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-const schema = Yup.object().shape({
+const schema = Yup.object({
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(70, 'Too Long!')
     .trim('Enter your name, please')
     .matches(nameRegex, 'Name is not valid')
     .required('Required'),
-  // number: Yup.string()
-  //   .required('Required'),
+
 });
+
+const onAdd = obj => {
+  console.log('obj', obj);
+};
+
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+const isPhoneValid = phone => {
+  try {
+    return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
+  } catch (error) {
+    return false;
+  }
+};
+
 
 export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const [phone, setPhone] = useState('');
+const isValid = isPhoneValid(phone);
   return (
     <ReactModal
+      onAdd={onAdd}
       isOpen={isModalOpen}
       onRequestClose={handleCloseModal}
       style={customStyles}
@@ -65,14 +83,14 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
       <Formik
         initialValues={{
           name: '',
-          number: '',
           text: '',
         }}
         validationSchema={schema}
-        // onSubmit={(values, actions) => {
-        //   onAdd({ ...values, id: nanoid() });
-        //   actions.resetForm();
-        // }}
+        onSubmit={(values, actions) => {
+          onAdd({ ...values, phone });
+          actions.resetForm();
+          handleCloseModal();
+        }}
       >
         <StyledForm>
           <Label>
@@ -104,24 +122,24 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
                   ? '16px'
                   : '24px',
               }}
-              name="number"
               defaultCountry="ua"
               hideDropdown={true}
               value={phone}
               onChange={phone => setPhone(phone)}
             />
-            <StyledErrorMessage name="number" component="div" />
+            {!isValid && <DivErrorMessage>Phone is not valid</DivErrorMessage>}
           </Label>
           <Label>
             Коментар
             <StyledTextField
-              as="textarea"
+              component="textarea"
               name="text"
+              type="text"
               placeholder="Введіть текст"
             />
             <StyledErrorMessage name="text" component="div" />
           </Label>
-          <Btn type="submit">
+          <Btn type="submit" disabled={!isValid}>
             <div>Зв'язатись</div>
           </Btn>
         </StyledForm>

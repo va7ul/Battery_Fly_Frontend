@@ -126,6 +126,16 @@ export const StyledErrorMessage = styled(ErrorMessage)`
   }
 `;
 
+export const DivErrorMessage = styled.div`
+  color: #da7b6a;
+  font-size: 10px;
+
+  @media (min-width: 1280px) {
+    font-size: 14px;
+  }
+`;
+
+
 export const Btn = styled.button`
   max-width: 128px;
   margin-top: 6px;
