@@ -1,4 +1,4 @@
-import { Box, Title, Link } from "./ForClients.styled";
+import { Box, Title, Link } from "./Footer.styled";
 
 export const ForClients = () => {
     return (
