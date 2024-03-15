@@ -9,3 +9,15 @@ export const Title = styled.h3`
   font-weight: 600;
   border-bottom: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
 `;
+
+export const CloseBtn = styled.button`
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: none;
+
+  & svg {
+    width: 26px;
+    height: 26px;
+  }
+`;
