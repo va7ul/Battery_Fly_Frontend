@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Item = styled.li`
   position: relative;
@@ -20,8 +21,9 @@ export const Image = styled.img`
 `;
 
 export const Name = styled.p`
+  width: 70px;
+  height: 46px;
   overflow: hidden;
-  width: 62px;
 `;
 
 export const QuantityWrap = styled.div`
@@ -38,6 +40,17 @@ export const Button = styled.button`
   height: 20px;
   background: ${props => props.theme.colors.gradient};
   border-radius: 100%;
+
+  position: relative;
+  z-index: 0;
+  ${gradientTransitionBtn}
+  &::after {
+    border-radius: 100%;
+  }
+
+  & svg {
+    z-index: 2;
+  }
 `;
 
 export const Input = styled.input`
@@ -49,9 +62,6 @@ export const Input = styled.input`
   text-align: center;
   font-size: 10px;
   font-weight: 500;
-
-  &::placeholder {
-  }
 `;
 
 export const Price = styled.p`
@@ -60,9 +70,11 @@ export const Price = styled.p`
 `;
 
 export const CloseBtn = styled.button`
-  /* position: absolute; */
+  display: flex;
+  align-items: center;
   background: transparent;
-  /* right: 12px; */
+  position: absolute;
+  right: 12px;
 
   & svg {
     width: 16px;
