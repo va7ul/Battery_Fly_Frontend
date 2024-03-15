@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 import { FaViber } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -9,6 +10,8 @@ import { RiChatSmile2Line } from "react-icons/ri";
 import { Wrapper, List, Icon, Item, Insta, Button } from "./MultiButton.styled";
 
 export const MultiButton = () => {
+    const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+    
     const [isHovered, setIsHovered] = useState(false);
     const [visibility, setVisibility] = useState("hidden");
     const [transition, setTransition] = useState(" ");
@@ -36,37 +39,43 @@ export const MultiButton = () => {
             <List style={{ visibility: visibility, transition: transition, transform: transform, opacity: opacity }}>
                 <Item style={{ background: '#7b519d' }} >
                     <Icon>
-                        <FaViber size={30} />
+                        {mobileVersion ? <FaViber size={20} /> : <FaViber size={30} />}
                     </Icon>
                 </Item>
                 <Insta >
                     <Icon>
-                        <FaInstagram size={30} />
+                        {mobileVersion ? <FaInstagram size={20} /> : <FaInstagram size={30} />}
                     </Icon>
                 </Insta>
                 <Item style={{ background: '#03a9f4' }}>
                     <Icon>
-                        <FaTelegramPlane size={30} />
+                        {mobileVersion ? <FaTelegramPlane size={20} /> : <FaTelegramPlane size={30} />}
                     </Icon>
                 </Item>
                 <Item style={{ background: '#9ACD32' }}>
                     <Icon>
-                        <MdOutlineEmail size={30} />
+                        {mobileVersion ? <MdOutlineEmail size={20} /> : <MdOutlineEmail size={30} />}
                     </Icon>
                 </Item>
                 <Item style={{ background: '#80CDC1' }}>
                     <Icon>
-                        <VscCallIncoming size={30} />
+                        {mobileVersion ? <VscCallIncoming size={20} /> : <VscCallIncoming size={30} />}
                     </Icon>
                 </Item>
                 <Item style={{ background: '#018571' }}>
                     <Icon>
-                        <VscCallOutgoing size={30} />
+                        {mobileVersion ? <VscCallOutgoing size={20} /> : <VscCallOutgoing size={30} />}
                     </Icon>
                 </Item>
             </List>
             <Button onMouseEnter={openButton}>
-                {isHovered ? <RiChatSmile3Line size={44} /> : <RiChatSmile2Line size={44} />}
+
+                {mobileVersion ? (
+                    isHovered ? <RiChatSmile3Line size={30} /> : <RiChatSmile2Line size={30} />
+                ) : (
+                    isHovered ? <RiChatSmile3Line size={44} /> : <RiChatSmile2Line size={44} />
+                )}
+                
             </Button>
         </Wrapper>
     );
