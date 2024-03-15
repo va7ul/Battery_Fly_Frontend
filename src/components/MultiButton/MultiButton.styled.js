@@ -22,11 +22,16 @@ export const List = styled.ul`
 export const Item = styled.li`
   border-radius: 50%;
   cursor: pointer;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 44px;
+    height: 44px;
   }
 `;
 
@@ -41,11 +46,16 @@ export const Insta = styled.li`
   );
   border-radius: 50%;
   cursor: pointer;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 44px;
+    height: 44px;
   }
 `;
 
@@ -54,17 +64,21 @@ export const Icon = styled.a`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   color: white;
   &:hover {
     color: ${props => props.theme.colors.textPrimary};
   }
+  @media screen and (min-width: 1280px) {
+    width: 44px;
+    height: 44px;
+  }
 `;
 
 export const Button = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   background: ${props => props.theme.colors.secondary};
   border-radius: 50%;
   display: flex;
@@ -91,5 +105,9 @@ export const Button = styled.div`
       box-shadow: 0 0 0 34.06667px rgba(255, 186, 38, 0),
         0 0 0 27.25333px rgba(255, 206, 9, 0);
     }
+  }
+  @media screen and (min-width: 1280px) {
+    width: 70px;
+    height: 70px;
   }
 `;
