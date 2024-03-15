@@ -2,7 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import { FaViber } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
-import { Item, List } from "./SocialMediaFooter.styled"
+import { Item, List } from "./Footer.styled";
 
 export const SocialMediaFooter = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
