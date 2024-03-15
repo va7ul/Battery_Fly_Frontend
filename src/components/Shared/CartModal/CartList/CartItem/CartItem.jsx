@@ -22,11 +22,9 @@ export const CartItem = ({
   item: { codeOfGood, image, name, quantity, price },
 }) => {
   const dispatch = useDispatch();
-  // const [value, setValue] = useState(quantity);
 
   const changeValue = e => {
     if (Number(e.target.value) > 0) {
-      // setValue(Number(e.target.value));
       dispatch(
         changeQuantity({ codeOfGood, quantity: Number(e.target.value) })
       );
