@@ -4,7 +4,7 @@ import {
   selectTotal,
 } from '../../../../redux/basket/basketSelectors';
 import { CartItem } from './CartItem/CartItem';
-import { List, Text } from './CartList.styled';
+import { List, Text, Total } from './CartList.styled';
 
 export const CartList = () => {
   const products = useSelector(selectItems);
@@ -17,7 +17,9 @@ export const CartList = () => {
           <CartItem key={item.codeOfGood} item={item} />
         ))}
       </List>
-      <Text>Загальна сума: {total}</Text>
+      <Text>
+        Загальна сума:<Total>{total} грн</Total>
+      </Text>
     </>
   );
 };
