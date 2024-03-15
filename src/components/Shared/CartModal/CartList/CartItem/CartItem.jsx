@@ -14,13 +14,24 @@ import {
   deleteItem,
   increaseQuantity,
   decreaseQuantity,
-  // changeQuantity,
+  changeQuantity,
 } from '../../../../../redux/basket/basketSlice';
+// import { useState } from 'react';
 
 export const CartItem = ({
   item: { codeOfGood, image, name, quantity, price },
 }) => {
   const dispatch = useDispatch();
+  // const [value, setValue] = useState(quantity);
+
+  const changeValue = e => {
+    if (Number(e.target.value) > 0) {
+      // setValue(Number(e.target.value));
+      dispatch(
+        changeQuantity({ codeOfGood, quantity: Number(e.target.value) })
+      );
+    }
+  };
 
   return (
     <Item>
@@ -33,7 +44,7 @@ export const CartItem = ({
         >
           <FaMinus />
         </Button>
-        <Input type="number" value={quantity} />
+        <Input type="number" onChange={changeValue} value={quantity} />
         <Button
           type="button"
           onClick={() => dispatch(increaseQuantity({ codeOfGood }))}
