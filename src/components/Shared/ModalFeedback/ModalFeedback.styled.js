@@ -1,7 +1,6 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
-import { PhoneInput } from 'react-international-phone';
 
 export const Text = styled.p`
   font-size: 15px;
@@ -64,27 +63,26 @@ export const StyledField = styled(Field)`
   }
 `;
 
-export const StyledPhoneField = styled(PhoneInput)`
-  max-width: 261px;
-  height: 28px;
-  padding: 4px 8px;
-  color: rgb(225, 225, 225);
-  border: 1px solid rgb(99, 99, 99);
-  border-radius: 6px;
-  background: transparent;
-
+export const PhoneFieldGlobalStyles = createGlobalStyle`
+  .react-international-phone-input {
+    width: 224px;
   &:focus {
     color: rgb(225, 225, 225);
     outline: none;
     border: 1px solid rgba(255, 208, 100, 0.7);
     box-shadow: 0px 0px 4px 4px rgba(255, 208, 100, 0.7);
   }
-
-  @media (min-width: 1280px) {
-    max-width: 476px;
-    height: 51px;
-    border-radius: 8px;
+    @media (min-width: 1280px) {
+    width: 430px;
   }
+  }
+   .react-international-phone-input-container .react-international-phone-country-selector-button{
+    width:37px;
+
+    @media (min-width: 1280px) {
+    width: 46px;
+  }
+} 
 `;
 
 export const StyledTextField = styled(Field)`
@@ -97,6 +95,10 @@ export const StyledTextField = styled(Field)`
   background: transparent;
   overflow-x: auto;
 
+  &::placeholder {
+    font-size: 10px;
+    color: rgb(225, 225, 225);
+  }
   &:focus {
     color: rgb(225, 225, 225);
     outline: none;
@@ -108,6 +110,10 @@ export const StyledTextField = styled(Field)`
     max-width: 476px;
     height: 117px;
     border-radius: 8px;
+
+    &::placeholder {
+      font-size: 14px;
+    }
   }
 `;
 

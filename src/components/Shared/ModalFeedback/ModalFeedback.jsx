@@ -1,18 +1,20 @@
 import ReactModal from 'react-modal';
-// import { Formik } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
   Btn,
   Label,
+  PhoneFieldGlobalStyles,
   StyledErrorMessage,
   StyledField,
   StyledForm,
-  StyledPhoneField,
   StyledTextField,
   Text,
 } from './ModalFeedback.styled';
-import { Formik } from 'formik';
 import { useState } from 'react';
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
+import { useMediaQuery } from 'react-responsive';
 
 const customStyles = {
   overlay: {
@@ -37,8 +39,8 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-const nameRegex = "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-const numberRegex = '[0-9]';
+const nameRegex =
+  "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
 const schema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -46,12 +48,12 @@ const schema = Yup.object().shape({
     .trim('Enter your name, please')
     .matches(nameRegex, 'Name is not valid')
     .required('Required'),
-  number: Yup.string()
-    .matches(numberRegex, 'Phone number is not valid')
-    .required('Required'),
+  // number: Yup.string()
+  //   .required('Required'),
 });
 
 export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const [phone, setPhone] = useState('');
   return (
     <ReactModal
@@ -81,9 +83,30 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
 
           <Label>
             Телефон
-            <StyledPhoneField 
+            <PhoneInput
+              style={{
+                '--react-international-phone-height': !isBigScreen
+                  ? '28px'
+                  : '51px',
+                '--react-international-phone-background-color': 'transparent',
+                '--react-international-phone-border-color': 'rgb(99, 99, 99)',
+                '--react-international-phone-text-color': 'rgb(225, 225, 225)',
+                '--react-international-phone-font-size': !isBigScreen
+                  ? '10px'
+                  : '14px',
+                '--react-international-phone-border-radius': !isBigScreen
+                  ? '6px'
+                  : '8px',
+                '--react-international-phone-flag-width': !isBigScreen
+                  ? '16px'
+                  : '24px',
+                '--react-international-phone-flag-height': !isBigScreen
+                  ? '16px'
+                  : '24px',
+              }}
               name="number"
               defaultCountry="ua"
+              hideDropdown={true}
               value={phone}
               onChange={phone => setPhone(phone)}
             />
@@ -91,7 +114,11 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
           </Label>
           <Label>
             Коментар
-            <StyledTextField component="textarea" name="text" />
+            <StyledTextField
+              as="textarea"
+              name="text"
+              placeholder="Введіть текст"
+            />
             <StyledErrorMessage name="text" component="div" />
           </Label>
           <Btn type="submit">
@@ -99,6 +126,7 @@ export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
           </Btn>
         </StyledForm>
       </Formik>
+      <PhoneFieldGlobalStyles />
     </ReactModal>
   );
 };
