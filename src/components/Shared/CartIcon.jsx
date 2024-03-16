@@ -1,10 +1,13 @@
 import { Badge } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { useSelector } from 'react-redux';
+import { selectItems } from '../../redux/basket/basketSelectors';
 
 export const CartIcon = () => {
+  const products = useSelector(selectItems);
   return (
     <Badge
-      badgeContent={1}
+      badgeContent={products.length}
       color="secondary"
       sx={{
         '& .MuiBadge-badge': {

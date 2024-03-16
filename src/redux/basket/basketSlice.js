@@ -16,7 +16,11 @@ const basketSlice = createSlice({
       state.total += action.payload.price * action.payload.quantity;
     },
     deleteItem(state, action) {
-      state.total -= action.payload.price * action.payload.quantity;
+      if (state.items.length === 1) {
+        state.total = initialState.total;
+      } else {
+        state.total -= action.payload.price * action.payload.quantity;
+      }
       state.items = state.items.filter(
         item => item.codeOfGood !== action.payload.codeOfGood
       );

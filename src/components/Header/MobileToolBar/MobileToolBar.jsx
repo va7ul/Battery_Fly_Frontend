@@ -6,16 +6,28 @@ import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { useState } from 'react';
 import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
+import { CartModal } from 'components/Shared/CartModal/CartModal';
 
 export const MobileToolBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-function handleOpenModal() {
+  function handleOpenModal() {
     setIsModalOpen(true);
   }
   function handleCloseModal() {
     setIsModalOpen(false);
   }
 
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const openDrawer = () => {
+    setIsCartOpen(true);
+  };
+
+  const closeDrawer = () => {
+    if (isCartOpen) {
+      setIsCartOpen(false);
+    }
+  };
   return (
     <Wrapper>
       <FeedBackButton handleOpenModal={handleOpenModal} />
@@ -23,9 +35,10 @@ function handleOpenModal() {
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
       />
-      <Button type="button">
+      <Button type="button" onClick={openDrawer}>
         <CartIcon />
       </Button>
+      <CartModal isOpen={isCartOpen} closeCartDrawer={closeDrawer} />
       <Button type="button">
         <FavoriteIcon />
       </Button>
