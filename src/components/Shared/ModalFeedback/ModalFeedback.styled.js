@@ -53,7 +53,6 @@ export const StyledField = styled(Field)`
     color: rgb(225, 225, 225);
     outline: none;
     border: 1px solid rgba(255, 208, 100, 0.7);
-    box-shadow: 0px 0px 4px 4px rgba(255, 208, 100, 0.7);
   }
 
   @media (min-width: 1280px) {
@@ -70,7 +69,6 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
     color: rgb(225, 225, 225);
     outline: none;
     border: 1px solid rgba(255, 208, 100, 0.7);
-    box-shadow: 0px 0px 4px 4px rgba(255, 208, 100, 0.7);
   }
     @media (min-width: 1280px) {
     width: 430px;
@@ -97,16 +95,16 @@ export const StyledTextField = styled(Field)`
 
   &::placeholder {
     font-size: 10px;
-    color: rgb(225, 225, 225);
+    color: rgba(225, 225, 225, 0.5);
   }
   &:focus {
     color: rgb(225, 225, 225);
     outline: none;
     border: 1px solid rgba(255, 208, 100, 0.7);
-    box-shadow: 0px 0px 4px 4px rgba(255, 208, 100, 0.7);
   }
 
   @media (min-width: 1280px) {
+    color: rgb(225, 225, 225);
     max-width: 476px;
     height: 117px;
     border-radius: 8px;
@@ -134,7 +132,6 @@ export const DivErrorMessage = styled.div`
     font-size: 14px;
   }
 `;
-
 
 export const Btn = styled.button`
   max-width: 128px;

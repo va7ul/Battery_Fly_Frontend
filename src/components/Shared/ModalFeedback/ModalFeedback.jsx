@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import ReactModal from 'react-modal';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { useMediaQuery } from 'react-responsive';
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
+import { schema } from '../../../common/schemas/feedbackSchema';
+import { isPhoneValid } from '../../../common/schemas/feedbackSchema';
 import {
   Btn,
   DivErrorMessage,
@@ -12,11 +17,7 @@ import {
   StyledTextField,
   Text,
 } from './ModalFeedback.styled';
-import { useState } from 'react';
-import { PhoneInput } from 'react-international-phone';
-import 'react-international-phone/style.css';
-import { useMediaQuery } from 'react-responsive';
-import { PhoneNumberUtil } from 'google-libphonenumber';
+
 
 const customStyles = {
   overlay: {
@@ -41,31 +42,11 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-const nameRegex =
-  "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-const schema = Yup.object({
-  name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(70, 'Too Long!')
-    .trim('Enter your name, please')
-    .matches(nameRegex, 'Name is not valid')
-    .required('Required'),
-
-});
 
 const onAdd = obj => {
   console.log('obj', obj);
 };
 
-const phoneUtil = PhoneNumberUtil.getInstance();
-
-const isPhoneValid = phone => {
-  try {
-    return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
-  } catch (error) {
-    return false;
-  }
-};
 
 
 export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
