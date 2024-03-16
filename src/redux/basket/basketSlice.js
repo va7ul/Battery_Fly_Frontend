@@ -22,12 +22,17 @@ const basketSlice = createSlice({
         state.total -= action.payload.totalPrice;
       }
       state.items = state.items.filter(
-        item => item.codeOfGood !== action.payload.codeOfGood
+        item =>
+          item.codeOfGood !== action.payload.codeOfGood &&
+          item.capacityKey !== action.payload.capacityKey
       );
     },
     increaseQuantity(state, action) {
       for (const item of state.items) {
-        if (item.codeOfGood === action.payload.codeOfGood) {
+        if (
+          item.codeOfGood === action.payload.codeOfGood &&
+          item.capacityKey === action.payload.capacityKey
+        ) {
           item.quantityOrdered += 1;
           item.totalPrice += item.price;
           state.total += item.price;
@@ -53,7 +58,10 @@ const basketSlice = createSlice({
     },
     changeQuantity(state, action) {
       for (const item of state.items) {
-        if (item.codeOfGood === action.payload.codeOfGood) {
+        if (
+          item.codeOfGood === action.payload.codeOfGood &&
+          item.capacityKey === action.payload.capacityKey
+        ) {
           state.total =
             state.total - item.totalPrice + action.payload.totalPrice;
           item.quantityOrdered = action.payload.quantityOrdered;
