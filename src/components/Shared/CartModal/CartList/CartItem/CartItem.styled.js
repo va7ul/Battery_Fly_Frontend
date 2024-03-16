@@ -9,21 +9,37 @@ export const Item = styled.li`
   padding: 10px;
   height: 62px;
   font-size: 10px;
-  font-weight: 400;
   border-radius: 8px;
   background: ${props => props.theme.colors.gradient};
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
+
+  @media screen and (min-width: 1280px) {
+    height: 90px;
+    padding: 20px 10px;
+    gap: 10px;
+    font-size: 16px;
+  }
 `;
 
 export const Image = styled.img`
   width: 42px;
   height: 42px;
+
+  @media screen and (min-width: 1280px) {
+    width: 48px;
+    height: 48px;
+  }
 `;
 
-export const Name = styled.p`
+export const GoodName = styled.p`
   width: 70px;
   height: 46px;
   overflow: hidden;
+
+  @media screen and (min-width: 1280px) {
+    width: 102px;
+    height: 54px;
+  }
 `;
 
 export const QuantityWrap = styled.div`
@@ -38,6 +54,7 @@ export const Button = styled.button`
   justify-content: center;
   width: 20px;
   height: 20px;
+  padding: 5px;
   background: ${props => props.theme.colors.gradient};
   border-radius: 100%;
 
@@ -65,20 +82,35 @@ export const Input = styled.input`
 `;
 
 export const Price = styled.p`
+  margin: 0 auto;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
 `;
 
 export const DeleteBtn = styled.button`
   display: flex;
   align-items: center;
   background: transparent;
-  position: absolute;
-  right: 12px;
 
   & svg {
     width: 16px;
     height: 16px;
     fill: ${props => props.theme.colors.textPrimary};
+    transition: ${props => props.theme.transition.main};
+
+    &:hover {
+      fill: red;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    & svg {
+      width: 22px;
+      height: 22px;
+    }
   }
 `;
