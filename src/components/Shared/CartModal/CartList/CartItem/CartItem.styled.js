@@ -69,7 +69,7 @@ export const Price = styled.p`
   font-weight: 400;
 `;
 
-export const CloseBtn = styled.button`
+export const DeleteBtn = styled.button`
   display: flex;
   align-items: center;
   background: transparent;

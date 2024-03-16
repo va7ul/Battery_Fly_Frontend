@@ -7,7 +7,7 @@ import {
   Button,
   Input,
   Price,
-  CloseBtn,
+  DeleteBtn,
 } from './CartItem.styled';
 import { FaMinus, FaPlus, FaXmark } from 'react-icons/fa6';
 import {
@@ -19,7 +19,7 @@ import {
 // import { useState } from 'react';
 
 export const CartItem = ({
-  item: { codeOfGood, image, name, quantity, price },
+  item: { codeOfGood, image, name, quantity, price, totalPrice },
 }) => {
   const dispatch = useDispatch();
 
@@ -51,12 +51,12 @@ export const CartItem = ({
         </Button>
       </QuantityWrap>
       <Price>{price}</Price>
-      <CloseBtn
+      <DeleteBtn
         type="button"
-        onClick={() => dispatch(deleteItem({ codeOfGood }))}
+        onClick={() => dispatch(deleteItem({ codeOfGood, totalPrice }))}
       >
         <FaXmark />
-      </CloseBtn>
+      </DeleteBtn>
     </Item>
   );
 };
