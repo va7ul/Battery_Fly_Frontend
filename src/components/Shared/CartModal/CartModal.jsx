@@ -21,7 +21,11 @@ export const CartModal = ({ isOpen, closeCartDrawer }) => {
         <CloseBtn type="button" onClick={closeCartDrawer}>
           <IoCloseOutline />
         </CloseBtn>
-        {products.length < 1 ? <EmptyCart /> : <CartList />}
+        {products.length < 1 ? (
+          <EmptyCart closeCartDrawer={closeCartDrawer} />
+        ) : (
+          <CartList />
+        )}
       </MobileDrawer>
     </>
   );
