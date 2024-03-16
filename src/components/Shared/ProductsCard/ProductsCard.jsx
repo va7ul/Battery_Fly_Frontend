@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+// import {  useState } from 'react';
 // import { FaMinus, FaPlus } from 'react-icons/fa6';
 import noImage from '../../../assets/images/no-image-available.webp';
 import { addItem } from '../../../redux/basket/basketSlice';
@@ -25,11 +25,14 @@ export const ProductsCard = ({ product }) => {
   // const [quantityOrdered, setQuantityOrdered] = useState(1);
   const dispatch = useDispatch();
   const basketItems = useSelector(selectItems);
-  const [isInBasket, setIsInBasket] = useState(false);
 
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
   };
+
+  const isInBasket = basketItems.find(
+    basketItem => basketItem.codeOfGood === codeOfGood
+  );
 
   // const plusOne = () => {
   //   setQuantityOrdered(state => state + 1);
@@ -63,14 +66,6 @@ export const ProductsCard = ({ product }) => {
       })
     );
   };
-
-  useEffect(() => {
-    basketItems.find(basketItem => {
-      if (basketItem.codeOfGood === codeOfGood) {
-        setIsInBasket(true);
-      }
-    });
-  });
 
   return (
     <>
