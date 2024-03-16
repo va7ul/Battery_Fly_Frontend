@@ -4,9 +4,9 @@ import {
   selectTotal,
 } from '../../../../redux/basket/basketSelectors';
 import { CartItem } from './CartItem/CartItem';
-import { List, Text, Total } from './CartList.styled';
+import { List, Text, Total, BtnWrap, Button } from './CartList.styled';
 
-export const CartList = () => {
+export const CartList = ({ closeCartDrawer }) => {
   const products = useSelector(selectItems);
   const total = useSelector(selectTotal);
 
@@ -20,6 +20,14 @@ export const CartList = () => {
       <Text>
         Загальна сума:<Total>{total} грн</Total>
       </Text>
+      <BtnWrap>
+        <Button type="button" onClick={closeCartDrawer}>
+          <div>Продовжити покупки</div>
+        </Button>
+        <Button type="button">
+          <div>Оформити замовлення</div>
+        </Button>
+      </BtnWrap>
     </>
   );
 };
