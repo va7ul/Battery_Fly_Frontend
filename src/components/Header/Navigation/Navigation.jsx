@@ -6,45 +6,49 @@ import { Assortment } from './Assortment/Assortment';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
-import { useState } from 'react';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
+import { selectCart, selectMenu } from '../../../redux/menu/menuSelectors';
+import { setCartOpen, setMenuOpen } from '../../../redux/menu/menuSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const Navigation = ({ setIsOpen, isOpen }) => {
+export const Navigation = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isMenuOpen = useSelector(selectMenu);
+  const isCartOpen = useSelector(selectCart);
 
-  const closeDrawer = () => {
-    if (isOpen) {
-      setIsOpen(false);
+  const closeMenu = () => {
+    if (isMenuOpen) {
+      dispatch(setMenuOpen(false));
     }
   };
 
-  const openCartDrawer = () => {
-    setIsCartOpen(true);
+  const openCart = () => {
+    dispatch(setCartOpen(true));
   };
 
-  const closeCartDrawer = () => {
+  const closeCart = () => {
     if (isCartOpen) {
-      setIsCartOpen(false);
+      dispatch(setCartOpen(false));
     }
   };
 
   return (
     <nav>
-      <NavList onClick={closeDrawer}>
+      <NavList onClick={closeMenu}>
         <NavItem page="/main" title="Головна" />
         <NavItem page="/about" title="Про нас" />
-        <Assortment setIsOpen={setIsOpen} isOpen={isOpen} />
+        <Assortment />
         <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
         <NavItem page="/contacts" title="Контакти" />
         <Item>
-          <CartButton type="button" onClick={openCartDrawer}>
+          <CartButton type="button" onClick={openCart}>
             {mobileVersion && <HopeIconMobile />}
             <div>Кошик</div>
             {!mobileVersion && <CartIcon />}
           </CartButton>
-          <CartModal isOpen={isCartOpen} closeCartDrawer={closeCartDrawer} />
+          <CartModal isOpen={isCartOpen} closeCartDrawer={closeCart} />
         </Item>
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />
