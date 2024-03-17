@@ -54,8 +54,6 @@ export const ModalFeedback = ({
   const [phone, setPhone] = useState('');
   const isValidPhone = isPhoneValid(phone);
 
-
-
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const handleOpenAgreeModal = () => {
@@ -126,7 +124,9 @@ export const ModalFeedback = ({
                 onChange={phone => setPhone(phone)}
               />
               {!isValidPhone && (
-                <DivErrorMessage>Phone is not valid</DivErrorMessage>
+                <DivErrorMessage>
+                  Введіть свій номер телефону, будь ласка
+                </DivErrorMessage>
               )}
             </Label>
             <Label>
@@ -139,10 +139,7 @@ export const ModalFeedback = ({
               />
               <StyledErrorMessage name="text" component="div" />
             </Label>
-            <Btn
-              type="submit"
-              disabled={!isValidPhone || phone === '+380'}
-            >
+            <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
               <div>Зв'язатись</div>
             </Btn>
           </StyledForm>

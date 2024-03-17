@@ -4,11 +4,11 @@ import { nameRegex } from '../regex';
 
 export const schema = Yup.object({
   name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(70, 'Too Long!')
-    .trim('Enter your name, please')
-    .matches(nameRegex, 'Name is not valid')
-    .required('Required'),
+    .min(2, "Введіть своє ім'я, будь ласка")
+    .max(70, "Введіть своє ім'я, будь ласка")
+    .trim("Введіть своє ім'я, будь ласка")
+    .matches(nameRegex, "Введіть своє ім'я, будь ласка")
+    .required("Введіть своє ім'я, будь ласка"),
 });
 
 

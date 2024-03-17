@@ -117,19 +117,19 @@ export const StyledTextField = styled(Field)`
 
 export const StyledErrorMessage = styled(ErrorMessage)`
   color: #da7b6a;
-  font-size: 10px;
+  font-size: 8px;
 
   @media (min-width: 1280px) {
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 
 export const DivErrorMessage = styled.div`
   color: #da7b6a;
-  font-size: 10px;
+  font-size: 8px;
 
   @media (min-width: 1280px) {
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 
