@@ -18,6 +18,8 @@ import {
   Text,
 } from './ModalFeedback.styled';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
+import { useDispatch } from 'react-redux';
+import { addFeedback } from 'redux/feedback/feedbackOperations';
 
 const customStyles = {
   overlay: {
@@ -64,6 +66,7 @@ export const ModalFeedback = ({
     setIsModalAgreeOpen(false);
     document.body.style.overflow = 'unset';
   };
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -81,7 +84,7 @@ export const ModalFeedback = ({
           }}
           validationSchema={schema}
           onSubmit={(values, actions) => {
-            onAdd({ ...values, phone });
+            dispatch(addFeedback({ ...values, phone }));
             actions.resetForm();
             handleCloseFeedbackModal();
             handleOpenAgreeModal();
