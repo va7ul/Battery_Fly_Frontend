@@ -23,7 +23,7 @@ export const Order = () => {
             setQuantityOrdered(state => Number(state) + 1);
             
         } else if (quantityOrdered >= quantity) {
-               toast.success(`Максимальна кількість: ${quantity}`, {
+               toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
             })
@@ -39,7 +39,7 @@ export const Order = () => {
     const setValue = e => {
         if (e.target.value > quantity) {
             setQuantityOrdered(Number(quantity))
-            toast.success(`Максимальна кількість: ${quantity}`, {
+            toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
             })
