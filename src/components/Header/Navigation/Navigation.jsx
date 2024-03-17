@@ -7,7 +7,7 @@ import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
-import { selectCart, selectMenu } from '../../../redux/menu/menuSelectors';
+import { selectMenu } from '../../../redux/menu/menuSelectors';
 import { setCartOpen, setMenuOpen } from '../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,7 +16,6 @@ export const Navigation = () => {
 
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(selectMenu);
-  const isCartOpen = useSelector(selectCart);
 
   const closeMenu = () => {
     if (isMenuOpen) {
@@ -26,12 +25,6 @@ export const Navigation = () => {
 
   const openCart = () => {
     dispatch(setCartOpen(true));
-  };
-
-  const closeCart = () => {
-    if (isCartOpen) {
-      dispatch(setCartOpen(false));
-    }
   };
 
   return (
@@ -48,7 +41,7 @@ export const Navigation = () => {
             <div>Кошик</div>
             {!mobileVersion && <CartIcon />}
           </CartButton>
-          <CartModal isOpen={isCartOpen} closeCartDrawer={closeCart} />
+          <CartModal />
         </Item>
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />

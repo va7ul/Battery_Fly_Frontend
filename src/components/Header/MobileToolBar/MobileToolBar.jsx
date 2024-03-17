@@ -7,6 +7,8 @@ import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { useState } from 'react';
 import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
+import { useDispatch } from 'react-redux';
+import { setCartOpen } from '../../../redux/menu/menuSlice';
 
 export const MobileToolBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,17 +19,12 @@ export const MobileToolBar = () => {
     setIsModalOpen(false);
   }
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const openDrawer = () => {
-    setIsCartOpen(true);
+    dispatch(setCartOpen(true));
   };
 
-  const closeDrawer = () => {
-    if (isCartOpen) {
-      setIsCartOpen(false);
-    }
-  };
   return (
     <Wrapper>
       <FeedBackButton handleOpenModal={handleOpenModal} />
@@ -38,7 +35,7 @@ export const MobileToolBar = () => {
       <Button type="button" onClick={openDrawer}>
         <CartIcon />
       </Button>
-      <CartModal isOpen={isCartOpen} closeCartDrawer={closeDrawer} />
+      <CartModal />
       <Button type="button">
         <FavoriteIcon />
       </Button>
