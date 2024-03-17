@@ -17,7 +17,7 @@ import {
   StyledTextField,
   Text,
 } from './ModalFeedback.styled';
-
+import { ModalAgree } from '../ModalAgree/ModalAgree';
 
 const customStyles = {
   overlay: {
@@ -42,90 +42,117 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-
 const onAdd = obj => {
   console.log('obj', obj);
 };
 
-
-
-export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
+export const ModalFeedback = ({
+  isModalFeedbackOpen,
+  handleCloseFeedbackModal,
+}) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const [phone, setPhone] = useState('');
-const isValid = isPhoneValid(phone);
-  return (
-    <ReactModal
-      onAdd={onAdd}
-      isOpen={isModalOpen}
-      onRequestClose={handleCloseModal}
-      style={customStyles}
-    >
-      <Text>Залиште свої дані, ми вам передзвонимо</Text>
-      <Formik
-        initialValues={{
-          name: '',
-          text: '',
-        }}
-        validationSchema={schema}
-        onSubmit={(values, actions) => {
-          onAdd({ ...values, phone });
-          actions.resetForm();
-          handleCloseModal();
-        }}
-      >
-        <StyledForm>
-          <Label>
-            Ім'я
-            <StyledField name="name" type="text" />
-            <StyledErrorMessage name="name" component="div" />
-          </Label>
+  const isValidPhone = isPhoneValid(phone);
 
-          <Label>
-            Телефон
-            <PhoneInput
-              style={{
-                '--react-international-phone-height': !isBigScreen
-                  ? '28px'
-                  : '51px',
-                '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color': 'rgb(99, 99, 99)',
-                '--react-international-phone-text-color': 'rgb(225, 225, 225)',
-                '--react-international-phone-font-size': !isBigScreen
-                  ? '10px'
-                  : '14px',
-                '--react-international-phone-border-radius': !isBigScreen
-                  ? '6px'
-                  : '8px',
-                '--react-international-phone-flag-width': !isBigScreen
-                  ? '16px'
-                  : '24px',
-                '--react-international-phone-flag-height': !isBigScreen
-                  ? '16px'
-                  : '24px',
-              }}
-              defaultCountry="ua"
-              hideDropdown={true}
-              value={phone}
-              onChange={phone => setPhone(phone)}
-            />
-            {!isValid && <DivErrorMessage>Phone is not valid</DivErrorMessage>}
-          </Label>
-          <Label>
-            Коментар
-            <StyledTextField
-              component="textarea"
-              name="text"
-              type="text"
-              placeholder="Введіть текст"
-            />
-            <StyledErrorMessage name="text" component="div" />
-          </Label>
-          <Btn type="submit" disabled={!isValid}>
-            <div>Зв'язатись</div>
-          </Btn>
-        </StyledForm>
-      </Formik>
-      <PhoneFieldGlobalStyles />
-    </ReactModal>
+
+
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseAgreeModal = () => {
+    setIsModalAgreeOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  return (
+    <>
+      <ReactModal
+        onAdd={onAdd}
+        isOpen={isModalFeedbackOpen}
+        onRequestClose={handleCloseFeedbackModal}
+        style={customStyles}
+      >
+        <Text>Залиште свої дані, ми вам передзвонимо</Text>
+        <Formik
+          initialValues={{
+            name: '',
+            text: '',
+          }}
+          validationSchema={schema}
+          onSubmit={(values, actions) => {
+            onAdd({ ...values, phone });
+            actions.resetForm();
+            handleCloseFeedbackModal();
+            handleOpenAgreeModal();
+          }}
+        >
+          <StyledForm>
+            <Label>
+              Ім'я
+              <StyledField name="name" type="text" />
+              <StyledErrorMessage name="name" component="div" />
+            </Label>
+
+            <Label>
+              Телефон
+              <PhoneInput
+                style={{
+                  '--react-international-phone-height': !isBigScreen
+                    ? '28px'
+                    : '51px',
+                  '--react-international-phone-background-color': 'transparent',
+                  '--react-international-phone-border-color': 'rgb(99, 99, 99)',
+                  '--react-international-phone-text-color':
+                    'rgb(225, 225, 225)',
+                  '--react-international-phone-font-size': !isBigScreen
+                    ? '10px'
+                    : '14px',
+                  '--react-international-phone-border-radius': !isBigScreen
+                    ? '6px'
+                    : '8px',
+                  '--react-international-phone-flag-width': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                  '--react-international-phone-flag-height': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                }}
+                defaultCountry="ua"
+                hideDropdown={true}
+                value={phone}
+                onChange={phone => setPhone(phone)}
+              />
+              {!isValidPhone && (
+                <DivErrorMessage>Phone is not valid</DivErrorMessage>
+              )}
+            </Label>
+            <Label>
+              Коментар
+              <StyledTextField
+                component="textarea"
+                name="text"
+                type="text"
+                placeholder="Введіть текст"
+              />
+              <StyledErrorMessage name="text" component="div" />
+            </Label>
+            <Btn
+              type="submit"
+              disabled={!isValidPhone || phone === '+380'}
+            >
+              <div>Зв'язатись</div>
+            </Btn>
+          </StyledForm>
+        </Formik>
+        <PhoneFieldGlobalStyles />
+      </ReactModal>
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAgreeModal}
+      />
+    </>
   );
 };

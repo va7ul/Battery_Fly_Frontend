@@ -4,17 +4,18 @@ import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton'
 import { useState } from 'react';
 import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 
+
 export const Hero = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenFeedbackModal = () => {
+    setIsModalFeedbackOpen(true);
     document.body.style.overflow = 'hidden';
   };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseFeedbackModal = () => {
+    setIsModalFeedbackOpen(false);
     document.body.style.overflow = 'unset';
   };
 
@@ -33,10 +34,11 @@ export const Hero = () => {
       )}
       {isBigScreen && (
         <>
-          <FeedBackButton handleOpenModal={handleOpenModal} />
+          <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
           <ModalFeedback
-            isModalOpen={isModalOpen}
-            handleCloseModal={handleCloseModal}
+            isModalFeedbackOpen={isModalFeedbackOpen}
+            handleCloseFeedbackModal={handleCloseFeedbackModal}
+
           />
         </>
       )}

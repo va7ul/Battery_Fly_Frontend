@@ -8,23 +8,23 @@ import { useState } from 'react';
 import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 
 export const MobileToolBar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
- const handleOpenModal = () => {
-   setIsModalOpen(true);
+ const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
+
+ const handleOpenFeedbackModal = () => {
+   setIsModalFeedbackOpen(true);
    document.body.style.overflow = 'hidden';
  };
- const handleCloseModal = () => {
-   setIsModalOpen(false);
+ const handleCloseFeedbackModal = () => {
+   setIsModalFeedbackOpen(false);
    document.body.style.overflow = 'unset';
  };
 
   return (
     <Wrapper>
-      <FeedBackButton handleOpenModal={handleOpenModal} />
+      <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
       <ModalFeedback
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
+        isModalFeedbackOpen={isModalFeedbackOpen}
+        handleCloseFeedbackModal={handleCloseFeedbackModal}
       />
       <Button type="button">
         <CartIcon />

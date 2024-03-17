@@ -142,7 +142,7 @@ export const Btn = styled.button`
   border: none;
   font-size: 12px;
 
-  background-image: ${props => props.theme.colors.gradient};
+  background: ${props => props.theme.colors.gradient};
   position: relative;
   z-index: 0;
   ${gradientTransitionBtn}
