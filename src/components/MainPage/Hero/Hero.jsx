@@ -5,18 +5,18 @@ import { useState } from 'react';
 import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 
 
-
-
 export const Hero = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
 
-  function handleOpenModal() {
-   setIsModalOpen(true);
- }
-  function handleCloseModal() {
-    setIsModalOpen(false);
+  const handleOpenFeedbackModal = () => {
+    setIsModalFeedbackOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseFeedbackModal = () => {
+    setIsModalFeedbackOpen(false);
+    document.body.style.overflow = 'unset';
   };
 
   return (
@@ -24,25 +24,24 @@ export const Hero = () => {
       {isBigScreen ? (
         <Title>
           Пропонуємо широкий спектр продуктів і послуг у сфері
-          <HighlightedText>Li-po акумуляторів</HighlightedText>
+          <HighlightedText>Li-Ion акумуляторів</HighlightedText>
         </Title>
       ) : (
         <Title>
           Широкий спектр продуктів і послуг у сфері
-          <HighlightedText>Li-po акумуляторів</HighlightedText>
+          <HighlightedText>Li-Ion акумуляторів</HighlightedText>
         </Title>
       )}
       {isBigScreen && (
         <>
-          <FeedBackButton handleOpenModal={handleOpenModal} />
+          <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
           <ModalFeedback
-              isModalOpen={isModalOpen}
-              handleCloseModal={handleCloseModal}
-            />
+            isModalFeedbackOpen={isModalFeedbackOpen}
+            handleCloseFeedbackModal={handleCloseFeedbackModal}
+
+          />
         </>
       )}
     </Wrapper>
   );
 };
-
-

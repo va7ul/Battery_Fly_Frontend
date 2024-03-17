@@ -11,13 +11,16 @@ import { useDispatch } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 
 export const MobileToolBar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  function handleOpenModal() {
-    setIsModalOpen(true);
-  }
-  function handleCloseModal() {
-    setIsModalOpen(false);
-  }
+ const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
+
+ const handleOpenFeedbackModal = () => {
+   setIsModalFeedbackOpen(true);
+   document.body.style.overflow = 'hidden';
+ };
+ const handleCloseFeedbackModal = () => {
+   setIsModalFeedbackOpen(false);
+   document.body.style.overflow = 'unset';
+ };
 
   const dispatch = useDispatch();
 
@@ -27,10 +30,10 @@ export const MobileToolBar = () => {
 
   return (
     <Wrapper>
-      <FeedBackButton handleOpenModal={handleOpenModal} />
+      <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
       <ModalFeedback
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
+        isModalFeedbackOpen={isModalFeedbackOpen}
+        handleCloseFeedbackModal={handleCloseFeedbackModal}
       />
       <Button type="button" onClick={openDrawer}>
         <CartIcon />

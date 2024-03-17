@@ -1,21 +1,29 @@
+import { useState } from 'react';
 import ReactModal from 'react-modal';
-// import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { Formik } from 'formik';
+import { useMediaQuery } from 'react-responsive';
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
+import { schema } from '../../../common/schemas/feedbackSchema';
+import { isPhoneValid } from '../../../common/schemas/feedbackSchema';
 import {
   Btn,
+  DivErrorMessage,
   Label,
+  PhoneFieldGlobalStyles,
   StyledErrorMessage,
   StyledField,
   StyledForm,
   StyledTextField,
   Text,
 } from './ModalFeedback.styled';
-import { Formik } from 'formik';
-
+import { ModalAgree } from '../ModalAgree/ModalAgree';
+import { useDispatch } from 'react-redux';
+import { addFeedback } from '../../../redux/feedback/feedbackOperations'
 const customStyles = {
   overlay: {
-    zIndex: '200',
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    zIndex: '1',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
     border: '1px solid rgb(99, 99, 99)',
@@ -35,62 +43,111 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-const nameRegex = '[а-яА-Я]';
-const numberRegex = '[0-9]';
-const schema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'Too Short!')
-    .max(20, 'Too Long!')
-    .trim('Enter your name, please')
-    .matches(nameRegex, 'Name is not valid')
-    .required('Required'),
-  number: Yup.string()
-    .matches(numberRegex, 'Phone number is not valid')
-    .required('Required'),
-});
 
-export const ModalFeedback = ({ isModalOpen, handleCloseModal }) => {
+export const ModalFeedback = ({
+  isModalFeedbackOpen,
+  handleCloseFeedbackModal,
+}) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+  const [phone, setPhone] = useState('');
+  const isValidPhone = isPhoneValid(phone);
+
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseAgreeModal = () => {
+    setIsModalAgreeOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+  const dispatch = useDispatch();
+
   return (
-    <ReactModal
-      isOpen={isModalOpen}
-      onRequestClose={handleCloseModal}
-      style={customStyles}
-    >
-      <Text>Залиште свої дані, ми вам передзвонимо</Text>
-      <Formik
-        initialValues={{
-          name: '',
-          number: '',
-          text: '',
-        }}
-        validationSchema={schema}
-        // onSubmit={(values, actions) => {
-        //   onAdd({ ...values, id: nanoid() });
-        //   actions.resetForm();
-        // }}
+    <>
+      <ReactModal
+        isOpen={isModalFeedbackOpen}
+        onRequestClose={handleCloseFeedbackModal}
+        style={customStyles}
       >
-        <StyledForm>
-          <Label>
-            Ім'я
-            <StyledField name="name" type="text" />
-            <StyledErrorMessage name="name" component="div" />
-          </Label>
+        <Text>Залиште свої дані, ми вам передзвонимо</Text>
+        <Formik
+          initialValues={{
+            name: '',
+            text: '',
+          }}
+          validationSchema={schema}
+          onSubmit={(values, actions) => {
+            dispatch(addFeedback({ ...values, phone }));
+            actions.resetForm();
+            handleCloseFeedbackModal();
+            handleOpenAgreeModal();
+          }}
+        >
+          <StyledForm>
+            <Label>
+              Ім'я
+              <StyledField name="name" type="text" />
+              <StyledErrorMessage name="name" component="div" />
+            </Label>
 
-          <Label>
-            Телефон
-            <StyledField name="number" type="tel" />
-            <StyledErrorMessage name="number" component="div" />
-          </Label>
-          <Label>
-            Коментар
-            <StyledTextField component="textarea" name="text" />
-            <StyledErrorMessage name="text" component="div" />
-          </Label>
-          <Btn type="submit">
-            <div>Зв'язатись</div>
-          </Btn>
-        </StyledForm>
-      </Formik>
-    </ReactModal>
+            <Label>
+              Телефон
+              <PhoneInput
+                style={{
+                  '--react-international-phone-height': !isBigScreen
+                    ? '28px'
+                    : '51px',
+                  '--react-international-phone-background-color': 'transparent',
+                  '--react-international-phone-border-color': 'rgb(99, 99, 99)',
+                  '--react-international-phone-text-color':
+                    'rgb(225, 225, 225)',
+                  '--react-international-phone-font-size': !isBigScreen
+                    ? '10px'
+                    : '14px',
+                  '--react-international-phone-border-radius': !isBigScreen
+                    ? '6px'
+                    : '8px',
+                  '--react-international-phone-flag-width': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                  '--react-international-phone-flag-height': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                }}
+                defaultCountry="ua"
+                hideDropdown={true}
+                value={phone}
+                onChange={phone => setPhone(phone)}
+              />
+              {!isValidPhone && (
+                <DivErrorMessage>
+                  Введіть свій номер телефону, будь ласка
+                </DivErrorMessage>
+              )}
+            </Label>
+            <Label>
+              Коментар
+              <StyledTextField
+                component="textarea"
+                name="text"
+                type="text"
+                placeholder="Введіть текст"
+              />
+              <StyledErrorMessage name="text" component="div" />
+            </Label>
+            <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
+              <div>Зв'язатись</div>
+            </Btn>
+          </StyledForm>
+        </Formik>
+        <PhoneFieldGlobalStyles />
+      </ReactModal>
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAgreeModal}
+      />
+    </>
   );
 };
