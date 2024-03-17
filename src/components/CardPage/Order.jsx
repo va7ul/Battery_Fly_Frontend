@@ -1,7 +1,8 @@
 import toast, { Toaster } from 'react-hot-toast';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectOneProduct } from '../../redux/products/productsSelectors';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectOneProduct, selectOneProductPrice } from '../../redux/products/productsSelectors';
+import { setPrice } from '../../redux/products/oneProductSlice';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import {
   OrderBox,
@@ -13,17 +14,22 @@ import {
   OrderButton, } from "./Card.styled";
 
 export const Order = () => {
-
+    const dispatch = useDispatch();
+    const oneProductPrice = useSelector(selectOneProductPrice);
     const [quantityOrdered, setQuantityOrdered] = useState(1);
     const { quantity, price } = useSelector(selectOneProduct);
-    
 
+    useEffect(() => {
+        dispatch(setPrice(quantityOrdered * oneProductPrice));
+    },[quantityOrdered])
+    
     const plusOne = () => {
         if (quantityOrdered < quantity) {
+            
             setQuantityOrdered(state => Number(state) + 1);
             
         } else if (quantityOrdered >= quantity) {
-               toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
+            toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
             })
