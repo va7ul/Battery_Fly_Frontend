@@ -146,69 +146,6 @@ export const PriceOld = styled.span`
   }
 `;
 
-export const CounterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-
-  @media screen and (min-width: 1280px) {
-    gap: 5px;
-  }
-`;
-
-export const CounterBtn = styled.button`
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-
-  ${gradientTransitionBtn}
-
-  &::after {
-    border-radius: 50%;
-  }
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 40px;
-    height: 40px;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  svg {
-    width: 60%;
-    height: 60%;
-  }
-`;
-
-export const CounterInput = styled.input`
-  width: 40%;
-  height: 25px;
-  border: transparent;
-  border-radius: 20px;
-  text-align: center;
-  font-size: 12px;
-  background: ${props => props.theme.colors.background};
-  outline-style: none;
-  outline-color: ${props => props.theme.colors.backgroundPaper};
-
-  @media screen and (min-width: 1280px) {
-    height: 40px;
-    font-size: 20px;
-  }
-`;
-
 export const ChooseBtn = styled.button`
   ${btnStyle}
 `;
