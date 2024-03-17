@@ -11,5 +11,6 @@ export const getNewPrice = (salePrice, price, newPrice) => {
       newPrice = Math.ceil((price * salePrice) / 100 - price);
     }
   }
+
   return newPrice;
 };
