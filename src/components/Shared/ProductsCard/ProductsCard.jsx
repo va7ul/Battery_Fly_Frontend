@@ -23,20 +23,20 @@ import { getNewPrice } from 'utils/helpers/index';
 
 export const ProductsCard = ({ product }) => {
   const { codeOfGood, image, name, price, salePrice, capacity } = product;
-  let newPrice = price;
-  // const [quantityOrdered, setQuantityOrdered] = useState(1);
   const dispatch = useDispatch();
-  const basketItems = useSelector(selectItems);
+  // const [quantityOrdered, setQuantityOrdered] = useState(1);
+
+  let newPrice = price;
+  newPrice = getNewPrice(salePrice, price, newPrice);
 
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
   };
 
+  const basketItems = useSelector(selectItems);
   const isInBasket = basketItems.find(
     basketItem => basketItem.codeOfGood === codeOfGood
   );
-
-  newPrice = getNewPrice(salePrice, price, newPrice);
 
   // const plusOne = () => {
   //   setQuantityOrdered(state => state + 1);
