@@ -19,8 +19,7 @@ import {
 } from './ModalFeedback.styled';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
 import { useDispatch } from 'react-redux';
-import { addFeedback } from 'redux/feedback/feedbackOperations';
-
+import { addFeedback } from '../../../redux/feedback/feedbackOperations'
 const customStyles = {
   overlay: {
     zIndex: '1',
@@ -44,9 +43,6 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-const onAdd = obj => {
-  console.log('obj', obj);
-};
 
 export const ModalFeedback = ({
   isModalFeedbackOpen,
@@ -71,7 +67,6 @@ export const ModalFeedback = ({
   return (
     <>
       <ReactModal
-        onAdd={onAdd}
         isOpen={isModalFeedbackOpen}
         onRequestClose={handleCloseFeedbackModal}
         style={customStyles}
