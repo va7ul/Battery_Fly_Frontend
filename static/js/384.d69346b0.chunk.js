@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[384],{7384:(e,r,t)=>{t.r(r),t.d(r,{default:()=>n});var f=t(579);const n=()=>(0,f.jsx)("div",{children:"UserProfilePage"})}}]);
+//# sourceMappingURL=384.d69346b0.chunk.js.map

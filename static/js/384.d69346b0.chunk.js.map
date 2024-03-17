@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/384.d69346b0.chunk.js","mappings":"sKAAA,MAIA,EAJwBA,KACfC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,mB","sources":["pages/UserProfilePage.jsx"],"sourcesContent":["const UserProfilePage = () => {\n  return <div>UserProfilePage</div>;\n};\n\nexport default UserProfilePage;\n"],"names":["UserProfilePage","_jsx","children"],"sourceRoot":""}
