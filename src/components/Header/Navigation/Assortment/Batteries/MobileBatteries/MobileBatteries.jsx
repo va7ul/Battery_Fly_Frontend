@@ -1,4 +1,3 @@
-import { Drawer } from '@mui/material';
 import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../../NavItem/NavItem.styled';
@@ -10,6 +9,7 @@ import {
 } from '../../MobileAssortment/MobileAssortment.styled';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
+import { MobileDrawer } from 'components/Shared/MobileDrawer';
 
 export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
   const [openThirdDrawer, setOpenThirdDrawer] = useState(false);
@@ -23,8 +23,10 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
     }
   };
 
-  const toggleThirdDrawer = newOpen => () => {
-    setOpenThirdDrawer(newOpen);
+  const closeThirdDrawer = () => {
+    if (openThirdDrawer) {
+      setOpenThirdDrawer(false);
+    }
   };
 
   return (
@@ -39,21 +41,14 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
           <use href={`${sprite}#arrow-left`}></use>
         </svg>
       </ArrowButton>
-      <Drawer
-        onClick={e => e.stopPropagation()}
-        open={openThirdDrawer}
-        onClose={toggleThirdDrawer(false)}
-        sx={{
-          '& .MuiDrawer-paper': {
-            bgcolor: 'background.default',
-            width: '360px',
-            pl: '20px',
-            pr: '20px',
-          },
-        }}
+
+      <MobileDrawer
+        isOpen={openThirdDrawer}
+        closeDrawer={closeThirdDrawer}
+        anchor="left"
       >
         <Wrap>
-          <BackButton type="button" onClick={toggleThirdDrawer(false)}>
+          <BackButton type="button" onClick={closeThirdDrawer}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
@@ -64,7 +59,7 @@ export const MobileBatteries = ({ setIsOpen, isOpen, setOpenSubDrawer }) => {
           handleClick={handleClick}
           openThirdDrawer={openThirdDrawer}
         />
-      </Drawer>
+      </MobileDrawer>
     </>
   );
 };

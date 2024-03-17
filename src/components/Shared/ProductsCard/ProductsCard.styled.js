@@ -209,10 +209,6 @@ export const CounterInput = styled.input`
   }
 `;
 
-export const AddToBasketBtn = styled.button`
-  ${btnStyle}
-`;
-
-export const GoToBasketBtn = styled.button`
+export const ChooseBtn = styled.button`
   ${btnStyle}
 `;

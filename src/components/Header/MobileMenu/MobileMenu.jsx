@@ -7,42 +7,37 @@ import {
   ArrowButton,
 } from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
-import Drawer from '@mui/material/Drawer';
 import { Logo } from '../Logo/Logo';
 import { MobileToolBar } from '../MobileToolBar/MobileToolBar';
 import sprite from '../../../assets/images/sprite.svg';
+import { MobileDrawer } from 'components/Shared/MobileDrawer';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDrawer = newOpen => () => {
-    setIsOpen(newOpen);
+  const openDrawer = () => {
+    setIsOpen(true);
+  };
+
+  const closeDrawer = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
   };
 
   return (
     <div>
       <HeaderWrap>
-        <BurgerButton onClick={toggleDrawer(true)}>
+        <BurgerButton onClick={openDrawer}>
           <MenuIcon />
         </BurgerButton>
         <Logo />
         <MobileToolBar />
       </HeaderWrap>
 
-      <Drawer
-        open={isOpen}
-        onClose={toggleDrawer(false)}
-        sx={{
-          '& .MuiDrawer-paper': {
-            bgcolor: 'background.default',
-            width: '360px',
-            pl: '20px',
-            pr: '20px',
-          },
-        }}
-      >
+      <MobileDrawer isOpen={isOpen} closeDrawer={closeDrawer} anchor="left">
         <MenuWrap>
-          <ArrowButton type="button" onClick={toggleDrawer(false)}>
+          <ArrowButton type="button" onClick={closeDrawer}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
@@ -50,7 +45,7 @@ export const MobileMenu = () => {
           <Logo setIsOpen={setIsOpen} isOpen={isOpen} />
         </MenuWrap>
         <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />
-      </Drawer>
+      </MobileDrawer>
     </div>
   );
 };

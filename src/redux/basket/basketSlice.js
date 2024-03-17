@@ -13,18 +13,28 @@ const basketSlice = createSlice({
   reducers: {
     addItem(state, action) {
       state.items.push(action.payload);
-      state.total += action.payload.price * action.payload.quantity;
+      state.total += action.payload.totalPrice;
     },
     deleteItem(state, action) {
-      state.total -= action.payload.price * action.payload.quantity;
+      if (state.items.length === 1) {
+        state.total = initialState.total;
+      } else {
+        state.total -= action.payload.totalPrice;
+      }
       state.items = state.items.filter(
-        item => item.codeOfGood !== action.payload.codeOfGood
+        item =>
+          item.codeOfGood !== action.payload.codeOfGood &&
+          item.capacityKey !== action.payload.capacityKey
       );
     },
     increaseQuantity(state, action) {
       for (const item of state.items) {
-        if (item.codeOfGood === action.payload.codeOfGood) {
-          item.quantity += 1;
+        if (
+          item.codeOfGood === action.payload.codeOfGood &&
+          item.capacityKey === action.payload.capacityKey
+        ) {
+          item.quantityOrdered += 1;
+          item.totalPrice += item.price;
           state.total += item.price;
           break;
         }
@@ -32,10 +42,14 @@ const basketSlice = createSlice({
     },
     decreaseQuantity(state, action) {
       for (const item of state.items) {
-        if (item.codeOfGood === action.payload.codeOfGood) {
-          if (item.quantity > 1) {
-            item.quantity -= 1;
-            state.total -= item.price;
+        if (
+          item.codeOfGood === action.payload.codeOfGood &&
+          item.capacityKey === action.payload.capacityKey
+        ) {
+          if (item.quantityOrdered > 1) {
+            item.quantityOrdered -= 1;
+            item.totalPrice += item.price;
+            state.total += item.price;
             break;
           }
           break;
@@ -44,12 +58,13 @@ const basketSlice = createSlice({
     },
     changeQuantity(state, action) {
       for (const item of state.items) {
-        if (item.codeOfGood === action.payload.codeOfGood) {
+        if (
+          item.codeOfGood === action.payload.codeOfGood &&
+          item.capacityKey === action.payload.capacityKey
+        ) {
           state.total =
-            state.total -
-            item.price * item.quantity +
-            item.price * action.payload.quantity;
-          item.quantity = action.payload.quantity;
+            state.total - item.totalPrice + action.payload.totalPrice;
+          item.quantityOrdered = action.payload.quantityOrdered;
           break;
         }
       }
