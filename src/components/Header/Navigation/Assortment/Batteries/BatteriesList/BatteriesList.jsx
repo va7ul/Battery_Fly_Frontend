@@ -1,8 +1,12 @@
+import { useSelector } from 'react-redux';
 import { ListItem } from './ListItem/ListItem';
+import { selectThirdMenu } from '../../../../../../redux/menu/menuSelectors';
 
-export const BatteriesList = ({ handleClick, openThirdDrawer }) => {
+export const BatteriesList = ({ handleClick }) => {
+  const isThirdMenuOpen = useSelector(selectThirdMenu);
+
   const closeSubDrawer = newOpen => {
-    if (openThirdDrawer) {
+    if (isThirdMenuOpen) {
       return handleClick(newOpen);
     }
   };

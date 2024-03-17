@@ -1,14 +1,14 @@
 import sprite from '../../../../assets/images/sprite.svg';
 import { Wrapper, CartIcon, Text, Button } from './EmptyCart.styled';
 
-export const EmptyCart = () => {
+export const EmptyCart = ({ closeCartDrawer }) => {
   return (
     <Wrapper>
       <CartIcon>
         <use href={`${sprite}#icon-cart`}></use>
       </CartIcon>
       <Text>Додайте товари до кошика</Text>
-      <Button type="button">
+      <Button type="button" onClick={closeCartDrawer}>
         <div>Продовжити покупки</div>
       </Button>
     </Wrapper>

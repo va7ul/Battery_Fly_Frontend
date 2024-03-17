@@ -38,7 +38,7 @@ export const Button = styled.button`
   border-radius: 6px;
   font-size: 13px;
   font-weight: 400;
-
+  box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
   background: ${props => props.theme.colors.gradient};
 
   position: relative;

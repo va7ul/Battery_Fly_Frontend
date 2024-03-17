@@ -2,24 +2,24 @@ import { useDispatch } from 'react-redux';
 import {
   Item,
   Image,
-  Name,
+  GoodName,
   QuantityWrap,
   Button,
   Input,
   Price,
-  CloseBtn,
+  DeleteBtn,
 } from './CartItem.styled';
 import { FaMinus, FaPlus, FaXmark } from 'react-icons/fa6';
+// import { FaTrash } from 'react-icons/fa6';
 import {
   deleteItem,
   increaseQuantity,
   decreaseQuantity,
   changeQuantity,
 } from '../../../../../redux/basket/basketSlice';
-// import { useState } from 'react';
 
 export const CartItem = ({
-  item: { codeOfGood, image, name, quantity, price },
+  item: { codeOfGood, image, name, quantity, price, totalPrice },
 }) => {
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ export const CartItem = ({
   return (
     <Item>
       <Image src={image} alt={name} />
-      <Name>{name}</Name>
+      <GoodName>{name}</GoodName>
       <QuantityWrap>
         <Button
           type="button"
@@ -51,12 +51,12 @@ export const CartItem = ({
         </Button>
       </QuantityWrap>
       <Price>{price}</Price>
-      <CloseBtn
+      <DeleteBtn
         type="button"
-        onClick={() => dispatch(deleteItem({ codeOfGood }))}
+        onClick={() => dispatch(deleteItem({ codeOfGood, totalPrice }))}
       >
         <FaXmark />
-      </CloseBtn>
+      </DeleteBtn>
     </Item>
   );
 };

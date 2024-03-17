@@ -6,25 +6,35 @@ import {
   TitleText,
 } from './MobileAssortment.styled';
 import { StyledLink } from '../../NavItem/NavItem.styled';
-import { useState } from 'react';
 import { AssortmentList } from '../AssortmentList/AssortmentList';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 import { MobileDrawer } from 'components/Shared/MobileDrawer';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectMenu,
+  selectSubMenu,
+} from '../../../../../redux/menu/menuSelectors';
+import {
+  setMenuOpen,
+  setSubMenuOpen,
+} from '../../../../../redux/menu/menuSlice';
 
-export const MobileAssortment = ({ setIsOpen, isOpen }) => {
-  const [openSubDrawer, setOpenSubDrawer] = useState(false);
+export const MobileAssortment = () => {
+  const dispatch = useDispatch();
+  const isMenuOpen = useSelector(selectMenu);
+  const isSubMenuOpen = useSelector(selectSubMenu);
 
-  const handleClick = newOpen => e => {
-    if (isOpen) {
-      setOpenSubDrawer(newOpen);
-      setIsOpen(newOpen);
+  const closeBoth = newOpen => e => {
+    if (isMenuOpen) {
+      dispatch(setSubMenuOpen(newOpen));
+      dispatch(setMenuOpen(newOpen));
       e.stopPropagation();
     }
   };
 
-  const closeSubDrawer = () => {
-    if (openSubDrawer) {
-      setOpenSubDrawer(false);
+  const closeSubMenu = () => {
+    if (isSubMenuOpen) {
+      dispatch(setSubMenuOpen(false));
     }
   };
 
@@ -35,32 +45,26 @@ export const MobileAssortment = ({ setIsOpen, isOpen }) => {
         <div>Асортимент</div>
       </StyledLink>
 
-      <ArrowButton type="button" onClick={handleClick(true)}>
+      <ArrowButton type="button" onClick={closeBoth(true)}>
         <svg>
           <use href={`${sprite}#arrow-left`}></use>
         </svg>
       </ArrowButton>
 
       <MobileDrawer
-        isOpen={openSubDrawer}
-        closeDrawer={closeSubDrawer}
+        isOpen={isSubMenuOpen}
+        closeDrawer={closeSubMenu}
         anchor="left"
       >
         <Wrap>
-          <BackButton type="button" onClick={closeSubDrawer}>
+          <BackButton type="button" onClick={closeSubMenu}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
           </BackButton>
           <TitleText>Асортимент</TitleText>
         </Wrap>
-        <AssortmentList
-          handleClick={handleClick}
-          openSubDrawer={openSubDrawer}
-          setOpenSubDrawer={setOpenSubDrawer}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-        />
+        <AssortmentList />
       </MobileDrawer>
     </>
   );

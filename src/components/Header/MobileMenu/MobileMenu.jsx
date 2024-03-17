@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   BurgerButton,
@@ -11,40 +10,44 @@ import { Logo } from '../Logo/Logo';
 import { MobileToolBar } from '../MobileToolBar/MobileToolBar';
 import sprite from '../../../assets/images/sprite.svg';
 import { MobileDrawer } from 'components/Shared/MobileDrawer';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMenu } from '../../../redux/menu/menuSelectors';
+import { setMenuOpen } from '../../../redux/menu/menuSlice';
 
 export const MobileMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const isMenuOpen = useSelector(selectMenu);
+  const dispatch = useDispatch();
 
-  const openDrawer = () => {
-    setIsOpen(true);
+  const openMenu = () => {
+    dispatch(setMenuOpen(true));
   };
 
-  const closeDrawer = () => {
-    if (isOpen) {
-      setIsOpen(false);
+  const closeMenu = () => {
+    if (isMenuOpen) {
+      dispatch(setMenuOpen(false));
     }
   };
 
   return (
     <div>
       <HeaderWrap>
-        <BurgerButton onClick={openDrawer}>
+        <BurgerButton onClick={openMenu}>
           <MenuIcon />
         </BurgerButton>
         <Logo />
         <MobileToolBar />
       </HeaderWrap>
 
-      <MobileDrawer isOpen={isOpen} closeDrawer={closeDrawer} anchor="left">
+      <MobileDrawer isOpen={isMenuOpen} closeDrawer={closeMenu} anchor="left">
         <MenuWrap>
-          <ArrowButton type="button" onClick={closeDrawer}>
+          <ArrowButton type="button" onClick={closeMenu}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
           </ArrowButton>
-          <Logo setIsOpen={setIsOpen} isOpen={isOpen} />
+          <Logo />
         </MenuWrap>
-        <Navigation setIsOpen={setIsOpen} isOpen={isOpen} />
+        <Navigation />
       </MobileDrawer>
     </div>
   );
