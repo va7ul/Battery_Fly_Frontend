@@ -19,9 +19,11 @@ import {
   // GoToBasketBtn,
 } from './ProductsCard.styled';
 import { selectItems } from '../../../redux/basket/basketSelectors';
+import { getNewPrice } from 'utils/helpers/index';
 
 export const ProductsCard = ({ product }) => {
-  const { codeOfGood, image, name, price, capacity } = product;
+  const { codeOfGood, image, name, price, salePrice, capacity } = product;
+  let newPrice = price;
   // const [quantityOrdered, setQuantityOrdered] = useState(1);
   const dispatch = useDispatch();
   const basketItems = useSelector(selectItems);
@@ -33,6 +35,8 @@ export const ProductsCard = ({ product }) => {
   const isInBasket = basketItems.find(
     basketItem => basketItem.codeOfGood === codeOfGood
   );
+
+  newPrice = getNewPrice(salePrice, price, newPrice);
 
   // const plusOne = () => {
   //   setQuantityOrdered(state => state + 1);
@@ -82,8 +86,8 @@ export const ProductsCard = ({ product }) => {
           <CardTitle>{name}</CardTitle>
         </a>
         <PriceContainer>
-          <PriceNew>{price} грн</PriceNew>
-          <PriceOld>18000 грн</PriceOld>
+          <PriceNew>{newPrice} грн</PriceNew>
+          <PriceOld>{price} грн</PriceOld>
         </PriceContainer>
         {/* <CounterWrapper>
           <CounterBtn onClick={minusOne}>
