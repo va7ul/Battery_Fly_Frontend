@@ -182,7 +182,7 @@ export const PriceBox = styled.div`
   }
 `;
 
-export const Price = styled.p`
+export const NewPrice = styled.p`
   font-size: 15px;
   font-weight: 600;
 
@@ -191,7 +191,7 @@ export const Price = styled.p`
   }
 `;
 
-export const SalePrice = styled.p`
+export const Price = styled.p`
   text-decoration-line: line-through;
   font-size: 10px;
   color: rgba(157, 157, 157, 1);
