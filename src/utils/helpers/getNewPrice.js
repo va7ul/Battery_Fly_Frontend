@@ -1,13 +1,10 @@
-export const getNewPrice = (discount, price, newPrice) => {
+export const getNewPrice = (discount, price) => {
   if (typeof price === 'string') {
-    const result = price.split('-');
-    const minPrice = Number(result[0]);
-    const maxPrice = Number(result[1]);
+    const [minPrice, maxPrice] = price.split('-').map(Number);
     const minNewPrice = Math.ceil(minPrice - (minPrice * discount) / 100);
     const maxNewPrice = Math.ceil(maxPrice - (maxPrice * discount) / 100);
-    newPrice = `${minNewPrice} - ${maxNewPrice}`;
+    return `${minNewPrice} - ${maxNewPrice}`;
   } else {
-    newPrice = Math.ceil(price - (price * discount) / 100);
+    return Math.ceil(price - (price * discount) / 100);
   }
-  return newPrice;
 };
