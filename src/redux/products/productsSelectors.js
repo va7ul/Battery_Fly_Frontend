@@ -6,6 +6,10 @@ export const selectOneProduct = state => state.products.oneProduct.result;
 export const selectOneProductPrice = state =>
   state.products.oneProduct.result.priceOneProduct;
 export const selectProducts = state => state.products.productsList.allProducts;
+export const selectSelectedHolder = state =>
+  state.products.oneProduct.selectedHolder;
+export const selectSelectedSealing = state =>
+  state.products.oneProduct.selectedSealing;
 
 export const selectPopularProducts = createSelector(
   [selectProducts],
