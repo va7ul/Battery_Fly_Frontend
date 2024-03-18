@@ -10,8 +10,11 @@ const initialState = {
     price: '',
     priceOneProduct: '',
     image: [],
-    // holder: '',
   },
+  selectedHolder: false,
+  selectedSealing: false,
+  holderPrice: 0,
+  sealingPrice: 100,
   isLoading: false,
   error: null,
 };
@@ -28,6 +31,13 @@ const oneProductSlice = createSlice({
     },
     setPriceOneProduct(state, action) {
       state.result.priceOneProduct = action.payload;
+    },
+    setSelectedHolder(state, action) {
+      console.log(action.payload);
+      state.selectedHolder = action.payload;
+    },
+    setSelectedSealing(state, action) {
+      state.selectedSealing = action.payload;
     },
   },
   extraReducers: builder =>
@@ -47,6 +57,11 @@ const oneProductSlice = createSlice({
       }),
 });
 
-export const { setPrice, setCapacityKey, setPriceOneProduct } =
-  oneProductSlice.actions;
+export const {
+  setPrice,
+  setCapacityKey,
+  setPriceOneProduct,
+  setSelectedHolder,
+  setSelectedSealing,
+} = oneProductSlice.actions;
 export const oneProductReducer = oneProductSlice.reducer;
