@@ -17,15 +17,17 @@ export const Order = () => {
     const dispatch = useDispatch();
     const oneProductPrice = useSelector(selectOneProductPrice);
     const [quantityOrdered, setQuantityOrdered] = useState(1);
-    const { quantity, price } = useSelector(selectOneProduct);
+    const { quantity } = useSelector(selectOneProduct);
 
     useEffect(() => {
+        if (typeof oneProductPrice === "string") {
+            return
+        }
         dispatch(setPrice(quantityOrdered * oneProductPrice));
-    },[quantityOrdered])
+    },[quantityOrdered, oneProductPrice])
     
     const plusOne = () => {
-        if (quantityOrdered < quantity) {
-            
+        if (quantityOrdered < quantity) {     
             setQuantityOrdered(state => Number(state) + 1);
             
         } else if (quantityOrdered >= quantity) {
