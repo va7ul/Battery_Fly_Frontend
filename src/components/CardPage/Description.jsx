@@ -5,8 +5,10 @@ import {
   DescBox,
   TextBox,
   Text,
+  PriceContainer,
   PriceBox,
   Price,
+  SalePrice,
   LikeBox,
   Like,
   Desc,
@@ -17,8 +19,8 @@ import {
   } from "./Card.styled";
 
 export const Description = () => {
-    const { codeOfGood, description, price, quantity } = useSelector(selectOneProduct);
-
+    const { codeOfGood, description, price, sale, discount, quantity } = useSelector(selectOneProduct);
+    const salePrice = price - (price * discount / 100);
     const newDescription = description.split(';');
     
     return (
@@ -31,8 +33,11 @@ export const Description = () => {
                 )}
                 <Text>Код товару: {codeOfGood}</Text>
             </TextBox>
-            <PriceBox>
-                <Price>{price} грн</Price>
+            <PriceContainer>
+                <PriceBox>
+                    <Price>{price} грн</Price>
+                    {sale ? <SalePrice>{salePrice} грн</SalePrice> : undefined}
+                </PriceBox>
                 <LikeBox>
                     <IconHeart />
                     <Like>Додати до списку бажань</Like>
@@ -43,7 +48,7 @@ export const Description = () => {
                         <use href={`${sprite}#icon-Spiral_2`}></use>
                     </IconSpiral>
                 </LikeBox>
-            </PriceBox>
+            </PriceContainer>
             <Desc>{newDescription.map(i => <Item key={i}>{i}</Item>)}</Desc>
         </DescBox>
     );

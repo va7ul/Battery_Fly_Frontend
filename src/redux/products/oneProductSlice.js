@@ -8,6 +8,7 @@ const initialState = {
     capacityKey: '',
     information: '',
     price: '',
+    priceOneProduct: '',
     image: [],
     // holder: '',
   },
@@ -25,6 +26,9 @@ const oneProductSlice = createSlice({
     setCapacityKey(state, action) {
       state.result.capacityKey = action.payload;
     },
+    setPriceOneProduct(state, action) {
+      state.result.priceOneProduct = action.payload;
+    },
   },
   extraReducers: builder =>
     builder
@@ -35,6 +39,7 @@ const oneProductSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.result = action.payload.result;
+        state.result.priceOneProduct = action.payload.result.price;
       })
       .addCase(getOneProduct.rejected, (state, action) => {
         state.isLoading = false;
@@ -42,5 +47,6 @@ const oneProductSlice = createSlice({
       }),
 });
 
-export const { setPrice, setCapacityKey } = oneProductSlice.actions;
+export const { setPrice, setCapacityKey, setPriceOneProduct } =
+  oneProductSlice.actions;
 export const oneProductReducer = oneProductSlice.reducer;

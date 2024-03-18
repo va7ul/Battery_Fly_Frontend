@@ -33,7 +33,7 @@ export const Title = styled.h1`
   color: ${props => props.theme.colors.secondary};
 
   @media screen and (min-width: 1280px) {
-    font-size: 40px;
+    font-size: 36px;
     margin-bottom: 10px;
   }
 `;
@@ -161,15 +161,24 @@ export const Text = styled.p`
   }
 `;
 
-export const PriceBox = styled.div`
+export const PriceContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   @media screen and (min-width: 1280px) {
     flex-direction: column-reverse;
     align-items: flex-start;
     gap: 10px;
+  }
+`;
+
+export const PriceBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 1280px) {
+    align-items: flex-start;
   }
 `;
 
@@ -179,6 +188,16 @@ export const Price = styled.p`
 
   @media screen and (min-width: 1280px) {
     font-size: 32px;
+  }
+`;
+
+export const SalePrice = styled.p`
+  text-decoration-line: line-through;
+  font-size: 10px;
+  color: rgba(157, 157, 157, 1);
+
+  @media screen and (min-width: 1280px) {
+    font-size: 22px;
   }
 `;
 
