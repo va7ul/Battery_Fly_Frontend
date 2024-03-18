@@ -1,22 +1,14 @@
 export const getCategoryName = category => {
-  switch (category) {
-    case 'Акції':
-      return 'sale';
-    case 'Акумулятори':
-      return 'battery';
-    case 'Готові батареї':
-      return 'assembly';
-    case 'Батареї для FPV-дронів':
-      return 'fpv';
-    case 'Батареї для електротранпорту':
-      return 'transport';
-    case 'Батареї для іграшок':
-      return 'toys';
-    case 'Прилади':
-      return 'devices';
-    case 'Розхідні матеріали':
-      return 'materials';
-    default:
-      break;
-  }
+  const categoryNames = {
+    Акції: 'sale',
+    Акумулятори: 'battery',
+    'Готові батареї': 'assembly',
+    'Батареї для FPV-дронів': 'fpv',
+    'Батареї для електротранпорту': 'transport',
+    'Батареї для іграшок': 'toys',
+    Прилади: 'devices',
+    'Розхідні матеріали': 'materials',
+  };
+
+  return categoryNames[category] || null;
 };

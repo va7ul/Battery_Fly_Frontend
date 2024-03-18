@@ -16,22 +16,20 @@ import { selectItems } from '../../../redux/basket/basketSelectors';
 import { getNewPrice } from 'utils/helpers/index';
 
 export const ProductsCard = ({ product }) => {
-  const { codeOfGood, image, name, price, discount, sale, capacity } = product;
   const dispatch = useDispatch();
 
-  let newPrice = price;
-  if (sale) {
-    newPrice = getNewPrice(discount, price, newPrice);
-  }
+  const { codeOfGood, image, name, price, discount, sale, capacity } = product;
 
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
   };
 
   const basketItems = useSelector(selectItems);
-  const isInBasket = basketItems.find(
+  const isInBasket = basketItems.some(
     basketItem => basketItem.codeOfGood === codeOfGood
   );
+
+  const newPrice = sale ? getNewPrice(discount, price) : price;
 
   const addToBasket = e => {
     dispatch(
@@ -58,7 +56,7 @@ export const ProductsCard = ({ product }) => {
         <a href={`assortment/${codeOfGood}`}>
           <StyledImage
             loading="lazy"
-            src={image[0]}
+            src={image[0] || noImage}
             alt={name}
             onError={addDefaultImg}
           />

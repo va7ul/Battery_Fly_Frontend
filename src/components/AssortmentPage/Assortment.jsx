@@ -4,18 +4,18 @@ import { StyledPageTitle } from './Assortment.styled';
 import { useEffect } from 'react';
 import { getAssortment } from '../../redux/products/productsOperations';
 
-export const Assortment = () => {
-  const categories = [
-    'Акції',
-    'Акумулятори',
-    'Готові батареї',
-    'Батареї для FPV-дронів',
-    'Батареї для електротранпорту',
-    'Батареї для іграшок',
-    'Прилади',
-    'Розхідні матеріали',
-  ];
+const categories = [
+  'Акції',
+  'Акумулятори',
+  'Готові батареї',
+  'Батареї для FPV-дронів',
+  'Батареї для електротранпорту',
+  'Батареї для іграшок',
+  'Прилади',
+  'Розхідні матеріали',
+];
 
+export const Assortment = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {

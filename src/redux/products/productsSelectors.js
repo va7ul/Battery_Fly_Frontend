@@ -9,9 +9,5 @@ export const selectProducts = state => state.products.productsList.allProducts;
 
 export const selectPopularProducts = createSelector(
   [selectProducts],
-  allProducts => {
-    return allProducts.filter(({ popular }) => {
-      return popular === true;
-    });
-  }
+  allProducts => allProducts.filter(({ popular }) => popular === true)
 );
