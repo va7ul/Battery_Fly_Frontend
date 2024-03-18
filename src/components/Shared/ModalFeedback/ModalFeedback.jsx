@@ -18,8 +18,10 @@ import {
   Text,
 } from './ModalFeedback.styled';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addFeedback } from '../../../redux/feedback/feedbackOperations'
+import { selectUserFeedback } from '../../../redux/feedback/feedbackSelectors';
+
 const customStyles = {
   overlay: {
     zIndex: '1',
@@ -48,8 +50,9 @@ export const ModalFeedback = ({
   isModalFeedbackOpen,
   handleCloseFeedbackModal,
 }) => {
+  const user = useSelector(selectUserFeedback);
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState(user.phone ?? '');
   const isValidPhone = isPhoneValid(phone);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
@@ -64,6 +67,7 @@ export const ModalFeedback = ({
   };
   const dispatch = useDispatch();
 
+
   return (
     <>
       <ReactModal
@@ -74,7 +78,7 @@ export const ModalFeedback = ({
         <Text>Залиште свої дані, ми вам передзвонимо</Text>
         <Formik
           initialValues={{
-            name: '',
+            name: user.name,
             text: '',
           }}
           validationSchema={schema}

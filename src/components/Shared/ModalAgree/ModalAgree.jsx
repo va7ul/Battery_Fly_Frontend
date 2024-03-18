@@ -1,5 +1,10 @@
 import ReactModal from 'react-modal';
-import { Btn, Text, Wrapper } from './ModalAgree.styled';
+import { Box, Btn, ErrorText, Text, TextWrapper } from './ModalAgree.styled';
+import { useSelector } from 'react-redux';
+import {
+  selectIsError,
+  selectIsLoading,
+} from '../../../redux/feedback/feedbackSelectors';
 
 const customStyles = {
   overlay: {
@@ -24,15 +29,33 @@ const customStyles = {
 ReactModal.setAppElement('#modal-root');
 
 export const ModalAgree = ({ isModalAgreeOpen, handleCloseAgreeModal }) => {
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
   return (
     <ReactModal isOpen={isModalAgreeOpen} style={customStyles}>
-      <Wrapper>
-        <Text>Ваш запит успішно прийнято.</Text>
-        <Text>Очікуйте на дзвінок від менеджера.</Text>
-      </Wrapper>
-      <Btn type="button" onClick={handleCloseAgreeModal}>
-        <div>Гаразд</div>
-      </Btn>
+      <Box>
+        {isLoading ? (
+            <Text> Loading </Text>
+        ) : (
+          <>
+            <TextWrapper>
+              {isError ? (
+                <ErrorText>
+                  Вибачте, сталася помилка!
+                </ErrorText>
+              ) : (
+                <>
+                  <Text>Ваш запит успішно прийнято.</Text>
+                  <Text>Очікуйте на дзвінок від менеджера.</Text>
+                </>
+              )}
+            </TextWrapper>
+            <Btn type="button" onClick={handleCloseAgreeModal}>
+              <div>Гаразд</div>
+            </Btn>
+          </>
+        )}
+      </Box>
     </ReactModal>
   );
 };

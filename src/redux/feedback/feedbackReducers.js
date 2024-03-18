@@ -1,9 +1,11 @@
 export const handlePending = state => {
-    state.isLoading = true;
+  state.isLoading = true;
 };
 
 export const handleFeedbackFulfilled = (state, { payload }) => {
-  state.userFeedback = payload.user;
+  state.userFeedback.name = payload.name;
+  state.userFeedback.phone = payload.phone;
+  state.userFeedback.text = payload.text;
   state.isLoading = false;
   state.error = '';
 };

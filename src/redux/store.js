@@ -16,6 +16,7 @@ import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
 import { basketReducer } from './basket/basketSlice';
 import { menuReducer } from './menu/menuSlice';
+import { feedbackReducer } from './feedback/feedbackSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -41,6 +42,7 @@ export const store = configureStore({
     products: productsReducer,
     basket: persistReducer(basketPersistConfig, basketReducer),
     menu: menuReducer,
+    feedback: feedbackReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
