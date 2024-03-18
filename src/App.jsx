@@ -6,7 +6,7 @@ import { Layout } from './components/Layout/Layout';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 // import { refreshUser } from 'redux/auth/authOperations.js';
 
-const lazyLoadPage = importPath => lazy(() => import(`${importPath}`));
+const lazyLoadPage = importPath => lazy(() => import(`./src${importPath}`));
 
 const MainPage = lazyLoadPage('pages/MainPage.jsx');
 const AboutPage = lazyLoadPage('pages/AboutPage.jsx');
