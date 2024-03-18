@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
+import { getNewPrice } from '../../utils/helpers/getNewPrice';
 import sprite from '../../assets/images/sprite.svg';
 import {
   DescBox,
@@ -7,8 +8,8 @@ import {
   Text,
   PriceContainer,
   PriceBox,
+  NewPrice,
   Price,
-  SalePrice,
   LikeBox,
   Like,
   Desc,
@@ -20,8 +21,11 @@ import {
 
 export const Description = () => {
     const { codeOfGood, description, price, sale, discount, quantity } = useSelector(selectOneProduct);
-    const salePrice = price - (price * discount / 100);
+    
     const newDescription = description.split(';');
+
+  const newPrice = sale ? getNewPrice(discount, price) : price;
+
     
     return (
         <DescBox>
@@ -35,8 +39,8 @@ export const Description = () => {
             </TextBox>
             <PriceContainer>
                 <PriceBox>
-                    <Price>{price} грн</Price>
-                    {sale ? <SalePrice>{salePrice} грн</SalePrice> : undefined}
+                    <NewPrice>{newPrice} грн</NewPrice>
+                    {sale && <Price>{price} грн</Price>}
                 </PriceBox>
                 <LikeBox>
                     <IconHeart />
