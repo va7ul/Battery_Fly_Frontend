@@ -24,7 +24,7 @@ export const Order = () => {
             return
         }
         dispatch(setPrice(quantityOrdered * oneProductPrice));
-    },[quantityOrdered, oneProductPrice])
+    },[dispatch, quantityOrdered, oneProductPrice])
     
     const plusOne = () => {
         if (quantityOrdered < quantity) {     
