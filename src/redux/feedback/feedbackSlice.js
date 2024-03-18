@@ -4,7 +4,7 @@ import { handleFeedbackFulfilled, handlePending, handleRejected } from "./feedba
 
 
 const feedbackInitialState = {
-  userFeedback: { name: null, text: null, phone: null },
+  userFeedback: { name: null, text: null, phone: null},
   isLoading: false,
   error: null,
 };
