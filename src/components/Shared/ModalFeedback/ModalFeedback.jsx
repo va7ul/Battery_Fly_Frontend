@@ -78,7 +78,7 @@ export const ModalFeedback = ({
         <Text>Залиште свої дані, ми вам передзвонимо</Text>
         <Formik
           initialValues={{
-            name: user.name,
+            name: user.name ?? '',
             text: '',
           }}
           validationSchema={schema}
