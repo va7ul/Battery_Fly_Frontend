@@ -14,6 +14,7 @@ export const ArrowButton = styled.button`
   background-color: transparent;
   outline: none;
   border: none;
+  /* padding: 34px 0; */
 
   & svg {
     transform: rotate(270deg);
@@ -22,9 +23,8 @@ export const ArrowButton = styled.button`
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
     transition: stroke ${props => props.theme.transition.main};
-
-    &:hover {
-      stroke: ${props => props.theme.colors.secondary};
-    }
+  }
+  &:hover svg {
+    stroke: ${props => props.theme.colors.secondary};
   }
 `;
