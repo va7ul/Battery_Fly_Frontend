@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import noImage from '../../../assets/images/no-image-available.webp';
 import { addItem } from '../../../redux/basket/basketSlice';
+import { setCartOpen } from '../../../redux/menu/menuSlice';
 import {
   IconHeart,
   IconFullHeart,
@@ -31,29 +33,34 @@ export const ProductsCard = ({ product }) => {
 
   const newPrice = sale ? getNewPrice(discount, price) : price;
 
-  const addToBasket = e => {
+  const addToBasket = () => {
     dispatch(
       addItem({
         codeOfGood,
         image,
         name,
         capacityKey: '',
+        sealing: 0,
+        holders: 0,
         quantityOrdered: 1,
         price,
         totalPrice: price,
-        // sealing,
-        // holders,
-        // capacityKey,
       })
     );
   };
+
+  const goToBasket = () => {
+    dispatch(setCartOpen(true));
+  };
+
+  const goTo = () => {};
 
   return (
     <>
       <ContentWrapper>
         <IconHeart />
         <IconFullHeart />
-        <a href={`assortment/${codeOfGood}`}>
+        <Link to={`${codeOfGood}`}>
           <StyledImage
             loading="lazy"
             src={image[0] || noImage}
@@ -61,7 +68,7 @@ export const ProductsCard = ({ product }) => {
             onError={addDefaultImg}
           />
           <CardTitle>{name}</CardTitle>
-        </a>
+        </Link>
         <PriceContainer>
           <PriceNew>{newPrice} грн</PriceNew>
           {sale && <PriceOld>{price} грн</PriceOld>}
@@ -72,14 +79,16 @@ export const ProductsCard = ({ product }) => {
               <div>Додати у кошик</div>
             </ChooseBtn>
           ) : (
-            <ChooseBtn>
+            <ChooseBtn onClick={goToBasket}>
               <div>Перейти у кошик</div>
             </ChooseBtn>
           )
         ) : (
-          <ChooseBtn>
-            <div>Оберіть параметри</div>
-          </ChooseBtn>
+          <Link to={`${codeOfGood}`}>
+            <ChooseBtn onClick={goTo}>
+              <div>Оберіть параметри</div>
+            </ChooseBtn>
+          </Link>
         )}
       </ContentWrapper>
     </>
