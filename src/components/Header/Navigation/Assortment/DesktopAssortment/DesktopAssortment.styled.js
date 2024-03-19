@@ -21,5 +21,10 @@ export const ArrowButton = styled.button`
     height: 11px;
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
+    transition: stroke ${props => props.theme.transition.main};
+
+    &:hover {
+      stroke: ${props => props.theme.colors.secondary};
+    }
   }
 `;
