@@ -9,12 +9,7 @@ export const Item = styled.li`
 
   @media screen and (min-width: 1280px) {
     border: none;
-    margin-right: 30px;
     padding: 0;
-
-    &:nth-child(6) {
-      margin-right: 6px;
-    }
   }
 
   @media screen and (max-width: 1280px) {

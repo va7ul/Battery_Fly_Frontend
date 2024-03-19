@@ -1,5 +1,5 @@
-import { NavList, CartButton, StyledNavLink } from './Navigation.styled';
-import { Item } from './NavItem/NavItem.styled';
+import { NavList, CartButton } from './Navigation.styled';
+import { Item, StyledLink } from './NavItem/NavItem.styled';
 import { useMediaQuery } from 'react-responsive';
 import { NavItem } from './NavItem/NavItem';
 import { Assortment } from './Assortment/Assortment';
@@ -37,18 +37,24 @@ export const Navigation = () => {
         <NavItem page="/contacts" title="Контакти" />
         <Item>
           <CartButton type="button" onClick={openCart}>
-            {mobileVersion && <HopeIconMobile />}
-            <div>Кошик</div>
-            {!mobileVersion && <CartIcon />}
+            {mobileVersion ? (
+              <>
+                <HopeIconMobile /> <div>Кошик</div>
+              </>
+            ) : (
+              <CartIcon />
+            )}
           </CartButton>
           <CartModal />
         </Item>
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />
         ) : (
-          <StyledNavLink to="/favorites">
-            <FavoriteIcon />
-          </StyledNavLink>
+          <Item>
+            <StyledLink to="/favorites">
+              <FavoriteIcon />
+            </StyledLink>
+          </Item>
         )}
       </NavList>
     </nav>
