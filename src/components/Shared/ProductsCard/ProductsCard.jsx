@@ -60,7 +60,8 @@ export const ProductsCard = ({ product }) => {
       <ContentWrapper>
         <IconHeart />
         <IconFullHeart />
-        <Link to={`${codeOfGood}`}>
+        <Link to={`../assortment/${codeOfGood}`}>
+          {/* <Link to={`${codeOfGood}`}> */}
           <StyledImage
             loading="lazy"
             src={image[0] || noImage}
@@ -84,7 +85,7 @@ export const ProductsCard = ({ product }) => {
             </ChooseBtn>
           )
         ) : (
-          <Link to={`${codeOfGood}`}>
+          <Link to={`../assortment/${codeOfGood}`}>
             <ChooseBtn onClick={goTo}>
               <div>Оберіть параметри</div>
             </ChooseBtn>
