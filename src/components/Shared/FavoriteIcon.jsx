@@ -8,18 +8,25 @@ export const FavoriteIcon = () => {
       color="secondary"
       sx={{
         '& .MuiBadge-badge': {
-          fontSize: 7,
+          fontSize: {
+            mobile: 7,
+            desktop: 10,
+          },
           fontWeight: '400',
           color: 'background.default',
           height: {
             mobile: 12,
-            desktop: 15,
+            desktop: 18,
           },
           minWidth: {
             mobile: 12,
-            desktop: 15,
+            desktop: 18,
           },
           top: 5,
+          right: {
+            mobile: 0,
+            desktop: 2,
+          },
           p: 0,
         },
       }}
@@ -28,7 +35,10 @@ export const FavoriteIcon = () => {
         sx={{
           p: 0,
           color: 'background.paper',
-          width: '20px',
+          width: {
+            mobile: '20px',
+            desktop: '35px',
+          },
           ' &:hover': {
             color: 'secondary.main',
           },
