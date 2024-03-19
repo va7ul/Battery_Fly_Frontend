@@ -1,6 +1,15 @@
-import styled from 'styled-components';
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
+import styled from 'styled-components';
+
+const backgroundButton = props =>
+  props.disabled
+    ? props.theme.colors.greyBackgroundPaper
+    : props.theme.colors.gradient;
+
+const cursorButton = props => (props.disabled ? 'default' : 'pointer');
+const colorButton = props =>
+  props.disabled ? 'rgba(157, 157, 157, 1)' : 'black';
 
 // Card
 
@@ -372,9 +381,11 @@ export const Button = styled.button`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.gradient};
+  background: ${backgroundButton};
   position: relative;
   z-index: 0;
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
@@ -398,9 +409,11 @@ export const BasketButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.gradient};
+  background: ${backgroundButton};
   position: relative;
   z-index: 0;
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
@@ -425,9 +438,11 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.gradient};
+  background: ${backgroundButton};
   position: relative;
   z-index: 0;
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
