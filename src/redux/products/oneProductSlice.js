@@ -33,7 +33,6 @@ const oneProductSlice = createSlice({
       state.result.priceOneProduct = action.payload;
     },
     setSelectedHolder(state, action) {
-      console.log(action.payload);
       state.selectedHolder = action.payload;
     },
     setSelectedSealing(state, action) {

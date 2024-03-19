@@ -5,7 +5,6 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOneProduct, selectSelectedHolder, selectSelectedSealing,selectOneProductPrice } from '../../redux/products/productsSelectors';
 import { setPrice, setSelectedHolder, setSelectedSealing } from '../../redux/products/oneProductSlice';
-import { getNewPrice } from '../../utils/helpers/getNewPrice';
 import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
 import { Subtitle, Container } from './Card.styled';
@@ -40,44 +39,38 @@ const StyledCheckbox = styled(Checkbox)({
 });
 
 export const CheckBox = () => {
-  const dispatch = useDispatch();
-    const { price, capacity, capacityKey, holder, discount } = useSelector(selectOneProduct);
+    const dispatch = useDispatch();
+    const { price, capacity, capacityKey, holder } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice)
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
 
-    const newPrice = getNewPrice(discount, price)
-
     const handleSealing = (e) => {
-        console.log(e.target.checked)
-        if (e.target.checked) {
-            
+        if (e.target.checked) {   
             dispatch(setSelectedSealing(true))
             if (typeof price === 'number' && e.target.checked) {
                 dispatch(setPrice(price + 100));
-            } 
-            return
-        }
-                dispatch(setSelectedSealing(false))
-                if (typeof price === 'number' && !e.target.checked) {
-                    dispatch(setPrice(price - 100));
-                }
+            };
+            return;
+        };
+        dispatch(setSelectedSealing(false))
+        if (typeof price === 'number' && !e.target.checked) {
+            dispatch(setPrice(price - 100));
+        };
     };
 
     const handleHolder = (e) => {
-        console.log(e.target.checked)
-
         if (e.target.checked) {
             dispatch(setSelectedHolder(true))
             if (typeof price === 'number' && e.target.checked) {
                 dispatch(setPrice(price + (capacity[capacityKey].holder * 2)));
-            }
+            };
             return
-        }
+        };
         dispatch(setSelectedHolder(false))
         if (typeof price === 'number' && !e.target.checked) {
             dispatch(setPrice(price - (capacity[capacityKey].holder * 2)));
-        }
+        };
     };
 
     return (
@@ -88,25 +81,23 @@ export const CheckBox = () => {
                     value={selectedSealing}
                     checked={selectedSealing}
                     onChange={handleSealing}
-                    disabled={typeof oneProductPrice==="string"}
-
+                    disabled={typeof oneProductPrice === "string"}
                     sx={{
-                    color: yellow[800],
-                    '&.Mui-checked': {
                         color: yellow[800],
-                    },
+                        '&.Mui-checked': {
+                            color: yellow[800],
+                        },
                     }} />} label="Герметизація" />
-            {holder ? ( <FormControlLabel control={<StyledCheckbox
+                {holder ? (<FormControlLabel control={<StyledCheckbox
                     onChange={handleHolder}
                     checked={selectedHolder}
                     value={selectedHolder}
-                    disabled={typeof oneProductPrice==="string"}
-
+                    disabled={typeof oneProductPrice === "string"}
                     sx={{
-                    color: yellow[800],
-                    '&.Mui-checked': {
                         color: yellow[800],
-                    },
+                        '&.Mui-checked': {
+                            color: yellow[800],
+                        },
                     }} />} label="Використовувати холдери" />) : (undefined
                 )}
                
