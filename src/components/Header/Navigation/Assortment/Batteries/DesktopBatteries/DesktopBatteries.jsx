@@ -8,11 +8,10 @@ import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDeskt
 
 export const DesktopBatteries = () => {
   const [anchorEl, setAnchorEl] = useState();
+  const open = Boolean(anchorEl);
 
-  const handleClick = event => {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
@@ -25,7 +24,7 @@ export const DesktopBatteries = () => {
       <StyledLink to="/batteries">Акумулятори</StyledLink>
       <BatteryButton
         type="button"
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
+        aria-owns={open ? 'desktop-sub-menu' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
         onMouseOver={handleClick}
@@ -36,11 +35,13 @@ export const DesktopBatteries = () => {
       </BatteryButton>
 
       <Menu
-        id="simple-menu"
+        id="desktop-sub-menu"
         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
+        onClick={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
+        aria-expanded={open ? 'true' : undefined}
         sx={{
           '& .MuiMenu-paper': {
             bgcolor: 'background.default',
@@ -51,7 +52,7 @@ export const DesktopBatteries = () => {
           },
         }}
       >
-        <BatteriesList onClick={handleClose} />
+        <BatteriesList />
       </Menu>
     </>
   );
