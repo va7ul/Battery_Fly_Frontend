@@ -1,6 +1,5 @@
-
 import { Formik } from 'formik';
-import { schema } from '../../common/schemas/feedbackSchema';
+import { nameSchema } from '../../common/schemas/nameSchema';
 
 import {
   Btn,
@@ -55,7 +54,7 @@ export const ModalSignUpSignIn = ({
             name: '',
             surname: '',
           }}
-          validationSchema={schema}
+          validationSchema={nameSchema}
           onSubmit={(values, actions) => {
             actions.resetForm();
           }}

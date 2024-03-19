@@ -4,8 +4,8 @@ import { Formik } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
-import { schema } from '../../../common/schemas/feedbackSchema';
-import { isPhoneValid } from '../../../common/schemas/feedbackSchema';
+import { nameSchema } from '../../../common/schemas/nameSchema';
+import { isPhoneValid } from '../../../common/schemas/phoneSchema';
 import {
   Btn,
   DivErrorMessage,
@@ -19,7 +19,7 @@ import {
 } from './ModalFeedback.styled';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFeedback } from '../../../redux/feedback/feedbackOperations'
+import { addFeedback } from '../../../redux/feedback/feedbackOperations';
 import { selectUserFeedback } from '../../../redux/feedback/feedbackSelectors';
 
 const customStyles = {
@@ -45,7 +45,6 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-
 export const ModalFeedback = ({
   isModalFeedbackOpen,
   handleCloseFeedbackModal,
@@ -67,7 +66,6 @@ export const ModalFeedback = ({
   };
   const dispatch = useDispatch();
 
-
   return (
     <>
       <ReactModal
@@ -81,7 +79,7 @@ export const ModalFeedback = ({
             name: user.name ?? '',
             text: '',
           }}
-          validationSchema={schema}
+          validationSchema={nameSchema}
           onSubmit={(values, actions) => {
             dispatch(addFeedback({ ...values, phone }));
             actions.resetForm();
