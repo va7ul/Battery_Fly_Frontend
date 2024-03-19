@@ -1,63 +1,35 @@
 import styled from 'styled-components';
-import { Form, Field, ErrorMessage } from 'formik';
-// import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
-export const BtnWrapper = styled.div`
-display: flex;
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 
   @media (min-width: 1280px) {
-
   }
 `;
+export const BtnWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  padding-top: 36px;
+  margin-left: 110px;
+  margin-right: 110px;
 
+  @media (min-width: 1280px) {
+  }
+`;
 
 export const NavBtn = styled.button`
- 
+  font-size: 15px;
+  font-weight: 600;
+  background-color: transparent;
 
-  @media (min-width: 1280px) {
-
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.secondary};
   }
-`;
-
-export const StyledForm = styled(Form)`
-
 
   @media (min-width: 1280px) {
-  
-  }
-`;
-
-export const Label = styled.label`
-
-
-  @media (min-width: 1280px) {
-
-  }
-`;
-
-export const StyledField = styled(Field)`
-
-
-  
-  @media (min-width: 1280px) {
-
-  }
-`;
-
-
-export const StyledErrorMessage = styled(ErrorMessage)`
-
-
-  @media (min-width: 1280px) {
-
-  }
-`;
-
-
-export const Btn = styled.button`
-
-
-  @media (min-width: 1280px) {
-
   }
 `;

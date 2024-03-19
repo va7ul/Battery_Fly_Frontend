@@ -2,13 +2,13 @@ import * as Yup from 'yup';
 import { nameRegex, passwordRegex } from '../regex';
 
 export const signUpSchema = Yup.object().shape({
-  name: Yup.string()
+  firstName: Yup.string()
     .min(2, "Введіть своє ім'я, будь ласка")
     .max(20, "Введіть своє ім'я, будь ласка")
     .trim("Введіть своє ім'я, будь ласка")
     .matches(nameRegex, "Введіть своє ім'я, будь ласка")
     .required("Введіть своє ім'я, будь ласка"),
-  surname: Yup.string()
+  lastName: Yup.string()
     .min(2, 'Введіть своє прізвище, будь ласка')
     .max(30, 'Введіть своє прізвище, будь ласка')
     .trim('Введіть своє прізвище, будь ласка')

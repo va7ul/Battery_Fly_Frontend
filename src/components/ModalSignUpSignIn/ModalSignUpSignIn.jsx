@@ -1,15 +1,5 @@
-import { Formik } from 'formik';
-import { nameSchema } from '../../common/schemas/nameSchema';
-
-import {
-  Btn,
-  Label,
-  StyledErrorMessage,
-  StyledField,
-  StyledForm,
-} from './ModalSignUpSignIn.styled';
-
-import { BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
+import { SignUpForm } from 'components/SignUpForm/SignUpForm';
+import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 import ReactModal from 'react-modal';
 
 const customStyles = {
@@ -45,37 +35,13 @@ export const ModalSignUpSignIn = ({
         onRequestClose={handleCloseSignUpSighInModal}
         style={customStyles}
       >
-        <BtnWrapper>
-          <NavBtn type="button">Вхід</NavBtn>
-          <NavBtn type="button">Реєстрація</NavBtn>
-        </BtnWrapper>
-        <Formik
-          initialValues={{
-            name: '',
-            surname: '',
-          }}
-          validationSchema={nameSchema}
-          onSubmit={(values, actions) => {
-            actions.resetForm();
-          }}
-        >
-          <StyledForm>
-            <Label>
-              Ім'я
-              <StyledField name="name" type="text" />
-              <StyledErrorMessage name="name" component="div" />
-            </Label>
-
-            <Label>
-              Прізвище
-              <StyledField name="surname" type="text" />
-              <StyledErrorMessage name="surname" component="div" />
-            </Label>
-            <Btn type="submit">
-              <div>Зареєструватись</div>
-            </Btn>
-          </StyledForm>
-        </Formik>
+        <Box>
+          <BtnWrapper>
+            <NavBtn type="button">Вхід</NavBtn>
+            <NavBtn type="button">Реєстрація</NavBtn>
+          </BtnWrapper>
+          <SignUpForm />
+        </Box>
       </ReactModal>
     </>
   );
