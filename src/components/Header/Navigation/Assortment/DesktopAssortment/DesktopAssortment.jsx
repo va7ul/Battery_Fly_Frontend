@@ -7,11 +7,10 @@ import { AssortmentList } from '../AssortmentList/AssortmentList';
 
 export const DesktopAssortment = () => {
   const [anchorEl, setAnchorEl] = useState();
+  const open = Boolean(anchorEl);
 
-  const handleClick = event => {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
@@ -23,10 +22,10 @@ export const DesktopAssortment = () => {
       <StyledLink to="/assortment">Асортимент</StyledLink>
       <ArrowButton
         type="button"
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
-        aria-haspopup="true"
         onClick={handleClick}
-        onMouseOver={handleClick}
+        aria-owns={open ? 'desktop-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
       >
         <svg>
           <use href={`${sprite}#arrow-left`}></use>
@@ -34,11 +33,11 @@ export const DesktopAssortment = () => {
       </ArrowButton>
 
       <Menu
-        id="simple-menu"
+        id="desktop-menu"
         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
-        MenuListProps={{ onMouseLeave: handleClose }}
+        onClick={handleClose}
         sx={{
           '& .MuiMenu-paper': {
             bgcolor: 'background.default',
@@ -49,7 +48,7 @@ export const DesktopAssortment = () => {
           },
         }}
       >
-        <AssortmentList onClick={handleClose} />
+        <AssortmentList />
       </Menu>
     </Wrapper>
   );
