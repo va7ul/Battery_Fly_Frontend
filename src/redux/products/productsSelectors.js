@@ -10,6 +10,10 @@ export const selectSelectedHolder = state =>
   state.products.oneProduct.selectedHolder;
 export const selectSelectedSealing = state =>
   state.products.oneProduct.selectedSealing;
+export const selectQuantityOrders = state =>
+  state.products.oneProduct.quantityOrders;
+export const selectSealingPrice = state =>
+  state.products.oneProduct.sealingPrice;
 
 export const selectPopularProducts = createSelector(
   [selectProducts],
