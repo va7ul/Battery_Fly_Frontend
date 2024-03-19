@@ -1,8 +1,8 @@
 import toast, { Toaster } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectOneProductPrice } from '../../redux/products/productsSelectors';
-import { setPrice } from '../../redux/products/oneProductSlice';
+import { selectOneProduct, selectOneProductPrice, selectQuantityOrders } from '../../redux/products/productsSelectors';
+import { setPrice, setQuantityOrders } from '../../redux/products/oneProductSlice';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import {
   OrderBox,
@@ -16,21 +16,23 @@ import {
 export const Order = () => {
     const dispatch = useDispatch();
     const oneProductPrice = useSelector(selectOneProductPrice);
-    const [quantityOrdered, setQuantityOrdered] = useState(1);
+    const quantityOrders = useSelector(selectQuantityOrders);
+
+    // const [quantityOrdered, setQuantityOrdered] = useState(1);
     const { quantity } = useSelector(selectOneProduct);
 
     useEffect(() => {
         if (typeof oneProductPrice === "string") {
             return
         }
-        dispatch(setPrice(quantityOrdered * oneProductPrice));
-    },[dispatch, quantityOrdered, oneProductPrice])
+        dispatch(setPrice(quantityOrders * oneProductPrice));
+    },[dispatch, quantityOrders, oneProductPrice])
     
     const plusOne = () => {
-        if (quantityOrdered < quantity) {     
-            setQuantityOrdered(state => Number(state) + 1);
+        if (quantityOrders < quantity) {     
+            dispatch(setQuantityOrders(quantityOrders + 1));
             
-        } else if (quantityOrdered >= quantity) {
+        } else if (quantityOrders >= quantity) {
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
@@ -39,34 +41,36 @@ export const Order = () => {
     };
 
     const minusOne = () => {
-        if (quantityOrdered > 1) {
-            setQuantityOrdered(state => Number(state) - 1);
+        if (quantityOrders > 1) {
+            dispatch(setQuantityOrders(quantityOrders - 1));
         }
     };
 
     const setValue = e => {
         if (e.target.value > quantity) {
-            setQuantityOrdered(Number(quantity))
+            dispatch(setQuantityOrders(quantity))
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
             })
         }
         if (e.target.value <= quantity) {
-            setQuantityOrdered(Number(e.target.value) || '');
+            dispatch(setQuantityOrders(Number(e.target.value) || ''));
         }
     };
     
     const minValue = () => {
-        if (quantityOrdered === '') {
-            setQuantityOrdered(1);
+        if (quantityOrders === '') {
+            dispatch(setQuantityOrders(1));
         }
     };
 
     return (
         <OrderBox>
             <CounterBox>
-                <Button onClick={minusOne}>
+                <Button
+                    onClick={minusOne}
+                    disabled={typeof oneProductPrice === "string"}>
                     <div>
                         <FaMinus />
                     </div>
@@ -75,22 +79,25 @@ export const Order = () => {
                     type="number"
                     min="1"
                     max={quantity}
-                    // placeholder="1 шт"
                     onBlur={minValue}
                     onChange={setValue}
-                    value={quantityOrdered}>
+                    value={quantityOrders}
+                disabled={typeof oneProductPrice === "string"}
+                >
                 </Input>
-                <Button onClick={plusOne}>
+                <Button
+                    onClick={plusOne}
+                    disabled={typeof oneProductPrice === "string"}>
                     <div>
                         <FaPlus />
                     </div>
                 </Button>
             </CounterBox>
             <ButtonBox>
-                <BasketButton>
+                <BasketButton disabled={typeof oneProductPrice === "string"}>
                     <div>В кошик</div>
                 </BasketButton>
-                <OrderButton>
+                <OrderButton disabled={typeof oneProductPrice === "string"}>
                     <div>Швидке замовлення</div>
                 </OrderButton>
             </ButtonBox>
