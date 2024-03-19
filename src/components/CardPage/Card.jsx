@@ -33,11 +33,11 @@ export const Card = () => {
             <Title>{name}</Title>
             <ProductPhoto />
             <Description />
-            {capacity ? (<Capacity />) : (undefined)}
-            {capacity ? (<CheckBox />) : (undefined)}
+            {capacity && <Capacity />}
+            {capacity && <CheckBox />}
             <Order />
-            {information ? (<Information information={information} />) : (undefined)}
-             
+            {information && <Information information={information} />}
+   
         </Wrapper>
             
         ) : (
@@ -46,18 +46,17 @@ export const Card = () => {
                 <Case>
                     <div>
                         <ProductPhoto />
-                        {capacity ? (<Capacity />) : (undefined)}
+                        {capacity && <Capacity />}
                     </div>
-                    
                     <Box>
                         <Title>{name}</Title>
                         <Description />
-                        {capacity ? (<CheckBox />) : (undefined)}
+                        {capacity && <CheckBox />}
                         <Order />
                     </Box>
                 </Case>
                     
-                {information ? (<Information information={information} />) : (undefined)}
+                {information && <Information information={information} />}
                 
             </Wrapper>
         )

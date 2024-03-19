@@ -24,7 +24,7 @@ export const Description = () => {
     
     const newDescription = description.split(';');
 
-  const newPrice = sale ? getNewPrice(discount, price) : price;
+    const newPrice = sale ? getNewPrice(discount, price) : price;
 
     
     return (
