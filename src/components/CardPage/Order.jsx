@@ -1,8 +1,8 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice } from '../../redux/products/productsSelectors';
-import { setPrice, setQuantityOrders, setSealingPrice } from '../../redux/products/oneProductSlice';
+import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
+import { setPrice, setQuantityOrders, setSealingPrice, setHolderPrice } from '../../redux/products/oneProductSlice';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import {
   OrderBox,
@@ -22,26 +22,28 @@ export const Order = () => {
 
 
 
-     const { quantity } = useSelector(selectOneProduct);
+     const { quantity, capacity, capacityKey } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
     const quantityOrders = useSelector(selectQuantityOrders);
     const sealingPrice = useSelector(selectSealingPrice);
-    
+    const holderPrice = useSelector(selectHolderPrice);
 
     useEffect(() => {
-        
+        const holderCost = capacity[capacityKey]?.holder * 2 || 0;
         if (typeof oneProductPrice === "string") {
             return;
         }
         dispatch(setSealingPrice(100 * quantityOrders))
-        if (selectedSealing) {
-            dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
+        dispatch(setHolderPrice(holderCost * quantityOrders))
+
+        if (selectedSealing || selectedHolder) {
+            dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice + holderPrice));
             return;
         }
         dispatch(setPrice(quantityOrders * oneProductPrice));
-    }, [dispatch, quantityOrders, oneProductPrice, sealingPrice]);
+    }, [dispatch, quantityOrders, oneProductPrice, sealingPrice, holderPrice]);
 
 
 
