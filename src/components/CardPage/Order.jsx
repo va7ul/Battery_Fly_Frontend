@@ -1,7 +1,8 @@
 import toast, { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectOneProductPrice, selectQuantityOrders } from '../../redux/products/productsSelectors';
-import { setQuantityOrders } from '../../redux/products/oneProductSlice';
+import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice } from '../../redux/products/productsSelectors';
+import { setPrice, setQuantityOrders, setSealingPrice } from '../../redux/products/oneProductSlice';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import {
   OrderBox,
@@ -14,10 +15,36 @@ import {
 
 export const Order = () => {
     const dispatch = useDispatch();
-    const oneProductPrice = useSelector(selectOneProductPrice);
-    const quantityOrders = useSelector(selectQuantityOrders);
+    // const oneProductPrice = useSelector(selectOneProductPrice);
+    // const quantityOrders = useSelector(selectQuantityOrders);
 
-    const { quantity } = useSelector(selectOneProduct);
+    // const { quantity } = useSelector(selectOneProduct);
+
+
+
+     const { quantity } = useSelector(selectOneProduct);
+    const oneProductPrice = useSelector(selectOneProductPrice);
+    const selectedSealing = useSelector(selectSelectedSealing);
+    const selectedHolder = useSelector(selectSelectedHolder);
+    const quantityOrders = useSelector(selectQuantityOrders);
+    const sealingPrice = useSelector(selectSealingPrice);
+    
+
+    useEffect(() => {
+        
+        if (typeof oneProductPrice === "string") {
+            return;
+        }
+        dispatch(setSealingPrice(100 * quantityOrders))
+        if (selectedSealing) {
+            dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
+            return;
+        }
+        dispatch(setPrice(quantityOrders * oneProductPrice));
+    }, [dispatch, quantityOrders, oneProductPrice, sealingPrice]);
+
+
+
 
     const plusOne = () => {
         if (quantityOrders < quantity) {     
