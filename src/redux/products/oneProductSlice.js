@@ -45,6 +45,9 @@ const oneProductSlice = createSlice({
     setSealingPrice(state, action) {
       state.sealingPrice = action.payload;
     },
+    setHolderPrice(state, action) {
+      state.holderPrice = action.payload;
+    },
   },
   extraReducers: builder =>
     builder
@@ -71,5 +74,6 @@ export const {
   setSelectedSealing,
   setQuantityOrders,
   setSealingPrice,
+  setHolderPrice,
 } = oneProductSlice.actions;
 export const oneProductReducer = oneProductSlice.reducer;
