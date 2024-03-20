@@ -95,8 +95,8 @@ export const Image = styled.img`
 
 export const SliderDiv = styled.div`
   width: 310px;
-  padding: 0px 0px 47px 0px;
   margin: 0 auto;
+  margin-bottom: 50px;
 
   .slick-dots li {
     width: 50px;
@@ -115,8 +115,7 @@ export const SliderDiv = styled.div`
   @media screen and (min-width: 1280px) {
     width: 518px;
     height: 400px;
-    padding: 0px 0px 62px 0px;
-    margin-bottom: 30px;
+    margin-bottom: 95px;
 
     .slick-dots {
       bottom: -65px;
