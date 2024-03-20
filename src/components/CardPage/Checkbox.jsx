@@ -10,7 +10,10 @@ import { yellow } from '@mui/material/colors';
 import { Subtitle, Container, Group, ExtraPrice } from './Card.styled';
 
 const StyledFormGroup = styled(FormGroup)({
-    gap: '30px',
+    gap: '10px',
+     [themeMUI.breakpoints.only('desktop')]: {
+            gap: '20px',
+        },
     '& .MuiButtonBase-root': {
         padding: '0px 10px 0px 0px'
     },
@@ -72,7 +75,7 @@ export const CheckBox = () => {
                                 color: yellow[800],
                             },
                         }} />} label="Герметизація" />
-                    <ExtraPrice>{`+ ${sealingPrice} грн`}</ExtraPrice>
+                    {selectedSealing && <ExtraPrice>{`${sealingPrice} грн`}</ExtraPrice>}
                 </Group>
                 {holder &&
                     <Group>
@@ -87,7 +90,7 @@ export const CheckBox = () => {
                                     color: yellow[800],
                                 },
                             }} />} label="Використовувати холдери" />
-                        <ExtraPrice>{`+ ${holderPrice} грн`}</ExtraPrice>
+                        {selectedHolder && <ExtraPrice>{`${holderPrice} грн`}</ExtraPrice>}
                     </Group>}
             </StyledFormGroup>
         </Container>
