@@ -342,8 +342,9 @@ export const Group = styled.div`
 `;
 
 export const ExtraPrice = styled.p`
-  font-size: 15px;
-  color: rgba(157, 157, 157, 1);
+  font-size: 10px;
+  color: #f9a825;
+  font-weight: 600;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
@@ -356,7 +357,7 @@ export const OrderBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
     gap: 15px;
