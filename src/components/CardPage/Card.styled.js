@@ -332,6 +332,23 @@ export const Container = styled.div`
     margin-bottom: 38px;
   }
 `;
+export const Group = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const ExtraPrice = styled.p`
+  font-size: 15px;
+  color: rgba(157, 157, 157, 1);
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
 
 // Order
 
