@@ -1,8 +1,7 @@
 import toast, { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOneProduct, selectOneProductPrice, selectQuantityOrders } from '../../redux/products/productsSelectors';
-import { setPrice, setQuantityOrders } from '../../redux/products/oneProductSlice';
+import { setQuantityOrders } from '../../redux/products/oneProductSlice';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import {
   OrderBox,
@@ -18,16 +17,8 @@ export const Order = () => {
     const oneProductPrice = useSelector(selectOneProductPrice);
     const quantityOrders = useSelector(selectQuantityOrders);
 
-    // const [quantityOrdered, setQuantityOrdered] = useState(1);
     const { quantity } = useSelector(selectOneProduct);
 
-    useEffect(() => {
-        if (typeof oneProductPrice === "string") {
-            return
-        }
-        dispatch(setPrice(quantityOrders * oneProductPrice));
-    },[dispatch, quantityOrders, oneProductPrice])
-    
     const plusOne = () => {
         if (quantityOrders < quantity) {     
             dispatch(setQuantityOrders(quantityOrders + 1));
