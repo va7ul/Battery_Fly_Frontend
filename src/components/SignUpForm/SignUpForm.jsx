@@ -66,21 +66,48 @@ export const SignUpForm = () => {
             width: '261px',
             height: '28px',
             padding: '4px 8px',
-            // border: '1px solid rgb(31, 31, 31)',
-            // borderRadius: '6px',
+            border: '1px solid rgb(31, 31, 31)',
+            borderRadius: '6px',
             fontSize: '10px',
-
-            // '& .MuiInputBase-root.MuiInput-root:before': {
-            //   borderBottom: '0px solid rgba(0, 0, 0, 0.42)',
-            // },
+            '&:focus': {
+              outline: 'none',
+              border: '2px solid  rgba(244, 170, 0, 1)',
+            },
+            '::before': {
+              borderBottom: '0px',
+            },
+            '::after': {
+              borderBottom: '0px',
+            },
+            '&:hover:not(.Mui-disabled, .Mui-error):before': {
+              borderBottom: '0px',
+            },
           }}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
+                sx={{
+                  width: '20px',
+                  height: '20px',
+                }}
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
               >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
+                {showPassword ? (
+                  <VisibilityOff
+                    sx={{
+                      width: '20px',
+                      height: '20px',
+                    }}
+                  />
+                ) : (
+                  <Visibility
+                    sx={{
+                      width: '20px',
+                      height: '20px',
+                    }}
+                  />
+                )}
               </IconButton>
             </InputAdornment>
           }
