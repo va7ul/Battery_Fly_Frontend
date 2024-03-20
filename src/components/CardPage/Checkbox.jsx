@@ -2,10 +2,10 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectSelectedHolder, selectSelectedSealing,selectOneProductPrice, selectQuantityOrders, selectSealingPrice} from '../../redux/products/productsSelectors';
-import { setPrice, setSelectedHolder, setSelectedSealing, setSealingPrice, setQuantityOrders} from '../../redux/products/oneProductSlice';
+import { selectOneProduct, selectSelectedSealing, selectSelectedHolder, selectOneProductPrice, selectQuantityOrders, selectSealingPrice } from '../../redux/products/productsSelectors';
+import { setPrice, setSelectedHolder, setSelectedSealing } from '../../redux/products/oneProductSlice';
 import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
 import { Subtitle, Container } from './Card.styled';
@@ -41,49 +41,29 @@ const StyledCheckbox = styled(Checkbox)({
 
 export const CheckBox = () => {
     const dispatch = useDispatch();
-    const { price, capacity, capacityKey, holder } = useSelector(selectOneProduct);
-    const oneProductPrice = useSelector(selectOneProductPrice);
+
+     const { price, capacity, capacityKey, holder} = useSelector(selectOneProduct);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
+    const oneProductPrice = useSelector(selectOneProductPrice);
     const quantityOrders = useSelector(selectQuantityOrders);
     const sealingPrice = useSelector(selectSealingPrice);
 
-    // useEffect(() => {
-    //             dispatch(setSealingPrice(100*quantityOrders))
-        
-    // }, [quantityOrders, dispatch])
-    
+// useEffect(() => {
+//     if (typeof oneProductPrice !== "string") {
+//         // Calculate the total price based on quantityOrders and oneProductPrice
+//         let totalPrice = quantityOrders * oneProductPrice;
 
-    // useEffect(() => {
-        
-    //     if (typeof oneProductPrice === "string") {
-    //         return;
-    //     }
-    //     dispatch(setSealingPrice(100 * quantityOrders))
-    //     if (selectedSealing) {
-    //         dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
-    //         return;
-    //     }
-    //     dispatch(setPrice(quantityOrders * oneProductPrice));
-    // }, [dispatch, quantityOrders, oneProductPrice, sealingPrice]);
+//         // If selectedSealing is true, add sealing price to total price
+//         if (selectedSealing) {
+//             totalPrice += sealingPrice;
+//         }
 
-
-useEffect(() => {
-    // Check if oneProductPrice is not a string
-    if (typeof oneProductPrice !== "string") {
-        // Calculate the total price based on quantityOrders and oneProductPrice
-        let totalPrice = quantityOrders * oneProductPrice;
-
-        // If selectedSealing is true, add sealing price to total price
-        if (selectedSealing) {
-            totalPrice += sealingPrice;
-        }
-
-        // Dispatch actions to update state
-        dispatch(setSealingPrice(100 * quantityOrders));
-        dispatch(setPrice(totalPrice));
-    }
-}, [dispatch, quantityOrders, oneProductPrice, sealingPrice, selectedSealing]);
+//         // Dispatch actions to update state
+//         dispatch(setSealingPrice(100 * quantityOrders));
+//         dispatch(setPrice(totalPrice));
+//     }
+// }, [dispatch, quantityOrders, oneProductPrice, sealingPrice, selectedSealing]);
 
 
 
@@ -122,19 +102,36 @@ const handleSealing = (e) => {
 
     
 
+    // const handleHolder = (e) => {
+    //     if (e.target.checked) {
+    //         dispatch(setSelectedHolder(true))
+    //         if (typeof price === 'number' && e.target.checked) {
+    //             dispatch(setPrice(price + (capacity[capacityKey].holder * 2)));
+    //         };
+    //         return
+    //     };
+    //     dispatch(setSelectedHolder(false))
+    //     if (typeof price === 'number' && !e.target.checked) {
+    //         dispatch(setPrice(price - (capacity[capacityKey].holder * 2)));
+    //     };
+    // };
+
     const handleHolder = (e) => {
-        if (e.target.checked) {
-            dispatch(setSelectedHolder(true))
-            if (typeof price === 'number' && e.target.checked) {
-                dispatch(setPrice(price + (capacity[capacityKey].holder * 2)));
-            };
-            return
-        };
-        dispatch(setSelectedHolder(false))
-        if (typeof price === 'number' && !e.target.checked) {
-            dispatch(setPrice(price - (capacity[capacityKey].holder * 2)));
-        };
-    };
+    const isChecked = e.target.checked;
+
+    dispatch(setSelectedHolder(isChecked));
+
+    if (typeof price === 'number') {
+        const holderCost = capacity[capacityKey]?.holder * 2 || 0;
+
+        if (isChecked) {
+            dispatch(setPrice(price + holderCost));
+        } else {
+            dispatch(setPrice(price - holderCost));
+        }
+    }
+};
+
 
     return (
         <Container>
