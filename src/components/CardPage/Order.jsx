@@ -16,7 +16,7 @@ import {
 export const Order = () => {
     const dispatch = useDispatch();
 
-    const { quantity, capacity, capacityKey } = useSelector(selectOneProduct);
+    const { quantity, capacity, capacityKey, sale } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
@@ -25,13 +25,8 @@ export const Order = () => {
     const holderPrice = useSelector(selectHolderPrice);
 
     useEffect(() => {
-        if (quantityOrders === 0) {
-            dispatch(setPrice(oneProductPrice));
-
-            return;
-        };
         dispatch(setSealingPrice(100 * quantityOrders));
-    }, [dispatch, quantityOrders, oneProductPrice]);
+    }, [dispatch, quantityOrders]);
 
 
     useEffect(() => {

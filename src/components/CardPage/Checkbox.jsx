@@ -53,7 +53,6 @@ export const CheckBox = () => {
 
     const handleHolder = (e) => {
         dispatch(setSelectedHolder(e.target.checked));
-
     };
 
 
