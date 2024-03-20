@@ -2,13 +2,13 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOneProduct, selectSelectedHolder, selectSelectedSealing,selectOneProductPrice, selectQuantityOrders, selectSealingPrice} from '../../redux/products/productsSelectors';
-import { setPrice, setSelectedHolder, setSelectedSealing, setSealingPrice } from '../../redux/products/oneProductSlice';
+import { setPrice, setSelectedHolder, setSelectedSealing, setSealingPrice, setQuantityOrders} from '../../redux/products/oneProductSlice';
 import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
 import { Subtitle, Container } from './Card.styled';
-import { useEffect } from 'react';
 
 const StyledFormGroup = styled(FormGroup)({
     flexDirection: 'row',
@@ -48,27 +48,79 @@ export const CheckBox = () => {
     const quantityOrders = useSelector(selectQuantityOrders);
     const sealingPrice = useSelector(selectSealingPrice);
 
-    useEffect(() => {
-                dispatch(setSealingPrice(100*quantityOrders))
+    // useEffect(() => {
+    //             dispatch(setSealingPrice(100*quantityOrders))
         
-    },[quantityOrders, dispatch])
+    // }, [quantityOrders, dispatch])
+    
 
-    const handleSealing = (e) => {
-        if (e.target.checked) {   
-            dispatch(setSelectedSealing(true))
-            if (typeof price === 'number' && e.target.checked) {
-                dispatch(setPrice(price + sealingPrice))
+    // useEffect(() => {
+        
+    //     if (typeof oneProductPrice === "string") {
+    //         return;
+    //     }
+    //     dispatch(setSealingPrice(100 * quantityOrders))
+    //     if (selectedSealing) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
+    //         return;
+    //     }
+    //     dispatch(setPrice(quantityOrders * oneProductPrice));
+    // }, [dispatch, quantityOrders, oneProductPrice, sealingPrice]);
 
-            };
-            return;
-        };
-        dispatch(setSelectedSealing(false))
-        if (typeof price === 'number' && !e.target.checked) {
+
+useEffect(() => {
+    // Check if oneProductPrice is not a string
+    if (typeof oneProductPrice !== "string") {
+        // Calculate the total price based on quantityOrders and oneProductPrice
+        let totalPrice = quantityOrders * oneProductPrice;
+
+        // If selectedSealing is true, add sealing price to total price
+        if (selectedSealing) {
+            totalPrice += sealingPrice;
+        }
+
+        // Dispatch actions to update state
+        dispatch(setSealingPrice(100 * quantityOrders));
+        dispatch(setPrice(totalPrice));
+    }
+}, [dispatch, quantityOrders, oneProductPrice, sealingPrice, selectedSealing]);
+
+
+
+
+    // const handleSealing = (e) => {
+    //     if (e.target.checked) {
+    //         dispatch(setSelectedSealing(true))
+    //         if (typeof price === 'number' && e.target.checked) {
+    //             dispatch(setPrice(oneProductPrice * quantityOrders + sealingPrice))
+
+    //         };
+    //         return;
+    //     };
+    //     dispatch(setSelectedSealing(false))
+    //     if (typeof price === 'number' && !e.target.checked) {
             
-            dispatch(setPrice(price - sealingPrice));
+    //         dispatch(setPrice(price - sealingPrice));
            
-        };
-    };
+    //     };
+    // };
+
+
+const handleSealing = (e) => {
+    const isChecked = e.target.checked;
+
+    dispatch(setSelectedSealing(isChecked));
+
+    if (typeof price === 'number') {
+        if (isChecked) {
+            dispatch(setPrice(oneProductPrice * quantityOrders + sealingPrice));
+        } else {
+            dispatch(setPrice(price - sealingPrice));
+        }
+    }
+};
+
+    
 
     const handleHolder = (e) => {
         if (e.target.checked) {
