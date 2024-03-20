@@ -1,18 +1,19 @@
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+// import FormHelperText from '@mui/material/FormHelperText';
 import { styled } from '@mui/material/styles';
 // import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectSelectedSealing, selectSelectedHolder, selectOneProductPrice, selectQuantityOrders, selectSealingPrice } from '../../redux/products/productsSelectors';
+import { selectOneProduct, selectSelectedSealing, selectSelectedHolder, selectOneProductPrice, selectQuantityOrders, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
 import { setPrice, setSelectedHolder, setSelectedSealing } from '../../redux/products/oneProductSlice';
 import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
 import { Subtitle, Container } from './Card.styled';
 
 const StyledFormGroup = styled(FormGroup)({
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
+    // flexDirection: 'row',
+    // flexWrap: 'nowrap',
     gap: '30px',
     '& .MuiButtonBase-root': {
         padding: '0px 10px 0px 0px'
@@ -48,6 +49,8 @@ export const CheckBox = () => {
     const oneProductPrice = useSelector(selectOneProductPrice);
     const quantityOrders = useSelector(selectQuantityOrders);
     const sealingPrice = useSelector(selectSealingPrice);
+    const holderPrice = useSelector(selectHolderPrice);
+
 
 // useEffect(() => {
 //     if (typeof oneProductPrice !== "string") {
@@ -137,6 +140,7 @@ const handleSealing = (e) => {
         <Container>
             <Subtitle>Додаткові послуги:</Subtitle>
             <StyledFormGroup>
+                <div style={{display: 'flex', }}>
                 <FormControlLabel control={<StyledCheckbox
                     value={selectedSealing}
                     checked={selectedSealing}
@@ -148,7 +152,12 @@ const handleSealing = (e) => {
                             color: yellow[800],
                         },
                     }} />} label="Герметизація" />
-                {holder && <FormControlLabel control={<StyledCheckbox
+                <p>{`+ ${sealingPrice} грн`}</p>
+                    {/* <FormHelperText>{`+ ${sealingPrice} грн`}</FormHelperText> */}
+                    </div>
+                {holder &&
+                    <div style={{display: 'flex', }}>
+                        <FormControlLabel control={<StyledCheckbox
                     onChange={handleHolder}
                     checked={selectedHolder}
                     value={selectedHolder}
@@ -158,7 +167,11 @@ const handleSealing = (e) => {
                         '&.Mui-checked': {
                             color: yellow[800],
                         },
-                    }} />} label="Використовувати холдери" />}
+                    }} />} label="Використовувати холдери" />
+                        <p>{`+ ${holderPrice} грн`}</p>
+                    </div>
+                }
+                
                
             </StyledFormGroup>
         </Container>
