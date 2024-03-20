@@ -32,7 +32,7 @@ export const Box = styled.div`
 export const Case = styled.div`
   display: flex;
   gap: 60px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 export const Title = styled.h1`
@@ -328,7 +328,7 @@ export const Container = styled.div`
   margin-bottom: 20px;
 
   @media screen and (min-width: 1280px) {
-    gap: 14px;
+    gap: 20px;
     margin-bottom: 38px;
   }
 `;
