@@ -1,9 +1,9 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
 import { setPrice, setQuantityOrders, setSealingPrice, setHolderPrice } from '../../redux/products/oneProductSlice';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
 import {
   OrderBox,
   Input,
@@ -11,18 +11,12 @@ import {
   CounterBox,
   ButtonBox,
   BasketButton,
-  OrderButton, } from "./Card.styled";
+  OrderButton } from "./Card.styled";
 
 export const Order = () => {
     const dispatch = useDispatch();
-    // const oneProductPrice = useSelector(selectOneProductPrice);
-    // const quantityOrders = useSelector(selectQuantityOrders);
 
-    // const { quantity } = useSelector(selectOneProduct);
-
-
-
-     const { quantity, capacity, capacityKey } = useSelector(selectOneProduct);
+    const { quantity, capacity, capacityKey } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
@@ -31,39 +25,65 @@ export const Order = () => {
     const holderPrice = useSelector(selectHolderPrice);
 
     useEffect(() => {
-        const holderCost = capacity[capacityKey]?.holder * 2 || 0;
-        if (typeof oneProductPrice === "string") {
-            return;
-        }
-        dispatch(setSealingPrice(100 * quantityOrders))
-        dispatch(setHolderPrice(holderCost * quantityOrders))
+        if (quantityOrders === 0) {
+            dispatch(setPrice(oneProductPrice));
 
-        if (selectedSealing || selectedHolder) {
+            return;
+        };
+        dispatch(setSealingPrice(100 * quantityOrders));
+    }, [dispatch, quantityOrders, oneProductPrice]);
+
+
+    useEffect(() => {
+        let holderCost = 0;
+        if (capacity) {
+            holderCost = capacity[capacityKey]?.holder * 2 || 0;
+        }
+        dispatch(setHolderPrice(holderCost * quantityOrders));
+        
+    }, [dispatch, quantityOrders, capacityKey, capacity]);
+
+    
+    useEffect(() => {
+
+        if (selectedSealing && selectedHolder) {
             dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice + holderPrice));
             return;
         }
-        dispatch(setPrice(quantityOrders * oneProductPrice));
-    }, [dispatch, quantityOrders, oneProductPrice, sealingPrice, holderPrice]);
 
+        if (selectedSealing) {
+            dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
+            return;
+        }
+        
+        if (selectedHolder) {
+            dispatch(setPrice(quantityOrders * oneProductPrice + holderPrice));
+            return;
+        }
 
-
+        if (quantityOrders !== 0) {
+            dispatch(setPrice(quantityOrders * oneProductPrice));
+        }
+        
+    }, [dispatch, selectedSealing, holderPrice, oneProductPrice, selectedHolder, quantityOrders, sealingPrice]);
+    
 
     const plusOne = () => {
-        if (quantityOrders < quantity) {     
+        if (quantityOrders < quantity) {
             dispatch(setQuantityOrders(quantityOrders + 1));
             
         } else if (quantityOrders >= quantity) {
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
-            })
-        }
+            });
+        };
     };
 
     const minusOne = () => {
         if (quantityOrders > 1) {
             dispatch(setQuantityOrders(quantityOrders - 1));
-        }
+        };
     };
 
     const setValue = e => {
@@ -72,17 +92,18 @@ export const Order = () => {
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
-            })
-        }
+            });
+        };
+
         if (e.target.value <= quantity) {
             dispatch(setQuantityOrders(Number(e.target.value) || ''));
-        }
+        };
     };
     
     const minValue = () => {
         if (quantityOrders === '') {
             dispatch(setQuantityOrders(1));
-        }
+        };
     };
 
     return (
@@ -102,7 +123,7 @@ export const Order = () => {
                     onBlur={minValue}
                     onChange={setValue}
                     value={quantityOrders}
-                disabled={typeof oneProductPrice === "string"}
+                    disabled={typeof oneProductPrice === "string"}
                 >
                 </Input>
                 <Button
