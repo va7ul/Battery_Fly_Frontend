@@ -4,7 +4,7 @@ import {
   selectTotal,
 } from '../../../../redux/basket/basketSelectors';
 import { CartItem } from './CartItem/CartItem';
-import { List, Text, Total, BtnWrap, Button } from './CartList.styled';
+import { List, Text, Total, BtnWrap, Button, Wrap } from './CartList.styled';
 import { selectCart } from '../../../../redux/menu/menuSelectors';
 import { setCartOpen } from '../../../../redux/menu/menuSlice';
 
@@ -28,17 +28,19 @@ export const CartList = () => {
           <CartItem key={item.codeOfGood} item={item} />
         ))}
       </List>
-      <Text>
-        Загальна сума:<Total>{total} грн</Total>
-      </Text>
-      <BtnWrap>
-        <Button type="button" onClick={closeCart}>
-          <div>Продовжити покупки</div>
-        </Button>
-        <Button type="button">
-          <div>Оформити замовлення</div>
-        </Button>
-      </BtnWrap>
+      <Wrap>
+        <Text>
+          Загальна сума:<Total>{total} грн</Total>
+        </Text>
+        <BtnWrap>
+          <Button type="button" onClick={closeCart}>
+            <div>Продовжити покупки</div>
+          </Button>
+          <Button type="button">
+            <div>Оформити замовлення</div>
+          </Button>
+        </BtnWrap>
+      </Wrap>
     </>
   );
 };
