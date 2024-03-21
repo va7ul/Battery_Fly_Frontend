@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
-import { setPrice, setQuantityOrders, setSealingPrice, setHolderPrice } from '../../redux/products/oneProductSlice';
+import { setPrice, setQuantityOrders, setSealingPrice, setHolderPrice, setPriceWithSale } from '../../redux/products/oneProductSlice';
 import {
   OrderBox,
   Input,
@@ -16,7 +16,7 @@ import {
 export const Order = () => {
     const dispatch = useDispatch();
 
-    const { quantity, capacity, capacityKey } = useSelector(selectOneProduct);
+    const { quantity, capacity, capacityKey, discount } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
@@ -39,41 +39,74 @@ export const Order = () => {
     }, [dispatch, quantityOrders, capacityKey, capacity]);
 
     
+    // useEffect(() => {
+
+    //     if (selectedSealing && selectedHolder) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice + holderPrice));
+    //         dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100) + sealingPrice + holderPrice));
+    //         return;
+    //     }
+
+    //     if (selectedSealing) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
+    //         dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100) + sealingPrice));
+    //         return;
+    //     }
+        
+    //     if (selectedHolder) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + holderPrice));
+    //         dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100) + holderPrice));
+    //         return;
+    //     }
+
+    
+    //     dispatch(setPrice(quantityOrders * oneProductPrice));
+    //     if (typeof oneProductPrice === 'string') {
+    //         return;
+    //     }
+    //     dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100)));
+        
+    
+        
+    // }, [dispatch, selectedSealing, holderPrice, oneProductPrice, selectedHolder, quantityOrders, sealingPrice, discount]);
+
     useEffect(() => {
-
-        if (selectedSealing && selectedHolder) {
-            dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice + holderPrice));
+         if (typeof oneProductPrice === 'string') {
             return;
         }
+ 
+        let totalPrice = quantityOrders * oneProductPrice;
+        let totalPriceWithSale = totalPrice * ((100 - discount) / 100);
 
+ 
         if (selectedSealing) {
-            dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
-            return;
-        }
-        
-        if (selectedHolder) {
-            dispatch(setPrice(quantityOrders * oneProductPrice + holderPrice));
-            return;
+            totalPrice += sealingPrice;
+            totalPriceWithSale += sealingPrice;
         }
 
+ 
+        if (selectedHolder) {
+            totalPrice += holderPrice;
+            totalPriceWithSale += holderPrice;
+        }
     
-            dispatch(setPrice(quantityOrders * oneProductPrice));
-    
-        
-    }, [dispatch, selectedSealing, holderPrice, oneProductPrice, selectedHolder, quantityOrders, sealingPrice]);
-    
+
+        dispatch(setPrice(totalPrice));
+        dispatch(setPriceWithSale(totalPriceWithSale));
+    }, [dispatch, selectedSealing, selectedHolder, quantityOrders, oneProductPrice, sealingPrice, holderPrice, discount]);
+
 
     const plusOne = () => {
         if (quantityOrders < quantity) {
             dispatch(setQuantityOrders(quantityOrders + 1));
-            
-        } else if (quantityOrders >= quantity) {
+        } else {
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
             });
-        };
+        }
     };
+
 
     const minusOne = () => {
         if (quantityOrders > 1) {
