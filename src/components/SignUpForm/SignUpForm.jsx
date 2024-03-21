@@ -1,90 +1,75 @@
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import { signUpSchema } from '../../common/schemas/signUpSchema';
 
-import {
-  Btn,
-  Label,
-  StyledErrorMessage,
-  StyledField,
-  StyledForm,
-} from './SignUpForm.styled';
-import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material';
+import { Btn, StyledForm } from './SignUpForm.styled';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 
 export const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const handleClickShowPassword = () => setShowPassword(show => !show);
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: signUpSchema,
+    onSubmit: (values, actions) => {
+      console.log(values);
+    },
+  });
   return (
-    <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      }}
-      validationSchema={signUpSchema}
-      onSubmit={(values, actions) => {
-        actions.resetForm();
-      }}
-    >
-      <StyledForm>
-        <Label>
-          Ім'я
-          <StyledField name="firstName" type="text" />
-          <StyledErrorMessage name="firstName" component="div" />
-        </Label>
-
-        <Label>
-          Прізвище
-          <StyledField name="lastName" type="text" />
-          <StyledErrorMessage name="lastName" component="div" />
-        </Label>
-
-        <Label>
-          E-пошта
-          <StyledField name="email" type="email" />
-          <StyledErrorMessage name="email" component="div" />
-        </Label>
-
-        <InputLabel
-          sx={{
-            fontSize: '10px',
-            fontWeight: '600',
-            color: 'rgba(31, 31, 31, 1);',
-          }}
-          htmlFor="standard-adornment-password"
-        >
-          Пароль
-        </InputLabel>
-        <Input
-          id="standard-adornment-password"
-          name="password"
-          type={showPassword ? 'text' : 'password'}
-          sx={{
-            width: '261px',
-            height: '28px',
-            padding: '4px 8px',
-            border: '1px solid rgb(31, 31, 31)',
-            borderRadius: '6px',
-            fontSize: '10px',
-            '&:focus': {
-              outline: 'none',
-              border: '2px solid  rgba(244, 170, 0, 1)',
-            },
-            '::before': {
-              borderBottom: '0px',
-            },
-            '::after': {
-              borderBottom: '0px',
-            },
-            '&:hover:not(.Mui-disabled, .Mui-error):before': {
-              borderBottom: '0px',
-            },
-          }}
-          endAdornment={
-            <InputAdornment position="end">
+    <StyledForm onSubmit={formik.handleSubmit}>
+      <TextField
+        id="firstName"
+        name="firstName"
+        label="Ім'я"
+        type="text"
+        value={formik.values.firstName}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+        helperText={formik.touched.firstName && formik.errors.firstName}
+      />
+      <TextField
+        id="lastName"
+        name="lastName"
+        label="Прізвище"
+        type="text"
+        value={formik.values.lastName}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+        helperText={formik.touched.lastName && formik.errors.lastName}
+      />
+      <TextField
+        id="email"
+        name="email"
+        label="E-пошта"
+        type="text"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.email && Boolean(formik.errors.email)}
+        helperText={formik.touched.email && formik.errors.email}
+      />
+      <TextField
+        id="password"
+        name="password"
+        label="Password"
+        type={showPassword ? 'text' : 'password'}
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.password && Boolean(formik.errors.password)}
+        helperText={formik.touched.password && formik.errors.password}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment name="password" position="end">
               <IconButton
                 sx={{
                   width: '20px',
@@ -93,7 +78,7 @@ export const SignUpForm = () => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
               >
-                {showPassword ? (
+                {!showPassword ? (
                   <VisibilityOff
                     sx={{
                       width: '20px',
@@ -110,13 +95,12 @@ export const SignUpForm = () => {
                 )}
               </IconButton>
             </InputAdornment>
-          }
-        />
-
-        <Btn type="submit">
-          <div>Зареєструватись</div>
-        </Btn>
-      </StyledForm>
-    </Formik>
+          ),
+        }}
+      />
+      <Btn type="submit">
+        <div>Зареєструватись</div>
+      </Btn>
+    </StyledForm>
   );
 };

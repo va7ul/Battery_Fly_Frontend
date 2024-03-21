@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Form, Field, ErrorMessage } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
-export const StyledForm = styled(Form)`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 4px;
