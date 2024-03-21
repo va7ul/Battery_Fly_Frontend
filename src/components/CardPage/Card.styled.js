@@ -155,9 +155,6 @@ export const DescBox = styled.div`
 export const TextBox = styled.div`
   display: flex;
   justify-content: space-between;
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const Text = styled.p`
@@ -343,8 +340,7 @@ export const Group = styled.div`
 
 export const ExtraPrice = styled.p`
   font-size: 10px;
-  color: #f9a825;
-  font-weight: 600;
+  color: ${props => props.theme.colors.textDisabled};
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
