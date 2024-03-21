@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectSelectedSealing, selectSelectedHolder, selectOneProductPrice, selectQuantityOrders, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
+import { selectOneProduct, selectSelectedSealing, selectSelectedHolder, selectOneProductPrice, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
 import { setSelectedHolder, setSelectedSealing } from '../../redux/products/oneProductSlice';
 import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';

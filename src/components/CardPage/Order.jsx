@@ -16,7 +16,7 @@ import {
 export const Order = () => {
     const dispatch = useDispatch();
 
-    const { quantity, capacity, capacityKey, sale } = useSelector(selectOneProduct);
+    const { quantity, capacity, capacityKey } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
