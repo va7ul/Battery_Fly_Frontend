@@ -56,9 +56,9 @@ export const Order = () => {
             return;
         }
 
-        if (quantityOrders !== 0) {
+    
             dispatch(setPrice(quantityOrders * oneProductPrice));
-        }
+    
         
     }, [dispatch, selectedSealing, holderPrice, oneProductPrice, selectedHolder, quantityOrders, sealingPrice]);
     
