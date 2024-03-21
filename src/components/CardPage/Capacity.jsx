@@ -2,7 +2,7 @@ import Select from 'react-select';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
-import { setPrice, setCapacityKey, setPriceOneProduct } from '../../redux/products/oneProductSlice';
+import { setPrice, setCapacityKey, setPriceOneProduct, setSelectedHolder, setSelectedSealing, setQuantityOrders } from '../../redux/products/oneProductSlice';
 import { CapacityBox, Subtitle, Desc, selectStyles } from "./Card.styled";
 
 export const Capacity = () => {
@@ -26,8 +26,10 @@ export const Capacity = () => {
         setDescr(capacity[value].description);
         dispatch(setPrice(capacity[value].price));
         dispatch(setPriceOneProduct(capacity[value].price));
-
+        dispatch(setSelectedHolder(false));
+        dispatch(setSelectedSealing(false));
         dispatch(setCapacityKey(value));
+        dispatch(setQuantityOrders(1));
     };
 
     const newDescr = descr.split(';');

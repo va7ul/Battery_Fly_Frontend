@@ -1,6 +1,15 @@
-import styled from 'styled-components';
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
+import styled from 'styled-components';
+
+const backgroundButton = props =>
+  props.disabled
+    ? props.theme.colors.greyBackgroundPaper
+    : props.theme.colors.gradient;
+
+const cursorButton = props => (props.disabled ? 'default' : 'pointer');
+const colorButton = props =>
+  props.disabled ? 'rgba(157, 157, 157, 1)' : 'black';
 
 // Card
 
@@ -23,7 +32,7 @@ export const Box = styled.div`
 export const Case = styled.div`
   display: flex;
   gap: 60px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 export const Title = styled.h1`
@@ -86,8 +95,8 @@ export const Image = styled.img`
 
 export const SliderDiv = styled.div`
   width: 310px;
-  padding: 0px 0px 47px 0px;
   margin: 0 auto;
+  margin-bottom: 50px;
 
   .slick-dots li {
     width: 50px;
@@ -106,8 +115,7 @@ export const SliderDiv = styled.div`
   @media screen and (min-width: 1280px) {
     width: 518px;
     height: 400px;
-    padding: 0px 0px 62px 0px;
-    margin-bottom: 30px;
+    margin-bottom: 95px;
 
     .slick-dots {
       bottom: -65px;
@@ -182,7 +190,7 @@ export const PriceBox = styled.div`
   }
 `;
 
-export const Price = styled.p`
+export const NewPrice = styled.p`
   font-size: 15px;
   font-weight: 600;
 
@@ -191,7 +199,7 @@ export const Price = styled.p`
   }
 `;
 
-export const SalePrice = styled.p`
+export const Price = styled.p`
   text-decoration-line: line-through;
   font-size: 10px;
   color: rgba(157, 157, 157, 1);
@@ -320,8 +328,26 @@ export const Container = styled.div`
   margin-bottom: 20px;
 
   @media screen and (min-width: 1280px) {
-    gap: 14px;
+    gap: 20px;
     margin-bottom: 38px;
+  }
+`;
+export const Group = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const ExtraPrice = styled.p`
+  font-size: 10px;
+  color: #f9a825;
+  font-weight: 600;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
   }
 `;
 
@@ -331,7 +357,7 @@ export const OrderBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
     gap: 15px;
@@ -372,9 +398,11 @@ export const Button = styled.button`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: ${props => props.theme.colors.gradient};
+  background: ${backgroundButton};
   position: relative;
   z-index: 0;
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
@@ -398,9 +426,11 @@ export const BasketButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.gradient};
+  background: ${backgroundButton};
   position: relative;
   z-index: 0;
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
@@ -425,9 +455,11 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.gradient};
+  background: ${backgroundButton};
   position: relative;
   z-index: 0;
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
