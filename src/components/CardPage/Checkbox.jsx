@@ -75,7 +75,7 @@ export const CheckBox = () => {
                                 color: yellow[800],
                             },
                         }} />} label="Герметизація" />
-                    {selectedSealing && <ExtraPrice>{`${sealingPrice} грн`}</ExtraPrice>}
+                    {selectedSealing && <ExtraPrice>{`+ ${sealingPrice} грн`}</ExtraPrice>}
                 </Group>
                 {holder &&
                     <Group>
@@ -90,7 +90,7 @@ export const CheckBox = () => {
                                     color: yellow[800],
                                 },
                             }} />} label="Використовувати холдери" />
-                        {selectedHolder && <ExtraPrice>{`${holderPrice} грн`}</ExtraPrice>}
+                        {selectedHolder && <ExtraPrice>{`+ ${holderPrice} грн`}</ExtraPrice>}
                     </Group>}
             </StyledFormGroup>
         </Container>
