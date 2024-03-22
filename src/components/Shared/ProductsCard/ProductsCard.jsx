@@ -38,10 +38,10 @@ export const ProductsCard = ({ product }) => {
       addItem({
         ...product,
         capacityKey: '',
-        sealing: 0,
-        holders: 0,
+        selectedSealing: false,
+        selectedHolders: false,
         quantityOrdered: 1,
-        totalPrice: price,
+        totalPrice: sale ? newPrice : price,
       })
     );
   };
