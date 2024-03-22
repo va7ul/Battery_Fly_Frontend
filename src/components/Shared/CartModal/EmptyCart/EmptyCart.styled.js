@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 54px;
+  margin-top: 45%;
 `;
 
 export const CartIcon = styled.svg`
