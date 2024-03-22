@@ -17,7 +17,15 @@ import {
 export const Order = () => {
     const dispatch = useDispatch();
 
-    const { codeOfGood, image, price, name, quantity, capacity, capacityKey, discount, sale } = useSelector(selectOneProduct);
+    const product = useSelector(selectOneProduct);
+    const {
+      price,
+      quantity,
+      capacity,
+      capacityKey,
+      discount,
+      sale,
+    } = product;
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
@@ -140,9 +148,7 @@ export const Order = () => {
       const addToBasket = () => {
     dispatch(
       addItem({
-        codeOfGood,
-        image,
-        name,
+        ...product,
         capacityKey: capacityKey || '',
         sealing: selectedSealing,
         holders: selectedHolder,
