@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
-import { PrivateRoute } from 'routes/PrivateRoute';
+// import { PrivateRoute } from 'routes/PrivateRoute';
 import { Layout } from './components/Layout/Layout';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 // import { refreshUser } from 'redux/auth/authOperations.js';
@@ -29,9 +29,10 @@ const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage.jsx');
 const ContactsPage = lazyLoadPage('ContactsPage.jsx');
 const GuaranteesPage = lazyLoadPage('GuaranteesPage.jsx');
 const CheckoutPage = lazyLoadPage('CheckoutPage.jsx');
-const UserProfilePage = lazyLoadPage('UserProfilePage.jsx');
-const OrdersHistoryPage = lazyLoadPage('OrdersHistoryPage.jsx');
-const FavoritesPage = lazyLoadPage('FavoritesPage.jsx');
+const UserPage = lazyLoadPage('UserPage.jsx');
+const UserProfile = lazyLoadPage('UserProfile.jsx');
+const OrdersHistory = lazyLoadPage('OrdersHistory.jsx');
+const Favorites = lazyLoadPage('Favorites.jsx');
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -65,23 +66,14 @@ export const App = () => {
         <Route path="/materials" element={<MaterialsPage />} />
         <Route path="/assortment/:cardId" element={<CardPage />} />
         <Route
-          path="/profile"
-          element={
-            <PrivateRoute redirectTo="/" component={<UserProfilePage />} />
-          }
-        />
-        <Route
-          path="/orders"
-          element={
-            <PrivateRoute redirectTo="/" component={<OrdersHistoryPage />} />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <PrivateRoute redirectTo="/" component={<FavoritesPage />} />
-          }
-        />
+          path="/account"
+          element={<UserPage />}
+          // element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
+        >
+          <Route path="profile" element={<UserProfile />} />
+          <Route path="orders" element={<OrdersHistory />} />
+          <Route path="favorites" element={<Favorites />} />
+        </Route>
         <Route path="*" element={<MainPage />} />
       </Route>
     </Routes>
