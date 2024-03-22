@@ -15,6 +15,7 @@ const basketSlice = createSlice({
       const { payload } = action;
       state.items.push(payload);
       state.total += payload.totalPrice;
+      console.log(payload);
     },
     deleteItem(state, action) {
       const { totalPrice, codeOfGood, capacityKey } = action.payload;
