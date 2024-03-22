@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { selectOneProduct, selectPriceWithSale } from '../../redux/products/productsSelectors';
 import { getNewPrice } from '../../utils/helpers/getNewPrice';
+import { selectOneProduct, selectPriceWithSale } from '../../redux/products/productsSelectors';
 import sprite from '../../assets/images/sprite.svg';
 import {
   DescBox,

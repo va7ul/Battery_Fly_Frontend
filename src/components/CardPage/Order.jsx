@@ -2,7 +2,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
-import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
+import { addItem } from '../../redux/basket/basketSlice'
+import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice, selectHolderPrice, selectPriceWithSale } from '../../redux/products/productsSelectors';
 import { setPrice, setQuantityOrders, setSealingPrice, setHolderPrice, setPriceWithSale } from '../../redux/products/oneProductSlice';
 import {
   OrderBox,
@@ -16,13 +17,14 @@ import {
 export const Order = () => {
     const dispatch = useDispatch();
 
-    const { quantity, capacity, capacityKey, discount } = useSelector(selectOneProduct);
+    const { codeOfGood, image, price, name, quantity, capacity, capacityKey, discount, sale } = useSelector(selectOneProduct);
     const oneProductPrice = useSelector(selectOneProductPrice);
     const selectedSealing = useSelector(selectSelectedSealing);
     const selectedHolder = useSelector(selectSelectedHolder);
     const quantityOrders = useSelector(selectQuantityOrders);
     const sealingPrice = useSelector(selectSealingPrice);
     const holderPrice = useSelector(selectHolderPrice);
+    const priceWithSale = useSelector(selectPriceWithSale);
 
     useEffect(() => {
         dispatch(setSealingPrice(100 * quantityOrders));
@@ -39,6 +41,7 @@ export const Order = () => {
     }, [dispatch, quantityOrders, capacityKey, capacity]);
 
     
+
     // useEffect(() => {
 
     //     if (selectedSealing && selectedHolder) {
@@ -134,6 +137,21 @@ export const Order = () => {
         };
     };
 
+      const addToBasket = () => {
+    dispatch(
+      addItem({
+        codeOfGood,
+        image,
+        name,
+        capacityKey: capacityKey || '',
+        sealing: selectedSealing,
+        holders: selectedHolder,
+        quantityOrdered: quantityOrders,
+        totalPrice: sale ? priceWithSale : price,
+      })
+    );
+  };
+
     return (
         <OrderBox>
             <CounterBox>
@@ -163,7 +181,10 @@ export const Order = () => {
                 </Button>
             </CounterBox>
             <ButtonBox>
-                <BasketButton disabled={typeof oneProductPrice === "string"}>
+                <BasketButton
+                    disabled={typeof oneProductPrice === "string"}
+                onClick={addToBasket}
+                >
                     <div>В кошик</div>
                 </BasketButton>
                 <OrderButton disabled={typeof oneProductPrice === "string"}>
