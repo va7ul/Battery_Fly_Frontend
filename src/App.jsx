@@ -7,32 +7,35 @@ import { Layout } from './components/Layout/Layout';
 // import { refreshUser } from 'redux/auth/authOperations.js';
 
 const lazyLoadPage = importPath => lazy(() => import(`./pages/${importPath}`));
+const lazyLoadComponent = importPath =>
+  lazy(() => import(`./components/${importPath}/${importPath}`));
 
-const MainPage = lazyLoadPage('MainPage.jsx');
-const AboutPage = lazyLoadPage('AboutPage.jsx');
-const AssortmentPage = lazyLoadPage('AssortmentPage.jsx');
-const SalesPage = lazyLoadPage('SalesPage.jsx');
-const BatteriesPage = lazyLoadPage('BatteriesPage.jsx');
-const Batteries18650Page = lazyLoadPage('Batteries18650Page.jsx');
-const Batteries21700Page = lazyLoadPage('Batteries21700Page.jsx');
-const Batteries32650Page = lazyLoadPage('Batteries32650Page.jsx');
-const BatteriesLiPoPage = lazyLoadPage('BatteriesLipoPage.jsx');
-const BatteriesLifepo4Page = lazyLoadPage('BatteriesLifepo4Page.jsx');
-const AssemblyPage = lazyLoadPage('AssembliesPage.jsx');
-const BatteriesForFPVPage = lazyLoadPage('BatteriesForFPVPage.jsx');
-const BatteriesForTransportPage = lazyLoadPage('BatteriesForTransportPage.jsx');
-const BatteriesForToysPage = lazyLoadPage('BatteriesForToysPage.jsx');
-const DevicesPage = lazyLoadPage('DevicesPage.jsx');
-const MaterialsPage = lazyLoadPage('MaterialsPage.jsx');
-const CardPage = lazyLoadPage('CardPage.jsx');
-const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage.jsx');
-const ContactsPage = lazyLoadPage('ContactsPage.jsx');
-const GuaranteesPage = lazyLoadPage('GuaranteesPage.jsx');
-const CheckoutPage = lazyLoadPage('CheckoutPage.jsx');
-const UserPage = lazyLoadPage('UserPage.jsx');
-const UserProfile = lazyLoadPage('UserProfile.jsx');
-const OrdersHistory = lazyLoadPage('OrdersHistory.jsx');
-const Favorites = lazyLoadPage('Favorites.jsx');
+const MainPage = lazyLoadPage('MainPage');
+const AboutPage = lazyLoadPage('AboutPage');
+const AssortmentPage = lazyLoadPage('AssortmentPage');
+const SalesPage = lazyLoadPage('SalesPage');
+const BatteriesPage = lazyLoadPage('BatteriesPage');
+const Batteries18650Page = lazyLoadPage('Batteries18650Page');
+const Batteries21700Page = lazyLoadPage('Batteries21700Page');
+const Batteries32650Page = lazyLoadPage('Batteries32650Page');
+const BatteriesLiPoPage = lazyLoadPage('BatteriesLipoPage');
+const BatteriesLifepo4Page = lazyLoadPage('BatteriesLifepo4Page');
+const AssemblyPage = lazyLoadPage('AssembliesPage');
+const BatteriesForFPVPage = lazyLoadPage('BatteriesForFPVPage');
+const BatteriesForTransportPage = lazyLoadPage('BatteriesForTransportPage');
+const BatteriesForToysPage = lazyLoadPage('BatteriesForToysPage');
+const DevicesPage = lazyLoadPage('DevicesPage');
+const MaterialsPage = lazyLoadPage('MaterialsPage');
+const CardPage = lazyLoadPage('CardPage');
+const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage');
+const ContactsPage = lazyLoadPage('ContactsPage');
+const GuaranteesPage = lazyLoadPage('GuaranteesPage');
+const CheckoutPage = lazyLoadPage('CheckoutPage');
+const UserPage = lazyLoadPage('UserPage');
+
+const UserProfile = lazyLoadComponent('UserProfile');
+const OrdersHistory = lazyLoadComponent('OrdersHistory');
+const Favorites = lazyLoadComponent('Favorites');
 
 export const App = () => {
   // const dispatch = useDispatch();
