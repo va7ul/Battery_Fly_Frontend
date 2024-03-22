@@ -5,6 +5,7 @@ import { gradientTransitionBtn } from 'styles/GlobalStyled';
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  width: 261px;
   gap: 4px;
   padding-bottom: 38px;
   margin-left: 48px;

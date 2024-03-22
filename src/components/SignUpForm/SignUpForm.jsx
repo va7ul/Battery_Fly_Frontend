@@ -5,6 +5,47 @@ import { Btn, StyledForm } from './SignUpForm.styled';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
+import styled from 'styled-components';
+
+const Field = styled(TextField)(() => ({
+  border: '1px solid rgb(31, 31, 31)',
+  '& .MuiOutlinedInput-notchedOutline': {
+    height: '28px',
+    borderColor: '#000000',
+    borderRadius: '6px',
+  },
+  '& .MuiOutlinedInput-input': {
+    height: '20px',
+    padding: '0px 0px',
+  },
+  '& .MuiFormLabel-root': {
+    fontSize: '10px',
+    fontWeight: '600',
+    color: ' #000000',
+    '&.Mui-focused': {
+      color: '#000000',
+      fontSize: '12px',
+    },
+  },
+  '& .MuiInputBase-root': {
+    height: '28px',
+    padding: '0px 8px',
+    fontSize: '10px',
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      border: '2px solid  rgba(244, 170, 0, 1)',
+    },
+  },
+  '& .MuiFormLabel-root.Mui-error': {
+    color: '#000000',
+    fontSize: '8px',
+    fontWeight: '500',
+  },
+  '& .MuiFormHelperText-root.Mui-error': {
+    color: 'rgba(255, 0, 0, 1)',
+    fontSize: '8px',
+    fontWeight: '500',
+  },
+}));
 
 export const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,9 +63,10 @@ export const SignUpForm = () => {
       console.log(values);
     },
   });
+
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
-      <TextField
+      <Field
         id="firstName"
         name="firstName"
         label="Ім'я"
@@ -35,7 +77,7 @@ export const SignUpForm = () => {
         error={formik.touched.firstName && Boolean(formik.errors.firstName)}
         helperText={formik.touched.firstName && formik.errors.firstName}
       />
-      <TextField
+      <Field
         id="lastName"
         name="lastName"
         label="Прізвище"
@@ -46,7 +88,7 @@ export const SignUpForm = () => {
         error={formik.touched.lastName && Boolean(formik.errors.lastName)}
         helperText={formik.touched.lastName && formik.errors.lastName}
       />
-      <TextField
+      <Field
         id="email"
         name="email"
         label="E-пошта"
@@ -57,7 +99,7 @@ export const SignUpForm = () => {
         error={formik.touched.email && Boolean(formik.errors.email)}
         helperText={formik.touched.email && formik.errors.email}
       />
-      <TextField
+      <Field
         id="password"
         name="password"
         label="Password"
