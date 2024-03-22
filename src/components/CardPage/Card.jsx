@@ -10,6 +10,7 @@ import { Capacity } from './Capacity';
 import { CheckBox } from './Checkbox';
 import { Order } from './Order';
 import { Information } from './Information';
+import { setQuantityOrders } from '../../redux/products/oneProductSlice';
 import {
   Wrapper,
   Box,
@@ -25,7 +26,9 @@ export const Card = () => {
 
     useEffect(() => {
         dispatch(getOneProduct(cardId));
+        dispatch(setQuantityOrders(1))
     }, [dispatch, cardId]);
+
 
     return (
         mobileVersion ? (<Wrapper>
