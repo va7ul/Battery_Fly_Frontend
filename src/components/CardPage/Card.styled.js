@@ -52,9 +52,9 @@ export const Title = styled.h1`
 export const ImageBig = styled.img`
   width: 310px;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15); */
 
   @media screen and (min-width: 1280px) {
     min-width: 518px;
@@ -66,9 +66,9 @@ export const ImageBig = styled.img`
 export const ImageSmall = styled.img`
   width: 50px;
   height: 40px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 6px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15); */
 
   @media screen and (min-width: 1280px) {
     width: 80px;
@@ -80,7 +80,7 @@ export const ImageSmall = styled.img`
 export const Image = styled.img`
   width: 320px;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
   margin-bottom: 5px;
@@ -95,7 +95,6 @@ export const Image = styled.img`
 
 export const SliderDiv = styled.div`
   width: 310px;
-  margin: 0 auto;
   margin-bottom: 50px;
 
   .slick-dots li {
@@ -114,7 +113,7 @@ export const SliderDiv = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 518px;
-    height: 400px;
+    height: 390px;
     margin-bottom: 95px;
 
     .slick-dots {
