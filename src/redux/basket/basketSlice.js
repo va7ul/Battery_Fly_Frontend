@@ -15,10 +15,15 @@ const basketSlice = createSlice({
       const { payload } = action;
       state.items.push(payload);
       state.total += payload.totalPrice;
-      console.log(payload);
     },
     deleteItem(state, action) {
-      const { totalPrice, codeOfGood, capacityKey } = action.payload;
+      const {
+        totalPrice,
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolders,
+      } = action.payload;
 
       if (state.items.length === 1) {
         state.total = initialState.total;
@@ -27,16 +32,22 @@ const basketSlice = createSlice({
       }
       state.items = state.items.filter(
         item =>
-          item.codeOfGood !== codeOfGood && item.capacityKey !== capacityKey
+          item.codeOfGood !== codeOfGood &&
+          item.capacityKey !== capacityKey &&
+          item.selectedSealing !== selectedSealing &&
+          item.selectedHolders !== selectedHolders
       );
     },
     increaseQuantity(state, action) {
-      const { codeOfGood, capacityKey } = action.payload;
+      const { codeOfGood, capacityKey, selectedSealing, selectedHolders } =
+        action.payload;
 
       for (const item of state.items) {
         if (
           item.codeOfGood === codeOfGood &&
-          item.capacityKey === capacityKey
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolders === selectedHolders
         ) {
           item.quantityOrdered += 1;
           item.totalPrice += item.price;
@@ -46,12 +57,15 @@ const basketSlice = createSlice({
       }
     },
     decreaseQuantity(state, action) {
-      const { codeOfGood, capacityKey } = action.payload;
+      const { codeOfGood, capacityKey, selectedSealing, selectedHolders } =
+        action.payload;
 
       for (const item of state.items) {
         if (
           item.codeOfGood === codeOfGood &&
-          item.capacityKey === capacityKey
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolders === selectedHolders
         ) {
           if (item.quantityOrdered > 1) {
             item.quantityOrdered -= 1;
@@ -64,13 +78,21 @@ const basketSlice = createSlice({
       }
     },
     changeQuantity(state, action) {
-      const { codeOfGood, capacityKey, totalPrice, quantityOrdered } =
-        action.payload;
+      const {
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolders,
+        totalPrice,
+        quantityOrdered,
+      } = action.payload;
 
       for (const item of state.items) {
         if (
           item.codeOfGood === codeOfGood &&
-          item.capacityKey === capacityKey
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolders === selectedHolders
         ) {
           state.total = state.total - item.totalPrice + totalPrice;
           item.quantityOrdered = quantityOrdered;
