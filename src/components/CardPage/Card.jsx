@@ -1,9 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
-import { getOneProduct } from '../../redux/products/productsOperations';
 import { ProductPhoto } from './ProductPhoto';
 import { Description } from './Description';
 import { Capacity } from './Capacity';
@@ -21,13 +19,11 @@ import {
 export const Card = () => {
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
     const dispatch = useDispatch();
-    const { cardId } = useParams();
     const { name, capacity, information } = useSelector(selectOneProduct);
 
     useEffect(() => {
-        dispatch(getOneProduct(cardId));
         dispatch(setQuantityOrders(1))
-    }, [dispatch, cardId]);
+    }, [dispatch]);
 
 
     return (
