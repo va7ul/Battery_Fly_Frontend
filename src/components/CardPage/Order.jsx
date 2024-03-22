@@ -150,8 +150,8 @@ export const Order = () => {
       addItem({
         ...product,
         capacityKey: capacityKey || '',
-        sealing: selectedSealing,
-        holders: selectedHolder,
+        selectedSealing: selectedSealing,
+        selectedHolder: selectedHolder,
         quantityOrdered: quantityOrders,
         totalPrice: sale ? priceWithSale : price,
       })
