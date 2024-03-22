@@ -36,14 +36,11 @@ export const ProductsCard = ({ product }) => {
   const addToBasket = () => {
     dispatch(
       addItem({
-        codeOfGood,
-        image,
-        name,
+        ...product,
         capacityKey: '',
         sealing: 0,
         holders: 0,
         quantityOrdered: 1,
-        price,
         totalPrice: price,
       })
     );
@@ -53,15 +50,12 @@ export const ProductsCard = ({ product }) => {
     dispatch(setCartOpen(true));
   };
 
-  const goTo = () => {};
-
   return (
     <>
       <ContentWrapper>
         <IconHeart />
         <IconFullHeart />
         <Link to={`../assortment/${codeOfGood}`}>
-          {/* <Link to={`${codeOfGood}`}> */}
           <StyledImage
             loading="lazy"
             src={image[0] || noImage}
@@ -86,7 +80,7 @@ export const ProductsCard = ({ product }) => {
           )
         ) : (
           <Link to={`../assortment/${codeOfGood}`}>
-            <ChooseBtn onClick={goTo}>
+            <ChooseBtn>
               <div>Оберіть параметри</div>
             </ChooseBtn>
           </Link>
