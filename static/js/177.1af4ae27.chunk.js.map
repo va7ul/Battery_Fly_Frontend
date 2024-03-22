@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/177.1af4ae27.chunk.js","mappings":"sKAAA,MAIA,EAJuBA,KACdC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,kB","sources":["pages/GuaranteesPage.jsx"],"sourcesContent":["const GuaranteesPage = () => {\n  return <div>GuaranteesPage</div>;\n};\n\nexport default GuaranteesPage;\n"],"names":["GuaranteesPage","_jsx","children"],"sourceRoot":""}

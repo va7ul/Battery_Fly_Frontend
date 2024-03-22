@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[6097,4510],{6097:(n,e,t)=>{t.r(e),t.d(e,{CardText:()=>d});var r=t(4510),s=t(579);const d=n=>{let{children:e}=n;return(0,s.jsx)(r.Text,{children:e})}},4510:(n,e,t)=>{t.r(e),t.d(e,{Text:()=>d});var r,s=t(7528);const d=t(197).Ay.p(r||(r=(0,s.A)(["\n  font-size: 10px;\n\n  @media (min-width: 1280px) {\n    font-size: 14px;\n  }\n"])))}}]);
+//# sourceMappingURL=6097.8e2af9a3.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[1864],{1864:(e,t,n)=>{n.r(t),n.d(t,{default:()=>a});var r=n(579);const a=()=>(0,r.jsx)("div",{children:"CheckoutPage"})}}]);
+//# sourceMappingURL=1864.1c73da03.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[511],{511:(n,t,e)=>{e.r(t),e.d(t,{SecondaryWrapper:()=>o});var r,a=e(7528);const o=e(197).Ay.div(r||(r=(0,a.A)(["\n  margin-bottom: 16px;\n  \n  @media (min-width: 1280px) {\n    margin-bottom: 60px;\n  }\n"])))}}]);
+//# sourceMappingURL=511.c7cda550.chunk.js.map

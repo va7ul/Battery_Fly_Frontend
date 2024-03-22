@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[102],{102:(n,t,e)=>{e.r(t),e.d(t,{Icon:()=>i});var p,h=e(7528);const i=e(197).Ay.svg(p||(p=(0,h.A)(["\n  height: 24px;\n  width: 24px;\n  position: absolute;\n  top: -14px;\n  left: 16px;\n\n  @media (min-width: 1280px) {\n    height: 43px;\n    width: 43px;\n    top: -36px;\n    left: 16px;\n  }\n"])))}}]);
+//# sourceMappingURL=102.7a078b5b.chunk.js.map

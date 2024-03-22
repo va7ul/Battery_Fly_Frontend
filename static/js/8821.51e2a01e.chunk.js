@@ -1,0 +1,1 @@
+(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[8821],{1202:()=>{}}]);

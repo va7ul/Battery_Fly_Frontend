@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[4232],{4232:(e,t,n)=>{n.r(t),n.d(t,{StyledPageTitle:()=>s});var r,a=n(7528),f=n(197),l=n(5960);const s=f.Ay.h1(r||(r=(0,a.A)(["\n  ","\n"])),l.R)}}]);
+//# sourceMappingURL=4232.dab134cf.chunk.js.map
