@@ -1,6 +1,7 @@
 import { SignUpForm } from 'components/SignUpForm/SignUpForm';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 import ReactModal from 'react-modal';
+import { useState } from 'react';
 
 const customStyles = {
   overlay: {
@@ -28,6 +29,9 @@ export const ModalSignUpSignIn = ({
   isModalSignUpSighInOpen,
   handleCloseSignUpSighInModal,
 }) => {
+    const [showSignUpForm, setshowSignUpForm] = useState(true);
+  const handleShowSignInForm = () => setshowSignUpForm(false);
+   const handleShowSignUpForm = () => setshowSignUpForm(true);
   return (
     <>
       <ReactModal
@@ -37,10 +41,19 @@ export const ModalSignUpSignIn = ({
       >
         <Box>
           <BtnWrapper>
-            <NavBtn type="button">Вхід</NavBtn>
-            <NavBtn type="button">Реєстрація</NavBtn>
+            <NavBtn type="button" onClick={handleShowSignInForm}>
+              Вхід
+            </NavBtn>
+            <NavBtn type="button" autoFocus onClick={handleShowSignUpForm}>
+              Реєстрація
+            </NavBtn>
           </BtnWrapper>
-          <SignUpForm />
+          {showSignUpForm && (
+            <SignUpForm
+              handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
+            />
+          )}
+          {!showSignUpForm && <p>wewewe</p>}
         </Box>
       </ReactModal>
     </>

@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
 import { signUpSchema } from '../../common/schemas/signUpSchema';
-
 import { Btn, StyledForm } from './SignUpForm.styled';
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -8,7 +7,7 @@ import { useState } from 'react';
 
 const Field = styled(TextField)(() => ({
   '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: '#000000',
+    borderColor: 'rgb(31, 31, 31)',
     borderRadius: '6px',
   },
   '& .MuiOutlinedInput-input': {
@@ -18,7 +17,7 @@ const Field = styled(TextField)(() => ({
   '& .MuiFormLabel-root': {
     fontSize: '10px',
     fontWeight: '600',
-    color: ' #000000',
+    color: 'rgb(31, 31, 31)',
     top: '-8px',
     '&.Mui-focused': {
       color: '#000000',
@@ -38,7 +37,7 @@ const Field = styled(TextField)(() => ({
     },
   },
   '& .MuiFormLabel-root.Mui-error': {
-    color: '#000000',
+    color: 'rgb(31, 31, 31)',
     fontSize: '10px',
     fontWeight: '500',
     transform: 'translate(10px, -6px)',
@@ -50,7 +49,7 @@ const Field = styled(TextField)(() => ({
   },
 }));
 
-export const SignUpForm = () => {
+export const SignUpForm = ({ handleCloseSignUpSighInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -64,6 +63,7 @@ export const SignUpForm = () => {
     validationSchema: signUpSchema,
     onSubmit: (values, actions) => {
       console.log(values);
+      handleCloseSignUpSighInModal();
     },
   });
 
