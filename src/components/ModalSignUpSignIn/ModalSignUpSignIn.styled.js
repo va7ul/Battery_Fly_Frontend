@@ -4,7 +4,7 @@ export const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 
   @media (min-width: 1280px) {
   }

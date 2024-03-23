@@ -2,29 +2,28 @@ import { useFormik } from 'formik';
 import { signUpSchema } from '../../common/schemas/signUpSchema';
 
 import { Btn, StyledForm } from './SignUpForm.styled';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
-import styled from 'styled-components';
 
 const Field = styled(TextField)(() => ({
-  border: '1px solid rgb(31, 31, 31)',
   '& .MuiOutlinedInput-notchedOutline': {
-    height: '28px',
     borderColor: '#000000',
     borderRadius: '6px',
   },
   '& .MuiOutlinedInput-input': {
-    height: '20px',
+    height: '28px',
     padding: '0px 0px',
   },
   '& .MuiFormLabel-root': {
     fontSize: '10px',
     fontWeight: '600',
     color: ' #000000',
+    transform: 'translate(10px,8px)',
     '&.Mui-focused': {
       color: '#000000',
-      fontSize: '12px',
+      fontSize: '10px',
+      transform: 'translate(10px, -10px)',
     },
   },
   '& .MuiInputBase-root': {
@@ -37,8 +36,9 @@ const Field = styled(TextField)(() => ({
   },
   '& .MuiFormLabel-root.Mui-error': {
     color: '#000000',
-    fontSize: '8px',
+    fontSize: '10px',
     fontWeight: '500',
+    transform: 'translate(10px, -12px)',
   },
   '& .MuiFormHelperText-root.Mui-error': {
     color: 'rgba(255, 0, 0, 1)',
