@@ -19,12 +19,15 @@ const Field = styled(TextField)(() => ({
     fontSize: '10px',
     fontWeight: '600',
     color: ' #000000',
-    transform: 'translate(10px,8px)',
+    top: '-8px',
     '&.Mui-focused': {
       color: '#000000',
       fontSize: '10px',
-      transform: 'translate(10px, -10px)',
+      transform: 'translate(10px, -4px) scale(1)',
     },
+  },
+  '& .MuiFormLabel-filled': {
+    transform: 'translate(10px, -4px) scale(1)',
   },
   '& .MuiInputBase-root': {
     height: '28px',
@@ -38,7 +41,7 @@ const Field = styled(TextField)(() => ({
     color: '#000000',
     fontSize: '10px',
     fontWeight: '500',
-    transform: 'translate(10px, -12px)',
+    transform: 'translate(10px, -6px)',
   },
   '& .MuiFormHelperText-root.Mui-error': {
     color: 'rgba(255, 0, 0, 1)',
@@ -102,7 +105,7 @@ export const SignUpForm = () => {
       <Field
         id="password"
         name="password"
-        label="Password"
+        label="Пароль"
         type={showPassword ? 'text' : 'password'}
         value={formik.values.password}
         onChange={formik.handleChange}
