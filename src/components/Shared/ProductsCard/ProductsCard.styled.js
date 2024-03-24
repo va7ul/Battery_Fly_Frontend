@@ -96,7 +96,7 @@ export const StyledImage = styled.img`
   width: 100%;
   height: 140px;
   border-radius: 20px;
-  object-fit: contain;
+  object-fit: cover;
 
   @media screen and (min-width: 1280px) {
     height: 220px;
