@@ -9,6 +9,7 @@ export const Box = styled.div`
   @media (min-width: 1280px) {
   }
 `;
+
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 20px;

@@ -2,6 +2,7 @@ import { SignUpForm } from 'components/SignUpForm/SignUpForm';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 import ReactModal from 'react-modal';
 import { useState } from 'react';
+import { SignInForm } from 'components/SignInForm/SignInForm';
 
 const customStyles = {
   overlay: {
@@ -53,7 +54,11 @@ export const ModalSignUpSignIn = ({
               handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
             />
           )}
-          {!showSignUpForm && <p>wewewe</p>}
+          {!showSignUpForm && (
+            <SignInForm
+              handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
+            />
+          )}
         </Box>
       </ReactModal>
     </>
