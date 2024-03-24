@@ -6,12 +6,6 @@ export const selectOneProductError = state => state.products.oneProduct.error;
 export const selectOneProduct = state => state.products.oneProduct.result;
 export const selectOneProductPrice = state =>
   state.products.oneProduct.result.priceOneProduct;
-
-export const selectAllProductsIsLoading = state =>
-  state.products.productsList.isLoading;
-export const selectAllProductsError = state =>
-  state.products.productsList.error;
-export const selectProducts = state => state.products.productsList.allProducts;
 export const selectSelectedHolder = state =>
   state.products.oneProduct.selectedHolder;
 export const selectSelectedSealing = state =>
@@ -23,6 +17,12 @@ export const selectSealingPrice = state =>
 export const selectHolderPrice = state => state.products.oneProduct.holderPrice;
 export const selectPriceWithSale = state =>
   state.products.oneProduct.priceWithSale;
+
+export const selectAllProductsIsLoading = state =>
+  state.products.productsList.isLoading;
+export const selectAllProductsError = state =>
+  state.products.productsList.error;
+export const selectProducts = state => state.products.productsList.allProducts;
 
 export const selectPopularProducts = createSelector(
   [selectProducts],
