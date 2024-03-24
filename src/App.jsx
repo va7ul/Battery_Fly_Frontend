@@ -7,8 +7,6 @@ import { Layout } from './components/Layout/Layout';
 // import { refreshUser } from 'redux/auth/authOperations.js';
 
 const lazyLoadPage = importPath => lazy(() => import(`./pages/${importPath}`));
-const lazyLoadComponent = importPath =>
-  lazy(() => import(`./components/${importPath}/${importPath}`));
 
 const MainPage = lazyLoadPage('MainPage');
 const AboutPage = lazyLoadPage('AboutPage');
@@ -31,11 +29,9 @@ const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage');
 const ContactsPage = lazyLoadPage('ContactsPage');
 const GuaranteesPage = lazyLoadPage('GuaranteesPage');
 const CheckoutPage = lazyLoadPage('CheckoutPage');
-const UserPage = lazyLoadPage('UserPage');
-
-const UserProfile = lazyLoadComponent('UserProfile');
-const OrdersHistory = lazyLoadComponent('OrdersHistory');
-const Favorites = lazyLoadComponent('Favorites');
+const UserProfilePage = lazyLoadPage('UserProfilePage');
+const OrdersHistoryPage = lazyLoadPage('OrdersHistoryPage');
+const FavoritesPage = lazyLoadPage('FavoritesPage');
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -68,15 +64,10 @@ export const App = () => {
         <Route path="/devices" element={<DevicesPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
         <Route path="/assortment/:cardId" element={<CardPage />} />
-        <Route
-          path="/account"
-          element={<UserPage />}
-          // element={<PrivateRoute redirectTo="/" component={<UserPage />} />}
-        >
-          <Route path="profile" element={<UserProfile />} />
-          <Route path="orders" element={<OrdersHistory />} />
-          <Route path="favorites" element={<Favorites />} />
-        </Route>
+        {/* element={<PrivateRoute redirectTo="/" component={<UserPage />} />} */}
+        <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/orders" element={<OrdersHistoryPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="*" element={<MainPage />} />
       </Route>
     </Routes>
