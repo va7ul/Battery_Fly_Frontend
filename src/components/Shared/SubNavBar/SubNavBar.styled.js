@@ -11,7 +11,7 @@ export const StyledList = styled.ul`
   text-transform: uppercase;
   font-size: 13px;
   gap: 20px;
-  padding: 12px 28px;
+  /* padding: 12px 28px; */
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(
@@ -34,13 +34,27 @@ export const StyledList = styled.ul`
 `;
 
 export const StyledItem = styled.li`
+  position: relative;
+  display: inline-block;
+  /* height: 50px; */
+  padding-top: 30px;
+  padding-bottom: 30px;
+
   &:after {
     content: '';
-    display: inline-block;
-    border-right: 1px solid black;
-    height: 50px;
+    position: absolute;
     background: rgb(225, 225, 225);
+    width: 1px;
+    height: 50px;
+    right: -8px;
+    top: 12px;
   }
+
+  a {
+    display: inline-block;
+    /* height: 100%; */
+  }
+
   /* &:hover,
   &:focus {
     color: ${props => props.theme.colors.secondary};
