@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[2177],{2177:(e,t,a)=>{a.r(t),a.d(t,{default:()=>r});var n=a(579);const r=()=>(0,n.jsx)("div",{children:"GuaranteesPage"})}}]);
-//# sourceMappingURL=2177.90acbdcb.chunk.js.map

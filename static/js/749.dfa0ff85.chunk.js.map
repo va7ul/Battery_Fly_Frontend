@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/749.dfa0ff85.chunk.js","mappings":"sKAAA,MAIA,EAJsBA,KACbC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,iB","sources":["components/OrdersHistory/OrdersHistory.jsx"],"sourcesContent":["const OrdersHistory = () => {\n  return <div>OrdersHistory</div>;\n};\n\nexport default OrdersHistory;\n"],"names":["OrdersHistory","_jsx","children"],"sourceRoot":""}
