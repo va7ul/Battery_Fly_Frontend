@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { nameRegex, passwordRegex } from '../regex';
+import { nameRegex} from '../regex';
 
 export const signUpSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -21,9 +21,5 @@ export const signUpSchema = Yup.object().shape({
     .min(8, 'Пароль має бути не менший 8 символів')
     .max(20, 'Пароль має бути не довший 20 символів')
     .trim('Введіть пароль, будь ласка')
-    .matches(
-      passwordRegex,
-      'Пароль має містити великі і малі літери, цифри та символи. Приклад: Testing193!'
-    )
     .required('Введіть пароль, будь ласка'),
 });

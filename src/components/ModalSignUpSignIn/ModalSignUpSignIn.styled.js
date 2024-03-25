@@ -25,6 +25,8 @@ export const NavBtn = styled.button`
   font-size: 15px;
   font-weight: 600;
   background-color: transparent;
+  color: ${props =>
+    props.show ? props.theme.colors.secondary : props.theme.colors.textPrimary};
 
   &:hover,
   &:focus {

@@ -30,7 +30,7 @@ export const ModalSignUpSignIn = ({
   isModalSignUpSighInOpen,
   handleCloseSignUpSighInModal,
 }) => {
-    const [showSignUpForm, setshowSignUpForm] = useState(true);
+  const [showSignUpForm, setshowSignUpForm] = useState(false);
   const handleShowSignInForm = () => setshowSignUpForm(false);
    const handleShowSignUpForm = () => setshowSignUpForm(true);
   return (
@@ -42,10 +42,18 @@ export const ModalSignUpSignIn = ({
       >
         <Box>
           <BtnWrapper>
-            <NavBtn type="button" onClick={handleShowSignInForm}>
+            <NavBtn
+              type="button"
+              show={!showSignUpForm}
+              onClick={handleShowSignInForm}
+            >
               Вхід
             </NavBtn>
-            <NavBtn type="button" autoFocus onClick={handleShowSignUpForm}>
+            <NavBtn
+              type="button"
+              show={showSignUpForm}
+              onClick={handleShowSignUpForm}
+            >
               Реєстрація
             </NavBtn>
           </BtnWrapper>
