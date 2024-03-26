@@ -7,6 +7,7 @@ export const Box = styled.div`
   gap: 20px;
 
   @media (min-width: 1280px) {
+    gap: 40px;
   }
 `;
 
@@ -18,6 +19,10 @@ export const BtnWrapper = styled.div`
   margin-right: 110px;
 
   @media (min-width: 1280px) {
+    gap: 30px;
+    padding-top: 40px;
+    margin-left: 230px;
+    margin-right: 214px;
   }
 `;
 
@@ -26,7 +31,9 @@ export const NavBtn = styled.button`
   font-weight: 600;
   background-color: transparent;
   color: ${props =>
-    props.show ? props.theme.colors.secondary : props.theme.colors.textPrimary};
+    props.$show
+      ? props.theme.colors.secondary
+      : props.theme.colors.textPrimary};
 
   &:hover,
   &:focus {
@@ -34,5 +41,6 @@ export const NavBtn = styled.button`
   }
 
   @media (min-width: 1280px) {
+    font-size: 20px;
   }
 `;

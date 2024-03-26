@@ -20,7 +20,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     padding: 'none',
     background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0) 112.295%)',
+      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.3) 112.295%)',
   },
 };
 
@@ -44,14 +44,14 @@ export const ModalSignUpSignIn = ({
           <BtnWrapper>
             <NavBtn
               type="button"
-              show={!showSignUpForm}
+              $show={!showSignUpForm}
               onClick={handleShowSignInForm}
             >
               Вхід
             </NavBtn>
             <NavBtn
               type="button"
-              show={showSignUpForm}
+              $show={showSignUpForm}
               onClick={handleShowSignUpForm}
             >
               Реєстрація
