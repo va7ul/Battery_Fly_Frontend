@@ -82,7 +82,7 @@ const Field = styled(TextField)(({ theme }) => ({
   },
 }));
 
-export const SignUpForm = ({ handleCloseSignUpSighInModal }) => {
+export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -96,7 +96,7 @@ export const SignUpForm = ({ handleCloseSignUpSighInModal }) => {
     validationSchema: signUpSchema,
     onSubmit: (values, actions) => {
       console.log(values);
-      handleCloseSignUpSighInModal();
+      handleCloseSignUpSignInModal();
     },
   });
 

@@ -10,14 +10,14 @@ import { useState } from 'react';
 
 export const Header = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
-  const [isModalSignUpSighInOpen, setIsModalSignUpSighInOpen] = useState(false);
+  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 
-  const handleOpenSignUpSighInModal = () => {
-    setIsModalSignUpSighInOpen(true);
+  const handleOpenSignUpSignInModal = () => {
+    setIsModalSignUpSignInOpen(true);
     document.body.style.overflow = 'hidden';
   };
-  const handleCloseSignUpSighInModal = () => {
-    setIsModalSignUpSighInOpen(false);
+  const handleCloseSignUpSignInModal = () => {
+    setIsModalSignUpSignInOpen(false);
     document.body.style.overflow = 'unset';
   };
   return (
@@ -29,11 +29,11 @@ export const Header = () => {
           <Logo />
           <Navigation />
           <LoginButton
-            handleOpenSignUpSighInModal={handleOpenSignUpSighInModal}
+            handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
           />
           <ModalSignUpSignIn
-            isModalSignUpSighInOpen={isModalSignUpSighInOpen}
-            handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
+            isModalSignUpSignInOpen={isModalSignUpSignInOpen}
+            handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
           />
           {/* <ProfileButton /> */}
           {/* {isLoggedIn ? <ProfileButton/> : <LoginButton/>} */}

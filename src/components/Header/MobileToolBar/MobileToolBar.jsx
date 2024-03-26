@@ -23,14 +23,14 @@ export const MobileToolBar = () => {
    document.body.style.overflow = 'unset';
  };
 
-  const [isModalSignUpSighInOpen, setIsModalSignUpSighInOpen] = useState(false);
+  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 
-  const handleOpenSignUpSighInModal = () => {
-    setIsModalSignUpSighInOpen(true);
+  const handleOpenSignUpSignInModal = () => {
+    setIsModalSignUpSignInOpen(true);
     document.body.style.overflow = 'hidden';
   };
-  const handleCloseSignUpSighInModal = () => {
-    setIsModalSignUpSighInOpen(false);
+  const handleCloseSignUpSignInModal = () => {
+    setIsModalSignUpSignInOpen(false);
     document.body.style.overflow = 'unset';
   };
 
@@ -54,7 +54,7 @@ export const MobileToolBar = () => {
       <Button type="button">
         <FavoriteIcon />
       </Button>
-      <Button type="button" onClick={handleOpenSignUpSighInModal}>
+      <Button type="button" onClick={handleOpenSignUpSignInModal}>
         <LoginIcon
           sx={{
             color: 'background.paper',
@@ -66,8 +66,8 @@ export const MobileToolBar = () => {
         />
       </Button>
       <ModalSignUpSignIn
-        isModalSignUpSighInOpen={isModalSignUpSighInOpen}
-        handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
+        isModalSignUpSignInOpen={isModalSignUpSignInOpen}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
       {/* <Button type="button">
         <AccountCircleOutlinedIcon

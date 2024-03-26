@@ -11,15 +11,20 @@ export const StyledForm = styled.form`
   margin-right: 48px;
 
   @media (min-width: 1280px) {
+    width: 476px;
+    gap: 30px;
+    padding-bottom: 40px;
+    margin-left: 78px;
+    margin-right: 78px;
   }
 `;
 
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 24px;
-  padding-top: 12px;
 
   @media (min-width: 1280px) {
+    gap: 94px;
   }
 `;
 
@@ -40,7 +45,15 @@ export const Btn = styled.button`
   }
 
   @media (min-width: 1280px) {
+    max-width: 200px;
+    padding: 16px 62px;
+    border-radius: 12px;
+    border: none;
+    font-size: 24px;
+    font-weight: 400;
+
     &::after {
+      border-radius: 12px;
     }
   }
 `;
@@ -56,5 +69,6 @@ export const ForgotPasswordBtn = styled.button`
   }
 
   @media (min-width: 1280px) {
+    font-size: 20px;
   }
 `;

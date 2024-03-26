@@ -27,17 +27,17 @@ const customStyles = {
 ReactModal.setAppElement('#modal-root');
 
 export const ModalSignUpSignIn = ({
-  isModalSignUpSighInOpen,
-  handleCloseSignUpSighInModal,
+  isModalSignUpSignInOpen,
+  handleCloseSignUpSignInModal,
 }) => {
   const [showSignUpForm, setshowSignUpForm] = useState(false);
   const handleShowSignInForm = () => setshowSignUpForm(false);
-   const handleShowSignUpForm = () => setshowSignUpForm(true);
+  const handleShowSignUpForm = () => setshowSignUpForm(true);
   return (
     <>
       <ReactModal
-        isOpen={isModalSignUpSighInOpen}
-        onRequestClose={handleCloseSignUpSighInModal}
+        isOpen={isModalSignUpSignInOpen}
+        onRequestClose={handleCloseSignUpSignInModal}
         style={customStyles}
       >
         <Box>
@@ -59,12 +59,12 @@ export const ModalSignUpSignIn = ({
           </BtnWrapper>
           {showSignUpForm && (
             <SignUpForm
-              handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
+              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
             />
           )}
           {!showSignUpForm && (
             <SignInForm
-              handleCloseSignUpSighInModal={handleCloseSignUpSighInModal}
+              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
             />
           )}
         </Box>
