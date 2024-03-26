@@ -6,7 +6,7 @@ export const StyledContainer = styled.div`
   background: ${getSectionBackground};
 
   @media screen and (min-width: 1280px) {
-    padding: 15px 110px 30px;
+    padding: 40px 110px 30px;
   }
 `;
 
@@ -17,7 +17,6 @@ export const StyledTitle = styled.h2`
 
   @media screen and (min-width: 1280px) {
     margin-bottom: 30px;
-    margin-top: 40px;
     font-size: 32px;
   }
 `;

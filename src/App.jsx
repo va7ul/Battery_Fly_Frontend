@@ -1,37 +1,37 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
-import { PrivateRoute } from 'routes/PrivateRoute';
+// import { PrivateRoute } from 'routes/PrivateRoute';
 import { Layout } from './components/Layout/Layout';
 // import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 // import { refreshUser } from 'redux/auth/authOperations.js';
 
 const lazyLoadPage = importPath => lazy(() => import(`./pages/${importPath}`));
 
-const MainPage = lazyLoadPage('MainPage.jsx');
-const AboutPage = lazyLoadPage('AboutPage.jsx');
-const AssortmentPage = lazyLoadPage('AssortmentPage.jsx');
-const SalesPage = lazyLoadPage('SalesPage.jsx');
-const BatteriesPage = lazyLoadPage('BatteriesPage.jsx');
-const Batteries18650Page = lazyLoadPage('Batteries18650Page.jsx');
-const Batteries21700Page = lazyLoadPage('Batteries21700Page.jsx');
-const Batteries32650Page = lazyLoadPage('Batteries32650Page.jsx');
-const BatteriesLiPoPage = lazyLoadPage('BatteriesLipoPage.jsx');
-const BatteriesLifepo4Page = lazyLoadPage('BatteriesLifepo4Page.jsx');
-const AssemblyPage = lazyLoadPage('AssembliesPage.jsx');
-const BatteriesForFPVPage = lazyLoadPage('BatteriesForFPVPage.jsx');
-const BatteriesForTransportPage = lazyLoadPage('BatteriesForTransportPage.jsx');
-const BatteriesForToysPage = lazyLoadPage('BatteriesForToysPage.jsx');
-const DevicesPage = lazyLoadPage('DevicesPage.jsx');
-const MaterialsPage = lazyLoadPage('MaterialsPage.jsx');
-const CardPage = lazyLoadPage('CardPage.jsx');
-const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage.jsx');
-const ContactsPage = lazyLoadPage('ContactsPage.jsx');
-const GuaranteesPage = lazyLoadPage('GuaranteesPage.jsx');
-const CheckoutPage = lazyLoadPage('CheckoutPage.jsx');
-const UserProfilePage = lazyLoadPage('UserProfilePage.jsx');
-const OrdersHistoryPage = lazyLoadPage('OrdersHistoryPage.jsx');
-const FavoritesPage = lazyLoadPage('FavoritesPage.jsx');
+const MainPage = lazyLoadPage('MainPage');
+const AboutPage = lazyLoadPage('AboutPage');
+const AssortmentPage = lazyLoadPage('AssortmentPage');
+const SalesPage = lazyLoadPage('SalesPage');
+const BatteriesPage = lazyLoadPage('BatteriesPage');
+const Batteries18650Page = lazyLoadPage('Batteries18650Page');
+const Batteries21700Page = lazyLoadPage('Batteries21700Page');
+const Batteries32650Page = lazyLoadPage('Batteries32650Page');
+const BatteriesLiPoPage = lazyLoadPage('BatteriesLipoPage');
+const BatteriesLifepo4Page = lazyLoadPage('BatteriesLifepo4Page');
+const AssemblyPage = lazyLoadPage('AssembliesPage');
+const BatteriesForFPVPage = lazyLoadPage('BatteriesForFPVPage');
+const BatteriesForTransportPage = lazyLoadPage('BatteriesForTransportPage');
+const BatteriesForToysPage = lazyLoadPage('BatteriesForToysPage');
+const DevicesPage = lazyLoadPage('DevicesPage');
+const MaterialsPage = lazyLoadPage('MaterialsPage');
+const CardPage = lazyLoadPage('CardPage');
+const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage');
+const ContactsPage = lazyLoadPage('ContactsPage');
+const GuaranteesPage = lazyLoadPage('GuaranteesPage');
+const CheckoutPage = lazyLoadPage('CheckoutPage');
+const UserProfilePage = lazyLoadPage('UserProfilePage');
+const OrdersHistoryPage = lazyLoadPage('OrdersHistoryPage');
+const FavoritesPage = lazyLoadPage('FavoritesPage');
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -64,24 +64,10 @@ export const App = () => {
         <Route path="/devices" element={<DevicesPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
         <Route path="/assortment/:cardId" element={<CardPage />} />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute redirectTo="/" component={<UserProfilePage />} />
-          }
-        />
-        <Route
-          path="/orders"
-          element={
-            <PrivateRoute redirectTo="/" component={<OrdersHistoryPage />} />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <PrivateRoute redirectTo="/" component={<FavoritesPage />} />
-          }
-        />
+        {/* element={<PrivateRoute redirectTo="/" component={<UserPage />} />} */}
+        <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/orders" element={<OrdersHistoryPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="*" element={<MainPage />} />
       </Route>
     </Routes>

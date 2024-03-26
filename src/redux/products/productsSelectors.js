@@ -6,6 +6,17 @@ export const selectOneProductError = state => state.products.oneProduct.error;
 export const selectOneProduct = state => state.products.oneProduct.result;
 export const selectOneProductPrice = state =>
   state.products.oneProduct.result.priceOneProduct;
+export const selectSelectedHolder = state =>
+  state.products.oneProduct.selectedHolder;
+export const selectSelectedSealing = state =>
+  state.products.oneProduct.selectedSealing;
+export const selectQuantityOrders = state =>
+  state.products.oneProduct.quantityOrders;
+export const selectSealingPrice = state =>
+  state.products.oneProduct.sealingPrice;
+export const selectHolderPrice = state => state.products.oneProduct.holderPrice;
+export const selectPriceWithSale = state =>
+  state.products.oneProduct.priceWithSale;
 
 export const selectAllProductsIsLoading = state =>
   state.products.productsList.isLoading;

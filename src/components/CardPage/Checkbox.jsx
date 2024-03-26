@@ -3,16 +3,17 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct } from '../../redux/products/productsSelectors';
-import { setPrice } from '../../redux/products/oneProductSlice';
+import { selectOneProduct, selectSelectedSealing, selectSelectedHolder, selectOneProductPrice, selectSealingPrice, selectHolderPrice } from '../../redux/products/productsSelectors';
+import { setSelectedHolder, setSelectedSealing } from '../../redux/products/oneProductSlice';
 import { themeMUI } from '../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { Subtitle, Container } from './Card.styled';
+import { Subtitle, Container, Group, ExtraPrice } from './Card.styled';
 
 const StyledFormGroup = styled(FormGroup)({
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    gap: '30px',
+    gap: '10px',
+     [themeMUI.breakpoints.only('desktop')]: {
+            gap: '20px',
+        },
     '& .MuiButtonBase-root': {
         padding: '0px 10px 0px 0px'
     },
@@ -39,49 +40,58 @@ const StyledCheckbox = styled(Checkbox)({
 });
 
 export const CheckBox = () => {
-  const dispatch = useDispatch();
-    const { price, capacity, capacityKey, holder } = useSelector(selectOneProduct);
-   
+    const dispatch = useDispatch();
+
+    const { holder } = useSelector(selectOneProduct);
+    const selectedSealing = useSelector(selectSelectedSealing);
+    const selectedHolder = useSelector(selectSelectedHolder);
+    const oneProductPrice = useSelector(selectOneProductPrice);
+    const sealingPrice = useSelector(selectSealingPrice);
+    const holderPrice = useSelector(selectHolderPrice);
+
     const handleSealing = (e) => {
-        if (typeof price === 'number' && e.currentTarget.checked) {
-            dispatch(setPrice(price + 100));    
-        }
-        if (typeof price === 'number' && !e.currentTarget.checked) {
-            dispatch(setPrice(price - 100));
-        }
+        dispatch(setSelectedSealing(e.target.checked));
     };
 
+
     const handleHolder = (e) => {
-           if (typeof price === 'number' && e.currentTarget.checked) {
-               dispatch(setPrice(price + (capacity[capacityKey].holder * 2)));
-           }
-           if (typeof price === 'number' && !e.currentTarget.checked) {
-               dispatch(setPrice(price - (capacity[capacityKey].holder * 2)));
-        }   
+        dispatch(setSelectedHolder(e.target.checked));
     };
+
 
     return (
         <Container>
             <Subtitle>Додаткові послуги:</Subtitle>
             <StyledFormGroup>
-                <FormControlLabel control={<StyledCheckbox
-                    onChange={handleSealing}
-                    sx={{
-                    color: yellow[800],
-                    '&.Mui-checked': {
-                        color: yellow[800],
-                    },
-                    }} />} label="Герметизація" />
-            {holder ? ( <FormControlLabel control={<StyledCheckbox
-                    onChange={handleHolder}
-                    sx={{
-                    color: yellow[800],
-                    '&.Mui-checked': {
-                        color: yellow[800],
-                    },
-                    }} />} label="Використовувати холдери" />) : (undefined
-                )}
-               
+                <Group>
+                    <FormControlLabel control={<StyledCheckbox
+                        value={selectedSealing}
+                        checked={selectedSealing}
+                        onChange={handleSealing}
+                        disabled={typeof oneProductPrice === "string"}
+                        sx={{
+                            color: yellow[800],
+                            '&.Mui-checked': {
+                                color: yellow[800],
+                            },
+                        }} />} label="Герметизація" />
+                    {selectedSealing && <ExtraPrice>{`+ ${sealingPrice} грн`}</ExtraPrice>}
+                </Group>
+                {holder &&
+                    <Group>
+                        <FormControlLabel control={<StyledCheckbox
+                            onChange={handleHolder}
+                            checked={selectedHolder}
+                            value={selectedHolder}
+                            disabled={typeof oneProductPrice === "string"}
+                            sx={{
+                                color: yellow[800],
+                                '&.Mui-checked': {
+                                    color: yellow[800],
+                                },
+                            }} />} label="Використовувати холдери" />
+                        {selectedHolder && <ExtraPrice>{`+ ${holderPrice} грн`}</ExtraPrice>}
+                    </Group>}
             </StyledFormGroup>
         </Container>
     );

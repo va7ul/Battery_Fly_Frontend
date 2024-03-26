@@ -1,5 +1,12 @@
+import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
+
 const UserProfilePage = () => {
-  return <div>UserProfilePage</div>;
+  return (
+    <>
+      <SideBarNav />
+      <div>UserProfilePage</div>
+    </>
+  );
 };
 
 export default UserProfilePage;

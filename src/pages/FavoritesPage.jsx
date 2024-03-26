@@ -1,5 +1,12 @@
+import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
+
 const FavoritesPage = () => {
-  return <div>FavoritesPage</div>;
+  return (
+    <>
+      <SideBarNav />
+      <div>FavoritesPage</div>
+    </>
+  );
 };
 
 export default FavoritesPage;

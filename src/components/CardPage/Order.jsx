@@ -1,9 +1,10 @@
 import toast, { Toaster } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectOneProduct, selectOneProductPrice } from '../../redux/products/productsSelectors';
-import { setPrice } from '../../redux/products/oneProductSlice';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
+import { addItem } from '../../redux/basket/basketSlice'
+import { selectOneProduct, selectOneProductPrice, selectQuantityOrders, selectSelectedHolder, selectSelectedSealing, selectSealingPrice, selectHolderPrice, selectPriceWithSale } from '../../redux/products/productsSelectors';
+import { setPrice, setQuantityOrders, setSealingPrice, setHolderPrice, setPriceWithSale } from '../../redux/products/oneProductSlice';
 import {
   OrderBox,
   Input,
@@ -11,62 +12,158 @@ import {
   CounterBox,
   ButtonBox,
   BasketButton,
-  OrderButton, } from "./Card.styled";
+  OrderButton } from "./Card.styled";
 
 export const Order = () => {
     const dispatch = useDispatch();
+
+    const product = useSelector(selectOneProduct);
+    const {
+      price,
+      quantity,
+      capacity,
+      capacityKey,
+      discount,
+      sale,
+    } = product;
     const oneProductPrice = useSelector(selectOneProductPrice);
-    const [quantityOrdered, setQuantityOrdered] = useState(1);
-    const { quantity } = useSelector(selectOneProduct);
+    const selectedSealing = useSelector(selectSelectedSealing);
+    const selectedHolder = useSelector(selectSelectedHolder);
+    const quantityOrders = useSelector(selectQuantityOrders);
+    const sealingPrice = useSelector(selectSealingPrice);
+    const holderPrice = useSelector(selectHolderPrice);
+    const priceWithSale = useSelector(selectPriceWithSale);
 
     useEffect(() => {
-        if (typeof oneProductPrice === "string") {
-            return
+        dispatch(setSealingPrice(100 * quantityOrders));
+    }, [dispatch, quantityOrders]);
+
+
+    useEffect(() => {
+        let holderCost = 0;
+        if (capacity) {
+            holderCost = capacity[capacityKey]?.holder * 2 || 0;
         }
-        dispatch(setPrice(quantityOrdered * oneProductPrice));
-    },[dispatch, quantityOrdered, oneProductPrice])
+        dispatch(setHolderPrice(holderCost * quantityOrders));
+        
+    }, [dispatch, quantityOrders, capacityKey, capacity]);
+
     
+
+    // useEffect(() => {
+
+    //     if (selectedSealing && selectedHolder) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice + holderPrice));
+    //         dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100) + sealingPrice + holderPrice));
+    //         return;
+    //     }
+
+    //     if (selectedSealing) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + sealingPrice));
+    //         dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100) + sealingPrice));
+    //         return;
+    //     }
+        
+    //     if (selectedHolder) {
+    //         dispatch(setPrice(quantityOrders * oneProductPrice + holderPrice));
+    //         dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100) + holderPrice));
+    //         return;
+    //     }
+
+    
+    //     dispatch(setPrice(quantityOrders * oneProductPrice));
+    //     if (typeof oneProductPrice === 'string') {
+    //         return;
+    //     }
+    //     dispatch(setPriceWithSale(quantityOrders * oneProductPrice * ((100 - discount) / 100)));
+        
+    
+        
+    // }, [dispatch, selectedSealing, holderPrice, oneProductPrice, selectedHolder, quantityOrders, sealingPrice, discount]);
+
+    useEffect(() => {
+         if (typeof oneProductPrice === 'string') {
+            return;
+        }
+ 
+        let totalPrice = quantityOrders * oneProductPrice;
+        let totalPriceWithSale = totalPrice * ((100 - discount) / 100);
+
+ 
+        if (selectedSealing) {
+            totalPrice += sealingPrice;
+            totalPriceWithSale += sealingPrice;
+        }
+
+ 
+        if (selectedHolder) {
+            totalPrice += holderPrice;
+            totalPriceWithSale += holderPrice;
+        }
+    
+
+        dispatch(setPrice(totalPrice));
+        dispatch(setPriceWithSale(totalPriceWithSale));
+    }, [dispatch, selectedSealing, selectedHolder, quantityOrders, oneProductPrice, sealingPrice, holderPrice, discount]);
+
+
     const plusOne = () => {
-        if (quantityOrdered < quantity) {     
-            setQuantityOrdered(state => Number(state) + 1);
-            
-        } else if (quantityOrdered >= quantity) {
+        if (quantityOrders < quantity) {
+            dispatch(setQuantityOrders(quantityOrders + 1));
+        } else {
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
-            })
+            });
         }
     };
 
+
     const minusOne = () => {
-        if (quantityOrdered > 1) {
-            setQuantityOrdered(state => Number(state) - 1);
-        }
+        if (quantityOrders > 1) {
+            dispatch(setQuantityOrders(quantityOrders - 1));
+        };
     };
 
     const setValue = e => {
         if (e.target.value > quantity) {
-            setQuantityOrdered(Number(quantity))
+            dispatch(setQuantityOrders(quantity))
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
                 duration: 4000,
-            })
-        }
+            });
+        };
+
         if (e.target.value <= quantity) {
-            setQuantityOrdered(Number(e.target.value) || '');
-        }
+            dispatch(setQuantityOrders(Number(e.target.value) || ''));
+        };
     };
     
     const minValue = () => {
-        if (quantityOrdered === '') {
-            setQuantityOrdered(1);
-        }
+        if (quantityOrders === '') {
+            dispatch(setQuantityOrders(1));
+        };
     };
+
+      const addToBasket = () => {
+    dispatch(
+      addItem({
+        ...product,
+        capacityKey: capacityKey || '',
+        selectedSealing: selectedSealing,
+        selectedHolder: selectedHolder,
+        quantityOrdered: quantityOrders,
+        totalPrice: sale ? priceWithSale : price,
+      })
+    );
+  };
 
     return (
         <OrderBox>
             <CounterBox>
-                <Button onClick={minusOne}>
+                <Button
+                    onClick={minusOne}
+                    disabled={typeof oneProductPrice === "string"}>
                     <div>
                         <FaMinus />
                     </div>
@@ -75,22 +172,28 @@ export const Order = () => {
                     type="number"
                     min="1"
                     max={quantity}
-                    // placeholder="1 шт"
                     onBlur={minValue}
                     onChange={setValue}
-                    value={quantityOrdered}>
+                    value={quantityOrders}
+                    disabled={typeof oneProductPrice === "string"}
+                >
                 </Input>
-                <Button onClick={plusOne}>
+                <Button
+                    onClick={plusOne}
+                    disabled={typeof oneProductPrice === "string"}>
                     <div>
                         <FaPlus />
                     </div>
                 </Button>
             </CounterBox>
             <ButtonBox>
-                <BasketButton>
+                <BasketButton
+                    disabled={typeof oneProductPrice === "string"}
+                onClick={addToBasket}
+                >
                     <div>В кошик</div>
                 </BasketButton>
-                <OrderButton>
+                <OrderButton disabled={typeof oneProductPrice === "string"}>
                     <div>Швидке замовлення</div>
                 </OrderButton>
             </ButtonBox>

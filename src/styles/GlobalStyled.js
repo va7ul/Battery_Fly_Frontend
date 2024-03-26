@@ -190,7 +190,10 @@ export const gradientTransitionBtn = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: ${theme.colors.gradientHover};
+    background: ${props =>
+      props.disabled
+        ? props.theme.colors.greyBackgroundPaper
+        : props.theme.colors.gradient};
     transition: ${theme.transition.main};
     z-index: 1;
     opacity: 0;

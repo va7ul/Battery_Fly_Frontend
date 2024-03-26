@@ -1,5 +1,12 @@
+import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
+
 const OrdersHistoryPage = () => {
-  return <div>OrdersHistoryPage</div>;
+  return (
+    <>
+      <SideBarNav />
+      <div>OrdersHistoryPage</div>
+    </>
+  );
 };
 
 export default OrdersHistoryPage;
