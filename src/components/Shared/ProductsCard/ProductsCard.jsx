@@ -37,6 +37,7 @@ export const ProductsCard = ({ product }) => {
     dispatch(
       addItem({
         ...product,
+        price: sale ? newPrice : price,
         capacityKey: '',
         selectedSealing: false,
         selectedHolders: false,
