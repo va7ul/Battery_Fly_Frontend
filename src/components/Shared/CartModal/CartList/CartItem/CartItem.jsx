@@ -18,43 +18,65 @@ import {
   changeQuantity,
 } from '../../../../../redux/basket/basketSlice';
 
-export const CartItem = ({
-  item: { codeOfGood, image, name, quantity, price, totalPrice },
-}) => {
+export const CartItem = ({ item }) => {
+  const {
+    _id,
+    codeOfGood,
+    image,
+    name,
+    quantityOrdered,
+    totalPrice,
+    capacityKey,
+    selectedSealing,
+    selectedHolders,
+  } = item;
+
   const dispatch = useDispatch();
 
   const changeValue = e => {
+    // const newTotalPrice = price * quantityOrdered;
+    // console.log(newTotalPrice);
     if (Number(e.target.value) > 0) {
       dispatch(
-        changeQuantity({ codeOfGood, quantity: Number(e.target.value) })
+        changeQuantity({
+          codeOfGood,
+          capacityKey,
+          selectedSealing,
+          selectedHolders,
+          totalPrice,
+          quantityOrdered: Number(e.target.value),
+        })
       );
     }
   };
 
+  const deleteFromCart = () => {
+    dispatch(
+      deleteItem({
+        codeOfGood,
+        totalPrice,
+        // capacityKey,
+        // selectedSealing,
+        // selectedHolders,
+      })
+    );
+  };
+
   return (
     <Item>
-      <Image src={image} alt={name} />
+      <Image src={image[0]} alt={name} />
       <GoodName>{name}</GoodName>
       <QuantityWrap>
-        <Button
-          type="button"
-          onClick={() => dispatch(decreaseQuantity({ codeOfGood }))}
-        >
+        <Button type="button" onClick={() => dispatch(decreaseQuantity(item))}>
           <FaMinus />
         </Button>
-        <Input type="number" onChange={changeValue} value={quantity} />
-        <Button
-          type="button"
-          onClick={() => dispatch(increaseQuantity({ codeOfGood }))}
-        >
+        <Input type="number" onChange={changeValue} value={quantityOrdered} />
+        <Button type="button" onClick={() => dispatch(increaseQuantity(item))}>
           <FaPlus />
         </Button>
       </QuantityWrap>
-      <Price>{price}</Price>
-      <DeleteBtn
-        type="button"
-        onClick={() => dispatch(deleteItem({ codeOfGood, totalPrice }))}
-      >
+      <Price>{totalPrice}</Price>
+      <DeleteBtn type="button" onClick={deleteFromCart}>
         <FaXmark />
       </DeleteBtn>
     </Item>
