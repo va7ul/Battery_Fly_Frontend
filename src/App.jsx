@@ -24,6 +24,7 @@ const BatteriesForTransportPage = lazyLoadPage('BatteriesForTransportPage');
 const BatteriesForToysPage = lazyLoadPage('BatteriesForToysPage');
 const DevicesPage = lazyLoadPage('DevicesPage');
 const MaterialsPage = lazyLoadPage('MaterialsPage');
+const Print3DPage = lazyLoadPage('Print3DPage');
 const CardPage = lazyLoadPage('CardPage');
 const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage');
 const ContactsPage = lazyLoadPage('ContactsPage');
@@ -63,6 +64,7 @@ export const App = () => {
         <Route path="/batteries-for-toys" element={<BatteriesForToysPage />} />
         <Route path="/devices" element={<DevicesPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
+        <Route path="/3D-print" element={<Print3DPage />} />
         <Route path="/assortment/:cardId" element={<CardPage />} />
         {/* element={<PrivateRoute redirectTo="/" component={<UserPage />} />} */}
         <Route path="/profile" element={<UserProfilePage />} />

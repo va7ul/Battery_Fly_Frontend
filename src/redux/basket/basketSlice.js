@@ -12,96 +12,127 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      const { payload } = action;
-      state.items.push(payload);
-      state.total += payload.totalPrice;
+      const {
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolder,
+        quantityOrdered,
+        totalPrice,
+      } = action.payload;
+
+      const findingIndex = state.items.findIndex(
+        item =>
+          item.codeOfGood === codeOfGood &&
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolder === selectedHolder
+      );
+
+      if (findingIndex >= 0) {
+        state.items[findingIndex].quantityOrdered += quantityOrdered;
+        state.items[findingIndex].totalPrice += totalPrice;
+        state.total += totalPrice;
+      } else {
+        state.items.push(action.payload);
+        state.total += totalPrice;
+      }
     },
+
     deleteItem(state, action) {
       const {
         totalPrice,
         codeOfGood,
         capacityKey,
         selectedSealing,
-        selectedHolders,
+        selectedHolder,
       } = action.payload;
+
+      const findingIndex = state.items.findIndex(
+        item =>
+          item.codeOfGood === codeOfGood &&
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolder === selectedHolder
+      );
 
       if (state.items.length === 1) {
         state.total = initialState.total;
       } else {
         state.total -= totalPrice;
       }
-      state.items = state.items.filter(
-        item =>
-          item.codeOfGood !== codeOfGood &&
-          item.capacityKey !== capacityKey &&
-          item.selectedSealing !== selectedSealing &&
-          item.selectedHolders !== selectedHolders
-      );
+
+      state.items.splice(findingIndex, 1);
     },
+
     increaseQuantity(state, action) {
-      const { codeOfGood, capacityKey, selectedSealing, selectedHolders } =
-        action.payload;
+      const {
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolder,
+        price,
+      } = action.payload;
 
-      for (const item of state.items) {
-        if (
+      const findingIndex = state.items.findIndex(
+        item =>
           item.codeOfGood === codeOfGood &&
           item.capacityKey === capacityKey &&
           item.selectedSealing === selectedSealing &&
-          item.selectedHolders === selectedHolders
-        ) {
-          item.quantityOrdered += 1;
-          item.totalPrice += item.price;
-          state.total += item.price;
-          break;
-        }
-      }
+          item.selectedHolder === selectedHolder
+      );
+
+      state.items[findingIndex].quantityOrdered += 1;
+      state.items[findingIndex].totalPrice += price;
+      state.total += price;
     },
+
     decreaseQuantity(state, action) {
-      const { codeOfGood, capacityKey, selectedSealing, selectedHolders } =
-        action.payload;
+      const {
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolder,
+        price,
+      } = action.payload;
 
-      for (const item of state.items) {
-        if (
+      const findingIndex = state.items.findIndex(
+        item =>
           item.codeOfGood === codeOfGood &&
           item.capacityKey === capacityKey &&
           item.selectedSealing === selectedSealing &&
-          item.selectedHolders === selectedHolders
-        ) {
-          if (item.quantityOrdered > 1) {
-            item.quantityOrdered -= 1;
-            item.totalPrice -= item.price;
-            state.total -= item.price;
-            break;
-          }
-          break;
-        }
-      }
+          item.selectedHolder === selectedHolder
+      );
+
+      state.items[findingIndex].quantityOrdered -= 1;
+      state.items[findingIndex].totalPrice -= price;
+      state.total -= price;
     },
+
     changeQuantity(state, action) {
       const {
         codeOfGood,
         capacityKey,
         selectedSealing,
-        selectedHolders,
-
+        selectedHolder,
         quantityOrdered,
+        price,
       } = action.payload;
 
-      for (const item of state.items) {
-        if (
+      const findingIndex = state.items.findIndex(
+        item =>
           item.codeOfGood === codeOfGood &&
           item.capacityKey === capacityKey &&
           item.selectedSealing === selectedSealing &&
-          item.selectedHolders === selectedHolders
-        ) {
-          const newTotalPrice = item.price * quantityOrdered;
+          item.selectedHolder === selectedHolder
+      );
 
-          state.total = state.total - item.totalPrice + newTotalPrice;
-          item.totalPrice = newTotalPrice;
-          item.quantityOrdered = quantityOrdered;
-          break;
-        }
-      }
+      const newTotalPrice = price * quantityOrdered;
+
+      state.total =
+        state.total - state.items[findingIndex].totalPrice + newTotalPrice;
+      state.items[findingIndex].totalPrice = newTotalPrice;
+      state.items[findingIndex].quantityOrdered = quantityOrdered;
     },
   },
 });

@@ -27,7 +27,7 @@ export const CartItem = ({ item }) => {
     totalPrice,
     capacityKey,
     selectedSealing,
-    selectedHolders,
+    selectedHolder,
   } = item;
 
   const dispatch = useDispatch();
@@ -38,11 +38,11 @@ export const CartItem = ({ item }) => {
     if (Number(e.target.value) > 0) {
       dispatch(
         changeQuantity({
+          ...item,
           codeOfGood,
           capacityKey,
           selectedSealing,
-          selectedHolders,
-          totalPrice,
+          selectedHolder,
           quantityOrdered: Number(e.target.value),
         })
       );
@@ -52,11 +52,11 @@ export const CartItem = ({ item }) => {
   const deleteFromCart = () => {
     dispatch(
       deleteItem({
-        codeOfGood,
         totalPrice,
-        // capacityKey,
-        // selectedSealing,
-        // selectedHolders,
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolder,
       })
     );
   };

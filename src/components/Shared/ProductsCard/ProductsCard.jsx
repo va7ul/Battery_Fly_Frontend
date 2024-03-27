@@ -40,7 +40,7 @@ export const ProductsCard = ({ product }) => {
         price: sale ? newPrice : price,
         capacityKey: '',
         selectedSealing: false,
-        selectedHolders: false,
+        selectedHolder: false,
         quantityOrdered: 1,
         totalPrice: sale ? newPrice : price,
       })
