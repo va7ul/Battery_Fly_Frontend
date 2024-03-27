@@ -20,7 +20,6 @@ import {
 
 export const CartItem = ({ item }) => {
   const {
-    _id,
     codeOfGood,
     image,
     name,
