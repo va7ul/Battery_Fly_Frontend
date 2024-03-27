@@ -26,7 +26,12 @@ ReactModal.setAppElement('#modal-root');
 export const ModalForgotPasswordAgree = ({
   isModalForgotPasswordAgreeOpen,
   handleCloseForgotPasswordAgreeModal,
+  handleCloseSignUpSignInModal,
 }) => {
+  const handleCloseAllModal = () => {
+    handleCloseForgotPasswordAgreeModal();
+    handleCloseSignUpSignInModal();
+  };
   return (
     <ReactModal isOpen={isModalForgotPasswordAgreeOpen} style={customStyles}>
       <TextWrapper>
@@ -35,7 +40,7 @@ export const ModalForgotPasswordAgree = ({
           вашу електронну пошту.
         </Text>
       </TextWrapper>
-      <Btn type="button" onClick={handleCloseForgotPasswordAgreeModal}>
+      <Btn type="button" onClick={handleCloseAllModal}>
         <div>Гаразд</div>
       </Btn>
     </ReactModal>

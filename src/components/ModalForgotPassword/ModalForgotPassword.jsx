@@ -1,15 +1,10 @@
 import { TextField, styled } from '@mui/material';
 import ReactModal from 'react-modal';
 import { forgotPasswordSchema } from '../../common/schemas/forgotPasswordSchema';
-import {
-  Btn,
-  StyledForm,
-  Text,
-} from './ModalForgotPassword.styled';
+import { Btn, StyledForm, Text } from './ModalForgotPassword.styled';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { ModalForgotPasswordAgree } from 'components/ModalForgotPasswordAgree/ModalForgotPasswordAgree';
-
 
 const customStyles = {
   overlay: {
@@ -108,8 +103,6 @@ const Field = styled(TextField)(({ theme }) => ({
   },
 }));
 
-
-
 ReactModal.setAppElement('#modal-root');
 
 export const ModalForgotPassword = ({
@@ -138,10 +131,9 @@ export const ModalForgotPassword = ({
       console.log(values);
       handleOpenForgotPasswordAgreeModal();
       handleCloseForgotPasswordModal();
-      handleCloseSignUpSignInModal();
     },
   });
-  
+
   return (
     <>
       <ReactModal
@@ -172,6 +164,7 @@ export const ModalForgotPassword = ({
         handleCloseForgotPasswordAgreeModal={
           handleCloseForgotPasswordAgreeModal
         }
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
     </>
   );
