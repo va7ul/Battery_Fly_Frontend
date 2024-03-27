@@ -3,10 +3,12 @@ import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 
 export const TextWrapper = styled.div`
+  max-width: 320px;
   padding: 16px 16px 0px 16px;
   margin-bottom: 10px;
   text-align: center;
   @media (min-width: 1280px) {
+    max-width: 630px;
     padding: 30px 20px 0px 20px;
     margin-bottom: 16px;
   }
@@ -25,7 +27,7 @@ export const Text = styled.p`
 export const Btn = styled.button`
   max-width: 87px;
   margin-bottom: 16px;
-  margin-left: 90px;
+  margin-left: 116px;
   padding: 10px 26px;
   border-radius: 6px;
   border: none;

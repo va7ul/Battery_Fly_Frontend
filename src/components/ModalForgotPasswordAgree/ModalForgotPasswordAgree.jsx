@@ -37,7 +37,7 @@ export const ModalForgotPasswordAgree = ({
       <TextWrapper>
         <Text>
           Щоб відновити пароль, перейдіть за посиланням, яке ми надіслали на
-          вашу електронну пошту.
+          Вашу електронну пошту.
         </Text>
       </TextWrapper>
       <Btn type="button" onClick={handleCloseAllModal}>
