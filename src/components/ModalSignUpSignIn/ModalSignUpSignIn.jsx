@@ -31,8 +31,10 @@ export const ModalSignUpSignIn = ({
   handleCloseSignUpSignInModal,
 }) => {
   const [showSignUpForm, setshowSignUpForm] = useState(false);
+  
   const handleShowSignInForm = () => setshowSignUpForm(false);
   const handleShowSignUpForm = () => setshowSignUpForm(true);
+  
   return (
     <>
       <ReactModal

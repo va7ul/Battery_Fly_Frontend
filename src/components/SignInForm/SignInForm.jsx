@@ -4,6 +4,7 @@ import { Btn, BtnWrapper, ForgotPasswordBtn, StyledForm } from './SignInForm.sty
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
+import { ModalForgotPassword } from 'components/ModalForgotPassword/ModalForgotPassword';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -86,6 +87,18 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
+  const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
+    useState(false);
+  
+  const handleOpenForgotPasswordModal = () => {
+    setIsModalForgotPasswordOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseForgotPasswordModal = () => {
+    setIsModalForgotPasswordOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -99,65 +112,77 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   });
 
   return (
-    <StyledForm onSubmit={formik.handleSubmit}>
-      <Field
-        id="email"
-        name="email"
-        label="E-пошта"
-        type="text"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={formik.touched.email && Boolean(formik.errors.email)}
-        helperText={formik.touched.email && formik.errors.email}
+    <>
+      <StyledForm onSubmit={formik.handleSubmit}>
+        <Field
+          id="email"
+          name="email"
+          label="E-пошта"
+          type="text"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+        <Field
+          id="password"
+          name="password"
+          label="Пароль"
+          type={showPassword ? 'text' : 'password'}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment name="password" position="end">
+                <IconButton
+                  sx={{
+                    width: '20px',
+                    height: '20px',
+                  }}
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                >
+                  {!showPassword ? (
+                    <VisibilityOff
+                      sx={{
+                        width: '20px',
+                        height: '20px',
+                      }}
+                    />
+                  ) : (
+                    <Visibility
+                      sx={{
+                        width: '20px',
+                        height: '20px',
+                      }}
+                    />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <BtnWrapper>
+          <Btn type="submit">
+            <div>Увійти</div>
+          </Btn>
+          <ForgotPasswordBtn
+            type="button"
+            onClick={handleOpenForgotPasswordModal}
+          >
+            Забули пароль?
+          </ForgotPasswordBtn>
+        </BtnWrapper>
+      </StyledForm>
+      <ModalForgotPassword
+        isModalForgotPasswordOpen={isModalForgotPasswordOpen}
+        handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
-      <Field
-        id="password"
-        name="password"
-        label="Пароль"
-        type={showPassword ? 'text' : 'password'}
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={formik.touched.password && Boolean(formik.errors.password)}
-        helperText={formik.touched.password && formik.errors.password}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment name="password" position="end">
-              <IconButton
-                sx={{
-                  width: '20px',
-                  height: '20px',
-                }}
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-              >
-                {!showPassword ? (
-                  <VisibilityOff
-                    sx={{
-                      width: '20px',
-                      height: '20px',
-                    }}
-                  />
-                ) : (
-                  <Visibility
-                    sx={{
-                      width: '20px',
-                      height: '20px',
-                    }}
-                  />
-                )}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <BtnWrapper>
-        <Btn type="submit">
-          <div>Увійти</div>
-        </Btn>
-        <ForgotPasswordBtn type="button">Забули пароль?</ForgotPasswordBtn>
-      </BtnWrapper>
-    </StyledForm>
+    </>
   );
 };
