@@ -69,8 +69,8 @@ const basketSlice = createSlice({
         ) {
           if (item.quantityOrdered > 1) {
             item.quantityOrdered -= 1;
-            item.totalPrice += item.price;
-            state.total += item.price;
+            item.totalPrice -= item.price;
+            state.total -= item.price;
             break;
           }
           break;
@@ -83,7 +83,7 @@ const basketSlice = createSlice({
         capacityKey,
         selectedSealing,
         selectedHolders,
-        totalPrice,
+
         quantityOrdered,
       } = action.payload;
 
@@ -94,7 +94,10 @@ const basketSlice = createSlice({
           item.selectedSealing === selectedSealing &&
           item.selectedHolders === selectedHolders
         ) {
-          state.total = state.total - item.totalPrice + totalPrice;
+          const newTotalPrice = item.price * quantityOrdered;
+
+          state.total = state.total - item.totalPrice + newTotalPrice;
+          item.totalPrice = newTotalPrice;
           item.quantityOrdered = quantityOrdered;
           break;
         }
