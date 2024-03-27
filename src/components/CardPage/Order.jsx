@@ -145,17 +145,22 @@ export const Order = () => {
         };
     };
 
-      const addToBasket = () => {
-    dispatch(
-      addItem({
-        ...product,
-        capacityKey: capacityKey || '',
-        selectedSealing: selectedSealing,
-        selectedHolder: selectedHolder,
-        quantityOrdered: quantityOrders,
-        totalPrice: sale ? priceWithSale : price,
-      })
-    );
+    const addToBasket = () => {
+        dispatch(
+            addItem({
+                ...product,
+                capacityKey: capacityKey || '',
+                selectedSealing,
+                selectedHolder,
+                quantityOrdered: quantityOrders,
+                totalPrice: sale ? priceWithSale : price,
+            })
+        
+        );
+        toast.success(`Товар доданий до кошика`, {
+                id: 'clipboard',
+                duration: 4000,
+            })
   };
 
     return (
