@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbattery_fly_frontend=self.webpackChunkbattery_fly_frontend||[]).push([[252],{1252:(e,t,n)=>{n.r(t),n.d(t,{default:()=>a});var r=n(579);const a=()=>(0,r.jsx)(r.Fragment,{children:"Print3DPage "})}}]);
+//# sourceMappingURL=252.be0bbeb3.chunk.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/252.be0bbeb3.chunk.js","mappings":"sKAAA,MAIA,EAJoBA,KACXC,EAAAA,EAAAA,KAAAC,EAAAA,SAAA,CAAAC,SAAE,gB","sources":["pages/Print3DPage.jsx"],"sourcesContent":["const Print3DPage = () => {\n  return <>Print3DPage </>;\n};\n\nexport default Print3DPage;\n"],"names":["Print3DPage","_jsx","_Fragment","children"],"sourceRoot":""}
