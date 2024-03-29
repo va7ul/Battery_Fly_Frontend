@@ -149,6 +149,9 @@ export const Order = () => {
         dispatch(
             addItem({
                 ...product,
+                price: sale
+                    ? priceWithSale / quantityOrders
+                    : price / quantityOrders, 
                 capacityKey: capacityKey || '',
                 selectedSealing,
                 selectedHolder,
