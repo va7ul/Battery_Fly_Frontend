@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import {
   Item,
+  GoodWrap,
   Image,
   GoodName,
   QuantityWrap,
@@ -8,9 +9,13 @@ import {
   Input,
   Price,
   DeleteBtn,
+  CapacityWrap,
+  Capacity,
+  SealingHolders,
 } from './CartItem.styled';
 import { FaMinus, FaPlus, FaXmark } from 'react-icons/fa6';
-// import { FaTrash } from 'react-icons/fa6';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Battery0BarIcon from '@mui/icons-material/Battery0Bar';
 import {
   deleteItem,
   increaseQuantity,
@@ -61,26 +66,89 @@ export const CartItem = ({ item }) => {
 
   return (
     <Item>
-      <Image src={image[0]} alt={name} />
-      <GoodName>{name}</GoodName>
-      <QuantityWrap>
-        <Button type="button" onClick={() => dispatch(decreaseQuantity(item))}>
-          <FaMinus />
-        </Button>
-        <Input
-          type="number"
-          onChange={changeValue}
-          value={quantityOrdered}
-          min={1}
-        />
-        <Button type="button" onClick={() => dispatch(increaseQuantity(item))}>
-          <FaPlus />
-        </Button>
-      </QuantityWrap>
-      <Price>{totalPrice}</Price>
-      <DeleteBtn type="button" onClick={deleteFromCart}>
-        <FaXmark />
-      </DeleteBtn>
+      <GoodWrap>
+        <Image src={image[0]} alt={name} />
+        <GoodName>{name}</GoodName>
+        <QuantityWrap>
+          <Button
+            type="button"
+            onClick={() => dispatch(decreaseQuantity(item))}
+          >
+            <FaMinus />
+          </Button>
+          <Input
+            type="number"
+            onChange={changeValue}
+            value={quantityOrdered}
+            min={1}
+          />
+          <Button
+            type="button"
+            onClick={() => dispatch(increaseQuantity(item))}
+          >
+            <FaPlus />
+          </Button>
+        </QuantityWrap>
+        <Price>{totalPrice}</Price>
+        <DeleteBtn type="button" onClick={deleteFromCart}>
+          <FaXmark />
+        </DeleteBtn>
+      </GoodWrap>
+      {capacityKey && (
+        <CapacityWrap>
+          <Capacity>
+            <Battery0BarIcon
+              sx={{
+                width: {
+                  mobile: 14,
+                  desktop: 19,
+                },
+                height: {
+                  mobile: 14,
+                  desktop: 19,
+                },
+              }}
+            />
+            <p>{capacityKey} Ah</p>
+          </Capacity>
+          {selectedSealing && (
+            <SealingHolders>
+              <CheckCircleOutlineIcon
+                sx={{
+                  color: ' rgb(20, 211, 16)',
+                  width: {
+                    mobile: 14,
+                    desktop: 16,
+                  },
+                  height: {
+                    mobile: 14,
+                    desktop: 16,
+                  },
+                }}
+              />
+              <p>Герметизація</p>
+            </SealingHolders>
+          )}
+          {selectedHolder && (
+            <SealingHolders>
+              <CheckCircleOutlineIcon
+                sx={{
+                  color: ' rgb(20, 211, 16)',
+                  width: {
+                    mobile: 14,
+                    desktop: 16,
+                  },
+                  height: {
+                    mobile: 14,
+                    desktop: 16,
+                  },
+                }}
+              />
+              <p>Використовувати холдери</p>
+            </SealingHolders>
+          )}
+        </CapacityWrap>
+      )}
     </Item>
   );
 };
