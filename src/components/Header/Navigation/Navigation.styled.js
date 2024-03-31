@@ -8,9 +8,7 @@ export const NavList = styled.ul`
 
   @media screen and (min-width: 1280px) {
     flex-direction: row;
-    margin-left: 57px;
-    margin-right: 40px;
-    gap: 30px;
+    margin-left: 70px;
   }
 `;
 
@@ -27,7 +25,7 @@ export const CartButton = styled.button`
   z-index: 2;
 
   @media screen and (min-width: 1280px) {
-    padding: 34px 0;
+    padding: 28px 0;
     color: ${props => props.theme.colors.backgroundPaper};
   }
 
