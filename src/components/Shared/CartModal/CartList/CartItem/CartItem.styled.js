@@ -49,7 +49,7 @@ export const GoodName = styled.p`
 
   @media screen and (min-width: 1280px) {
     width: 102px;
-    height: 54px;
+    height: 56px;
     font-size: 16px;
   }
 `;
