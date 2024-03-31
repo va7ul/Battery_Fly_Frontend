@@ -33,8 +33,6 @@ export const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
   const changeValue = e => {
-    // const newTotalPrice = price * quantityOrdered;
-    // console.log(newTotalPrice);
     if (Number(e.target.value) > 0) {
       dispatch(
         changeQuantity({
@@ -69,7 +67,12 @@ export const CartItem = ({ item }) => {
         <Button type="button" onClick={() => dispatch(decreaseQuantity(item))}>
           <FaMinus />
         </Button>
-        <Input type="number" onChange={changeValue} value={quantityOrdered} />
+        <Input
+          type="number"
+          onChange={changeValue}
+          value={quantityOrdered}
+          min={1}
+        />
         <Button type="button" onClick={() => dispatch(increaseQuantity(item))}>
           <FaPlus />
         </Button>
