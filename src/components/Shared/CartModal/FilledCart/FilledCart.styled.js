@@ -45,7 +45,8 @@ export const BtnWrap = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   border-radius: 6px;
   font-size: 12px;
   font-weight: 400;
