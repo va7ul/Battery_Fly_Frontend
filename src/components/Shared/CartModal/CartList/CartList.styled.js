@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const List = styled.ul`
   display: flex;
