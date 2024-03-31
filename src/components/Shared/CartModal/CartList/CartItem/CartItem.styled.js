@@ -5,19 +5,29 @@ export const Item = styled.li`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 5px;
+  flex-direction: column;
   padding: 10px;
-  height: 62px;
-  font-size: 10px;
+  min-height: 62px;
+  gap: 5px;
+
   border-radius: 8px;
   background: ${props => props.theme.colors.gradient};
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
 
   @media screen and (min-width: 1280px) {
-    height: 90px;
-    padding: 20px 10px;
+    min-height: 90px;
+    padding: 17px 10px;
     gap: 10px;
-    font-size: 16px;
+  }
+`;
+
+export const GoodWrap = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  @media screen and (min-width: 1280px) {
+    gap: 10px;
   }
 `;
 
@@ -32,13 +42,15 @@ export const Image = styled.img`
 `;
 
 export const GoodName = styled.p`
-  width: 70px;
-  height: 46px;
+  width: 68px;
+  height: 48px;
   overflow: hidden;
+  font-size: 10px;
 
   @media screen and (min-width: 1280px) {
     width: 102px;
     height: 54px;
+    font-size: 16px;
   }
 `;
 
@@ -112,5 +124,36 @@ export const DeleteBtn = styled.button`
       width: 22px;
       height: 22px;
     }
+  }
+`;
+
+export const CapacityWrap = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  margin-left: 42px;
+  gap: 5px;
+  font-size: 9px;
+  @media screen and (min-width: 1280px) {
+    font-size: 11px;
+    gap: 10px;
+    margin-left: 52px;
+  }
+`;
+
+export const Capacity = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: rgb(99, 99, 99);
+`;
+
+export const SealingHolders = styled.div`
+  display: flex;
+  align-items: center;
+
+  gap: 2px;
+  @media screen and (min-width: 1280px) {
+    gap: 5px;
   }
 `;
