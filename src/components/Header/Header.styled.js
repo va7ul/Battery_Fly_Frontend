@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
   display: flex;
   margin: 0 auto;
   max-width: 360px;
-  z-index: 1;
+  z-index: 2;
   padding: 10px 22px;
 
   background-color: ${props => props.theme.colors.greyBackgroundPaper};
