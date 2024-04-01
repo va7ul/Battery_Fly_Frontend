@@ -24,6 +24,7 @@ const BatteriesForTransportPage = lazyLoadPage('BatteriesForTransportPage');
 const BatteriesForToysPage = lazyLoadPage('BatteriesForToysPage');
 const DevicesPage = lazyLoadPage('DevicesPage');
 const MaterialsPage = lazyLoadPage('MaterialsPage');
+const Print3DPage = lazyLoadPage('Print3DPage');
 const CardPage = lazyLoadPage('CardPage');
 const DeliveryPaymentPage = lazyLoadPage('DeliveryPaymentPage');
 const ContactsPage = lazyLoadPage('ContactsPage');
@@ -42,42 +43,39 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    isRefreshing ? (
-      <p>Refreshing user...</p>
-    ) : (
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<MainPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/delivery-and-payment" element={<DeliveryPaymentPage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
-            <Route path="/guarantees" element={<GuaranteesPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/assortment" element={<AssortmentPage />} />
-            <Route path="/sales" element={<SalesPage />} />
-            <Route path="/batteries" element={<BatteriesPage />} />
-            <Route path="/batteries-18650" element={<Batteries18650Page />} />
-            <Route path="/batteries-21700" element={<Batteries21700Page />} />
-            <Route path="/batteries-32650" element={<Batteries32650Page />} />
-            <Route path="/batteries-li-po" element={<BatteriesLiPoPage />} />
-            <Route path="/batteries-lifepo4" element={<BatteriesLifepo4Page />} />
-            <Route path="/assembly" element={<AssemblyPage />} />
-            <Route path="/batteries-for-fpv" element={<BatteriesForFPVPage />} />
-            <Route
-              path="/batteries-for-transport"
-              element={<BatteriesForTransportPage />}
-            />
-            <Route path="/batteries-for-toys" element={<BatteriesForToysPage />} />
-            <Route path="/devices" element={<DevicesPage />} />
-            <Route path="/materials" element={<MaterialsPage />} />
-            <Route path="/assortment/:cardId" element={<CardPage />} />
-            {/* element={<PrivateRoute redirectTo="/" component={<UserPage />} />} */}
-            <Route path="/profile" element={<UserProfilePage />} />
-            <Route path="/orders" element={<OrdersHistoryPage />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
-            <Route path="*" element={<MainPage />} />
-          </Route>
-        </Routes>
-    )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MainPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/delivery-and-payment" element={<DeliveryPaymentPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/guarantees" element={<GuaranteesPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/assortment" element={<AssortmentPage />} />
+        <Route path="/sales" element={<SalesPage />} />
+        <Route path="/batteries" element={<BatteriesPage />} />
+        <Route path="/batteries-18650" element={<Batteries18650Page />} />
+        <Route path="/batteries-21700" element={<Batteries21700Page />} />
+        <Route path="/batteries-32650" element={<Batteries32650Page />} />
+        <Route path="/batteries-li-po" element={<BatteriesLiPoPage />} />
+        <Route path="/batteries-lifepo4" element={<BatteriesLifepo4Page />} />
+        <Route path="/assembly" element={<AssemblyPage />} />
+        <Route path="/batteries-for-fpv" element={<BatteriesForFPVPage />} />
+        <Route
+          path="/batteries-for-transport"
+          element={<BatteriesForTransportPage />}
+        />
+        <Route path="/batteries-for-toys" element={<BatteriesForToysPage />} />
+        <Route path="/devices" element={<DevicesPage />} />
+        <Route path="/materials" element={<MaterialsPage />} />
+        <Route path="/3D-print" element={<Print3DPage />} />
+        <Route path="/assortment/:cardId" element={<CardPage />} />
+        {/* element={<PrivateRoute redirectTo="/" component={<UserPage />} />} */}
+        <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/orders" element={<OrdersHistoryPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="*" element={<MainPage />} />
+      </Route>
+    </Routes>
   );
 };

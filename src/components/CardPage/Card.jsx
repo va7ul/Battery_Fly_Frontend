@@ -8,7 +8,7 @@ import { Capacity } from './Capacity';
 import { CheckBox } from './Checkbox';
 import { Order } from './Order';
 import { Information } from './Information';
-import { setQuantityOrders } from '../../redux/products/oneProductSlice';
+import { setQuantityOrders, setSelectedHolder, setSelectedSealing} from '../../redux/products/oneProductSlice';
 import {
   Wrapper,
   Box,
@@ -22,7 +22,10 @@ export const Card = () => {
     const { name, capacity, information } = useSelector(selectOneProduct);
 
     useEffect(() => {
-        dispatch(setQuantityOrders(1))
+        dispatch(setQuantityOrders(1));
+        dispatch(setSelectedHolder(false));
+        dispatch(setSelectedSealing(false));
+
     }, [dispatch]);
 
 
