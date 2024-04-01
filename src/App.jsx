@@ -43,6 +43,9 @@ export const App = () => {
   }, [dispatch]);
 
   return (
+    isRefreshing ? (
+    <p>Refreshing user...</p>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
@@ -76,6 +79,7 @@ export const App = () => {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="*" element={<MainPage />} />
       </Route>
-    </Routes>
+        </Routes>
+  )
   );
 };
