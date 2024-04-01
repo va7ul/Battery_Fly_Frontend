@@ -10,16 +10,16 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { authReducer } from './auth/authSlice';
-import { userReducer } from './user/userSlice';
+import { userReducer } from './auth/authSlice';
+// import { userReducer } from './user/userSlice';
 import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
 import { basketReducer } from './basket/basketSlice';
 import { menuReducer } from './menu/menuSlice';
 import { feedbackReducer } from './feedback/feedbackSlice';
 
-const authPersistConfig = {
-  key: 'auth',
+const userPersistConfig = {
+  key: 'user',
   storage,
   whitelist: ['token'],
 };
@@ -37,8 +37,8 @@ const productsReducer = combineReducers({
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-    user: userReducer,
+    user: persistReducer(userPersistConfig, userReducer),
+    // user: userReducer,
     products: productsReducer,
     basket: persistReducer(basketPersistConfig, basketReducer),
     menu: menuReducer,

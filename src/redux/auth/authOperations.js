@@ -21,7 +21,7 @@ const handleError = error => {
 };
 
 export const register = createAsyncThunk(
-  'auth/signup',
+  'user/signup',
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('auth/signup', dataUser);
@@ -34,19 +34,43 @@ export const register = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk(
-  'auth/signin',
-  async (dataUser, thunkApi) => {
-    try {
-      const { data } = await axios.post('auth/signin', dataUser);
-      setAuthHeader(data.token);
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
-    }
+export const login = createAsyncThunk('user/signin', async (dataUser, thunkApi) => {
+  try {
+    const { data } = await axios.post('auth/signin', dataUser);
+    setAuthHeader(data.token);
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    return thunkApi.rejectWithValue(errorMessage);
   }
-);
+});
+
+export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
+  try {
+    await axios.post('auth/signout');
+    clearAuthHeader();
+  } catch (error) {
+    const errorMessage = handleError(error);
+    return thunkAPI.rejectWithValue(errorMessage);
+  }
+});
+
+export const refreshUser = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
+  const { token } = thunkAPI.getState().user;
+
+  if (token === '') {
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  }
+
+  try {
+    setAuthHeader(token);
+    const { data } = await axios.get('auth/current');
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    return thunkAPI.rejectWithValue(errorMessage);
+  }
+});
 
 // export const forgotPassword = createAsyncThunk(
 //   'auth/forgot-password',
@@ -72,32 +96,64 @@ export const login = createAsyncThunk(
 //   }
 // );
 
-export const logOut = createAsyncThunk('auth/signout', async (_, thunkAPI) => {
-  try {
-    await axios.post('auth/signout');
-    clearAuthHeader();
-  } catch (error) {
-    const errorMessage = handleError(error);
-    return thunkAPI.rejectWithValue(errorMessage);
-  }
-});
-
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const { token } = thunkAPI.getState().auth;
-
-    if (token === '') {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-
+export const updateUser = createAsyncThunk(
+  'user/update-profile',
+  async (dataUser, thunkApi) => {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
     try {
-      setAuthHeader(token);
-      const { data } = await axios.get('auth/current');
+      const { data } = await axios.put('user/update', dataUser, config);
+
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      return thunkAPI.rejectWithValue(errorMessage);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+
+export const addToFavorites = createAsyncThunk(
+  'user/addToFavorites',
+  async (id, thunkApi) => {
+    try {
+      const { data } = await axios.post(`user/favorite`, id);
+
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const deleteFromFavorites = createAsyncThunk(
+  'user/deleteFromFavorites',
+  async (dataUser, id, thunkApi) => {
+    try {
+      const { data } = await axios.delete(`user/favorite/${id}`, dataUser);
+
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getOneOrder = createAsyncThunk(
+  'user/getOneOrder',
+  async (dataUser, id, thunkApi) => {
+    try {
+      const { data } = await axios.get(`user/order/${id}`, dataUser);
+
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
     }
   }
 );

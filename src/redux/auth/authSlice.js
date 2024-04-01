@@ -2,8 +2,13 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { logOut, login, refreshUser, register } from './authOperations';
 
 const initialState = {
-  userData: { firstName: '', lastName: '', email: '' },
+  userData: { firstName: '', lastName: '', patronymic: '', tel: '', email: '' },
   token: '',
+  orders: [],
+  delivery: [],
+  favorites: [],
+  isLoading: false,
+  error: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
@@ -11,12 +16,24 @@ const initialState = {
 const handleEntranceFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
+  state.orders = payload.orders;
+  state.delivery = payload.delivery;
+  state.favorites = payload.favorites;
   state.isLoggedIn = true;
 };
 
 const handleLogoutPending = state => {
-  state.userData = { firstName: '', lastName: '', email: '' };
+  state.userData = {
+    firstName: '',
+    lastName: '',
+    patronymic: '',
+    tel: '',
+    email: '',
+  };
   state.token = '';
+  state.orders = [];
+  state.delivery = [];
+  state.favorites = [];
   state.isLoggedIn = false;
 };
 
@@ -26,16 +43,19 @@ const handleRefreshPending = state => {
 
 const handleRefreshFulfilled = (state, { payload }) => {
   state.userData = payload.user;
+  state.orders = payload.orders;
+  state.delivery = payload.delivery;
+  state.favorites = payload.favorites;
   state.isLoggedIn = true;
   state.isRefreshing = false;
 };
 
-const handleRefreshRejected = (state) => {
+const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
-const authSlice = createSlice({
-  name: 'auth',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   extraReducers: builder => {
     builder
@@ -47,7 +67,7 @@ const authSlice = createSlice({
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
       );
-  }
+  },
 });
 
-export const authReducer = authSlice.reducer;
+export const userReducer = userSlice.reducer;
