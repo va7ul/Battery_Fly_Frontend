@@ -1,10 +1,10 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 // import { PrivateRoute } from 'routes/PrivateRoute';
 import { Layout } from './components/Layout/Layout';
-// import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
-// import { refreshUser } from 'redux/auth/authOperations.js';
+import { useAuth } from './hooks/useAuth';
+import { refreshUser } from './redux/auth/authOperations';
 
 const lazyLoadPage = importPath => lazy(() => import(`./pages/${importPath}`));
 
@@ -35,10 +35,17 @@ const OrdersHistoryPage = lazyLoadPage('OrdersHistoryPage');
 const FavoritesPage = lazyLoadPage('FavoritesPage');
 
 export const App = () => {
-  // const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+  
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
+    isRefreshing ? (
+    <p>Refreshing user...</p>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
@@ -72,6 +79,7 @@ export const App = () => {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="*" element={<MainPage />} />
       </Route>
-    </Routes>
+        </Routes>
+  )
   );
 };
