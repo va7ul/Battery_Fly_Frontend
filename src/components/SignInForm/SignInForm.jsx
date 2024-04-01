@@ -1,10 +1,17 @@
 import { useFormik } from 'formik';
 import { signInSchema } from '../../common/schemas/signInSchema';
-import { Btn, BtnWrapper, ForgotPasswordBtn, StyledForm } from './SignInForm.styled';
+import {
+  Btn,
+  BtnWrapper,
+  ForgotPasswordBtn,
+  StyledForm,
+} from './SignInForm.styled';
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import { ModalForgotPassword } from 'components/ModalForgotPassword/ModalForgotPassword';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth/authOperations';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -85,11 +92,13 @@ const Field = styled(TextField)(({ theme }) => ({
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
   const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
     useState(false);
-  
+
   const handleOpenForgotPasswordModal = () => {
     setIsModalForgotPasswordOpen(true);
     document.body.style.overflow = 'hidden';
@@ -106,7 +115,8 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     },
     validationSchema: signInSchema,
     onSubmit: (values, actions) => {
-      console.log(values);
+      dispatch(login(values));
+         actions.resetForm();
       handleCloseSignUpSignInModal();
     },
   });

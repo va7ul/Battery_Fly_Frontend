@@ -4,6 +4,8 @@ import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/authOperations';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -83,6 +85,8 @@ const Field = styled(TextField)(({ theme }) => ({
 }));
 
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
+  const dispatch = useDispatch();
+  
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -95,7 +99,8 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
     },
     validationSchema: signUpSchema,
     onSubmit: (values, actions) => {
-      console.log(values);
+      dispatch(register(values));
+       actions.resetForm();
       handleCloseSignUpSignInModal();
     },
   });
