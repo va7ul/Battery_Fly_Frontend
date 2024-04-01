@@ -25,7 +25,7 @@ const handleRefreshPending = state => {
 };
 
 const handleRefreshFulfilled = (state, { payload }) => {
-  state.userData = payload;
+  state.userData = payload.user;
   state.isLoggedIn = true;
   state.isRefreshing = false;
 };
