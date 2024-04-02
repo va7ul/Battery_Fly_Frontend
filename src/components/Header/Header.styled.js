@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  position: static;
+  position: sticky;
   left: 0;
   top: 0;
   display: flex;
   margin: 0 auto;
   max-width: 360px;
-  z-index: 1;
-  padding: 15px 20px;
+  z-index: 2;
+  padding: 10px 22px;
 
-  background-color: rgba(213, 213, 213, 0.54);
+  background-color: ${props => props.theme.colors.greyBackgroundPaper};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
   @media screen and (min-width: 1280px) {
     align-items: center;
     max-width: 1280px;
-    padding: 0 100px;
+    padding: 0 110px;
   }
 `;
 
