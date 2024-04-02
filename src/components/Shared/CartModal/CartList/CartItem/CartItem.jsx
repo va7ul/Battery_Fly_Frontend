@@ -22,6 +22,7 @@ import {
   decreaseQuantity,
   changeQuantity,
 } from '../../../../../redux/basket/basketSlice';
+import { setCartOpen } from '../../../../../redux/menu/menuSlice';
 
 export const CartItem = ({ item }) => {
   const {
@@ -36,6 +37,10 @@ export const CartItem = ({ item }) => {
   } = item;
 
   const dispatch = useDispatch();
+
+  const closeCart = () => {
+    dispatch(setCartOpen(false));
+  };
 
   const changeValue = e => {
     if (Number(e.target.value) > 0) {
@@ -68,7 +73,9 @@ export const CartItem = ({ item }) => {
     <Item>
       <GoodWrap>
         <Image src={image[0]} alt={name} />
-        <GoodName>{name}</GoodName>
+        <GoodName onClick={closeCart} to={`/assortment/${codeOfGood}`}>
+          {name}
+        </GoodName>
         <QuantityWrap>
           <Button
             type="button"

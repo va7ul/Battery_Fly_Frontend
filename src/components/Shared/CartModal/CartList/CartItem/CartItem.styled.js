@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
+import { Link } from 'react-router-dom';
 
 export const Item = styled.li`
   position: relative;
@@ -41,7 +42,7 @@ export const Image = styled.img`
   }
 `;
 
-export const GoodName = styled.p`
+export const GoodName = styled(Link)`
   width: 68px;
   height: 48px;
   overflow: hidden;
@@ -51,6 +52,10 @@ export const GoodName = styled.p`
     width: 102px;
     height: 56px;
     font-size: 16px;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
