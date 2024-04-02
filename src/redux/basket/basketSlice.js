@@ -103,10 +103,11 @@ const basketSlice = createSlice({
           item.selectedSealing === selectedSealing &&
           item.selectedHolder === selectedHolder
       );
-
-      state.items[findingIndex].quantityOrdered -= 1;
-      state.items[findingIndex].totalPrice -= price;
-      state.total -= price;
+      if (state.items[findingIndex].quantityOrdered > 1) {
+        state.items[findingIndex].quantityOrdered -= 1;
+        state.items[findingIndex].totalPrice -= price;
+        state.total -= price;
+      }
     },
 
     changeQuantity(state, action) {
