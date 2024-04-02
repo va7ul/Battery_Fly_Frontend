@@ -10,7 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { userReducer } from './auth/authSlice';
+import { userReducer } from './user/userSlice';
 // import { userReducer } from './user/userSlice';
 import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
@@ -38,7 +38,6 @@ const productsReducer = combineReducers({
 export const store = configureStore({
   reducer: {
     user: persistReducer(userPersistConfig, userReducer),
-    // user: userReducer,
     products: productsReducer,
     basket: persistReducer(basketPersistConfig, basketReducer),
     menu: menuReducer,

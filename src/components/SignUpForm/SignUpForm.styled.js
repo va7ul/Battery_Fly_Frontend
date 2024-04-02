@@ -53,10 +53,9 @@ export const Btn = styled.button`
 
 
 export const Text = styled.p`
-  font-size: 8px;
-  text-align: justify;
+  font-size: 9px;
 
   @media (min-width: 1280px) {
-    font-size: 12px;
+    font-size: 11px;
   }
 `;
