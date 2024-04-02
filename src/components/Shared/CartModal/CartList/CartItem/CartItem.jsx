@@ -29,6 +29,7 @@ export const CartItem = ({ item }) => {
     codeOfGood,
     image,
     name,
+    quantity,
     quantityOrdered,
     totalPrice,
     capacityKey,
@@ -43,11 +44,26 @@ export const CartItem = ({ item }) => {
   };
 
   const changeValue = e => {
-    if (Number(e.target.value) > 0) {
+    if (Number(e.target.value) > quantity) {
       dispatch(
         changeQuantity({
           ...item,
           codeOfGood,
+          quantity,
+          capacityKey,
+          selectedSealing,
+          selectedHolder,
+          quantityOrdered: quantity,
+        })
+      );
+    }
+
+    if (Number(e.target.value) <= quantity && Number(e.target.value) >= 0) {
+      dispatch(
+        changeQuantity({
+          ...item,
+          codeOfGood,
+          quantity,
           capacityKey,
           selectedSealing,
           selectedHolder,
@@ -83,12 +99,7 @@ export const CartItem = ({ item }) => {
           >
             <FaMinus />
           </Button>
-          <Input
-            type="number"
-            onChange={changeValue}
-            value={quantityOrdered}
-            min={1}
-          />
+          <Input type="number" onChange={changeValue} value={quantityOrdered} />
           <Button
             type="button"
             onClick={() => dispatch(increaseQuantity(item))}
