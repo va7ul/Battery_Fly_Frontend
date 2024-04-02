@@ -72,6 +72,7 @@ const basketSlice = createSlice({
         selectedSealing,
         selectedHolder,
         price,
+        quantity,
       } = action.payload;
 
       const findingIndex = state.items.findIndex(
@@ -81,10 +82,11 @@ const basketSlice = createSlice({
           item.selectedSealing === selectedSealing &&
           item.selectedHolder === selectedHolder
       );
-
-      state.items[findingIndex].quantityOrdered += 1;
-      state.items[findingIndex].totalPrice += price;
-      state.total += price;
+      if (state.items[findingIndex].quantityOrdered < quantity) {
+        state.items[findingIndex].quantityOrdered += 1;
+        state.items[findingIndex].totalPrice += price;
+        state.total += price;
+      }
     },
 
     decreaseQuantity(state, action) {
@@ -103,10 +105,11 @@ const basketSlice = createSlice({
           item.selectedSealing === selectedSealing &&
           item.selectedHolder === selectedHolder
       );
-
-      state.items[findingIndex].quantityOrdered -= 1;
-      state.items[findingIndex].totalPrice -= price;
-      state.total -= price;
+      if (state.items[findingIndex].quantityOrdered > 1) {
+        state.items[findingIndex].quantityOrdered -= 1;
+        state.items[findingIndex].totalPrice -= price;
+        state.total -= price;
+      }
     },
 
     changeQuantity(state, action) {

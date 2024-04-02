@@ -4,6 +4,14 @@ import { baseURL } from 'utils/constants/baseURL';
 
 axios.defaults.baseURL = baseURL;
 
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common.Authorization = '';
+};
+
 const handleError = error => {
   if (error.response && error.response.data && error.response.data.message) {
     return `Oops! Something was wrong... ${error.response.data.message}`;
@@ -11,6 +19,82 @@ const handleError = error => {
     return `Oops! Something was wrong... ${error.message}`;
   }
 };
+
+export const register = createAsyncThunk(
+  'user/signup',
+  async (dataUser, thunkApi) => {
+    try {
+      const { data } = await axios.post('auth/signup', dataUser);
+      setAuthHeader(data.token);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const login = createAsyncThunk('user/signin', async (dataUser, thunkApi) => {
+  try {
+    const { data } = await axios.post('auth/signin', dataUser);
+    setAuthHeader(data.token);
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    return thunkApi.rejectWithValue(errorMessage);
+  }
+});
+
+export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
+  try {
+    await axios.post('auth/signout');
+    clearAuthHeader();
+  } catch (error) {
+    const errorMessage = handleError(error);
+    return thunkAPI.rejectWithValue(errorMessage);
+  }
+});
+
+export const refreshUser = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
+  const { token } = thunkAPI.getState().user;
+
+  if (token === '') {
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  }
+
+  try {
+    setAuthHeader(token);
+    const { data } = await axios.get('auth/current');
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    return thunkAPI.rejectWithValue(errorMessage);
+  }
+});
+
+// export const forgotPassword = createAsyncThunk(
+//   'auth/forgot-password',
+//   async (dataUser, thunkAPI) => {
+//     try {
+//       await axios.post('auth/forgot-password', dataUser);
+//     } catch (error) {
+//       const errorMessage = handleError(error);
+//       return thunkAPI.rejectWithValue(errorMessage);
+//     }
+//   }
+// );
+
+// export const verifyEmail = createAsyncThunk(
+//   'auth/verify-email',
+//   async (dataUser, thunkAPI) => {
+//     try {
+//       await axios.post('auth/verify-email', dataUser);
+//     } catch (error) {
+//       const errorMessage = handleError(error);
+//       return thunkAPI.rejectWithValue(errorMessage);
+//     }
+//   }
+// );
 
 export const updateUser = createAsyncThunk(
   'user/update-profile',
@@ -31,22 +115,9 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-export const getFavorites = createAsyncThunk(
-  'user/getFavorites',
-  async (dataUser, thunkApi) => {
-    try {
-      const { data } = await axios.get('user/favorite', dataUser);
 
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
-    }
-  }
-);
-
-export const addToFavorites = createAsyncThunk(
-  'user/addToFavorites',
+export const addToFavorite = createAsyncThunk(
+  'user/addToFavorite',
   async (id, thunkApi) => {
     try {
       const { data } = await axios.post(`user/favorite`, id);
@@ -59,25 +130,11 @@ export const addToFavorites = createAsyncThunk(
   }
 );
 
-export const deleteFromFavorites = createAsyncThunk(
-  'user/deleteFromFavorites',
+export const deleteFromFavorite = createAsyncThunk(
+  'user/deleteFromFavorite',
   async (dataUser, id, thunkApi) => {
     try {
       const { data } = await axios.delete(`user/favorite/${id}`, dataUser);
-
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
-    }
-  }
-);
-
-export const getAllOrders = createAsyncThunk(
-  'user/getAllOrders',
-  async (dataUser, thunkApi) => {
-    try {
-      const { data } = await axios.get('user/orders', dataUser);
 
       return data;
     } catch (error) {
