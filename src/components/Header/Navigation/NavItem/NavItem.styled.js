@@ -15,6 +15,13 @@ export const Item = styled.li`
     &:nth-child(6) {
       margin-right: 6px;
     }
+
+    &:nth-last-child(-n + 2) a {
+      padding: 23.3px 0;
+    }
+    &:nth-last-child(-n + 2) button {
+      padding: 23.3px 0;
+    }
   }
 
   @media screen and (max-width: 1280px) {
