@@ -93,7 +93,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(token);
-      const { data } = await axios.get('user/current');
+      const { data } = await axios.get('auth/current');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
