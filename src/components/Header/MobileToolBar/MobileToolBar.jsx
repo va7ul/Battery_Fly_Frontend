@@ -9,6 +9,7 @@ import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
 import { useDispatch } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
+import { ModalSignUpSignIn } from 'components/ModalSignUpSignIn/ModalSignUpSignIn';
 
 export const MobileToolBar = () => {
  const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
@@ -21,6 +22,17 @@ export const MobileToolBar = () => {
    setIsModalFeedbackOpen(false);
    document.body.style.overflow = 'unset';
  };
+
+  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
+
+  const handleOpenSignUpSignInModal = () => {
+    setIsModalSignUpSignInOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseSignUpSignInModal = () => {
+    setIsModalSignUpSignInOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   const dispatch = useDispatch();
 
@@ -42,7 +54,7 @@ export const MobileToolBar = () => {
       <Button type="button">
         <FavoriteIcon />
       </Button>
-      <Button type="button">
+      <Button type="button" onClick={handleOpenSignUpSignInModal}>
         <LoginIcon
           sx={{
             color: 'background.paper',
@@ -53,6 +65,10 @@ export const MobileToolBar = () => {
           }}
         />
       </Button>
+      <ModalSignUpSignIn
+        isModalSignUpSignInOpen={isModalSignUpSignInOpen}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      />
       {/* <Button type="button">
         <AccountCircleOutlinedIcon
           sx={{

@@ -141,6 +141,7 @@ export const Btn = styled.button`
   border-radius: 6px;
   border: none;
   font-size: 12px;
+  font-weight: 500;
 
   background: ${props => props.theme.colors.gradient};
   position: relative;

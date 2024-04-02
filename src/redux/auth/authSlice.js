@@ -1,42 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { logOut, login, refreshUser, register } from './authOperations';
 
 const initialState = {
-  //   userData: { ...defaultUserData },
-  //   token: '',
-  //   error: null,
-  //   isLoading: false,
-  //   isLoggedIn: false,
-  //   isRefreshing: false,
+  userData: { firstName: '', lastName: '', email: '' },
+  token: '',
+  isLoggedIn: false,
+  isRefreshing: false,
+};
+
+const handleEntranceFulfilled = (state, { payload }) => {
+  state.userData = payload.user;
+  state.token = payload.token;
+  state.isLoggedIn = true;
+};
+
+const handleLogoutPending = state => {
+  state.userData = { firstName: '', lastName: '', email: '' };
+  state.token = '';
+  state.isLoggedIn = false;
+};
+
+const handleRefreshPending = state => {
+  state.isRefreshing = true;
+};
+
+const handleRefreshFulfilled = (state, { payload }) => {
+  state.userData = payload.user;
+  state.isLoggedIn = true;
+  state.isRefreshing = false;
+};
+
+const handleRefreshRejected = (state) => {
+  state.isRefreshing = false;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: builder => builder,
-  //   // signup
-  //   .addCase(register.pending, handlePending)
-  //   .addCase(register.fulfilled, handleRegisterLoginFulfield)
-  //   .addCase(register.rejected, handleRejected)
-  //   // signin
-  //   .addCase(login.pending, handlePending)
-  //   .addCase(login.fulfilled, handleRegisterLoginFulfield)
-  //   .addCase(login.rejected, handleRejected)
-  //   // logout
-  //   .addCase(logOut.pending, handlePending)
-  //   .addCase(logOut.fulfilled, handleLogoutFulfield)
-  //   .addCase(logOut.rejected, handleRejected)
-  //   // forgotPassword
-  //   .addCase(forgotPassword.pending, handlePending)
-  //   .addCase(forgotPassword.fulfilled, handleForgotPasswordFulfield)
-  //   .addCase(forgotPassword.rejected, handleRejected)
-  //   // verifyEmail
-  //   .addCase(verifyEmail.pending, handlePending)
-  //   .addCase(verifyEmail.fulfilled, handleVerifyEmailFulfield)
-  //   .addCase(verifyEmail.rejected, handleRejected)
-  //   // refreshUser
-  //   .addCase(refreshUser.pending, handlePending)
-  //   .addCase(refreshUser.fulfilled, handleRefreshUserFulfield)
-  //   .addCase(refreshUser.rejected, handleRejected)
+  extraReducers: builder => {
+    builder
+      .addCase(logOut.pending, handleLogoutPending)
+      .addCase(refreshUser.pending, handleRefreshPending)
+      .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
+      .addCase(refreshUser.rejected, handleRefreshRejected)
+      .addMatcher(
+        isAnyOf(register.fulfilled, login.fulfilled),
+        handleEntranceFulfilled
+      );
+  }
 });
 
 export const authReducer = authSlice.reducer;
