@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { logOut } from '../../../redux/auth/authOperations';
+import { logOut } from '../../../redux/user/userOperations';
 
 export const SideBarNav = () => {
   const dispatch = useDispatch();
