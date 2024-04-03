@@ -4,7 +4,7 @@ import { Navigation } from './Navigation/Navigation';
 import { StyledHeader, DesktopWrapper } from './Header.styled';
 import { Logo } from './Logo/Logo';
 import { LoginButton } from './Navigation/LoginButton/LoginButton';
-import { ModalSignUpSignIn } from 'components/ModalSignUpSignIn/ModalSignUpSignIn';
+import { ModalSignUpSignIn } from '../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { useState } from 'react';
 // import { ProfileButton } from './Navigation/ProfileButton/ProfileButton';
 

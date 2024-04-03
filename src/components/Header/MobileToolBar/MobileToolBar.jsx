@@ -5,23 +5,23 @@ import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton'
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { useState } from 'react';
-import { ModalFeedback } from 'components/Shared/ModalFeedback/ModalFeedback';
+import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
 import { useDispatch } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
-import { ModalSignUpSignIn } from 'components/ModalSignUpSignIn/ModalSignUpSignIn';
+import { ModalSignUpSignIn } from '../../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 
 export const MobileToolBar = () => {
- const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
+  const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
 
- const handleOpenFeedbackModal = () => {
-   setIsModalFeedbackOpen(true);
-   document.body.style.overflow = 'hidden';
- };
- const handleCloseFeedbackModal = () => {
-   setIsModalFeedbackOpen(false);
-   document.body.style.overflow = 'unset';
- };
+  const handleOpenFeedbackModal = () => {
+    setIsModalFeedbackOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseFeedbackModal = () => {
+    setIsModalFeedbackOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 

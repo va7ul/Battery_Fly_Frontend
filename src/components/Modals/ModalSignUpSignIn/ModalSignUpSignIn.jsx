@@ -1,8 +1,8 @@
-import { SignUpForm } from 'components/SignUpForm/SignUpForm';
-import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
-import ReactModal from 'react-modal';
 import { useState } from 'react';
-import { SignInForm } from 'components/SignInForm/SignInForm';
+import ReactModal from 'react-modal';
+import { SignUpForm } from './SignUpForm/SignUpForm';
+import { SignInForm } from './SignInForm/SignInForm';
+import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 
 const customStyles = {
   overlay: {
@@ -31,10 +31,10 @@ export const ModalSignUpSignIn = ({
   handleCloseSignUpSignInModal,
 }) => {
   const [showSignUpForm, setshowSignUpForm] = useState(false);
-  
+
   const handleShowSignInForm = () => setshowSignUpForm(false);
   const handleShowSignUpForm = () => setshowSignUpForm(true);
-  
+
   return (
     <>
       <ReactModal
