@@ -1,13 +1,22 @@
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-import { useDispatch} from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-
+import {
+  Btn,
+  CodeOfGoodText,
+  DivErrorMessage,
+  PhoneFieldGlobalStyles,
+  PriceText,
+  StyledForm,
+  Title,
+  Wrapper,
+} from './ModalQuickOrder.styled';
+import { PhoneInput } from 'react-international-phone';
 
 const customStyles = {
   overlay: {
-    zIndex: '1',
+    zIndex: '3',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
@@ -28,6 +37,7 @@ const customStyles = {
 ReactModal.setAppElement('#modal-root');
 
 export const ModalQuickOrder = ({
+  product: { name, codeOfGood, priceWithSale },
   isModalQuickOrderOpen,
   handleCloseQuickOrderModal,
 }) => {
@@ -35,7 +45,6 @@ export const ModalQuickOrder = ({
   const [phone, setPhone] = useState('');
   const isValidPhone = isPhoneValid(phone);
 
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -44,20 +53,23 @@ export const ModalQuickOrder = ({
         onRequestClose={handleCloseQuickOrderModal}
         style={customStyles}
       >
-        <StyledForm>
-          <Label>
-            Телефон
+        <Wrapper>
+          <Title>{name}</Title>
+          <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
+          <PriceText>{priceWithSale} грн</PriceText>
+          <StyledForm>
             <PhoneInput
               style={{
                 '--react-international-phone-height': !isBigScreen
-                  ? '28px'
+                  ? '23px'
                   : '51px',
                 '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color': 'rgb(99, 99, 99)',
-                '--react-international-phone-text-color': 'rgb(225, 225, 225)',
+                '--react-international-phone-border-color':
+                  'rgba(31, 31, 31, 1)',
+                '--react-international-phone-text-color': 'rgba(31, 31, 31, 1)',
                 '--react-international-phone-font-size': !isBigScreen
-                  ? '10px'
-                  : '14px',
+                  ? '14px'
+                  : '24px',
                 '--react-international-phone-border-radius': !isBigScreen
                   ? '6px'
                   : '8px',
@@ -72,14 +84,18 @@ export const ModalQuickOrder = ({
               hideDropdown={true}
               value={phone}
               onChange={phone => setPhone(phone)}
+              aria-label="Телефон"
             />
             {!isValidPhone && (
               <DivErrorMessage>
                 Введіть свій номер телефону, будь ласка
               </DivErrorMessage>
             )}
-          </Label>
-        </StyledForm>
+            <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
+              <div>Оформити замовлення</div>
+            </Btn>
+          </StyledForm>
+        </Wrapper>
         <PhoneFieldGlobalStyles />
       </ReactModal>
     </>
