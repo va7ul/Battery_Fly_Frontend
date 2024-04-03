@@ -31,6 +31,7 @@ export const AssortmentList = () => {
       <ListItem page="/batteries-for-toys" title="Батареї для іграшок" />
       <ListItem page="/devices" title="Прилади" />
       <ListItem page="/materials" title="Розхідні матеріали" />
+      <ListItem page="/3D-print" title="3D Друк" />
     </ul>
   );
 };
