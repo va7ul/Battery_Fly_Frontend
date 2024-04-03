@@ -11,6 +11,7 @@ export const Catalog = () => {
             <Link to='/batteries-for-toys'>Батареї для іграшок</Link>
             <Link to='/devices'>Прилади</Link>
             <Link to='/materials'>Розхідні матеріали</Link>
+            <Link to='/3D-print'>3D Друк</Link>
         </Box>
     );
 };
