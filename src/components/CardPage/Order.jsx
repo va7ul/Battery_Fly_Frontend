@@ -20,7 +20,7 @@ import {
   setHolderPrice,
   setPriceWithSale,
 } from '../../redux/products/oneProductSlice';
-import { ModalQuickOrder } from 'components/ModalQuickOrder/ModalQuickOrder';
+import { ModalQuickOrder } from 'components/Modals/ModalQuickOrder/ModalQuickOrder';
 import {
   OrderBox,
   Input,
