@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 20px 20px 8px;
+  padding: 20px;
   background-image: linear-gradient(
     180deg,
     rgba(251, 208, 110, 0.04),
@@ -10,7 +10,7 @@ export const Container = styled.div`
   );
 
   @media screen and (min-width: 1280px) {
-    padding: 20px 110px;
+    padding: 50px 110px;
   }
 `;
 
@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   gap: 15px;
 
   @media screen and (min-width: 1280px) {
-    gap: 20px;
+    gap: 30px;
   }
 `;
 
@@ -51,31 +51,35 @@ export const SubTitle = styled.h3`
   font-weight: 600;
 
   @media screen and (min-width: 1280px) {
-    font-size: 36px;
+    font-size: 32px;
   }
 `;
 
 export const Sntc = styled.p`
   font-size: 10px;
   font-weight: 600;
+  margin-bottom: 5px;
 
   @media screen and (min-width: 1280px) {
-    font-size: 25px;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
 `;
 
 export const NPTitle = styled.p`
   display: flex;
-  gap: 7px;
+  gap: 5px;
   align-items: center;
   height: 20px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
+  margin-bottom: 5px;
 
   @media screen and (min-width: 1280px) {
-    height: 40px;
-    font-size: 30px;
+    gap: 7px;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -127,15 +131,15 @@ export const IconSquares = styled.svg`
     width: 111px;
     height: 111px;
     right: 20px;
-    bottom: 110px;
+    bottom: 50px;
   }
 `;
 
 export const NPIcon = styled.svg`
-  width: 20px;
+  width: 15px;
   fill: ${props => props.theme.colors.textPrimary};
 
   @media screen and (min-width: 1280px) {
-    width: 40px;
+    width: 30px;
   }
 `;
