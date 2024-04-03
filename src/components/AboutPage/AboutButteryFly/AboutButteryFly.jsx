@@ -2,7 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Text } from '../SharedComponents/Text/Text';
 import { MainTitle, Wrapper } from './AboutButteryFly.styled';
 import battery from '../../../assets/images/about-us-battery.jpeg';
-import battery2x from '../../../assets/images/about-us-battery-2x.jpeg'
+import battery2x from '../../../assets/images/about-us-battery-2x.jpeg';
 import { Grid } from '@mui/material';
 
 export const AboutButteryFly = () => {
@@ -26,10 +26,10 @@ export const AboutButteryFly = () => {
           <Wrapper>
             <MainTitle>Про BATTERYFLY</MainTitle>
             <Text>
-              Ми - сучасна компанія, яка спеціалізується продажі, обслуговуванні
-              та ремонті Li-Ion акумуляторів. З моменту нашого заснування, ми
-              присвятили себе досягненню високої якості, надійності та інновацій
-              у цій галузі.
+              Ми - сучасна компанія, яка спеціалізується на продажі,
+              обслуговуванні та ремонті Li-Ion акумуляторів. З моменту нашого
+              заснування, ми присвятили себе досягненню високої якості,
+              надійності та інновацій у цій галузі.
             </Text>
           </Wrapper>
         </Grid>
