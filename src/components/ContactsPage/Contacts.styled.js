@@ -1,34 +1,35 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 15px 20px;
+  padding: 20px;
   position: relative;
+  display: grid;
+  gap: 15px;
 
   @media screen and (min-width: 1280px) {
-    padding: 30px 110px;
+    padding: 50px 110px;
+    gap: 30px;
   }
 `;
 
 export const Title = styled.h2`
   color: ${props => props.theme.colors.secondary};
   font-size: 16px;
-  margin-bottom: 12px;
+  font-weight: 600;
 
   @media screen and (min-width: 1280px) {
     font-size: 40px;
-    font-weight: 800;
-    margin-bottom: 40px;
   }
 `;
 
 export const Text = styled.p`
   font-size: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   font-weight: 600;
 
   @media screen and (min-width: 1280px) {
     font-size: 25px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -37,11 +38,9 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 4px;
   font-size: 10px;
-  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
     gap: 10px;
-    margin-bottom: 36px;
   }
 `;
 
@@ -60,11 +59,9 @@ export const Item = styled.li`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 10px;
+  gap: 5px;
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 36px;
     gap: 10px;
   }
 `;
