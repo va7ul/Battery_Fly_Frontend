@@ -3,10 +3,10 @@ import { Title, CloseBtn } from './CartModal.styled';
 import { MobileDrawer } from '../MobileDrawer';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectItems } from '../../../redux/basket/basketSelectors';
-import { CartList } from './CartList/CartList';
 import { IoCloseOutline } from 'react-icons/io5';
 import { selectCart } from '../../../redux/menu/menuSelectors';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
+import { FilledCart } from './FilledCart/FilledCart';
 
 export const CartModal = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export const CartModal = () => {
         {products.length < 1 ? (
           <EmptyCart closeCart={closeCart} />
         ) : (
-          <CartList />
+          <FilledCart />
         )}
       </MobileDrawer>
     </>

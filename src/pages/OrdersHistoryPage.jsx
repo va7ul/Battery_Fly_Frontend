@@ -1,12 +1,7 @@
-import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
+import { OrdersHistory } from 'components/OrdersHistoryPage/OrdersHistory';
 
 const OrdersHistoryPage = () => {
-  return (
-    <>
-      <SideBarNav />
-      <div>OrdersHistoryPage</div>
-    </>
-  );
+  return <OrdersHistory />;
 };
 
 export default OrdersHistoryPage;

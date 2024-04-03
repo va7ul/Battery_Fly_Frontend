@@ -1,10 +1,10 @@
-import ReactModal from 'react-modal';
-import { Box, Btn, ErrorText, Text, TextWrapper } from './ModalAgree.styled';
 import { useSelector } from 'react-redux';
+import ReactModal from 'react-modal';
 import {
   selectIsError,
   selectIsLoading,
 } from '../../../redux/feedback/feedbackSelectors';
+import { Box, Btn, ErrorText, Text, TextWrapper } from './ModalAgree.styled';
 
 const customStyles = {
   overlay: {

@@ -1,5 +1,6 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-// export const StyledNav = styled.nav`
-//   padding-top: 15px;
-// `;
+export const StyledList = styled.ul`
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
+`;

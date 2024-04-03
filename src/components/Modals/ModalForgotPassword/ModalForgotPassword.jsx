@@ -1,10 +1,10 @@
-import { TextField, styled } from '@mui/material';
-import ReactModal from 'react-modal';
-import { forgotPasswordSchema } from '../../common/schemas/forgotPasswordSchema';
-import { Btn, StyledForm, Text } from './ModalForgotPassword.styled';
-import { useFormik } from 'formik';
 import { useState } from 'react';
-import { ModalForgotPasswordAgree } from 'components/ModalForgotPasswordAgree/ModalForgotPasswordAgree';
+import ReactModal from 'react-modal';
+import { useFormik } from 'formik';
+import { TextField, styled } from '@mui/material';
+import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
+import { ModalForgotPasswordAgree } from '../ModalForgotPasswordAgree/ModalForgotPasswordAgree';
+import { Btn, StyledForm, Text } from './ModalForgotPassword.styled';
 
 const customStyles = {
   overlay: {

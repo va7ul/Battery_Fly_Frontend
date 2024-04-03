@@ -6,6 +6,8 @@ const iconStyle = css`
   position: absolute;
   top: 10px;
   right: 10px;
+  width: 20px;
+  height: 20px;
   color: ${props => props.theme.colors.backgroundPaper};
   transition: ${props => props.theme.transition.main};
 
@@ -48,6 +50,8 @@ export const IconHeart = styled(FaRegHeart)`
   position: absolute;
   top: 10px;
   right: 10px;
+  width: 20px;
+  height: 20px;
   color: ${props => props.theme.colors.backgroundPaper};
   transition: ${props => props.theme.transition.main};
 
@@ -76,6 +80,8 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
   position: absolute;
   top: 40px;
   right: 10px;
+  width: 20px;
+  height: 20px;
   color: ${props => props.theme.colors.backgroundPaper};
   transition: ${props => props.theme.transition.main};
 
@@ -95,11 +101,12 @@ export const IconFullHeart = styled(FaHeartCircleCheck)`
 export const StyledImage = styled.img`
   width: 100%;
   height: 140px;
-  border-radius: 20px;
+  border-radius: 12px;
   object-fit: cover;
 
   @media screen and (min-width: 1280px) {
     height: 220px;
+    border-radius: 20px;
   }
 `;
 
