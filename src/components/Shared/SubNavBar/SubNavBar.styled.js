@@ -38,7 +38,7 @@ export const StyledList = styled.ul`
 
   li:last-child {
     font-size: 16px;
-    width: 99px;
+    width: 99.1px;
 
     background: ${props => props.theme.colors.secondary};
     border-radius: 0px 20px 20px 0px;

@@ -1,12 +1,27 @@
+import { useState } from 'react';
+import { Menu } from '@mui/material';
+import sprite from '../../../assets/images/sprite.svg';
+import { BatteriesList } from 'components/Header/Navigation/Assortment/Batteries/BatteriesList/BatteriesList';
 import {
   StyledNav,
   StyledList,
   StyledNavLink,
   ArrowButton,
 } from './SubNavBar.styled';
-import sprite from '../../../assets/images/sprite.svg';
 
 export const SubNavBar = () => {
+  const [anchorEl, setAnchorEl] = useState();
+  const open = Boolean(anchorEl);
+
+  const handleOpen = e => {
+    e.preventDefault();
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <section>
       <StyledNav>
@@ -14,7 +29,13 @@ export const SubNavBar = () => {
           <li>
             <StyledNavLink to="../batteries">
               <span>Акумулятори</span>
-              <ArrowButton>
+              <ArrowButton
+                type="button"
+                onClick={handleOpen}
+                aria-owns={open ? 'desktop-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+              >
                 <svg>
                   <use href={`${sprite}#arrow-left`}></use>
                 </svg>
@@ -63,6 +84,26 @@ export const SubNavBar = () => {
           </li>
         </StyledList>
       </StyledNav>
+
+      <Menu
+        id="desktop-sub-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        aria-expanded={open ? 'true' : undefined}
+        sx={{
+          '& .MuiMenu-paper': {
+            bgcolor: 'background.default',
+            width: '185px',
+            pl: '20px',
+            pr: '20px',
+            borderRadius: '18px',
+          },
+        }}
+      >
+        <BatteriesList />
+      </Menu>
     </section>
   );
 };
