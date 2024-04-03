@@ -1,22 +1,25 @@
 import styled from 'styled-components';
-import { getSectionBackground } from 'styles/GlobalStyled';
 
-export const StyledContainer = styled.div`
+export const Wrapper = styled.div`
   padding: 20px;
-  background: ${getSectionBackground};
+  display: grid;
+  row-gap: 20px;
+  font-size: 10px;
 
   @media screen and (min-width: 1280px) {
     padding: 50px 110px;
+    grid-template-columns: 1fr 790px;
+    font-size: 15px;
   }
 `;
 
-export const StyledTitle = styled.h2`
+export const Title = styled.h2`
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
-    margin-bottom: 30px;
     font-size: 40px;
+    margin-bottom: 30px;
   }
 `;

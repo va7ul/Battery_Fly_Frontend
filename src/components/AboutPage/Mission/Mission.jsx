@@ -17,11 +17,11 @@ export const Mission = () => {
     <section>
       <Wrapper>
         <Box>
-          {!isBigScreen && 
-              <IconHope>
-                <use href={`${sprite}#icon-about-hope`}></use>
-              </IconHope>
-        }
+          {!isBigScreen && (
+            <IconHope>
+              <use href={`${sprite}#icon-about-hope`}></use>
+            </IconHope>
+          )}
           {isBigScreen && (
             <>
               <IconEllipse>
@@ -37,7 +37,7 @@ export const Mission = () => {
           )}
           <Title>Наша місія</Title>
           <Text>
-            Наша місія - забезпечити наших клієнтів найкращими рішеннями у сфері
+            Наша місія - забезпечити клієнтів найкращими рішеннями у сфері
             Li-Ion акумуляторів. Ми прагнемо бути вашими надійними партнерами у
             забезпеченні живлення для вашого обладнання та проектів.
           </Text>

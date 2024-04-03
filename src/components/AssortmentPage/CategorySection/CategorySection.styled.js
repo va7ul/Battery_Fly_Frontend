@@ -8,14 +8,28 @@ const getColor = props => {
   return 'inherit';
 };
 
+const getPaddingMob = props => {
+  if (props.category === 'Акції') {
+    return '20px';
+  }
+  return 'inherit';
+};
+
+const getPaddingDesc = props => {
+  if (props.category === 'Акції') {
+    return '50px';
+  }
+  return 'inherit';
+};
+
 export const StyledSection = styled.section`
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
+  padding-top: ${getPaddingMob};
   background: ${getSectionBackground};
 
   @media screen and (min-width: 1280px) {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
+    padding-top: ${getPaddingDesc};
   }
 `;
 
@@ -31,7 +45,7 @@ export const StyledContainer = styled.div`
 
 export const StyledLink = styled.a`
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: ${getColor};
   display: inline-flex;
   gap: 15px;
@@ -48,7 +62,7 @@ export const StyledLink = styled.a`
 
   @media screen and (min-width: 1280px) {
     margin-bottom: 30px;
-    font-size: 32px;
+    font-size: 40px;
   }
 
   h2 {
@@ -63,8 +77,8 @@ export const StyledLink = styled.a`
     transition: ${props => props.theme.transition.main};
 
     @media screen and (min-width: 1280px) {
-      width: 50px;
-      height: 38px;
+      width: 60px;
+      height: 48px;
     }
   }
 `;
