@@ -1,6 +1,13 @@
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { logOut } from '../../../redux/user/userOperations';
 
 export const SideBarNav = () => {
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(logOut());
+  };
+
   return (
     <div>
       <ul>
@@ -14,7 +21,7 @@ export const SideBarNav = () => {
           <NavLink to="../favorites">Обране</NavLink>
         </li>
       </ul>
-      <button>Вийти</button>
+      <button onClick={logout}>Вийти</button>
     </div>
   );
 };

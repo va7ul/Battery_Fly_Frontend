@@ -1,17 +1,18 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const StyledNav = styled.nav`
-  padding-top: 15px;
+  padding: 30px 110px 0px;
 `;
 
 export const StyledList = styled.ul`
-  display: inline-flex;
+  height: 74px;
+  display: flex;
   place-items: center;
   place-content: center;
   text-transform: uppercase;
   font-size: 13px;
-  gap: 20px;
-  /* padding: 12px 28px; */
+  font-weight: 600;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(
@@ -20,50 +21,66 @@ export const StyledList = styled.ul`
     rgba(255, 255, 255, 0) 100%
   );
 
-  /* &:hover,
-  &:focus {
-    color: ${props => props.theme.colors.secondary};
-    transform: scale(1.3);
-    cursor: pointer;
+  li:not(:nth-last-child(-n + 2)) {
+    position: relative;
+    display: flex;
+
+    &:after {
+      content: '';
+      position: absolute;
+      background: rgb(225, 225, 225);
+      width: 1px;
+      height: 50px;
+      right: -1px;
+      top: 12px;
+    }
   }
 
-  @media screen and (min-width: 1280px) {
-    width: 25px;
-    height: 25px;
-  } */
+  li:last-child {
+    font-size: 16px;
+    width: 99.1px;
+
+    background: ${props => props.theme.colors.secondary};
+    border-radius: 0px 20px 20px 0px;
+  }
+
+  li:first-child {
+    border-radius: 20px 0px 0px 20px;
+  }
 `;
 
-export const StyledItem = styled.li`
-  position: relative;
-  display: inline-block;
-  /* height: 50px; */
-  padding-top: 30px;
-  padding-bottom: 30px;
+export const StyledNavLink = styled(NavLink)`
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 28px 6px;
+  border-radius: inherit;
+  &.active {
+    background: ${props => props.theme.colors.hoverColor};
+    box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
 
-  &:after {
-    content: '';
-    position: absolute;
-    background: rgb(225, 225, 225);
-    width: 1px;
-    height: 50px;
-    right: -8px;
-    top: 12px;
+export const ArrowButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+
+  & svg {
+    transform: rotate(270deg);
+    width: 11px;
+    height: 11px;
+    fill: transparent;
+    stroke: ${props => props.theme.colors.textPrimary};
+    transition: ${props => props.theme.transition.main};
   }
 
-  a {
-    display: inline-block;
-    /* height: 100%; */
+  &:hover svg {
+    transform: rotate(270deg) scale(1.4);
   }
-
-  /* &:hover,
-  &:focus {
-    color: ${props => props.theme.colors.secondary};
-    transform: scale(1.3);
-    cursor: pointer;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 25px;
-    height: 25px;
-  } */
 `;
