@@ -1,17 +1,17 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import { signInSchema } from '../../common/schemas/signInSchema';
+import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { signInSchema } from '../../../../common/schemas/signInSchema';
+import { login } from '../../../../redux/user/userOperations';
+import { ModalForgotPassword } from '../../ModalForgotPassword/ModalForgotPassword';
 import {
   Btn,
   BtnWrapper,
   ForgotPasswordBtn,
   StyledForm,
 } from './SignInForm.styled';
-import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useState } from 'react';
-import { ModalForgotPassword } from 'components/ModalForgotPassword/ModalForgotPassword';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/user/userOperations';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {

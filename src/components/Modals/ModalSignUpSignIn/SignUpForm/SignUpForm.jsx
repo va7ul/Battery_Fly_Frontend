@@ -1,11 +1,11 @@
-import { useFormik } from 'formik';
-import { signUpSchema } from '../../common/schemas/signUpSchema';
-import { Btn, StyledForm, Text } from './SignUpForm.styled';
-import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/user/userOperations';
+import { useFormik } from 'formik';
+import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { signUpSchema } from '../../../../common/schemas/signUpSchema';
+import { register } from '../../../../redux/user/userOperations';
+import { Btn, StyledForm, Text } from './SignUpForm.styled';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {

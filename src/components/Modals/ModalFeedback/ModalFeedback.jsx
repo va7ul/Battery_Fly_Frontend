@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import { Formik } from 'formik';
 import { useMediaQuery } from 'react-responsive';
@@ -6,6 +7,9 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { nameSchema } from '../../../common/schemas/nameSchema';
 import { isPhoneValid } from '../../../common/schemas/phoneSchema';
+import { addFeedback } from '../../..//redux/feedback/feedbackOperations';
+import { selectUserFeedback } from '../../../redux/feedback/feedbackSelectors';
+import { ModalAgree } from '../ModalAgree/ModalAgree';
 import {
   Btn,
   DivErrorMessage,
@@ -17,10 +21,6 @@ import {
   StyledTextField,
   Text,
 } from './ModalFeedback.styled';
-import { ModalAgree } from '../ModalAgree/ModalAgree';
-import { useDispatch, useSelector } from 'react-redux';
-import { addFeedback } from '../../../redux/feedback/feedbackOperations';
-import { selectUserFeedback } from '../../../redux/feedback/feedbackSelectors';
 
 const customStyles = {
   overlay: {
