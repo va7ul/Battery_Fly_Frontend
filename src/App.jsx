@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Layout } from './components/Layout/Layout';
 import { useAuth } from './hooks/useAuth';
 import { refreshUser } from './redux/user/userOperations';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 
 const lazyLoadPage = importPath => lazy(() => import(`./pages/${importPath}`));
 
@@ -43,7 +44,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Refreshing user...</p>
+    <CustomLoader />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

@@ -2,12 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 20px;
-  background-image: linear-gradient(
-    180deg,
-    rgba(251, 208, 110, 0.04),
-    rgba(251, 208, 110, 0.39) 43.212%,
-    rgba(251, 208, 110, 0) 95.5%
-  );
+  background-image: ${props => props.theme.colors.gradientBackground};
 
   @media screen and (min-width: 1280px) {
     padding: 50px 110px;

@@ -1,5 +1,7 @@
+import { Guarantees } from 'components/GuaranteesPage/Guarantees';
+
 const GuaranteesPage = () => {
-  return <div>GuaranteesPage</div>;
+  return <Guarantees />;
 };
 
 export default GuaranteesPage;
