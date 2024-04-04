@@ -1,18 +1,21 @@
-import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { useState } from 'react';
 import ReactModal from 'react-modal';
+import { PhoneInput } from 'react-international-phone';
 import { useMediaQuery } from 'react-responsive';
+import { isPhoneValid } from 'common/schemas/phoneSchema';
+import { addQuickOrder } from 'api';
+import { ModalAgree } from '../ModalAgree/ModalAgree';
+import { FiX } from 'react-icons/fi';
 import {
   Btn,
+  CloseButton,
   CodeOfGoodText,
   DivErrorMessage,
   PhoneFieldGlobalStyles,
-  PriceText,
   StyledForm,
   Title,
   Wrapper,
 } from './ModalQuickOrder.styled';
-import { PhoneInput } from 'react-international-phone';
 
 const customStyles = {
   overlay: {
@@ -37,14 +40,38 @@ const customStyles = {
 ReactModal.setAppElement('#modal-root');
 
 export const ModalQuickOrder = ({
-  product: { name, codeOfGood, priceWithSale },
+  product: { name, codeOfGood },
   isModalQuickOrderOpen,
   handleCloseQuickOrderModal,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [phone, setPhone] = useState('');
-  const isValidPhone = isPhoneValid(phone);
+  const [tel, setTel] = useState('');
+  const isValidPhone = isPhoneValid(tel);
 
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseAgreeModal = () => {
+    setIsModalAgreeOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const orderData = {
+      name,
+      codeOfGood,
+      tel: tel,
+    };
+    const response = await addQuickOrder(orderData);
+    if (response) {
+      handleOpenAgreeModal();
+    }
+    handleCloseQuickOrderModal();
+  };
 
   return (
     <>
@@ -53,11 +80,13 @@ export const ModalQuickOrder = ({
         onRequestClose={handleCloseQuickOrderModal}
         style={customStyles}
       >
+        <CloseButton type="button" onClick={handleCloseQuickOrderModal}>
+          <FiX />
+        </CloseButton>
         <Wrapper>
           <Title>{name}</Title>
           <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
-          <PriceText>{priceWithSale} грн</PriceText>
-          <StyledForm>
+          <StyledForm onSubmit={handleSubmit}>
             <PhoneInput
               style={{
                 '--react-international-phone-height': !isBigScreen
@@ -82,8 +111,8 @@ export const ModalQuickOrder = ({
               }}
               defaultCountry="ua"
               hideDropdown={true}
-              value={phone}
-              onChange={phone => setPhone(phone)}
+              value={tel}
+              onChange={phone => setTel(phone)}
               aria-label="Телефон"
             />
             {!isValidPhone && (
@@ -91,13 +120,17 @@ export const ModalQuickOrder = ({
                 Введіть свій номер телефону, будь ласка
               </DivErrorMessage>
             )}
-            <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
+            <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
               <div>Оформити замовлення</div>
             </Btn>
           </StyledForm>
         </Wrapper>
         <PhoneFieldGlobalStyles />
       </ReactModal>
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAgreeModal}
+      />
     </>
   );
 };

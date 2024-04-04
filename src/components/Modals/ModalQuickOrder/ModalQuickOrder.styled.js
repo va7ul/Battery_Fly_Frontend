@@ -1,23 +1,56 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background-size: 40%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: rgba(99, 99, 99, 1);
+    stroke-width: 1;
+  }
+
+  @media (min-width: 1280px) {
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    right: 12px;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+`;
+
 export const Wrapper = styled.div`
-  max-width: 269px;
+  max-width: 357px;
   padding: 15px 30px;
 
   @media (min-width: 1280px) {
-    max-width: 552px;
+    max-width: 632px;
     padding: 30px 60px;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  margin-bottom: 2px;
+  margin-bottom: 6px;
 
   @media (min-width: 1280px) {
-    font-size: 36px;
+    font-size: 24px;
     margin-bottom: 16px;
   }
 `;
@@ -33,29 +66,18 @@ export const CodeOfGoodText = styled.p`
   }
 `;
 
-export const PriceText = styled.p`
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 10px;
-
-  @media (min-width: 1280px) {
-    font-size: 32px;
-    margin-bottom: 24px;
-  }
-`;
-
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
 `;
 
 export const PhoneFieldGlobalStyles = createGlobalStyle`
   .react-international-phone-input {
-    width: 172px;
+    width: 250px;
 
     @media (min-width: 1280px) {
-    width: 386px;
+    width: 450px;
   }
   }
    .react-international-phone-input-container .react-international-phone-country-selector-button{
@@ -71,19 +93,20 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 export const DivErrorMessage = styled.div`
   color: #da7b6a;
   font-size: 8px;
+  padding-left: 8px;
   margin-top: 4px;
+  align-self: start;
 
   @media (min-width: 1280px) {
     font-size: 12px;
+    padding-left: 10px;
     margin-top: 8px;
   }
 `;
 
 export const Btn = styled.button`
- align-self: center;
   max-width: 190px;
   margin-top: 16px;
-  margin-bottom: 14px;
   padding: 12px 10px;
   border-radius: 6px;
   border: none;
@@ -100,7 +123,6 @@ export const Btn = styled.button`
   @media (min-width: 1280px) {
     max-width: 310px;
     margin-top: 30px;
-    margin-bottom: 30px;
     padding: 16px 20px;
     border-radius: 12px;
     font-size: 24px;
