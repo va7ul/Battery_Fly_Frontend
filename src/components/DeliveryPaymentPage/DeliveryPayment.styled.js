@@ -132,9 +132,11 @@ export const IconSquares = styled.svg`
 
 export const NPIcon = styled.svg`
   width: 15px;
+  height: 15px;
   fill: ${props => props.theme.colors.textPrimary};
 
   @media screen and (min-width: 1280px) {
     width: 30px;
+    height: 30px;
   }
 `;
