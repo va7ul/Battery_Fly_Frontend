@@ -10,6 +10,7 @@ import { CartModal } from 'components/Shared/CartModal/CartModal';
 import { useDispatch } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 import { ModalSignUpSignIn } from '../../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
+import { Link } from 'react-router-dom';
 
 export const MobileToolBar = () => {
   const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
@@ -51,9 +52,9 @@ export const MobileToolBar = () => {
         <CartIcon />
       </Button>
       <CartModal />
-      <Button type="button">
+      <Link to="/favorites">
         <FavoriteIcon />
-      </Button>
+      </Link>
       <Button type="button" onClick={handleOpenSignUpSignInModal}>
         <LoginIcon
           sx={{
