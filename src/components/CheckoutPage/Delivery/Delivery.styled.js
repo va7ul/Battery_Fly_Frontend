@@ -25,11 +25,13 @@ export const ButtonBox = styled.div`
 export const Button = styled.div`
   width: 155px;
   height: 40px;
+  font-size: 12px;
+  font-weight: 500;
   background: ${props => props.theme.colors.greyBackgroundPaper};
   border-radius: 6px;
   cursor: pointer;
   text-align: center;
-  padding: 6px;
+  padding: 14px;
 
   &:hover {
     background: ${props => props.theme.colors.hoverColor};
@@ -38,34 +40,40 @@ export const Button = styled.div`
   @media screen and (min-width: 1280px) {
     width: 233px;
     height: 61px;
+    font-size: 20px;
     padding: 18px;
+    border-radius: 12px;
   }
 `;
 
-export const NPTitle = styled.p`
+export const NPTitle = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
-  height: 20px;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 700;
-  /* margin-bottom: 5px; */
-  color: red;
+  justify-content: center;
 
   @media screen and (min-width: 1280px) {
     gap: 7px;
-    font-size: 24px;
-    /* margin-bottom: 10px; */
+  }
+`;
+
+export const NPText = styled.p`
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #ec2028;
+
+  @media screen and (min-width: 1280px) {
+    gap: 7px;
   }
 `;
 
 export const NPIcon = styled.svg`
-  width: 15px;
-  height: 15px;
-  fill: red;
+  width: 12px;
+  height: 12px;
+  fill: #ec2028;
 
   @media screen and (min-width: 1280px) {
-    width: 30px;
+    width: 24px;
+    height: 24px;
   }
 `;
