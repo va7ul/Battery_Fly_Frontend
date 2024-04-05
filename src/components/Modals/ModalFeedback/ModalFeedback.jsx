@@ -13,6 +13,7 @@ import {
   Btn,
   DivErrorMessage,
   Label,
+  LabelText,
   PhoneFieldGlobalStyles,
   StyledErrorMessage,
   StyledField,
@@ -24,11 +25,11 @@ import {
 
 const customStyles = {
   overlay: {
-    zIndex: '3',
+    zIndex: '5',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
-    border: '1px solid rgb(99, 99, 99)',
+    border: '1px solid rgba(99, 99, 99, 1)',
     borderRadius: '26px',
     top: '50%',
     left: '50%',
@@ -91,13 +92,13 @@ export const ModalFeedback = ({
           >
             <StyledForm>
               <Label>
-                Ім'я
+                <LabelText>Ім'я</LabelText>
                 <StyledField name="name" type="text" />
                 <StyledErrorMessage name="name" component="div" />
               </Label>
 
               <Label>
-                Телефон
+                <LabelText>Телефон</LabelText>
                 <PhoneInput
                   style={{
                     '--react-international-phone-height': !isBigScreen
@@ -106,9 +107,9 @@ export const ModalFeedback = ({
                     '--react-international-phone-background-color':
                       'transparent',
                     '--react-international-phone-border-color':
-                      'rgb(99, 99, 99)',
+                      'rgba(99, 99, 99, 1)',
                     '--react-international-phone-text-color':
-                      'rgb(225, 225, 225)',
+                      'rgba(225, 225, 225, 1)',
                     '--react-international-phone-font-size': !isBigScreen
                       ? '10px'
                       : '14px',

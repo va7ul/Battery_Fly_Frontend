@@ -51,12 +51,24 @@ export const Label = styled.label`
   }
 `;
 
+export const LabelText = styled.span`
+  &::after {
+    content: '*';
+    color: rgba(218, 123, 106, 1);
+    padding: 1px;
+
+    @media (min-width: 1280px) {
+      padding: 2px;
+    }
+  }
+`;
+
 export const StyledField = styled(Field)`
   width: 261px;
   height: 28px;
   padding: 4px 8px;
-  color: rgb(225, 225, 225);
-  border: 1px solid rgb(99, 99, 99);
+  color: rgba(225, 225, 225, 1);
+  border: 1px solid rgba(99, 99, 99, 1);
   border-radius: 6px;
   background: transparent;
 
@@ -77,7 +89,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
   .react-international-phone-input {
     width: 224px;
   &:focus {
-    color: rgb(225, 225, 225);
+    color: rgba(225, 225, 225, 1);
     outline: none;
     border: 1px solid rgba(255, 208, 100, 0.7);
   }
@@ -98,8 +110,8 @@ export const StyledTextField = styled(Field)`
   width: 261px;
   height: 46px;
   padding: 4px 8px;
-  color: rgb(225, 225, 225);
-  border: 1px solid rgb(99, 99, 99);
+  color: rgba(225, 225, 225, 1);
+  border: 1px solid rgba(99, 99, 99, 1);
   border-radius: 6px;
   background: transparent;
   overflow-x: auto;
@@ -109,13 +121,13 @@ export const StyledTextField = styled(Field)`
     color: rgba(225, 225, 225, 0.5);
   }
   &:focus {
-    color: rgb(225, 225, 225);
+    color: rgba(225, 225, 225, 1);
     outline: none;
     border: 1px solid rgba(255, 208, 100, 0.7);
   }
 
   @media (min-width: 1280px) {
-    color: rgb(225, 225, 225);
+    color: rgba(225, 225, 225, 1);
     width: 476px;
     height: 117px;
     border-radius: 8px;
@@ -127,7 +139,7 @@ export const StyledTextField = styled(Field)`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  color: #da7b6a;
+  color: rgba(218, 123, 106, 1);
   font-size: 8px;
 
   @media (min-width: 1280px) {
@@ -136,7 +148,7 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 `;
 
 export const DivErrorMessage = styled.div`
-  color: #da7b6a;
+  color: rgba(218, 123, 106, 1);
   font-size: 8px;
 
   @media (min-width: 1280px) {
