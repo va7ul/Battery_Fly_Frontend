@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Box = styled.div`
-  min-width: 269px;
+  max-width: 269px;
   padding: 16px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (min-width: 1280px) {
+    max-width: 630px;
     padding: 36px 58px;
   }
 `;
