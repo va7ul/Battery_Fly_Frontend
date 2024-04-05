@@ -122,6 +122,11 @@ export const ModalForgotPassword = ({
     document.body.style.overflow = 'unset';
   };
 
+    const handleCloseAllModal = () => {
+      handleCloseAgreeModal();
+      handleCloseSignUpSignInModal();
+    };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -161,7 +166,7 @@ export const ModalForgotPassword = ({
       </ReactModal>
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
-        handleCloseAgreeModal={handleCloseAgreeModal}
+        handleCloseAgreeModal={handleCloseAllModal}
       >
         <TextAgree>
           Щоб відновити пароль, перейдіть за посиланням, яке ми надіслали на
