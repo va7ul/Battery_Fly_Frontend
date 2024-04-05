@@ -1,9 +1,4 @@
-import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
-import {
-  selectIsError,
-  selectIsLoading,
-} from '../../../redux/feedback/feedbackSelectors';
 import { Box, Btn, ErrorText, Text, TextWrapper } from './ModalAgree.styled';
 
 const customStyles = {
@@ -28,9 +23,7 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-export const ModalAgree = ({ isModalAgreeOpen, handleCloseAgreeModal }) => {
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
+export const ModalAgree = ({ isModalAgreeOpen, handleCloseAgreeModal, isLoading, isError}) => {
   return (
     <ReactModal isOpen={isModalAgreeOpen} style={customStyles}>
       <Box>

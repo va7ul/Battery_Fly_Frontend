@@ -20,3 +20,14 @@ export const addQuickOrder = async orderData => {
     console.log('errorMessage', errorMessage);
   }
 };
+
+export const addFeedback = async dataUser => {
+  try {
+    const data = await axios.post(`feedback`, dataUser);
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    console.log('errorMessage', errorMessage);
+  }
+};
+

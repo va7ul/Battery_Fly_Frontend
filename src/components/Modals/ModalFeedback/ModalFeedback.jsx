@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 import { Formik } from 'formik';
-import { useMediaQuery } from 'react-responsive';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { nameSchema } from '../../../common/schemas/nameSchema';
 import { isPhoneValid } from '../../../common/schemas/phoneSchema';
-import { addFeedback } from '../../..//redux/feedback/feedbackOperations';
-import { selectUserFeedback } from '../../../redux/feedback/feedbackSelectors';
+import { addFeedback } from 'api';
+import { useMediaQuery } from 'react-responsive';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
 import {
   Btn,
@@ -24,7 +22,7 @@ import {
 
 const customStyles = {
   overlay: {
-    zIndex: '1',
+    zIndex: '3',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
@@ -49,9 +47,8 @@ export const ModalFeedback = ({
   isModalFeedbackOpen,
   handleCloseFeedbackModal,
 }) => {
-  const user = useSelector(selectUserFeedback);
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [phone, setPhone] = useState(user.phone ?? '');
+  const [phone, setPhone] = useState('');
   const isValidPhone = isPhoneValid(phone);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
@@ -64,7 +61,6 @@ export const ModalFeedback = ({
     setIsModalAgreeOpen(false);
     document.body.style.overflow = 'unset';
   };
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -76,15 +72,17 @@ export const ModalFeedback = ({
         <Text>Залиште свої дані, ми вам передзвонимо</Text>
         <Formik
           initialValues={{
-            name: user.name ?? '',
+            name: '',
             text: '',
           }}
           validationSchema={nameSchema}
-          onSubmit={(values, actions) => {
-            dispatch(addFeedback({ ...values, phone }));
+          onSubmit={ async (values, actions) => {
+            const response = await addFeedback({ ...values, phone });
             actions.resetForm();
+            if (response) {
+              handleOpenAgreeModal();
+            }
             handleCloseFeedbackModal();
-            handleOpenAgreeModal();
           }}
         >
           <StyledForm>
