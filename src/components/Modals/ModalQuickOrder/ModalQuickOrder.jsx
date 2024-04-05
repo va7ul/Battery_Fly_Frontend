@@ -79,7 +79,7 @@ export const ModalQuickOrder = ({
         onRequestClose={handleCloseQuickOrderModal}
         style={customStyles}
       >
-        <CloseButton handleCloseQuickOrderModal={handleCloseQuickOrderModal} />
+        <CloseButton handleCloseModal={handleCloseQuickOrderModal} />
         <Wrapper>
           <Title>{name}</Title>
           <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>

@@ -7,6 +7,7 @@ import { nameSchema } from '../../../common/schemas/nameSchema';
 import { isPhoneValid } from '../../../common/schemas/phoneSchema';
 import { addFeedback } from 'api';
 import { useMediaQuery } from 'react-responsive';
+import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
 import {
   Btn,
@@ -18,6 +19,7 @@ import {
   StyledForm,
   StyledTextField,
   Text,
+  Wrapper,
 } from './ModalFeedback.styled';
 
 const customStyles = {
@@ -69,79 +71,84 @@ export const ModalFeedback = ({
         onRequestClose={handleCloseFeedbackModal}
         style={customStyles}
       >
-        <Text>Залиште свої дані, ми вам передзвонимо</Text>
-        <Formik
-          initialValues={{
-            name: '',
-            text: '',
-          }}
-          validationSchema={nameSchema}
-          onSubmit={ async (values, actions) => {
-            const response = await addFeedback({ ...values, phone });
-            actions.resetForm();
-            if (response) {
-              handleOpenAgreeModal();
-            }
-            handleCloseFeedbackModal();
-          }}
-        >
-          <StyledForm>
-            <Label>
-              Ім'я
-              <StyledField name="name" type="text" />
-              <StyledErrorMessage name="name" component="div" />
-            </Label>
+        <CloseButton handleCloseModal={handleCloseFeedbackModal} />
+        <Wrapper>
+          <Text>Залиште свої дані, ми вам передзвонимо</Text>
+          <Formik
+            initialValues={{
+              name: '',
+              text: '',
+            }}
+            validationSchema={nameSchema}
+            onSubmit={async (values, actions) => {
+              const response = await addFeedback({ ...values, phone });
+              actions.resetForm();
+              if (response) {
+                handleOpenAgreeModal();
+              }
+              handleCloseFeedbackModal();
+            }}
+          >
+            <StyledForm>
+              <Label>
+                Ім'я
+                <StyledField name="name" type="text" />
+                <StyledErrorMessage name="name" component="div" />
+              </Label>
 
-            <Label>
-              Телефон
-              <PhoneInput
-                style={{
-                  '--react-international-phone-height': !isBigScreen
-                    ? '28px'
-                    : '51px',
-                  '--react-international-phone-background-color': 'transparent',
-                  '--react-international-phone-border-color': 'rgb(99, 99, 99)',
-                  '--react-international-phone-text-color':
-                    'rgb(225, 225, 225)',
-                  '--react-international-phone-font-size': !isBigScreen
-                    ? '10px'
-                    : '14px',
-                  '--react-international-phone-border-radius': !isBigScreen
-                    ? '6px'
-                    : '8px',
-                  '--react-international-phone-flag-width': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                  '--react-international-phone-flag-height': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                }}
-                defaultCountry="ua"
-                hideDropdown={true}
-                value={phone}
-                onChange={phone => setPhone(phone)}
-              />
-              {!isValidPhone && (
-                <DivErrorMessage>
-                  Введіть свій номер телефону, будь ласка
-                </DivErrorMessage>
-              )}
-            </Label>
-            <Label>
-              Коментар
-              <StyledTextField
-                component="textarea"
-                name="text"
-                type="text"
-                placeholder="Введіть текст"
-              />
-              <StyledErrorMessage name="text" component="div" />
-            </Label>
-            <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
-              <div>Зв'язатись</div>
-            </Btn>
-          </StyledForm>
-        </Formik>
+              <Label>
+                Телефон
+                <PhoneInput
+                  style={{
+                    '--react-international-phone-height': !isBigScreen
+                      ? '28px'
+                      : '51px',
+                    '--react-international-phone-background-color':
+                      'transparent',
+                    '--react-international-phone-border-color':
+                      'rgb(99, 99, 99)',
+                    '--react-international-phone-text-color':
+                      'rgb(225, 225, 225)',
+                    '--react-international-phone-font-size': !isBigScreen
+                      ? '10px'
+                      : '14px',
+                    '--react-international-phone-border-radius': !isBigScreen
+                      ? '6px'
+                      : '8px',
+                    '--react-international-phone-flag-width': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                    '--react-international-phone-flag-height': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                  }}
+                  defaultCountry="ua"
+                  hideDropdown={true}
+                  value={phone}
+                  onChange={phone => setPhone(phone)}
+                />
+                {!isValidPhone && (
+                  <DivErrorMessage>
+                    Введіть свій номер телефону, будь ласка
+                  </DivErrorMessage>
+                )}
+              </Label>
+              <Label>
+                Коментар
+                <StyledTextField
+                  component="textarea"
+                  name="text"
+                  type="text"
+                  placeholder="Введіть текст"
+                />
+                <StyledErrorMessage name="text" component="div" />
+              </Label>
+              <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
+                <div>Зв'язатись</div>
+              </Btn>
+            </StyledForm>
+          </Formik>
+        </Wrapper>
         <PhoneFieldGlobalStyles />
       </ReactModal>
       <ModalAgree

@@ -2,28 +2,39 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
+
+export const Wrapper = styled.div`
+  max-width: 357px;
+  padding: 36px 24px 26px 24px;
+
+  @media (min-width: 1280px) {
+    max-width: 629px;
+    padding: 40px 76px 28px 76px;
+  }
+`;
+
 export const Text = styled.p`
   font-size: 15px;
   font-weight: 600;
   text-align: center;
-  padding: 36px 24px 4px 24px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 
   @media (min-width: 1280px) {
     font-size: 20px;
-    padding: 40px 108px 4px 108px;
-    margin-bottom: 8px;
+    padding: 0px 32px;
+    margin-bottom: 12px;
   }
 `;
 
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
-  padding: 0px 48px 26px 48px;
+  padding: 0px 24px;
 
   @media (min-width: 1280px) {
-    padding: 0px 76px 26px 76px;
+    padding: 0px 0px;
   }
 `;
 
@@ -41,7 +52,7 @@ export const Label = styled.label`
 `;
 
 export const StyledField = styled(Field)`
-  max-width: 261px;
+  width: 261px;
   height: 28px;
   padding: 4px 8px;
   color: rgb(225, 225, 225);
@@ -56,7 +67,7 @@ export const StyledField = styled(Field)`
   }
 
   @media (min-width: 1280px) {
-    max-width: 476px;
+    width: 476px;
     height: 51px;
     border-radius: 8px;
   }
@@ -84,7 +95,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 `;
 
 export const StyledTextField = styled(Field)`
-  max-width: 261px;
+  width: 261px;
   height: 46px;
   padding: 4px 8px;
   color: rgb(225, 225, 225);
@@ -105,7 +116,7 @@ export const StyledTextField = styled(Field)`
 
   @media (min-width: 1280px) {
     color: rgb(225, 225, 225);
-    max-width: 476px;
+    width: 476px;
     height: 117px;
     border-radius: 8px;
 
@@ -136,7 +147,6 @@ export const DivErrorMessage = styled.div`
 export const Btn = styled.button`
   max-width: 128px;
   margin-top: 6px;
-  margin-left: 67px;
   padding: 12px 30px;
   border-radius: 6px;
   border: none;
@@ -153,8 +163,7 @@ export const Btn = styled.button`
 
   @media (min-width: 1280px) {
     max-width: 199px;
-    margin-top: 60px;
-    margin-left: 140px;
+    margin-top: 56px;
     padding: 16px 38px;
     border-radius: 12px;
     font-size: 24px;
