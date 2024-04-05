@@ -44,15 +44,18 @@ const customStyles = {
   },
 };
 
+const localStorageFeedbacksKey = 'feedback';
+
 ReactModal.setAppElement('#modal-root');
 
 export const ModalFeedback = ({
   isModalFeedbackOpen,
   handleCloseFeedbackModal,
 }) => {
+  const [tel, setTel] = useState('');
+
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [phone, setPhone] = useState('');
-  const isValidPhone = isPhoneValid(phone);
+  const isValidPhone = isPhoneValid(tel);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
@@ -77,14 +80,27 @@ export const ModalFeedback = ({
           <Text>Залиште свої дані, ми вам передзвонимо</Text>
           <Formik
             initialValues={{
-              name: '',
-              text: '',
+              name: JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
+                ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
+                    .name
+                : '',
+              text: JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
+                ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
+                    .text
+                : '',
             }}
             validationSchema={nameSchema}
             onSubmit={async (values, actions) => {
-              const response = await addFeedback({ ...values, phone });
+              const response = await addFeedback({ ...values, tel: tel });
+              if (!response) {
+                localStorage.setItem(
+                  localStorageFeedbacksKey,
+                  JSON.stringify(values)
+                );
+              }
               actions.resetForm();
               if (response) {
+                localStorage.removeItem(localStorageFeedbacksKey);
                 handleOpenAgreeModal();
               }
               handleCloseFeedbackModal();
@@ -125,8 +141,8 @@ export const ModalFeedback = ({
                   }}
                   defaultCountry="ua"
                   hideDropdown={true}
-                  value={phone}
-                  onChange={phone => setPhone(phone)}
+                  value={tel}
+                  onChange={tel => setTel(tel)}
                 />
                 {!isValidPhone && (
                   <DivErrorMessage>
@@ -144,7 +160,7 @@ export const ModalFeedback = ({
                 />
                 <StyledErrorMessage name="text" component="div" />
               </Label>
-              <Btn type="submit" disabled={!isValidPhone || phone === '+380'}>
+              <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
                 <div>Зв'язатись</div>
               </Btn>
             </StyledForm>
