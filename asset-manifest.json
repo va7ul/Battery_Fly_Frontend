@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Battery_Fly_Frontend/static/css/main.b5c977ee.css",
-    "main.js": "/Battery_Fly_Frontend/static/js/main.d150b908.js",
+    "main.js": "/Battery_Fly_Frontend/static/js/main.f8f31fc6.js",
     "static/js/149.26d4834d.chunk.js": "/Battery_Fly_Frontend/static/js/149.26d4834d.chunk.js",
     "static/js/823.e0347411.chunk.js": "/Battery_Fly_Frontend/static/js/823.e0347411.chunk.js",
     "static/js/454.facb3e14.chunk.js": "/Battery_Fly_Frontend/static/js/454.facb3e14.chunk.js",
@@ -17,7 +17,7 @@
     "static/css/82.e7a88223.chunk.css": "/Battery_Fly_Frontend/static/css/82.e7a88223.chunk.css",
     "static/js/82.5414ae1f.chunk.js": "/Battery_Fly_Frontend/static/js/82.5414ae1f.chunk.js",
     "static/js/864.5f4b611e.chunk.js": "/Battery_Fly_Frontend/static/js/864.5f4b611e.chunk.js",
-    "static/js/465.6ba885e2.chunk.js": "/Battery_Fly_Frontend/static/js/465.6ba885e2.chunk.js",
+    "static/js/465.ccac9621.chunk.js": "/Battery_Fly_Frontend/static/js/465.ccac9621.chunk.js",
     "static/js/297.d412ce51.chunk.js": "/Battery_Fly_Frontend/static/js/297.d412ce51.chunk.js",
     "static/js/648.847551a3.chunk.js": "/Battery_Fly_Frontend/static/js/648.847551a3.chunk.js",
     "static/js/655.31d192ba.chunk.js": "/Battery_Fly_Frontend/static/js/655.31d192ba.chunk.js",
@@ -32,8 +32,8 @@
     "static/js/66.5dac26fe.chunk.js": "/Battery_Fly_Frontend/static/js/66.5dac26fe.chunk.js",
     "static/js/187.d0d6642e.chunk.js": "/Battery_Fly_Frontend/static/js/187.d0d6642e.chunk.js",
     "static/media/about-us-battery-2x.jpeg": "/Battery_Fly_Frontend/static/media/about-us-battery-2x.4b77ac60345aab9f42b7.jpeg",
-    "static/media/warmBottom.png": "/Battery_Fly_Frontend/static/media/warmBottom.debb7fa97d0ae29bb448.png",
-    "static/media/warmTop.png": "/Battery_Fly_Frontend/static/media/warmTop.40539d0ac3456f270258.png",
+    "static/media/warmTop.png": "/Battery_Fly_Frontend/static/media/warmTop.c9ee7782558f2b972e9a.png",
+    "static/media/warmBottom.png": "/Battery_Fly_Frontend/static/media/warmBottom.4202f1681578d7e97cfc.png",
     "static/media/sprite.svg": "/Battery_Fly_Frontend/static/media/sprite.7e56caeac6de27d9f732cd8492c3211f.svg",
     "static/media/about-us-battery.jpeg": "/Battery_Fly_Frontend/static/media/about-us-battery.21d7513a235070454c6b.jpeg",
     "static/media/main-butteries.png": "/Battery_Fly_Frontend/static/media/main-butteries.d0c9eae60f592bc35bc5.png",
@@ -47,7 +47,7 @@
     "static/media/slick.woff": "/Battery_Fly_Frontend/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Battery_Fly_Frontend/index.html",
     "main.b5c977ee.css.map": "/Battery_Fly_Frontend/static/css/main.b5c977ee.css.map",
-    "main.d150b908.js.map": "/Battery_Fly_Frontend/static/js/main.d150b908.js.map",
+    "main.f8f31fc6.js.map": "/Battery_Fly_Frontend/static/js/main.f8f31fc6.js.map",
     "149.26d4834d.chunk.js.map": "/Battery_Fly_Frontend/static/js/149.26d4834d.chunk.js.map",
     "823.e0347411.chunk.js.map": "/Battery_Fly_Frontend/static/js/823.e0347411.chunk.js.map",
     "454.facb3e14.chunk.js.map": "/Battery_Fly_Frontend/static/js/454.facb3e14.chunk.js.map",
@@ -63,7 +63,7 @@
     "82.e7a88223.chunk.css.map": "/Battery_Fly_Frontend/static/css/82.e7a88223.chunk.css.map",
     "82.5414ae1f.chunk.js.map": "/Battery_Fly_Frontend/static/js/82.5414ae1f.chunk.js.map",
     "864.5f4b611e.chunk.js.map": "/Battery_Fly_Frontend/static/js/864.5f4b611e.chunk.js.map",
-    "465.6ba885e2.chunk.js.map": "/Battery_Fly_Frontend/static/js/465.6ba885e2.chunk.js.map",
+    "465.ccac9621.chunk.js.map": "/Battery_Fly_Frontend/static/js/465.ccac9621.chunk.js.map",
     "297.d412ce51.chunk.js.map": "/Battery_Fly_Frontend/static/js/297.d412ce51.chunk.js.map",
     "648.847551a3.chunk.js.map": "/Battery_Fly_Frontend/static/js/648.847551a3.chunk.js.map",
     "655.31d192ba.chunk.js.map": "/Battery_Fly_Frontend/static/js/655.31d192ba.chunk.js.map",
@@ -80,6 +80,6 @@
   },
   "entrypoints": [
     "static/css/main.b5c977ee.css",
-    "static/js/main.d150b908.js"
+    "static/js/main.f8f31fc6.js"
   ]
 }
