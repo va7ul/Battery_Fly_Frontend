@@ -41,3 +41,31 @@ export const Button = styled.div`
     padding: 18px;
   }
 `;
+
+export const NPTitle = styled.p`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  /* margin-bottom: 5px; */
+  color: red;
+
+  @media screen and (min-width: 1280px) {
+    gap: 7px;
+    font-size: 24px;
+    /* margin-bottom: 10px; */
+  }
+`;
+
+export const NPIcon = styled.svg`
+  width: 15px;
+  height: 15px;
+  fill: red;
+
+  @media screen and (min-width: 1280px) {
+    width: 30px;
+  }
+`;

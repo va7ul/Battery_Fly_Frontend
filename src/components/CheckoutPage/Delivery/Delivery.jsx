@@ -7,7 +7,9 @@ import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 // import FormLabel from '@mui/material/FormLabel';
 import { yellow } from '@mui/material/colors';
-import { Button, ButtonBox, Title } from './Delivery.styled';
+import { Button, ButtonBox, Title, NPTitle, NPIcon} from './Delivery.styled';
+import sprite from '../../../assets/images/sprite.svg';
+
 
 const StyledRadioGroup = styled(RadioGroup)({
     gap: '5px',
@@ -51,7 +53,14 @@ export const Delivery = () => {
         <div>
             <Title>Спосіб доставки</Title>
             <ButtonBox>
-                <Button>Нова пошта</Button>
+                <Button>
+                     <NPTitle>
+              <NPIcon>
+                <use href={`${sprite}#nova_poshta`}></use>
+              </NPIcon>
+              Нова пошта
+            </NPTitle>
+                </Button>
                 <Button>Самовивіз</Button>
             </ButtonBox>
             <Title>Спосіб оплати</Title>
