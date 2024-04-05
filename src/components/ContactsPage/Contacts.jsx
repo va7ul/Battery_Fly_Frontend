@@ -22,7 +22,7 @@ export const Contacts = () => {
         <Text>Телефонуйте:</Text>
         <List>
           <Item>
-            <a href="tel:+380634350137">+38 (063) 435 01 37</a>
+            <a href="tel:+380509686485">+38 (050) 968 64 85</a>
           </Item>
         </List>
       </div>
@@ -30,7 +30,7 @@ export const Contacts = () => {
         <Text>Пишіть:</Text>
         <Box>
           <Div>
-            <a href="mailto:batteryfly@meta.com">batteryfly@meta.com</a>
+            <a href="mailto:batteryfly@meta.ua">batteryfly@meta.ua</a>
           </Div>
           <SocialMedia />
         </Box>
