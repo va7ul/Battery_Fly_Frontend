@@ -5,10 +5,8 @@ import { useMediaQuery } from 'react-responsive';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addQuickOrder } from 'api';
 import { ModalAgree } from '../ModalAgree/ModalAgree';
-import { FiX } from 'react-icons/fi';
 import {
   Btn,
-  CloseButton,
   CodeOfGoodText,
   DivErrorMessage,
   PhoneFieldGlobalStyles,
@@ -16,6 +14,7 @@ import {
   Title,
   Wrapper,
 } from './ModalQuickOrder.styled';
+import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 
 const customStyles = {
   overlay: {
@@ -80,9 +79,7 @@ export const ModalQuickOrder = ({
         onRequestClose={handleCloseQuickOrderModal}
         style={customStyles}
       >
-        <CloseButton type="button" onClick={handleCloseQuickOrderModal}>
-          <FiX />
-        </CloseButton>
+        <CloseButton handleCloseModal={handleCloseQuickOrderModal} />
         <Wrapper>
           <Title>{name}</Title>
           <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
