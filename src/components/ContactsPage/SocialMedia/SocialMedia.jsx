@@ -9,14 +9,20 @@ export const SocialMedia = () => {
 
   return (
     <List>
-      <Item>
-        {mobileVersion ? <FaInstagram size={24} /> : <FaInstagram size={34} />}
+      <Item >
+        <a href='https://www.instagram.com/batteryfly_ua/?igsh=ZHQwdHhuNXl5ZDV0' target='_blank'rel="noopener noreferrer nofollow">
+          {mobileVersion ? <FaInstagram size={24} /> : <FaInstagram size={34} />}
+          </a>
       </Item>
       <Item>
-        {mobileVersion ? <FaViber size={24} /> : <FaViber size={34} />}
+        <a href='viber://chat?number=380509686485' target='_blank' rel="noopener noreferrer nofollow">
+          {mobileVersion ? <FaViber size={24} /> : <FaViber size={34} />}
+          </a>
       </Item>
       <Item>
-        {mobileVersion ? <FaTelegramPlane size={24} /> : <FaTelegramPlane size={34} />}
+        <a href="https://t.me/" target='_blank' rel="noopener noreferrer nofollow">
+          {mobileVersion ? <FaTelegramPlane size={24} /> : <FaTelegramPlane size={34} />}
+          </a>
       </Item>
     </List>
   )

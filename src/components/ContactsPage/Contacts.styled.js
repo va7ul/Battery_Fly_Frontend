@@ -94,14 +94,14 @@ export const BoxAddress = styled.div`
 export const ImgTop = styled.img`
   position: absolute;
   width: 132.59px;
-  right: 60px;
-  top: 28px;
+  right: 47px;
+  top: 70px;
   z-index: 1;
 
   @media screen and (min-width: 1280px) {
     width: 370.07px;
     height: 209.38px;
-    right: 220px;
+    right: 210px;
     top: 140px;
   }
 `;
@@ -110,13 +110,12 @@ export const ImgBot = styled.img`
   position: absolute;
   width: 125px;
   height: 70.73px;
-  right: -1px;
-  bottom: 30px;
+  right: 0px;
+  bottom: 42px;
 
   @media screen and (min-width: 1280px) {
     width: 370.07px;
     height: 209.38px;
-    right: -3px;
-    /* bottom: -40px; */
+    bottom: 20px;
   }
 `;
