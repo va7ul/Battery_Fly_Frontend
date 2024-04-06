@@ -135,6 +135,7 @@ export const OrderButton = styled.button`
   position: relative;
   z-index: 0;
   ${gradientTransitionBtn}
+
   &::after {
     border-radius: 6px;
   }
@@ -144,6 +145,10 @@ export const OrderButton = styled.button`
     height: 61px;
     padding: 15px 8px;
     font-size: 20px;
+
+    &::after {
+      border-radius: 12px;
+    }
   }
 `;
 
