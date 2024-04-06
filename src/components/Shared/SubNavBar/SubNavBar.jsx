@@ -31,7 +31,7 @@ export const SubNavBar = () => {
               <span>Акумулятори</span>
               <ArrowButton
                 type="button"
-                handleOpen={open}
+                handleopen={anchorEl}
                 onClick={handleOpen}
                 aria-owns={open ? 'desktop-menu' : undefined}
                 aria-haspopup="true"
