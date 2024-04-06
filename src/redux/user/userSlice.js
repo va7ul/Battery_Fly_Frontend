@@ -1,11 +1,26 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { logOut, login, refreshUser, register } from './userOperations';
+import {
+  logOut,
+  login,
+  refreshUser,
+  register,
+  addToFavorite,
+} from './userOperations';
+
+const defaultUserData = {
+  firstName: '',
+  lastName: '',
+  patronymic: '',
+  tel: '',
+  email: '',
+};
 
 const initialState = {
-  userData: { firstName: '', lastName: '', patronymic: '', tel: '', email: '' },
+  userData: { ...defaultUserData },
   token: '',
+  verifiedEmail: false,
   orders: [],
-  delivery: [],
+  delivery: {},
   favorites: [],
   isLoading: false,
   error: null,
@@ -16,6 +31,7 @@ const initialState = {
 const handleEntranceFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
+  state.verifiedEmail = payload.verifiedEmail;
   state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
@@ -23,18 +39,13 @@ const handleEntranceFulfilled = (state, { payload }) => {
 };
 
 const handleLogoutPending = state => {
-  state.userData = {
-    firstName: '',
-    lastName: '',
-    patronymic: '',
-    tel: '',
-    email: '',
-  };
+  state.userData = { ...defaultUserData };
   state.token = '';
   state.orders = [];
-  state.delivery = [];
+  state.delivery = {};
   state.favorites = [];
   state.isLoggedIn = false;
+  state.verifiedEmail = false;
 };
 
 const handleRefreshPending = state => {
@@ -54,6 +65,10 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
+const handleAddToFavoriteFulfilled = (state, { payload }) => {
+  state.favorites = payload.favorites;
+};
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -63,6 +78,7 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
+      .addCase(addToFavorite.fulfilled, handleAddToFavoriteFulfilled)
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
