@@ -1,7 +1,7 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { PrivateRoute } from 'routes/PrivateRoute';
+import { PrivateRoute } from 'routes/PrivateRoute';
 import { Layout } from './components/Layout/Layout';
 import { useAuth } from './hooks/useAuth';
 import { refreshUser } from './redux/user/userOperations';
@@ -73,10 +73,24 @@ export const App = () => {
         <Route path="/materials" element={<MaterialsPage />} />
         <Route path="/3D-print" element={<Print3DPage />} />
         <Route path="/assortment/:cardId" element={<CardPage />} />
-        {/* element={<PrivateRoute redirectTo="/" component={<UserPage />} />} */}
-        <Route path="/profile" element={<UserProfilePage />} />
-        <Route path="/orders" element={<OrdersHistoryPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute redirectTo="/" component={<UserProfilePage />} />
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute redirectTo="/" component={<OrdersHistoryPage />} />
+          }
+        />
+        <Route
+          path="/favorites"
+          element={
+            <PrivateRoute redirectTo="/" component={<FavoritesPage />} />
+          }
+        />
         <Route path="*" element={<MainPage />} />
       </Route>
     </Routes>
