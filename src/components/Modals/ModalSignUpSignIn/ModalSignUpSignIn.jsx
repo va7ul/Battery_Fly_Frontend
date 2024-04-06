@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
+import { useAuth } from 'hooks/useAuth';
 
 const customStyles = {
   overlay: {
@@ -30,6 +31,8 @@ export const ModalSignUpSignIn = ({
   isModalSignUpSignInOpen,
   handleCloseSignUpSignInModal,
 }) => {
+
+  const { isLoggedIn } = useAuth();
   const [showSignUpForm, setshowSignUpForm] = useState(false);
 
   const handleShowSignInForm = () => setshowSignUpForm(false);
@@ -37,40 +40,42 @@ export const ModalSignUpSignIn = ({
 
   return (
     <>
-      <ReactModal
-        isOpen={isModalSignUpSignInOpen}
-        onRequestClose={handleCloseSignUpSignInModal}
-        style={customStyles}
-      >
-        <Box>
-          <BtnWrapper>
-            <NavBtn
-              type="button"
-              $show={!showSignUpForm}
-              onClick={handleShowSignInForm}
-            >
-              Вхід
-            </NavBtn>
-            <NavBtn
-              type="button"
-              $show={showSignUpForm}
-              onClick={handleShowSignUpForm}
-            >
-              Реєстрація
-            </NavBtn>
-          </BtnWrapper>
-          {showSignUpForm && (
-            <SignUpForm
-              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-            />
-          )}
-          {!showSignUpForm && (
-            <SignInForm
-              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-            />
-          )}
-        </Box>
-      </ReactModal>
+      {!isLoggedIn && (
+        <ReactModal
+          isOpen={isModalSignUpSignInOpen}
+          onRequestClose={handleCloseSignUpSignInModal}
+          style={customStyles}
+        >
+          <Box>
+            <BtnWrapper>
+              <NavBtn
+                type="button"
+                $show={!showSignUpForm}
+                onClick={handleShowSignInForm}
+              >
+                Вхід
+              </NavBtn>
+              <NavBtn
+                type="button"
+                $show={showSignUpForm}
+                onClick={handleShowSignUpForm}
+              >
+                Реєстрація
+              </NavBtn>
+            </BtnWrapper>
+            {showSignUpForm && (
+              <SignUpForm
+                handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+              />
+            )}
+            {!showSignUpForm && (
+              <SignInForm
+                handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+              />
+            )}
+          </Box>
+        </ReactModal>
+      )}
     </>
   );
 };

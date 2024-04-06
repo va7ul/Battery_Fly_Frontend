@@ -55,6 +55,11 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
+
+const handleLoginPanging = (state, { payload }) => {
+  state.errorStatus = '';
+};
+
 const handleLoginRejected = (state, { payload }) => {
   state.errorStatus = payload;
 };
@@ -68,11 +73,12 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
+      .addCase(login.pending, handleLoginPanging)
       .addCase(login.rejected, handleLoginRejected)
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
-      )
+      );
   },
 });
 

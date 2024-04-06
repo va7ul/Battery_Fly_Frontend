@@ -132,8 +132,7 @@ export const ModalForgotPassword = ({
       email: '',
     },
     validationSchema: forgotPasswordSchema,
-    onSubmit: (values, actions) => {
-      console.log(values);
+    onSubmit: (values, _) => {
       handleOpenAgreeModal();
       handleCloseForgotPasswordModal();
     },

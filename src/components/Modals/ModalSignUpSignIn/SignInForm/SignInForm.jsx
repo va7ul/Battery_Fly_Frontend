@@ -95,7 +95,8 @@ const Field = styled(TextField)(({ theme }) => ({
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const loginError = useSelector(selectErrorStatus);
+  const errorStatus = useSelector(selectErrorStatus);
+ 
 
   const dispatch = useDispatch();
 
@@ -115,10 +116,11 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const handleOpenAgreeModal = () => {
-    setIsModalAgreeOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
+    const handleOpenAgreeModal = () => {
+      setIsModalAgreeOpen(true);
+      document.body.style.overflow = 'hidden';
+  }
+
   const handleCloseAgreeModal = () => {
     setIsModalAgreeOpen(false);
     document.body.style.overflow = 'unset';
@@ -132,15 +134,9 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     validationSchema: signInSchema,
     onSubmit: (values, actions) => {
       dispatch(login(values));
-      actions.resetForm();
-      console.log('loginError', loginError);
-      if (loginError === 401) {
-       handleOpenAgreeModal();
-      }
-      // handleCloseSignUpSignInModal();
+      handleOpenAgreeModal();
     },
   });
-
   return (
     <>
       <StyledForm onSubmit={formik.handleSubmit}>
@@ -213,13 +209,17 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}
         handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
-      <ModalAgree
-        isModalAgreeOpen={isModalAgreeOpen}
-        handleCloseAgreeModal={handleCloseAgreeModal}
-      >
-        <TextAgree>Ваш запит успішно прийнято.</TextAgree>
-        <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
-      </ModalAgree>
+      {errorStatus === 401 && (
+        <ModalAgree
+          isModalAgreeOpen={isModalAgreeOpen}
+          handleCloseAgreeModal={handleCloseAgreeModal}
+        >
+          <TextAgree>Некоректно введені дані.</TextAgree>
+          <TextAgree>
+            Перевірте, будь ласка, введення логіну та паролю.
+          </TextAgree>
+        </ModalAgree>
+      )}
     </>
   );
 };
