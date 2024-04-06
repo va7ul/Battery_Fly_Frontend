@@ -22,6 +22,7 @@ export const DesktopAssortment = () => {
       <StyledLink to="/assortment">Асортимент</StyledLink>
       <ArrowButton
         type="button"
+        handleOpen={open}
         onClick={handleClick}
         aria-owns={open ? 'desktop-menu' : undefined}
         aria-haspopup="true"

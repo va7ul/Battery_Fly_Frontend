@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { getRotation } from 'styles/GlobalStyled';
 
 export const StyledNav = styled.nav`
   padding: 30px 110px 0px;
@@ -72,7 +73,7 @@ export const ArrowButton = styled.button`
   border: none;
 
   & svg {
-    transform: rotate(270deg);
+    transform: ${getRotation};
     width: 11px;
     height: 11px;
     fill: transparent;
