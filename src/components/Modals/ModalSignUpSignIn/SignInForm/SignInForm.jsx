@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -12,6 +12,9 @@ import {
   ForgotPasswordBtn,
   StyledForm,
 } from './SignInForm.styled';
+import { selectErrorStatus } from '../../../../redux/user/userSelectors';
+import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
+import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -92,6 +95,8 @@ const Field = styled(TextField)(({ theme }) => ({
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const loginError = useSelector(selectErrorStatus);
+
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -108,6 +113,17 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     document.body.style.overflow = 'unset';
   };
 
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseAgreeModal = () => {
+    setIsModalAgreeOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -117,7 +133,11 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     onSubmit: (values, actions) => {
       dispatch(login(values));
       actions.resetForm();
-      handleCloseSignUpSignInModal();
+      console.log('loginError', loginError);
+      if (loginError === 401) {
+       handleOpenAgreeModal();
+      }
+      // handleCloseSignUpSignInModal();
     },
   });
 
@@ -193,6 +213,13 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}
         handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAgreeModal}
+      >
+        <TextAgree>Ваш запит успішно прийнято.</TextAgree>
+        <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
+      </ModalAgree>
     </>
   );
 };

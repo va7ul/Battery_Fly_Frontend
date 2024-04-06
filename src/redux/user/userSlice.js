@@ -4,6 +4,7 @@ import { logOut, login, refreshUser, register } from './userOperations';
 const initialState = {
   userData: { firstName: '', lastName: '', patronymic: '', tel: '', email: '' },
   token: '',
+  errorStatus: null,
   orders: [],
   delivery: [],
   favorites: [],
@@ -16,6 +17,7 @@ const initialState = {
 const handleEntranceFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
+  state.errorStatus = '';
   state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
@@ -31,7 +33,6 @@ const handleLogoutPending = state => {
     email: '',
   };
   state.token = '';
-  state.orders = [];
   state.delivery = [];
   state.favorites = [];
   state.isLoggedIn = false;
@@ -54,6 +55,10 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
+const handleLoginRejected = (state, { payload }) => {
+  state.errorStatus = payload;
+};
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -63,10 +68,11 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
+      .addCase(login.rejected, handleLoginRejected)
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
-      );
+      )
   },
 });
 

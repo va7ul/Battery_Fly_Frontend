@@ -29,21 +29,30 @@ export const register = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      if (error.request.status === 400) {
+        return error.request.status;
+      }
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
 );
 
-export const login = createAsyncThunk('user/signin', async (dataUser, thunkApi) => {
-  try {
-    const { data } = await axios.post('auth/signin', dataUser);
-    setAuthHeader(data.token);
-    return data;
-  } catch (error) {
-    const errorMessage = handleError(error);
-    return thunkApi.rejectWithValue(errorMessage);
+export const login = createAsyncThunk(
+  'user/signin',
+  async (dataUser, thunkApi) => {
+    try {
+      const { data } = await axios.post('auth/signin', dataUser);
+      setAuthHeader(data.token);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      if (error.request.status === 401) {
+        return thunkApi.rejectWithValue(error.request.status);
+      }
+      return thunkApi.rejectWithValue(errorMessage);
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   try {
@@ -55,22 +64,25 @@ export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   }
 });
 
-export const refreshUser = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
-  const { token } = thunkAPI.getState().user;
+export const refreshUser = createAsyncThunk(
+  'user/refresh',
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().user;
 
-  if (token === '') {
-    return thunkAPI.rejectWithValue('Unable to fetch user');
-  }
+    if (token === '') {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
 
-  try {
-    setAuthHeader(token);
-    const { data } = await axios.get('auth/current');
-    return data;
-  } catch (error) {
-    const errorMessage = handleError(error);
-    return thunkAPI.rejectWithValue(errorMessage);
+    try {
+      setAuthHeader(token);
+      const { data } = await axios.get('auth/current');
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
   }
-});
+);
 
 // export const forgotPassword = createAsyncThunk(
 //   'auth/forgot-password',
@@ -114,7 +126,6 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
-
 
 export const addToFavorite = createAsyncThunk(
   'user/addToFavorite',
