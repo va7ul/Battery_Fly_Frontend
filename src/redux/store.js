@@ -19,7 +19,7 @@ import { menuReducer } from './menu/menuSlice';
 const userPersistConfig = {
   key: 'user',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'isLoggedIn'],
 };
 
 const basketPersistConfig = {

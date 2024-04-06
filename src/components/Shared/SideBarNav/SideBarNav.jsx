@@ -1,7 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { logOut } from '../../../redux/user/userOperations';
-import { StyledList } from './SideBarNav.styled';
+import { StyledList, StyledNavLink } from './SideBarNav.styled';
 
 export const SideBarNav = () => {
   const dispatch = useDispatch();
@@ -13,16 +16,30 @@ export const SideBarNav = () => {
     <aside>
       <StyledList>
         <li>
-          <NavLink to="../profile">Користувач</NavLink>
+          <StyledNavLink to="../profile">
+            <AccountCircleOutlinedIcon />
+            <span>Користувач</span>
+          </StyledNavLink>
         </li>
         <li>
-          <NavLink to="../orders">Історія замовлень</NavLink>
+          <StyledNavLink to="../orders">
+            <HistoryOutlinedIcon />
+            <span>Історія замовлень</span>
+          </StyledNavLink>
         </li>
         <li>
-          <NavLink to="../favorites">Обране</NavLink>
+          <StyledNavLink to="../favorites">
+            <FavoriteBorderOutlinedIcon />
+            <span>Обране</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="../" onClick={logout}>
+            <LogoutOutlinedIcon />
+            <span>Вийти</span>
+          </StyledNavLink>
         </li>
       </StyledList>
-      <button onClick={logout}>Вийти</button>
     </aside>
   );
 };
