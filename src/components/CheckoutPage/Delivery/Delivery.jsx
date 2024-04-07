@@ -9,7 +9,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP} from './Delivery.styled';
+import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 
@@ -56,6 +56,19 @@ export const Delivery = () => {
         setValue(event.target.value);
     }
 
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
+    
+    const handleSelectCity = (event) => {
+        console.log(event)
+    }
+    const handleSelectWarehouse = (event) => {
+        console.log(event)
+    }
+
     return (
         <div>
             <Title>Спосіб доставки</Title>
@@ -75,15 +88,18 @@ export const Delivery = () => {
             
                 <Select
                     // options={options}
-                // onChange={handleSelect}
+                    onInputChange={handleSelectCity}
+                // onChange=
                 placeholder={"Місто"}
-                // styles={selectStyles}
+                styles={selectStyles}
                 />
                 <Select
-                    // options={options}
-                // onChange={handleSelect}
+                    options={options}
+                    // onChange={handleSelect}
+                    onInputChange={handleSelectWarehouse}
+                    
                 placeholder={"Відділення/поштомат"}
-                // styles={selectStyles}
+                styles={selectStyles}
             />
 
                 </BoxNP>
