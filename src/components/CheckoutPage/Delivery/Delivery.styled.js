@@ -161,3 +161,95 @@ export const Box = styled.div`
     gap: 15px;
   }
 `;
+
+export const BoxNP = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const selectStyles = {
+  control: styles => ({
+    ...styles,
+    backgroundColor: 'rgba(247, 247, 247, 1)',
+    borderRadius: '8px',
+    borderStyle: 'none',
+    width: '320px',
+    height: '40px',
+    border: '1px solid rgb(157, 157, 157)',
+    '@media only screen and (min-width: 1280px)': {
+      width: '476px',
+      height: '51px',
+    },
+  }),
+  menu: styles => ({
+    ...styles,
+    backgroundColor: 'rgba(247, 247, 247, 1)',
+    fontSize: '10px',
+    width: '320px',
+    borderRadius: '8px',
+    border: '1px solid rgb(157, 157, 157)',
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+      width: '476px',
+    },
+  }),
+  input: styles => ({
+    ...styles,
+    fontSize: '10px',
+    padding: '0px 8px',
+    margin: 0,
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+    },
+  }),
+  option: (styles, { isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles,
+      backgroundColor: isFocused ? 'rgb(255, 208, 100)' : undefined,
+      color: !isDisabled
+        ? isSelected
+          ? 'rgb(31, 31, 31);'
+          : 'rgb(31, 31, 31);'
+        : undefined,
+      cursor: isDisabled ? 'not-allowed' : 'default',
+      padding: '2px 8px',
+      ':active': {
+        ...styles[':active'],
+        backgroundColor: !isDisabled
+          ? isSelected
+            ? 'rgb(255, 208, 100)'
+            : 'rgb(255, 208, 100)'
+          : undefined,
+      },
+      '@media only screen and (min-width: 1280px)': {
+        borderRadius: '6px',
+      },
+    };
+  },
+  placeholder: styles => ({
+    ...styles,
+    fontSize: '10px',
+    padding: '0px 8px',
+    margin: 0,
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+    },
+  }),
+  valueContainer: styles => ({ ...styles, padding: 0 }),
+  singleValue: styles => ({
+    ...styles,
+    fontSize: '10px',
+    margin: 0,
+    padding: '8px',
+    '@media only screen and (min-width: 1280px)': {
+      fontSize: '20px',
+    },
+  }),
+};
