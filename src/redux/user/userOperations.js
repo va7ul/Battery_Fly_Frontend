@@ -81,17 +81,6 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-// export const forgotPassword = createAsyncThunk(
-//   'auth/forgot-password',
-//   async (dataUser, thunkAPI) => {
-//     try {
-//       await axios.post('auth/forgot-password', dataUser);
-//     } catch (error) {
-//       const errorMessage = handleError(error);
-//       return thunkAPI.rejectWithValue(errorMessage);
-//     }
-//   }
-// );
 
 // export const verifyEmail = createAsyncThunk(
 //   'auth/verify-email',

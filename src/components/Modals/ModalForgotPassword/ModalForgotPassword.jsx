@@ -7,6 +7,7 @@ import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
 import { Btn, StyledForm, Text, Wrapper } from './ModalForgotPassword.styled';
+import { forgotPassword } from 'api';
 
 const customStyles = {
   overlay: {
@@ -135,8 +136,11 @@ export const ModalForgotPassword = ({
       email: '',
     },
     validationSchema: forgotPasswordSchema,
-    onSubmit: (values, _) => {
-      handleOpenAgreeModal();
+    onSubmit: async (values, _) => {
+      const response = await forgotPassword(values);
+      if (response) {
+        handleOpenAgreeModal();
+      }
       handleCloseForgotPasswordModal();
     },
   });
