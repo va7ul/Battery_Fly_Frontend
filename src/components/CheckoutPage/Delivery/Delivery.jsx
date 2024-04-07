@@ -51,29 +51,42 @@ export const Delivery = () => {
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
     const [value, setValue] = useState('female');
+    const [displayNP, setDisplayNP] = useState("none");
+    const [displayAddress, setDisplayAddress] = useState("none");
 
+    const openNP = () => {
+        setDisplayAddress("none");
+        setDisplayNP("flex");
+    };
+
+    const openAddress = () => {
+        setDisplayNP("none");
+        setDisplayAddress("flex");
+    };
+    
     const handleChange = (event) => {
         setValue(event.target.value);
-    }
+    };
 
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
-    ]
+    ];
     
     const handleSelectCity = (event) => {
         console.log(event)
-    }
+    };
+
     const handleSelectWarehouse = (event) => {
         console.log(event)
-    }
+    };
 
     return (
         <div>
             <Title>Спосіб доставки</Title>
             <ButtonBox>
-                <Button>
+                <Button onClick={openNP}>
                     <NPTitle>
                         <NPIcon>
                             <use href={`${sprite}#nova_poshta`}></use>
@@ -81,9 +94,9 @@ export const Delivery = () => {
                         <NPText>Нова пошта</NPText>
                     </NPTitle>
                 </Button>
-                <Button>Самовивіз</Button>
+                <Button onClick={openAddress}>Самовивіз</Button>
             </ButtonBox>
-            <BoxNP>
+            <BoxNP style={{ display: displayNP }}>
                 <Text>Адреса доставки</Text>
             
                 <Select
@@ -103,7 +116,7 @@ export const Delivery = () => {
             />
 
                 </BoxNP>
-            <BoxAddress>
+            <BoxAddress style={{ display: displayAddress }}>
                 <Text>Адреса для самовивозу:</Text>
                 <BoxIcon>
                     {mobileVersion ? <LocationCityIcon sx={{ fontSize: 22 }} /> : <LocationCityIcon sx={{ fontSize: 30 }} />}
