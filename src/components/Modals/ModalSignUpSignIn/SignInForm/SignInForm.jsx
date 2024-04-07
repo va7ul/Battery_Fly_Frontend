@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
@@ -15,6 +15,7 @@ import {
 import { selectErrorStatus } from '../../../../redux/user/userSelectors';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
+import { useAuth } from 'hooks/useAuth';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -96,7 +97,19 @@ const Field = styled(TextField)(({ theme }) => ({
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const errorStatus = useSelector(selectErrorStatus);
- 
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (errorStatus === 401) {
+      handleOpenAgreeModal();
+    }
+  }, [errorStatus]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      handleCloseSignUpSignInModal();
+    }
+  }, [isLoggedIn, handleCloseSignUpSignInModal]);
 
   const dispatch = useDispatch();
 
@@ -116,10 +129,10 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-    const handleOpenAgreeModal = () => {
-      setIsModalAgreeOpen(true);
-      document.body.style.overflow = 'hidden';
-  }
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
 
   const handleCloseAgreeModal = () => {
     setIsModalAgreeOpen(false);
@@ -134,9 +147,9 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     validationSchema: signInSchema,
     onSubmit: (values, actions) => {
       dispatch(login(values));
-      handleOpenAgreeModal();
     },
   });
+
   return (
     <>
       <StyledForm onSubmit={formik.handleSubmit}>
@@ -209,17 +222,13 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}
         handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
-      {errorStatus === 401 && (
-        <ModalAgree
-          isModalAgreeOpen={isModalAgreeOpen}
-          handleCloseAgreeModal={handleCloseAgreeModal}
-        >
-          <TextAgree>Некоректно введені дані.</TextAgree>
-          <TextAgree>
-            Перевірте, будь ласка, введення логіну та паролю.
-          </TextAgree>
-        </ModalAgree>
-      )}
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAgreeModal}
+      >
+        <TextAgree>Некоректно введені дані.</TextAgree>
+        <TextAgree>Перевірте, будь ласка, введення логіну та паролю.</TextAgree>
+      </ModalAgree>
     </>
   );
 };

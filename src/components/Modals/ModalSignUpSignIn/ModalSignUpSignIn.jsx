@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import {useState } from 'react';
 import ReactModal from 'react-modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
-import { useAuth } from 'hooks/useAuth';
+
 
 const customStyles = {
   overlay: {
@@ -32,7 +32,6 @@ export const ModalSignUpSignIn = ({
   handleCloseSignUpSignInModal,
 }) => {
 
-  const { isLoggedIn } = useAuth();
   const [showSignUpForm, setshowSignUpForm] = useState(false);
 
   const handleShowSignInForm = () => setshowSignUpForm(false);
@@ -40,7 +39,6 @@ export const ModalSignUpSignIn = ({
 
   return (
     <>
-      {!isLoggedIn && (
         <ReactModal
           isOpen={isModalSignUpSignInOpen}
           onRequestClose={handleCloseSignUpSignInModal}
@@ -75,7 +73,6 @@ export const ModalSignUpSignIn = ({
             )}
           </Box>
         </ReactModal>
-      )}
     </>
   );
 };
