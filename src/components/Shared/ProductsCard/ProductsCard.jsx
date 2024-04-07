@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import noImage from '../../../assets/images/no-image-available.webp';
+import { addToFavorite } from '../../../redux/user/userOperations';
 import { addItem } from '../../../redux/basket/basketSlice';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 import {
@@ -14,6 +15,7 @@ import {
   PriceOld,
   ChooseBtn,
 } from './ProductsCard.styled';
+import { selectFavorites } from '../../../redux/user/userSelectors';
 import { selectItems } from '../../../redux/basket/basketSelectors';
 import { getNewPrice } from 'utils/helpers/index';
 
@@ -31,7 +33,16 @@ export const ProductsCard = ({ product }) => {
     basketItem => basketItem.codeOfGood === codeOfGood
   );
 
+  const favoriteItems = useSelector(selectFavorites);
+  const isInFavorites = favoriteItems.some(
+    favoriteItem => favoriteItem === codeOfGood
+  );
+
   const newPrice = sale ? getNewPrice(discount, price) : price;
+
+  const addFavorite = () => {
+    dispatch(addToFavorite(codeOfGood));
+  };
 
   const addToBasket = () => {
     dispatch(
@@ -54,8 +65,11 @@ export const ProductsCard = ({ product }) => {
   return (
     <>
       <ContentWrapper>
-        <IconHeart />
-        <IconFullHeart />
+        {isInFavorites ? (
+          <IconFullHeart />
+        ) : (
+          <IconHeart onClick={addFavorite} />
+        )}
         <Link to={`../assortment/${codeOfGood}`}>
           <StyledImage
             loading="lazy"

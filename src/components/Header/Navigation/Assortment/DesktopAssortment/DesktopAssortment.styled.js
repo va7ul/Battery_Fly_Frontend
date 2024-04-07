@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { getRotation } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 5px;
 `;
 
 export const ArrowButton = styled.button`
@@ -17,14 +18,15 @@ export const ArrowButton = styled.button`
   /* padding: 34px 0; */
 
   & svg {
-    transform: rotate(270deg);
+    transform: ${getRotation};
     width: 11px;
     height: 11px;
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
-    transition: stroke ${props => props.theme.transition.main};
+    transition: ${props => props.theme.transition.main};
   }
   &:hover svg {
     stroke: ${props => props.theme.colors.secondary};
+    transform: rotate(270deg) scale(1.4);
   }
 `;

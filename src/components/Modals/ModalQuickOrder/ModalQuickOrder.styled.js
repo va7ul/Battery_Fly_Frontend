@@ -24,7 +24,7 @@ export const Title = styled.h1`
 
 export const CodeOfGoodText = styled.p`
   font-size: 10px;
-  color: ${props => props.theme.colors.textDisabled};
+  color: rgba(87, 80, 80, 1);
   margin-bottom: 6px;
 
   @media (min-width: 1280px) {
@@ -58,7 +58,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 `;
 
 export const DivErrorMessage = styled.div`
-  color: #da7b6a;
+  color: ${props => props.theme.colors.error};
   font-size: 8px;
   padding-left: 8px;
   margin-top: 4px;

@@ -218,3 +218,10 @@ export const getSectionBackground = props => {
   }
   return 'inherit';
 };
+
+export const getRotation = props => {
+  if (props.handleopen) {
+    return `rotate(90deg)`;
+  }
+  return 'rotate(270deg)';
+};

@@ -1,12 +1,27 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { logOut, login, refreshUser, register } from './userOperations';
+import {
+  logOut,
+  login,
+  refreshUser,
+  register,
+  addToFavorite,
+} from './userOperations';
+
+const defaultUserData = {
+  firstName: '',
+  lastName: '',
+  patronymic: '',
+  tel: '',
+  email: '',
+};
 
 const initialState = {
-  userData: { firstName: '', lastName: '', patronymic: '', tel: '', email: '' },
+  userData: { ...defaultUserData },
   token: '',
   errorStatus: null,
+  verifiedEmail: false,
   orders: [],
-  delivery: [],
+  delivery: {},
   favorites: [],
   isLoading: false,
   error: null,
@@ -18,6 +33,7 @@ const handleEntranceFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
   state.errorStatus = '';
+  state.verifiedEmail = payload.verifiedEmail;
   state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
@@ -25,17 +41,13 @@ const handleEntranceFulfilled = (state, { payload }) => {
 };
 
 const handleLogoutPending = state => {
-  state.userData = {
-    firstName: '',
-    lastName: '',
-    patronymic: '',
-    tel: '',
-    email: '',
-  };
+  state.userData = { ...defaultUserData };
   state.token = '';
-  state.delivery = [];
+  state.orders = [];
+  state.delivery = {};
   state.favorites = [];
   state.isLoggedIn = false;
+  state.verifiedEmail = false;
 };
 
 const handleRefreshPending = state => {
@@ -62,6 +74,10 @@ const handleLoginPanging = (state, { payload }) => {
 
 const handleLoginRejected = (state, { payload }) => {
   state.errorStatus = payload;
+}
+
+const handleAddToFavoriteFulfilled = (state, { payload }) => {
+  state.favorites = payload.favorites;
 };
 
 const userSlice = createSlice({
@@ -75,6 +91,7 @@ const userSlice = createSlice({
       .addCase(refreshUser.rejected, handleRefreshRejected)
       .addCase(login.pending, handleLoginPanging)
       .addCase(login.rejected, handleLoginRejected)
+      .addCase(addToFavorite.fulfilled, handleAddToFavoriteFulfilled)
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled

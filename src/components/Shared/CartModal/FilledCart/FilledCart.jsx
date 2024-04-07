@@ -1,5 +1,12 @@
 import { CartList } from '../CartList/CartList';
-import { Text, Total, BtnWrap, Button, Wrap } from './FilledCart.styled';
+import {
+  Text,
+  Total,
+  BtnWrap,
+  Button,
+  Wrap,
+  StyledLink,
+} from './FilledCart.styled';
 import { selectCart } from '../../../../redux/menu/menuSelectors';
 import { setCartOpen } from '../../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,9 +34,9 @@ export const FilledCart = () => {
           <Button type="button" onClick={closeCart}>
             <div>Продовжити покупки</div>
           </Button>
-          <Button type="button">
+          <StyledLink to="checkout" onClick={closeCart}>
             <div>Оформити замовлення</div>
-          </Button>
+          </StyledLink>
         </BtnWrap>
       </Wrap>
     </>

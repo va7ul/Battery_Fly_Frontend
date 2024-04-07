@@ -20,7 +20,7 @@ import { TextAgree } from '../SharedComponent/Text/Text';
 const customStyles = {
   overlay: {
     zIndex: '5',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
   },
   content: {
     border: '0px solid transparent',
