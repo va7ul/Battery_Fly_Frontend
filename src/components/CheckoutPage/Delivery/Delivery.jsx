@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Select from 'react-select';
 import { useMediaQuery } from 'react-responsive';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -8,7 +9,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box} from './Delivery.styled';
+import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 
@@ -69,6 +70,23 @@ export const Delivery = () => {
                 </Button>
                 <Button>Самовивіз</Button>
             </ButtonBox>
+            <BoxNP>
+                <Text>Адреса доставки</Text>
+            
+                <Select
+                    // options={options}
+                // onChange={handleSelect}
+                placeholder={"Місто"}
+                // styles={selectStyles}
+                />
+                <Select
+                    // options={options}
+                // onChange={handleSelect}
+                placeholder={"Відділення/поштомат"}
+                // styles={selectStyles}
+            />
+
+                </BoxNP>
             <BoxAddress>
                 <Text>Адреса для самовивозу:</Text>
                 <BoxIcon>

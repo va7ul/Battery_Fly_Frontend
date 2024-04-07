@@ -161,3 +161,15 @@ export const Box = styled.div`
     gap: 15px;
   }
 `;
+
+export const BoxNP = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+`;
