@@ -20,30 +20,33 @@ const handleError = error => {
   }
 };
 
-export const register = createAsyncThunk(
-  'user/signup',
-  async (dataUser, thunkAPI) => {
-    try {
-      const { data } = await axios.post('auth/signup', dataUser);
-      setAuthHeader(data.token);
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkAPI.rejectWithValue(errorMessage);
+export const register = createAsyncThunk('user/signup', async (dataUser, thunkApi) => {
+  try {
+    const { data } = await axios.post('auth/signup', dataUser);
+    setAuthHeader(data.token);
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    if (error.request.status === 409) {
+      return thunkApi.rejectWithValue(error.request.status);
     }
+    return thunkApi.rejectWithValue(errorMessage);
   }
-);
+});
 
 export const login = createAsyncThunk(
   'user/signin',
-  async (dataUser, thunkAPI) => {
+  async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('auth/signin', dataUser);
       setAuthHeader(data.token);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      return thunkAPI.rejectWithValue(errorMessage);
+      if (error.request.status === 401) {
+        return thunkApi.rejectWithValue(error.request.status);
+      }
+      return thunkApi.rejectWithValue(errorMessage);
     }
   }
 );

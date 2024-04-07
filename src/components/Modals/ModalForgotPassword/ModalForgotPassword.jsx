@@ -3,12 +3,13 @@ import ReactModal from 'react-modal';
 import { useFormik } from 'formik';
 import { TextField, styled } from '@mui/material';
 import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
-import { ModalForgotPasswordAgree } from '../ModalForgotPasswordAgree/ModalForgotPasswordAgree';
+import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
+import { TextAgree } from '../SharedComponent/Text/Text';
 import { Btn, StyledForm, Text } from './ModalForgotPassword.styled';
 
 const customStyles = {
   overlay: {
-    zIndex: '1',
+    zIndex: '5',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   content: {
@@ -22,7 +23,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     padding: 'none',
     background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.3) 112.295%)',
+      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.5) 112.295%)',
   },
 };
 
@@ -110,26 +111,29 @@ export const ModalForgotPassword = ({
   handleCloseForgotPasswordModal,
   handleCloseSignUpSignInModal,
 }) => {
-  const [isModalForgotPasswordAgreeOpen, setIsModalForgotPasswordAgreeOpen] =
-    useState(false);
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const handleOpenForgotPasswordAgreeModal = () => {
-    setIsModalForgotPasswordAgreeOpen(true);
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
     document.body.style.overflow = 'hidden';
   };
-  const handleCloseForgotPasswordAgreeModal = () => {
-    setIsModalForgotPasswordAgreeOpen(false);
+  const handleCloseAgreeModal = () => {
+    setIsModalAgreeOpen(false);
     document.body.style.overflow = 'unset';
   };
+
+    const handleCloseAllModal = () => {
+      handleCloseAgreeModal();
+      handleCloseSignUpSignInModal();
+    };
 
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     validationSchema: forgotPasswordSchema,
-    onSubmit: (values, actions) => {
-      console.log(values);
-      handleOpenForgotPasswordAgreeModal();
+    onSubmit: (values, _) => {
+      handleOpenAgreeModal();
       handleCloseForgotPasswordModal();
     },
   });
@@ -159,13 +163,15 @@ export const ModalForgotPassword = ({
           </Btn>
         </StyledForm>
       </ReactModal>
-      <ModalForgotPasswordAgree
-        isModalForgotPasswordAgreeOpen={isModalForgotPasswordAgreeOpen}
-        handleCloseForgotPasswordAgreeModal={
-          handleCloseForgotPasswordAgreeModal
-        }
-        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-      />
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAllModal}
+      >
+        <TextAgree>
+          Щоб відновити пароль, перейдіть за посиланням, яке ми надіслали на
+          Вашу електронну пошту.
+        </TextAgree>
+      </ModalAgree>
     </>
   );
 };

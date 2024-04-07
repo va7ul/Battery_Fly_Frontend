@@ -8,7 +8,7 @@ import { isPhoneValid } from '../../../common/schemas/phoneSchema';
 import { addFeedback } from 'api';
 import { useMediaQuery } from 'react-responsive';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
-import { ModalAgree } from '../ModalAgree/ModalAgree';
+import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import {
   Btn,
   DivErrorMessage,
@@ -22,6 +22,7 @@ import {
   Text,
   Wrapper,
 } from './ModalFeedback.styled';
+import { TextAgree } from '../SharedComponent/Text/Text';
 
 const customStyles = {
   overlay: {
@@ -171,7 +172,10 @@ export const ModalFeedback = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
-      />
+      >
+        <TextAgree>Ваш запит успішно прийнято.</TextAgree>
+        <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
+      </ModalAgree>
     </>
   );
 };

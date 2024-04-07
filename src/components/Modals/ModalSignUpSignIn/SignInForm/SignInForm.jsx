@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment, TextField, styled } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -12,6 +12,11 @@ import {
   ForgotPasswordBtn,
   StyledForm,
 } from './SignInForm.styled';
+import { selectErrorStatus } from '../../../../redux/user/userSelectors';
+import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
+import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
+import { useAuth } from 'hooks/useAuth';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -92,6 +97,21 @@ const Field = styled(TextField)(({ theme }) => ({
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const errorStatus = useSelector(selectErrorStatus);
+  const { isLoggedIn } = useAuth();
+
+  useEffect(() => {
+    if (errorStatus === 401) {
+      handleOpenAgreeModal();
+    }
+  }, [errorStatus]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      handleCloseSignUpSignInModal();
+    }
+  }, [isLoggedIn, handleCloseSignUpSignInModal]);
+
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -108,6 +128,19 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     document.body.style.overflow = 'unset';
   };
 
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseAgreeModal = () => {
+    setIsModalAgreeOpen(false);
+    dispatch(changeErrorStatus(''));
+    document.body.style.overflow = 'unset';
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -116,8 +149,6 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     validationSchema: signInSchema,
     onSubmit: (values, actions) => {
       dispatch(login(values));
-      actions.resetForm();
-      handleCloseSignUpSignInModal();
     },
   });
 
@@ -193,6 +224,13 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}
         handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
+      <ModalAgree
+        isModalAgreeOpen={isModalAgreeOpen}
+        handleCloseAgreeModal={handleCloseAgreeModal}
+      >
+        <TextAgree>Некоректно введені дані.</TextAgree>
+        <TextAgree>Перевірте, будь ласка, введення логіну та паролю.</TextAgree>
+      </ModalAgree>
     </>
   );
 };

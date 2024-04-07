@@ -18,6 +18,7 @@ const defaultUserData = {
 const initialState = {
   userData: { ...defaultUserData },
   token: '',
+  errorStatus: null,
   verifiedEmail: false,
   orders: [],
   delivery: {},
@@ -28,14 +29,24 @@ const initialState = {
   isRefreshing: false,
 };
 
+
+const handleEntrancePending = (state, { payload }) => {
+  state.errorStatus = '';
+};
+
 const handleEntranceFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
+  state.errorStatus = '';
   state.verifiedEmail = payload.verifiedEmail;
   state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
+};
+
+const handleEntranceRejected = (state, { payload }) => {
+  state.errorStatus = payload;
 };
 
 const handleLogoutPending = state => {
@@ -65,13 +76,20 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
+
 const handleAddToFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
 };
 
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    changeErrorStatus(state, { payload }) {
+      state.errorStatus = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(logOut.pending, handleLogoutPending)
@@ -80,10 +98,20 @@ const userSlice = createSlice({
       .addCase(refreshUser.rejected, handleRefreshRejected)
       .addCase(addToFavorite.fulfilled, handleAddToFavoriteFulfilled)
       .addMatcher(
+        isAnyOf(register.pending, login.pending),
+        handleEntrancePending
+      )
+      .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
+      )
+      .addMatcher(
+        isAnyOf(register.rejected, login.rejected),
+        handleEntranceRejected
       );
   },
 });
+
+export const { changeErrorStatus} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

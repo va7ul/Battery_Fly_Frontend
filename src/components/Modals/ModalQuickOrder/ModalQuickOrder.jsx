@@ -4,7 +4,7 @@ import { PhoneInput } from 'react-international-phone';
 import { useMediaQuery } from 'react-responsive';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addQuickOrder } from 'api';
-import { ModalAgree } from '../ModalAgree/ModalAgree';
+import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import {
   Btn,
   CodeOfGoodText,
@@ -15,6 +15,7 @@ import {
   Wrapper,
 } from './ModalQuickOrder.styled';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
+import { TextAgree } from '../SharedComponent/Text/Text';
 
 const customStyles = {
   overlay: {
@@ -127,7 +128,10 @@ export const ModalQuickOrder = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
-      />
+      >
+        <TextAgree>Ваш запит успішно прийнято.</TextAgree>
+        <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
+      </ModalAgree>
     </>
   );
 };
