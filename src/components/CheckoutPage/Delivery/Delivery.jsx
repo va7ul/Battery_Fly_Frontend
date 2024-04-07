@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Select from 'react-select';
 import { useMediaQuery } from 'react-responsive';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -8,7 +9,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box} from './Delivery.styled';
+import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 
@@ -50,16 +51,42 @@ export const Delivery = () => {
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
     const [value, setValue] = useState('female');
+    const [displayNP, setDisplayNP] = useState("none");
+    const [displayAddress, setDisplayAddress] = useState("none");
 
+    const openNP = () => {
+        setDisplayAddress("none");
+        setDisplayNP("flex");
+    };
+
+    const openAddress = () => {
+        setDisplayNP("none");
+        setDisplayAddress("flex");
+    };
+    
     const handleChange = (event) => {
         setValue(event.target.value);
-    }
+    };
+
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ];
+    
+    const handleSelectCity = (event) => {
+        console.log(event)
+    };
+
+    const handleSelectWarehouse = (event) => {
+        console.log(event)
+    };
 
     return (
         <div>
             <Title>Спосіб доставки</Title>
             <ButtonBox>
-                <Button>
+                <Button onClick={openNP}>
                     <NPTitle>
                         <NPIcon>
                             <use href={`${sprite}#nova_poshta`}></use>
@@ -67,9 +94,29 @@ export const Delivery = () => {
                         <NPText>Нова пошта</NPText>
                     </NPTitle>
                 </Button>
-                <Button>Самовивіз</Button>
+                <Button onClick={openAddress}>Самовивіз</Button>
             </ButtonBox>
-            <BoxAddress>
+            <BoxNP style={{ display: displayNP }}>
+                <Text>Адреса доставки</Text>
+            
+                <Select
+                    // options={options}
+                    onInputChange={handleSelectCity}
+                // onChange=
+                placeholder={"Місто"}
+                styles={selectStyles}
+                />
+                <Select
+                    options={options}
+                    // onChange={handleSelect}
+                    onInputChange={handleSelectWarehouse}
+                    
+                placeholder={"Відділення/поштомат"}
+                styles={selectStyles}
+            />
+
+                </BoxNP>
+            <BoxAddress style={{ display: displayAddress }}>
                 <Text>Адреса для самовивозу:</Text>
                 <BoxIcon>
                     {mobileVersion ? <LocationCityIcon sx={{ fontSize: 22 }} /> : <LocationCityIcon sx={{ fontSize: 30 }} />}
