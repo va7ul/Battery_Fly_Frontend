@@ -3,14 +3,15 @@ import ReactModal from 'react-modal';
 import { useFormik } from 'formik';
 import { TextField, styled } from '@mui/material';
 import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
+import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
-import { Btn, StyledForm, Text } from './ModalForgotPassword.styled';
+import { Btn, StyledForm, Text, Wrapper } from './ModalForgotPassword.styled';
 
 const customStyles = {
   overlay: {
     zIndex: '5',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
   },
   content: {
     border: '0px solid transparent',
@@ -69,11 +70,13 @@ const Field = styled(TextField)(({ theme }) => ({
     },
   },
   '& .MuiInputBase-root': {
+    width: '261px',
     height: '28px',
     padding: '0px 8px',
     fontFamily: theme.typography.fontFamily,
     fontSize: '10px',
     [theme.breakpoints.up('desktop')]: {
+      width: '476px',
       height: '51px',
       padding: '0px 12px',
       fontSize: '14px',
@@ -97,7 +100,7 @@ const Field = styled(TextField)(({ theme }) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: '8px',
     fontWeight: '500',
-    color: 'rgba(255, 0, 0, 1)',
+    color: theme.palette.error,
     [theme.breakpoints.up('desktop')]: {
       fontSize: '12px',
     },
@@ -122,10 +125,10 @@ export const ModalForgotPassword = ({
     document.body.style.overflow = 'unset';
   };
 
-    const handleCloseAllModal = () => {
-      handleCloseAgreeModal();
-      handleCloseSignUpSignInModal();
-    };
+  const handleCloseAllModal = () => {
+    handleCloseAgreeModal();
+    handleCloseSignUpSignInModal();
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -145,23 +148,26 @@ export const ModalForgotPassword = ({
         onRequestClose={handleCloseForgotPasswordModal}
         style={customStyles}
       >
-        <Text>Відновлення паролю</Text>
-        <StyledForm onSubmit={formik.handleSubmit}>
-          <Field
-            id="email"
-            name="email"
-            label="E-пошта"
-            type="text"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-          />
-          <Btn type="submit">
-            <div>Відправити</div>
-          </Btn>
-        </StyledForm>
+        <CloseButton handleCloseModal={handleCloseForgotPasswordModal} />
+        <Wrapper>
+          <Text>Відновлення паролю</Text>
+          <StyledForm onSubmit={formik.handleSubmit}>
+            <Field
+              id="email"
+              name="email"
+              label="E-пошта"
+              type="text"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+            <Btn type="submit">
+              <div>Відправити</div>
+            </Btn>
+          </StyledForm>
+        </Wrapper>
       </ReactModal>
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
