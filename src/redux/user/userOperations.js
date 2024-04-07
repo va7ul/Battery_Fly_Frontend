@@ -27,8 +27,8 @@ export const register = createAsyncThunk('user/signup', async (dataUser, thunkAp
     return data;
   } catch (error) {
     const errorMessage = handleError(error);
-    if (error.request.status === 400) {
-      return error.request.status;
+    if (error.request.status === 409) {
+      return thunkApi.rejectWithValue(error.request.status);
     }
     return thunkApi.rejectWithValue(errorMessage);
   }

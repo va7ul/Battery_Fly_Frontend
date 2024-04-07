@@ -67,14 +67,13 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
-
-const handleLoginPanging = (state, { payload }) => {
+const handleEntrancePending = (state, { payload }) => {
   state.errorStatus = '';
 };
 
-const handleLoginRejected = (state, { payload }) => {
+const handleEntranceRejected = (state, { payload }) => {
   state.errorStatus = payload;
-}
+};
 
 const handleAddToFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
@@ -89,12 +88,18 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
-      .addCase(login.pending, handleLoginPanging)
-      .addCase(login.rejected, handleLoginRejected)
       .addCase(addToFavorite.fulfilled, handleAddToFavoriteFulfilled)
+      .addMatcher(
+        isAnyOf(register.pending, login.pending),
+        handleEntrancePending
+      )
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
+      )
+      .addMatcher(
+        isAnyOf(register.rejected, login.rejected),
+        handleEntranceRejected
       );
   },
 });
