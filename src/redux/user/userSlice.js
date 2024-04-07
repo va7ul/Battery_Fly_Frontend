@@ -29,6 +29,11 @@ const initialState = {
   isRefreshing: false,
 };
 
+
+const handleEntrancePending = (state, { payload }) => {
+  state.errorStatus = '';
+};
+
 const handleEntranceFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
@@ -38,6 +43,10 @@ const handleEntranceFulfilled = (state, { payload }) => {
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
+};
+
+const handleEntranceRejected = (state, { payload }) => {
+  state.errorStatus = payload;
 };
 
 const handleLogoutPending = state => {
@@ -67,21 +76,20 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
-const handleEntrancePending = (state, { payload }) => {
-  state.errorStatus = '';
-};
-
-const handleEntranceRejected = (state, { payload }) => {
-  state.errorStatus = payload;
-};
 
 const handleAddToFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
 };
 
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {
+    changeErrorStatus(state, { payload }) {
+      state.errorStatus = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(logOut.pending, handleLogoutPending)
@@ -103,5 +111,7 @@ const userSlice = createSlice({
       );
   },
 });
+
+export const { changeErrorStatus} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

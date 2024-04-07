@@ -16,6 +16,7 @@ import { selectErrorStatus } from '../../../../redux/user/userSelectors';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { useAuth } from 'hooks/useAuth';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -136,6 +137,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const handleCloseAgreeModal = () => {
     setIsModalAgreeOpen(false);
+    dispatch(changeErrorStatus(''));
     document.body.style.overflow = 'unset';
   };
 

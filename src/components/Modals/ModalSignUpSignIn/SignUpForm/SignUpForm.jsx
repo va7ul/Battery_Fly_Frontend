@@ -10,6 +10,7 @@ import { selectErrorStatus } from '../../../../redux/user/userSelectors';
 import { useAuth } from 'hooks/useAuth';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
 
 const Field = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-notchedOutline': {
@@ -91,16 +92,15 @@ const Field = styled(TextField)(({ theme }) => ({
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
   const errorStatus = useSelector(selectErrorStatus);
-  
   const { isLoggedIn } = useAuth();
 
-   useEffect(() => {
-     if (errorStatus === 409) {
-       handleOpenAgreeModal();
-     }
-   }, [errorStatus]);
-  
-    useEffect(() => {
+  useEffect(() => {
+    if (errorStatus === 409) {
+      handleOpenAgreeModal();
+    }
+  }, [errorStatus]);
+
+  useEffect(() => {
     if (isLoggedIn) {
       handleCloseSignUpSignInModal();
     }
@@ -119,6 +119,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
 
   const handleCloseAgreeModal = () => {
     setIsModalAgreeOpen(false);
+    dispatch(changeErrorStatus(''));
     document.body.style.overflow = 'unset';
   };
 
@@ -225,8 +226,8 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseAgreeModal={handleCloseAgreeModal}
       >
         <TextAgree>
-          Введена Вами адреса електронної пошти пов'язана з вже існуючим обліковим
-          записом.
+          Введена Вами адреса електронної пошти пов'язана з вже існуючим
+          обліковим записом.
         </TextAgree>
       </ModalAgree>
     </>
