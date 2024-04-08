@@ -1,14 +1,14 @@
 import { useSelector } from 'react-redux';
-import { selectProducts } from '../../../redux/products/productsSelectors';
+import { selectFavoriteProducts } from '../../../redux/products/productsSelectors';
 import { StyledList, StyledListCard } from './FavoritesList.styled';
 import { ProductsCard } from 'components/Shared/ProductsCard/ProductsCard';
 
 export const FavoritesList = () => {
-  const products = useSelector(selectProducts);
+  const favorites = useSelector(selectFavoriteProducts);
 
   return (
     <StyledList>
-      {products.map(product => (
+      {favorites?.map(product => (
         <StyledListCard key={product.codeOfGood}>
           <ProductsCard product={product} />
         </StyledListCard>
