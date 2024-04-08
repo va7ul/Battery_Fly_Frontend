@@ -15,10 +15,9 @@ import {
 import { selectErrorStatus } from '../../../../redux/user/userSelectors';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'utils/hooks';
 import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
-
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);

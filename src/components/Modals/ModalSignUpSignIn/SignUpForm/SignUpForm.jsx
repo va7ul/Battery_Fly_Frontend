@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { IconButton, InputAdornment} from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signUpSchema } from '../../../../common/schemas/signUpSchema';
 import { register } from '../../../../redux/user/userOperations';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { selectErrorStatus } from '../../../../redux/user/userSelectors';
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'utils/hooks';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
-
 
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +29,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
       handleCloseSignUpSignInModal();
     }
   }, [isLoggedIn, handleCloseSignUpSignInModal]);
-  
+
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
