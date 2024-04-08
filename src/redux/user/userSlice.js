@@ -5,6 +5,7 @@ import {
   refreshUser,
   register,
   addToFavorite,
+  deleteFromFavorite,
 } from './userOperations';
 
 const defaultUserData = {
@@ -28,7 +29,6 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
 };
-
 
 const handleEntrancePending = (state, { payload }) => {
   state.errorStatus = '';
@@ -76,11 +76,13 @@ const handleRefreshRejected = state => {
   state.isRefreshing = false;
 };
 
-
 const handleAddToFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
 };
 
+const handleDeleteFromFavoriteFulfilled = (state, { payload }) => {
+  state.favorites = payload.favorites;
+};
 
 const userSlice = createSlice({
   name: 'user',
@@ -97,6 +99,7 @@ const userSlice = createSlice({
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
       .addCase(addToFavorite.fulfilled, handleAddToFavoriteFulfilled)
+      .addCase(deleteFromFavorite.fulfilled, handleDeleteFromFavoriteFulfilled)
       .addMatcher(
         isAnyOf(register.pending, login.pending),
         handleEntrancePending
@@ -112,6 +115,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { changeErrorStatus} = userSlice.actions;
+export const { changeErrorStatus } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

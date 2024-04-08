@@ -132,9 +132,9 @@ export const addToFavorite = createAsyncThunk(
 
 export const deleteFromFavorite = createAsyncThunk(
   'user/deleteFromFavorite',
-  async (dataUser, id, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`user/favorite/${id}`, dataUser);
+      const { data } = await axios.delete(`user/favorite/${id}`);
 
       return data;
     } catch (error) {
