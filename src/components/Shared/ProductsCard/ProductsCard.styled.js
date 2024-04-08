@@ -69,12 +69,12 @@ export const ContentWrapper = styled.div`
 export const StyledImage = styled.img`
   width: 100%;
   height: 140px;
-  border-radius: 12px;
+  border-radius: 10px;
   object-fit: cover;
 
   @media screen and (min-width: 1280px) {
     height: 220px;
-    border-radius: 20px;
+    border-radius: 16px;
   }
 `;
 
