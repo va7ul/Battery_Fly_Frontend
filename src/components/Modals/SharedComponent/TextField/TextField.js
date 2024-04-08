@@ -42,11 +42,13 @@ export const Field = styled(TextField)(({ theme }) => ({
     },
   },
   '& .MuiInputBase-root': {
+    width: '261px',
     height: '28px',
     padding: '0px 8px',
     fontFamily: theme.typography.fontFamily,
     fontSize: '10px',
     [theme.breakpoints.up('desktop')]: {
+      width: '476px',
       height: '51px',
       padding: '0px 12px',
       fontSize: '14px',
@@ -70,7 +72,7 @@ export const Field = styled(TextField)(({ theme }) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: '8px',
     fontWeight: '500',
-    color: 'rgba(255, 0, 0, 1)',
+    color: theme.palette.error,
     [theme.breakpoints.up('desktop')]: {
       fontSize: '12px',
     },
