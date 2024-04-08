@@ -31,3 +31,12 @@ export const addFeedback = async dataUser => {
   }
 };
 
+export const forgotPassword = async email => {
+  try {
+    const data = await axios.post('auth/forgot-password', email);
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    console.log('errorMessage', errorMessage);
+  }
+};
