@@ -5,22 +5,26 @@ import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signInSchema } from '../../../../common/schemas/signInSchema';
 import { login } from '../../../../redux/user/userOperations';
+import { selectErrorStatus } from '../../../../redux/user/userSelectors';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
+import { useAuth } from 'utils/hooks';
 import { ModalForgotPassword } from '../../ModalForgotPassword/ModalForgotPassword';
+import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
+import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
+import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import {
   Btn,
   BtnWrapper,
   ForgotPasswordBtn,
   StyledForm,
 } from './SignInForm.styled';
-import { selectErrorStatus } from '../../../../redux/user/userSelectors';
-import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
-import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
-import { useAuth } from 'utils/hooks';
-import { changeErrorStatus } from '../../../../redux/user/userSlice';
-import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
+    useState(false);
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
   const errorStatus = useSelector(selectErrorStatus);
   const { isLoggedIn } = useAuth();
 
@@ -40,9 +44,6 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
-  const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
-    useState(false);
-
   const handleOpenForgotPasswordModal = () => {
     setIsModalForgotPasswordOpen(true);
     document.body.style.overflow = 'hidden';
@@ -51,8 +52,6 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     setIsModalForgotPasswordOpen(false);
     document.body.style.overflow = 'unset';
   };
-
-  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -71,7 +70,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
       password: '',
     },
     validationSchema: signInSchema,
-    onSubmit: (values, actions) => {
+    onSubmit: (values, _) => {
       dispatch(login(values));
     },
   });

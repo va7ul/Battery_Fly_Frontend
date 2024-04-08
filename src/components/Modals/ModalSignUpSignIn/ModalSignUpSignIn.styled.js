@@ -5,24 +5,18 @@ export const Box = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
+  padding: 36px 48px;
   @media (min-width: 1280px) {
-    gap: 40px;
+    gap: 40px; 
+    padding: 40px 78px;
   }
 `;
 
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 20px;
-  padding-top: 36px;
-  margin-left: 110px;
-  margin-right: 110px;
-
   @media (min-width: 1280px) {
     gap: 30px;
-    padding-top: 40px;
-    margin-left: 230px;
-    margin-right: 214px;
   }
 `;
 

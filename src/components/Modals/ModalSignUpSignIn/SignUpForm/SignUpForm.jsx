@@ -5,16 +5,18 @@ import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signUpSchema } from '../../../../common/schemas/signUpSchema';
 import { register } from '../../../../redux/user/userOperations';
-import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { selectErrorStatus } from '../../../../redux/user/userSelectors';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { useAuth } from 'utils/hooks';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
-import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
+import { Btn, StyledForm, Text } from './SignUpForm.styled';
 
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
   const errorStatus = useSelector(selectErrorStatus);
   const { isLoggedIn } = useAuth();
 
@@ -33,8 +35,6 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
-
-  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -55,7 +55,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
       password: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: (values, actions) => {
+    onSubmit: (values, _) => {
       dispatch(register(values));
     },
   });
