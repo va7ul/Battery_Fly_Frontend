@@ -15,7 +15,7 @@ export const Item = styled.li`
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
 
   @media screen and (min-width: 1280px) {
-    padding: 15px 10px;
+    padding: 15px;
     gap: 10px;
   }
 `;
@@ -26,7 +26,7 @@ export const GoodWrap = styled.div`
   align-items: center;
   gap: 5px;
   @media screen and (min-width: 1280px) {
-    gap: 10px;
+    gap: 13px;
   }
 `;
 
@@ -35,8 +35,8 @@ export const Image = styled.img`
   height: 42px;
 
   @media screen and (min-width: 1280px) {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
   }
 `;
 
@@ -47,7 +47,7 @@ export const GoodName = styled(Link)`
   font-size: 10px;
 
   @media screen and (min-width: 1280px) {
-    width: 102px;
+    width: 138px;
     height: 56px;
     font-size: 16px;
   }
@@ -61,6 +61,10 @@ export const QuantityWrap = styled.div`
   display: flex;
   align-items: center;
   gap: 2px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 5px;
+  }
 `;
 
 export const Button = styled.button`
@@ -83,6 +87,12 @@ export const Button = styled.button`
   & svg {
     z-index: 2;
   }
+
+  @media screen and (min-width: 1280px) {
+    width: 27px;
+    height: 27px;
+    padding: 7px;
+  }
 `;
 
 export const Input = styled.input`
@@ -94,6 +104,13 @@ export const Input = styled.input`
   text-align: center;
   font-size: 10px;
   font-weight: 500;
+
+  @media screen and (min-width: 1280px) {
+    width: 67px;
+    height: 27px;
+    padding: 6px 13px;
+    font-size: 12px;
+  }
 `;
 
 export const Price = styled.p`
@@ -114,18 +131,18 @@ export const DeleteBtn = styled.button`
   & svg {
     width: 16px;
     height: 16px;
-    fill: ${props => props.theme.colors.textPrimary};
+    fill: ${props => props.theme.colors.greyOutput};
     transition: ${props => props.theme.transition.main};
 
     &:hover {
-      fill: red;
+      fill: crimson;
     }
   }
 
   @media screen and (min-width: 1280px) {
     & svg {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
     }
   }
 `;
@@ -137,10 +154,11 @@ export const CapacityWrap = styled.div`
   margin-left: 42px;
   gap: 5px;
   font-size: 8px;
+
   @media screen and (min-width: 1280px) {
     font-size: 11px;
     gap: 10px;
-    margin-left: 52px;
+    margin-left: 60px;
   }
 `;
 
