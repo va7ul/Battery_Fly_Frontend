@@ -85,7 +85,7 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 16px;
   }
 `;
@@ -105,7 +105,7 @@ export const StyledLink = styled(Link)`
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 16px;
   }
 `;

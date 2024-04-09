@@ -3,7 +3,7 @@ import { gradientTransitionBtn } from 'styles/GlobalStyled';
 import { Link } from 'react-router-dom';
 
 export const Item = styled.li`
-  position: relative;
+  /* position: relative; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -26,7 +26,7 @@ export const GoodWrap = styled.div`
   align-items: center;
   gap: 5px;
   @media screen and (min-width: 1280px) {
-    gap: 13px;
+    gap: 18px;
   }
 `;
 

@@ -3,14 +3,15 @@ import styled from 'styled-components';
 export const CartWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
   margin-bottom: 20px;
   border-radius: 8px;
   border: 1px solid ${props => props.theme.colors.textDisabled};
 
   @media screen and (min-width: 1280px) {
-    max-width: 400px;
+    width: 530px;
+    /* padding-left: 30px;
+    padding-right: 30px; */
     border: none;
   }
 `;
@@ -43,9 +44,9 @@ export const Text = styled.p`
   border-top: 1px solid ${props => props.theme.colors.textDisabled};
 
   @media screen and (min-width: 1280px) {
+    text-align: end;
     border: none;
     font-size: 24px;
-    font-weight: 500;
     padding: 0;
     margin-top: 20px;
 
@@ -61,7 +62,8 @@ export const ListWrap = styled.div`
   overflow: auto;
 
   @media screen and (min-width: 1280px) {
-    max-height: 444px;
+    width: 100%;
+    max-height: 400px;
     padding: 0;
   }
 
