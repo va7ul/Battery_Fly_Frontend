@@ -14,7 +14,7 @@ export const Cart = () => {
         <CartList />
       </ListWrap>
       <Text>
-        {!mobileVersion && <span>Сума замовлення:</span>}
+        {!mobileVersion && <span>Загальна сума замовлення:</span>}
         {total} грн
       </Text>
     </CartWrap>
