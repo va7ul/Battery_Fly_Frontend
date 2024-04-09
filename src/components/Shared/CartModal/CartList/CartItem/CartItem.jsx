@@ -136,11 +136,11 @@ export const CartItem = ({ item }) => {
                   color: ' rgb(20, 211, 16)',
                   width: {
                     mobile: 13,
-                    desktop: 16,
+                    desktop: 15,
                   },
                   height: {
                     mobile: 13,
-                    desktop: 16,
+                    desktop: 15,
                   },
                 }}
               />
@@ -154,11 +154,11 @@ export const CartItem = ({ item }) => {
                   color: ' rgb(20, 211, 16)',
                   width: {
                     mobile: 13,
-                    desktop: 16,
+                    desktop: 15,
                   },
                   height: {
                     mobile: 13,
-                    desktop: 16,
+                    desktop: 15,
                   },
                 }}
               />
