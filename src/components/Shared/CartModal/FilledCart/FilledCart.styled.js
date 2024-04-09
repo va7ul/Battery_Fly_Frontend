@@ -15,6 +15,32 @@ export const Wrap = styled.div`
   }
 `;
 
+export const ListWrap = styled.div`
+  margin-top: 20px;
+  max-height: 78vh;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${props => props.theme.colors.textDisabled};
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: ${props => props.theme.colors.textDisabled};
+  }
+`;
+
 export const Text = styled.p`
   font-size: 14px;
   font-weight: 500;

@@ -7,7 +7,6 @@ export const Title = styled.h3`
   padding-bottom: 10px;
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 20px;
   border-bottom: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
 
   @media screen and (min-width: 1280px) {
