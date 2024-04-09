@@ -1,5 +1,6 @@
 import { CartList } from '../CartList/CartList';
 import {
+  ListWrap,
   Text,
   Total,
   BtnWrap,
@@ -25,7 +26,9 @@ export const FilledCart = () => {
 
   return (
     <>
-      <CartList />
+      <ListWrap>
+        <CartList />
+      </ListWrap>
       <Wrap>
         <Text>
           Загальна сума:<Total>{total} грн</Total>

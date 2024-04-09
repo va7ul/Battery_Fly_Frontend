@@ -13,7 +13,8 @@ import {
   Capacity,
   SealingHolders,
 } from './CartItem.styled';
-import { FaMinus, FaPlus, FaXmark } from 'react-icons/fa6';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
+import { AiOutlineClose } from 'react-icons/ai';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Battery0BarIcon from '@mui/icons-material/Battery0Bar';
 import {
@@ -109,7 +110,7 @@ export const CartItem = ({ item }) => {
         </QuantityWrap>
         <Price>{totalPrice}</Price>
         <DeleteBtn type="button" onClick={deleteFromCart}>
-          <FaXmark />
+          <AiOutlineClose />
         </DeleteBtn>
       </GoodWrap>
       {capacityKey && (
@@ -127,7 +128,7 @@ export const CartItem = ({ item }) => {
                 },
               }}
             />
-            <p>{capacityKey} Ah</p>
+            <p>{capacityKey}Ah</p>
           </Capacity>
           {selectedSealing && (
             <SealingHolders>
@@ -135,11 +136,11 @@ export const CartItem = ({ item }) => {
                 sx={{
                   color: ' rgb(20, 211, 16)',
                   width: {
-                    mobile: 14,
+                    mobile: 12,
                     desktop: 16,
                   },
                   height: {
-                    mobile: 14,
+                    mobile: 12,
                     desktop: 16,
                   },
                 }}
@@ -153,11 +154,11 @@ export const CartItem = ({ item }) => {
                 sx={{
                   color: ' rgb(20, 211, 16)',
                   width: {
-                    mobile: 14,
+                    mobile: 12,
                     desktop: 16,
                   },
                   height: {
-                    mobile: 14,
+                    mobile: 12,
                     desktop: 16,
                   },
                 }}
