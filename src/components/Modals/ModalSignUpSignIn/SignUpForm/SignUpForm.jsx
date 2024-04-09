@@ -5,16 +5,20 @@ import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signUpSchema } from '../../../../common/schemas/signUpSchema';
 import { register } from '../../../../redux/user/userOperations';
-import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { selectErrorStatus } from '../../../../redux/user/userSelectors';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { useAuth } from 'utils/hooks';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
-import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
+import { Btn, StyledForm, Text } from './SignUpForm.styled';
 
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+   const [showPasswordConfirmation, setShowPasswordConfirmation] =
+     useState(false);
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
   const errorStatus = useSelector(selectErrorStatus);
   const { isLoggedIn } = useAuth();
 
@@ -34,7 +38,8 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
-  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+    const handleClickShowPasswordConfirmation = () =>
+      setShowPasswordConfirmation(show => !show);
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -53,10 +58,17 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
       lastName: '',
       email: '',
       password: '',
+      passwordConfirmation: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: (values, actions) => {
-      dispatch(register(values));
+    onSubmit: (values, _) => {
+      const userData = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        password: values.password,
+      };
+      dispatch(register(userData));
     },
   });
 
@@ -116,6 +128,53 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
                   }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
+                >
+                  {!showPassword ? (
+                    <VisibilityOff
+                      sx={{
+                        width: '20px',
+                        height: '20px',
+                      }}
+                    />
+                  ) : (
+                    <Visibility
+                      sx={{
+                        width: '20px',
+                        height: '20px',
+                      }}
+                    />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Field
+          id="passwordConfirmation"
+          name="passwordConfirmation"
+          label="Підтвердити пароль"
+          type={showPasswordConfirmation ? 'text' : 'password'}
+          value={formik.values.passwordConfirmation}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.passwordConfirmation &&
+            Boolean(formik.errors.passwordConfirmation)
+          }
+          helperText={
+            formik.touched.passwordConfirmation &&
+            formik.errors.passwordConfirmation
+          }
+          InputProps={{
+            endAdornment: (
+              <InputAdornment name="passwordConfirmation" position="end">
+                <IconButton
+                  sx={{
+                    width: '20px',
+                    height: '20px',
+                  }}
+                  aria-label="toggle passwordConfirmation visibility"
+                  onClick={handleClickShowPasswordConfirmation}
                 >
                   {!showPassword ? (
                     <VisibilityOff

@@ -6,16 +6,10 @@ export const StyledForm = styled.form`
   flex-direction: column;
   width: 261px;
   gap: 16px;
-  padding-bottom: 38px;
-  margin-left: 48px;
-  margin-right: 48px;
 
   @media (min-width: 1280px) {
     width: 476px;
     gap: 30px;
-    padding-bottom: 40px;
-    margin-left: 78px;
-    margin-right: 78px;
   }
 `;
 

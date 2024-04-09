@@ -22,4 +22,8 @@ export const signUpSchema = Yup.object().shape({
     .max(20, 'Пароль має бути не довший 20 символів')
     .trim('Введіть пароль, будь ласка')
     .required('Введіть пароль, будь ласка'),
+  passwordConfirmation: Yup.string().oneOf(
+    [Yup.ref('password'), null],
+    'Паролі мають збігатися'
+  ),
 });
