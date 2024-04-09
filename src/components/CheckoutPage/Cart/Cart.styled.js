@@ -5,9 +5,14 @@ export const CartWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 8px;
   border: 1px solid ${props => props.theme.colors.textDisabled};
+
+  @media screen and (min-width: 1280px) {
+    max-width: 400px;
+    border: none;
+  }
 `;
 
 export const Title = styled.h3`
@@ -18,6 +23,14 @@ export const Title = styled.h3`
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid ${props => props.theme.colors.textDisabled};
+
+  @media screen and (min-width: 1280px) {
+    border: none;
+    font-size: 32px;
+    text-align: start;
+    padding: 0;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Text = styled.p`
@@ -28,8 +41,48 @@ export const Text = styled.p`
   padding-top: 10px;
   padding-bottom: 10px;
   border-top: 1px solid ${props => props.theme.colors.textDisabled};
+
+  @media screen and (min-width: 1280px) {
+    border: none;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 0;
+    margin-top: 20px;
+
+    span {
+      margin-right: 38px;
+    }
+  }
 `;
 
 export const ListWrap = styled.div`
+  max-height: 187px;
   padding: 6px;
+  overflow: auto;
+
+  @media screen and (min-width: 1280px) {
+    max-height: 444px;
+    padding: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${props => props.theme.colors.textDisabled};
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: ${props => props.theme.colors.textDisabled};
+  }
 `;

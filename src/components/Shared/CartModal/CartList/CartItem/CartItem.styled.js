@@ -136,7 +136,7 @@ export const CapacityWrap = styled.div`
   margin-right: auto;
   margin-left: 42px;
   gap: 5px;
-  font-size: 9px;
+  font-size: 8px;
   @media screen and (min-width: 1280px) {
     font-size: 11px;
     gap: 10px;
