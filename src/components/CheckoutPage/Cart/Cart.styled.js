@@ -36,6 +36,8 @@ export const Title = styled.h3`
 
 export const Text = styled.p`
   width: 100%;
+  display: flex;
+  justify-content: space-between;
   text-align: center;
   font-size: 16px;
   font-weight: 500;
@@ -49,10 +51,6 @@ export const Text = styled.p`
     font-size: 24px;
     padding: 0;
     margin-top: 20px;
-
-    span {
-      margin-right: 38px;
-    }
   }
 `;
 
