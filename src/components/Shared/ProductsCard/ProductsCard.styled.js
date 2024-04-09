@@ -11,11 +11,19 @@ const iconStyle = css`
   color: ${props => props.theme.colors.backgroundPaper};
   transition: ${props => props.theme.transition.main};
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${props => props.theme.colors.secondary};
-    transform: scale(1.5);
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 30px;
+    height: 30px;
   }
 `;
+
 const btnStyle = css`
   font-size: 10px;
   height: 25px;
@@ -45,27 +53,11 @@ const btnStyle = css`
 `;
 
 export const IconHeart = styled(FaRegHeart)`
-  /* ${iconStyle}; */
+  ${iconStyle};
+`;
 
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  color: ${props => props.theme.colors.backgroundPaper};
-  transition: ${props => props.theme.transition.main};
-
-  &:hover,
-  &:focus {
-    color: ${props => props.theme.colors.secondary};
-    transform: scale(1.3);
-    cursor: pointer;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 25px;
-    height: 25px;
-  }
+export const IconFullHeart = styled(FaHeartCircleCheck)`
+  ${iconStyle};
 `;
 
 export const ContentWrapper = styled.div`
@@ -74,39 +66,15 @@ export const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-export const IconFullHeart = styled(FaHeartCircleCheck)`
-  /* ${iconStyle}; */
-
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  color: ${props => props.theme.colors.backgroundPaper};
-  transition: ${props => props.theme.transition.main};
-
-  &:hover,
-  &:focus {
-    color: ${props => props.theme.colors.secondary};
-    transform: scale(1.3);
-    cursor: pointer;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 25px;
-    height: 25px;
-  }
-`;
-
 export const StyledImage = styled.img`
   width: 100%;
   height: 140px;
-  border-radius: 12px;
+  border-radius: 10px;
   object-fit: cover;
 
   @media screen and (min-width: 1280px) {
     height: 220px;
-    border-radius: 20px;
+    border-radius: 16px;
   }
 `;
 

@@ -20,30 +20,36 @@ const handleError = error => {
   }
 };
 
-export const register = createAsyncThunk(
-  'user/signup',
-  async (dataUser, thunkApi) => {
-    try {
-      const { data } = await axios.post('auth/signup', dataUser);
-      setAuthHeader(data.token);
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
-    }
-  }
-);
-
-export const login = createAsyncThunk('user/signin', async (dataUser, thunkApi) => {
+export const register = createAsyncThunk('user/signup', async (dataUser, thunkApi) => {
   try {
-    const { data } = await axios.post('auth/signin', dataUser);
+    const { data } = await axios.post('auth/signup', dataUser);
     setAuthHeader(data.token);
     return data;
   } catch (error) {
     const errorMessage = handleError(error);
+    if (error.request.status === 409) {
+      return thunkApi.rejectWithValue(error.request.status);
+    }
     return thunkApi.rejectWithValue(errorMessage);
   }
 });
+
+export const login = createAsyncThunk(
+  'user/signin',
+  async (dataUser, thunkApi) => {
+    try {
+      const { data } = await axios.post('auth/signin', dataUser);
+      setAuthHeader(data.token);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      if (error.request.status === 401) {
+        return thunkApi.rejectWithValue(error.request.status);
+      }
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
 
 export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   try {
@@ -55,34 +61,26 @@ export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   }
 });
 
-export const refreshUser = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
-  const { token } = thunkAPI.getState().user;
+export const refreshUser = createAsyncThunk(
+  'user/refresh',
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().user;
 
-  if (token === '') {
-    return thunkAPI.rejectWithValue('Unable to fetch user');
+    if (token === '') {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAuthHeader(token);
+      const { data } = await axios.get('auth/current');
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
   }
+);
 
-  try {
-    setAuthHeader(token);
-    const { data } = await axios.get('auth/current');
-    return data;
-  } catch (error) {
-    const errorMessage = handleError(error);
-    return thunkAPI.rejectWithValue(errorMessage);
-  }
-});
-
-// export const forgotPassword = createAsyncThunk(
-//   'auth/forgot-password',
-//   async (dataUser, thunkAPI) => {
-//     try {
-//       await axios.post('auth/forgot-password', dataUser);
-//     } catch (error) {
-//       const errorMessage = handleError(error);
-//       return thunkAPI.rejectWithValue(errorMessage);
-//     }
-//   }
-// );
 
 // export const verifyEmail = createAsyncThunk(
 //   'auth/verify-email',
@@ -98,7 +96,7 @@ export const refreshUser = createAsyncThunk('user/refresh', async (_, thunkAPI) 
 
 export const updateUser = createAsyncThunk(
   'user/update-profile',
-  async (dataUser, thunkApi) => {
+  async (dataUser, thunkAPI) => {
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -110,50 +108,52 @@ export const updateUser = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );
 
-
 export const addToFavorite = createAsyncThunk(
   'user/addToFavorite',
-  async (id, thunkApi) => {
+  async (id, thunkAPI) => {
+    const { token } = thunkAPI.getState().user;
+
     try {
-      const { data } = await axios.post(`user/favorite`, id);
+      setAuthHeader(token);
+      const { data } = await axios.post(`user/favorite/${id}`);
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );
 
 export const deleteFromFavorite = createAsyncThunk(
   'user/deleteFromFavorite',
-  async (dataUser, id, thunkApi) => {
+  async (id, thunkAPI) => {
     try {
-      const { data } = await axios.delete(`user/favorite/${id}`, dataUser);
+      const { data } = await axios.delete(`user/favorite/${id}`);
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );
 
 export const getOneOrder = createAsyncThunk(
   'user/getOneOrder',
-  async (dataUser, id, thunkApi) => {
+  async (dataUser, id, thunkAPI) => {
     try {
       const { data } = await axios.get(`user/order/${id}`, dataUser);
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );

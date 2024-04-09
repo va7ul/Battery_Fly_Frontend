@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import {useState } from 'react';
 import ReactModal from 'react-modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
+import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
+
 
 const customStyles = {
   overlay: {
-    zIndex: '1',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    zIndex: '5',
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
   },
   content: {
     border: '0px solid transparent',
@@ -20,7 +22,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     padding: 'none',
     background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.3) 112.295%)',
+      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.5) 112.295%)',
   },
 };
 
@@ -42,6 +44,7 @@ export const ModalSignUpSignIn = ({
         onRequestClose={handleCloseSignUpSignInModal}
         style={customStyles}
       >
+        <CloseButton handleCloseModal={handleCloseSignUpSignInModal} />
         <Box>
           <BtnWrapper>
             <NavBtn
