@@ -1,11 +1,12 @@
-import { Wrapper } from "./Checkout.styled";
-import { Delivery } from "./Delivery/Delivery"
+import { Cart } from './Cart/Cart';
+import { Wrapper } from './Checkout.styled';
+import { Delivery } from './Delivery/Delivery';
 
 export const Checkout = () => {
-
-    return (
-        <Wrapper>
-            <Delivery />
-        </Wrapper>
-    );
+  return (
+    <Wrapper>
+      <Cart />
+      <Delivery />
+    </Wrapper>
+  );
 };
