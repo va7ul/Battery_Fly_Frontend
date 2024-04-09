@@ -8,7 +8,6 @@ export const Item = styled.li`
   align-items: center;
   flex-direction: column;
   padding: 10px;
-  min-height: 62px;
   gap: 5px;
 
   border-radius: 8px;
@@ -16,8 +15,7 @@ export const Item = styled.li`
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
 
   @media screen and (min-width: 1280px) {
-    min-height: 90px;
-    padding: 17px 10px;
+    padding: 15px 10px;
     gap: 10px;
   }
 `;

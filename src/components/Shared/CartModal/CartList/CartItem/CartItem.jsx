@@ -127,7 +127,7 @@ export const CartItem = ({ item }) => {
                 },
               }}
             />
-            <p>{capacityKey} Ah</p>
+            <p>{capacityKey}Ah</p>
           </Capacity>
           {selectedSealing && (
             <SealingHolders>
@@ -153,11 +153,11 @@ export const CartItem = ({ item }) => {
                 sx={{
                   color: ' rgb(20, 211, 16)',
                   width: {
-                    mobile: 14,
+                    mobile: 13,
                     desktop: 16,
                   },
                   height: {
-                    mobile: 14,
+                    mobile: 13,
                     desktop: 16,
                   },
                 }}

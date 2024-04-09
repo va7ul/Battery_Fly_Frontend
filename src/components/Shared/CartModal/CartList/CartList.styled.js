@@ -4,12 +4,11 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
-  height: 78vh;
+  max-height: 78vh;
   overflow: auto;
   &::-webkit-scrollbar {
-    width: 6px;
-    height: 20px;
+    width: 4px;
+    /* height: 20px; */
   }
 
   &::-webkit-scrollbar-track {
@@ -18,7 +17,7 @@ export const List = styled.ul`
   }
 
   &::-webkit-scrollbar-thumb {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.1);
   }
