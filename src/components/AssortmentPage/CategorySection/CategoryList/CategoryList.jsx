@@ -14,7 +14,7 @@ export const CategoryList = ({ category }) => {
     <StyledList category={category}>
       {limitProductList.map(product => (
         <StyledListCard key={product.codeOfGood} category={category}>
-          <ProductsCard product={product} />
+          <ProductsCard category={category} product={product} />
         </StyledListCard>
       ))}
     </StyledList>

@@ -1,11 +1,17 @@
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
 import styled, { css } from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
+
+const getImageSize = props => {
+  if (props.category === 'Акції') {
+    return '270px';
+  }
+  return '230px';
+};
 
 const iconStyle = css`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 6px;
+  right: 6px;
   width: 20px;
   height: 20px;
   color: ${props => props.theme.colors.backgroundPaper};
@@ -19,6 +25,8 @@ const iconStyle = css`
   }
 
   @media screen and (min-width: 1280px) {
+    top: 10px;
+    right: 10px;
     width: 30px;
     height: 30px;
   }
@@ -30,18 +38,11 @@ const btnStyle = css`
   padding: 6px 18px;
   margin-top: 5px;
   border-radius: 20px;
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-
-  ${gradientTransitionBtn}
-
-  &::after {
-    border-radius: 20px;
-  }
+  background: ${props => props.theme.colors.hoverColor};
 
   &:hover,
   &:focus {
+    background: ${props => props.theme.colors.secondary};
     transform: scale(1.05);
   }
 
@@ -68,12 +69,12 @@ export const ContentWrapper = styled.div`
 
 export const StyledImage = styled.img`
   width: 100%;
-  height: 140px;
+  height: 144px;
   border-radius: 10px;
   object-fit: cover;
 
   @media screen and (min-width: 1280px) {
-    height: 220px;
+    height: ${getImageSize};
     border-radius: 16px;
   }
 `;
@@ -82,9 +83,10 @@ export const CardTitle = styled.p`
   height: 40px;
   font-size: 10px;
   margin-top: 5px;
+  overflow: hidden;
 
   @media screen and (min-width: 1280px) {
-    height: 72px;
+    height: 66px;
     font-size: 18px;
     margin-top: 15px;
   }

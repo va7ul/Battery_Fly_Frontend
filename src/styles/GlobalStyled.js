@@ -70,7 +70,7 @@ export const theme = {
     gradientBlack:
       'linear-gradient(rgba(51, 51, 51, 1), rgba(75, 75, 75, 0.49))',
     gradientBackground:
-      'linear-gradient(rgba(200, 200, 200, 0.04),rgba(255, 222, 147, 0.65),rgba(99, 99, 99, 0))',
+      'linear-gradient(rgba(251, 208, 110, 0.04),rgba(251, 208, 110, 0.39),rgba(251, 208, 110, 0))',
     warning: 'rgba(228, 219, 0, 1)',
     error: 'rgba(255, 0, 0, 1)',
     success: 'rgba(20, 211, 16, 1)',

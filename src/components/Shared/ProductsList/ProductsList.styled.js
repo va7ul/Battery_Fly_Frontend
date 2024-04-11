@@ -21,7 +21,6 @@ export const StyledListCard = styled.li`
   position: relative;
   z-index: 0;
   transition: ${props => props.theme.transition.main};
-  cursor: pointer;
 
   ${gradientTransitionCard}
   &::after {
