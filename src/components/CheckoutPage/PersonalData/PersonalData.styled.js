@@ -1,25 +1,25 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   max-width: 350px;
   margin-bottom: 16px;
 
   @media (min-width: 1280px) {
-    max-width: 629px;
+    max-width: 476px;
+    margin-bottom: 20px;
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.p`
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 6px;
 
   @media (min-width: 1280px) {
-    font-size: 20px;
-    padding: 0px 32px;
-    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
   }
 `;
 
@@ -29,6 +29,7 @@ export const StyledForm = styled(Form)`
   gap: 10px;
 
   @media (min-width: 1280px) {
+    gap: 6px;
   }
 `;
 
@@ -37,11 +38,10 @@ export const Label = styled.label`
   flex-direction: column;
   gap: 6px;
   font-size: 10px;
-  font-weight: 400;
 
   @media (min-width: 1280px) {
-    font-size: 14px;
-    font-weight: 400;
+    gap: 4px;
+    font-size: 20px;
   }
 `;
 
@@ -71,9 +71,8 @@ export const StyledField = styled(Field)`
   }
 
   @media (min-width: 1280px) {
-    width: 476px;
+    max-width: 476px;
     height: 51px;
-    border-radius: 8px;
   }
 `;
 
@@ -101,7 +100,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 export const StyledTextField = styled(Field)`
   max-width: 350px;
   height: 72px;
-  padding: 4px 8px;
+  padding: 8px;
   border: 1px solid rgba(157, 157, 157, 1);
   border-radius: 8px;
   background: transparent;
@@ -117,13 +116,11 @@ export const StyledTextField = styled(Field)`
   }
 
   @media (min-width: 1280px) {
-    color: rgba(225, 225, 225, 1);
-    width: 476px;
-    height: 117px;
-    border-radius: 8px;
+    max-width: 476px;
+    height: 101px;
 
     &::placeholder {
-      font-size: 14px;
+      font-size: 20px;
     }
   }
 `;
@@ -143,35 +140,5 @@ export const DivErrorMessage = styled.div`
 
   @media (min-width: 1280px) {
     font-size: 12px;
-  }
-`;
-
-export const Btn = styled.button`
-  max-width: 128px;
-  margin-top: 6px;
-  padding: 12px 30px;
-  border-radius: 6px;
-  border: none;
-  font-size: 12px;
-  font-weight: 500;
-
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
-  }
-
-  @media (min-width: 1280px) {
-    max-width: 199px;
-    margin-top: 56px;
-    padding: 16px 38px;
-    border-radius: 12px;
-    font-size: 24px;
-
-    &::after {
-      border-radius: 12px;
-    }
   }
 `;
