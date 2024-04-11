@@ -22,7 +22,7 @@ import { selectFavorites } from '../../../redux/user/userSelectors';
 import { selectItems } from '../../../redux/basket/basketSelectors';
 import { getNewPrice } from 'utils/helpers/index';
 
-export const ProductsCard = ({ product }) => {
+export const ProductsCard = ({ product, category }) => {
   const dispatch = useDispatch();
 
   const { codeOfGood, image, name, price, discount, sale, capacity } = product;
@@ -77,6 +77,7 @@ export const ProductsCard = ({ product }) => {
         )}
         <Link to={`../assortment/${codeOfGood}`}>
           <StyledImage
+            category={category}
             loading="lazy"
             src={image[0] || noImage}
             alt={name}
