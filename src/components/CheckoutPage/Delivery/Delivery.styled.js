@@ -38,6 +38,10 @@ export const Button = styled.button`
     background: ${props => props.theme.colors.hoverColor};
   }
 
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
+  }
+
   @media screen and (min-width: 1280px) {
     width: 233px;
     height: 61px;
@@ -111,6 +115,21 @@ export const Text = styled.p`
   }
 `;
 
+export const TextNp = styled.p`
+  color: ${props => props.theme.colors.textPrimary};
+  font-size: 15px;
+
+  &::after {
+    content: '*';
+    color: ${props => props.theme.colors.error};
+    padding: 1px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
+
 export const Address = styled.a`
   color: ${props => props.theme.colors.textPrimary};
   font-size: 15px;
@@ -153,12 +172,10 @@ export const OrderButton = styled.button`
 `;
 
 export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
-    gap: 15px;
+    margin-bottom: 15px;
   }
 `;
 

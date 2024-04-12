@@ -1,23 +1,23 @@
 import { useSelector } from 'react-redux';
 import { getNewPrice } from '../../utils/helpers/getNewPrice';
 import { selectOneProduct, selectPriceWithSale } from '../../redux/products/productsSelectors';
-import sprite from '../../assets/images/sprite.svg';
 import {
-  DescBox,
-  TextBox,
-  Text,
-  PriceContainer,
-  PriceBox,
-  NewPrice,
-  Price,
-  LikeBox,
-  Like,
-  Desc,
-  Item,
-  IconHeart,
-  IconSquare,
-  IconSpiral
-  } from "./Card.styled";
+    DescBox,
+    TextBox,
+    Text,
+    PriceContainer,
+    PriceBox,
+    NewPrice,
+    Price,
+    LikeBox,
+    Like,
+    Desc,
+    Item,
+    IconHeart,
+    IconSquare,
+    IconSpiral
+} from "./Card.styled";
+import sprite from '../../assets/images/sprite.svg';
 
 export const Description = () => {
     const { codeOfGood, description, price, sale, discount, quantity } = useSelector(selectOneProduct);
