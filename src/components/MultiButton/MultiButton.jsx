@@ -43,7 +43,7 @@ export const MultiButton = () => {
                     </Icon>
                 </Item>
                 <Insta >
-                    <Icon href='https://www.instagram.com/batteryfly_ua/?igsh=ZHQwdHhuNXl5ZDV0' target='_blank'rel="noopener noreferrer nofollow">
+                    <Icon href='https://www.instagram.com/batteryfly_ua/?igsh=ZHQwdHhuNXl5ZDV0' target='_blank' rel="noopener noreferrer nofollow">
                         {mobileVersion ? <FaInstagram size={20} /> : <FaInstagram size={30} />}
                     </Icon>
                 </Insta>
