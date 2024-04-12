@@ -38,22 +38,22 @@ export const MultiButton = () => {
         <Wrapper onMouseLeave={closeButton}>
             <List style={{ visibility: visibility, transition: transition, transform: transform, opacity: opacity }}>
                 <Item style={{ background: '#7b519d' }} >
-                    <Icon>
+                    <Icon href='viber://chat?number=380509686485' target='_blank' rel="noopener noreferrer nofollow">
                         {mobileVersion ? <FaViber size={20} /> : <FaViber size={30} />}
                     </Icon>
                 </Item>
                 <Insta >
-                    <Icon>
+                    <Icon href='https://www.instagram.com/batteryfly_ua/?igsh=ZHQwdHhuNXl5ZDV0' target='_blank'rel="noopener noreferrer nofollow">
                         {mobileVersion ? <FaInstagram size={20} /> : <FaInstagram size={30} />}
                     </Icon>
                 </Insta>
                 <Item style={{ background: '#03a9f4' }}>
-                    <Icon>
+                    <Icon href="https://t.me/BatteryFly_Lviv" target='_blank' rel="noopener noreferrer nofollow">
                         {mobileVersion ? <FaTelegramPlane size={20} /> : <FaTelegramPlane size={30} />}
                     </Icon>
                 </Item>
                 <Item style={{ background: '#9ACD32' }}>
-                    <Icon>
+                    <Icon href="mailto:batteryfly@meta.ua">
                         {mobileVersion ? <MdOutlineEmail size={20} /> : <MdOutlineEmail size={30} />}
                     </Icon>
                 </Item>
@@ -63,7 +63,7 @@ export const MultiButton = () => {
                     </Icon>
                 </Item>
                 <Item style={{ background: '#018571' }}>
-                    <Icon>
+                    <Icon href="tel:+380509686485">
                         {mobileVersion ? <VscCallOutgoing size={20} /> : <VscCallOutgoing size={30} />}
                     </Icon>
                 </Item>
