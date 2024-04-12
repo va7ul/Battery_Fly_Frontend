@@ -50,7 +50,7 @@ const oneProductSlice = createSlice({
       state.holderPrice = action.payload;
     },
     setPriceWithSale(state, action) {
-      state.priceWithSale = action.payload;
+      state.priceWithSale = Math.round(action.payload);
     },
   },
   extraReducers: builder =>
