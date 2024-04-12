@@ -50,9 +50,9 @@ const StyledRadio = styled(Radio)({
 export const Delivery = () => {
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
-    const [value, setValue] = useState('female');
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
+    const [paymentMethod, setPaymentMethod] = useState('');
 
     const openNP = () => {
         setDisplayAddress("none");
@@ -63,10 +63,11 @@ export const Delivery = () => {
         setDisplayNP("none");
         setDisplayAddress("flex");
     };
-    
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+
+     const handleRadioChange = (event) => {
+         setPaymentMethod(event.target.value);
+         console.log(event.target.value)
+  };
 
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -136,8 +137,8 @@ export const Delivery = () => {
                     <StyledRadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
-                        value={value}
-                        onChange={handleChange}
+                        value={paymentMethod}
+                        onChange={handleRadioChange}
                     >
                         <FormControlLabel value="card" control={<StyledRadio
                             sx={{

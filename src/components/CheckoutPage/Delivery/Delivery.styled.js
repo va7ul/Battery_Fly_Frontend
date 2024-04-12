@@ -9,6 +9,7 @@ export const Title = styled.p`
 
   @media screen and (min-width: 1280px) {
     font-size: 24px;
+    font-weight: 600;
     margin-bottom: 15px;
   }
 `;
