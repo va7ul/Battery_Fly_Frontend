@@ -38,6 +38,10 @@ export const Button = styled.button`
     background: ${props => props.theme.colors.hoverColor};
   }
 
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
+  }
+
   @media screen and (min-width: 1280px) {
     width: 233px;
     height: 61px;
@@ -105,6 +109,21 @@ export const BoxIcon = styled.div`
 export const Text = styled.p`
   color: ${props => props.theme.colors.textPrimary};
   font-size: 15px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
+
+export const TextNp = styled.p`
+  color: ${props => props.theme.colors.textPrimary};
+  font-size: 15px;
+
+  &::after {
+    content: '*';
+    color: ${props => props.theme.colors.error};
+    padding: 1px;
+  }
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Select from 'react-select';
 import { useMediaQuery } from 'react-responsive';
+import Select from 'react-select';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -9,7 +9,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { Button, ButtonBox, Title, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP, selectStyles} from './Delivery.styled';
+import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 
@@ -97,7 +97,7 @@ export const Delivery = () => {
                 <Button onClick={openAddress}>Самовивіз</Button>
             </ButtonBox>
             <BoxNP style={{ display: displayNP }}>
-                <Text>Адреса доставки</Text>
+                <TextNp>Адреса доставки</TextNp>
             
                 <Select
                     // options={options}
