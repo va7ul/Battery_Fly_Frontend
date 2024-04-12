@@ -457,11 +457,9 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${backgroundButton};
+  background: ${props => props.theme.colors.gradient};
   position: relative;
   z-index: 0;
-  cursor: ${cursorButton};
-  color: ${colorButton};
 
   ${gradientTransitionBtn}
 
