@@ -6,10 +6,10 @@ export const Contacts = () => {
         <Box>
             <Title>Контакти</Title>
             <Text>
-                <a href="tel:+380931430524">+380931430524</a>
+                <a href="tel:+380509686485">+380509686485</a>
             </Text>
             <Text>
-                <a href="mailto:batteryfly@meta.com">batteryfly@meta.com</a>
+                <a href="mailto:batteryfly@meta.ua">batteryfly@meta.ua</a>
             </Text>
             <SocialMediaFooter />
         </Box>
