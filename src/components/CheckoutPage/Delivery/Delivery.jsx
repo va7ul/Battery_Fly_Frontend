@@ -64,10 +64,10 @@ export const Delivery = () => {
         setDisplayAddress("flex");
     };
 
-     const handleRadioChange = (event) => {
-         setPaymentMethod(event.target.value);
-         console.log(event.target.value)
-  };
+    const handleRadioChange = (event) => {
+        setPaymentMethod(event.target.value);
+        console.log(event.target.value)
+    };
 
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
