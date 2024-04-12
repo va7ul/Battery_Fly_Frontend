@@ -20,7 +20,7 @@ export const SocialMedia = () => {
           </a>
       </Item>
       <Item>
-        <a href="https://t.me/" target='_blank' rel="noopener noreferrer nofollow">
+        <a href="https://t.me/BatteryFly_Lviv" target='_blank' rel="noopener noreferrer nofollow">
           {mobileVersion ? <FaTelegramPlane size={24} /> : <FaTelegramPlane size={34} />}
           </a>
       </Item>
