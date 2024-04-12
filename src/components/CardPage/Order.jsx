@@ -144,11 +144,9 @@ export const Order = () => {
     };
 
     const setValue = e => {
-        Number(e.target.value.replace(/[^\d.]*/g, '')
-            .replace(/([,.])[,.]+/g, '$1')
-            .replace(/^[^\d]*(\d+([.,]\d{0,5})?).*$/g, '$1'));
 
-        if (e.target.value > quantity) {
+        const value = Number(e.target.value)
+        if (value > quantity) {
             dispatch(setQuantityOrders(quantity));
             toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
                 id: 'clipboard',
@@ -156,7 +154,7 @@ export const Order = () => {
             });
         }
 
-        if (e.target.value <= quantity) {
+        if (value <= quantity) {
             dispatch(setQuantityOrders(Number(e.target.value) || ''));
         }
     };
