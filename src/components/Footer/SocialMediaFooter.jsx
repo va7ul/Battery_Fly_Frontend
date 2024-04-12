@@ -10,13 +10,20 @@ export const SocialMediaFooter = () => {
   return (
     <List>
       <Item>
-        {mobileVersion ? <FaInstagram size={20}/> : <FaInstagram size={24}/>}
+        <a href='https://www.instagram.com/batteryfly_ua/?igsh=ZHQwdHhuNXl5ZDV0' target='_blank' rel="noopener noreferrer nofollow">
+          {mobileVersion ? <FaInstagram size={20} /> : <FaInstagram size={24} />}
+        </a>
       </Item>
       <Item>
-          {mobileVersion ? <FaViber size={20}/> : <FaViber size={24}/>}
+        <a href='viber://chat?number=380509686485' target='_blank' rel="noopener noreferrer nofollow">
+
+          {mobileVersion ? <FaViber size={20} /> : <FaViber size={24} />}
+        </a>
       </Item>
       <Item>
-          {mobileVersion ? <FaTelegramPlane size={20}/> : <FaTelegramPlane size={24}/>}
+        <a href="https://t.me/BatteryFly_Lviv" target='_blank' rel="noopener noreferrer nofollow">
+          {mobileVersion ? <FaTelegramPlane size={20} /> : <FaTelegramPlane size={24} />}
+        </a>
       </Item>
     </List>
   )
