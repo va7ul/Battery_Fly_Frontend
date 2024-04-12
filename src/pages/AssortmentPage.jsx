@@ -1,17 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAssortment } from '../redux/products/productsOperations';
-import {
-  selectAllProductsError,
-  selectAllProductsIsLoading,
-} from '../redux/products/productsSelectors';
+import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { Assortment } from 'components/AssortmentPage/Assortment';
 
 const AssortmentPage = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectAllProductsIsLoading);
-  const error = useSelector(selectAllProductsError);
+  const { isLoading, error } = useLoader();
 
   useEffect(() => {
     dispatch(getAssortment());

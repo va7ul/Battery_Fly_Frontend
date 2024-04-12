@@ -1,19 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { getBatteries18650 } from '../redux/products/productsOperations';
-import {
-  selectAllProductsError,
-  selectAllProductsIsLoading,
-} from '../redux/products/productsSelectors';
+import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
 import { SubNavBar } from 'components/Shared/SubNavBar/SubNavBar';
 
 const Type18650Page = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectAllProductsIsLoading);
-  const error = useSelector(selectAllProductsError);
+  const { isLoading, error } = useLoader();
   const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
 
   useEffect(() => {

@@ -13,7 +13,7 @@ export const MobileDrawer = ({ children, isOpen, closeDrawer, anchor }) => {
       sx={{
         '& .MuiDrawer-paper': {
           bgcolor: 'background.default',
-          width: `${mobileVersion ? '360px' : '460px'}`,
+          width: `${mobileVersion ? '360px' : '590px'}`,
           p: `${mobileVersion ? '10px' : '24px'} ${
             mobileVersion ? '20px' : '30px'
           }`,
