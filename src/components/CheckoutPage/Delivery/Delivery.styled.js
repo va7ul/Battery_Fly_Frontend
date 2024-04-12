@@ -172,12 +172,10 @@ export const OrderButton = styled.button`
 `;
 
 export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  margin-bottom: 10px;
 
   @media screen and (min-width: 1280px) {
-    gap: 15px;
+    margin-bottom: 15px;
   }
 `;
 

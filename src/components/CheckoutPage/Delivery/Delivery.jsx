@@ -9,7 +9,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, OrderButton, Box, BoxNP, selectStyles} from './Delivery.styled';
+import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 
@@ -102,20 +102,20 @@ export const Delivery = () => {
                 <Select
                     // options={options}
                     onInputChange={handleSelectCity}
-                // onChange=
-                placeholder={"Місто"}
-                styles={selectStyles}
+                    // onChange=
+                    placeholder={"Місто"}
+                    styles={selectStyles}
                 />
                 <Select
                     options={options}
                     // onChange={handleSelect}
                     onInputChange={handleSelectWarehouse}
                     
-                placeholder={"Відділення/поштомат"}
-                styles={selectStyles}
-            />
+                    placeholder={"Відділення/поштомат"}
+                    styles={selectStyles}
+                />
 
-                </BoxNP>
+            </BoxNP>
             <BoxAddress style={{ display: displayAddress }}>
                 <Text>Адреса для самовивозу:</Text>
                 <BoxIcon>
@@ -166,9 +166,6 @@ export const Delivery = () => {
                     
                     </StyledRadioGroup>
                 </FormControl>
-                <OrderButton>
-                    <div>Оформити замовлення</div>
-                </OrderButton>
             </Box>
         </div>
     );
