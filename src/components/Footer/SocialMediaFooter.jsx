@@ -26,5 +26,5 @@ export const SocialMediaFooter = () => {
         </a>
       </Item>
     </List>
-  )
+  );
 };
