@@ -218,7 +218,6 @@ export const Order = () => {
           <div>В кошик</div>
         </BasketButton>
         <OrderButton
-          disabled={typeof oneProductPrice === 'string'}
           onClick={handleOpenQuickOrderModal}
         >
           <div>Швидке замовлення</div>
