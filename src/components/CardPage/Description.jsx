@@ -21,7 +21,7 @@ import {
 
 export const Description = () => {
     const { codeOfGood, description, price, sale, discount, quantity } = useSelector(selectOneProduct);
-    const priceWithSale = Math.round(useSelector(selectPriceWithSale));
+    const priceWithSale = useSelector(selectPriceWithSale);
 
     const newDescription = description.split(';');
 
