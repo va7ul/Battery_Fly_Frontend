@@ -143,19 +143,23 @@ export const Order = () => {
     }
   };
 
-  const setValue = e => {
-    if (e.target.value > quantity) {
-      dispatch(setQuantityOrders(quantity));
-      toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
-        id: 'clipboard',
-        duration: 4000,
-      });
-    }
+    const setValue = e => {
+        Number(e.target.value.replace(/[^\d.]*/g, '')
+            .replace(/([,.])[,.]+/g, '$1')
+            .replace(/^[^\d]*(\d+([.,]\d{0,5})?).*$/g, '$1'));
 
-    if (e.target.value <= quantity) {
-      dispatch(setQuantityOrders(Number(e.target.value) || ''));
-    }
-  };
+        if (e.target.value > quantity) {
+            dispatch(setQuantityOrders(quantity));
+            toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
+                id: 'clipboard',
+                duration: 4000,
+            });
+        }
+
+        if (e.target.value <= quantity) {
+            dispatch(setQuantityOrders(Number(e.target.value) || ''));
+        }
+    };
 
   const minValue = () => {
     if (quantityOrders === '') {
@@ -193,7 +197,6 @@ export const Order = () => {
           </div>
         </Button>
         <Input
-          type="number"
           min="1"
           max={quantity}
           onBlur={minValue}
