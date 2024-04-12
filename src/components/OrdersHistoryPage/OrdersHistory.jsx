@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
 import sprite from '../../assets/images/sprite.svg';
 import {
@@ -39,12 +39,12 @@ const data = [
 ];
 
 export const OrdersHistory = () => {
-  // const [anchorEl, setAnchorEl] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
-  // const handleOpen = e => {
-  //   e.preventDefault();
-  //   setAnchorEl(e.currentTarget);
-  // };
+  const handleOpen = e => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  };
 
   return (
     <Wrapper>
@@ -66,8 +66,8 @@ export const OrdersHistory = () => {
               <p>{el.total} грн</p>
               <ArrowButton
                 type="button"
-                // handleOpen={anchorEl}
-                // onClick={handleOpen}
+                handleOpen={isOpen}
+                onClick={handleOpen}
               >
                 <svg>
                   <use href={`${sprite}#arrow-left`}></use>
