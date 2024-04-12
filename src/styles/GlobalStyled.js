@@ -220,7 +220,7 @@ export const getSectionBackground = props => {
 };
 
 export const getRotation = props => {
-  if (props.handleopen) {
+  if (props.handleOpen) {
     return `rotate(90deg)`;
   }
   return 'rotate(270deg)';
