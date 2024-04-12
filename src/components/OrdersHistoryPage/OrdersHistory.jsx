@@ -1,15 +1,6 @@
-import { useState } from 'react';
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
-import sprite from '../../assets/images/sprite.svg';
-import {
-  Wrapper,
-  Title,
-  ContentWrapper,
-  // HeadWrapper,
-  // ListElWrapper,
-  StyledText,
-  ArrowButton,
-} from './OrdersHistory.styled';
+import { Wrapper, Title, ContentWrapper } from './OrdersHistory.styled';
+import { OrdersHistoryListEl } from './OrdersHistoryListEl/OrdersHistoryListEl';
 
 const data = [
   {
@@ -39,13 +30,6 @@ const data = [
 ];
 
 export const OrdersHistory = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = e => {
-    e.preventDefault();
-    setIsOpen(!isOpen);
-  };
-
   return (
     <Wrapper>
       <SideBarNav />
@@ -60,19 +44,7 @@ export const OrdersHistory = () => {
           </li>
           {data.map(el => (
             <li key={el.number}>
-              <p>№{el.number}</p>
-              <StyledText type={el.status}>{el.status}</StyledText>
-              <p>{el.date}</p>
-              <p>{el.total} грн</p>
-              <ArrowButton
-                type="button"
-                handleOpen={isOpen}
-                onClick={handleOpen}
-              >
-                <svg>
-                  <use href={`${sprite}#arrow-left`}></use>
-                </svg>
-              </ArrowButton>
+              <OrdersHistoryListEl el={el} />
             </li>
           ))}
         </ContentWrapper>

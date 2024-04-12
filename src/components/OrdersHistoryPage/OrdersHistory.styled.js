@@ -1,20 +1,4 @@
 import styled from 'styled-components';
-import { getRotation } from 'styles/GlobalStyled';
-
-export const getStatusColor = props => {
-  switch (props.type) {
-    case 'Нове':
-      return props.theme.colors.warning;
-    case 'В роботі':
-      return props.theme.colors.secondary;
-    case 'Скасовано':
-      return props.theme.colors.error;
-    case 'Доставлено':
-      return props.theme.colors.success;
-    default:
-      return;
-  }
-};
 
 export const Wrapper = styled.div`
   padding: 20px;
@@ -60,44 +44,30 @@ export const ContentWrapper = styled.ul`
       font-weight: 600;
     }
 
-    @media screen and (min-width: 1280px) {
-      font-size: 15px;
-      padding: 20px 0px;
-    }
-
     p:not(:first-child) {
       text-align: center;
     }
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      font-size: 15px;
+      padding: 20px 0px;
+      grid-template-columns: repeat(4, 1fr) 20px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        transition: ${props => props.theme.transition.main};
+      }
+
+      &:hover svg {
+        transform: scale(1.1);
+        fill: ${props => props.theme.colors.secondary};
+      }
+    }
   }
 `;
-
-export const StyledText = styled.p`
-  font-weight: 700;
-  color: ${getStatusColor};
-`;
-
-export const ArrowButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  outline: none;
-  border: none;
-
-  & svg {
-    transform: ${getRotation};
-    width: 11px;
-    height: 11px;
-    fill: transparent;
-    stroke: ${props => props.theme.colors.textPrimary};
-    transition: ${props => props.theme.transition.main};
-  }
-
-  &:hover svg {
-    transform: rotate(270deg) scale(1.4);
-  }
-`;
-
-// export const HeadWrapper = styled.li``;
-
-// export const ListElWrapper = styled.li``;
