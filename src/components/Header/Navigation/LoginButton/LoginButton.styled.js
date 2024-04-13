@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from '../../../../styles/GlobalStyled';
 
 export const Button = styled.button`
   display: flex;
@@ -10,12 +9,9 @@ export const Button = styled.button`
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
-  background-image: ${props => props.theme.colors.gradient};
+  background-color: ${props => props.theme.colors.hoverColor};
 
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 10px;
+  &:hover {
+    background-color: ${props => props.theme.colors.secondary};
   }
 `;
