@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CartWrap = styled.div`
+  width: 320px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -10,13 +11,12 @@ export const CartWrap = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 530px;
-    /* padding-left: 30px;
-    padding-right: 30px; */
     border: none;
+    margin-bottom: 0;
   }
 `;
 
-export const Title = styled.h3`
+export const Title = styled.p`
   width: 100%;
   text-align: center;
   font-size: 16px;
@@ -27,7 +27,7 @@ export const Title = styled.h3`
 
   @media screen and (min-width: 1280px) {
     border: none;
-    font-size: 32px;
+    font-size: 24px;
     text-align: start;
     padding: 0;
     margin-bottom: 10px;
@@ -38,7 +38,7 @@ export const Text = styled.p`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  text-align: center;
+  padding: 0 20px;
   font-size: 16px;
   font-weight: 500;
   padding-top: 10px;
@@ -55,13 +55,14 @@ export const Text = styled.p`
 `;
 
 export const ListWrap = styled.div`
+  margin: 0 auto;
   max-height: 187px;
-  padding: 6px;
+  padding: 6px 20px;
   overflow: auto;
 
   @media screen and (min-width: 1280px) {
     width: 100%;
-    max-height: 400px;
+    max-height: 430px;
     padding: 0;
   }
 
