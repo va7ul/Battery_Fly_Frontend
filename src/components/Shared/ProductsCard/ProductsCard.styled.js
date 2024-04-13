@@ -126,3 +126,18 @@ export const PriceOld = styled.span`
 export const ChooseBtn = styled.button`
   ${btnStyle}
 `;
+
+export const Disabledbtn = styled.button`
+  font-size: 10px;
+  height: 25px;
+  padding: 6px 18px;
+  margin-top: 5px;
+  border-radius: 20px;
+  background: ${props => props.theme.colors.greyBackgroundPaper};
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+    height: 40px;
+    margin-top: 10px;
+  }
+`;

@@ -17,6 +17,7 @@ import {
   PriceNew,
   PriceOld,
   ChooseBtn,
+  Disabledbtn,
 } from './ProductsCard.styled';
 import { selectFavorites } from '../../../redux/user/userSelectors';
 import { selectItems } from '../../../redux/basket/basketSelectors';
@@ -25,7 +26,8 @@ import { getNewPrice } from 'utils/helpers/index';
 export const ProductsCard = ({ product, category }) => {
   const dispatch = useDispatch();
 
-  const { codeOfGood, image, name, price, discount, sale, capacity } = product;
+  const { codeOfGood, image, name, price, discount, sale, capacity, quantity } =
+    product;
 
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
@@ -91,19 +93,17 @@ export const ProductsCard = ({ product, category }) => {
         </PriceContainer>
         {!capacity ? (
           !isInBasket ? (
-            <ChooseBtn onClick={addToBasket}>
-              <div>Додати у кошик</div>
-            </ChooseBtn>
+            quantity > 0 ? (
+              <ChooseBtn onClick={addToBasket}>Додати у кошик</ChooseBtn>
+            ) : (
+              <Disabledbtn disabled>Немає в наявності</Disabledbtn>
+            )
           ) : (
-            <ChooseBtn onClick={goToBasket}>
-              <div>Перейти у кошик</div>
-            </ChooseBtn>
+            <ChooseBtn onClick={goToBasket}>Перейти у кошик</ChooseBtn>
           )
         ) : (
           <Link to={`../assortment/${codeOfGood}`}>
-            <ChooseBtn>
-              <div>Оберіть параметри</div>
-            </ChooseBtn>
+            <ChooseBtn>Оберіть параметри</ChooseBtn>
           </Link>
         )}
       </ContentWrapper>

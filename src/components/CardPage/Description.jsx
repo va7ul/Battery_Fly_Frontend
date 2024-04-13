@@ -1,6 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNewPrice } from '../../utils/helpers/getNewPrice';
 import { selectOneProduct, selectPriceWithSale } from '../../redux/products/productsSelectors';
+import { selectFavorites } from '../../redux/user/userSelectors';
+import { addToFavorite, deleteFromFavorite } from '../../redux/user/userOperations';
+import sprite from '../../assets/images/sprite.svg';
 import {
     DescBox,
     TextBox,
@@ -14,18 +17,30 @@ import {
     Desc,
     Item,
     IconHeart,
+    IconFullHeart,
     IconSquare,
     IconSpiral
 } from "./Card.styled";
-import sprite from '../../assets/images/sprite.svg';
 
 export const Description = () => {
+    const dispatch = useDispatch();
     const { codeOfGood, description, price, sale, discount, quantity } = useSelector(selectOneProduct);
     const priceWithSale = useSelector(selectPriceWithSale);
+    const favoriteItems = useSelector(selectFavorites);
 
     const newDescription = description.split(';');
 
     const newPrice = sale ? getNewPrice(discount, price) : price;
+
+     const isInFavorites = favoriteItems.some(
+    favoriteItem => favoriteItem === codeOfGood
+     );
+    
+    const handleFavorite = () => {
+        isInFavorites
+            ? dispatch(deleteFromFavorite(codeOfGood))
+            : dispatch(addToFavorite(codeOfGood));
+    };
     
     return (
         <DescBox>
@@ -43,8 +58,20 @@ export const Description = () => {
                     {sale && <Price>{price} грн</Price>}
                 </PriceBox>
                 <LikeBox>
-                    <IconHeart />
-                    <Like>Додати до списку бажань</Like>
+                      {isInFavorites ? (
+             
+                         <LikeBox onClick={handleFavorite}>
+                                 <IconFullHeart />
+                            <Like>Видалити зі списку бажань</Like>
+                            </LikeBox>
+                    ) : (
+                            <LikeBox onClick={handleFavorite}>
+                                 <IconHeart />
+                            <Like>Додати до списку бажань</Like>
+                            </LikeBox>
+                           
+        )}
+                    
                     <IconSquare>
                         <use href={`${sprite}#icon-square`}></use>
                     </IconSquare>
