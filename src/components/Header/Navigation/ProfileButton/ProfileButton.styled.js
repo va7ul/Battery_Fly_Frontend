@@ -1,21 +1,18 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from '../../../../styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 3px;
-  width: 120px;
+  padding: 7px;
+  min-width: 111px;
   border-radius: 10px;
-  background-image: ${props => props.theme.colors.gradient};
+  background-color: ${props => props.theme.colors.hoverColor};
   gap: 5px;
+  transition: ${props => props.theme.transition.main};
 
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 10px;
+  &:hover {
+    background-color: ${props => props.theme.colors.secondary};
   }
 `;
 
