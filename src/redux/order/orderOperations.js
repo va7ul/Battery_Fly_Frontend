@@ -37,3 +37,16 @@ export const getDeliveryCity = createAsyncThunk(
     }
   }
 );
+
+export const getWarehouses = createAsyncThunk(
+  'order/getWarehouses',
+  async (reqWarehouses, thunkApi) => {
+    try {
+      const { data } = await axios.post('getWarehouses', reqWarehouses);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
