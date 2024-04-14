@@ -1,6 +1,5 @@
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
-import { isPhoneValid } from '../../../common/schemas/phoneSchema';
 import { useMediaQuery } from 'react-responsive';
 
 import {
@@ -16,8 +15,15 @@ import {
   Wrapper,
 } from './PersonalData.styled';
 import { FormikProvider } from 'formik';
+import { selectUserDataInOrder } from '../../../redux/order/orderSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeUserTel } from '../../../redux/order/orderSlice';
 
-export const PersonalData = ({ tel, setTel, formik, isValidPhone }) => {
+export const PersonalData = ({ formik, isValidPhone }) => {
+    const { tel } = useSelector(
+      selectUserDataInOrder
+  );
+     const dispatch = useDispatch();
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   // console.log('setTel', setTel);
   return (
@@ -64,7 +70,7 @@ export const PersonalData = ({ tel, setTel, formik, isValidPhone }) => {
               defaultCountry="ua"
               hideDropdown={true}
               value={tel}
-              onChange={tel => setTel(tel)}
+              onChange={tel => dispatch(changeUserTel(tel))}
             />
             {!isValidPhone && (
               <DivErrorMessage>
