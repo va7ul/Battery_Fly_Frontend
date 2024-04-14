@@ -28,8 +28,9 @@ export const addOrder = createAsyncThunk(
 export const getDeliveryCity = createAsyncThunk(
   'order/getDeliveryCity',
   async (reqCity, thunkApi) => {
+    const reqData = { query: reqCity };
     try {
-      const { data } = await axios.post('getDeliveryCity', reqCity);
+      const { data } = await axios.post('getDeliveryCity', reqData);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
@@ -42,7 +43,8 @@ export const getWarehouses = createAsyncThunk(
   'order/getWarehouses',
   async (reqWarehouses, thunkApi) => {
     try {
-      const { data } = await axios.post('getWarehouses', reqWarehouses);
+      const reqData = { query: reqWarehouses };
+      const { data } = await axios.post('getWarehouses', reqData);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
