@@ -68,9 +68,20 @@ export const CartItem = ({ item }) => {
           capacityKey,
           selectedSealing,
           selectedHolder,
-          quantityOrdered: Number(e.target.value),
+          quantityOrdered: Number(e.target.value) || 1,
         })
       );
+    }
+  };
+
+  const decrease = () => {
+    if (quantityOrdered > 1) {
+      dispatch(decreaseQuantity(item));
+    }
+  };
+  const increase = () => {
+    if (quantityOrdered < quantity) {
+      dispatch(increaseQuantity(item));
     }
   };
 
@@ -94,17 +105,16 @@ export const CartItem = ({ item }) => {
           {name}
         </GoodName>
         <QuantityWrap>
-          <Button
-            type="button"
-            onClick={() => dispatch(decreaseQuantity(item))}
-          >
+          <Button type="button" onClick={decrease}>
             <FaMinus />
           </Button>
-          <Input type="number" onChange={changeValue} value={quantityOrdered} />
-          <Button
-            type="button"
-            onClick={() => dispatch(increaseQuantity(item))}
-          >
+          <Input
+            type="number"
+            onChange={changeValue}
+            value={quantityOrdered}
+            min={1}
+          />
+          <Button type="button" onClick={increase}>
             <FaPlus />
           </Button>
         </QuantityWrap>
