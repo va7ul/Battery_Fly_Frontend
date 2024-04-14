@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from '../../../styles/GlobalStyled';
 
 export const Button = styled.button`
   display: flex;
@@ -9,12 +8,10 @@ export const Button = styled.button`
   border: none;
   font-size: 10px;
 
-  background-image: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  background-color: ${props => props.theme.colors.hoverColor};
+
+  &:hover {
+    background-color: ${props => props.theme.colors.secondary};
   }
 
   @media (min-width: 1280px) {
@@ -23,10 +20,5 @@ export const Button = styled.button`
     padding: 16px 38px;
     border-radius: 12px;
     font-size: 24px;
-    background: ${props => props.theme.colors.gradient};
-
-    &::after {
-      border-radius: 12px;
-    }
   }
 `;
