@@ -1,16 +1,10 @@
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 import styled from 'styled-components';
 
 const backgroundButton = props =>
   props.disabled
     ? props.theme.colors.greyBackgroundPaper
     : props.theme.colors.hoverColor;
-
-const backgroundPlusMinus = props =>
-  props.disabled
-    ? props.theme.colors.greyBackgroundPaper
-    : props.theme.colors.gradient;
 
 const cursorButton = props => (props.disabled ? 'default' : 'pointer');
 const colorButton = props =>
@@ -411,16 +405,12 @@ export const Button = styled.button`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: ${backgroundPlusMinus};
-  position: relative;
-  z-index: 0;
+  background: ${backgroundButton};
   cursor: ${cursorButton};
   color: ${colorButton};
 
-  ${gradientTransitionBtn}
-
-  &::after {
-    border-radius: 50%;
+  &:hover {
+    background: ${props => props.theme.colors.secondary};
   }
 
   @media screen and (min-width: 1280px) {
@@ -442,8 +432,6 @@ export const BasketButton = styled.button`
   background: ${backgroundButton};
   cursor: ${cursorButton};
   color: ${colorButton};
-
-  cursor: ${cursorButton};
 
   &:hover {
     background: ${props => props.theme.colors.secondary};
