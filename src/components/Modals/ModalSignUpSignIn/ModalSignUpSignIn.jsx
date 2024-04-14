@@ -1,32 +1,9 @@
 import {useState } from 'react';
-import ReactModal from 'react-modal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
-import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
-
-
-const customStyles = {
-  overlay: {
-    zIndex: '5',
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-  },
-  content: {
-    border: '0px solid transparent',
-    borderRadius: '26px',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    padding: 'none',
-    background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.5) 112.295%)',
-  },
-};
-
-ReactModal.setAppElement('#modal-root');
+import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
+import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 
 export const ModalSignUpSignIn = ({
   isModalSignUpSignInOpen,
@@ -38,11 +15,9 @@ export const ModalSignUpSignIn = ({
   const handleShowSignUpForm = () => setshowSignUpForm(true);
 
   return (
-    <>
-      <ReactModal
-        isOpen={isModalSignUpSignInOpen}
-        onRequestClose={handleCloseSignUpSignInModal}
-        style={customStyles}
+      <ModalYellowGradient
+        isModalOpen={isModalSignUpSignInOpen}
+        handleCloseModal={handleCloseSignUpSignInModal}
       >
         <CloseButton handleCloseModal={handleCloseSignUpSignInModal} />
         <Box>
@@ -73,7 +48,6 @@ export const ModalSignUpSignIn = ({
             />
           )}
         </Box>
-      </ReactModal>
-    </>
+      </ModalYellowGradient>
   );
 };

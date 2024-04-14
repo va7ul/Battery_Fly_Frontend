@@ -1,36 +1,13 @@
 import { useState } from 'react';
-import ReactModal from 'react-modal';
 import { useFormik } from 'formik';
 import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
 import { forgotPassword } from 'api';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
+import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
+import { Field } from '../SharedComponent/TextField/TextField';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
-import { Field } from '../SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text, Wrapper } from './ModalForgotPassword.styled';
-
-const customStyles = {
-  overlay: {
-    zIndex: '5',
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-  },
-  content: {
-    border: '0px solid transparent',
-    borderRadius: '12px',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    padding: 'none',
-    background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.5) 112.295%)',
-  },
-};
-
-
-ReactModal.setAppElement('#modal-root');
 
 export const ModalForgotPassword = ({
   isModalForgotPasswordOpen,
@@ -69,10 +46,9 @@ export const ModalForgotPassword = ({
 
   return (
     <>
-      <ReactModal
-        isOpen={isModalForgotPasswordOpen}
-        onRequestClose={handleCloseForgotPasswordModal}
-        style={customStyles}
+      <ModalYellowGradient
+        isModalOpen={isModalForgotPasswordOpen}
+        handleCloseModal={handleCloseForgotPasswordModal}
       >
         <CloseButton handleCloseModal={handleCloseForgotPasswordModal} />
         <Wrapper>
@@ -94,7 +70,7 @@ export const ModalForgotPassword = ({
             </Btn>
           </StyledForm>
         </Wrapper>
-      </ReactModal>
+      </ModalYellowGradient>
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAllModal}
