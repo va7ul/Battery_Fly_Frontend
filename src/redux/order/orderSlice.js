@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addOrder } from './orderOperations';
-import { getDeliveryCity } from './deliveryOperations';
+import { addOrder, getDeliveryCity } from './orderOperations';
 
 const defaultUserData = {
   firstName: '',
