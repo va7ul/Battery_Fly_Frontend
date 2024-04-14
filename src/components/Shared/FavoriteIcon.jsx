@@ -9,7 +9,7 @@ export const FavoriteIcon = () => {
           p: 0,
           color: 'background.paper',
           width: {
-            mobile: '20px',
+            mobile: '24px',
             desktop: '35px',
           },
           ' &:hover': {
