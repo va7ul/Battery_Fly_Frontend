@@ -12,6 +12,7 @@ import {
     PriceBox,
     NewPrice,
     Price,
+    Wrap,
     LikeBox,
     Like,
     Desc,
@@ -32,9 +33,9 @@ export const Description = () => {
 
     const newPrice = sale ? getNewPrice(discount, price) : price;
 
-     const isInFavorites = favoriteItems.some(
-    favoriteItem => favoriteItem === codeOfGood
-     );
+    const isInFavorites = favoriteItems.some(
+        favoriteItem => favoriteItem === codeOfGood
+    );
     
     const handleFavorite = () => {
         isInFavorites
@@ -57,20 +58,20 @@ export const Description = () => {
                     {sale ? <NewPrice>{priceWithSale !== 0 ? priceWithSale : newPrice} грн</NewPrice> : <NewPrice>{newPrice} грн</NewPrice>}
                     {sale && <Price>{price} грн</Price>}
                 </PriceBox>
-                <LikeBox>
-                      {isInFavorites ? (
+                <Wrap>
+                    {isInFavorites ? (
              
-                         <LikeBox onClick={handleFavorite}>
-                                 <IconFullHeart />
+                        <LikeBox onClick={handleFavorite}>
+                            <IconFullHeart />
                             <Like>Видалити зі списку бажань</Like>
-                            </LikeBox>
+                        </LikeBox>
                     ) : (
-                            <LikeBox onClick={handleFavorite}>
-                                 <IconHeart />
+                        <LikeBox onClick={handleFavorite}>
+                            <IconHeart />
                             <Like>Додати до списку бажань</Like>
-                            </LikeBox>
+                        </LikeBox>
                            
-        )}
+                    )}
                     
                     <IconSquare>
                         <use href={`${sprite}#icon-square`}></use>
@@ -78,7 +79,7 @@ export const Description = () => {
                     <IconSpiral>
                         <use href={`${sprite}#icon-Spiral_2`}></use>
                     </IconSpiral>
-                </LikeBox>
+                </Wrap>
             </PriceContainer>
             <Desc>{newDescription.map(i => <Item key={i}>{i}</Item>)}</Desc>
         </DescBox>

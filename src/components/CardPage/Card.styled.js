@@ -5,6 +5,11 @@ import styled from 'styled-components';
 const backgroundButton = props =>
   props.disabled
     ? props.theme.colors.greyBackgroundPaper
+    : props.theme.colors.hoverColor;
+
+const backgroundPlusMinus = props =>
+  props.disabled
+    ? props.theme.colors.greyBackgroundPaper
     : props.theme.colors.gradient;
 
 const cursorButton = props => (props.disabled ? 'default' : 'pointer');
@@ -213,15 +218,6 @@ export const Price = styled.p`
 `;
 
 export const IconHeart = styled(FaRegHeart)`
-  color: ${props => props.theme.colors.backgroundPaper};
-  transition: ${props => props.theme.transition.main};
-
-  &:hover {
-    color: ${props => props.theme.colors.secondary};
-    transform: scale(1.2);
-    cursor: pointer;
-  }
-
   @media screen and (min-width: 1280px) {
     width: 38px;
     height: 38px;
@@ -229,22 +225,13 @@ export const IconHeart = styled(FaRegHeart)`
 `;
 
 export const IconFullHeart = styled(FaHeartCircleCheck)`
-  color: ${props => props.theme.colors.backgroundPaper};
-  transition: ${props => props.theme.transition.main};
-
-  &:hover {
-    color: ${props => props.theme.colors.secondary};
-    transform: scale(1.2);
-    cursor: pointer;
-  }
-
   @media screen and (min-width: 1280px) {
     width: 38px;
     height: 38px;
   }
 `;
 
-export const LikeBox = styled.div`
+export const Wrap = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -255,10 +242,34 @@ export const LikeBox = styled.div`
   }
 `;
 
+export const LikeBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: ${props => props.theme.colors.backgroundPaper};
+  transition: ${props => props.theme.transition.main};
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 14px;
+  }
+`;
+
 export const Like = styled.p`
   font-size: 10px;
   font-weight: 500;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.backgroundPaper};
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+    cursor: pointer;
+  }
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
@@ -400,7 +411,7 @@ export const Button = styled.button`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: ${backgroundButton};
+  background: ${backgroundPlusMinus};
   position: relative;
   z-index: 0;
   cursor: ${cursorButton};
@@ -429,15 +440,13 @@ export const BasketButton = styled.button`
   font-size: 15px;
   border-radius: 6px;
   background: ${backgroundButton};
-  position: relative;
-  z-index: 0;
   cursor: ${cursorButton};
   color: ${colorButton};
 
-  ${gradientTransitionBtn}
+  cursor: ${cursorButton};
 
-  &::after {
-    border-radius: 6px;
+  &:hover {
+    background: ${props => props.theme.colors.secondary};
   }
 
   @media screen and (min-width: 1280px) {
@@ -445,10 +454,6 @@ export const BasketButton = styled.button`
     height: 60px;
     font-size: 24px;
     border-radius: 20px;
-
-    &::after {
-      border-radius: 20px;
-    }
   }
 `;
 
@@ -457,14 +462,10 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
+  background: ${props => props.theme.colors.hoverColor};
 
-  ${gradientTransitionBtn}
-
-  &::after {
-    border-radius: 6px;
+  &:hover {
+    background: ${props => props.theme.colors.secondary};
   }
 
   @media screen and (min-width: 1280px) {
@@ -472,10 +473,6 @@ export const OrderButton = styled.button`
     height: 60px;
     font-size: 24px;
     border-radius: 20px;
-
-    &::after {
-      border-radius: 20px;
-    }
   }
 `;
 
