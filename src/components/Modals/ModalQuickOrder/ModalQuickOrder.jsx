@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import ReactModal from 'react-modal';
 import { PhoneInput } from 'react-international-phone';
 import { useMediaQuery } from 'react-responsive';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addQuickOrder } from 'api';
+import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
+import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
+import { TextAgree } from '../SharedComponent/Text/Text';
 import {
   Btn,
   CodeOfGoodText,
@@ -14,30 +16,6 @@ import {
   Title,
   Wrapper,
 } from './ModalQuickOrder.styled';
-import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
-import { TextAgree } from '../SharedComponent/Text/Text';
-
-const customStyles = {
-  overlay: {
-    zIndex: '5',
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-  },
-  content: {
-    border: '0px solid transparent',
-    borderRadius: '12px',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    padding: 'none',
-    background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.5) 112.295%)',
-  },
-};
-
-ReactModal.setAppElement('#modal-root');
 
 export const ModalQuickOrder = ({
   product: { name, codeOfGood },
@@ -75,10 +53,9 @@ export const ModalQuickOrder = ({
 
   return (
     <>
-      <ReactModal
-        isOpen={isModalQuickOrderOpen}
-        onRequestClose={handleCloseQuickOrderModal}
-        style={customStyles}
+      <ModalYellowGradient
+        isModalOpen={isModalQuickOrderOpen}
+        handleCloseModal={handleCloseQuickOrderModal}
       >
         <CloseButton handleCloseModal={handleCloseQuickOrderModal} />
         <Wrapper>
@@ -124,7 +101,7 @@ export const ModalQuickOrder = ({
           </StyledForm>
         </Wrapper>
         <PhoneFieldGlobalStyles />
-      </ReactModal>
+      </ModalYellowGradient>
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
