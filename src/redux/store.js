@@ -15,6 +15,7 @@ import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
 import { basketReducer } from './basket/basketSlice';
 import { menuReducer } from './menu/menuSlice';
+import { orderReducer } from './order/orderSlice';
 
 const userPersistConfig = {
   key: 'user',
@@ -39,6 +40,7 @@ export const store = configureStore({
     products: productsReducer,
     basket: persistReducer(basketPersistConfig, basketReducer),
     menu: menuReducer,
+    order: orderReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
