@@ -190,9 +190,7 @@ export const Order = () => {
                     onClick={minusOne}
                     disabled={typeof oneProductPrice === 'string'}
                 >
-                    <div>
-                        <FaMinus />
-                    </div>
+                    <FaMinus />
                 </Button>
                 <Input
                     min="1"
@@ -206,9 +204,7 @@ export const Order = () => {
                     onClick={plusOne}
                     disabled={typeof oneProductPrice === 'string'}
                 >
-                    <div>
-                        <FaPlus />
-                    </div>
+                    <FaPlus />
                 </Button>
             </CounterBox>
             <ButtonBox>
