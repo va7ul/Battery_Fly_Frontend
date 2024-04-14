@@ -215,13 +215,11 @@ export const Order = () => {
                 <BasketButton
                     disabled={typeof oneProductPrice === 'string'}
                     onClick={addToBasket}
-                >
-                    <div>В кошик</div>
+                >В кошик
                 </BasketButton>
                 <OrderButton
                     onClick={handleOpenQuickOrderModal}
-                >
-                    <div>Швидке замовлення</div>
+                >Швидке замовлення
                 </OrderButton>
             </ButtonBox>
             <div>
