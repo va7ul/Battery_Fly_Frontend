@@ -6,10 +6,13 @@ import { Logo } from './Logo/Logo';
 import { LoginButton } from './Navigation/LoginButton/LoginButton';
 import { ModalSignUpSignIn } from '../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { useState } from 'react';
-// import { ProfileButton } from './Navigation/ProfileButton/ProfileButton';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/user/userSelectors';
+import { ProfileButton } from './Navigation/ProfileButton/ProfileButton';
 
 export const Header = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 
   const handleOpenSignUpSignInModal = () => {
@@ -28,15 +31,17 @@ export const Header = () => {
         <DesktopWrapper>
           <Logo />
           <Navigation />
-          <LoginButton
-            handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
-          />
+          {isLoggedIn ? (
+            <ProfileButton />
+          ) : (
+            <LoginButton
+              handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+            />
+          )}
           <ModalSignUpSignIn
             isModalSignUpSignInOpen={isModalSignUpSignInOpen}
             handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
           />
-          {/* <ProfileButton /> */}
-          {/* {isLoggedIn ? <ProfileButton/> : <LoginButton/>} */}
         </DesktopWrapper>
       )}
     </StyledHeader>

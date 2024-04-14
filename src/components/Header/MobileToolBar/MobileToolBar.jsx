@@ -1,5 +1,5 @@
 import { Wrapper, Button } from './MobileToolBar.styled';
-// import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LoginIcon from '@mui/icons-material/Login';
 import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
 import { CartIcon } from 'components/Shared/CartIcon';
@@ -7,13 +7,16 @@ import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { useState } from 'react';
 import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 import { ModalSignUpSignIn } from '../../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { Link } from 'react-router-dom';
+import { selectIsLoggedIn } from '../../../redux/user/userSelectors';
 
 export const MobileToolBar = () => {
   const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleOpenFeedbackModal = () => {
     setIsModalFeedbackOpen(true);
@@ -35,8 +38,6 @@ export const MobileToolBar = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const dispatch = useDispatch();
-
   const openDrawer = () => {
     dispatch(setCartOpen(true));
   };
@@ -55,32 +56,36 @@ export const MobileToolBar = () => {
       <Link to="/favorites">
         <FavoriteIcon />
       </Link>
-      <Button type="button" onClick={handleOpenSignUpSignInModal}>
-        <LoginIcon
-          sx={{
-            color: 'background.paper',
-            width: '20px',
-            ' &:hover': {
-              color: 'secondary.main',
-            },
-          }}
-        />
-      </Button>
       <ModalSignUpSignIn
         isModalSignUpSignInOpen={isModalSignUpSignInOpen}
         handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
-      {/* <Button type="button">
-        <AccountCircleOutlinedIcon
-          sx={{
-            color: 'background.paper',
-            width: '20px',
+
+      {isLoggedIn ? (
+        <Button type="button">
+          <AccountCircleOutlinedIcon
+            sx={{
+              color: 'background.paper',
+              width: '24px',
               ' &:hover': {
-              color: 'secondary.main',
-            }
-          }}
-        />
-      </Button> */}
+                color: 'secondary.main',
+              },
+            }}
+          />
+        </Button>
+      ) : (
+        <Button type="button" onClick={handleOpenSignUpSignInModal}>
+          <LoginIcon
+            sx={{
+              color: 'background.paper',
+              width: '24px',
+              ' &:hover': {
+                color: 'secondary.main',
+              },
+            }}
+          />
+        </Button>
+      )}
     </Wrapper>
   );
 };
