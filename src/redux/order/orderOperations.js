@@ -24,3 +24,16 @@ export const addOrder = createAsyncThunk(
     }
   }
 );
+
+export const getDeliveryCity = createAsyncThunk(
+  'order/getDeliveryCity',
+  async (reqCity, thunkApi) => {
+    try {
+      const { data } = await axios.post('getDeliveryCity', reqCity);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
