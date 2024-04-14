@@ -203,6 +203,7 @@ export const gradientTransitionBtn = css`
 
   &:hover::after {
     opacity: 1;
+    background: ${props => props.theme.colors.gradientHover};
   }
 
   //і перенеси весь свій контент всередину div
