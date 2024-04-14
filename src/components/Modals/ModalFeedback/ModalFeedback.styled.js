@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
   padding: 36px 24px 26px 24px;
 
   @media (min-width: 1280px) {
-    max-width: 629px;
-    padding: 40px 76px 28px 76px;
+    max-width: 630px;
+    padding: 40px 76px;
   }
 `;
 
@@ -54,7 +54,7 @@ export const Label = styled.label`
 export const LabelText = styled.span`
   &::after {
     content: '*';
-    color: rgba(218, 123, 106, 1);
+    color: ${props => props.theme.colors.error};
     padding: 1px;
 
     @media (min-width: 1280px) {
@@ -68,7 +68,7 @@ export const StyledField = styled(Field)`
   height: 28px;
   padding: 4px 8px;
   color: rgba(225, 225, 225, 1);
-  border: 1px solid rgba(99, 99, 99, 1);
+  border: 1px solid rgba(225, 225, 225, 1);
   border-radius: 6px;
   background: transparent;
 
@@ -88,10 +88,11 @@ export const StyledField = styled(Field)`
 export const PhoneFieldGlobalStyles = createGlobalStyle`
   .react-international-phone-input {
     width: 224px;
+
   &:focus {
     color: rgba(225, 225, 225, 1);
     outline: none;
-    border: 1px solid rgba(255, 208, 100, 0.7);
+    border: 1px solid rgba(251, 208, 100, 0.7);
   }
     @media (min-width: 1280px) {
     width: 430px;
@@ -111,19 +112,19 @@ export const StyledTextField = styled(Field)`
   height: 46px;
   padding: 4px 8px;
   color: rgba(225, 225, 225, 1);
-  border: 1px solid rgba(99, 99, 99, 1);
+  border: 1px solid rgba(225, 225, 225, 1);
   border-radius: 6px;
   background: transparent;
   overflow-x: auto;
 
   &::placeholder {
     font-size: 10px;
-    color: rgba(225, 225, 225, 0.5);
+    color: rgba(225, 225, 225, 0.7);
   }
   &:focus {
     color: rgba(225, 225, 225, 1);
     outline: none;
-    border: 1px solid rgba(255, 208, 100, 0.7);
+    border: 1px solid ${props => props.theme.colors.secondary};
   }
 
   @media (min-width: 1280px) {
@@ -139,7 +140,7 @@ export const StyledTextField = styled(Field)`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  color: rgba(218, 123, 106, 1);
+  color: ${props => props.theme.colors.error};
   font-size: 8px;
 
   @media (min-width: 1280px) {
@@ -164,24 +165,17 @@ export const Btn = styled.button`
   border: none;
   font-size: 12px;
   font-weight: 500;
+  background: ${props => props.theme.colors.hoverColor};
 
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.secondary};
   }
-
   @media (min-width: 1280px) {
     max-width: 199px;
-    margin-top: 56px;
+    margin-top: 20px;
     padding: 16px 38px;
     border-radius: 12px;
     font-size: 24px;
-
-    &::after {
-      border-radius: 12px;
-    }
   }
 `;

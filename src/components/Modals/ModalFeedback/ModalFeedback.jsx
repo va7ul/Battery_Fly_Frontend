@@ -27,11 +27,11 @@ import { TextAgree } from '../SharedComponent/Text/Text';
 const customStyles = {
   overlay: {
     zIndex: '5',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
   },
   content: {
-    border: '1px solid rgba(99, 99, 99, 1)',
-    borderRadius: '26px',
+    border: '0px solid transparent',
+    borderRadius: '18px',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -40,8 +40,8 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     padding: 'none',
     background:
-      'linear-gradient(180.00deg, rgb(51, 51, 51) 18%,rgba(75, 75, 75, 0.49) 100%)',
-    color: 'rgb(225, 225, 225)',
+      'linear-gradient(180.00deg, rgb(51, 51, 51) 18%,rgb(114, 114, 114) 100%)',
+    color: 'rgba(225, 225, 225, 1)',
   },
 };
 
@@ -124,7 +124,7 @@ export const ModalFeedback = ({
                     '--react-international-phone-background-color':
                       'transparent',
                     '--react-international-phone-border-color':
-                      'rgba(99, 99, 99, 1)',
+                      'rgba(225, 225, 225, 1)',
                     '--react-international-phone-text-color':
                       'rgba(225, 225, 225, 1)',
                     '--react-international-phone-font-size': !isBigScreen
@@ -162,7 +162,7 @@ export const ModalFeedback = ({
                 <StyledErrorMessage name="text" component="div" />
               </Label>
               <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
-                <div>Зв'язатись</div>
+                Зв'язатись
               </Btn>
             </StyledForm>
           </Formik>
