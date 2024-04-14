@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import Select from 'react-select';
 import Radio from '@mui/material/Radio';
@@ -9,9 +10,9 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
+import { getDeliveryCity } from '../../../redux/order/deliveryOperations';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
-
 
 const StyledRadioGroup = styled(RadioGroup)({
     gap: '5px',
@@ -48,6 +49,7 @@ const StyledRadio = styled(Radio)({
 });
 
 export const Delivery = () => {
+    const dispatch = useDispatch();
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
     const [displayNP, setDisplayNP] = useState("none");
@@ -77,6 +79,7 @@ export const Delivery = () => {
     
     const handleSelectCity = (event) => {
         console.log(event)
+        dispatch(getDeliveryCity(event))
     };
 
     const handleSelectWarehouse = (event) => {
