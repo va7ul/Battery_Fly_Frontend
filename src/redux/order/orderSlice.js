@@ -1,5 +1,5 @@
-import { createSlice} from '@reduxjs/toolkit';
-import { addOrder } from './orderOperations';
+import { createSlice } from '@reduxjs/toolkit';
+import { addOrder, getDeliveryCity } from './orderOperations';
 
 const defaultUserData = {
   firstName: '',
@@ -9,8 +9,16 @@ const defaultUserData = {
   text: '',
 };
 
+const deliveryInfo = {
+  deliveryType: '',
+  city: '',
+  warehouse: '',
+  payment: '',
+};
+
 const initialState = {
   userData: { ...defaultUserData },
+  delivery: { ...deliveryInfo },
   isLoading: false,
   error: null,
 };
@@ -30,6 +38,11 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 
+export const handleFulfilledGetCity = (state, { payload }) => {
+  state.delivery.city = payload.data;
+  state.isLoading = false;
+  state.error = '';
+};
 
 const orderSlice = createSlice({
   name: 'order',
@@ -43,7 +56,10 @@ const orderSlice = createSlice({
     builder
       .addCase(addOrder.pending, handlePending)
       .addCase(addOrder.fulfilled, handleFulfilledAddOrder)
-      .addCase(addOrder.rejected, handleRejected);
+      .addCase(addOrder.rejected, handleRejected)
+      .addCase(getDeliveryCity.pending, handlePending)
+      .addCase(getDeliveryCity.fulfilled, handleFulfilledGetCity)
+      .addCase(getDeliveryCity.rejected, handleRejected);
   },
 });
 
