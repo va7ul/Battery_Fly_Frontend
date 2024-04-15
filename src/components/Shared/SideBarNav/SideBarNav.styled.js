@@ -57,21 +57,21 @@ export const StyledNavLink = styled(NavLink)`
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
 
     span {
       &::after {
-        background: ${props => props.theme.colors.secondary};
+        background: ${props => props.theme.colors.hoverColor};
       }
     }
   }
 
   &.active {
-    color: ${props => props.theme.colors.backgroundPaper};
+    color: ${props => props.theme.colors.hoverColor};
 
     span {
       &::after {
-        background: ${props => props.theme.colors.backgroundPaper};
+        background: ${props => props.theme.colors.hoverColor};
       }
     }
   }

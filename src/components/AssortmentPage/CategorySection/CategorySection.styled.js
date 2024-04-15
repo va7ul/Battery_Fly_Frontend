@@ -3,7 +3,7 @@ import { getSectionBackground } from 'styles/GlobalStyled';
 
 const getColor = props => {
   if (props.category === 'Акції') {
-    return props.theme.colors.backgroundPaper;
+    return props.theme.colors.hoverColor;
   }
   return 'inherit';
 };
@@ -52,11 +52,11 @@ export const StyledLink = styled.a`
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
     transform: scale(1.05);
 
     svg {
-      fill: ${props => props.theme.colors.secondary};
+      fill: ${props => props.theme.colors.hoverColor};
     }
   }
 
