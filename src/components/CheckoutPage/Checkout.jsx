@@ -2,8 +2,7 @@ import { Grid } from '@mui/material';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Cart } from './Cart/Cart';
 import { Delivery } from './Delivery/Delivery';
-import { Title, Wrapper } from './Checkout.styled';
-import { OrderButton } from './Delivery/Delivery.styled';
+import { Title, Wrapper, OrderButton } from './Checkout.styled';
 import { useFormik } from 'formik';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
@@ -63,8 +62,7 @@ export const Checkout = () => {
         type="submit"
         form="form-order"
         disabled={!isValidPhone || tel === '+380'}
-      >
-        <div>Оформити замовлення</div>
+      >Оформити замовлення
       </OrderButton>
     </Wrapper>
   );

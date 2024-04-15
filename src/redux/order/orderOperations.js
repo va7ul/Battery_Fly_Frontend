@@ -24,3 +24,31 @@ export const addOrder = createAsyncThunk(
     }
   }
 );
+
+export const getDeliveryCity = createAsyncThunk(
+  'order/getDeliveryCity',
+  async (reqCity, thunkApi) => {
+    const reqData = { query: reqCity };
+    try {
+      const { data } = await axios.post('order/getDeliveryCity', reqData);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getWarehouses = createAsyncThunk(
+  'order/getWarehouses',
+  async (reqWarehouses, thunkApi) => {
+    try {
+      const reqData = { query: reqWarehouses };
+      const { data } = await axios.post('order/getWarehouses', reqData);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);

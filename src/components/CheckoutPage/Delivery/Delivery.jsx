@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import Select from 'react-select';
 import Radio from '@mui/material/Radio';
@@ -9,9 +10,9 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
+import { getDeliveryCity } from '../../../redux/order/orderOperations';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
-
 
 const StyledRadioGroup = styled(RadioGroup)({
     gap: '5px',
@@ -48,11 +49,13 @@ const StyledRadio = styled(Radio)({
 });
 
 export const Delivery = () => {
+    const dispatch = useDispatch();
     const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [inputCity, setInputCity] = useState("");
 
     const openNP = () => {
         setDisplayAddress("none");
@@ -76,6 +79,8 @@ export const Delivery = () => {
     ];
     
     const handleSelectCity = (event) => {
+        setInputCity(event);
+        dispatch(getDeliveryCity(event))
         console.log(event)
     };
 
@@ -102,6 +107,7 @@ export const Delivery = () => {
             
                 <Select
                     // options={options}
+                    value={inputCity}
                     onInputChange={handleSelectCity}
                     // onChange=
                     placeholder={"Місто"}

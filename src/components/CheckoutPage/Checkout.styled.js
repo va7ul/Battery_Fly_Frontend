@@ -22,3 +22,25 @@ export const Wrapper = styled.div`
     max-width: 1280px;
   }
 `;
+
+export const OrderButton = styled.button`
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  width: 149px;
+
+  box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
+  background: ${props => props.theme.colors.hoverColor};
+
+  &:hover {
+    background: ${props => props.theme.colors.secondary};
+  }
+  @media screen and (min-width: 1280px) {
+    width: 266px;
+    height: 61px;
+    padding: 15px 8px;
+    font-size: 20px;
+  }
+`;
