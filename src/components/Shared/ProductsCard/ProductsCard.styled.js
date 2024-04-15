@@ -14,12 +14,12 @@ const iconStyle = css`
   right: 6px;
   width: 20px;
   height: 20px;
-  color: ${props => props.theme.colors.backgroundPaper};
+  color: ${props => props.theme.colors.hoverColor};
   transition: ${props => props.theme.transition.main};
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
     transform: scale(1.3);
     cursor: pointer;
   }
@@ -38,11 +38,11 @@ const btnStyle = css`
   padding: 6px 18px;
   margin-top: 5px;
   border-radius: 20px;
-  background: ${props => props.theme.colors.hoverColor};
+  background: ${props => props.theme.colors.secondary};
 
   &:hover,
   &:focus {
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.hoverColor};
     transform: scale(1.05);
   }
 
