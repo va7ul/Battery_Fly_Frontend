@@ -74,6 +74,7 @@ const handleRefreshFulfilled = (state, { payload }) => {
 
 const handleRefreshRejected = state => {
   state.isRefreshing = false;
+  state.isLoggedIn = false;
 };
 
 const handleAddToFavoriteFulfilled = (state, { payload }) => {
