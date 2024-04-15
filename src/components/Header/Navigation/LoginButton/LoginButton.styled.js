@@ -9,9 +9,9 @@ export const Button = styled.button`
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
-  background-color: ${props => props.theme.colors.hoverColor};
+  background-color: ${props => props.theme.colors.secondary};
 
   &:hover {
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 `;

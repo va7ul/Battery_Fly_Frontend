@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 import { Link } from 'react-router-dom';
 
 export const Item = styled.li`
@@ -11,7 +10,7 @@ export const Item = styled.li`
   gap: 5px;
 
   border-radius: 8px;
-  background: ${props => props.theme.colors.gradient};
+  background: ${props => props.theme.colors.gradientYellow};
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
 
   @media screen and (min-width: 1280px) {
@@ -74,14 +73,11 @@ export const Button = styled.button`
   width: 20px;
   height: 20px;
   padding: 5px;
-  background: ${props => props.theme.colors.gradient};
+  background-color: ${props => props.theme.colors.secondary};
   border-radius: 100%;
 
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 100%;
+  &:hover {
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 
   & svg {

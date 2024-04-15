@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { gradientTransitionBtn } from '../../../../../../styles/GlobalStyled';
 
 export const Item = styled.li`
   position: relative;
@@ -16,7 +15,7 @@ export const Item = styled.li`
     font-weight: 400;
 
     &:hover {
-      color: ${props => props.theme.colors.secondary};
+      color: ${props => props.theme.colors.hoverColor};
     }
 
     &:not(:first-child) {
@@ -39,7 +38,7 @@ export const StyledLink = styled(NavLink)`
   padding-top: 8px;
   padding-bottom: 8px;
   &.active {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
@@ -47,11 +46,8 @@ export const StyledLink = styled(NavLink)`
   }
 
   @media screen and (max-width: 1280px) {
-    position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-    &::after {
-      background: ${props => props.theme.colors.gradient};
+    &:hover {
+      background-color: ${props => props.theme.colors.secondary};
     }
   }
 `;

@@ -7,11 +7,10 @@ export const Button = styled.button`
   border-radius: 6px;
   border: none;
   font-size: 10px;
-
-  background-color: ${props => props.theme.colors.hoverColor};
+  background-color: ${props => props.theme.colors.secondary};
 
   &:hover {
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const NavList = styled.ul`
   display: flex;
@@ -8,7 +7,7 @@ export const NavList = styled.ul`
 
   @media screen and (min-width: 1280px) {
     flex-direction: row;
-    margin-left: 69px;
+    margin-left: 50px;
   }
 `;
 
@@ -30,11 +29,8 @@ export const CartButton = styled.button`
   }
 
   @media screen and (max-width: 1280px) {
-    position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-    &::after {
-      background: ${props => props.theme.colors.gradient};
+    &:hover {
+      background-color: ${props => props.theme.colors.secondary};
     }
   }
 `;

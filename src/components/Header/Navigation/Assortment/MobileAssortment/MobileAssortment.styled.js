@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const ArrowButton = styled.button`
   display: flex;
@@ -21,11 +20,8 @@ export const ArrowButton = styled.button`
   }
 
   @media screen and (max-width: 1280px) {
-    position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-    &::after {
-      background: ${props => props.theme.colors.gradient};
+    &:hover {
+      background-color: ${props => props.theme.colors.secondary};
     }
   }
 `;

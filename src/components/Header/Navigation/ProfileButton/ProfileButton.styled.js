@@ -7,12 +7,12 @@ export const Wrapper = styled.div`
   padding: 7px;
   min-width: 111px;
   border-radius: 10px;
-  background-color: ${props => props.theme.colors.hoverColor};
   gap: 5px;
+  background-color: ${props => props.theme.colors.secondary};
   transition: ${props => props.theme.transition.main};
 
   &:hover {
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 `;
 
