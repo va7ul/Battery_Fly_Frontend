@@ -14,9 +14,9 @@ export const themeMUI = createTheme({
     secondary: {
       main: 'rgba(244, 170, 0, 1)',
     },
-    // svgColor: {
-    //   main: 'rgba(251, 208, 110, 1)', поки не використовується
-    // },
+    svgColor: {
+      main: 'rgba(251, 208, 110, 1)',
+    },
     background: {
       paper: 'rgba(244, 170, 0, 0.8)',
       default: 'rgba(247, 247, 247, 1)',
