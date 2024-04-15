@@ -4,7 +4,7 @@ import { Button } from './LoginButton.styled';
 export const LoginButton = ({ handleOpenSignUpSighInModal }) => {
   return (
     <Button type="button" onClick={handleOpenSignUpSighInModal}>
-      <div>Увійти</div>
+      Увійти
       <LoginOutlinedIcon
         sx={{
           color: 'text.primary',

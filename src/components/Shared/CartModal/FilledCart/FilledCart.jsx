@@ -35,10 +35,10 @@ export const FilledCart = () => {
         </Text>
         <BtnWrap>
           <Button type="button" onClick={closeCart}>
-            <div>Продовжити покупки</div>
+            Продовжити покупки
           </Button>
           <StyledLink to="checkout" onClick={closeCart}>
-            <div>Оформити замовлення</div>
+            Оформити замовлення
           </StyledLink>
         </BtnWrap>
       </Wrap>

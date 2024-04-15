@@ -42,7 +42,7 @@ export const MobileAssortment = () => {
     <>
       <StyledLink to="/assortment">
         <HopeIconMobile />
-        <div>Асортимент</div>
+        Асортимент
       </StyledLink>
 
       <ArrowButton type="button" onClick={closeBoth(true)}>

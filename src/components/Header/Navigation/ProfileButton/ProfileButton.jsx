@@ -17,7 +17,7 @@ export const ProfileButton = () => {
             zIndex: 2,
           }}
         />
-        <div>{userData.firstName}</div>
+        {userData.firstName}
       </Button>
       <ArrowButton type="button">
         <svg>

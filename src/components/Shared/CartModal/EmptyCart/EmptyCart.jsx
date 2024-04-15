@@ -9,7 +9,7 @@ export const EmptyCart = ({ closeCart }) => {
       </CartIcon>
       <Text>Додайте товари до кошика</Text>
       <Button type="button" onClick={closeCart}>
-        <div>Продовжити покупки</div>
+        Продовжити покупки
       </Button>
     </Wrapper>
   );

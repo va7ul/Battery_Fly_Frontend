@@ -44,7 +44,7 @@ export const MobileBatteries = () => {
     <>
       <StyledLink to="/batteries">
         <HopeIconMobile />
-        <div>Акумулятори</div>
+        Акумулятори
       </StyledLink>
 
       <ArrowButton type="button" onClick={openAll(true)}>

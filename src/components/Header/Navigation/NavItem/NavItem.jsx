@@ -9,7 +9,7 @@ export const NavItem = ({ title, page }) => {
     <Item>
       <StyledLink to={page}>
         {mobileVersion && <HopeIconMobile />}
-        <div>{title}</div>
+        {title}
       </StyledLink>
     </Item>
   );
