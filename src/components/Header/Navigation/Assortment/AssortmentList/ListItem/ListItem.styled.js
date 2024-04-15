@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Item = styled.li`
+  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
