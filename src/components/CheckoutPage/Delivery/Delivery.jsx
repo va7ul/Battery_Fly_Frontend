@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import Select from 'react-select';
 import Radio from '@mui/material/Radio';
@@ -10,7 +10,8 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { getDeliveryCity } from '../../../redux/order/orderOperations';
+import { getDeliveryCity, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
+import { selectCities, selectWarehouses } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
@@ -56,6 +57,10 @@ export const Delivery = () => {
     const [displayAddress, setDisplayAddress] = useState("none");
     const [paymentMethod, setPaymentMethod] = useState('');
     const [inputCity, setInputCity] = useState("");
+    const [inputWarehouse, setInputWarehouse] = useState("");
+
+    const cities = useSelector(selectCities);
+    const warehouses = useSelector(selectWarehouses);
 
     const openNP = () => {
         setDisplayAddress("none");
@@ -72,16 +77,35 @@ export const Delivery = () => {
         console.log(event.target.value)
     };
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ];
+    const optionsCities = cities.map(city => {
+        return {
+            value: city, label: city
+        }
+    });
+
+    const optionsWarehouses = warehouses.map(warehouse => {
+        return {
+            value: warehouse, label: warehouse
+        }
+    });
+
+     const handleWarehouseChange = (event) => {
+        setInputWarehouse(event);
+    };
+
     
     const handleSelectCity = (event) => {
+        if (event === '') {
+            return;
+        }
         setInputCity(event);
         dispatch(getDeliveryCity(event))
         console.log(event)
+    };
+
+     const handleCityChange = (event) => {
+        setInputCity(event);
+        dispatch(getDeliveryWarehouses(inputCity));
     };
 
     const handleSelectWarehouse = (event) => {
@@ -106,18 +130,18 @@ export const Delivery = () => {
                 <TextNp>Адреса доставки</TextNp>
             
                 <Select
-                    // options={options}
+                    options={optionsCities}
                     value={inputCity}
                     onInputChange={handleSelectCity}
-                    // onChange=
+                    onChange={handleCityChange}
                     placeholder={"Місто"}
                     styles={selectStyles}
                 />
                 <Select
-                    options={options}
-                    // onChange={handleSelect}
+                    options={optionsWarehouses}
+                    value={inputWarehouse}
+                    onChange={handleWarehouseChange}
                     onInputChange={handleSelectWarehouse}
-                    
                     placeholder={"Відділення/поштомат"}
                     styles={selectStyles}
                 />
