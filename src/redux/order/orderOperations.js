@@ -39,7 +39,7 @@ export const getDeliveryCity = createAsyncThunk(
   }
 );
 
-export const getWarehouses = createAsyncThunk(
+export const getDeliveryWarehouses = createAsyncThunk(
   'order/getWarehouses',
   async (reqWarehouses, thunkApi) => {
     try {
