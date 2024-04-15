@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { getRotation } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,7 +18,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,13 +35,17 @@ export const ArrowButton = styled.button`
   background-color: transparent;
   outline: none;
   border: none;
-  z-index: 2;
 
   & svg {
-    rotate: 270deg;
-    width: 10px;
-    height: 10px;
+    transform: ${getRotation};
+    width: 11px;
+    height: 11px;
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
+    transition: ${props => props.theme.transition.main};
+  }
+
+  &:hover svg {
+    transform: rotate(270deg) scale(1.4);
   }
 `;
