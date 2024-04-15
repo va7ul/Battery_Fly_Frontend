@@ -56,21 +56,27 @@ export const theme = {
   colors: {
     textPrimary: 'rgba(31, 31, 31, 1)', // колір тексту чорний
     textDisabled: 'rgba(157, 157, 157, 1)', //колір плейсхолдерів, неактивного тексту світло сірий
-    greyOutput: 'rgba(144, 144, 144, 1)', // ??? поки не використовується
-    greyPlaysholder: 'rgba(165, 165, 165, 1)', // ??? поки не використовується
-    greyBackgroundPaper: 'rgba(225, 225, 225, 1)', // колір фону нотаток світло сірий
-    secondary: 'rgba(244, 170, 0, 1)', // колір ел. при ховері, активних посилань та заливки svg темно оранжевий
-    backgroundPaper: 'rgba(244, 170, 0, 0.8)', // колір кнопок та ел. без ховера світло оранжевий
-    background: 'rgba(247, 247, 247, 1)', // колір фону сторінки білий
-    hoverColor: 'rgba(251, 208, 110, 1)', // використовується для піднавігації
+    greyOutput: 'rgba(144, 144, 144, 1)', // ??? поки не використовується?
+    greyPlaysholder: 'rgba(165, 165, 165, 1)', // ??? поки не використовується?
+    greyBackgroundPaper: 'rgba(225, 225, 225, 1)', // колір фону нотаток, кнопок, світло сірий
+    greyPrimary: 'rgba(213, 213, 213, 0.54)', // колір фону хедера, футера світло сірий
 
-    gradient: 'linear-gradient(rgba(255, 208, 100, 1), rgba(251, 208, 110, 0))',
+    secondary: 'rgba(251, 208, 110, 1)', // колір жовтий без ховера використовується для піднавігації
+    hoverColor: 'rgba(244, 170, 0, 1)', // колір ел. ховера, активних посилань та заливки svg темно оранжевий
+    // backgroundPaper: 'rgba(244, 170, 0, 0.8)', // ??? колір кнопок та ел. без ховера світло оранжевий, поки не використовується?
+    background: 'rgba(247, 247, 247, 1)', // колір фону сторінки білий
+
+    gradient: 'linear-gradient(rgba(255, 208, 100, 1), rgba(251, 208, 110, 0))', // для не функціональних кнопок
+    gradientYellow:
+      'linear-gradient(rgba(255, 208, 100, 1),rgba(255, 239, 202, 1))', // для фону жовтих модалок
     gradientHover:
-      'linear-gradient(rgba(255, 177, 0, 1), rgba(251, 208, 110, 0))',
+      'linear-gradient(rgba(255, 177, 0, 1), rgba(251, 208, 110, 0))', // більше не використовується!!!
     gradientBlack:
-      'linear-gradient(rgba(51, 51, 51, 1), rgba(75, 75, 75, 0.49))',
+      'linear-gradient(rgba(51, 51, 51, 1), rgba(114, 114, 114, 1))', // для фону чорної модалки
     gradientBackground:
-      'linear-gradient(rgba(251, 208, 110, 0.04),rgba(251, 208, 110, 0.39),rgba(251, 208, 110, 0))',
+      'linear-gradient(rgba(251, 208, 110, 0.04),rgba(251, 208, 110, 0.39),rgba(251, 208, 110, 0))', // для фону секцій
+    gradientSubNavGrey:
+      'linear-gradient(rgba(231, 231, 231, 1), rgba(255, 255, 255, 0))', // для сірих кнопок меню піднавігації
     warning: 'rgba(228, 219, 0, 1)',
     error: 'rgba(255, 0, 0, 1)',
     success: 'rgba(20, 211, 16, 1)',
@@ -163,7 +169,10 @@ export const gradientTransitionCard = css`
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    background: linear-gradient(rgba(255, 225, 156, 1), rgba(251, 208, 110, 0));
+    background: linear-gradient(
+      rgba(255, 225, 156, 1),
+      rgba(251, 208, 110, 0.3)
+    );
     transition: ${theme.transition.main};
     z-index: 1;
     opacity: 0;

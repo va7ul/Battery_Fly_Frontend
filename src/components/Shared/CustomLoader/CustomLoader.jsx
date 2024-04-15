@@ -7,10 +7,7 @@ export const CustomLoader = () => {
       <Hourglass
         height="150"
         width="150"
-        colors={[
-          `${theme.colors.secondary}`,
-          `${theme.colors.backgroundPaper}`,
-        ]}
+        colors={[`${theme.colors.hoverColor}`, `${theme.colors.secondary}`]}
       />
     </div>
   );

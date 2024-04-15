@@ -16,11 +16,7 @@ export const StyledList = styled.ul`
   font-weight: 600;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(
-    180deg,
-    rgb(231, 231, 231),
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: ${props => props.theme.colors.gradientSubNavGrey};
 
   li:not(:nth-last-child(-n + 2)) {
     position: relative;
@@ -29,7 +25,7 @@ export const StyledList = styled.ul`
     &:after {
       content: '';
       position: absolute;
-      background: rgb(225, 225, 225);
+      background: ${props => props.theme.colors.greyBackgroundPaper};
       width: 1px;
       height: 50px;
       right: -1px;
@@ -41,7 +37,7 @@ export const StyledList = styled.ul`
     font-size: 16px;
     width: 99.1px;
 
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.hoverColor};
     border-radius: 0px 20px 20px 0px;
   }
 
@@ -59,7 +55,7 @@ export const StyledNavLink = styled(NavLink)`
   padding: 28px 6px;
   border-radius: inherit;
   &.active {
-    background: ${props => props.theme.colors.hoverColor};
+    background: ${props => props.theme.colors.secondary};
     box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
 `;
