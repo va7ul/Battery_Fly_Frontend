@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Navigation } from './Navigation/Navigation';
 import { StyledHeader, DesktopWrapper } from './Header.styled';
 import { Logo } from './Logo/Logo';
-import { LoginButton } from './Navigation/LoginButton/LoginButton';
+import { LoginButton } from './LoginButton/LoginButton';
 import { ModalSignUpSignIn } from '../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
