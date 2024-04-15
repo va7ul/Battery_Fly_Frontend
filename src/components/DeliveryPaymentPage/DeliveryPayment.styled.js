@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
 export const Title = styled.h2`
   font-size: 16px;
   font-weight: 600;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
 
   @media screen and (min-width: 1280px) {
     font-size: 40px;
@@ -106,7 +106,7 @@ export const Link = styled.a`
   text-transform: uppercase;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 `;
 

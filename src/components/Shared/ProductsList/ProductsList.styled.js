@@ -15,7 +15,8 @@ export const StyledList = styled.ul`
 export const StyledListCard = styled.li`
   max-width: 250px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(rgba(213, 213, 213, 1), rgba(241, 241, 241, 0));
+  /* background: linear-gradient(rgba(213, 213, 213, 1), rgba(241, 241, 241, 0)); */
+  background: ${props => props.theme.colors.greyPrimary};
   padding: 5px 5px 10px;
   border-radius: 12px;
   position: relative;
