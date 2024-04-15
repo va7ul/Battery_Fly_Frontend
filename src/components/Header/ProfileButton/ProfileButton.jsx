@@ -1,8 +1,8 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Wrapper, StyledLink, ArrowButton } from './ProfileButton.styled';
-import sprite from '../../../../assets/images/sprite.svg';
+import sprite from '../../../assets/images/sprite.svg';
 import { useSelector } from 'react-redux';
-import { selectUserData } from '../../../../redux/user/userSelectors';
+import { selectUserData } from '../../../redux/user/userSelectors';
 import { Menu } from '@mui/material';
 import { useState } from 'react';
 import { ProfileList } from './ProfileList/ProfileList';

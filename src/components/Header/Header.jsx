@@ -8,7 +8,7 @@ import { ModalSignUpSignIn } from '../Modals/ModalSignUpSignIn/ModalSignUpSignIn
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/user/userSelectors';
-import { ProfileButton } from './Navigation/ProfileButton/ProfileButton';
+import { ProfileButton } from './ProfileButton/ProfileButton';
 
 export const Header = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { List, Item, Button } from './ProfileList.styled';
 import { useDispatch } from 'react-redux';
-import { logOut } from '../../../../../redux/user/userOperations';
+import { logOut } from '../../../../redux/user/userOperations';
 
 export const ProfileList = ({ handleClose }) => {
   const dispatch = useDispatch();
