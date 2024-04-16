@@ -43,13 +43,15 @@ export const handleRejected = (state, { payload }) => {
 };
 
 export const handleFulfilledGetCity = (state, { payload }) => {
-  state.delivery.cities = payload.data.cities;
+  state.delivery.cities = [...payload.data.cities];
+  console.log(payload);
   state.isLoading = false;
   state.error = '';
 };
 
 export const handleFulfilledGetWarehouses = (state, { payload }) => {
-  state.delivery.warehouses = payload.data.warehouses;
+  state.delivery.warehouses = [...payload.data.warehouses];
+  console.log(payload);
   state.isLoading = false;
   state.error = '';
 };
