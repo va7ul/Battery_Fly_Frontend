@@ -7,7 +7,7 @@ export const FavoriteIcon = () => {
   const favorites = useSelector(selectFavoriteProducts);
 
   return (
-    <BadgeComponent value={favorites.length}>
+    <BadgeComponent value={favorites?.length}>
       <FavoriteBorderSharpIcon
         sx={{
           p: 0,
