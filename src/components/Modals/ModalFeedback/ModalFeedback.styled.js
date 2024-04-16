@@ -1,7 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
-
 
 export const Wrapper = styled.div`
   max-width: 357px;
@@ -54,7 +52,7 @@ export const Label = styled.label`
 export const LabelText = styled.span`
   &::after {
     content: '*';
-    color: ${props => props.theme.colors.error};
+    color: rgba(218, 123, 106, 1);
     padding: 1px;
 
     @media (min-width: 1280px) {
@@ -67,15 +65,15 @@ export const StyledField = styled(Field)`
   width: 261px;
   height: 28px;
   padding: 4px 8px;
-  color: rgba(225, 225, 225, 1);
-  border: 1px solid rgba(225, 225, 225, 1);
+  color: ${props => props.theme.colors.greyBackgroundPaper};
+  border: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
   border-radius: 6px;
   background: transparent;
 
   &:focus {
-    color: rgb(225, 225, 225);
+    color: ${props => props.theme.colors.greyBackgroundPaper};
     outline: none;
-    border: 1px solid rgba(255, 208, 100, 0.7);
+    border: 1px solid ${props => props.theme.colors.secondary};
   }
 
   @media (min-width: 1280px) {
@@ -90,9 +88,9 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
     width: 224px;
 
   &:focus {
-    color: rgba(225, 225, 225, 1);
+    color:  ${props => props.theme.colors.greyBackgroundPaper};
     outline: none;
-    border: 1px solid rgba(251, 208, 100, 0.7);
+    border: 1px solid ${props => props.theme.colors.secondary};
   }
     @media (min-width: 1280px) {
     width: 430px;
@@ -111,8 +109,8 @@ export const StyledTextField = styled(Field)`
   width: 261px;
   height: 46px;
   padding: 4px 8px;
-  color: rgba(225, 225, 225, 1);
-  border: 1px solid rgba(225, 225, 225, 1);
+  color: ${props => props.theme.colors.greyBackgroundPaper};
+  border: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
   border-radius: 6px;
   background: transparent;
   overflow-x: auto;
@@ -122,13 +120,12 @@ export const StyledTextField = styled(Field)`
     color: rgba(225, 225, 225, 0.7);
   }
   &:focus {
-    color: rgba(225, 225, 225, 1);
+    color: ${props => props.theme.colors.greyBackgroundPaper};
     outline: none;
     border: 1px solid ${props => props.theme.colors.secondary};
   }
 
   @media (min-width: 1280px) {
-    color: rgba(225, 225, 225, 1);
     width: 476px;
     height: 117px;
     border-radius: 8px;
@@ -140,7 +137,7 @@ export const StyledTextField = styled(Field)`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  color: ${props => props.theme.colors.error};
+  color: rgba(218, 123, 106, 1);
   font-size: 8px;
 
   @media (min-width: 1280px) {
@@ -165,11 +162,11 @@ export const Btn = styled.button`
   border: none;
   font-size: 12px;
   font-weight: 500;
-  background: ${props => props.theme.colors.hoverColor};
+  background: ${props => props.theme.colors.secondary};
 
   &:hover,
   &:focus {
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.hoverColor};
   }
   @media (min-width: 1280px) {
     max-width: 199px;
