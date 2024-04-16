@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
-import {
-  StyledLink,
-  Item,
-} from '../../AssortmentList/ListItem/ListItem.styled';
+import { StyledLink } from '../../AssortmentList/ListItem/ListItem.styled';
 import { Menu } from '@mui/material';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 import { BatteryButton } from './DesktopBatteries.styled';
@@ -21,7 +18,7 @@ export const DesktopBatteries = () => {
   };
 
   return (
-    <Item>
+    <>
       <StyledLink to="/batteries">
         <HopeIconDesktop />
         Акумулятори
@@ -59,6 +56,6 @@ export const DesktopBatteries = () => {
       >
         <BatteriesList />
       </Menu>
-    </Item>
+    </>
   );
 };
