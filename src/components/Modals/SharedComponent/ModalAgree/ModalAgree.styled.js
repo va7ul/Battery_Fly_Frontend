@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Box = styled.div`
   max-width: 269px;
