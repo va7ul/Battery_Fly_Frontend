@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   max-width: 357px;
@@ -7,7 +6,7 @@ export const Wrapper = styled.div`
 
   @media (min-width: 1280px) {
     max-width: 630px;
-    padding: 40px 76px;
+    padding: 40px 78px;
   }
 `;
 
@@ -16,11 +15,11 @@ export const Text = styled.p`
   font-weight: 600;
   text-align: center;
   padding: 0px 52px;
-  margin-bottom: 40px;
+  margin-bottom: 26px;
 
   @media (min-width: 1280px) {
     font-size: 20px;
-    padding: 0px 134px;
+    padding: 0px 132px;
     margin-bottom: 50px;
   }
 `;
@@ -29,7 +28,7 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 261px;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
 
   @media (min-width: 1280px) {
@@ -45,13 +44,11 @@ export const Btn = styled.button`
   border: none;
   font-size: 13px;
   font-weight: 500;
+  background: ${props => props.theme.colors.secondary};
 
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {
@@ -61,9 +58,5 @@ export const Btn = styled.button`
     border: none;
     font-size: 24px;
     font-weight: 400;
-
-    &::after {
-      border-radius: 12px;
-    }
   }
 `;
