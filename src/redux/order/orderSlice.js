@@ -18,11 +18,12 @@ const deliveryInfo = {
   cities: [],
   warehouses: [],
   payment: '',
+  city: '',
 };
 
 const initialState = {
   userData: { ...defaultUserData },
-  delivery: { ...deliveryInfo },
+  delivery: deliveryInfo,
   isLoading: false,
   error: null,
 };
@@ -43,14 +44,14 @@ export const handleRejected = (state, { payload }) => {
 };
 
 export const handleFulfilledGetCity = (state, { payload }) => {
-  state.delivery.cities = [...payload.data.cities];
   console.log(payload);
+  state.delivery.cities = payload.cities;
   state.isLoading = false;
   state.error = '';
 };
 
 export const handleFulfilledGetWarehouses = (state, { payload }) => {
-  state.delivery.warehouses = [...payload.data.warehouses];
+  state.delivery.warehouses = payload.warehouses;
   console.log(payload);
   state.isLoading = false;
   state.error = '';
@@ -62,6 +63,12 @@ const orderSlice = createSlice({
   reducers: {
     changeUserTel(state, { payload }) {
       state.userData.tel = payload;
+    },
+    changeCity(state, { payload }) {
+      state.delivery.city = payload;
+    },
+    changeWarehouses(state, { payload }) {
+      state.delivery.warehouses = payload;
     },
   },
   extraReducers: builder => {
@@ -78,6 +85,7 @@ const orderSlice = createSlice({
   },
 });
 
-export const { changeUserTel } = orderSlice.actions;
+export const { changeUserTel, changeCity, changeWarehouses } =
+  orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;

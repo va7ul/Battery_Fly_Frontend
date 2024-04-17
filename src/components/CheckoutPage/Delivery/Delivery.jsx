@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import Select from 'react-select';
@@ -10,10 +10,13 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
+import { changeCity } from '../../../redux/order/orderSlice';
 import { getDeliveryCity, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses } from '../../../redux/order/orderSelectors';
+import { selectCities, selectWarehouses, selectCity } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
+import { useDebounce } from "use-debounce";
+
 
 const StyledRadioGroup = styled(RadioGroup)({
     gap: '5px',
@@ -58,9 +61,17 @@ export const Delivery = () => {
     const [paymentMethod, setPaymentMethod] = useState('');
     const [inputCity, setInputCity] = useState("");
     const [inputWarehouse, setInputWarehouse] = useState("");
-
-    const cities = useSelector(selectCities);
+   
+   
+    const [debouncedValue] = useDebounce(inputCity, 10000);
+    
+    useEffect(() => {
+        dispatch(changeCity(inputCity))
+    }, [debouncedValue])
+    
+    let cities = useSelector(selectCities);
     const warehouses = useSelector(selectWarehouses);
+    const city = useSelector(selectCity)
 
     const openNP = () => {
         setDisplayAddress("none");
@@ -74,43 +85,52 @@ export const Delivery = () => {
 
     const handleRadioChange = (event) => {
         setPaymentMethod(event.target.value);
-        console.log(event.target.value)
     };
+
+
 
     const optionsCities = cities.map(city => {
-        return {
-            value: city, label: city
-        }
-    });
+            return {
+                value: city, label: city
+            }
+        })
+    ;
 
-    const optionsWarehouses = warehouses.map(warehouse => {
-        return {
-            value: warehouse, label: warehouse
-        }
-    });
+    // const optionsWarehouses = warehouses.map(warehouse => {
+    //     return {
+    //         value: warehouse, label: warehouse
+    //     }
+    // });
 
-     const handleWarehouseChange = (event) => {
-        setInputWarehouse(event);
+       const handleCityChange = (event) => {
+           setInputCity(event.value);
+           cities = [event.value]
+           
+           console.log(event)
+        // dispatch(getDeliveryWarehouses(inputCity));
     };
+
+    //  const handleWarehouseChange = (event) => {
+    //     setInputWarehouse(event);
+    // };
 
     
     const handleSelectCity = (event) => {
         if (event === '') {
             return;
         }
-        setInputCity(event);
         dispatch(getDeliveryCity(event))
+        
+        
+        // dispatch(changeCities([event]))
         console.log(event)
     };
 
-     const handleCityChange = (event) => {
-        setInputCity(event);
-        dispatch(getDeliveryWarehouses(inputCity));
-    };
+  
 
-    const handleSelectWarehouse = (event) => {
-        console.log(event)
-    };
+    // const handleSelectWarehouse = (event) => {
+    //     console.log(event)
+    // };
 
     return (
         <div>
@@ -131,20 +151,20 @@ export const Delivery = () => {
             
                 <Select
                     options={optionsCities}
-                    value={inputCity}
+                    defaultValue={city}
                     onInputChange={handleSelectCity}
                     onChange={handleCityChange}
                     placeholder={"Місто"}
                     styles={selectStyles}
                 />
-                <Select
+                {/* <Select
                     options={optionsWarehouses}
                     value={inputWarehouse}
                     onChange={handleWarehouseChange}
                     onInputChange={handleSelectWarehouse}
                     placeholder={"Відділення/поштомат"}
                     styles={selectStyles}
-                />
+                /> */}
 
             </BoxNP>
             <BoxAddress style={{ display: displayAddress }}>
