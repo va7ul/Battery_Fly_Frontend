@@ -9,7 +9,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -24,7 +24,7 @@ export const Item = styled.li`
 `;
 
 export const Button = styled.button`
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   background-color: transparent;
   border: none;

@@ -23,9 +23,9 @@ export const GoodWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   @media screen and (min-width: 1280px) {
-    gap: 18px;
+    gap: 14px;
   }
 `;
 
@@ -48,7 +48,7 @@ export const GoodName = styled(Link)`
   @media screen and (min-width: 1280px) {
     width: 138px;
     height: 56px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   &:hover {
@@ -111,11 +111,11 @@ export const Input = styled.input`
 
 export const Price = styled.p`
   margin: 0 auto;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 500;
 
   @media screen and (min-width: 1280px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 

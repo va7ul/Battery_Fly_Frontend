@@ -118,7 +118,7 @@ export const CartItem = ({ item }) => {
             <FaPlus />
           </Button>
         </QuantityWrap>
-        <Price>{totalPrice}</Price>
+        <Price>{totalPrice} грн</Price>
         <DeleteBtn type="button" onClick={deleteFromCart}>
           <AiOutlineClose />
         </DeleteBtn>
