@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addOrder, getDeliveryCity } from './orderOperations';
+import {
+  addOrder,
+  getDeliveryCity,
+  getDeliveryWarehouses,
+} from './orderOperations';
 
 const defaultUserData = {
   firstName: '',
@@ -11,8 +15,8 @@ const defaultUserData = {
 
 const deliveryInfo = {
   deliveryType: '',
-  city: '',
-  warehouse: '',
+  cities: [],
+  warehouses: [],
   payment: '',
 };
 
@@ -39,7 +43,15 @@ export const handleRejected = (state, { payload }) => {
 };
 
 export const handleFulfilledGetCity = (state, { payload }) => {
-  state.delivery.city = payload.data;
+  state.delivery.cities = [...payload.data.cities];
+  console.log(payload);
+  state.isLoading = false;
+  state.error = '';
+};
+
+export const handleFulfilledGetWarehouses = (state, { payload }) => {
+  state.delivery.warehouses = [...payload.data.warehouses];
+  console.log(payload);
   state.isLoading = false;
   state.error = '';
 };
@@ -59,7 +71,10 @@ const orderSlice = createSlice({
       .addCase(addOrder.rejected, handleRejected)
       .addCase(getDeliveryCity.pending, handlePending)
       .addCase(getDeliveryCity.fulfilled, handleFulfilledGetCity)
-      .addCase(getDeliveryCity.rejected, handleRejected);
+      .addCase(getDeliveryCity.rejected, handleRejected)
+      .addCase(getDeliveryWarehouses.pending, handlePending)
+      .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetCity)
+      .addCase(getDeliveryWarehouses.rejected, handleRejected);
   },
 });
 
