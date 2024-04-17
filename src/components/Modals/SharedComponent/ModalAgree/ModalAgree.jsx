@@ -1,4 +1,5 @@
 import ReactModal from 'react-modal';
+import { theme } from '../../../../styles/GlobalStyled';
 import { Box, Btn } from './ModalAgree.styled';
 
 const customStyles = {
@@ -16,14 +17,17 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     padding: 'none',
-    background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgba(251, 208, 110, 0.5) 112.295%)',
+    background: `${theme.colors.gradientYellow}`,
   },
 };
 
 ReactModal.setAppElement('#modal-root');
 
-export const ModalAgree = ({ children, isModalAgreeOpen, handleCloseAgreeModal }) => {
+export const ModalAgree = ({
+  children,
+  isModalAgreeOpen,
+  handleCloseAgreeModal,
+}) => {
   return (
     <ReactModal isOpen={isModalAgreeOpen} style={customStyles}>
       <Box>

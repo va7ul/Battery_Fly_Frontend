@@ -22,12 +22,11 @@ export const Btn = styled.button`
   border: none;
   font-size: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  background: ${props => props.theme.colors.secondary};
+
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {
@@ -36,9 +35,5 @@ export const Btn = styled.button`
     padding: 16px 60px;
     border-radius: 12px;
     font-size: 24px;
-
-    &::after {
-      border-radius: 12px;
-    }
   }
 `;
