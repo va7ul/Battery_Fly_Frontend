@@ -12,11 +12,14 @@ import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAg
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
+import { useMediaQuery } from 'react-responsive';
 
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+
   const [showPassword, setShowPassword] = useState(false);
-   const [showPasswordConfirmation, setShowPasswordConfirmation] =
-     useState(false);
+  const [showPasswordConfirmation, setShowPasswordConfirmation] =
+    useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const errorStatus = useSelector(selectErrorStatus);
@@ -37,9 +40,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
-
-    const handleClickShowPasswordConfirmation = () =>
-      setShowPasswordConfirmation(show => !show);
+  const handleClickShowPasswordConfirmation = () => setShowPasswordConfirmation(show => !show);
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -123,8 +124,8 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
               <InputAdornment name="password" position="end">
                 <IconButton
                   sx={{
-                    width: '20px',
-                    height: '20px',
+                    width: isBigScreen ? '20px' : '16px',
+                    height: isBigScreen ? '20px' : '16px',
                   }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
@@ -132,15 +133,15 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
                   {!showPassword ? (
                     <VisibilityOff
                       sx={{
-                        width: '20px',
-                        height: '20px',
+                        width: isBigScreen ? '20px' : '16px',
+                        height: isBigScreen ? '20px' : '16px',
                       }}
                     />
                   ) : (
                     <Visibility
                       sx={{
-                        width: '20px',
-                        height: '20px',
+                        width: isBigScreen ? '20px' : '16px',
+                        height: isBigScreen ? '20px' : '16px',
                       }}
                     />
                   )}
@@ -170,24 +171,24 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
               <InputAdornment name="passwordConfirmation" position="end">
                 <IconButton
                   sx={{
-                    width: '20px',
-                    height: '20px',
+                    width: isBigScreen ? '20px' : '16px',
+                    height: isBigScreen ? '20px' : '16px',
                   }}
                   aria-label="toggle passwordConfirmation visibility"
                   onClick={handleClickShowPasswordConfirmation}
                 >
-                  {!showPassword ? (
+                  {!showPasswordConfirmation ? (
                     <VisibilityOff
                       sx={{
-                        width: '20px',
-                        height: '20px',
+                        width: isBigScreen ? '20px' : '16px',
+                        height: isBigScreen ? '20px' : '16px',
                       }}
                     />
                   ) : (
                     <Visibility
                       sx={{
-                        width: '20px',
-                        height: '20px',
+                        width: isBigScreen ? '20px' : '16px',
+                        height: isBigScreen ? '20px' : '16px',
                       }}
                     />
                   )}
