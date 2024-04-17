@@ -1,13 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   max-width: 357px;
-  padding: 15px 30px;
+  padding: 30px 30px;
 
   @media (min-width: 1280px) {
-    max-width: 632px;
-    padding: 30px 60px;
+    max-width: 630px;
+    padding: 40px 60px;
   }
 `;
 
@@ -79,12 +78,11 @@ export const Btn = styled.button`
   border: none;
   font-size: 15px;
 
-  background: ${props => props.theme.colors.gradient};
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  background: ${props => props.theme.colors.secondary};
+
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {
@@ -93,9 +91,5 @@ export const Btn = styled.button`
     padding: 16px 20px;
     border-radius: 12px;
     font-size: 24px;
-
-    &::after {
-      border-radius: 12px;
-    }
   }
 `;
