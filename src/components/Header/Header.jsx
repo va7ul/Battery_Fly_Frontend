@@ -28,21 +28,23 @@ export const Header = () => {
       {mobileVersion ? (
         <MobileMenu />
       ) : (
-        <DesktopWrapper>
+        <>
           <Logo />
-          <Navigation />
-          {isLoggedIn ? (
-            <ProfileButton />
-          ) : (
-            <LoginButton
-              handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+          <DesktopWrapper>
+            <Navigation />
+            {isLoggedIn ? (
+              <ProfileButton />
+            ) : (
+              <LoginButton
+                handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+              />
+            )}
+            <ModalSignUpSignIn
+              isModalSignUpSignInOpen={isModalSignUpSignInOpen}
+              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
             />
-          )}
-          <ModalSignUpSignIn
-            isModalSignUpSignInOpen={isModalSignUpSignInOpen}
-            handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-          />
-        </DesktopWrapper>
+          </DesktopWrapper>
+        </>
       )}
     </StyledHeader>
   );
