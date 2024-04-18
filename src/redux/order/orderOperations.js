@@ -25,7 +25,7 @@ export const addOrder = createAsyncThunk(
   }
 );
 
-export const getDeliveryCity = createAsyncThunk(
+export const getDeliveryCities = createAsyncThunk(
   'order/getDeliveryCity',
   async (reqCity, thunkApi) => {
     const reqData = { query: reqCity };

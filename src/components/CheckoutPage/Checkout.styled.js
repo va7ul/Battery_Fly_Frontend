@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Title = styled.h2`
   font-size: 16px;
   font-weight: 600;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
   margin-bottom: 16px;
 
   @media screen and (min-width: 1280px) {
@@ -32,10 +32,10 @@ export const OrderButton = styled.button`
   width: 149px;
 
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
-  background: ${props => props.theme.colors.hoverColor};
+  background: ${props => props.theme.colors.secondary};
 
   &:hover {
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.hoverColor};
   }
   @media screen and (min-width: 1280px) {
     width: 266px;

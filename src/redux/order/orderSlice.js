@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addOrder,
-  getDeliveryCity,
+  getDeliveryCities,
   getDeliveryWarehouses,
 } from './orderOperations';
 
@@ -18,11 +18,13 @@ const deliveryInfo = {
   cities: [],
   warehouses: [],
   payment: '',
+  city: '',
+  warehouse: '',
 };
 
 const initialState = {
   userData: { ...defaultUserData },
-  delivery: { ...deliveryInfo },
+  delivery: deliveryInfo,
   isLoading: false,
   error: null,
 };
@@ -42,15 +44,15 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 
-export const handleFulfilledGetCity = (state, { payload }) => {
-  state.delivery.cities = [...payload.data.cities];
+export const handleFulfilledGetCities = (state, { payload }) => {
   console.log(payload);
+  state.delivery.cities = payload.cities;
   state.isLoading = false;
   state.error = '';
 };
 
 export const handleFulfilledGetWarehouses = (state, { payload }) => {
-  state.delivery.warehouses = [...payload.data.warehouses];
+  state.delivery.warehouses = payload.werehouses;
   console.log(payload);
   state.isLoading = false;
   state.error = '';
@@ -63,21 +65,39 @@ const orderSlice = createSlice({
     changeUserTel(state, { payload }) {
       state.userData.tel = payload;
     },
+    changeCity(state, { payload }) {
+      state.delivery.city = payload;
+    },
+    changeCities(state, { payload }) {
+      state.delivery.cities = [payload];
+    },
+    changeWarehouses(state, { payload }) {
+      state.delivery.warehouses = payload;
+    },
+    changeWarehouse(state, { payload }) {
+      state.delivery.warehouse = payload;
+    },
   },
   extraReducers: builder => {
     builder
       .addCase(addOrder.pending, handlePending)
       .addCase(addOrder.fulfilled, handleFulfilledAddOrder)
       .addCase(addOrder.rejected, handleRejected)
-      .addCase(getDeliveryCity.pending, handlePending)
-      .addCase(getDeliveryCity.fulfilled, handleFulfilledGetCity)
-      .addCase(getDeliveryCity.rejected, handleRejected)
+      .addCase(getDeliveryCities.pending, handlePending)
+      .addCase(getDeliveryCities.fulfilled, handleFulfilledGetCities)
+      .addCase(getDeliveryCities.rejected, handleRejected)
       .addCase(getDeliveryWarehouses.pending, handlePending)
-      .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetCity)
+      .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetWarehouses)
       .addCase(getDeliveryWarehouses.rejected, handleRejected);
   },
 });
 
-export const { changeUserTel } = orderSlice.actions;
+export const {
+  changeUserTel,
+  changeCity,
+  changeCities,
+  changeWarehouses,
+  changeWarehouse,
+} = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;

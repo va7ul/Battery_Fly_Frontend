@@ -35,11 +35,11 @@ export const Button = styled.button`
   padding: 14px;
 
   &:hover {
-    background: ${props => props.theme.colors.hoverColor};
+    background: ${props => props.theme.colors.secondary};
   }
 
   &:focus {
-    background: ${props => props.theme.colors.hoverColor};
+    background: ${props => props.theme.colors.secondary};
   }
 
   @media screen and (min-width: 1280px) {
