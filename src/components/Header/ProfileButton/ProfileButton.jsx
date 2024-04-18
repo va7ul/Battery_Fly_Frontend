@@ -32,7 +32,6 @@ export const ProfileButton = () => {
           sx={{
             color: 'text.primary',
             width: '24px',
-            zIndex: 2,
           }}
         />
         {userData.firstName}
