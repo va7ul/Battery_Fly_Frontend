@@ -10,7 +10,7 @@ export const BurgerButton = styled.button`
 `;
 export const MenuWrap = styled.div`
   display: flex;
-  padding: 10px 15px;
+  padding: 0px 15px 10px;
   align-items: center;
 `;
 
