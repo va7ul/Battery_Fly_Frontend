@@ -1,4 +1,5 @@
 import ReactModal from 'react-modal';
+import { theme } from '../../../../styles/GlobalStyled';
 
 const customStyles = {
   overlay: {
@@ -15,8 +16,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     padding: 'none',
-    background:
-      'linear-gradient(180.00deg, rgb(255, 208, 100),rgb(255, 239, 202) 112.295%)',
+    background: `${theme.colors.gradientYellow}`,
   },
 };
 

@@ -7,6 +7,7 @@ import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
+import {theme} from '../../../styles/GlobalStyled'
 import {
   Btn,
   CodeOfGoodText,
@@ -68,9 +69,9 @@ export const ModalQuickOrder = ({
                   ? '23px'
                   : '51px',
                 '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color':
-                  'rgba(31, 31, 31, 1)',
-                '--react-international-phone-text-color': 'rgba(31, 31, 31, 1)',
+                '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
+                '--react-international-phone-text-color':
+                  `${theme.colors.textPrimary}`,
                 '--react-international-phone-font-size': !isBigScreen
                   ? '14px'
                   : '24px',
