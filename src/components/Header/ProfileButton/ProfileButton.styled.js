@@ -1,13 +1,17 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getRotation } from 'styles/GlobalStyled';
 
-export const Wrapper = styled.div`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+
   padding: 7px;
-  min-width: 111px;
+  min-width: 112px;
   border-radius: 10px;
   gap: 5px;
   background-color: ${props => props.theme.colors.secondary};
@@ -18,17 +22,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  font-size: 14px;
-  font-weight: 600;
-  z-index: 2;
-`;
-
-export const ArrowButton = styled.button`
+export const ArrowIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

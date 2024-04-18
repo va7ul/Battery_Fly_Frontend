@@ -1,5 +1,5 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { Wrapper, StyledLink, ArrowButton } from './ProfileButton.styled';
+import { Button, ArrowIcon } from './ProfileButton.styled';
 import sprite from '../../../assets/images/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectUserData } from '../../../redux/user/userSelectors';
@@ -19,8 +19,15 @@ export const ProfileButton = () => {
   };
 
   return (
-    <Wrapper>
-      <StyledLink to="/profile">
+    <>
+      <Button
+        type="button"
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
         <AccountCircleOutlinedIcon
           sx={{
             color: 'text.primary',
@@ -29,20 +36,13 @@ export const ProfileButton = () => {
           }}
         />
         {userData.firstName}
-      </StyledLink>
-      <ArrowButton
-        handleopen={anchorEl}
-        type="button"
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        <svg>
-          <use href={`${sprite}#arrow-left`}></use>
-        </svg>
-      </ArrowButton>
+
+        <ArrowIcon handleopen={anchorEl}>
+          <svg>
+            <use href={`${sprite}#arrow-left`}></use>
+          </svg>
+        </ArrowIcon>
+      </Button>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -54,7 +54,7 @@ export const ProfileButton = () => {
         sx={{
           '& .MuiMenu-paper': {
             bgcolor: 'svgColor.main',
-            width: '130px',
+            maxWidth: '138px',
             p: '2px 5px',
             borderRadius: '6px',
           },
@@ -62,6 +62,6 @@ export const ProfileButton = () => {
       >
         <ProfileList handleClose={handleClose} />
       </Menu>
-    </Wrapper>
+    </>
   );
 };
