@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
@@ -11,7 +11,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
 import { themeMUI } from '../../../styles/GlobalStyled';
-import { changeCity, changeWarehouses, changeWarehouse, changeCities } from '../../../redux/order/orderSlice';
+import { changeCity, changeWarehouse, changeCities } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
 import { selectCities, selectWarehouses, selectCity, selectWarehouse } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
@@ -92,9 +92,10 @@ export const Delivery = () => {
         })
         ;
     
-    const debouncedGetCities = useCallback(
+    const debouncedGetCities = useMemo(
+        ()=>
         debounce(value => dispatch(getDeliveryCities(value)), 1000),
-        []
+        [dispatch]
     )
 
     const optionsWarehouses = warehouses.map(warehouse => {
@@ -118,12 +119,13 @@ export const Delivery = () => {
     };
 
     
-    const handleSelectCity = (event) => {
+    const handleSelectCity = useCallback(event => {
         if (event === '') {
             return;
         }
         debouncedGetCities(event)  
-    };
+    },
+    [debouncedGetCities]);
 
   
 
