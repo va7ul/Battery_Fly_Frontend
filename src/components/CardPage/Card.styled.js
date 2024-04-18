@@ -249,10 +249,8 @@ export const LikeBox = styled.div`
   align-items: center;
   gap: 8px;
   color: ${props => props.theme.colors.hoverColor};
-  transition: ${props => props.theme.transition.main};
 
   &:hover {
-    transform: scale(1.1);
     cursor: pointer;
   }
 

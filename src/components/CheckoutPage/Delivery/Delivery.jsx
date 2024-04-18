@@ -93,10 +93,10 @@ export const Delivery = () => {
         ;
     
     const debouncedGetCities = useMemo(
-        ()=>
-        debounce(value => dispatch(getDeliveryCities(value)), 1000),
+        () =>
+            debounce(value => dispatch(getDeliveryCities(value)), 1000),
         [dispatch]
-    )
+    );
 
     const optionsWarehouses = warehouses.map(warehouse => {
         return {
@@ -106,7 +106,7 @@ export const Delivery = () => {
 
        const handleCityChange = (event) => {
            //    setInputCity(event.value);
-           
+        
         dispatch(changeCity(event.value))
         dispatch(changeCities(event.value))
         dispatch(getDeliveryWarehouses(event.value));
