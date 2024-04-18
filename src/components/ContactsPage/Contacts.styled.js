@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
   font-size: 16px;
   font-weight: 600;
 
@@ -48,7 +48,7 @@ export const Item = styled.li`
   font-size: 10px;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
@@ -72,7 +72,7 @@ export const Div = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
   @media screen and (min-width: 1280px) {
     font-size: 20px;
@@ -84,7 +84,7 @@ export const BoxAddress = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
   @media screen and (min-width: 1280px) {
     font-size: 20px;
