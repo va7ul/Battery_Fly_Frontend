@@ -20,7 +20,7 @@ export const OrdersHistoryListEl = ({ el }) => {
     {
       _id: '65eb6fa6fd80cd2e1934c784',
       codeOfGood: '1013',
-      name: 'Літієва батарея 48 Вольт',
+      name: 'Літієва батарея 48 Вольт https://quantum-energy.ua/wp-content/uploads/2023/12/DSC_0191-1-1024x657.jpg',
       image: [
         'https://quantum-energy.ua/wp-content/uploads/2023/12/DSC_0191-1-1024x657.jpg',
       ],
