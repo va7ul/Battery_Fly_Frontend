@@ -4,12 +4,11 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   min-width: 100px;
   gap: 4px;
   padding: 3px;
   border-radius: 6px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   background-color: ${props => props.theme.colors.secondary};
 
