@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   addOrder,
-  getDeliveryCity,
+  getDeliveryCities,
   getDeliveryWarehouses,
 } from './orderOperations';
 
@@ -44,7 +44,7 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 
-export const handleFulfilledGetCity = (state, { payload }) => {
+export const handleFulfilledGetCities = (state, { payload }) => {
   console.log(payload);
   state.delivery.cities = payload.cities;
   state.isLoading = false;
@@ -83,9 +83,9 @@ const orderSlice = createSlice({
       .addCase(addOrder.pending, handlePending)
       .addCase(addOrder.fulfilled, handleFulfilledAddOrder)
       .addCase(addOrder.rejected, handleRejected)
-      .addCase(getDeliveryCity.pending, handlePending)
-      .addCase(getDeliveryCity.fulfilled, handleFulfilledGetCity)
-      .addCase(getDeliveryCity.rejected, handleRejected)
+      .addCase(getDeliveryCities.pending, handlePending)
+      .addCase(getDeliveryCities.fulfilled, handleFulfilledGetCities)
+      .addCase(getDeliveryCities.rejected, handleRejected)
       .addCase(getDeliveryWarehouses.pending, handlePending)
       .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetWarehouses)
       .addCase(getDeliveryWarehouses.rejected, handleRejected);
