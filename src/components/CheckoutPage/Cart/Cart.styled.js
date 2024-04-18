@@ -27,10 +27,11 @@ export const Title = styled.p`
 
   @media screen and (min-width: 1280px) {
     border: none;
-    font-size: 24px;
+    font-size: 32px;
     text-align: start;
     padding: 0;
     margin-bottom: 10px;
+    margin-top: 24px;
   }
 `;
 
@@ -50,7 +51,7 @@ export const Text = styled.p`
     border: none;
     font-size: 24px;
     padding: 0;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
 
@@ -62,7 +63,8 @@ export const ListWrap = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 100%;
-    max-height: 430px;
+    max-height: 440px;
+    /* max-height: 430px; */
     padding: 0;
   }
 
