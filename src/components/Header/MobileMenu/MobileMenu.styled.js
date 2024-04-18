@@ -35,4 +35,11 @@ export const ArrowButton = styled.button`
 export const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const SubWrap = styled.div`
+  display: flex;
+  align-items: center;
 `;

@@ -4,6 +4,7 @@ import {
   MenuWrap,
   HeaderWrap,
   ArrowButton,
+  SubWrap,
 } from './MobileMenu.styled';
 import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
@@ -29,12 +30,14 @@ export const MobileMenu = () => {
   };
 
   return (
-    <div>
+    <>
       <HeaderWrap>
-        <BurgerButton onClick={openMenu}>
-          <MenuIcon />
-        </BurgerButton>
-        <Logo />
+        <SubWrap>
+          <BurgerButton onClick={openMenu}>
+            <MenuIcon />
+          </BurgerButton>
+          <Logo />
+        </SubWrap>
         <MobileToolBar />
       </HeaderWrap>
 
@@ -49,6 +52,6 @@ export const MobileMenu = () => {
         </MenuWrap>
         <Navigation />
       </MobileDrawer>
-    </div>
+    </>
   );
 };
