@@ -23,4 +23,5 @@ export const StyledHeader = styled.header`
 export const DesktopWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-left: auto;
 `;

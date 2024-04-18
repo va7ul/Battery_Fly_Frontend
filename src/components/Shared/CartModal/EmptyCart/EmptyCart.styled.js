@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -20,7 +19,7 @@ export const CartIcon = styled.svg`
     margin-bottom: 25px;
   }
 
-  fill: ${props => props.theme.colors.backgroundPaper};
+  fill: ${props => props.theme.colors.hoverColor};
 `;
 
 export const Text = styled.p`
@@ -39,13 +38,10 @@ export const Button = styled.button`
   font-size: 13px;
   font-weight: 400;
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
-  background: ${props => props.theme.colors.gradient};
+  background-color: ${props => props.theme.colors.secondary};
 
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  &:hover {
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {

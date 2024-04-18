@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const ListWrap = styled.div`
   margin-top: 20px;
@@ -75,13 +74,11 @@ export const Button = styled.button`
   font-size: 12px;
   font-weight: 400;
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
-  background: ${props => props.theme.colors.gradient};
   padding: 13px 12px;
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  background-color: ${props => props.theme.colors.secondary};
+
+  &:hover {
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
@@ -95,13 +92,11 @@ export const StyledLink = styled(Link)`
   font-size: 12px;
   font-weight: 400;
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
-  background: ${props => props.theme.colors.gradient};
   padding: 13px 8px;
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 6px;
+  background-color: ${props => props.theme.colors.secondary};
+
+  &:hover {
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {

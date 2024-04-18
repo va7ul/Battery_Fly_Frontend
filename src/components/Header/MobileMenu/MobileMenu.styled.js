@@ -10,7 +10,7 @@ export const BurgerButton = styled.button`
 `;
 export const MenuWrap = styled.div`
   display: flex;
-  padding: 10px 15px;
+  padding: 0px 15px 10px;
   align-items: center;
 `;
 
@@ -33,6 +33,13 @@ export const ArrowButton = styled.button`
 `;
 
 export const HeaderWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const SubWrap = styled.div`
   display: flex;
   align-items: center;
 `;

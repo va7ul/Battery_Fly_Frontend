@@ -5,5 +5,5 @@ export const Icon = styled.svg`
   height: 23px;
   margin-right: 37px;
   margin-left: 10px;
-  fill: ${props => props.theme.colors.secondary};
+  fill: ${props => props.theme.colors.hoverColor};
 `;

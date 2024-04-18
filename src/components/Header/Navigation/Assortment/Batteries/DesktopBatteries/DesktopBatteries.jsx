@@ -5,7 +5,6 @@ import { Menu } from '@mui/material';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 import { BatteryButton } from './DesktopBatteries.styled';
 import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
-
 export const DesktopBatteries = () => {
   const [anchorEl, setAnchorEl] = useState();
   const open = Boolean(anchorEl);
@@ -20,17 +19,20 @@ export const DesktopBatteries = () => {
 
   return (
     <>
-      <HopeIconDesktop />
-      <StyledLink to="/batteries">Акумулятори</StyledLink>
+      <StyledLink to="/batteries">
+        <HopeIconDesktop />
+        Акумулятори
+      </StyledLink>
       <BatteryButton
         type="button"
+        handleopen={anchorEl}
         aria-owns={open ? 'desktop-sub-menu' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
         onMouseOver={handleClick}
       >
         <svg>
-          <use href={`${sprite}#arrow-right`}></use>
+          <use href={`${sprite}#arrow-left`}></use>
         </svg>
       </BatteryButton>
 

@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 import { Link } from 'react-router-dom';
 
 export const Item = styled.li`
-  /* position: relative; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -11,7 +9,7 @@ export const Item = styled.li`
   gap: 5px;
 
   border-radius: 8px;
-  background: ${props => props.theme.colors.gradient};
+  background: ${props => props.theme.colors.gradientYellow};
   box-shadow: 0px 4px 12.3px 0px rgba(0, 0, 0, 0.05);
 
   @media screen and (min-width: 1280px) {
@@ -24,9 +22,9 @@ export const GoodWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   @media screen and (min-width: 1280px) {
-    gap: 18px;
+    gap: 14px;
   }
 `;
 
@@ -48,8 +46,8 @@ export const GoodName = styled(Link)`
 
   @media screen and (min-width: 1280px) {
     width: 138px;
-    height: 56px;
-    font-size: 16px;
+    height: 52px;
+    font-size: 14px;
   }
 
   &:hover {
@@ -74,14 +72,11 @@ export const Button = styled.button`
   width: 20px;
   height: 20px;
   padding: 5px;
-  background: ${props => props.theme.colors.gradient};
+  background-color: ${props => props.theme.colors.secondary};
   border-radius: 100%;
 
-  position: relative;
-  z-index: 0;
-  ${gradientTransitionBtn}
-  &::after {
-    border-radius: 100%;
+  &:hover {
+    background-color: ${props => props.theme.colors.hoverColor};
   }
 
   & svg {
@@ -115,11 +110,11 @@ export const Input = styled.input`
 
 export const Price = styled.p`
   margin: 0 auto;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 500;
 
   @media screen and (min-width: 1280px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 
