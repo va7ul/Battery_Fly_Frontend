@@ -175,7 +175,7 @@ export const Delivery = () => {
             <BoxAddress style={{ display: displayAddress }}>
                 <Text>Адреса для самовивозу:</Text>
                 <BoxIcon>
-                    {mobileVersion ? <LocationCityIcon sx={{ fontSize: 22 }} /> : <LocationCityIcon sx={{ fontSize: 30 }} />}
+                    {mobileVersion ? <LocationCityIcon sx={{ fontSize: 22, fill: 'rgba(244, 170, 0, 1)' }} /> : <LocationCityIcon sx={{ fontSize: 30, fill: 'rgba(244, 170, 0, 1)' }} />}
                     <Address
                         href="https://maps.app.goo.gl/HVQb7UZCPnmQ73356"
                         target="_blank"
