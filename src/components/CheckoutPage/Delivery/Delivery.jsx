@@ -104,7 +104,8 @@ export const Delivery = () => {
     });
 
        const handleCityChange = (event) => {
-        //    setInputCity(event.value);
+           //    setInputCity(event.value);
+           
         dispatch(changeCity(event.value))
         dispatch(changeCities(event.value))
         dispatch(getDeliveryWarehouses(event.value));
@@ -121,8 +122,7 @@ export const Delivery = () => {
         if (event === '') {
             return;
         }
-        debouncedGetCities(event)
-        
+        debouncedGetCities(event)  
     };
 
   
@@ -130,6 +130,11 @@ export const Delivery = () => {
     const handleSelectWarehouse = (event) => {
         console.log(event)
     };
+
+    const clearInputCity = () => {
+        dispatch(changeCity(''));
+        dispatch(changeWarehouse(''));
+    }
 
     return (
         <div>
@@ -153,6 +158,7 @@ export const Delivery = () => {
                     defaultValue={city}
                     onInputChange={handleSelectCity}
                     onChange={handleCityChange}
+                    onFocus={clearInputCity}
                     placeholder={"Місто"}
                     styles={selectStyles}
                 />
