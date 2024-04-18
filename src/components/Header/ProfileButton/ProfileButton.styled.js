@@ -38,8 +38,8 @@ export const ArrowIcon = styled.div`
 
   & svg {
     transform: ${getRotation};
-    width: 11px;
-    height: 11px;
+    width: 9px;
+    height: 9px;
     fill: transparent;
     stroke: ${props => props.theme.colors.textPrimary};
     transition: ${props => props.theme.transition.main};
@@ -47,5 +47,12 @@ export const ArrowIcon = styled.div`
 
   &:hover svg {
     transform: rotate(270deg) scale(1.4);
+  }
+
+  @media screen and (min-width: 1280px) {
+    & svg {
+      width: 11px;
+      height: 11px;
+    }
   }
 `;
