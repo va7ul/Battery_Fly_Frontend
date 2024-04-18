@@ -11,9 +11,9 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { changeCity, changeWarehouses } from '../../../redux/order/orderSlice';
+import { changeCity, changeWarehouses, changeWarehouse, changeCities } from '../../../redux/order/orderSlice';
 import { getDeliveryCity, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses, selectCity } from '../../../redux/order/orderSelectors';
+import { selectCities, selectWarehouses, selectCity, selectWarehouse } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
@@ -65,8 +65,9 @@ export const Delivery = () => {
 
     
     let cities = useSelector(selectCities);
-    const warehouses = useSelector(selectWarehouses);
+    let warehouses = useSelector(selectWarehouses);
     const city = useSelector(selectCity)
+    const warehouse = useSelector(selectWarehouse)
 
     const openNP = () => {
         setDisplayAddress("none");
@@ -96,22 +97,23 @@ export const Delivery = () => {
         []
     )
 
-    // const optionsWarehouses = warehouses.map(warehouse => {
-    //     return {
-    //         value: warehouse, label: warehouse
-    //     }
-    // });
+    const optionsWarehouses = warehouses.map(warehouse => {
+        return {
+            value: warehouse, label: warehouse
+        }
+    });
 
        const handleCityChange = (event) => {
-           setInputCity(event.value);
-           cities = [event.value]
-           
-           console.log(event)
-        dispatch(getDeliveryWarehouses(inputCity));
+        //    setInputCity(event.value);
+        dispatch(changeCity(event.value))
+        dispatch(changeCities(event.value))
+        dispatch(getDeliveryWarehouses(event.value));
     };
 
      const handleWarehouseChange = (event) => {
-        setInputWarehouse(event);
+        //  setInputWarehouse(event);
+         dispatch(changeWarehouse(event.value))
+         
     };
 
     
@@ -121,14 +123,13 @@ export const Delivery = () => {
         }
         debouncedGetCities(event)
         
-        // dispatch(changeCities([event]))
     };
 
   
 
-    // const handleSelectWarehouse = (event) => {
-    //     console.log(event)
-    // };
+    const handleSelectWarehouse = (event) => {
+        console.log(event)
+    };
 
     return (
         <div>
@@ -155,14 +156,14 @@ export const Delivery = () => {
                     placeholder={"Місто"}
                     styles={selectStyles}
                 />
-                {/* <Select
+                <Select
                     options={optionsWarehouses}
-                    value={inputWarehouse}
+                    defaultValue={warehouse}
                     onChange={handleWarehouseChange}
                     onInputChange={handleSelectWarehouse}
                     placeholder={"Відділення/поштомат"}
                     styles={selectStyles}
-                /> */}
+                />
 
             </BoxNP>
             <BoxAddress style={{ display: displayAddress }}>
