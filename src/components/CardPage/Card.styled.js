@@ -4,11 +4,18 @@ import styled from 'styled-components';
 const backgroundButton = props =>
   props.disabled
     ? props.theme.colors.greyBackgroundPaper
+    : props.theme.colors.secondary;
+
+const backgroundHoverButton = props =>
+  props.disabled
+    ? props.theme.colors.greyBackgroundPaper
     : props.theme.colors.hoverColor;
 
 const cursorButton = props => (props.disabled ? 'default' : 'pointer');
 const colorButton = props =>
-  props.disabled ? 'rgba(157, 157, 157, 1)' : 'black';
+  props.disabled
+    ? props.theme.colors.textDisabled
+    : props.theme.colors.textPrimary;
 
 // Card
 
@@ -38,7 +45,7 @@ export const Title = styled.h1`
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
 
   @media screen and (min-width: 1280px) {
     font-size: 36px;
@@ -113,7 +120,7 @@ export const SliderDiv = styled.div`
 
   .slick-prev:before,
   .slick-next:before {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
@@ -241,11 +248,10 @@ export const LikeBox = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  color: ${props => props.theme.colors.backgroundPaper};
+  color: ${props => props.theme.colors.hoverColor};
   transition: ${props => props.theme.transition.main};
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
     transform: scale(1.1);
     cursor: pointer;
   }
@@ -258,10 +264,9 @@ export const LikeBox = styled.div`
 export const Like = styled.p`
   font-size: 10px;
   font-weight: 500;
-  color: ${props => props.theme.colors.backgroundPaper};
+  color: ${props => props.theme.colors.hoverColor};
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
     cursor: pointer;
   }
 
@@ -282,7 +287,7 @@ export const IconSquare = styled.svg`
   @media (min-width: 1280px) {
     display: block;
     position: absolute;
-    fill: ${props => props.theme.colors.secondary};
+    fill: ${props => props.theme.colors.hoverColor};
     width: 62px;
     height: 62px;
     left: 438px;
@@ -410,7 +415,7 @@ export const Button = styled.button`
   color: ${colorButton};
 
   &:hover {
-    background: ${props => props.theme.colors.secondary};
+    background: ${backgroundHoverButton};
   }
 
   @media screen and (min-width: 1280px) {
@@ -434,7 +439,7 @@ export const BasketButton = styled.button`
   color: ${colorButton};
 
   &:hover {
-    background: ${props => props.theme.colors.secondary};
+    background: ${backgroundHoverButton};
   }
 
   @media screen and (min-width: 1280px) {
@@ -450,10 +455,10 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.hoverColor};
+  background: ${props => props.theme.colors.secondary};
 
   &:hover {
-    background: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
