@@ -1,18 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
-import { debounce } from 'lodash';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { debounce } from 'lodash';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
-import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
+import { themeMUI } from '../../../styles/GlobalStyled';
 import { changeCity, changeWarehouses, changeWarehouse, changeCities } from '../../../redux/order/orderSlice';
-import { getDeliveryCity, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
+import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
 import { selectCities, selectWarehouses, selectCity, selectWarehouse } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
@@ -60,8 +60,8 @@ export const Delivery = () => {
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [inputCity, setInputCity] = useState("");
-    const [inputWarehouse, setInputWarehouse] = useState("");
+    // const [inputCity, setInputCity] = useState("");
+    // const [inputWarehouse, setInputWarehouse] = useState("");
 
     
     let cities = useSelector(selectCities);
@@ -93,7 +93,7 @@ export const Delivery = () => {
         ;
     
     const debouncedGetCities = useCallback(
-        debounce(value => dispatch(getDeliveryCity(value)), 1000),
+        debounce(value => dispatch(getDeliveryCities(value)), 1000),
         []
     )
 
