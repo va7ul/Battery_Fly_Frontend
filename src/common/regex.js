@@ -1,2 +1,5 @@
-export const nameRegex =
-  "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+export const nameRegexForFeedback =
+  "^[a-zA-Zа-яієїґА-ЯҐЄІЇ]+(([' \\-][a-zA-Zа-яієїґА-ЯҐЄІЇ])?[a-zA-Zа-яієїґА-ЯҐЄІЇ]*)*$";
+
+  export const nameRegex =
+    "^[а-яієїґА-ЯҐЄІЇ]+(([' \\-][а-яієїґА-ЯҐЄІЇ])?[а-яієїґА-ЯҐЄІЇ]*)*$";

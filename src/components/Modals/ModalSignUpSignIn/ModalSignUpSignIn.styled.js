@@ -8,7 +8,7 @@ export const Box = styled.div`
   padding: 36px 48px;
   @media (min-width: 1280px) {
     gap: 40px; 
-    padding: 40px 78px;
+    padding: 40px 76px;
   }
 `;
 
@@ -26,12 +26,12 @@ export const NavBtn = styled.button`
   background-color: transparent;
   color: ${props =>
     props.$show
-      ? props.theme.colors.secondary
+      ? props.theme.colors.hoverColor
       : props.theme.colors.textPrimary};
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {

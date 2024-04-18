@@ -50,7 +50,7 @@ export const StyledOrdersHistoryEl = styled.li`
     text-align: center;
   }
 
-  svg {
+  p + svg {
     width: 15px;
     height: 15px;
     transition: ${props => props.theme.transition.main};

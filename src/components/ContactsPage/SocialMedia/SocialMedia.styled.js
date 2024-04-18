@@ -9,7 +9,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
   opacity: 0.8;
   transition: ${props => props.theme.transition.main};
   cursor: pointer;

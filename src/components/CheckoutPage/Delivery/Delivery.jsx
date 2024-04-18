@@ -1,19 +1,23 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useMemo, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { debounce } from 'lodash';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
-import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { getDeliveryCity, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses } from '../../../redux/order/orderSelectors';
+import { themeMUI } from '../../../styles/GlobalStyled';
+import { changeCity, changeWarehouse, changeCities } from '../../../redux/order/orderSlice';
+import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
+import { selectCities, selectWarehouses, selectCity, selectWarehouse } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
+
+
 
 const StyledRadioGroup = styled(RadioGroup)({
     gap: '5px',
@@ -56,11 +60,14 @@ export const Delivery = () => {
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [inputCity, setInputCity] = useState("");
-    const [inputWarehouse, setInputWarehouse] = useState("");
+    // const [inputCity, setInputCity] = useState("");
+    // const [inputWarehouse, setInputWarehouse] = useState("");
 
-    const cities = useSelector(selectCities);
-    const warehouses = useSelector(selectWarehouses);
+    
+    let cities = useSelector(selectCities);
+    let warehouses = useSelector(selectWarehouses);
+    const city = useSelector(selectCity)
+    const warehouse = useSelector(selectWarehouse)
 
     const openNP = () => {
         setDisplayAddress("none");
@@ -74,14 +81,22 @@ export const Delivery = () => {
 
     const handleRadioChange = (event) => {
         setPaymentMethod(event.target.value);
-        console.log(event.target.value)
     };
 
+
+
     const optionsCities = cities.map(city => {
-        return {
-            value: city, label: city
-        }
-    });
+            return {
+                value: city, label: city
+            }
+        })
+        ;
+    
+    const debouncedGetCities = useMemo(
+        ()=>
+        debounce(value => dispatch(getDeliveryCities(value)), 1000),
+        [dispatch]
+    )
 
     const optionsWarehouses = warehouses.map(warehouse => {
         return {
@@ -89,28 +104,39 @@ export const Delivery = () => {
         }
     });
 
+       const handleCityChange = (event) => {
+           //    setInputCity(event.value);
+           
+        dispatch(changeCity(event.value))
+        dispatch(changeCities(event.value))
+        dispatch(getDeliveryWarehouses(event.value));
+    };
+
      const handleWarehouseChange = (event) => {
-        setInputWarehouse(event);
+        //  setInputWarehouse(event);
+         dispatch(changeWarehouse(event.value))
+         
     };
 
     
-    const handleSelectCity = (event) => {
+    const handleSelectCity = useCallback(event => {
         if (event === '') {
             return;
         }
-        setInputCity(event);
-        dispatch(getDeliveryCity(event))
-        console.log(event)
-    };
+        debouncedGetCities(event)  
+    },
+    [debouncedGetCities]);
 
-     const handleCityChange = (event) => {
-        setInputCity(event);
-        dispatch(getDeliveryWarehouses(inputCity));
-    };
+  
 
     const handleSelectWarehouse = (event) => {
         console.log(event)
     };
+
+    const clearInputCity = () => {
+        dispatch(changeCity(''));
+        dispatch(changeWarehouse(''));
+    }
 
     return (
         <div>
@@ -131,15 +157,16 @@ export const Delivery = () => {
             
                 <Select
                     options={optionsCities}
-                    value={inputCity}
+                    defaultValue={city}
                     onInputChange={handleSelectCity}
                     onChange={handleCityChange}
+                    onFocus={clearInputCity}
                     placeholder={"Місто"}
                     styles={selectStyles}
                 />
                 <Select
                     options={optionsWarehouses}
-                    value={inputWarehouse}
+                    defaultValue={warehouse}
                     onChange={handleWarehouseChange}
                     onInputChange={handleSelectWarehouse}
                     placeholder={"Відділення/поштомат"}
@@ -150,7 +177,7 @@ export const Delivery = () => {
             <BoxAddress style={{ display: displayAddress }}>
                 <Text>Адреса для самовивозу:</Text>
                 <BoxIcon>
-                    {mobileVersion ? <LocationCityIcon sx={{ fontSize: 22 }} /> : <LocationCityIcon sx={{ fontSize: 30 }} />}
+                    {mobileVersion ? <LocationCityIcon sx={{ fontSize: 22, fill: 'rgba(244, 170, 0, 1)' }} /> : <LocationCityIcon sx={{ fontSize: 30, fill: 'rgba(244, 170, 0, 1)' }} />}
                     <Address
                         href="https://maps.app.goo.gl/HVQb7UZCPnmQ73356"
                         target="_blank"

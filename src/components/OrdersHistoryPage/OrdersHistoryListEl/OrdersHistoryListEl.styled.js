@@ -27,11 +27,12 @@ export const OrderDetailsList = styled.ul`
 
   li {
     display: grid;
-    grid-template-columns: 100px repeat(4, 1fr);
+    grid-template-columns: 60px 100px repeat(3, 1fr);
     padding-top: 5px;
     padding-bottom: 5px;
 
     @media screen and (min-width: 1280px) {
+      grid-template-columns: 100px 250px repeat(3, 1fr);
       padding-top: 15px;
       padding-bottom: 15px;
     }
