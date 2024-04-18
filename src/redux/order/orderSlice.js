@@ -19,6 +19,7 @@ const deliveryInfo = {
   warehouses: [],
   payment: '',
   city: '',
+  warehouse: '',
 };
 
 const initialState = {
@@ -51,7 +52,7 @@ export const handleFulfilledGetCity = (state, { payload }) => {
 };
 
 export const handleFulfilledGetWarehouses = (state, { payload }) => {
-  state.delivery.warehouses = payload.warehouses;
+  state.delivery.warehouses = payload.werehouses;
   console.log(payload);
   state.isLoading = false;
   state.error = '';
@@ -67,8 +68,14 @@ const orderSlice = createSlice({
     changeCity(state, { payload }) {
       state.delivery.city = payload;
     },
+    changeCities(state, { payload }) {
+      state.delivery.cities = [payload];
+    },
     changeWarehouses(state, { payload }) {
       state.delivery.warehouses = payload;
+    },
+    changeWarehouse(state, { payload }) {
+      state.delivery.warehouse = payload;
     },
   },
   extraReducers: builder => {
@@ -80,12 +87,17 @@ const orderSlice = createSlice({
       .addCase(getDeliveryCity.fulfilled, handleFulfilledGetCity)
       .addCase(getDeliveryCity.rejected, handleRejected)
       .addCase(getDeliveryWarehouses.pending, handlePending)
-      .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetCity)
+      .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetWarehouses)
       .addCase(getDeliveryWarehouses.rejected, handleRejected);
   },
 });
 
-export const { changeUserTel, changeCity, changeWarehouses } =
-  orderSlice.actions;
+export const {
+  changeUserTel,
+  changeCity,
+  changeCities,
+  changeWarehouses,
+  changeWarehouse,
+} = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;
