@@ -10,8 +10,7 @@ export const List = styled.ul`
 
 export const Item = styled.li`
   width: 100%;
-  /* text-align: center; */
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
 
   &:not(:last-child) {
@@ -21,6 +20,10 @@ export const Item = styled.li`
 
   &:not(:first-child) {
     padding-top: 6px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 14px;
   }
 `;
 
@@ -34,12 +37,16 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   background-color: transparent;
   border: none;
   padding-right: 100%;
   &:hover {
     color: ${props => props.theme.colors.hoverColor};
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 14px;
   }
 `;
