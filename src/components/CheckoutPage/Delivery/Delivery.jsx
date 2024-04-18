@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import Select from 'react-select';
@@ -10,12 +11,12 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { themeMUI } from '../../../styles/GlobalStyled';
 import { yellow } from '@mui/material/colors';
-import { changeCity } from '../../../redux/order/orderSlice';
+import { changeCity, changeWarehouses } from '../../../redux/order/orderSlice';
 import { getDeliveryCity, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
 import { selectCities, selectWarehouses, selectCity } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
-import { useDebounce } from "use-debounce";
+
 
 
 const StyledRadioGroup = styled(RadioGroup)({
@@ -61,13 +62,7 @@ export const Delivery = () => {
     const [paymentMethod, setPaymentMethod] = useState('');
     const [inputCity, setInputCity] = useState("");
     const [inputWarehouse, setInputWarehouse] = useState("");
-   
-   
-    const [debouncedValue] = useDebounce(inputCity, 10000);
-    
-    useEffect(() => {
-        dispatch(changeCity(inputCity))
-    }, [debouncedValue])
+
     
     let cities = useSelector(selectCities);
     const warehouses = useSelector(selectWarehouses);
@@ -94,7 +89,12 @@ export const Delivery = () => {
                 value: city, label: city
             }
         })
-    ;
+        ;
+    
+    const debouncedGetCities = useCallback(
+        debounce(value => dispatch(getDeliveryCity(value)), 1000),
+        []
+    )
 
     // const optionsWarehouses = warehouses.map(warehouse => {
     //     return {
@@ -107,23 +107,21 @@ export const Delivery = () => {
            cities = [event.value]
            
            console.log(event)
-        // dispatch(getDeliveryWarehouses(inputCity));
+        dispatch(getDeliveryWarehouses(inputCity));
     };
 
-    //  const handleWarehouseChange = (event) => {
-    //     setInputWarehouse(event);
-    // };
+     const handleWarehouseChange = (event) => {
+        setInputWarehouse(event);
+    };
 
     
     const handleSelectCity = (event) => {
         if (event === '') {
             return;
         }
-        dispatch(getDeliveryCity(event))
-        
+        debouncedGetCities(event)
         
         // dispatch(changeCities([event]))
-        console.log(event)
     };
 
   
