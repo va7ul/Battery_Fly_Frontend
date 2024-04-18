@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { List, Item, Button } from './ProfileList.styled';
+import { List, Item, Button, StyledLink } from './ProfileList.styled';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../../../redux/user/userOperations';
 
@@ -13,10 +12,17 @@ export const ProfileList = ({ handleClose }) => {
   return (
     <List onClick={handleClose}>
       <Item>
-        <Link to="/orders">Історія замовлень</Link>
+        <StyledLink to="/profile" style={{ paddingRight: '32%' }}>
+          Мій профіль
+        </StyledLink>
       </Item>
       <Item>
-        <Link to="/favorites">Обране</Link>
+        <StyledLink to="/orders" style={{ paddingRight: 0 }}>
+          Історія замовлень
+        </StyledLink>
+      </Item>
+      <Item>
+        <StyledLink to="/favorites">Обране</StyledLink>
       </Item>
       <Item>
         <Button type="button" onClick={logout}>
