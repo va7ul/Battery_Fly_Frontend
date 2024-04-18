@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Item = styled.li`
-  /* position: relative; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -47,7 +46,7 @@ export const GoodName = styled(Link)`
 
   @media screen and (min-width: 1280px) {
     width: 138px;
-    height: 56px;
+    height: 52px;
     font-size: 14px;
   }
 
