@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   padding: 20px;
-  background: rgba(213, 213, 213, 0.54);
+  background: ${props => props.theme.colors.greyPrimary};
   max-width: 360px;
   margin: 0 auto;
 
@@ -77,7 +77,7 @@ export const Text = styled.p`
   font-size: 10px;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
@@ -103,7 +103,7 @@ export const Link = styled(NavLink)`
   font-size: 10px;
 
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.hoverColor};
   }
 
   @media screen and (min-width: 1280px) {
@@ -124,7 +124,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
   opacity: 0.8;
   transition: ${props => props.theme.transition.main};
   cursor: pointer;
