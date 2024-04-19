@@ -22,7 +22,7 @@ export const StyledText = styled.p`
 
 export const OrderDetailsList = styled.ul`
   grid-column: 1/6;
-  background: ${props => props.theme.colors.greyPrimary};
+  background: papayawhip;
   padding: 5px 10px;
 
   li {
