@@ -1,13 +1,21 @@
-import { useMediaQuery } from 'react-responsive';
-import { SubNavBar } from 'components/Shared/SubNavBar/SubNavBar';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+import { Print3D } from 'components/Print3DPage/Print3D';
 
 const Print3DPage = () => {
-  const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
+  // const dispatch = useDispatch();
+  // const isLoading = useSelector(selectOneProductIsLoading);
+  // const error = useSelector(selectOneProductError);
+
+  // useEffect(() => {
+  //   dispatch(get3DPrint());
+  // }, [dispatch]);
 
   return (
     <>
-      {desktopVersion && <SubNavBar />}
-      Print3DPage
+      {/* {isLoading && <CustomLoader />} */}
+      {/* {!isLoading && !error && <Print3D />} */}
+      <Print3D />
     </>
   );
 };

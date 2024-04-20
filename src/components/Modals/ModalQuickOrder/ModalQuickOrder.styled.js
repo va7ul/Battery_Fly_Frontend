@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { Form, Field, ErrorMessage } from 'formik';
 
 export const Wrapper = styled.div`
   max-width: 357px;
@@ -24,7 +25,7 @@ export const Title = styled.h1`
 export const CodeOfGoodText = styled.p`
   font-size: 10px;
   color: rgba(87, 80, 80, 1);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 
   @media (min-width: 1280px) {
     font-size: 16px;
@@ -32,13 +33,67 @@ export const CodeOfGoodText = styled.p`
   }
 `;
 
-export const StyledForm = styled.form`
+export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
+export const StyledField = styled(Field)`
+  width: 286px;
+  height: 23px;
+  padding: 4px 8px;
+  color: ${props => props.theme.colors.textPrimary};
+  border: 1px solid ${props => props.theme.colors.textPrimary};
+  border-radius: 6px;
+  background: transparent;
+  font-size: 14px;
+
+  &:focus {
+    color: ${props => props.theme.colors.textPrimary};
+    outline: none;
+    border: 2px solid ${props => props.theme.colors.hoverColor};
+  }
+
+  @media (min-width: 1280px) {
+    width: 495px;
+    height: 51px;
+    border-radius: 8px;
+    font-size: 24px;
+  }
+`;
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+  color: ${props => props.theme.colors.error};
+  font-size: 8px;
+  padding-left: 8px;
+  margin-top: 4px;
+  align-self: start;
+
+  @media (min-width: 1280px) {
+    font-size: 12px;
+    padding-left: 10px;
+    margin-top: 8px;
+  }
+`;
+
 export const PhoneFieldGlobalStyles = createGlobalStyle`
+.react-international-phone-input-container {
+    margin-top: 10px;
+
+    @media (min-width: 1280px) {
+    margin-top: 16px;
+  }
+  }
+
+.react-international-phone-input-container .react-international-phone-input{
+  &:focus {
+    color: ${props => props.theme.colors.textPrimary};
+    outline: none;
+    border: 2px solid ${props => props.theme.colors.hoverColor};
+  }
+}
+
   .react-international-phone-input {
     width: 250px;
 
@@ -46,6 +101,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
     width: 450px;
   }
   }
+  
    .react-international-phone-input-container .react-international-phone-country-selector-button{
     width:37px;
     background-color: rgba(31, 31, 31, 0.3);
@@ -72,7 +128,7 @@ export const DivErrorMessage = styled.div`
 
 export const Btn = styled.button`
   max-width: 190px;
-  margin-top: 16px;
+  margin-top: 10px;
   padding: 12px 10px;
   border-radius: 6px;
   border: none;

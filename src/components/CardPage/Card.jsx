@@ -2,65 +2,56 @@ import { useMediaQuery } from 'react-responsive';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
-import { ProductPhoto } from './ProductPhoto';
+import { ProductPhoto } from '../Shared/ProductPhoto/ProductPhoto';
 import { Description } from './Description';
 import { Capacity } from './Capacity';
 import { CheckBox } from './Checkbox';
 import { Order } from './Order';
-import { Information } from './Information';
-import { setQuantityOrders, setSelectedHolder, setSelectedSealing} from '../../redux/products/oneProductSlice';
+import { ProductInformation } from '../Shared/ProductInformation/ProductInformation';
 import {
-  Wrapper,
-  Box,
-  Title,
-  Case
-} from './Card.styled';
+  setQuantityOrders,
+  setSelectedHolder,
+  setSelectedSealing,
+} from '../../redux/products/oneProductSlice';
+import { Wrapper, Box, Title, Case } from './Card.styled';
 
 export const Card = () => {
-    const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
-    const dispatch = useDispatch();
-    const { name, capacity, information } = useSelector(selectOneProduct);
+  const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
+  const dispatch = useDispatch();
+  const { name, image, capacity, information } = useSelector(selectOneProduct);
 
-    useEffect(() => {
-        dispatch(setQuantityOrders(1));
-        dispatch(setSelectedHolder(false));
-        dispatch(setSelectedSealing(false));
+  useEffect(() => {
+    dispatch(setQuantityOrders(1));
+    dispatch(setSelectedHolder(false));
+    dispatch(setSelectedSealing(false));
+  }, [dispatch]);
 
-    }, [dispatch]);
-
-
-    return (
-        mobileVersion ? (<Wrapper>
-
-            <Title>{name}</Title>
-            <ProductPhoto />
-            <Description />
+  return (
+    <Wrapper>
+      {mobileVersion ? (
+        <>
+          <Title>{name}</Title>
+          <ProductPhoto name={name} image={image} />
+          <Description />
+          {capacity && <Capacity />}
+          {capacity && <CheckBox />}
+          <Order />
+        </>
+      ) : (
+        <Case>
+          <div>
+            <ProductPhoto name={name} image={image} />
             {capacity && <Capacity />}
+          </div>
+          <Box>
+            <Title>{name}</Title>
+            <Description />
             {capacity && <CheckBox />}
             <Order />
-            {information && <Information information={information} />}
-   
-        </Wrapper>
-            
-        ) : (
-                
-            <Wrapper>
-                <Case>
-                    <div>
-                        <ProductPhoto />
-                        {capacity && <Capacity />}
-                    </div>
-                    <Box>
-                        <Title>{name}</Title>
-                        <Description />
-                        {capacity && <CheckBox />}
-                        <Order />
-                    </Box>
-                </Case>
-                    
-                {information && <Information information={information} />}
-                
-            </Wrapper>
-        )
-    );
+          </Box>
+        </Case>
+      )}
+      {information && <ProductInformation information={information} />}
+    </Wrapper>
+  );
 };

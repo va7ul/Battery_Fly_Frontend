@@ -1,18 +1,22 @@
 import { useState } from 'react';
+import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import { useMediaQuery } from 'react-responsive';
+import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addQuickOrder } from 'api';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
-import {theme} from '../../../styles/GlobalStyled'
+import { theme } from '../../../styles/GlobalStyled';
 import {
   Btn,
   CodeOfGoodText,
   DivErrorMessage,
   PhoneFieldGlobalStyles,
+  StyledErrorMessage,
+  StyledField,
   StyledForm,
   Title,
   Wrapper,
@@ -38,20 +42,6 @@ export const ModalQuickOrder = ({
     document.body.style.overflow = 'unset';
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const orderData = {
-      name,
-      codeOfGood,
-      tel: tel,
-    };
-    const response = await addQuickOrder(orderData);
-    if (response) {
-      handleOpenAgreeModal();
-    }
-    handleCloseQuickOrderModal();
-  };
-
   return (
     <>
       <ModalYellowGradient
@@ -62,44 +52,70 @@ export const ModalQuickOrder = ({
         <Wrapper>
           <Title>{name}</Title>
           <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
-          <StyledForm onSubmit={handleSubmit}>
-            <PhoneInput
-              style={{
-                '--react-international-phone-height': !isBigScreen
-                  ? '23px'
-                  : '51px',
-                '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
-                '--react-international-phone-text-color':
-                  `${theme.colors.textPrimary}`,
-                '--react-international-phone-font-size': !isBigScreen
-                  ? '14px'
-                  : '24px',
-                '--react-international-phone-border-radius': !isBigScreen
-                  ? '6px'
-                  : '8px',
-                '--react-international-phone-flag-width': !isBigScreen
-                  ? '16px'
-                  : '24px',
-                '--react-international-phone-flag-height': !isBigScreen
-                  ? '16px'
-                  : '24px',
-              }}
-              defaultCountry="ua"
-              hideDropdown={true}
-              value={tel}
-              onChange={phone => setTel(phone)}
-              aria-label="Телефон"
-            />
-            {!isValidPhone && (
-              <DivErrorMessage>
-                Введіть свій номер телефону, будь ласка
-              </DivErrorMessage>
-            )}
-            <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
-              <div>Оформити замовлення</div>
-            </Btn>
-          </StyledForm>
+          <Formik
+            initialValues={{
+              name: '',
+            }}
+            validationSchema={nameSchema}
+            onSubmit={async (values, _) => {
+              const orderData = {
+                name,
+                codeOfGood,
+                userName: values.name,
+                tel: tel,
+              };
+              const response = await addQuickOrder(orderData);
+              if (response) {
+                handleOpenAgreeModal();
+              }
+              handleCloseQuickOrderModal();
+            }}
+          >
+            <StyledForm>
+              <StyledField
+                name="name"
+                type="text"
+                placeholder="Ім'я"
+                aria-label="Ім'я"
+              />
+              <StyledErrorMessage name="name" component="div" />
+              <PhoneInput
+                style={{
+                  '--react-international-phone-height': !isBigScreen
+                    ? '23px'
+                    : '51px',
+                  '--react-international-phone-background-color': 'transparent',
+                  '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
+                  '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
+                  '--react-international-phone-font-size': !isBigScreen
+                    ? '14px'
+                    : '24px',
+                  '--react-international-phone-border-radius': !isBigScreen
+                    ? '6px'
+                    : '8px',
+                  '--react-international-phone-flag-width': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                  '--react-international-phone-flag-height': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                }}
+                defaultCountry="ua"
+                hideDropdown={true}
+                value={tel}
+                onChange={phone => setTel(phone)}
+                aria-label="Телефон"
+              />
+              {!isValidPhone && (
+                <DivErrorMessage>
+                  Введіть свій номер телефону, будь ласка
+                </DivErrorMessage>
+              )}
+              <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
+                <div>Оформити замовлення</div>
+              </Btn>
+            </StyledForm>
+          </Formik>
         </Wrapper>
         <PhoneFieldGlobalStyles />
       </ModalYellowGradient>

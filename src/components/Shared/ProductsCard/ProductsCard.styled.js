@@ -133,7 +133,7 @@ export const Disabledbtn = styled.button`
   padding: 6px 18px;
   margin-top: 5px;
   border-radius: 20px;
-  background: ${props => props.theme.colors.greyBackgroundPaper};
+  background: rgba(157, 157, 157, 0.3);
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
