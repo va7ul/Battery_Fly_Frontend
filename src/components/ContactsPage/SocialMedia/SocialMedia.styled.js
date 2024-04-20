@@ -16,7 +16,8 @@ export const Item = styled.li`
   display: block;
   height: 24px;
 
-  &:hover {
+  &:hover,
+  :focus {
     opacity: 1;
     transform: scale(1.05);
   }

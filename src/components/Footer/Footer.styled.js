@@ -76,7 +76,8 @@ export const Title = styled.h4`
 export const Text = styled.p`
   font-size: 10px;
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${props => props.theme.colors.hoverColor};
   }
 
@@ -102,7 +103,8 @@ export const TextDate = styled.p`
 export const Link = styled(NavLink)`
   font-size: 10px;
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${props => props.theme.colors.hoverColor};
   }
 
@@ -118,9 +120,6 @@ export const Link = styled(NavLink)`
 export const List = styled.ul`
   display: flex;
   gap: 6px;
-
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const Item = styled.li`
@@ -131,7 +130,8 @@ export const Item = styled.li`
   display: block;
   height: 20px;
 
-  &:hover {
+  &:hover,
+  :focus {
     opacity: 1;
     transform: scale(1.05);
   }
