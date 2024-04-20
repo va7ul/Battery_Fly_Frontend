@@ -417,11 +417,11 @@ export const selectStyles = {
     ...styles,
     backgroundColor: 'rgba(225, 225, 225, 1)',
     fontSize: '10px',
-    width: '132px',
+    width: '140px',
     border: '1px solid rgb(31, 31, 31)',
     '@media only screen and (min-width: 1280px)': {
       fontSize: '20px',
-      width: '220px',
+      width: '226px',
       borderRadius: '12px',
     },
   }),
