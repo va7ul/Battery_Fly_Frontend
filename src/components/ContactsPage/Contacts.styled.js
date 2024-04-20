@@ -47,7 +47,8 @@ export const List = styled.ul`
 export const Item = styled.li`
   font-size: 10px;
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${props => props.theme.colors.hoverColor};
   }
 
@@ -71,9 +72,11 @@ export const Div = styled.div`
 
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${props => props.theme.colors.hoverColor};
   }
+
   @media screen and (min-width: 1280px) {
     font-size: 20px;
   }
@@ -83,9 +86,11 @@ export const BoxAddress = styled.div`
   font-size: 10px;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${props => props.theme.colors.hoverColor};
   }
+
   @media screen and (min-width: 1280px) {
     font-size: 20px;
   }
