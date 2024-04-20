@@ -84,18 +84,23 @@ export const StyledField = styled(Field)`
 `;
 
 export const PhoneFieldGlobalStyles = createGlobalStyle`
-  .react-international-phone-input {
-    width: 224px;
-
+.react-international-phone-input-container .react-international-phone-input{
   &:focus {
-    color:  ${props => props.theme.colors.greyBackgroundPaper};
+    color: ${props => props.theme.colors.greyBackgroundPaper};
     outline: none;
     border: 1px solid ${props => props.theme.colors.secondary};
   }
+}
+
+  .react-international-phone-input {
+    width: 224px;
+
+
     @media (min-width: 1280px) {
     width: 430px;
   }
   }
+
    .react-international-phone-input-container .react-international-phone-country-selector-button{
     width:37px;
 
