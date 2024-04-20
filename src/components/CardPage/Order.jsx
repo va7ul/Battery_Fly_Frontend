@@ -155,7 +155,7 @@ export const Order = () => {
         }
 
         if (value <= quantity) {
-            dispatch(setQuantityOrders(Number(e.target.value) || ''));
+            dispatch(setQuantityOrders(value || ''));
         }
     };
 
@@ -188,7 +188,7 @@ export const Order = () => {
             <CounterBox>
                 <Button
                     onClick={minusOne}
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                 >
                     <FaMinus />
                 </Button>
@@ -198,23 +198,24 @@ export const Order = () => {
                     onBlur={minValue}
                     onChange={setValue}
                     value={quantityOrders}
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                 ></Input>
                 <Button
                     onClick={plusOne}
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                 >
                     <FaPlus />
                 </Button>
             </CounterBox>
             <ButtonBox>
                 <BasketButton
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                     onClick={addToBasket}
                 >В кошик
                 </BasketButton>
                 <OrderButton
                     onClick={handleOpenQuickOrderModal}
+                    disabled={quantity < 1}
                 >Швидке замовлення
                 </OrderButton>
             </ButtonBox>

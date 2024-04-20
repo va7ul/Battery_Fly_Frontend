@@ -363,11 +363,13 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.secondary};
+  background: ${backgroundButton};
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
   &:hover,
   :focus {
-    background: ${props => props.theme.colors.hoverColor};
+    background: ${backgroundHoverButton};
   }
 
   @media screen and (min-width: 1280px) {
