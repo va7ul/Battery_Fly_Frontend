@@ -71,11 +71,11 @@ const orderSlice = createSlice({
     changeCities(state, { payload }) {
       state.delivery.cities = [payload];
     },
-    changeWarehouses(state, { payload }) {
-      state.delivery.warehouses = payload;
-    },
     changeWarehouse(state, { payload }) {
       state.delivery.warehouse = payload;
+    },
+    changeWarehouses(state, { payload }) {
+      state.delivery.warehouses = payload;
     },
   },
   extraReducers: builder => {
