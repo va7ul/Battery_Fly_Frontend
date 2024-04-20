@@ -34,11 +34,8 @@ export const Button = styled.button`
   text-align: center;
   padding: 14px;
 
-  &:hover {
-    background: ${props => props.theme.colors.secondary};
-  }
-
-  &:focus {
+  &:hover,
+  :focus {
     background: ${props => props.theme.colors.secondary};
   }
 
@@ -100,10 +97,6 @@ export const BoxIcon = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 5px;
-
-  @media screen and (min-width: 1280px) {
-    /* gap: 10px; */
-  }
 `;
 
 export const Text = styled.p`
