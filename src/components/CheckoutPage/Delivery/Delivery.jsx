@@ -101,7 +101,6 @@ export const Delivery = () => {
             value: warehouse, label: warehouse
         };
     });
-
     const handleCityChange = (event) => {
         dispatch(changeCity(event.value));
         dispatch(changeCities(event.value));
