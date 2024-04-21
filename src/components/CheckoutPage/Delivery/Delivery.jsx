@@ -11,7 +11,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
 import { themeMUI } from '../../../styles/GlobalStyled';
-import { changeCity, changeWarehouse, changeCities, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
+import { changeCity, changeWarehouse, changeWarehouses, changeCities, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
 import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
@@ -75,11 +75,13 @@ export const Delivery = () => {
         setDisplayNP("none");
         setDisplayAddress("flex");
         dispatch(changeDeliveryType("Самовивіз"));
-
+        dispatch(changeCity("null"))
+        dispatch(changeWarehouse("null"))
     };
 
     const handleRadioChange = (event) => {
         dispatch(changePayment(event.target.value));
+        
     };
 
     const optionsCities = cities.map(city => {
@@ -108,6 +110,7 @@ export const Delivery = () => {
 
     const handleWarehouseChange = (event) => {
         dispatch(changeWarehouse(event.value));
+        dispatch(changeWarehouses(event.value));
     };
 
     
