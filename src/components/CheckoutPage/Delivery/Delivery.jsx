@@ -11,9 +11,9 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
 import { themeMUI } from '../../../styles/GlobalStyled';
-import { changeCity, changeWarehouse, changeCities } from '../../../redux/order/orderSlice';
+import { changeCity, changeWarehouse, changeCities, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses, selectCity, selectWarehouse } from '../../../redux/order/orderSelectors';
+import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment, selectDeliveryType } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
@@ -59,32 +59,35 @@ export const Delivery = () => {
 
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
-    const [deliveryType, setDeliveryType] = useState('');
-    const [paymentMethod, setPaymentMethod] = useState('');
+    // const [deliveryType, setDeliveryType] = useState('');
+    // const [paymentMethod, setPaymentMethod] = useState('');
     // const [inputCity, setInputCity] = useState("");
     // const [inputWarehouse, setInputWarehouse] = useState("");
 
     
     let cities = useSelector(selectCities);
     let warehouses = useSelector(selectWarehouses);
-    const city = useSelector(selectCity)
-    const warehouse = useSelector(selectWarehouse)
+    const city = useSelector(selectCity);
+    const warehouse = useSelector(selectWarehouse);
+    const payment = useSelector(selectPayment);
+    // const deliveryType = useSelector(selectDeliveryType)
 
     const openNP = () => {
         setDisplayAddress("none");
         setDisplayNP("flex");
-        setDeliveryType("Нова пошта")
+        dispatch(changeDeliveryType("Нова пошта"))
+        
     };
 
     const openAddress = () => {
         setDisplayNP("none");
         setDisplayAddress("flex");
-        setDeliveryType("Самовивіз")
+        dispatch(changeDeliveryType("Самовивіз"))
 
     };
 
     const handleRadioChange = (event) => {
-        setPaymentMethod(event.target.value);
+       dispatch(changePayment(event.target.value));
     };
 
 
@@ -198,7 +201,7 @@ export const Delivery = () => {
                     <StyledRadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
-                        value={paymentMethod}
+                        value={payment}
                         onChange={handleRadioChange}
                     >
                         <FormControlLabel value="Картою по реквізитах фізичних осіб" control={<StyledRadio
