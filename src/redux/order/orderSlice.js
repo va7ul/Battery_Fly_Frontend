@@ -77,6 +77,12 @@ const orderSlice = createSlice({
     changeWarehouse(state, { payload }) {
       state.delivery.warehouse = payload;
     },
+    changeDeliveryType(state, { payload }) {
+      state.delivery.deliveryType = payload;
+    },
+    changePayment(state, { payload }) {
+      state.delivery.payment = payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -98,6 +104,8 @@ export const {
   changeCities,
   changeWarehouses,
   changeWarehouse,
+  changeDeliveryType,
+  changePayment,
 } = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;
