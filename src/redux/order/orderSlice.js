@@ -33,8 +33,7 @@ export const handlePending = state => {
   state.isLoading = true;
 };
 
-export const handleFulfilledAddOrder = (state, { payload }) => {
-  state.userData = payload.user;
+export const handleFulfilledAddOrder = state => {
   state.isLoading = false;
   state.error = '';
 };
@@ -45,7 +44,6 @@ export const handleRejected = (state, { payload }) => {
 };
 
 export const handleFulfilledGetCities = (state, { payload }) => {
-  console.log(payload);
   state.delivery.cities = payload.cities;
   state.isLoading = false;
   state.error = '';
@@ -53,7 +51,6 @@ export const handleFulfilledGetCities = (state, { payload }) => {
 
 export const handleFulfilledGetWarehouses = (state, { payload }) => {
   state.delivery.warehouses = payload.werehouses;
-  console.log(payload);
   state.isLoading = false;
   state.error = '';
 };
@@ -72,7 +69,7 @@ const orderSlice = createSlice({
       state.delivery.cities = [payload];
     },
     changeWarehouses(state, { payload }) {
-      state.delivery.warehouses = payload;
+      state.delivery.warehouses = [payload];
     },
     changeWarehouse(state, { payload }) {
       state.delivery.warehouse = payload;
