@@ -1,24 +1,28 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
 import { Grid } from '@mui/material';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Cart } from './Cart/Cart';
 import { Delivery } from './Delivery/Delivery';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
-import { useFormik } from 'formik';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { selectItems, selectTotal } from '../../redux/basket/basketSelectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUserDataInOrder } from '../../redux/order/orderSelectors';
+import { selectUserDataInOrder, selectCity, selectDeliveryType, selectPayment, selectWarehouse } from '../../redux/order/orderSelectors';
 import { addOrder } from '../../redux/order/orderOperations';
 
 export const Checkout = () => {
   const { firstName, lastName, email, text, tel } = useSelector(
     selectUserDataInOrder
   );
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const isValidPhone = isPhoneValid(tel);
   const total = useSelector(selectTotal);
   const cartItems = useSelector(selectItems);
+  const city = useSelector(selectCity);
+  const warehouse = useSelector(selectWarehouse);
+  const payment = useSelector(selectPayment);
+  const deliveryType = useSelector(selectDeliveryType)
 
   const formik = useFormik({
     initialValues: {
@@ -33,8 +37,14 @@ export const Checkout = () => {
         userData: { ...values, tel },
         total,
         cartItems,
+        deliveryType,
+        city,
+        warehouse,
+        payment
       };
+      console.log(orderData)
       dispatch(addOrder(orderData));
+      
       //  if (response) {
       //    handleOpenAgreeModal();
       //  }
