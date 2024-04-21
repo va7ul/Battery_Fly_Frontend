@@ -21,7 +21,6 @@ const initialState = {
   token: '',
   errorStatus: null,
   verifiedEmail: false,
-  orders: [],
   delivery: {},
   favorites: [],
   isLoading: false,
@@ -39,7 +38,6 @@ const handleEntranceFulfilled = (state, { payload }) => {
   state.token = payload.token;
   state.errorStatus = '';
   state.verifiedEmail = payload.verifiedEmail;
-  state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
