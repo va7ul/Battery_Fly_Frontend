@@ -52,7 +52,6 @@ const handleEntranceRejected = (state, { payload }) => {
 const handleLogoutPending = state => {
   state.userData = { ...defaultUserData };
   state.token = '';
-  state.orders = [];
   state.delivery = {};
   state.favorites = [];
   state.isLoggedIn = false;
@@ -65,7 +64,6 @@ const handleRefreshPending = state => {
 
 const handleRefreshFulfilled = (state, { payload }) => {
   state.userData = payload.user;
-  state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
