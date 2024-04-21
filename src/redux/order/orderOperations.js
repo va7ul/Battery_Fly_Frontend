@@ -16,7 +16,7 @@ export const addOrder = createAsyncThunk(
   'order/addOrder',
   async (orderData, thunkApi) => {
     try {
-      const { data } = await axios.post('order', orderData);
+      const { data } = await axios.post('order/add-order', orderData);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
