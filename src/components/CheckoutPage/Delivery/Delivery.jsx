@@ -59,6 +59,7 @@ export const Delivery = () => {
 
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
+    const [deliveryType, setDeliveryType] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
     // const [inputCity, setInputCity] = useState("");
     // const [inputWarehouse, setInputWarehouse] = useState("");
@@ -72,11 +73,14 @@ export const Delivery = () => {
     const openNP = () => {
         setDisplayAddress("none");
         setDisplayNP("flex");
+        setDeliveryType("Нова пошта")
     };
 
     const openAddress = () => {
         setDisplayNP("none");
         setDisplayAddress("flex");
+        setDeliveryType("Самовивіз")
+
     };
 
     const handleRadioChange = (event) => {
@@ -197,7 +201,7 @@ export const Delivery = () => {
                         value={paymentMethod}
                         onChange={handleRadioChange}
                     >
-                        <FormControlLabel value="card" control={<StyledRadio
+                        <FormControlLabel value="Картою по реквізитах фізичних осіб" control={<StyledRadio
                             sx={{
                                 color: yellow[700],
                                 '&.Mui-checked': {
@@ -205,7 +209,7 @@ export const Delivery = () => {
                                 },
                             }}
                         />} label="Картою по реквізитах фізичних осіб" />
-                        <FormControlLabel value="account" control={<StyledRadio
+                        <FormControlLabel value="Рахунок для юридичних осіб або ФОП" control={<StyledRadio
                             sx={{
                                 color: yellow[700],
                                 '&.Mui-checked': {
@@ -213,7 +217,7 @@ export const Delivery = () => {
                                 },
                             }}
                         />} label="Рахунок для юридичних осіб або ФОП" />
-                        <FormControlLabel value="cash" control={<StyledRadio
+                        <FormControlLabel value="Накладений платіж" control={<StyledRadio
                             sx={{
                                 color: yellow[700],
                                 '&.Mui-checked': {
