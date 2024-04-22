@@ -1,7 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { FormikProvider } from 'formik';
+import { useMediaQuery } from 'react-responsive';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
-import { useMediaQuery } from 'react-responsive';
-
+import { selectUserDataInOrder } from '../../../redux/order/orderSelectors';
+import { changeUserTel } from '../../../redux/order/orderSlice';
 import {
   DivErrorMessage,
   Label,
@@ -14,18 +17,12 @@ import {
   Title,
   Wrapper,
 } from './PersonalData.styled';
-import { FormikProvider } from 'formik';
-import { selectUserDataInOrder } from '../../../redux/order/orderSelectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeUserTel } from '../../../redux/order/orderSlice';
 
 export const PersonalData = ({ formik, isValidPhone }) => {
-    const { tel } = useSelector(
-      selectUserDataInOrder
-  );
-     const dispatch = useDispatch();
+  const { tel } = useSelector(selectUserDataInOrder);
+  const dispatch = useDispatch();
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  // console.log('setTel', setTel);
+
   return (
     <FormikProvider value={formik}>
       <Wrapper>
