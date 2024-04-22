@@ -75,14 +75,14 @@ export const ModalQuickOrder = ({
               <StyledField
                 name="name"
                 type="text"
-                placeholder="Ім'я"
+                placeholder="Ваше ім’я"
                 aria-label="Ім'я"
               />
               <StyledErrorMessage name="name" component="div" />
               <PhoneInput
                 style={{
                   '--react-international-phone-height': !isBigScreen
-                    ? '23px'
+                    ? '28px'
                     : '51px',
                   '--react-international-phone-background-color': 'transparent',
                   '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
@@ -123,7 +123,7 @@ export const ModalQuickOrder = ({
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
       >
-        <TextAgree>Ваш запит успішно прийнято.</TextAgree>
+        <TextAgree>Дякуємо за замовлення.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
       </ModalAgree>
     </>
