@@ -3,18 +3,18 @@ import { Form, Field, ErrorMessage } from 'formik';
 
 export const Wrapper = styled.div`
   max-width: 357px;
-  padding: 30px 30px;
+  padding: 36px 48px;
 
   @media (min-width: 1280px) {
     max-width: 630px;
-    padding: 40px 60px;
+    padding: 40px 76px;
   }
 `;
 
 export const Title = styled.h1`
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 
   @media (min-width: 1280px) {
     font-size: 24px;
@@ -25,11 +25,11 @@ export const Title = styled.h1`
 export const CodeOfGoodText = styled.p`
   font-size: 10px;
   color: rgba(87, 80, 80, 1);
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 
   @media (min-width: 1280px) {
     font-size: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -40,8 +40,8 @@ export const StyledForm = styled(Form)`
 `;
 
 export const StyledField = styled(Field)`
-  width: 286px;
-  height: 23px;
+  width: 261px;
+  height: 28px;
   padding: 4px 8px;
   color: ${props => props.theme.colors.textPrimary};
   border: 1px solid ${props => props.theme.colors.textPrimary};
@@ -56,7 +56,7 @@ export const StyledField = styled(Field)`
   }
 
   @media (min-width: 1280px) {
-    width: 495px;
+    width: 476px;
     height: 51px;
     border-radius: 8px;
     font-size: 24px;
@@ -79,10 +79,14 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 
 export const PhoneFieldGlobalStyles = createGlobalStyle`
 .react-international-phone-input-container {
-    margin-top: 10px;
+    margin-top: 16px;   
+    width: 261px;
+    height: 28px;
 
     @media (min-width: 1280px) {
-    margin-top: 16px;
+     margin-top: 30px;
+     width: 476px;
+    height: 51px;
   }
   }
 
@@ -95,19 +99,21 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 }
 
   .react-international-phone-input {
-    width: 250px;
+    width: 224px;
 
     @media (min-width: 1280px) {
-    width: 450px;
+    width: 431px;
   }
   }
   
    .react-international-phone-input-container .react-international-phone-country-selector-button{
     width:37px;
+    height: 28px;
     background-color: rgba(31, 31, 31, 0.3);
 
     @media (min-width: 1280px) {
-    width: 46px;
+    width: 45px;
+     height: 51px;
   }
 } 
 `;
@@ -128,7 +134,7 @@ export const DivErrorMessage = styled.div`
 
 export const Btn = styled.button`
   max-width: 190px;
-  margin-top: 10px;
+  margin-top: 16px;
   padding: 12px 10px;
   border-radius: 6px;
   border: none;
