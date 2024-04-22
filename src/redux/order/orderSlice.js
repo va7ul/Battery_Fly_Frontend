@@ -25,6 +25,7 @@ const deliveryInfo = {
 const initialState = {
   userData: { ...defaultUserData },
   delivery: deliveryInfo,
+  orderNum: '',
   isLoading: false,
   error: null,
 };
@@ -33,7 +34,9 @@ export const handlePending = state => {
   state.isLoading = true;
 };
 
-export const handleFulfilledAddOrder = state => {
+export const handleFulfilledAddOrder = (state, { payload }) => {
+  state.userData = payload.user;
+  state.orderNum = payload.orderNum;
   state.isLoading = false;
   state.error = '';
 };
@@ -61,6 +64,9 @@ const orderSlice = createSlice({
   reducers: {
     changeUserTel(state, { payload }) {
       state.userData.tel = payload;
+    },
+    changeOrderNum(state, { payload }) {
+      state.orderNum = payload;
     },
     changeCity(state, { payload }) {
       state.delivery.city = payload;
@@ -97,6 +103,7 @@ const orderSlice = createSlice({
 
 export const {
   changeUserTel,
+  changeOrderNum,
   changeCity,
   changeCities,
   changeWarehouses,
