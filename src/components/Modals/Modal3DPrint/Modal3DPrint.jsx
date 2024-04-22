@@ -4,6 +4,7 @@ import { PhoneInput } from 'react-international-phone';
 import { useMediaQuery } from 'react-responsive';
 import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
+import { add3DPrintOrder } from 'api';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
@@ -53,12 +54,16 @@ export const Modal3DPrint = ({
               name: '',
             }}
             validationSchema={nameSchema}
-            onSubmit={(values, _) => {
+            onSubmit={async (values, _) => {
               const orderData = {
                 userName: values.name,
                 tel: tel,
               };
-           console.log('orderData', orderData);
+              const response = await add3DPrintOrder(orderData);
+              if (response) {
+                handleOpenAgreeModal();
+              }
+              handleClose3DPrintModal();
             }}
           >
             <StyledForm>
