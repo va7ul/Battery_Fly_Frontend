@@ -17,6 +17,7 @@ import {
   StyledErrorMessage,
   StyledField,
   StyledForm,
+  StyledTextField,
   Title,
   Wrapper,
 } from './Modal3DPrint.styled';
@@ -52,12 +53,14 @@ export const Modal3DPrint = ({
           <Formik
             initialValues={{
               name: '',
+              comment:'',
             }}
             validationSchema={nameSchema}
             onSubmit={async (values, _) => {
               const orderData = {
                 userName: values.name,
                 tel: tel,
+                comment: values.comment,
               };
               const response = await add3DPrintOrder(orderData);
               if (response) {
@@ -106,6 +109,13 @@ export const Modal3DPrint = ({
                   Введіть свій номер телефону, будь ласка
                 </DivErrorMessage>
               )}
+              <StyledTextField
+                component="textarea"
+                name="comment"
+                type="text"
+                placeholder="Ваш коментар (за необхідності)"
+              />
+              <StyledErrorMessage name="comment" component="div" />
               <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
                 <div>Оформити замовлення</div>
               </Btn>

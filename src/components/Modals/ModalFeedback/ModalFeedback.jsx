@@ -85,7 +85,9 @@ export const ModalFeedback = ({
                 ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
                     .name
                 : '',
-              text: JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
+              comment: JSON.parse(
+                localStorage.getItem(localStorageFeedbacksKey)
+              )
                 ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
                     .text
                 : '',
@@ -153,11 +155,11 @@ export const ModalFeedback = ({
                 Коментар
                 <StyledTextField
                   component="textarea"
-                  name="text"
+                  name="comment"
                   type="text"
                   placeholder="Введіть текст"
                 />
-                <StyledErrorMessage name="text" component="div" />
+                <StyledErrorMessage name="comment" component="div" />
               </Label>
               <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
                 Зв'язатись
