@@ -52,6 +52,40 @@ export const StyledField = styled(Field)`
   }
 `;
 
+export const StyledTextField = styled(Field)`
+  width: 261px;
+  height: 46px;
+  margin-top: 10px;
+  padding: 4px 8px;
+  color: ${props => props.theme.colors.textPrimary};
+  border: 1px solid ${props => props.theme.colors.textPrimary};
+  border-radius: 6px;
+  background: transparent;
+  overflow-x: auto;
+  font-size: 12px;
+
+  &::placeholder {
+    font-size: 10px;
+  }
+  &:focus {
+    color: ${props => props.theme.colors.textPrimary};
+    outline: none;
+    border: 2px solid ${props => props.theme.colors.hoverColor};
+  }
+
+  @media (min-width: 1280px) {
+    width: 476px;
+    height: 117px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 20px;
+
+    &::placeholder {
+      font-size: 16px;
+    }
+  }
+`;
+
 export const StyledErrorMessage = styled(ErrorMessage)`
   color: ${props => props.theme.colors.error};
   font-size: 8px;
@@ -68,13 +102,13 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 
 export const PhoneFieldGlobalStyles = createGlobalStyle`
 .react-international-phone-input-container {
-    margin-top: 16px;
+    margin-top: 10px;
     width: 261px;
     height: 28px;
 
     @media (min-width: 1280px) {
-    margin-top: 30px;
-     width: 476px;
+    margin-top: 20px;
+    width: 476px;
     height: 51px;
   }
   }
