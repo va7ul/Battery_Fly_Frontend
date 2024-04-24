@@ -16,21 +16,22 @@ import {
 import { ProductInformation } from 'components/Shared/ProductInformation/ProductInformation';
 import { Description } from './Description/Description';
 import { Options } from './Options/Options';
+import { PriceList } from './PriceList/PriceList';
 
 export const Print3D = () => {
   const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
   //   const { name, capacity, information } = useSelector(select3DPrint);
-    const [isModal3DPrintOpen, setIsModal3DPrintOpen] = useState(false);
+  const [isModal3DPrintOpen, setIsModal3DPrintOpen] = useState(false);
 
-    const handleOpen3DPrintModal = () => {
-      setIsModal3DPrintOpen(true);
-      document.body.style.overflow = 'hidden';
-    };
-    const handleClose3DPrintModal = () => {
-      setIsModal3DPrintOpen(false);
-      document.body.style.overflow = 'unset';
-    };
-  
+  const handleOpen3DPrintModal = () => {
+    setIsModal3DPrintOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleClose3DPrintModal = () => {
+    setIsModal3DPrintOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   const data = {
     name: '3D-Друк',
     image: [
@@ -81,6 +82,7 @@ export const Print3D = () => {
         </Case>
       )}
       {information && <ProductInformation information={information} />}
+      <PriceList />
       <Modal3DPrint
         isModal3DPrintOpen={isModal3DPrintOpen}
         handleClose3DPrintModal={handleClose3DPrintModal}
