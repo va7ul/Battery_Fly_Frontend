@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
+  }
 `;
 
 export const Subject = styled.h2`
