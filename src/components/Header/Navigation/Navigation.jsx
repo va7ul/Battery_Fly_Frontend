@@ -10,12 +10,27 @@ import { CartModal } from 'components/Shared/CartModal/CartModal';
 import { selectMenu } from '../../../redux/menu/menuSelectors';
 import { setCartOpen, setMenuOpen } from '../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from 'utils/hooks';
+import { ModalSignUpSignIn } from 'components/Modals/ModalSignUpSignIn/ModalSignUpSignIn';
+import { setAuthModalOpen } from '../../../redux/user/userSlice';
 
 export const Navigation = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(selectMenu);
+  const { isLoggedIn, isAuthModalOpen } = useAuth();
+
+  const handleOpenSignUpSignInModal = () => {
+    if (!isLoggedIn) {
+      dispatch(setAuthModalOpen(true));
+      document.body.style.overflow = 'hidden';
+    }
+  };
+  const handleCloseSignUpSignInModal = () => {
+    dispatch(setAuthModalOpen(false));
+    document.body.style.overflow = 'unset';
+  };
 
   const closeMenu = () => {
     if (isMenuOpen) {
@@ -48,15 +63,23 @@ export const Navigation = () => {
           <CartModal />
         </Item>
         {mobileVersion ? (
-          <NavItem page="/favorites" title="Обране" />
+          <NavItem
+            handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}
+            page="/favorites"
+            title="Обране"
+          />
         ) : (
-          <Item>
+          <Item onClick={handleOpenSignUpSignInModal}>
             <StyledLink to="/favorites">
               <FavoriteIcon />
             </StyledLink>
           </Item>
         )}
       </NavList>
+      <ModalSignUpSignIn
+        isModalSignUpSignInOpen={isAuthModalOpen}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      />
     </nav>
   );
 };
