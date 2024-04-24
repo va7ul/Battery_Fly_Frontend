@@ -13,23 +13,26 @@ export const CartModal = () => {
   const products = useSelector(selectItems);
   const isCartOpen = useSelector(selectCart);
 
-  const closeCart = () => {
-    if (isCartOpen) {
-      dispatch(setCartOpen(false));
-    }
+  const toggleCart = () => {
+    dispatch(setCartOpen(!isCartOpen));
   };
 
   return (
     <>
-      <MobileDrawer isOpen={isCartOpen} closeDrawer={closeCart} anchor="right">
+      <MobileDrawer
+        isOpen={isCartOpen}
+        closeDrawer={toggleCart}
+        openDrawer={toggleCart}
+        anchor="right"
+      >
         <div>
           <Title>Кошик</Title>
-          <CloseBtn type="button" onClick={closeCart}>
+          <CloseBtn type="button" onClick={toggleCart}>
             <IoCloseOutline />
           </CloseBtn>
         </div>
         {products.length < 1 ? (
-          <EmptyCart closeCart={closeCart} />
+          <EmptyCart closeCart={toggleCart} />
         ) : (
           <FilledCart />
         )}
