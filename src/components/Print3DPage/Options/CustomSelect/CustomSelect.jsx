@@ -14,6 +14,7 @@ export const CustomSelect = ({ data, placeholder }) => {
       options={options}
       // onChange={handleSelect}
       placeholder={placeholder}
+      isSearchable={false}
       styles={selectStyles}
     />
   );
