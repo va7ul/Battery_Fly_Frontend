@@ -4,7 +4,7 @@ import { PhoneInput } from 'react-international-phone';
 import { useMediaQuery } from 'react-responsive';
 import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
-import { addQuickOrder } from 'api';
+import { add3DPrintOrder } from 'api';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
@@ -12,20 +12,19 @@ import { TextAgree } from '../SharedComponent/Text/Text';
 import { theme } from '../../../styles/GlobalStyled';
 import {
   Btn,
-  CodeOfGoodText,
   DivErrorMessage,
   PhoneFieldGlobalStyles,
   StyledErrorMessage,
   StyledField,
   StyledForm,
+  StyledTextField,
   Title,
   Wrapper,
-} from './ModalQuickOrder.styled';
+} from './Modal3DPrint.styled';
 
-export const ModalQuickOrder = ({
-  product: { name, codeOfGood },
-  isModalQuickOrderOpen,
-  handleCloseQuickOrderModal,
+export const Modal3DPrint = ({
+  isModal3DPrintOpen,
+  handleClose3DPrintModal,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const [tel, setTel] = useState('');
@@ -45,30 +44,29 @@ export const ModalQuickOrder = ({
   return (
     <>
       <ModalYellowGradient
-        isModalOpen={isModalQuickOrderOpen}
-        handleCloseModal={handleCloseQuickOrderModal}
+        isModalOpen={isModal3DPrintOpen}
+        handleCloseModal={handleClose3DPrintModal}
       >
-        <CloseButton handleCloseModal={handleCloseQuickOrderModal} />
+        <CloseButton handleCloseModal={handleClose3DPrintModal} />
         <Wrapper>
-          <Title>{name}</Title>
-          <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
+          <Title>3D Друк</Title>
           <Formik
             initialValues={{
               name: '',
+              comment:'',
             }}
             validationSchema={nameSchema}
             onSubmit={async (values, _) => {
               const orderData = {
-                name,
-                codeOfGood,
                 userName: values.name,
                 tel: tel,
+                comment: values.comment,
               };
-              const response = await addQuickOrder(orderData);
+              const response = await add3DPrintOrder(orderData);
               if (response) {
                 handleOpenAgreeModal();
               }
-              handleCloseQuickOrderModal();
+              handleClose3DPrintModal();
             }}
           >
             <StyledForm>
@@ -111,6 +109,13 @@ export const ModalQuickOrder = ({
                   Введіть свій номер телефону, будь ласка
                 </DivErrorMessage>
               )}
+              <StyledTextField
+                component="textarea"
+                name="comment"
+                type="text"
+                placeholder="Ваш коментар (за необхідності)"
+              />
+              <StyledErrorMessage name="comment" component="div" />
               <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
                 <div>Оформити замовлення</div>
               </Btn>

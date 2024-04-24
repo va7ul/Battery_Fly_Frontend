@@ -1,7 +1,10 @@
 export const selectUserDataInOrder = state => state.order.userData;
+export const selectOrderNum = state => state.order.orderNum;
 export const selectIsLoading = state => state.order.isLoading;
 export const selectError = state => state.order.error;
 export const selectCities = state => state.order.delivery.cities;
 export const selectWarehouses = state => state.order.delivery.warehouses;
 export const selectCity = state => state.order.delivery.city;
 export const selectWarehouse = state => state.order.delivery.warehouse;
+export const selectDeliveryType = state => state.order.delivery.deliveryType;
+export const selectPayment = state => state.order.delivery.payment;

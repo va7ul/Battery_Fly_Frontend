@@ -13,6 +13,7 @@ import {
   selectHolderPrice,
   selectPriceWithSale,
 } from '../../redux/products/productsSelectors';
+import { selectItems } from '../../redux/basket/basketSelectors'
 import {
   setPrice,
   setQuantityOrders,
@@ -54,6 +55,7 @@ export const Order = () => {
     const sealingPrice = useSelector(selectSealingPrice);
     const holderPrice = useSelector(selectHolderPrice);
     const priceWithSale = useSelector(selectPriceWithSale);
+    const quantityItemsInBasket = useSelector(selectItems);
 
     useEffect(() => {
         dispatch(setSealingPrice(100 * quantityOrders));
@@ -155,7 +157,7 @@ export const Order = () => {
         }
 
         if (value <= quantity) {
-            dispatch(setQuantityOrders(Number(e.target.value) || ''));
+            dispatch(setQuantityOrders(value || ''));
         }
     };
 
@@ -166,6 +168,15 @@ export const Order = () => {
     };
 
     const addToBasket = () => {
+        const itemInBasket = quantityItemsInBasket.find(item => item.codeOfGood === codeOfGood);
+
+        if (itemInBasket && quantity < itemInBasket.quantityOrdered + quantityOrders) {
+            return toast(`Максимальна кількість в наявності: ${quantity} шт`, {
+                id: 'clipboard',
+                duration: 4000,
+            });
+        }
+        
         dispatch(
             addItem({
                 ...product,
@@ -188,7 +199,7 @@ export const Order = () => {
             <CounterBox>
                 <Button
                     onClick={minusOne}
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                 >
                     <FaMinus />
                 </Button>
@@ -198,23 +209,24 @@ export const Order = () => {
                     onBlur={minValue}
                     onChange={setValue}
                     value={quantityOrders}
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                 ></Input>
                 <Button
                     onClick={plusOne}
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                 >
                     <FaPlus />
                 </Button>
             </CounterBox>
             <ButtonBox>
                 <BasketButton
-                    disabled={typeof oneProductPrice === 'string'}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
                     onClick={addToBasket}
                 >В кошик
                 </BasketButton>
                 <OrderButton
                     onClick={handleOpenQuickOrderModal}
+                    disabled={quantity < 1}
                 >Швидке замовлення
                 </OrderButton>
             </ButtonBox>

@@ -21,7 +21,6 @@ const initialState = {
   token: '',
   errorStatus: null,
   verifiedEmail: false,
-  orders: [],
   delivery: {},
   favorites: [],
   isLoading: false,
@@ -39,7 +38,6 @@ const handleEntranceFulfilled = (state, { payload }) => {
   state.token = payload.token;
   state.errorStatus = '';
   state.verifiedEmail = payload.verifiedEmail;
-  state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
@@ -52,7 +50,6 @@ const handleEntranceRejected = (state, { payload }) => {
 const handleLogoutPending = state => {
   state.userData = { ...defaultUserData };
   state.token = '';
-  state.orders = [];
   state.delivery = {};
   state.favorites = [];
   state.isLoggedIn = false;
@@ -65,7 +62,6 @@ const handleRefreshPending = state => {
 
 const handleRefreshFulfilled = (state, { payload }) => {
   state.userData = payload.user;
-  state.orders = payload.orders;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;

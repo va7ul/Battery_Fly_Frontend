@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
   margin: 0 auto;
 
   @media screen and (min-width: 1280px) {
-    padding: 50px 110px 25px 110px;
+    padding: 50px 110px;
     max-width: 1280px;
   }
 `;
@@ -50,103 +50,6 @@ export const Title = styled.h1`
   @media screen and (min-width: 1280px) {
     font-size: 36px;
     margin-bottom: 10px;
-  }
-`;
-
-//  ProductPhoto
-
-export const ImageBig = styled.img`
-  width: 310px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-
-  @media screen and (min-width: 1280px) {
-    min-width: 518px;
-    height: 390px;
-    border-radius: 20px;
-  }
-`;
-
-export const ImageSmall = styled.img`
-  width: 50px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 6px;
-
-  @media screen and (min-width: 1280px) {
-    width: 80px;
-    height: 60px;
-    border-radius: 8px;
-  }
-`;
-
-export const Image = styled.img`
-  width: 320px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
-  margin-bottom: 5px;
-
-  @media screen and (min-width: 1280px) {
-    min-width: 518px;
-    height: 390px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-  }
-`;
-
-export const SliderDiv = styled.div`
-  width: 310px;
-  height: 200px;
-  margin: 0 auto;
-  margin-bottom: 50px;
-
-  .slick-dots li {
-    width: 50px;
-    height: 40px;
-    border-radius: 6px;
-  }
-
-  .slick-dots {
-    height: 40px;
-    bottom: -38px;
-  }
-
-  .slick-list {
-    cursor: grab;
-  }
-
-  .slick-prev:before,
-  .slick-next:before {
-    color: ${props => props.theme.colors.hoverColor};
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 518px;
-    height: 390px;
-    margin-bottom: 95px;
-
-    .slick-dots {
-      height: 60px;
-      bottom: -65px;
-    }
-
-    .slick-dots li {
-      width: 80px;
-      height: 60px;
-      border-radius: 12px;
-    }
-
-    .slick-prev:before,
-    .slick-next:before {
-      font-size: 40px;
-    }
-
-    .slick-prev {
-      left: -45px;
-    }
   }
 `;
 
@@ -249,10 +152,9 @@ export const LikeBox = styled.div`
   align-items: center;
   gap: 8px;
   color: ${props => props.theme.colors.hoverColor};
-  transition: ${props => props.theme.transition.main};
 
-  &:hover {
-    transform: scale(1.1);
+  &:hover,
+  :focus {
     cursor: pointer;
   }
 
@@ -266,7 +168,8 @@ export const Like = styled.p`
   font-weight: 500;
   color: ${props => props.theme.colors.hoverColor};
 
-  &:hover {
+  &:hover,
+  :focus {
     cursor: pointer;
   }
 
@@ -407,6 +310,9 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -414,7 +320,8 @@ export const Button = styled.button`
   cursor: ${cursorButton};
   color: ${colorButton};
 
-  &:hover {
+  &:hover,
+  :focus {
     background: ${backgroundHoverButton};
   }
 
@@ -438,7 +345,8 @@ export const BasketButton = styled.button`
   cursor: ${cursorButton};
   color: ${colorButton};
 
-  &:hover {
+  &:hover,
+  :focus {
     background: ${backgroundHoverButton};
   }
 
@@ -455,10 +363,13 @@ export const OrderButton = styled.button`
   height: 40px;
   font-size: 15px;
   border-radius: 6px;
-  background: ${props => props.theme.colors.secondary};
+  background: ${backgroundButton};
+  cursor: ${cursorButton};
+  color: ${colorButton};
 
-  &:hover {
-    background: ${props => props.theme.colors.hoverColor};
+  &:hover,
+  :focus {
+    background: ${backgroundHoverButton};
   }
 
   @media screen and (min-width: 1280px) {
@@ -466,37 +377,6 @@ export const OrderButton = styled.button`
     height: 60px;
     font-size: 24px;
     border-radius: 20px;
-  }
-`;
-
-// Information
-
-export const InfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-export const Subject = styled.h2`
-  height: 30px;
-  font-size: 15px;
-  font-weight: 400;
-  background: ${props => props.theme.colors.greyBackgroundPaper};
-  border-radius: 12px;
-  text-align: center;
-  padding: 6px;
-
-  @media screen and (min-width: 1280px) {
-    height: 42px;
-    font-size: 20px;
-  }
-`;
-
-export const Info = styled.div`
-  font-size: 10px;
-
-  @media screen and (min-width: 1280px) {
-    font-size: 20px;
   }
 `;
 
@@ -524,13 +404,13 @@ export const selectStyles = {
     backgroundColor: 'rgba(225, 225, 225, 1)',
     borderRadius: '6px',
     borderStyle: 'none',
-    width: '132px',
+    width: '140px',
     maxHeight: '30px',
     minHeight: '25px',
     border: '1px solid rgb(31, 31, 31)',
     ':hover': { borderColor: 'currentColor', boxShadow: 'none' },
     '@media only screen and (min-width: 1280px)': {
-      width: '220px',
+      width: '226px',
       minHeight: '42px',
       borderRadius: '12px',
     },
@@ -539,11 +419,11 @@ export const selectStyles = {
     ...styles,
     backgroundColor: 'rgba(225, 225, 225, 1)',
     fontSize: '10px',
-    width: '132px',
+    width: '140px',
     border: '1px solid rgb(31, 31, 31)',
     '@media only screen and (min-width: 1280px)': {
       fontSize: '20px',
-      width: '220px',
+      width: '226px',
       borderRadius: '12px',
     },
   }),

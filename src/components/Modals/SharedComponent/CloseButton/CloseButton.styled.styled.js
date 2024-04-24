@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CloseBtn = styled.button`
   position: absolute;
-  top: 6px;
+  top: 10px;
   right: 10px;
   width: 24px;
   height: 24px;
