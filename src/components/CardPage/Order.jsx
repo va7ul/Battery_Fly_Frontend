@@ -13,6 +13,7 @@ import {
   selectHolderPrice,
   selectPriceWithSale,
 } from '../../redux/products/productsSelectors';
+import { selectItems } from '../../redux/basket/basketSelectors'
 import {
   setPrice,
   setQuantityOrders,
@@ -54,6 +55,7 @@ export const Order = () => {
     const sealingPrice = useSelector(selectSealingPrice);
     const holderPrice = useSelector(selectHolderPrice);
     const priceWithSale = useSelector(selectPriceWithSale);
+    const quantityItemsInBasket = useSelector(selectItems);
 
     useEffect(() => {
         dispatch(setSealingPrice(100 * quantityOrders));
@@ -166,6 +168,15 @@ export const Order = () => {
     };
 
     const addToBasket = () => {
+        const itemInBasket = quantityItemsInBasket.find(item => item.codeOfGood === codeOfGood);
+
+        if (itemInBasket && quantity < itemInBasket.quantityOrdered + quantityOrders) {
+            return toast(`Максимальна кількість в наявності: ${quantity} шт`, {
+                id: 'clipboard',
+                duration: 4000,
+            });
+        }
+        
         dispatch(
             addItem({
                 ...product,
