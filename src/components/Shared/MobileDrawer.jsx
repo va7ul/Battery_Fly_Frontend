@@ -1,20 +1,14 @@
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { useMediaQuery } from 'react-responsive';
 
-export const MobileDrawer = ({
-  children,
-  closeDrawer,
-  isOpen,
-  openDrawer,
-  anchor,
-}) => {
+export const MobileDrawer = ({ children, toggle, isOpen, anchor }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   return (
     <SwipeableDrawer
       open={isOpen}
-      onClose={closeDrawer}
-      onOpen={openDrawer}
+      onClose={() => toggle()}
+      onOpen={() => toggle()}
       anchor={anchor}
       onClick={e => e.stopPropagation()}
       sx={{
