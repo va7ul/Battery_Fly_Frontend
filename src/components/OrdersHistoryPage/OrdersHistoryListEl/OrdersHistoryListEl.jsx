@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TfiArrowCircleDown, TfiArrowCircleUp } from 'react-icons/tfi';
 import { OrderDetails } from './OrderDetails/OrderDetails';
 import { StyledText, OrderDetailsList } from './OrdersHistoryListEl.styled';
+import { getDate } from 'utils/helpers';
 
 export const OrdersHistoryListEl = ({ el }) => {
   const data = [
@@ -33,7 +34,8 @@ export const OrdersHistoryListEl = ({ el }) => {
     },
   ];
 
-  const { number, status, date, total } = el;
+  const { numberOfOrder, status, date, total } = el;
+  const dateCorrected = getDate(date);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,9 +45,9 @@ export const OrdersHistoryListEl = ({ el }) => {
 
   return (
     <>
-      <p>№{number}</p>
+      <p>№{numberOfOrder}</p>
       <StyledText type={status}>{status}</StyledText>
-      <p>{date}</p>
+      <p>{dateCorrected}</p>
       <p>{total} грн</p>
       {isOpen ? (
         <TfiArrowCircleUp onClick={handleOpen} />
