@@ -41,6 +41,7 @@ export const Capacity = () => {
             <Select options={options}
                 onChange={handleSelect}
                 placeholder={"Виберіть ємність"}
+                isSearchable={false}
                 styles={selectStyles}
             />
             <Desc>{newDescr.map(item => <li key={item}>{item}</li>)}</Desc>
