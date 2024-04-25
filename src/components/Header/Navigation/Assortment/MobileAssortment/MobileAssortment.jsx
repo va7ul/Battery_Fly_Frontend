@@ -51,9 +51,8 @@ export const MobileAssortment = () => {
 
       <MobileDrawer
         isOpen={isSubMenuOpen}
-        closeDrawer={toggleSubDrawer}
+        toggle={toggleSubDrawer}
         anchor="left"
-        openDrawer={toggleSubDrawer}
       >
         <Wrap>
           <BackButton type="button" onClick={toggleSubDrawer}>

@@ -10,10 +10,12 @@ import { Link } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../../redux/user/userSelectors';
 import { ProfileButton } from '../ProfileButton/ProfileButton';
 import { LoginButton } from '../LoginButton/LoginButton';
+import { selectCart } from '../../../redux/menu/menuSelectors';
 
 export const MobileToolBar = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isCartOpen = useSelector(selectCart);
 
   const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 
@@ -26,16 +28,16 @@ export const MobileToolBar = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const openDrawer = () => {
-    dispatch(setCartOpen(true));
+  const toggleCart = () => {
+    dispatch(setCartOpen(!isCartOpen));
   };
 
   return (
     <Wrapper>
-      <Button type="button" onClick={openDrawer}>
+      <Button type="button" onClick={toggleCart}>
         <CartIcon />
       </Button>
-      <CartModal />
+      <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
       <Link to="/favorites">
         <FavoriteIcon />
       </Link>
