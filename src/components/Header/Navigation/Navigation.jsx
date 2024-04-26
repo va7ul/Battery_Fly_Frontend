@@ -43,10 +43,12 @@ export const Navigation = () => {
                 <HopeIconMobile /> <div>Кошик</div>
               </>
             ) : (
-              <CartIcon />
+              <>
+                <CartIcon />
+                <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
+              </>
             )}
           </CartButton>
-          <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
         </Item>
         {mobileVersion ? (
           <NavItem page="/favorites" title="Обране" />
