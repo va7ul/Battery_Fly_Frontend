@@ -37,20 +37,8 @@ const handlePending = (state, { payload }) => {
   state.errorStatus = '';
 };
 
-const handleEntranceFulfilled = (state, { payload }) => {
-  state.userData = payload.user;
-  state.token = payload.token;
-  state.errorStatus = '';
-  state.verifiedEmail = payload.verifiedEmail;
-  state.delivery = payload.delivery;
-  state.favorites = payload.favorites;
-  state.isLoggedIn = true;
-  state.isLoading = false;
-};
-
-const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.errorStatus = payload;
+const handleRefreshPending = state => {
+  state.isRefreshing = true;
 };
 
 const handleLogoutPending = state => {
@@ -62,8 +50,25 @@ const handleLogoutPending = state => {
   state.verifiedEmail = false;
 };
 
-const handleRefreshPending = state => {
-  state.isRefreshing = true;
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.errorStatus = payload;
+};
+
+const handleRefreshRejected = state => {
+  state.isRefreshing = false;
+  state.isLoggedIn = false;
+};
+
+const handleEntranceFulfilled = (state, { payload }) => {
+  state.userData = payload.user;
+  state.token = payload.token;
+  state.errorStatus = '';
+  state.verifiedEmail = payload.verifiedEmail;
+  state.delivery = payload.delivery;
+  state.favorites = payload.favorites;
+  state.isLoggedIn = true;
+  state.isLoading = false;
 };
 
 const handleRefreshFulfilled = (state, { payload }) => {
@@ -72,11 +77,6 @@ const handleRefreshFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
   state.isRefreshing = false;
-};
-
-const handleRefreshRejected = state => {
-  state.isRefreshing = false;
-  state.isLoggedIn = false;
 };
 
 const handleFavoriteFulfilled = (state, { payload }) => {
@@ -89,8 +89,7 @@ const handleGetOrdersHistoryFulfilled = (state, { payload }) => {
 };
 
 const handleGetOrderDetailsFulfilled = (state, { payload }) => {
-  state.isLoading = false;
-  state.ordersDetails += payload.result;
+  state.ordersDetails.push(payload.result);
 };
 
 const userSlice = createSlice({
@@ -110,12 +109,7 @@ const userSlice = createSlice({
       .addCase(getOrdersHistory.fulfilled, handleGetOrdersHistoryFulfilled)
       .addCase(getOrderDetails.fulfilled, handleGetOrderDetailsFulfilled)
       .addMatcher(
-        isAnyOf(
-          register.pending,
-          login.pending,
-          getOrdersHistory.pending,
-          getOrderDetails.pending
-        ),
+        isAnyOf(register.pending, login.pending, getOrdersHistory.pending),
         handlePending
       )
       .addMatcher(
