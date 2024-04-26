@@ -53,7 +53,7 @@ export const MobileBatteries = () => {
 
       <MobileDrawer
         isOpen={isThirdMenuOpen}
-        toggleDrawer={toggleDrawer}
+        toggle={toggleDrawer}
         anchor="left"
       >
         <Wrap>
