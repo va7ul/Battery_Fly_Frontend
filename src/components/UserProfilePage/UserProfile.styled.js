@@ -14,12 +14,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 1280px) {
     font-size: 40px;
-    margin-bottom: 30px;
   }
 `;
