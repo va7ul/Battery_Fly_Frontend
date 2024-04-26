@@ -6,6 +6,8 @@ import {
   register,
   addToFavorite,
   deleteFromFavorite,
+  getOrdersHistory,
+  getOrderDetails,
 } from './userOperations';
 
 const defaultUserData = {
@@ -23,28 +25,20 @@ const initialState = {
   verifiedEmail: false,
   delivery: {},
   favorites: [],
+  ordersHistory: [],
+  ordersDetails: [],
   isLoading: false,
-  error: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
 
-const handleEntrancePending = (state, { payload }) => {
+const handlePending = (state, { payload }) => {
+  state.isLoading = true;
   state.errorStatus = '';
 };
 
-const handleEntranceFulfilled = (state, { payload }) => {
-  state.userData = payload.user;
-  state.token = payload.token;
-  state.errorStatus = '';
-  state.verifiedEmail = payload.verifiedEmail;
-  state.delivery = payload.delivery;
-  state.favorites = payload.favorites;
-  state.isLoggedIn = true;
-};
-
-const handleEntranceRejected = (state, { payload }) => {
-  state.errorStatus = payload;
+const handleRefreshPending = state => {
+  state.isRefreshing = true;
 };
 
 const handleLogoutPending = state => {
@@ -56,8 +50,25 @@ const handleLogoutPending = state => {
   state.verifiedEmail = false;
 };
 
-const handleRefreshPending = state => {
-  state.isRefreshing = true;
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.errorStatus = payload;
+};
+
+const handleRefreshRejected = state => {
+  state.isRefreshing = false;
+  state.isLoggedIn = false;
+};
+
+const handleEntranceFulfilled = (state, { payload }) => {
+  state.userData = payload.user;
+  state.token = payload.token;
+  state.errorStatus = '';
+  state.verifiedEmail = payload.verifiedEmail;
+  state.delivery = payload.delivery;
+  state.favorites = payload.favorites;
+  state.isLoggedIn = true;
+  state.isLoading = false;
 };
 
 const handleRefreshFulfilled = (state, { payload }) => {
@@ -68,17 +79,17 @@ const handleRefreshFulfilled = (state, { payload }) => {
   state.isRefreshing = false;
 };
 
-const handleRefreshRejected = state => {
-  state.isRefreshing = false;
-  state.isLoggedIn = false;
-};
-
-const handleAddToFavoriteFulfilled = (state, { payload }) => {
+const handleFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
 };
 
-const handleDeleteFromFavoriteFulfilled = (state, { payload }) => {
-  state.favorites = payload.favorites;
+const handleGetOrdersHistoryFulfilled = (state, { payload }) => {
+  state.isLoading = false;
+  state.ordersHistory = payload.result;
+};
+
+const handleGetOrderDetailsFulfilled = (state, { payload }) => {
+  state.ordersDetails.push(payload.result);
 };
 
 const userSlice = createSlice({
@@ -95,19 +106,30 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
-      .addCase(addToFavorite.fulfilled, handleAddToFavoriteFulfilled)
-      .addCase(deleteFromFavorite.fulfilled, handleDeleteFromFavoriteFulfilled)
+      .addCase(getOrdersHistory.fulfilled, handleGetOrdersHistoryFulfilled)
+      .addCase(getOrderDetails.fulfilled, handleGetOrderDetailsFulfilled)
       .addMatcher(
-        isAnyOf(register.pending, login.pending),
-        handleEntrancePending
+        isAnyOf(register.pending, login.pending, getOrdersHistory.pending),
+        handlePending
+      )
+      .addMatcher(
+        isAnyOf(
+          register.rejected,
+          login.rejected,
+          addToFavorite.rejected,
+          deleteFromFavorite.rejected,
+          getOrdersHistory.rejected,
+          getOrderDetails.rejected
+        ),
+        handleRejected
       )
       .addMatcher(
         isAnyOf(register.fulfilled, login.fulfilled),
         handleEntranceFulfilled
       )
       .addMatcher(
-        isAnyOf(register.rejected, login.rejected),
-        handleEntranceRejected
+        isAnyOf(addToFavorite.fulfilled, deleteFromFavorite.fulfilled),
+        handleFavoriteFulfilled
       );
   },
 });

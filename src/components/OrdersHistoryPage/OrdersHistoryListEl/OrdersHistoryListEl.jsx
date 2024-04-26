@@ -1,51 +1,37 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { TfiArrowCircleDown, TfiArrowCircleUp } from 'react-icons/tfi';
+import { getDate, getOrderInfo } from 'utils/helpers';
+import { getOrderDetails } from '../../../redux/user/userOperations';
 import { OrderDetails } from './OrderDetails/OrderDetails';
 import { StyledText, OrderDetailsList } from './OrdersHistoryListEl.styled';
+import { useSelector } from 'react-redux';
+import { selectOrderDetails } from '../../../redux/user/userSelectors';
 
 export const OrdersHistoryListEl = ({ el }) => {
-  const data = [
-    {
-      _id: '65eb7298fd80cd2e1934c7ac',
-      codeOfGood: '1013',
-      name: 'Акумулятор Molice',
-      image: ['https://hobbymania.com.ua/img/img_medium/7675_250_1.jpg'],
-      price: 198,
-      quantityOrdered: 2,
-      totalPrice: 396,
-      capacityKey: '',
-      selectedSealing: false,
-      selectedHolder: false,
-    },
-    {
-      _id: '65eb6fa6fd80cd2e1934c784',
-      codeOfGood: '1013',
-      name: 'Літієва батарея 48 Вольт https://quantum-energy.ua/wp-content/uploads/2023/12/DSC_0191-1-1024x657.jpg',
-      image: [
-        'https://quantum-energy.ua/wp-content/uploads/2023/12/DSC_0191-1-1024x657.jpg',
-      ],
-      price: 4878,
-      quantityOrdered: 2,
-      totalPrice: 9756,
-      capacityKey: '9',
-      selectedSealing: true,
-      selectedHolder: true,
-    },
-  ];
+  const { numberOfOrder, status, date, total } = el;
 
-  const { number, status, date, total } = el;
+  const allOrdersDetails = useSelector(selectOrderDetails);
+  const dateCorrected = getDate(date);
+  const data = getOrderInfo(allOrdersDetails, numberOfOrder);
 
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = e => {
+  const handleOpen = async e => {
+    if (!isOpen) {
+      if (allOrdersDetails.length < 1 || !data) {
+        dispatch(getOrderDetails(numberOfOrder));
+      }
+    }
     setIsOpen(!isOpen);
   };
 
   return (
     <>
-      <p>№{number}</p>
+      <p>№{numberOfOrder}</p>
       <StyledText type={status}>{status}</StyledText>
-      <p>{date}</p>
+      <p>{dateCorrected}</p>
       <p>{total} грн</p>
       {isOpen ? (
         <TfiArrowCircleUp onClick={handleOpen} />
@@ -54,7 +40,7 @@ export const OrdersHistoryListEl = ({ el }) => {
       )}
       {isOpen && (
         <OrderDetailsList>
-          {data.map(el => (
+          {data?.cartItems.map(el => (
             <li key={el._id}>
               <OrderDetails el={el} />
             </li>
