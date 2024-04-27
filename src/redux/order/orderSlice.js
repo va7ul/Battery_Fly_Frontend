@@ -71,12 +71,6 @@ const orderSlice = createSlice({
     changeCity(state, { payload }) {
       state.delivery.city = payload;
     },
-    changeCities(state, { payload }) {
-      state.delivery.cities = [payload];
-    },
-    changeWarehouses(state, { payload }) {
-      state.delivery.warehouses = [payload];
-    },
     changeWarehouse(state, { payload }) {
       state.delivery.warehouse = payload;
     },
@@ -105,8 +99,6 @@ export const {
   changeUserTel,
   changeOrderNum,
   changeCity,
-  changeCities,
-  changeWarehouses,
   changeWarehouse,
   changeDeliveryType,
   changePayment,
