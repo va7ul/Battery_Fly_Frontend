@@ -11,7 +11,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { styled } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
 import { themeMUI } from '../../../styles/GlobalStyled';
-import { changeCity, changeWarehouse, changeWarehouses, changeCities, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
+import { changeCity, changeWarehouse, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
 import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment } from '../../../redux/order/orderSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
@@ -67,8 +67,7 @@ export const Delivery = () => {
     const openNP = () => {
         setDisplayAddress("none");
         setDisplayNP("flex");
-        dispatch(changeDeliveryType("Нова пошта"));
-        
+        dispatch(changeDeliveryType("Нова пошта"));   
     };
 
     const openAddress = () => {
@@ -76,7 +75,7 @@ export const Delivery = () => {
         setDisplayAddress("flex");
         dispatch(changeDeliveryType("Самовивіз"));
         dispatch(changeCity("null"))
-        dispatch(changeWarehouse("null"))
+        dispatch(changeWarehouse("null"));
     };
 
     const handleRadioChange = (event) => {
@@ -89,6 +88,10 @@ export const Delivery = () => {
             value: city, label: city
         };
     });
+
+    const getCity = () => {
+        return city ? optionsCities.find(c => c.value === city) : ''
+    }
     
     const debouncedGetCities = useMemo(
         () =>
@@ -101,15 +104,17 @@ export const Delivery = () => {
             value: warehouse, label: warehouse
         };
     });
+
+     const getWarehouse = () => {
+        return warehouse ? optionsWarehouses.find(w => w.value === warehouse) : ''
+    }
     const handleCityChange = (event) => {
         dispatch(changeCity(event.value));
-        dispatch(changeCities(event.value));
         dispatch(getDeliveryWarehouses(event.value));
     };
 
     const handleWarehouseChange = (event) => {
         dispatch(changeWarehouse(event.value));
-        dispatch(changeWarehouses(event.value));
     };
 
     
@@ -127,6 +132,10 @@ export const Delivery = () => {
 
     const clearInputCity = () => {
         dispatch(changeCity(''));
+        dispatch(changeWarehouse(''));
+    };
+
+       const clearInputWarehouse = () => {
         dispatch(changeWarehouse(''));
     };
 
@@ -149,18 +158,19 @@ export const Delivery = () => {
             
                 <Select
                     options={optionsCities}
-                    defaultValue={city}
-                    onInputChange={handleSelectCity}
+                    value={getCity()}
                     onChange={handleCityChange}
+                    onInputChange={handleSelectCity}
                     onFocus={clearInputCity}
                     placeholder={"Місто"}
                     styles={selectStyles}
                 />
                 <Select
                     options={optionsWarehouses}
-                    defaultValue={warehouse}
+                    value={getWarehouse()}
                     onChange={handleWarehouseChange}
                     onInputChange={handleSelectWarehouse}
+                    onFocus={clearInputWarehouse}
                     placeholder={"Відділення/поштомат"}
                     styles={selectStyles}
                 />
