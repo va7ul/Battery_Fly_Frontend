@@ -2,7 +2,7 @@ import { Wrapper, Button } from './MobileToolBar.styled';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 import { ModalSignUpSignIn } from '../../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { Link } from 'react-router-dom';
@@ -16,8 +16,6 @@ export const MobileToolBar = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, isAuthModalOpen } = useAuth();
   const isCartOpen = useSelector(selectCart);
-
-  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 
   const handleOpenSignUpSignInModal = () => {
     if (!isLoggedIn) {
