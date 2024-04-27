@@ -21,6 +21,7 @@ const defaultUserData = {
 const initialState = {
   userData: { ...defaultUserData },
   token: '',
+  isAuthModalOpen: false,
   errorStatus: null,
   verifiedEmail: false,
   delivery: {},
@@ -99,6 +100,9 @@ const userSlice = createSlice({
     changeErrorStatus(state, { payload }) {
       state.errorStatus = payload;
     },
+    setAuthModalOpen(state, { payload }) {
+      state.isAuthModalOpen = payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -134,6 +138,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { changeErrorStatus } = userSlice.actions;
+export const { changeErrorStatus, setAuthModalOpen } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

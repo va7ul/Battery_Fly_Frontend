@@ -1,6 +1,7 @@
 export const selectUserData = state => state.user.userData;
 export const selectIsLoggedIn = state => state.user.isLoggedIn;
 export const selectIsRefreshing = state => state.user.isRefreshing;
+export const selectIsAuthModalOpen = state => state.user.isAuthModalOpen;
 export const selectIsLoading = state => state.user.isLoading;
 export const selectErrorStatus = state => state.user.errorStatus;
 export const selectVerifiedEmail = state => state.user.verifiedEmail;

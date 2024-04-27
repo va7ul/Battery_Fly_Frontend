@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signUpSchema } from '../../../../common/schemas/signUpSchema';
 import { register } from '../../../../redux/user/userOperations';
-import { selectErrorStatus } from '../../../../redux/user/userSelectors';
 import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { useAuth } from 'utils/hooks';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
@@ -22,8 +21,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const errorStatus = useSelector(selectErrorStatus);
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, errorStatus } = useAuth();
 
   useEffect(() => {
     if (errorStatus === 409) {
