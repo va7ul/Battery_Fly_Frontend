@@ -32,10 +32,8 @@ export const MobileAssortment = () => {
     }
   };
 
-  const closeSubMenu = () => {
-    if (isSubMenuOpen) {
-      dispatch(setSubMenuOpen(false));
-    }
+  const toggleSubDrawer = () => {
+    dispatch(setSubMenuOpen(!isSubMenuOpen));
   };
 
   return (
@@ -53,11 +51,11 @@ export const MobileAssortment = () => {
 
       <MobileDrawer
         isOpen={isSubMenuOpen}
-        closeDrawer={closeSubMenu}
+        toggle={toggleSubDrawer}
         anchor="left"
       >
         <Wrap>
-          <BackButton type="button" onClick={closeSubMenu}>
+          <BackButton type="button" onClick={toggleSubDrawer}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>

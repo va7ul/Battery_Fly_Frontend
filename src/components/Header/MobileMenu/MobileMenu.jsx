@@ -19,21 +19,15 @@ export const MobileMenu = () => {
   const isMenuOpen = useSelector(selectMenu);
   const dispatch = useDispatch();
 
-  const openMenu = () => {
-    dispatch(setMenuOpen(true));
-  };
-
-  const closeMenu = () => {
-    if (isMenuOpen) {
-      dispatch(setMenuOpen(false));
-    }
+  const toggleMenu = () => {
+    dispatch(setMenuOpen(!isMenuOpen));
   };
 
   return (
     <>
       <HeaderWrap>
         <SubWrap>
-          <BurgerButton onClick={openMenu}>
+          <BurgerButton onClick={toggleMenu}>
             <MenuIcon />
           </BurgerButton>
           <Logo />
@@ -41,9 +35,9 @@ export const MobileMenu = () => {
         <MobileToolBar />
       </HeaderWrap>
 
-      <MobileDrawer isOpen={isMenuOpen} closeDrawer={closeMenu} anchor="left">
+      <MobileDrawer isOpen={isMenuOpen} toggle={toggleMenu} anchor="left">
         <MenuWrap>
-          <ArrowButton type="button" onClick={closeMenu}>
+          <ArrowButton type="button" onClick={toggleMenu}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>

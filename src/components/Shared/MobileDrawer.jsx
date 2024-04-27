@@ -1,13 +1,14 @@
-import Drawer from '@mui/material/Drawer';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { useMediaQuery } from 'react-responsive';
 
-export const MobileDrawer = ({ children, isOpen, closeDrawer, anchor }) => {
+export const MobileDrawer = ({ children, toggle, isOpen, anchor }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   return (
-    <Drawer
+    <SwipeableDrawer
       open={isOpen}
-      onClose={closeDrawer}
+      onClose={() => toggle()}
+      onOpen={() => toggle()}
       anchor={anchor}
       onClick={e => e.stopPropagation()}
       sx={{
@@ -21,6 +22,6 @@ export const MobileDrawer = ({ children, isOpen, closeDrawer, anchor }) => {
       }}
     >
       {children}
-    </Drawer>
+    </SwipeableDrawer>
   );
 };
