@@ -35,12 +35,7 @@ export const MobileMenu = () => {
         <MobileToolBar />
       </HeaderWrap>
 
-      <MobileDrawer
-        isOpen={isMenuOpen}
-        closeDrawer={toggleMenu}
-        openDrawer={toggleMenu}
-        anchor="left"
-      >
+      <MobileDrawer isOpen={isMenuOpen} toggle={toggleMenu} anchor="left">
         <MenuWrap>
           <ArrowButton type="button" onClick={toggleMenu}>
             <svg>

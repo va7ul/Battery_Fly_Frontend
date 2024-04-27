@@ -5,22 +5,22 @@ import { StyledHeader, DesktopWrapper } from './Header.styled';
 import { Logo } from './Logo/Logo';
 import { LoginButton } from './LoginButton/LoginButton';
 import { ModalSignUpSignIn } from '../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/user/userSelectors';
 import { ProfileButton } from './ProfileButton/ProfileButton';
+import { useAuth } from 'utils/hooks';
+import { setAuthModalOpen } from '../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
 
 export const Header = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { isLoggedIn, isAuthModalOpen } = useAuth();
 
   const handleOpenSignUpSignInModal = () => {
-    setIsModalSignUpSignInOpen(true);
+    dispatch(setAuthModalOpen(true));
     document.body.style.overflow = 'hidden';
   };
   const handleCloseSignUpSignInModal = () => {
-    setIsModalSignUpSignInOpen(false);
+    dispatch(setAuthModalOpen(false));
     document.body.style.overflow = 'unset';
   };
   return (
@@ -40,7 +40,7 @@ export const Header = () => {
               />
             )}
             <ModalSignUpSignIn
-              isModalSignUpSignInOpen={isModalSignUpSignInOpen}
+              isModalSignUpSignInOpen={isAuthModalOpen}
               handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
             />
           </DesktopWrapper>

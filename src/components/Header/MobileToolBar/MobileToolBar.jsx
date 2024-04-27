@@ -1,46 +1,48 @@
 import { Wrapper, Button } from './MobileToolBar.styled';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
-import { useState } from 'react';
 import { CartModal } from 'components/Shared/CartModal/CartModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 import { ModalSignUpSignIn } from '../../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { Link } from 'react-router-dom';
-import { selectIsLoggedIn } from '../../../redux/user/userSelectors';
 import { ProfileButton } from '../ProfileButton/ProfileButton';
 import { LoginButton } from '../LoginButton/LoginButton';
+import { useAuth } from 'utils/hooks';
+import { setAuthModalOpen } from '../../../redux/user/userSlice';
+import { selectCart } from '../../../redux/menu/menuSelectors';
 
 export const MobileToolBar = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
+  const { isLoggedIn, isAuthModalOpen } = useAuth();
+  const isCartOpen = useSelector(selectCart);
 
   const handleOpenSignUpSignInModal = () => {
-    setIsModalSignUpSignInOpen(true);
-    document.body.style.overflow = 'hidden';
+    if (!isLoggedIn) {
+      dispatch(setAuthModalOpen(true));
+      document.body.style.overflow = 'hidden';
+    }
   };
   const handleCloseSignUpSignInModal = () => {
-    setIsModalSignUpSignInOpen(false);
+    dispatch(setAuthModalOpen(false));
     document.body.style.overflow = 'unset';
   };
 
-  const openDrawer = () => {
-    dispatch(setCartOpen(true));
+  const toggleCart = () => {
+    dispatch(setCartOpen(!isCartOpen));
   };
 
   return (
     <Wrapper>
-      <Button type="button" onClick={openDrawer}>
+      <Button type="button" onClick={toggleCart}>
         <CartIcon />
       </Button>
-      <CartModal />
-      <Link to="/favorites">
+      <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
+        <Link to="/favorites" onClick={handleOpenSignUpSignInModal}>
         <FavoriteIcon />
       </Link>
       <ModalSignUpSignIn
-        isModalSignUpSignInOpen={isModalSignUpSignInOpen}
+        isModalSignUpSignInOpen={isAuthModalOpen}
         handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
       />
 
