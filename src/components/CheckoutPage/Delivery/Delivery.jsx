@@ -126,10 +126,6 @@ export const Delivery = () => {
     },
         [debouncedGetCities]);
 
-    const handleSelectWarehouse = (event) => {
-        console.log(event);
-    };
-
     const clearInputCity = () => {
         dispatch(changeCity(''));
         dispatch(changeWarehouse(''));
@@ -169,7 +165,6 @@ export const Delivery = () => {
                     options={optionsWarehouses}
                     value={getWarehouse()}
                     onChange={handleWarehouseChange}
-                    onInputChange={handleSelectWarehouse}
                     onFocus={clearInputWarehouse}
                     placeholder={"Відділення/поштомат"}
                     styles={selectStyles}
