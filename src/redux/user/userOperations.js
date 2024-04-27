@@ -20,19 +20,22 @@ const handleError = error => {
   }
 };
 
-export const register = createAsyncThunk('user/signup', async (dataUser, thunkApi) => {
-  try {
-    const { data } = await axios.post('auth/signup', dataUser);
-    setAuthHeader(data.token);
-    return data;
-  } catch (error) {
-    const errorMessage = handleError(error);
-    if (error.request.status === 409) {
-      return thunkApi.rejectWithValue(error.request.status);
+export const register = createAsyncThunk(
+  'user/signup',
+  async (dataUser, thunkApi) => {
+    try {
+      const { data } = await axios.post('auth/signup', dataUser);
+      setAuthHeader(data.token);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      if (error.request.status === 409) {
+        return thunkApi.rejectWithValue(error.request.status);
+      }
+      return thunkApi.rejectWithValue(errorMessage);
     }
-    return thunkApi.rejectWithValue(errorMessage);
   }
-});
+);
 
 export const login = createAsyncThunk(
   'user/signin',
@@ -80,7 +83,6 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
-
 
 // export const verifyEmail = createAsyncThunk(
 //   'auth/verify-email',
@@ -144,11 +146,31 @@ export const deleteFromFavorite = createAsyncThunk(
   }
 );
 
-export const getOneOrder = createAsyncThunk(
-  'user/getOneOrder',
-  async (dataUser, id, thunkAPI) => {
+export const getOrdersHistory = createAsyncThunk(
+  'user/getOrdersHistory',
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().user;
+
     try {
-      const { data } = await axios.get(`user/order/${id}`, dataUser);
+      setAuthHeader(token);
+      const { data } = await axios.get('order/get-orders');
+
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getOrderDetails = createAsyncThunk(
+  'user/getOrderDetails',
+  async (id, thunkAPI) => {
+    const { token } = thunkAPI.getState().user;
+
+    try {
+      setAuthHeader(token);
+      const { data } = await axios.get(`order/get-order/${id}`);
 
       return data;
     } catch (error) {

@@ -10,10 +10,14 @@ import { ProfileButton } from '../ProfileButton/ProfileButton';
 import { LoginButton } from '../LoginButton/LoginButton';
 import { useAuth } from 'utils/hooks';
 import { setAuthModalOpen } from '../../../redux/user/userSlice';
+import { selectCart } from '../../../redux/menu/menuSelectors';
 
 export const MobileToolBar = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, isAuthModalOpen } = useAuth();
+  const isCartOpen = useSelector(selectCart);
+
+  const [isModalSignUpSignInOpen, setIsModalSignUpSignInOpen] = useState(false);
 
   const handleOpenSignUpSignInModal = () => {
     if (!isLoggedIn) {
@@ -26,17 +30,17 @@ export const MobileToolBar = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const openDrawer = () => {
-    dispatch(setCartOpen(true));
+  const toggleCart = () => {
+    dispatch(setCartOpen(!isCartOpen));
   };
 
   return (
     <Wrapper>
-      <Button type="button" onClick={openDrawer}>
+      <Button type="button" onClick={toggleCart}>
         <CartIcon />
       </Button>
-      <CartModal />
-      <Link to="/favorites" onClick={handleOpenSignUpSignInModal}>
+      <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
+        <Link to="/favorites" onClick={handleOpenSignUpSignInModal}>
         <FavoriteIcon />
       </Link>
       <ModalSignUpSignIn

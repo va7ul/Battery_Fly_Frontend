@@ -6,7 +6,7 @@ import {
 
 export const useLoader = () => {
   const isLoading = useSelector(selectAllProductsIsLoading);
-  const isError = useSelector(selectAllProductsError);
+  const error = useSelector(selectAllProductsError);
 
-  return { isLoading, isError };
+  return { isLoading, error };
 };

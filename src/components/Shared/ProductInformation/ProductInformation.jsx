@@ -9,7 +9,6 @@ export const ProductInformation = ({ information }) => {
         {newInfo.map(item => (
           <div key={item}>
             <div>{item}</div>
-            <br />
           </div>
         ))}
       </Info>

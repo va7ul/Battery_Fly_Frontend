@@ -27,7 +27,6 @@ export const selectStyles = {
       borderRadius: '12px',
     },
   }),
-  input: styles => ({ ...styles, display: 'none' }),
   option: (styles, { isDisabled, isFocused, isSelected }) => {
     return {
       ...styles,

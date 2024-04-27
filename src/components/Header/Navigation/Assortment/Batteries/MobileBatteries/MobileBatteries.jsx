@@ -34,10 +34,8 @@ export const MobileBatteries = () => {
     }
   };
 
-  const closeThirdMenu = () => {
-    if (isThirdMenuOpen) {
-      dispatch(setThirdMenuOpen(false));
-    }
+  const toggleDrawer = () => {
+    dispatch(setThirdMenuOpen(!isThirdMenuOpen));
   };
 
   return (
@@ -55,11 +53,11 @@ export const MobileBatteries = () => {
 
       <MobileDrawer
         isOpen={isThirdMenuOpen}
-        closeDrawer={closeThirdMenu}
+        toggle={toggleDrawer}
         anchor="left"
       >
         <Wrap>
-          <BackButton type="button" onClick={closeThirdMenu}>
+          <BackButton type="button" onClick={toggleDrawer}>
             <svg>
               <use href={`${sprite}#arrow-left`}></use>
             </svg>
