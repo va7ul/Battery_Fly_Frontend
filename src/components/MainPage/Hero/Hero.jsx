@@ -11,7 +11,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const images = [
   {
     url: 'https://media1.tenor.com/m/O3VnTGc9z8EAAAAd/cat-zone-of-zone-out-cat.gif',
-    title: 'Юля і Вася фото в кольорі',
+    title: 'Юля і Вася: фото в кольорі',
   },
   {
     url: 'https://media1.tenor.com/m/l5sIE_3H3EEAAAAd/cats-fighting-fighting-cats.gif',
@@ -19,7 +19,7 @@ const images = [
   },
   {
     url: 'https://media1.tenor.com/m/ZAMoMuQgf9UAAAAd/mapache-pedro.gif',
-    title: 'Діма, коли треба написати базу з нуля, а не переписувати за Ірою',
+    title: 'Діма, коли треба написати бек з нуля, а не переписувати за Ірою',
   },
   {
     url: 'https://media1.tenor.com/m/cor0ZSgUarIAAAAd/cat-goofy-cat.gif',
@@ -54,7 +54,7 @@ export const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     swipeToSlide: true,
     arrows: false,
@@ -67,10 +67,10 @@ export const Hero = () => {
         }}
         {...settings}
       >
-        {images.map(image => (
-          <Wrapper background={image.url}>
+        {images.map(({ url, title }) => (
+          <Wrapper background={url} key={url}>
             <TitleWrap>
-              <Title>{image.title}</Title>
+              <Title>{title}</Title>
 
               <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
               <ModalFeedback
