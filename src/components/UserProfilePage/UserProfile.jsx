@@ -1,5 +1,5 @@
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
-import { Wrapper, Title } from './UserProfile.styled';
+import { Wrapper, Title, Button } from './UserProfile.styled';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useAuth } from 'utils/hooks';
 import { useMediaQuery } from 'react-responsive';
+
+import { LuPencilLine } from 'react-icons/lu';
 
 
 
@@ -71,6 +73,10 @@ const rows = [
             </TableBody>
           </Table>
         </TableContainer>
+        <Button type="button">
+          <LuPencilLine />
+          Редагувати дані
+        </Button>
       </div>
     </Wrapper>
   );
