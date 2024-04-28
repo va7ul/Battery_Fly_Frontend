@@ -8,10 +8,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useAuth } from 'utils/hooks';
+import { useMediaQuery } from 'react-responsive';
 
 
 
 export const UserProfile = () => {
+    const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
   const {
     userData: { firstName, lastName, patronymic, tel, email },
   } = useAuth();
@@ -24,26 +26,41 @@ const rows = [
   createData('Ім’я', firstName),
   createData('Прізвище', lastName),
   createData('По батькові', patronymic),
-  createData('Мобільний номер телефону', tel),
+  createData('Мобільний номер', tel),
   createData('Email', email),
   createData('Пароль', '*********'),
 ];
  
   return (
     <Wrapper>
-      <SideBarNav />
+      {desktopVersion && <SideBarNav />}
       <div>
         <Title>Користувач</Title>
 
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 500 }} aria-label="user data table">
+        <TableContainer
+          component={Paper}
+          sx={{ backgroundColor: 'rgba(255,255,255,1)' }}
+        >
+          <Table sx={{ minWidth: 175 }} aria-label="user data table">
             <TableBody>
               {rows.map(row => (
                 <TableRow key={row.userData}>
-                  <TableCell component="th" scope="row">
+                  <TableCell
+                    style={{ fontSize: '10px', padding: '10px' }}
+                    component="th"
+                    scope="row"
+                  >
                     {row.userData}
                   </TableCell>
-                  <TableCell style={{ width: 160 }} align="right">
+                  <TableCell
+                    style={{
+                      fontSize: '10px',
+                      fontWeight: '600',
+                      textAlign: 'left',
+                      padding: '10px'
+                    }}
+                    align="right"
+                  >
                     {row.value}
                   </TableCell>
                 </TableRow>
