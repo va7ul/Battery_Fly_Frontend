@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   display: flex;
+  width: 88px;
   align-items: center;
+  justify-content: center;
   padding: 8px 18px;
   border-radius: 6px;
   border: none;
-  font-size: 10px;
+  font-size: 12px;
   background-color: ${props => props.theme.colors.secondary};
 
   &:hover {
@@ -14,8 +16,7 @@ export const Button = styled.button`
   }
 
   @media (min-width: 1280px) {
-    position: relative;
-    margin-left: 110px;
+    width: 200px;
     padding: 16px 38px;
     border-radius: 12px;
     font-size: 24px;
