@@ -46,7 +46,10 @@ const rows = [
               {rows.map(row => (
                 <TableRow key={row.userData}>
                   <TableCell
-                    style={{ fontSize: '10px', padding: '10px' }}
+                    style={{
+                      fontSize: desktopVersion ? '15px' : '10px',
+                      padding: desktopVersion ? '20px' : '10px',
+                    }}
                     component="th"
                     scope="row"
                   >
@@ -54,10 +57,10 @@ const rows = [
                   </TableCell>
                   <TableCell
                     style={{
-                      fontSize: '10px',
+                      fontSize: desktopVersion ? '15px' : '10px',
                       fontWeight: '600',
                       textAlign: 'left',
-                      padding: '10px'
+                      padding: desktopVersion ? '20px' : '10px',
                     }}
                     align="right"
                   >
