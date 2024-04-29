@@ -30,10 +30,9 @@ export const TotalPrice = () => {
 
   const dispatch = useDispatch();
 
-  const getDiscount = () => {
-    dispatch(changePromoCodeDiscount(10));
-
-    setIsOpen(!isOpen);
+  const getDiscount = e => {
+    e.preventDefault();
+    dispatch(changePromoCodeDiscount(Number(e.currentTarget.promo.value)));
   };
 
   return (
@@ -43,21 +42,21 @@ export const TotalPrice = () => {
           Загальна сума:
           <span> {prettyTotal} грн</span>
         </Sum>
-        <Discount>
+        <Discount discount={promoCodeDiscount}>
           Знижка за промокодом:
           <span> - {prettyDiscount} грн</span>
         </Discount>
         <Total>
           Разом:
-          <span> {prettyTogether} грн</span>
+          <span>{prettyTogether} грн</span>
         </Total>
       </PriceContainer>
       {promoCodeDiscount ? (
         <Advert>*Знижка за промокодом не поширюється на акційні товари!</Advert>
       ) : isOpen ? (
-        <UsePromo>
-          <input></input>
-          <button onClick={getDiscount}>Застосувати</button>
+        <UsePromo onSubmit={getDiscount}>
+          <input type="text" name="promo" placeholder="Промокод"></input>
+          <button type="submit">Застосувати</button>
         </UsePromo>
       ) : (
         <AddPromo>
