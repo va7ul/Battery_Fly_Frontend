@@ -11,14 +11,14 @@ import {
 import { selectCart } from '../../../../redux/menu/menuSelectors';
 import { setCartOpen } from '../../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPrettyPrice } from 'utils/helpers';
+import { getPrettyValue } from 'utils/helpers';
 import { selectTotal } from '../../../../redux/basket/basketSelectors';
 
 export const FilledCart = () => {
   const dispatch = useDispatch();
   const total = useSelector(selectTotal);
   const isCartOpen = useSelector(selectCart);
-  const prettyTotal = getPrettyPrice(total);
+  const prettyTotal = getPrettyValue(total);
 
   const closeCart = () => {
     if (isCartOpen) {
