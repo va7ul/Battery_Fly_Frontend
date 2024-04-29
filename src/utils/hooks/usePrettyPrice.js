@@ -1,12 +1,8 @@
-import { useSelector } from 'react-redux';
-import { selectTotal } from '../../redux/basket/basketSelectors';
-import { usePromoCode } from 'utils/hooks';
 import { getPrettyValue } from 'utils/helpers';
+import { usePromoCode } from './usePromoCode';
 
 export const usePrettyPrice = () => {
-  const total = useSelector(selectTotal);
-  const discountValue = usePromoCode();
-  const together = total - discountValue;
+  const { total, discountValue, together } = usePromoCode();
 
   const prettyTotal = getPrettyValue(total);
   const prettyDiscount = getPrettyValue(discountValue);

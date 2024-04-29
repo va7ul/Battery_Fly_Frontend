@@ -8,4 +8,7 @@ export const selectCity = state => state.order.delivery.city;
 export const selectWarehouse = state => state.order.delivery.warehouse;
 export const selectDeliveryType = state => state.order.delivery.deliveryType;
 export const selectPayment = state => state.order.delivery.payment;
+export const selectPromoCode = state => state.order.promoCode;
 export const selectPromoCodeDiscount = state => state.order.promoCodeDiscount;
+export const selectDiscountValue = state => state.order.discountValue;
+export const selectTogether = state => state.order.together;

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { usePrettyPrice } from 'utils/hooks';
-import { selectPromoCodeDiscount } from '../../../redux/order/orderSelectors';
+import { useDispatch } from 'react-redux';
+import { useOrder, usePrettyPrice } from 'utils/hooks';
 import {
   PriceContainer,
   Sum,
@@ -11,9 +10,10 @@ import {
   UsePromo,
   Advert,
 } from './TotalPrice.styled';
+import { changePromoCodeDiscount } from '../../../redux/order/orderSlice';
 
 export const TotalPrice = () => {
-  const promoCodeDiscount = useSelector(selectPromoCodeDiscount);
+  const { promoCodeDiscount } = useOrder();
   const { prettyTotal, prettyDiscount, prettyTogether } = usePrettyPrice();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -28,43 +28,42 @@ export const TotalPrice = () => {
     setIsOpen(!isOpen);
   };
 
-  const getDiscount = () => {
-    setIsOpen(!isOpen);
+  const dispatch = useDispatch();
+
+  const getDiscount = e => {
+    e.preventDefault();
+    dispatch(changePromoCodeDiscount(Number(e.currentTarget.promo.value)));
   };
 
   return (
     <>
       <PriceContainer>
-        {promoCodeDiscount && (
-          <>
-            <Sum>
-              Загальна сума:
-              <span> {prettyTotal} грн</span>
-            </Sum>
-            <Discount>
-              Знижка за промокодом:
-              <span> - {prettyDiscount} грн</span>
-            </Discount>
-          </>
-        )}
+        <Sum>
+          Загальна сума:
+          <span> {prettyTotal} грн</span>
+        </Sum>
+        <Discount discount={promoCodeDiscount}>
+          Знижка за промокодом:
+          <span> - {prettyDiscount} грн</span>
+        </Discount>
         <Total>
           Разом:
-          <span> {prettyTogether} грн</span>
+          <span>{prettyTogether} грн</span>
         </Total>
       </PriceContainer>
       {promoCodeDiscount ? (
         <Advert>*Знижка за промокодом не поширюється на акційні товари!</Advert>
       ) : isOpen ? (
+        <UsePromo onSubmit={getDiscount}>
+          <input type="text" name="promo" placeholder="Промокод"></input>
+          <button type="submit">Застосувати</button>
+        </UsePromo>
+      ) : (
         <AddPromo>
           <button type="button" onClick={handleOpen}>
             Застосувати промокод
           </button>
         </AddPromo>
-      ) : (
-        <UsePromo>
-          <input></input>
-          <button onClick={getDiscount}>Застосувати</button>
-        </UsePromo>
       )}
     </>
   );

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const CartWrap = styled.div`
-  width: 320px;
+  width: 318px;
   display: flex;
   flex-direction: column;
   align-items: start;
   margin-bottom: 20px;
 
   @media screen and (min-width: 1280px) {
-    width: 530px;
+    width: 526px;
     border: none;
   }
 `;

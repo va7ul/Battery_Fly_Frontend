@@ -1,13 +1,13 @@
-import { useSelector } from 'react-redux';
-import { selectPromoCodeDiscount } from '../../redux/order/orderSelectors';
-import { selectItems } from '../../redux/basket/basketSelectors';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { changeDiscount, changeTogether } from '../../redux/order/orderSlice';
+import { useOrder } from './useOrder';
 
 export const usePromoCode = () => {
-  const basketItems = useSelector(selectItems);
-  const promoCodeDiscount = useSelector(selectPromoCodeDiscount);
+  const { cartItems, promoCodeDiscount, total } = useOrder();
 
   const discountValue = Math.round(
-    (basketItems
+    (cartItems
       .filter(item => !item.sale)
       .reduce((discount, item) => {
         return discount + item.totalPrice;
@@ -16,5 +16,14 @@ export const usePromoCode = () => {
       100
   );
 
-  return discountValue;
+  const together = total - discountValue;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(changeDiscount(discountValue));
+    dispatch(changeTogether(together));
+  }, [dispatch, discountValue, together]);
+
+  return { total, discountValue, together };
 };

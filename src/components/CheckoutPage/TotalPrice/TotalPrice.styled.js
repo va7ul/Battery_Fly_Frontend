@@ -32,7 +32,8 @@ export const Discount = styled.p`
   font-size: 12px;
 
   span {
-    color: ${props => props.theme.colors.success};
+    color: ${props =>
+      props.discount ? props.theme.colors.success : 'inherit'};
   }
 
   @media screen and (min-width: 1280px) {
@@ -70,17 +71,56 @@ export const AddPromo = styled.div`
   }
 `;
 
-export const UsePromo = styled.div`
+export const UsePromo = styled.form`
   font-size: 12px;
   text-align: right;
   margin-top: 15px;
+  height: 40px;
+  border-radius: 12px;
 
   @media screen and (min-width: 1280px) {
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 20px;
+    height: 60px;
+  }
+
+  input {
+    width: 185px;
+    height: 100%;
+    padding-left: 10px;
+    border-radius: 12px 0px 0px 12px;
+    border: transparent;
+    background: ${props => props.theme.colors.greyBackgroundPaper};
+
+    ::placeholder {
+      color: ${props => props.theme.colors.textDisabled};
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid ${props => props.theme.colors.secondary};
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 288px;
+    }
   }
 
   button {
+    width: 135px;
+    height: 100%;
+    border-radius: 0px 12px 12px 0px;
+    background: ${props => props.theme.colors.secondary};
+    border: transparent;
+
+    &:hover,
+    :focus {
+      background: ${props => props.theme.colors.hoverColor};
+    }
+
+    @media screen and (min-width: 1280px) {
+      width: 240px;
+    }
   }
 `;
 
