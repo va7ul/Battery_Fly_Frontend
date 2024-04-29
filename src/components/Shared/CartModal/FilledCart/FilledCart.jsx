@@ -11,12 +11,14 @@ import {
 import { selectCart } from '../../../../redux/menu/menuSelectors';
 import { setCartOpen } from '../../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { getPrettyValue } from 'utils/helpers';
 import { selectTotal } from '../../../../redux/basket/basketSelectors';
 
 export const FilledCart = () => {
   const dispatch = useDispatch();
   const total = useSelector(selectTotal);
   const isCartOpen = useSelector(selectCart);
+  const prettyTotal = getPrettyValue(total);
 
   const closeCart = () => {
     if (isCartOpen) {
@@ -31,7 +33,7 @@ export const FilledCart = () => {
       </ListWrap>
       <Wrap>
         <Text>
-          Загальна сума:<Total>{total} грн</Total>
+          Загальна сума:<Total>{prettyTotal} грн</Total>
         </Text>
         <BtnWrap>
           <Button type="button" onClick={closeCart}>

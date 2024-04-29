@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import { PersonalData } from './PersonalData/PersonalData';
-import { Cart } from './Cart/Cart';
 import { Delivery } from './Delivery/Delivery';
+import { Cart } from './Cart/Cart';
+import { TotalPrice } from './TotalPrice/TotalPrice';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { selectItems, selectTotal } from '../../redux/basket/basketSelectors';
@@ -82,15 +83,14 @@ export const Checkout = () => {
     <>
       <Wrapper>
         <Title>Оформлення замовлення</Title>
-        <Grid container>
+        <Grid container rowGap="15px">
           <Grid item desktop={6}>
             <PersonalData formik={formik} isValidPhone={isValidPhone} />
+            <Delivery />
           </Grid>
           <Grid item desktop={6}>
             <Cart />
-          </Grid>
-          <Grid item desktop={6}>
-            <Delivery />
+            <TotalPrice />
           </Grid>
         </Grid>
         <OrderButton

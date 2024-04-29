@@ -14,7 +14,7 @@ import { themeMUI } from '../../../styles/GlobalStyled';
 import { changeCity, changeWarehouse, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
 import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment } from '../../../redux/order/orderSelectors';
-import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, Box, BoxNP, selectStyles} from './Delivery.styled';
+import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, BoxNP, selectStyles} from './Delivery.styled';
 import sprite from '../../../assets/images/sprite.svg';
 
 const StyledRadioGroup = styled(RadioGroup)({
@@ -186,7 +186,7 @@ export const Delivery = () => {
                 
             </BoxAddress>
             <Title>Спосіб оплати</Title>
-            <Box>
+            <div>
                 <FormControl>
                     <StyledRadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
@@ -221,7 +221,7 @@ export const Delivery = () => {
                     
                     </StyledRadioGroup>
                 </FormControl>
-            </Box>
+            </div>
         </div>
     );
 };

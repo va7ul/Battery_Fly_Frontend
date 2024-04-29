@@ -25,6 +25,7 @@ const deliveryInfo = {
 const initialState = {
   userData: { ...defaultUserData },
   delivery: deliveryInfo,
+  promoCodeDiscount: null,
   orderNum: '',
   isLoading: false,
   error: null,
