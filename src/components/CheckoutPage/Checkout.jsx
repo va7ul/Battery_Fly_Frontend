@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import { PersonalData } from './PersonalData/PersonalData';
@@ -8,36 +8,36 @@ import { Cart } from './Cart/Cart';
 import { TotalPrice } from './TotalPrice/TotalPrice';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
-import { selectItems, selectTotal } from '../../redux/basket/basketSelectors';
-import {
-  selectUserDataInOrder,
-  selectCity,
-  selectDeliveryType,
-  selectPayment,
-  selectWarehouse,
-  selectOrderNum,
-} from '../../redux/order/orderSelectors';
 import { addOrder } from '../../redux/order/orderOperations';
 import { changeOrderNum } from '../../redux/order/orderSlice';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
+import { useOrder } from 'utils/hooks';
 
 export const Checkout = () => {
+  const dispatch = useDispatch();
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const { firstName, lastName, email, text, tel } = useSelector(
-    selectUserDataInOrder
-  );
-  const orderNum = useSelector(selectOrderNum);
-  const dispatch = useDispatch();
+  const {
+    firstName,
+    lastName,
+    email,
+    text,
+    tel,
+    orderNum,
+    total,
+    promoCode,
+    discountValue,
+    together,
+    cartItems,
+    city,
+    warehouse,
+    payment,
+    deliveryType,
+  } = useOrder();
+
   const isValidPhone = isPhoneValid(tel);
-  const total = useSelector(selectTotal);
-  const cartItems = useSelector(selectItems);
-  const city = useSelector(selectCity);
-  const warehouse = useSelector(selectWarehouse);
-  const payment = useSelector(selectPayment);
-  const deliveryType = useSelector(selectDeliveryType);
 
   useEffect(() => {
     if (orderNum) {
@@ -68,6 +68,9 @@ export const Checkout = () => {
       const orderData = {
         userData: { ...values, tel },
         total,
+        promoCode,
+        discountValue,
+        together,
         cartItems,
         deliveryType,
         city,
