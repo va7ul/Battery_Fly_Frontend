@@ -41,7 +41,7 @@ const rows = [
 
         <TableContainer
           component={Paper}
-          sx={{ backgroundColor: 'rgba(255,255,255,1)' }}
+          sx={{ backgroundColor: 'rgba(247,247,247,1)' }}
         >
           <Table sx={{ minWidth: 175 }} aria-label="user data table">
             <TableBody>

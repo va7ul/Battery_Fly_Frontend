@@ -26,19 +26,38 @@ export const Title = styled.h2`
 
 
 export const Button = styled.button`
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  border: 0;
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  outline: none;
+  position: relative;
+  width: 115px;
+  height: 26px;
+  margin-top: 18px;
+  padding: 4px;
+  background-color: transparent;
+  border: none;
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
 
-  &:hover {
-    opacity: 1;
+  &::after {
+    position: absolute;
+    left: 22%;
+    bottom: 3px;
+    content: '';
+    width: 78%;
+    height: 1px;
+    border-radius: 1px;
+    background-color: currentColor;
+  }
+
+  svg {
+    position: relative;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.hoverColor};
   }
 `;
