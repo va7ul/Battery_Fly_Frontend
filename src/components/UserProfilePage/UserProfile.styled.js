@@ -35,7 +35,13 @@ export const Button = styled.button`
   border: none;
   font-size: 10px;
   font-weight: 600;
-  vertical-align: middle;
+
+  @media screen and (min-width: 1280px) {
+    width: 168px;
+    height: 36px;
+    margin-top: 16px;
+    font-size: 16px;
+  }
 
   &::after {
     position: absolute;
@@ -46,6 +52,12 @@ export const Button = styled.button`
     height: 1px;
     border-radius: 1px;
     background-color: currentColor;
+
+    @media screen and (min-width: 1280px) {
+      left: 18%;
+      width: 82%;
+      height: 2px;
+    }
   }
 
   svg {
@@ -54,6 +66,12 @@ export const Button = styled.button`
     width: 16px;
     height: 16px;
     margin-right: 4px;
+    @media screen and (min-width: 1280px) {
+      top: 8px;
+      width: 24px;
+      height: 24px;
+      margin-right: 6px;
+    }
   }
 
   &:hover,
