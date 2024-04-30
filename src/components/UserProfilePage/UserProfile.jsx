@@ -1,5 +1,20 @@
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
-import { Wrapper, Title, Button } from './UserProfile.styled';
+import {
+  Wrapper,
+  Title,
+  StyledForm,
+  Label,
+  StyledField,
+  StyledErrorMessage,
+  DivErrorMessage,
+  FormikWrapper,
+  PhoneFieldGlobalStyles,
+  Box,
+  BtnWrapper,
+  EditButton,
+  SubmitUserDataBtn,
+  CancelBtn,
+} from './UserProfile.styled';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,73 +25,196 @@ import Paper from '@mui/material/Paper';
 import { useAuth } from 'utils/hooks';
 import { useMediaQuery } from 'react-responsive';
 
-import { LuPencilLine } from 'react-icons/lu';
+import { LiaPenAltSolid } from 'react-icons/lia';
+import { Formik } from 'formik';
 
-
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
+import { useState } from 'react';
+import { isPhoneValid } from 'common/schemas/phoneSchema';
+import { theme } from 'styles/GlobalStyled';
+import { userDataSchema } from 'common/schemas/userDataSchema';
 
 export const UserProfile = () => {
-    const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
+  const [showForm, setShowForm] = useState(false);
+
+  const handleShowForm = () => setShowForm(!showForm);
+  const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
   const {
     userData: { firstName, lastName, patronymic, tel, email },
   } = useAuth();
 
-  function createData(userData, value) {
-  return { userData, value };
-}
+  const [formikTel, setTel] = useState(tel);
+  const isValidPhone = isPhoneValid(formikTel);
 
-const rows = [
-  createData('Ім’я', firstName),
-  createData('Прізвище', lastName),
-  createData('По батькові', patronymic),
-  createData('Мобільний номер', tel),
-  createData('Email', email),
-  createData('Пароль', '*********'),
-];
- 
+  function createData(userData, value) {
+    return { userData, value };
+  }
+
+  const rows = [
+    createData('Ім’я', firstName),
+    createData('Прізвище', lastName),
+    createData('По батькові', patronymic),
+    createData('Мобільний номер', tel),
+    createData('Email', email),
+    createData('Пароль', '*********'),
+  ];
+
   return (
     <Wrapper>
-      {desktopVersion && <SideBarNav />}
+      {isBigScreen && <SideBarNav />}
       <div>
         <Title>Користувач</Title>
+        {!showForm && (
+          <TableContainer
+            component={Paper}
+            sx={{ backgroundColor: 'rgba(247,247,247,1)' }}
+          >
+            <Table sx={{ minWidth: 175 }} aria-label="user data table">
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.userData}>
+                    <TableCell
+                      style={{
+                        fontSize: isBigScreen ? '15px' : '10px',
+                        padding: isBigScreen ? '20px' : '10px',
+                      }}
+                      component="th"
+                      scope="row"
+                    >
+                      {row.userData}
+                    </TableCell>
+                    <TableCell
+                      style={{
+                        fontSize: isBigScreen ? '15px' : '10px',
+                        fontWeight: '600',
+                        textAlign: 'left',
+                        padding: isBigScreen ? '20px' : '10px',
+                      }}
+                      align="right"
+                    >
+                      {row.value}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
+        {showForm && (
+          <>
+            <FormikWrapper>
+              <Formik
+                initialValues={{
+                  firstName: firstName,
+                  lastName: lastName,
+                  patronymic: patronymic,
+                  email: email,
+                  password: '',
+                }}
+                validationSchema={userDataSchema}
+                onSubmit={(values, _) => {
+                  console.log('values', values);
+                }}
+              >
+                <StyledForm>
+                  <Label>
+                    Ім'я
+                    <Box>
+                      <StyledField name="firstName" type="text" />
+                      <StyledErrorMessage name="firstName" component="div" />
+                    </Box>
+                  </Label>
 
-        <TableContainer
-          component={Paper}
-          sx={{ backgroundColor: 'rgba(247,247,247,1)' }}
-        >
-          <Table sx={{ minWidth: 175 }} aria-label="user data table">
-            <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.userData}>
-                  <TableCell
-                    style={{
-                      fontSize: desktopVersion ? '15px' : '10px',
-                      padding: desktopVersion ? '20px' : '10px',
-                    }}
-                    component="th"
-                    scope="row"
-                  >
-                    {row.userData}
-                  </TableCell>
-                  <TableCell
-                    style={{
-                      fontSize: desktopVersion ? '15px' : '10px',
-                      fontWeight: '600',
-                      textAlign: 'left',
-                      padding: desktopVersion ? '20px' : '10px',
-                    }}
-                    align="right"
-                  >
-                    {row.value}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Button type="button">
-          <LuPencilLine />
-          Редагувати дані
-        </Button>
+                  <Label>
+                    Прізвище
+                    <Box>
+                      <StyledField name="lastName" type="text" />
+                      <StyledErrorMessage name="lastName" component="div" />
+                    </Box>
+                  </Label>
+
+                  <Label>
+                    По батькові
+                    <Box>
+                      <StyledField name="patronymic" type="text" />
+                      <StyledErrorMessage name="patronymic" component="div" />
+                    </Box>
+                  </Label>
+                  <Label>
+                    Мобільний номер
+                    <Box>
+                      <PhoneInput
+                        style={{
+                          '--react-international-phone-height': !isBigScreen
+                            ? '22px'
+                            : '51px',
+                          '--react-international-phone-background-color':
+                            'transparent',
+                          '--react-international-phone-border-color': `${theme.colors.greyOutput}`,
+                          '--react-international-phone-text-color': `${theme.colors.greyOutput}`,
+                          '--react-international-phone-font-size': !isBigScreen
+                            ? '10px'
+                            : '14px',
+                          '--react-international-phone-border-radius':
+                            !isBigScreen ? '8px' : '8px',
+                          '--react-international-phone-flag-width': !isBigScreen
+                            ? '16px'
+                            : '24px',
+                          '--react-international-phone-flag-height':
+                            !isBigScreen ? '16px' : '24px',
+                        }}
+                        defaultCountry="ua"
+                        hideDropdown={true}
+                        value={formikTel}
+                        onChange={formikTel => setTel(formikTel)}
+                      />
+                      {!isValidPhone && (
+                        <DivErrorMessage>
+                          Введіть свій номер телефону, будь ласка
+                        </DivErrorMessage>
+                      )}
+                    </Box>
+                  </Label>
+
+                  <Label>
+                    Email
+                    <Box>
+                      <StyledField name="email" type="text" />
+                      <StyledErrorMessage name="email" component="div" />
+                    </Box>
+                  </Label>
+
+                  <Label>
+                    Пароль
+                    <Box>
+                      <StyledField name="password" type="password" />
+                      <StyledErrorMessage name="password" component="div" />
+                    </Box>
+                  </Label>
+                  <BtnWrapper>
+                    <SubmitUserDataBtn
+                      type="submit"
+                      disabled={!isValidPhone || tel === '+380'}
+                    >
+                      Зберегти дані
+                    </SubmitUserDataBtn>
+                    <CancelBtn type="button" onClick={handleShowForm}>
+                      Відмінити
+                    </CancelBtn>
+                  </BtnWrapper>
+                </StyledForm>
+              </Formik>
+            </FormikWrapper>
+            <PhoneFieldGlobalStyles />
+          </>
+        )}
+        {!showForm && (
+          <EditButton type="button" onClick={handleShowForm}>
+            <LiaPenAltSolid />
+            Редагувати дані
+          </EditButton>
+        )}
       </div>
     </Wrapper>
   );

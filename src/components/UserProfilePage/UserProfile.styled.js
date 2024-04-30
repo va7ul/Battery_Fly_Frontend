@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { ErrorMessage, Field, Form } from 'formik';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const Wrapper = styled.div`
   padding: 20px;
@@ -25,7 +26,118 @@ export const Title = styled.h2`
 `;
 
 
-export const Button = styled.button`
+export const FormikWrapper = styled.div`
+  max-width: 332px;
+
+  @media (min-width: 1280px) {
+    max-width: 630px;
+    padding: 40px 76px;
+  }
+`;
+
+export const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  @media (min-width: 1280px) {
+    padding: 0px 0px;
+  }
+`;
+
+export const Label = styled.label`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 400;
+
+  @media (min-width: 1280px) {
+    font-size: 14px;
+    font-weight: 400;
+  }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+
+  @media (min-width: 1280px) {
+  
+  }
+`;
+
+export const StyledField = styled(Field)`
+  width: 190px;
+  height: 22px;
+  padding: 4px 8px;
+  color: ${props => props.theme.colors.greyOutput};
+  border: 1px solid ${props => props.theme.colors.greyOutput};
+  border-radius: 8px;
+  background: transparent;
+
+  &:focus {
+    color: ${props => props.theme.colors.textPrimary};
+    outline: none;
+    border: 1px solid ${props => props.theme.colors.hoverColor};
+  }
+
+  @media (min-width: 1280px) {
+    width: 476px;
+    height: 51px;
+    border-radius: 8px;
+  }
+`;
+
+export const PhoneFieldGlobalStyles = createGlobalStyle`
+.react-international-phone-input-container .react-international-phone-input{
+  &:focus {
+    color: ${props => props.theme.colors.textPrimary};
+    outline: none;
+    border: 1px solid ${props => props.theme.colors.hoverColor};
+  }
+}
+
+  .react-international-phone-input {
+    width: 153px;
+
+
+    @media (min-width: 1280px) {
+    width: 430px;
+  }
+  }
+
+   .react-international-phone-input-container .react-international-phone-country-selector-button{
+    width:37px;
+
+    @media (min-width: 1280px) {
+    width: 46px;
+  }
+} 
+`;
+
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+  color: rgba(218, 123, 106, 1);
+  font-size: 8px;
+
+  @media (min-width: 1280px) {
+    font-size: 12px;
+  }
+`;
+
+export const DivErrorMessage = styled.div`
+  color: rgba(218, 123, 106, 1);
+  font-size: 8px;
+
+  @media (min-width: 1280px) {
+    font-size: 12px;
+  }
+`;
+
+
+export const EditButton = styled.button`
   position: relative;
   width: 115px;
   height: 26px;
@@ -45,10 +157,10 @@ export const Button = styled.button`
 
   &::after {
     position: absolute;
-    left: 22%;
+    left: 20%;
     bottom: 3px;
     content: '';
-    width: 78%;
+    width: 76%;
     height: 1px;
     border-radius: 1px;
     background-color: currentColor;
@@ -65,17 +177,66 @@ export const Button = styled.button`
     top: 4px;
     width: 16px;
     height: 16px;
-    margin-right: 4px;
+    margin-right: 2px;
+
     @media screen and (min-width: 1280px) {
-      top: 8px;
+      top: 6px;
       width: 24px;
       height: 24px;
-      margin-right: 6px;
     }
   }
 
   &:hover,
   &:focus {
     color: ${props => props.theme.colors.hoverColor};
+  }
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  gap: 36px;
+  margin-top: 10px;
+
+  @media (min-width: 1280px) {
+    gap: 94px;
+  }
+`;
+
+export const SubmitUserDataBtn = styled.button`
+  max-width: 138px;
+  padding: 12px 22px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  background: ${props => props.theme.colors.secondary};
+
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 200px;
+    padding: 16px 62px;
+    border-radius: 12px;
+    border: none;
+    font-size: 24px;
+    font-weight: 400;
+  }
+`;
+
+export const CancelBtn = styled.button`
+  font-size: 12px;
+  font-weight: 500;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.hoverColor};
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 20px;
   }
 `;
