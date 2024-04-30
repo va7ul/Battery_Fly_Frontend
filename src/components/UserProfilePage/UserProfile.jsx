@@ -32,8 +32,9 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useState } from 'react';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
-import { theme } from 'styles/GlobalStyled';
+// import { theme, themeMUI } from '../../styles/GlobalStyled';
 import { userDataSchema } from 'common/schemas/userDataSchema';
+import { theme } from 'styles/GlobalStyled';
 
 export const UserProfile = () => {
   const [showForm, setShowForm] = useState(false);
@@ -68,10 +69,21 @@ export const UserProfile = () => {
         {!showForm && (
           <TableContainer
             component={Paper}
-            sx={{ backgroundColor: 'rgba(247,247,247,1)' }}
+            sx={{
+              backgroundColor: themeMUI => themeMUI.palette.background.default,
+              boxShadow:
+                '1px 0px 0px 0px rgba(0, 0, 0, 0.14),0px 0px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 0px 0px rgba(0, 0, 0, 0.14)',
+            }}
           >
             <Table sx={{ minWidth: 175 }} aria-label="user data table">
-              <TableBody>
+              <TableBody
+                sx={{
+                  'tr:nth-child(odd)': {
+                    backgroundColor: themeMUI =>
+                      themeMUI.palette.background.primary,
+                  },
+                }}
+              >
                 {rows.map(row => (
                   <TableRow key={row.userData}>
                     <TableCell
@@ -156,7 +168,7 @@ export const UserProfile = () => {
                           '--react-international-phone-font-size': !isBigScreen
                             ? '10px'
                             : '15px',
-                          '--react-international-phone-border-radius':'8px',
+                          '--react-international-phone-border-radius': '8px',
                           '--react-international-phone-flag-width': !isBigScreen
                             ? '16px'
                             : '24px',
