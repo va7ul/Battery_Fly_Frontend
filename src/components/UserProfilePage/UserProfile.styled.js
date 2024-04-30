@@ -27,11 +27,10 @@ export const Title = styled.h2`
 
 
 export const FormikWrapper = styled.div`
-  max-width: 332px;
+  max-width: 350px;
 
   @media (min-width: 1280px) {
-    max-width: 630px;
-    padding: 40px 76px;
+    max-width: 687px;
   }
 `;
 
@@ -41,7 +40,7 @@ export const StyledForm = styled(Form)`
   gap: 6px;
 
   @media (min-width: 1280px) {
-    padding: 0px 0px;
+    gap: 16px;
   }
 `;
 
@@ -53,19 +52,13 @@ export const Label = styled.label`
   font-weight: 400;
 
   @media (min-width: 1280px) {
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 15px;
   }
 `;
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  
-
-  @media (min-width: 1280px) {
-  
-  }
 `;
 
 export const StyledField = styled(Field)`
@@ -84,9 +77,8 @@ export const StyledField = styled(Field)`
   }
 
   @media (min-width: 1280px) {
-    width: 476px;
-    height: 51px;
-    border-radius: 8px;
+    width: 400px;
+    height: 34px;
   }
 `;
 
@@ -104,7 +96,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 
 
     @media (min-width: 1280px) {
-    width: 430px;
+    width: 354px;
   }
   }
 
@@ -116,7 +108,6 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
   }
 } 
 `;
-
 
 export const StyledErrorMessage = styled(ErrorMessage)`
   color: rgba(218, 123, 106, 1);
@@ -198,7 +189,7 @@ export const BtnWrapper = styled.div`
   margin-top: 10px;
 
   @media (min-width: 1280px) {
-    gap: 94px;
+    gap: 90px;
   }
 `;
 
@@ -218,10 +209,10 @@ export const SubmitUserDataBtn = styled.button`
 
   @media (min-width: 1280px) {
     max-width: 200px;
-    padding: 16px 62px;
+    padding: 18px 30px;
     border-radius: 12px;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
   }
 `;

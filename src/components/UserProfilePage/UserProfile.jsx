@@ -148,16 +148,15 @@ export const UserProfile = () => {
                         style={{
                           '--react-international-phone-height': !isBigScreen
                             ? '22px'
-                            : '51px',
+                            : '34px',
                           '--react-international-phone-background-color':
                             'transparent',
                           '--react-international-phone-border-color': `${theme.colors.greyOutput}`,
                           '--react-international-phone-text-color': `${theme.colors.greyOutput}`,
                           '--react-international-phone-font-size': !isBigScreen
                             ? '10px'
-                            : '14px',
-                          '--react-international-phone-border-radius':
-                            !isBigScreen ? '8px' : '8px',
+                            : '15px',
+                          '--react-international-phone-border-radius':'8px',
                           '--react-international-phone-flag-width': !isBigScreen
                             ? '16px'
                             : '24px',
