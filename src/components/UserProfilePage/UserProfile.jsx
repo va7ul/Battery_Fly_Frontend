@@ -78,7 +78,7 @@ export const UserProfile = () => {
             <Table sx={{ minWidth: 175 }} aria-label="user data table">
               <TableBody
                 sx={{
-                  'tr:nth-child(odd)': {
+                  'tr:nth-of-type(odd)': {
                     backgroundColor: themeMUI =>
                       themeMUI.palette.background.primary,
                   },
