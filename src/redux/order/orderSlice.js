@@ -25,6 +25,10 @@ const deliveryInfo = {
 const initialState = {
   userData: { ...defaultUserData },
   delivery: deliveryInfo,
+  promoCode: '',
+  promoCodeDiscount: 0,
+  discountValue: 0,
+  together: 0,
   orderNum: '',
   isLoading: false,
   error: null,
@@ -80,6 +84,16 @@ const orderSlice = createSlice({
     changePayment(state, { payload }) {
       state.delivery.payment = payload;
     },
+    changeDiscount(state, { payload }) {
+      state.discountValue = payload;
+    },
+    changeTogether(state, { payload }) {
+      state.together = payload;
+    },
+    // test====================================================================
+    changePromoCodeDiscount(state, { payload }) {
+      state.promoCodeDiscount = payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -102,6 +116,9 @@ export const {
   changeWarehouse,
   changeDeliveryType,
   changePayment,
+  changeDiscount,
+  changeTogether,
+  changePromoCodeDiscount, //test=================================================
 } = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;

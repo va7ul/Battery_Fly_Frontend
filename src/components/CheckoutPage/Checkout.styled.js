@@ -13,6 +13,7 @@ export const Title = styled.h2`
 `;
 
 export const Wrapper = styled.div`
+  display: grid;
   padding: 20px;
   max-width: 360px;
   margin: 0 auto;
@@ -24,6 +25,7 @@ export const Wrapper = styled.div`
 `;
 
 export const OrderButton = styled.button`
+  margin: 15px auto 0px;
   padding-top: 12px;
   padding-bottom: 12px;
   border-radius: 6px;
@@ -41,6 +43,8 @@ export const OrderButton = styled.button`
     width: 266px;
     height: 61px;
     padding: 15px 8px;
+    margin-top: 20px;
     font-size: 20px;
+    margin: 15px 0px 0px;
   }
 `;

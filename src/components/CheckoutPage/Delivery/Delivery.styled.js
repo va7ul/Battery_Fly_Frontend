@@ -133,14 +133,6 @@ export const Address = styled.a`
   }
 `;
 
-export const Box = styled.div`
-  margin-bottom: 10px;
-
-  @media screen and (min-width: 1280px) {
-    margin-bottom: 15px;
-  }
-`;
-
 export const BoxNP = styled.div`
   display: flex;
   flex-direction: column;
