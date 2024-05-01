@@ -19,9 +19,12 @@ import {
   ChooseBtn,
   Disabledbtn,
 } from './ProductsCard.styled';
+import { setAuthModalOpen } from '../../../redux/user/userSlice';
 import { selectFavorites } from '../../../redux/user/userSelectors';
 import { selectItems } from '../../../redux/basket/basketSelectors';
 import { getNewPrice } from 'utils/helpers/index';
+import { useAuth } from 'utils/hooks';
+import { ModalSignUpSignIn } from 'components/Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 
 export const ProductsCard = ({ product, category }) => {
   const dispatch = useDispatch();
@@ -32,7 +35,7 @@ export const ProductsCard = ({ product, category }) => {
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
   };
-
+  const { isLoggedIn, isAuthModalOpen } = useAuth();
   const basketItems = useSelector(selectItems);
   const isInBasket = basketItems.some(
     basketItem => basketItem.codeOfGood === codeOfGood
@@ -69,13 +72,30 @@ export const ProductsCard = ({ product, category }) => {
     dispatch(setCartOpen(true));
   };
 
+    const handleOpenSignUpSignInModal = () => {
+      if (!isLoggedIn) {
+        dispatch(setAuthModalOpen(true));
+        document.body.style.overflow = 'hidden';
+      }
+    };
+    const handleCloseSignUpSignInModal = () => {
+      dispatch(setAuthModalOpen(false));
+      document.body.style.overflow = 'unset';
+    };
+
   return (
     <>
       <ContentWrapper>
         {isInFavorites ? (
           <IconFullHeart onClick={handleFavorite} />
         ) : (
-          <IconHeart onClick={handleFavorite} />
+          <>
+            {isLoggedIn ? (
+              <IconHeart onClick={handleFavorite} />
+            ) : (
+              <IconHeart onClick={handleOpenSignUpSignInModal} />
+            )}
+          </>
         )}
         <Link to={`../assortment/${codeOfGood}`}>
           <StyledImage
@@ -107,6 +127,10 @@ export const ProductsCard = ({ product, category }) => {
           </Link>
         )}
       </ContentWrapper>
+      <ModalSignUpSignIn
+        isModalSignUpSignInOpen={isAuthModalOpen}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      />
     </>
   );
 };
