@@ -3,9 +3,11 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const FormikWrapper = styled.div`
   max-width: 350px;
+  margin-bottom: 16px;
 
   @media (min-width: 1280px) {
     max-width: 687px;
+    margin-bottom: 30px;
   }
 `;
 

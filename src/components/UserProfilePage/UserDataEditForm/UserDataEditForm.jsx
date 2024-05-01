@@ -20,6 +20,7 @@ import {
   SubmitUserDataBtn,
   CancelBtn,
 } from './UserDataEditForm.styled';
+import PasswordEditForm from '../PasswordEditForm/PasswordEditForm';
 
 export const UserDataEditForm = ({ handleShowForm }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
@@ -33,108 +34,112 @@ export const UserDataEditForm = ({ handleShowForm }) => {
   const isValidPhone = isPhoneValid(formikTel);
 
   return (
-    <FormikWrapper>
-      <Formik
-        initialValues={{
-          firstName: firstName,
-          lastName: lastName,
-          patronymic: patronymic,
-          email: email,
-          password: '',
-        }}
-        validationSchema={userDataSchema}
-        onSubmit={(values, _) => {
-          console.log('values', values);
-        }}
-      >
-        <StyledForm>
-          <Label>
-            Ім'я
-            <Box>
-              <StyledField name="firstName" type="text" />
-              <StyledErrorMessage name="firstName" component="div" />
-            </Box>
-          </Label>
+    <>
+      <FormikWrapper>
+        <Formik
+          initialValues={{
+            firstName: firstName,
+            lastName: lastName,
+            patronymic: patronymic,
+            email: email,
+            password: '',
+          }}
+          validationSchema={userDataSchema}
+          onSubmit={(values, _) => {
+            console.log('values', values);
+          }}
+        >
+          <StyledForm>
+            <Label>
+              Ім'я
+              <Box>
+                <StyledField name="firstName" type="text" />
+                <StyledErrorMessage name="firstName" component="div" />
+              </Box>
+            </Label>
 
-          <Label>
-            Прізвище
-            <Box>
-              <StyledField name="lastName" type="text" />
-              <StyledErrorMessage name="lastName" component="div" />
-            </Box>
-          </Label>
+            <Label>
+              Прізвище
+              <Box>
+                <StyledField name="lastName" type="text" />
+                <StyledErrorMessage name="lastName" component="div" />
+              </Box>
+            </Label>
 
-          <Label>
-            По батькові
-            <Box>
-              <StyledField name="patronymic" type="text" />
-              <StyledErrorMessage name="patronymic" component="div" />
-            </Box>
-          </Label>
-          <Label>
-            Мобільний номер
-            <Box>
-              <PhoneInput
-                style={{
-                  '--react-international-phone-height': !isBigScreen
-                    ? '22px'
-                    : '34px',
-                  '--react-international-phone-background-color': 'transparent',
-                  '--react-international-phone-border-color': `${theme.colors.greyOutput}`,
-                  '--react-international-phone-text-color': `${theme.colors.greyOutput}`,
-                  '--react-international-phone-font-size': !isBigScreen
-                    ? '10px'
-                    : '15px',
-                  '--react-international-phone-border-radius': '8px',
-                  '--react-international-phone-flag-width': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                  '--react-international-phone-flag-height': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                }}
-                defaultCountry="ua"
-                hideDropdown={true}
-                value={formikTel}
-                onChange={formikTel => setTel(formikTel)}
-              />
-              {!isValidPhone && (
-                <DivErrorMessage>
-                  Введіть свій номер телефону, будь ласка
-                </DivErrorMessage>
-              )}
-            </Box>
-          </Label>
+            <Label>
+              По батькові
+              <Box>
+                <StyledField name="patronymic" type="text" />
+                <StyledErrorMessage name="patronymic" component="div" />
+              </Box>
+            </Label>
+            <Label>
+              Мобільний номер
+              <Box>
+                <PhoneInput
+                  style={{
+                    '--react-international-phone-height': !isBigScreen
+                      ? '22px'
+                      : '34px',
+                    '--react-international-phone-background-color':
+                      'transparent',
+                    '--react-international-phone-border-color': `${theme.colors.greyOutput}`,
+                    '--react-international-phone-text-color': `${theme.colors.greyOutput}`,
+                    '--react-international-phone-font-size': !isBigScreen
+                      ? '10px'
+                      : '15px',
+                    '--react-international-phone-border-radius': '8px',
+                    '--react-international-phone-flag-width': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                    '--react-international-phone-flag-height': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                  }}
+                  defaultCountry="ua"
+                  hideDropdown={true}
+                  value={formikTel}
+                  onChange={formikTel => setTel(formikTel)}
+                />
+                {!isValidPhone && (
+                  <DivErrorMessage>
+                    Введіть свій номер телефону, будь ласка
+                  </DivErrorMessage>
+                )}
+              </Box>
+            </Label>
 
-          <Label>
-            Email
-            <Box>
-              <StyledField name="email" type="text" />
-              <StyledErrorMessage name="email" component="div" />
-            </Box>
-          </Label>
+            <Label>
+              Email
+              <Box>
+                <StyledField name="email" type="text" />
+                <StyledErrorMessage name="email" component="div" />
+              </Box>
+            </Label>
 
-          <Label>
-            Пароль
-            <Box>
-              <StyledField name="password" type="password" />
-              <StyledErrorMessage name="password" component="div" />
-            </Box>
-          </Label>
-          <BtnWrapper>
-            <SubmitUserDataBtn
-              type="submit"
-              disabled={!isValidPhone || tel === '+380'}
-            >
-              Зберегти дані
-            </SubmitUserDataBtn>
-            <CancelBtn type="button" onClick={handleShowForm}>
-              Відмінити
-            </CancelBtn>
-          </BtnWrapper>
-        </StyledForm>
-      </Formik>
-      <PhoneFieldGlobalStyles />
-    </FormikWrapper>
+            <Label>
+              Пароль
+              <Box>
+                <StyledField name="password" type="password" />
+                <StyledErrorMessage name="password" component="div" />
+              </Box>
+            </Label>
+            <BtnWrapper>
+              <SubmitUserDataBtn
+                type="submit"
+                disabled={!isValidPhone || tel === '+380'}
+              >
+                Зберегти дані
+              </SubmitUserDataBtn>
+              <CancelBtn type="button" onClick={handleShowForm}>
+                Відмінити
+              </CancelBtn>
+            </BtnWrapper>
+          </StyledForm>
+        </Formik>
+        <PhoneFieldGlobalStyles />
+      </FormikWrapper>
+      <PasswordEditForm />
+    </>
   );
 };
