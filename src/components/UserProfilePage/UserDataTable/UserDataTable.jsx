@@ -35,25 +35,21 @@ export const UserDataTable = ({ handleShowForm }) => {
         component={Paper}
         sx={{
           backgroundColor: themeMUI => themeMUI.palette.background.default,
-          boxShadow:
-            '1px 0px 0px 0px rgba(0, 0, 0, 0.14),0px 0px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 0px 0px rgba(0, 0, 0, 0.14)',
+          boxShadow: '0',
         }}
       >
         <Table sx={{ minWidth: 175 }} aria-label="user data table">
           <TableBody
-            sx={{
-              'tr:nth-of-type(odd)': {
-                backgroundColor: themeMUI =>
-                  themeMUI.palette.background.primary,
-              },
-            }}
           >
             {rows.map(row => (
               <TableRow key={row.userData}>
                 <TableCell
                   style={{
                     fontSize: isBigScreen ? '15px' : '10px',
-                    padding: isBigScreen ? '20px' : '10px',
+                    padding: isBigScreen
+                      ? '20px 20px 20px 0'
+                      : '10px 10px 10px 0',
+                    borderBottom: '1px solid rgba(91, 91, 91, 0.5)',
                   }}
                   component="th"
                   scope="row"
@@ -66,6 +62,7 @@ export const UserDataTable = ({ handleShowForm }) => {
                     fontWeight: '600',
                     textAlign: 'left',
                     padding: isBigScreen ? '20px' : '10px',
+                    borderBottom: '1px solid rgba(91, 91, 91, 0.5)',
                   }}
                   align="right"
                 >

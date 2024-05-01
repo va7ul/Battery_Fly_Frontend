@@ -4,7 +4,7 @@ export const EditButton = styled.button`
   position: relative;
   width: 115px;
   height: 26px;
-  margin-top: 18px;
+  margin-top: 10px;
   padding: 4px;
   background-color: transparent;
   border: none;
@@ -14,7 +14,7 @@ export const EditButton = styled.button`
   @media screen and (min-width: 1280px) {
     width: 168px;
     height: 36px;
-    margin-top: 16px;
+    margin-top: 14px;
     font-size: 16px;
   }
 
