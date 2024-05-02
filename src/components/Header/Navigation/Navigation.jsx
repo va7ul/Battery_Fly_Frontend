@@ -6,7 +6,7 @@ import { Assortment } from './Assortment/Assortment';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
-import { CartModal } from 'components/Shared/CartModal/CartModal';
+import { CartModal } from 'components/CartDrawer/CartDrawer';
 import { selectMenu, selectCart } from '../../../redux/menu/menuSelectors';
 import { setCartOpen, setMenuOpen } from '../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';

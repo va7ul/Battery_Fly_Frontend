@@ -1,7 +1,7 @@
 import { Wrapper, Button } from './MobileToolBar.styled';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
-import { CartModal } from 'components/Shared/CartModal/CartModal';
+import { CartModal } from 'components/CartDrawer/CartDrawer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
 import { ModalSignUpSignIn } from '../../Modals/ModalSignUpSignIn/ModalSignUpSignIn';
@@ -38,7 +38,7 @@ export const MobileToolBar = () => {
         <CartIcon />
       </Button>
       <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
-        <Link to="/favorites" onClick={handleOpenSignUpSignInModal}>
+      <Link to="/favorites" onClick={handleOpenSignUpSignInModal}>
         <FavoriteIcon />
       </Link>
       <ModalSignUpSignIn
