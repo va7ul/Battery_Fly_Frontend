@@ -54,7 +54,7 @@ export const Field = styled(TextField)(({ theme }) => ({
       fontSize: '14px',
     },
     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      border: `2px solid ${theme.palette.secondary.main}`,
+      border: `2px solid ${theme.palette.hoverColor.main}`,
     },
   },
   '& .MuiFormLabel-root.Mui-error': {

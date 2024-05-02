@@ -12,19 +12,19 @@ export const themeMUI = createTheme({
   },
   palette: {
     secondary: {
-      main: 'rgba(244, 170, 0, 1)',
-    },
-    svgColor: {
       main: 'rgba(251, 208, 110, 1)',
     },
+    hoverColor: {
+      main: 'rgba(244, 170, 0, 1)'
+    },
     background: {
-      paper: 'rgba(244, 170, 0, 0.8)',
+      paper: 'rgba(225, 225, 225, 1)',
       default: 'rgba(247, 247, 247, 1)',
+      primary: 'rgba(213, 213, 213, 0.54)',
     },
     text: {
       primary: 'rgba(31, 31, 31, 1)',
       disabled: 'rgba(157, 157, 157, 1)',
-      secondary: 'rgba(165, 165, 165, 1)',
     },
     warning: {
       main: 'rgba(228, 219, 0, 1)',

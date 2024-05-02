@@ -9,10 +9,10 @@ export const ModalSignUpSignIn = ({
   isModalSignUpSignInOpen,
   handleCloseSignUpSignInModal,
 }) => {
-  const [showSignUpForm, setshowSignUpForm] = useState(false);
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
 
-  const handleShowSignInForm = () => setshowSignUpForm(false);
-  const handleShowSignUpForm = () => setshowSignUpForm(true);
+  const handleShowSignInForm = () => setShowSignUpForm(false);
+  const handleShowSignUpForm = () => setShowSignUpForm(true);
 
   return (
       <ModalYellowGradient
