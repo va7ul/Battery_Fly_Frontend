@@ -5,8 +5,6 @@ export const Wrapper = styled.section`
   align-content: center;
   width: 100%;
   height: 234px;
-  /* background-color: ${props => props.theme.colors.textPrimary}; */
-  background: rgba(31, 31, 31, 0.34);
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(${props => props.background});
   background-repeat: no-repeat;
@@ -51,10 +49,8 @@ export const SliderButtons = styled.button`
   top: 50%;
   transform: translate(50%, -50%);
   right: ${props => props.$next && '20px'};
-  /* left: ${props => props.$prev && '20px'}; */
 
   @media screen and (min-width: 1280px) {
     right: ${props => props.$next && '110px'};
-    /* left: ${props => props.$prev && '110px'}; */
   }
 `;
