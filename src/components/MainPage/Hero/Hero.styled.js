@@ -5,8 +5,10 @@ export const Wrapper = styled.section`
   align-content: center;
   width: 100%;
   height: 234px;
-  background-color: ${props => props.theme.colors.textPrimary};
-  background-image: url(${props => props.background});
+  /* background-color: ${props => props.theme.colors.textPrimary}; */
+  background: rgba(31, 31, 31, 0.34);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(${props => props.background});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -20,7 +22,6 @@ export const Title = styled.h1`
   font-size: 15px;
   text-align: start;
   color: ${props => props.theme.colors.greyBackgroundPaper};
-  /* color: ${props => props.theme.colors.greyPlaysholder}; */
 
   @media (min-width: 1280px) {
     font-size: 45px;
@@ -38,7 +39,7 @@ export const TitleWrap = styled.div`
   margin-right: auto;
 
   @media screen and (min-width: 1280px) {
-    width: 510px;
+    width: 560px;
     gap: 20px;
     margin-left: 110px;
   }

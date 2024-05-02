@@ -5,7 +5,6 @@ import { TitleWrap, Title, Wrapper, SliderButtons } from './Hero.styled';
 import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
 import { useRef, useState } from 'react';
 import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
-// import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const images = [
@@ -45,9 +44,6 @@ export const Hero = () => {
   const next = () => {
     sliderRef.slickNext();
   };
-  // const previous = () => {
-  //   sliderRef.slickPrev();
-  // };
 
   const settings = {
     dots: false,
@@ -83,22 +79,17 @@ export const Hero = () => {
           </Wrapper>
         ))}
       </Slider>
-      <div style={{ textAlign: 'center' }}>
-        {/* <SliderButtons $prev onClick={previous}>
-          <ArrowBackIosIcon
-            sx={{
-              color: 'background.default',
-            }}
-          />
-        </SliderButtons> */}
-        <SliderButtons $next onClick={next}>
-          <ArrowForwardIosIcon
-            sx={{
-              color: 'background.default',
-            }}
-          />
-        </SliderButtons>
-      </div>
+      <SliderButtons $next onClick={next}>
+        <ArrowForwardIosIcon
+          sx={{
+            color: 'background.paper',
+            width: {
+              mobile: 16,
+              desktop: 24,
+            },
+          }}
+        />
+      </SliderButtons>
     </div>
   );
 };

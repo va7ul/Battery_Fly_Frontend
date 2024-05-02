@@ -4,7 +4,6 @@ export const BadgeComponent = ({ children, value }) => {
   return (
     <Badge
       badgeContent={value}
-      color="secondary"
       sx={{
         '& .MuiBadge-badge': {
           fontSize: {
@@ -12,6 +11,7 @@ export const BadgeComponent = ({ children, value }) => {
             desktop: 10,
           },
           fontWeight: '400',
+          backgroundColor: 'hoverColor.main',
           color: 'background.default',
           height: {
             mobile: 12,

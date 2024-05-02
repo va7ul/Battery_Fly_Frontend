@@ -52,7 +52,7 @@ export const ProfileButton = () => {
         }}
         sx={{
           '& .MuiMenu-paper': {
-            bgcolor: 'svgColor.main',
+            bgcolor: 'secondary.main',
             maxWidth: '138px',
             p: '2px 5px',
             borderRadius: '6px',
