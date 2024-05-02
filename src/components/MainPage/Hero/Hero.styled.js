@@ -6,16 +6,12 @@ export const Wrapper = styled.section`
   width: 100%;
   height: 234px;
   background-color: ${props => props.theme.colors.textPrimary};
-  /* padding-top: 90px;
-  padding-bottom: 90px; */
   background-image: url(${props => props.background});
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   @media (min-width: 1280px) {
     height: 590px;
-    /* padding-top: 142px;
-    padding-bottom: 238px; */
   }
 `;
 
@@ -23,8 +19,8 @@ export const Title = styled.h1`
   font-weight: 800;
   font-size: 15px;
   text-align: start;
-  /* color: ${props => props.theme.colors.greyBackgroundPaper}; */
-  color: ${props => props.theme.colors.greyPlaysholder};
+  color: ${props => props.theme.colors.greyBackgroundPaper};
+  /* color: ${props => props.theme.colors.greyPlaysholder}; */
 
   @media (min-width: 1280px) {
     font-size: 45px;

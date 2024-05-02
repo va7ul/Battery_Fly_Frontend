@@ -10,20 +10,22 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const images = [
   {
-    url: 'https://media1.tenor.com/m/O3VnTGc9z8EAAAAd/cat-zone-of-zone-out-cat.gif',
-    title: 'Юля і Вася: фото в кольорі',
+    _id: '662e4b4df04b85608f6b5843',
+    text: 'Потужність у кожному кілометрі: наші електричні батареї для вашого транспорту!',
+    image:
+      'https://res.cloudinary.com/dge7alacy/image/upload/v1714309887/Hero/yx3zqxzkv9bvlygisq2v.png',
   },
   {
-    url: 'https://media1.tenor.com/m/l5sIE_3H3EEAAAAd/cats-fighting-fighting-cats.gif',
-    title: 'Наталя демонструє Вові, як її виховала вулиця',
+    _id: '662e4bc3f04b85608f6b5844',
+    text: 'Безмежна енергія для захоплюючих політів: батареї для FPV дронів!',
+    image:
+      'https://res.cloudinary.com/dge7alacy/image/upload/v1714309886/Hero/ir8j18htynnf3wnessba.png',
   },
   {
-    url: 'https://media1.tenor.com/m/ZAMoMuQgf9UAAAAd/mapache-pedro.gif',
-    title: 'Діма, коли треба написати бек з нуля, а не переписувати за Ірою',
-  },
-  {
-    url: 'https://media1.tenor.com/m/cor0ZSgUarIAAAAd/cat-goofy-cat.gif',
-    title: 'Ріта тіки прокинулась і розуміє, що через пару годин зум',
+    _id: '662e4c1cf04b85608f6b5845',
+    text: 'Втілюй ідеї у реальність: 3D друк на кожен день!',
+    image:
+      'https://res.cloudinary.com/dge7alacy/image/upload/v1714309886/Hero/a0czcwwqskwdnfqq2f3k.png',
   },
 ];
 
@@ -67,10 +69,10 @@ export const Hero = () => {
         }}
         {...settings}
       >
-        {images.map(({ url, title }) => (
-          <Wrapper background={url} key={url}>
+        {images.map(({ _id, image, text }) => (
+          <Wrapper background={image} key={_id}>
             <TitleWrap>
-              <Title>{title}</Title>
+              <Title>{text}</Title>
 
               <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
               <ModalFeedback
@@ -92,8 +94,7 @@ export const Hero = () => {
         <SliderButtons $next onClick={next}>
           <ArrowForwardIosIcon
             sx={{
-              // color: 'background.default',
-              color: 'text.disabled',
+              color: 'background.default',
             }}
           />
         </SliderButtons>
