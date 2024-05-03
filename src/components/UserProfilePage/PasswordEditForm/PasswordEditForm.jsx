@@ -35,24 +35,31 @@ export default function PasswordEditForm() {
   const handleClickShowNewPassword = () => setShowNewPassword(show => !show);
   const handleClickShowNewPasswordConfirmation = () =>
     setShowNewPasswordConfirmation(show => !show);
-
   return (
     <div>
-      <Accordion expanded={expanded} onChange={handleExpansion}>
+      <Accordion
+        sx={{
+          '&.MuiPaper-root': {
+            maxWidth: '690px',
+          },
+        }}
+        expanded={expanded}
+        onChange={handleExpansion}
+      >
         <AccordionSummary
           expandIcon={<LiaPenAltSolid />}
           aria-controls="panel3-content"
           id="panel3-header"
           sx={{
             '& .MuiAccordionSummary-content': {
-              fontSize: '12px',
+              fontSize: !isBigScreen ? '12px' : '16px',
               fontWeight: '500',
-              padding: '0px 8px',
+              padding: !isBigScreen ? '0px 8px' : '0px 24px',
             },
             '& .MuiAccordionSummary-expandIconWrapper': {
               svg: {
-                width: '16px',
-                height: '16px',
+                width: !isBigScreen ? '16px' : '24px',
+                height: !isBigScreen ? '16px' : '24px',
                 fill: themeMUI => themeMUI.palette.text.primary,
               },
               '&.Mui-expanded': {
@@ -74,7 +81,7 @@ export default function PasswordEditForm() {
         <AccordionDetails
           sx={{
             '&.MuiAccordionDetails-root': {
-              padding: '8px',
+              padding: !isBigScreen ? '8px' : '16px',
             },
           }}
         >
@@ -103,6 +110,7 @@ export default function PasswordEditForm() {
                       sx={{
                         '&.MuiIconButton-root': {
                           position: 'absolute',
+                          top: !isBigScreen ? '0px' : '4px',
                           right: '4px',
                           padding: '2px',
                         },
@@ -140,6 +148,7 @@ export default function PasswordEditForm() {
                       sx={{
                         '&.MuiIconButton-root': {
                           position: 'absolute',
+                          top: !isBigScreen ? '0px' : '4px',
                           right: '4px',
                           padding: '2px',
                         },
@@ -176,6 +185,7 @@ export default function PasswordEditForm() {
                       sx={{
                         '&.MuiIconButton-root': {
                           position: 'absolute',
+                          top: !isBigScreen ? '0px' : '4px',
                           right: '4px',
                           padding: '2px',
                         },
@@ -213,7 +223,7 @@ export default function PasswordEditForm() {
             sx={{
               '&.MuiButton-root': {
                 textTransform: 'none',
-                fontSize: '13px',
+                fontSize: !isBigScreen ? '13px' : '20px',
                 color: themeMUI => themeMUI.palette.hoverColor.main,
               },
             }}
@@ -225,12 +235,12 @@ export default function PasswordEditForm() {
             sx={{
               '&.MuiButton-root': {
                 textTransform: 'none',
-                fontSize: '13px',
+                fontSize: !isBigScreen ? '13px' : '20px',
                 color: themeMUI => themeMUI.palette.text.primary,
               },
             }}
           >
-            Відминити
+            Відмінити
           </Button>
         </AccordionActions>
       </Accordion>

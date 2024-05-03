@@ -134,7 +134,6 @@ export const SubmitUserDataBtn = styled.button`
     border-radius: 12px;
     border: none;
     font-size: 20px;
-    font-weight: 400;
   }
 `;
 
