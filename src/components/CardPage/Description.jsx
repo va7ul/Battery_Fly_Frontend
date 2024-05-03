@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewPrice } from '../../utils/helpers/getNewPrice';
+import { useAuth } from 'utils/hooks';
+import { setAuthModalOpen } from '../../redux/user/userSlice';
 import {
   selectOneProduct,
   selectPriceWithSale,
@@ -9,6 +11,7 @@ import {
   addToFavorite,
   deleteFromFavorite,
 } from '../../redux/user/userOperations';
+import { ModalSignUpSignIn } from 'components/Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import sprite from '../../assets/images/sprite.svg';
 import {
   DescBox,
@@ -33,6 +36,7 @@ import {
 
 export const Description = () => {
   const dispatch = useDispatch();
+  const { isLoggedIn, isAuthModalOpen } = useAuth();
   const { codeOfGood, description, price, sale, discount, quantity } =
     useSelector(selectOneProduct);
   const priceWithSale = useSelector(selectPriceWithSale);
@@ -50,6 +54,17 @@ export const Description = () => {
     isInFavorites
       ? dispatch(deleteFromFavorite(codeOfGood))
       : dispatch(addToFavorite(codeOfGood));
+  };
+
+  const handleOpenSignUpSignInModal = () => {
+    if (!isLoggedIn) {
+      dispatch(setAuthModalOpen(true));
+      document.body.style.overflow = 'hidden';
+    }
+  };
+  const handleCloseSignUpSignInModal = () => {
+    dispatch(setAuthModalOpen(false));
+    document.body.style.overflow = 'unset';
   };
 
   return (
@@ -80,10 +95,19 @@ export const Description = () => {
               <Like>Видалити зі списку бажань</Like>
             </LikeBox>
           ) : (
-            <LikeBox onClick={handleFavorite}>
-              <IconHeart />
-              <Like>Додати до списку бажань</Like>
-            </LikeBox>
+            <>
+              {isLoggedIn ? (
+                <LikeBox onClick={handleFavorite}>
+                  <IconHeart />
+                  <Like>Додати до списку бажань</Like>
+                </LikeBox>
+              ) : (
+                <LikeBox onClick={handleOpenSignUpSignInModal}>
+                  <IconHeart />
+                  <Like>Додати до списку бажань</Like>
+                </LikeBox>
+              )}
+            </>
           )}
 
           <IconSquare>
@@ -102,6 +126,10 @@ export const Description = () => {
           ))}
         </Desc>
       </CapacityBox>
+      <ModalSignUpSignIn
+        isModalSignUpSignInOpen={isAuthModalOpen}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      />
     </DescBox>
   );
 };

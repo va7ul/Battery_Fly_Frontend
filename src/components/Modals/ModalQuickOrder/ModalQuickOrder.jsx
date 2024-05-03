@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
 import { useMediaQuery } from 'react-responsive';
 import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
