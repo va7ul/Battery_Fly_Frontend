@@ -1,10 +1,15 @@
+import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Formik } from 'formik';
+import { LiaPenAltSolid } from 'react-icons/lia';
 import Accordion from '@mui/material/Accordion';
 import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { LiaPenAltSolid } from 'react-icons/lia';
+import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
-import { Formik } from 'formik';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { editPasswordSchema } from 'common/schemas/editPasswordSchema';
 import {
   Box,
   FormikWrapper,
@@ -13,12 +18,27 @@ import {
   StyledField,
   StyledForm,
 } from './PasswordEditForm.styled';
-import { editPasswordSchema } from 'common/schemas/editPasswordSchema';
 
 export default function PasswordEditForm() {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+
+  const [expanded, setExpanded] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showNewPasswordConfirmation, setShowNewPasswordConfirmation] =
+    useState(false);
+
+  const handleExpansion = () => {
+    setExpanded(!expanded);
+  };
+  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleClickShowNewPassword = () => setShowNewPassword(show => !show);
+  const handleClickShowNewPasswordConfirmation = () =>
+    setShowNewPasswordConfirmation(show => !show);
+
   return (
     <div>
-      <Accordion>
+      <Accordion expanded={expanded} onChange={handleExpansion}>
         <AccordionSummary
           expandIcon={<LiaPenAltSolid />}
           aria-controls="panel3-content"
@@ -51,7 +71,13 @@ export default function PasswordEditForm() {
         >
           Змінити пароль
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails
+          sx={{
+            '&.MuiAccordionDetails-root': {
+              padding: '8px',
+            },
+          }}
+        >
           <FormikWrapper>
             <Formik
               initialValues={{
@@ -68,14 +94,74 @@ export default function PasswordEditForm() {
                 <Label>
                   Старий пароль
                   <Box>
-                    <StyledField name="password" type="password" />
+                    <StyledField
+                      name="password"
+                      maxlength="21"
+                      type={showPassword ? 'text' : 'password'}
+                    />
+                    <IconButton
+                      sx={{
+                        '&.MuiIconButton-root': {
+                          position: 'absolute',
+                          right: '4px',
+                          padding: '2px',
+                        },
+                      }}
+                      onClick={handleClickShowPassword}
+                    >
+                      {!showPassword ? (
+                        <VisibilityOff
+                          sx={{
+                            width: isBigScreen ? '20px' : '16px',
+                            height: isBigScreen ? '20px' : '16px',
+                          }}
+                        />
+                      ) : (
+                        <Visibility
+                          sx={{
+                            width: isBigScreen ? '20px' : '16px',
+                            height: isBigScreen ? '20px' : '16px',
+                          }}
+                        />
+                      )}
+                    </IconButton>
                     <StyledErrorMessage name="password" component="div" />
                   </Box>
                 </Label>
                 <Label>
                   Новий пароль
                   <Box>
-                    <StyledField name="newPassword" type="password" />
+                    <StyledField
+                      name="newPassword"
+                      type={showNewPassword ? 'text' : 'password'}
+                      maxlength="21"
+                    />
+                    <IconButton
+                      sx={{
+                        '&.MuiIconButton-root': {
+                          position: 'absolute',
+                          right: '4px',
+                          padding: '2px',
+                        },
+                      }}
+                      onClick={handleClickShowNewPassword}
+                    >
+                      {!showNewPassword ? (
+                        <VisibilityOff
+                          sx={{
+                            width: isBigScreen ? '20px' : '16px',
+                            height: isBigScreen ? '20px' : '16px',
+                          }}
+                        />
+                      ) : (
+                        <Visibility
+                          sx={{
+                            width: isBigScreen ? '20px' : '16px',
+                            height: isBigScreen ? '20px' : '16px',
+                          }}
+                        />
+                      )}
+                    </IconButton>
                     <StyledErrorMessage name="newPassword" component="div" />
                   </Box>
                 </Label>
@@ -84,8 +170,34 @@ export default function PasswordEditForm() {
                   <Box>
                     <StyledField
                       name="newPasswordConfirmation"
-                      type="password"
+                      type={showNewPasswordConfirmation ? 'text' : 'password'}
                     />
+                    <IconButton
+                      sx={{
+                        '&.MuiIconButton-root': {
+                          position: 'absolute',
+                          right: '4px',
+                          padding: '2px',
+                        },
+                      }}
+                      onClick={handleClickShowNewPasswordConfirmation}
+                    >
+                      {!showNewPasswordConfirmation ? (
+                        <VisibilityOff
+                          sx={{
+                            width: isBigScreen ? '20px' : '16px',
+                            height: isBigScreen ? '20px' : '16px',
+                          }}
+                        />
+                      ) : (
+                        <Visibility
+                          sx={{
+                            width: isBigScreen ? '20px' : '16px',
+                            height: isBigScreen ? '20px' : '16px',
+                          }}
+                        />
+                      )}
+                    </IconButton>
                     <StyledErrorMessage
                       name="newPasswordConfirmation"
                       component="div"
@@ -97,8 +209,29 @@ export default function PasswordEditForm() {
           </FormikWrapper>
         </AccordionDetails>
         <AccordionActions>
-          <Button>Зберегти</Button>
-          <Button>Відхилити</Button>
+          <Button
+            sx={{
+              '&.MuiButton-root': {
+                textTransform: 'none',
+                fontSize: '13px',
+                color: themeMUI => themeMUI.palette.hoverColor.main,
+              },
+            }}
+          >
+            Зберегти
+          </Button>
+          <Button
+            onClick={handleExpansion}
+            sx={{
+              '&.MuiButton-root': {
+                textTransform: 'none',
+                fontSize: '13px',
+                color: themeMUI => themeMUI.palette.text.primary,
+              },
+            }}
+          >
+            Відминити
+          </Button>
         </AccordionActions>
       </Accordion>
     </div>

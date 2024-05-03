@@ -34,13 +34,14 @@ export const Label = styled.label`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const StyledField = styled(Field)`
-  width: 190px;
+  width: 160px;
   height: 22px;
   padding: 4px 8px;
-  color: ${props => props.theme.colors.greyOutput};
+  color: ${props => props.theme.colors.textPrimary};
   border: 1px solid ${props => props.theme.colors.greyOutput};
   border-radius: 8px;
   background: transparent;

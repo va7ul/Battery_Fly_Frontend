@@ -13,6 +13,6 @@ export const editPasswordSchema = Yup.object().shape({
     .required('Підтвердіть новий пароль, будь ласка'),
   newPasswordConfirmation: Yup.string().oneOf(
     [Yup.ref('newPassword'), null],
-    'Введений пароль має збігатись з новим паролем'
+    'Новий пароль не підтверджено'
   ),
 });

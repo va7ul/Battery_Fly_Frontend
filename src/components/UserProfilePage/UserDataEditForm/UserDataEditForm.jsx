@@ -26,7 +26,7 @@ export const UserDataEditForm = ({ handleShowForm }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
 
   const {
-    userData: { firstName, lastName, patronymic, tel, email },
+    userData: { firstName, lastName, patronymic, tel },
   } = useAuth();
 
   const [formikTel, setTel] = useState(tel);
@@ -41,8 +41,6 @@ export const UserDataEditForm = ({ handleShowForm }) => {
             firstName: firstName,
             lastName: lastName,
             patronymic: patronymic,
-            email: email,
-            password: '',
           }}
           validationSchema={userDataSchema}
           onSubmit={(values, _) => {
@@ -106,22 +104,6 @@ export const UserDataEditForm = ({ handleShowForm }) => {
                     Введіть свій номер телефону, будь ласка
                   </DivErrorMessage>
                 )}
-              </Box>
-            </Label>
-
-            <Label>
-              Email
-              <Box>
-                <StyledField name="email" type="text" />
-                <StyledErrorMessage name="email" component="div" />
-              </Box>
-            </Label>
-
-            <Label>
-              Пароль
-              <Box>
-                <StyledField name="password" type="password" />
-                <StyledErrorMessage name="password" component="div" />
               </Box>
             </Label>
             <BtnWrapper>
