@@ -14,7 +14,7 @@ import {
 } from '../../redux/order/orderSelectors';
 
 export const useOrder = () => {
-  const { firstName, lastName, email, text, tel } = useSelector(
+  const { text, tel } = useSelector(
     selectUserDataInOrder
   );
 
@@ -31,9 +31,6 @@ export const useOrder = () => {
   const deliveryType = useSelector(selectDeliveryType);
 
   return {
-    firstName,
-    lastName,
-    email,
     text,
     tel,
     orderNum,

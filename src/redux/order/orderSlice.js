@@ -6,10 +6,7 @@ import {
 } from './orderOperations';
 
 const defaultUserData = {
-  firstName: '',
-  lastName: '',
   tel: '',
-  email: '',
   text: '',
 };
 
@@ -39,7 +36,6 @@ export const handlePending = state => {
 };
 
 export const handleFulfilledAddOrder = (state, { payload }) => {
-  state.userData = payload.user;
   state.orderNum = payload.orderNum;
   state.isLoading = false;
   state.error = '';
