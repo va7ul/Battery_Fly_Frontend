@@ -150,7 +150,10 @@ export const Order = () => {
         const value = Number(e.target.value)
         if (value > quantity) {
             dispatch(setQuantityOrders(quantity));
-            toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
+            toast(`Максимальна кількість в наявності: ${quantity} шт`, {
+                 style: {
+                    border: '1px solid green',
+                },
                 id: 'clipboard',
                 duration: 4000,
             });
@@ -171,9 +174,12 @@ export const Order = () => {
         const itemInBasket = quantityItemsInBasket.find(item => item.codeOfGood === codeOfGood);
 
         if (itemInBasket && quantity < itemInBasket.quantityOrdered + quantityOrders) {
-            return toast(`Максимальна кількість в наявності: ${quantity} шт`, {
+            return toast(`Цей товар вже є в кошику в кількості ${itemInBasket.quantityOrdered} шт. Максимальна кількість в наявності: ${quantity} шт.`, {
+                style: {
+                    border: '1px solid red',
+                },
                 id: 'clipboard',
-                duration: 4000,
+                duration: 5000,
             });
         }
         
@@ -189,6 +195,9 @@ export const Order = () => {
             })
         );
         toast.success(`Товар доданий до кошика`, {
+             style: {
+                    border: '1px solid green',
+                },
             id: 'clipboard',
             duration: 4000,
         });
