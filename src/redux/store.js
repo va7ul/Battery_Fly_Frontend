@@ -13,6 +13,7 @@ import {
 import { userReducer } from './user/userSlice';
 import { oneProductReducer } from './products/oneProductSlice';
 import { productsListReducer } from './products/productsListSlice';
+import { print3DReducer } from './print3D/print3DSlice';
 import { basketReducer } from './basket/basketSlice';
 import { menuReducer } from './menu/menuSlice';
 import { orderReducer } from './order/orderSlice';
@@ -38,6 +39,7 @@ export const store = configureStore({
   reducer: {
     user: persistReducer(userPersistConfig, userReducer),
     products: productsReducer,
+    print3D: print3DReducer,
     basket: persistReducer(basketPersistConfig, basketReducer),
     menu: menuReducer,
     order: orderReducer,
