@@ -10,7 +10,7 @@ import {
   UsePromo,
   Advert,
 } from './TotalPrice.styled';
-import { changePromoCodeDiscount } from '../../../redux/order/orderSlice';
+import { addPromoCode } from '../../../redux/order/orderOperations';
 
 export const TotalPrice = () => {
   const { promoCodeDiscount } = useOrder();
@@ -32,7 +32,7 @@ export const TotalPrice = () => {
 
   const getDiscount = e => {
     e.preventDefault();
-    dispatch(changePromoCodeDiscount(Number(e.currentTarget.promo.value)));
+    dispatch(addPromoCode(e.currentTarget.promo.value.toString()));
   };
 
   return (

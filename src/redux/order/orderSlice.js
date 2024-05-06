@@ -3,6 +3,7 @@ import {
   addOrder,
   getDeliveryCities,
   getDeliveryWarehouses,
+  addPromoCode,
 } from './orderOperations';
 
 const defaultUserData = {
@@ -62,6 +63,12 @@ export const handleFulfilledGetWarehouses = (state, { payload }) => {
   state.error = '';
 };
 
+export const handleFulfilledAddPromoCode = (state, { payload }) => {
+  state.promoCode = payload.promoCode.name;
+  state.promoCodeDiscount = payload.promoCode.discount;
+  state.error = '';
+};
+
 const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -90,10 +97,6 @@ const orderSlice = createSlice({
     changeTogether(state, { payload }) {
       state.together = payload;
     },
-    // test====================================================================
-    changePromoCodeDiscount(state, { payload }) {
-      state.promoCodeDiscount = payload;
-    },
   },
   extraReducers: builder => {
     builder
@@ -105,7 +108,9 @@ const orderSlice = createSlice({
       .addCase(getDeliveryCities.rejected, handleRejected)
       .addCase(getDeliveryWarehouses.pending, handlePending)
       .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetWarehouses)
-      .addCase(getDeliveryWarehouses.rejected, handleRejected);
+      .addCase(getDeliveryWarehouses.rejected, handleRejected)
+      .addCase(addPromoCode.fulfilled, handleFulfilledAddPromoCode)
+      .addCase(addPromoCode.rejected, handleRejected);
   },
 });
 
@@ -118,7 +123,6 @@ export const {
   changePayment,
   changeDiscount,
   changeTogether,
-  changePromoCodeDiscount, //test=================================================
 } = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;

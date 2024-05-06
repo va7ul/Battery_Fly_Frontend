@@ -4,6 +4,10 @@ import { baseURL } from 'utils/constants/baseURL';
 
 axios.defaults.baseURL = baseURL;
 
+const setAuthHeader = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
 const handleError = error => {
   if (error.response && error.response.data && error.response.data.message) {
     return `Oops! Something was wrong... ${error.response.data.message}`;
@@ -45,6 +49,22 @@ export const getDeliveryWarehouses = createAsyncThunk(
     try {
       const reqData = { query: reqWarehouses };
       const { data } = await axios.post('order/getWarehouses', reqData);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const addPromoCode = createAsyncThunk(
+  'order/addPromoCode',
+  async (name, thunkApi) => {
+    const { token } = thunkApi.getState().user;
+
+    try {
+      setAuthHeader(token);
+      const { data } = await axios.get(`order/promo-code/${name}`);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
