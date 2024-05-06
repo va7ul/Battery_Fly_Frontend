@@ -9,8 +9,8 @@ export const CartList = () => {
   return (
     <>
       <List>
-        {products.map(item => (
-          <CartItem key={item.codeOfGood} item={item} />
+        {products.map((item, index) => (
+          <CartItem key={item.codeOfGood + index} item={item} />
         ))}
       </List>
     </>
