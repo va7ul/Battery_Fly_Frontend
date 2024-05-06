@@ -3,33 +3,26 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { TitleWrap, Title, Wrapper, SliderButtons } from './Hero.styled';
 import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-const images = [
-  {
-    _id: '662e4b4df04b85608f6b5843',
-    text: 'Потужність у кожному кілометрі: наші електричні батареї для вашого транспорту!',
-    image:
-      'https://res.cloudinary.com/dge7alacy/image/upload/v1714309887/Hero/yx3zqxzkv9bvlygisq2v.png',
-  },
-  {
-    _id: '662e4bc3f04b85608f6b5844',
-    text: 'Безмежна енергія для захоплюючих політів: батареї для FPV дронів!',
-    image:
-      'https://res.cloudinary.com/dge7alacy/image/upload/v1714309886/Hero/ir8j18htynnf3wnessba.png',
-  },
-  {
-    _id: '662e4c1cf04b85608f6b5845',
-    text: 'Втілюй ідеї у реальність: 3D друк на кожен день!',
-    image:
-      'https://res.cloudinary.com/dge7alacy/image/upload/v1714309886/Hero/a0czcwwqskwdnfqq2f3k.png',
-  },
-];
+import { getHeroImages } from 'api';
 
 export const Hero = () => {
   const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const getHeroImagesSync = async () => {
+      try {
+        const res = await getHeroImages();
+        setImages(res);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    getHeroImagesSync();
+  }, []);
 
   const handleOpenFeedbackModal = () => {
     setIsModalFeedbackOpen(true);
