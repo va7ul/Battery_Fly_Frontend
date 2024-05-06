@@ -8,11 +8,11 @@ import {
   Wrap,
   StyledLink,
 } from './FilledCart.styled';
-import { selectCart } from '../../../../redux/menu/menuSelectors';
-import { setCartOpen } from '../../../../redux/menu/menuSlice';
+import { selectCart } from '../../../redux/menu/menuSelectors';
+import { setCartOpen } from '../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPrettyValue } from 'utils/helpers';
-import { selectTotal } from '../../../../redux/basket/basketSelectors';
+import { selectTotal } from '../../../redux/basket/basketSelectors';
 
 export const FilledCart = () => {
   const dispatch = useDispatch();

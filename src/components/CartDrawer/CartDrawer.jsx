@@ -1,8 +1,8 @@
 import { EmptyCart } from './EmptyCart/EmptyCart';
-import { Title, CloseBtn } from './CartModal.styled';
-import { MobileDrawer } from '../MobileDrawer';
+import { Title, CloseBtn } from './CartDrawer.styled';
+import { MobileDrawer } from '../Shared/MobileDrawer';
 import { useSelector } from 'react-redux';
-import { selectItems } from '../../../redux/basket/basketSelectors';
+import { selectItems } from '../../redux/basket/basketSelectors';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FilledCart } from './FilledCart/FilledCart';
 

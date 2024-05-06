@@ -10,7 +10,7 @@ export const CartIcon = () => {
       <ShoppingCartOutlinedIcon
         sx={{
           p: 0,
-          color: 'background.paper',
+          color: 'hoverColor.main',
           width: {
             mobile: '24px',
             desktop: '35px',

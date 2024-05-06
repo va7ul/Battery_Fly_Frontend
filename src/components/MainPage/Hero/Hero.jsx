@@ -3,32 +3,26 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { TitleWrap, Title, Wrapper, SliderButtons } from './Hero.styled';
 import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
-// import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-const images = [
-  {
-    url: 'https://media1.tenor.com/m/O3VnTGc9z8EAAAAd/cat-zone-of-zone-out-cat.gif',
-    title: 'Юля і Вася: фото в кольорі',
-  },
-  {
-    url: 'https://media1.tenor.com/m/l5sIE_3H3EEAAAAd/cats-fighting-fighting-cats.gif',
-    title: 'Наталя демонструє Вові, як її виховала вулиця',
-  },
-  {
-    url: 'https://media1.tenor.com/m/ZAMoMuQgf9UAAAAd/mapache-pedro.gif',
-    title: 'Діма, коли треба написати бек з нуля, а не переписувати за Ірою',
-  },
-  {
-    url: 'https://media1.tenor.com/m/cor0ZSgUarIAAAAd/cat-goofy-cat.gif',
-    title: 'Ріта тіки прокинулась і розуміє, що через пару годин зум',
-  },
-];
+import { getHeroImages } from 'api';
 
 export const Hero = () => {
   const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const getHeroImagesSync = async () => {
+      try {
+        const res = await getHeroImages();
+        setImages(res);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    getHeroImagesSync();
+  }, []);
 
   const handleOpenFeedbackModal = () => {
     setIsModalFeedbackOpen(true);
@@ -43,9 +37,6 @@ export const Hero = () => {
   const next = () => {
     sliderRef.slickNext();
   };
-  // const previous = () => {
-  //   sliderRef.slickPrev();
-  // };
 
   const settings = {
     dots: false,
@@ -67,10 +58,10 @@ export const Hero = () => {
         }}
         {...settings}
       >
-        {images.map(({ url, title }) => (
-          <Wrapper background={url} key={url}>
+        {images.map(({ _id, image, text }) => (
+          <Wrapper background={image} key={_id}>
             <TitleWrap>
-              <Title>{title}</Title>
+              <Title>{text}</Title>
 
               <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
               <ModalFeedback
@@ -81,23 +72,17 @@ export const Hero = () => {
           </Wrapper>
         ))}
       </Slider>
-      <div style={{ textAlign: 'center' }}>
-        {/* <SliderButtons $prev onClick={previous}>
-          <ArrowBackIosIcon
-            sx={{
-              color: 'background.default',
-            }}
-          />
-        </SliderButtons> */}
-        <SliderButtons $next onClick={next}>
-          <ArrowForwardIosIcon
-            sx={{
-              // color: 'background.default',
-              color: 'text.disabled',
-            }}
-          />
-        </SliderButtons>
-      </div>
+      <SliderButtons $next onClick={next}>
+        <ArrowForwardIosIcon
+          sx={{
+            color: 'background.paper',
+            width: {
+              mobile: 16,
+              desktop: 24,
+            },
+          }}
+        />
+      </SliderButtons>
     </div>
   );
 };

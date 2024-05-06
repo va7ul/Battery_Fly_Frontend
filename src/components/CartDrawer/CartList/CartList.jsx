@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectItems } from '../../../../redux/basket/basketSelectors';
+import { selectItems } from '../../../redux/basket/basketSelectors';
 import { CartItem } from './CartItem/CartItem';
 import { List } from './CartList.styled';
 
@@ -9,8 +9,8 @@ export const CartList = () => {
   return (
     <>
       <List>
-        {products.map(item => (
-          <CartItem key={item.codeOfGood} item={item} />
+        {products.map((item, index) => (
+          <CartItem key={item.codeOfGood + index} item={item} />
         ))}
       </List>
     </>
