@@ -20,10 +20,15 @@ export const StyledText = styled.p`
   color: ${getStatusColor};
 `;
 
-export const OrderDetailsList = styled.ul`
+export const OrderDetailsContainer = styled.div`
   grid-column: 1/6;
-  background: papayawhip;
+  /* background: papayawhip; */
+  background: rgba(244, 170, 0, 0.1);
   padding: 5px 10px;
+`;
+
+export const OrderDetailsList = styled.ul`
+  border-bottom: 1px solid ${props => props.theme.colors.textDisabled};
 
   li {
     display: grid;
@@ -37,8 +42,62 @@ export const OrderDetailsList = styled.ul`
       padding-bottom: 15px;
     }
 
-    :not(:last-child) {
+    /* :not(:last-child) {
       border-bottom: 1px solid ${props => props.theme.colors.textDisabled};
-    }
+    } */
+  }
+`;
+
+export const PriceContainer = styled.div`
+  width: 100%;
+  display: grid;
+  gap: 4px;
+  padding: 5px 8px;
+  border-radius: 8px;
+
+  @media screen and (min-width: 1280px) {
+    gap: 8px;
+    padding: 10px;
+  }
+`;
+
+export const Sum = styled.p`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
+
+export const Discount = styled.p`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+
+  span {
+    color: ${props =>
+      props.discount ? props.theme.colors.success : 'inherit'};
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
+
+export const Total = styled.p`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+
+  @media screen and (min-width: 1280px) {
+    text-align: end;
+    border: none;
+    font-size: 24px;
   }
 `;
