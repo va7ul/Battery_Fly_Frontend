@@ -50,3 +50,13 @@ export const add3DPrintOrder = async orderData => {
     console.log('errorMessage', errorMessage);
   }
 };
+
+export const getHeroImages = async () => {
+  try {
+    const res = await axios.get('hero');
+    return res.data.image;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    console.log('errorMessage', errorMessage);
+  }
+};

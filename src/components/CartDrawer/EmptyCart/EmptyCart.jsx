@@ -1,4 +1,4 @@
-import sprite from '../../../../assets/images/sprite.svg';
+import sprite from '../../../assets/images/sprite.svg';
 import { Wrapper, CartIcon, Text, Button } from './EmptyCart.styled';
 
 export const EmptyCart = ({ closeCart }) => {

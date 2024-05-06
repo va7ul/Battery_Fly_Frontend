@@ -22,8 +22,8 @@ import {
   increaseQuantity,
   decreaseQuantity,
   changeQuantity,
-} from '../../../../../redux/basket/basketSlice';
-import { setCartOpen } from '../../../../../redux/menu/menuSlice';
+} from '../../../../redux/basket/basketSlice';
+import { setCartOpen } from '../../../../redux/menu/menuSlice';
 
 export const CartItem = ({ item }) => {
   const {

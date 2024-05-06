@@ -1,4 +1,4 @@
-import { CartList } from 'components/Shared/CartModal/CartList/CartList';
+import { CartList } from 'components/CartDrawer/CartList/CartList';
 import { CartWrap, Title, ListWrap } from './Cart.styled';
 
 export const Cart = () => {
