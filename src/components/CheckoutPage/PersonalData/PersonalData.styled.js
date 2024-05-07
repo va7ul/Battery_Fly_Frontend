@@ -77,13 +77,16 @@ export const StyledField = styled(Field)`
 `;
 
 export const PhoneFieldGlobalStyles = createGlobalStyle`
-  .react-international-phone-input {
-    width: 283px;
-    
+  .react-international-phone-input-container .react-international-phone-input{
   &:focus {
     outline: none;
     border: 1px solid ${props => props.theme.colors.secondary};
   }
+}  
+  
+  .react-international-phone-input {
+    width: 283px;
+    
     @media (min-width: 1280px) {
     width: 430px;
   }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
+import { useAuth, useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Delivery } from './Delivery/Delivery';
 import { Cart } from './Cart/Cart';
@@ -13,16 +14,14 @@ import { changeOrderNum } from '../../redux/order/orderSlice';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
-import { useOrder } from 'utils/hooks';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
+  const { isLoggedIn } = useAuth();
+
   const {
-    firstName,
-    lastName,
-    email,
     text,
     tel,
     orderNum,
@@ -38,13 +37,18 @@ export const Checkout = () => {
     deliveryType,
   } = useOrder();
 
-  const isValidPhone = isPhoneValid(tel);
+    const {
+      userData: { firstName, lastName, email, tel: userTel  },
+    } = useAuth();
+
+  const isValidPhone = isPhoneValid(isLoggedIn && !tel ? userTel : tel);
 
   useEffect(() => {
     if (orderNum) {
       handleOpenAgreeModal();
     }
   }, [orderNum]);
+
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -59,9 +63,9 @@ export const Checkout = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
+      firstName: isLoggedIn ? firstName : '',
+      lastName: isLoggedIn ? lastName : '',
+      email: isLoggedIn ? email : '',
       text: text,
     },
     validationSchema: personalDataSchema,
@@ -90,7 +94,10 @@ export const Checkout = () => {
         <Title>Оформлення замовлення</Title>
         <Grid container rowGap="15px">
           <Grid item desktop={6}>
-            <PersonalData formik={formik} isValidPhone={isValidPhone} />
+            <PersonalData
+              formik={formik}
+              isValidPhone={isValidPhone}
+            />
             <Delivery />
           </Grid>
           <Grid item desktop={6}>
@@ -101,7 +108,7 @@ export const Checkout = () => {
         <OrderButton
           type="submit"
           form="form-order"
-          disabled={!isValidPhone || tel === '+380'}
+          disabled={!isValidPhone}
         >
           Оформити замовлення
         </OrderButton>

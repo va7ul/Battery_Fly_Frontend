@@ -1,9 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { FormikProvider } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
-import { selectUserDataInOrder } from '../../../redux/order/orderSelectors';
+import { useAuth, useOrder } from 'utils/hooks';
 import { changeUserTel } from '../../../redux/order/orderSlice';
 import {
   DivErrorMessage,
@@ -19,10 +20,20 @@ import {
 } from './PersonalData.styled';
 
 export const PersonalData = ({ formik, isValidPhone }) => {
-  const { tel } = useSelector(selectUserDataInOrder);
+  const {
+    isLoggedIn,
+    userData: { tel: userTel },
+  } = useAuth();
+  const { tel } = useOrder();
+
   const dispatch = useDispatch();
+
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
+   useEffect(() => {
+     dispatch(changeUserTel(userTel));
+   }, [dispatch, userTel]);
+  
   return (
     <FormikProvider value={formik}>
       <Wrapper>
@@ -66,8 +77,12 @@ export const PersonalData = ({ formik, isValidPhone }) => {
               }}
               defaultCountry="ua"
               hideDropdown={true}
-              value={tel}
-              onChange={tel => dispatch(changeUserTel(tel))}
+              value={isLoggedIn ? userTel : tel}
+              onChange={tel => {
+                if (tel !== '+380') {
+                  dispatch(changeUserTel(tel));
+                }
+              }}
             />
             {!isValidPhone && (
               <DivErrorMessage>
