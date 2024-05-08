@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import ReactModal from 'react-modal';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { nameSchema } from '../../../common/schemas/nameSchema';
 import { isPhoneValid } from '../../../common/schemas/phoneSchema';
+import { useAuth } from 'utils/hooks';
 import { addFeedback } from 'api';
-import { useMediaQuery } from 'react-responsive';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
@@ -53,9 +54,12 @@ export const ModalFeedback = ({
   isModalFeedbackOpen,
   handleCloseFeedbackModal,
 }) => {
-  const [tel, setTel] = useState('');
-
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+    const { isLoggedIn } = useAuth();
+    const {
+      userData: { firstName, tel: userTel },
+    } = useAuth();
+    const [tel, setTel] = useState(isLoggedIn ? userTel : '');
   const isValidPhone = isPhoneValid(tel);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
@@ -81,7 +85,9 @@ export const ModalFeedback = ({
           <Text>Залиште свої дані, ми вам передзвонимо</Text>
           <Formik
             initialValues={{
-              name: JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
+              name: isLoggedIn
+                ? firstName
+                : JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
                 ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
                     .name
                 : '',
