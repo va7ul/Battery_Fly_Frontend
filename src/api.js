@@ -13,7 +13,7 @@ const handleError = error => {
 
 export const addQuickOrder = async orderData => {
   try {
-    const data = await axios.post('quick-order', orderData);
+    const data = await axios.post('order/quick-order', orderData);
     return data;
   } catch (error) {
     const errorMessage = handleError(error);

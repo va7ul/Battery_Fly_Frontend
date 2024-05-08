@@ -22,6 +22,7 @@ import {
   Title,
   Wrapper,
 } from './ModalQuickOrder.styled';
+import { useAuth } from 'utils/hooks';
 
 export const ModalQuickOrder = ({
   product: { name, codeOfGood },
@@ -29,9 +30,13 @@ export const ModalQuickOrder = ({
   handleCloseQuickOrderModal,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [tel, setTel] = useState('');
+  const { isLoggedIn } = useAuth();
+  const {
+    userData: { firstName, tel: userTel  },
+  } = useAuth();
+  const [tel, setTel] = useState(isLoggedIn ? userTel : '');
   const isValidPhone = isPhoneValid(tel);
-
+  
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const handleOpenAgreeModal = () => {
@@ -55,7 +60,7 @@ export const ModalQuickOrder = ({
           <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
           <Formik
             initialValues={{
-              name: '',
+              name: isLoggedIn ? firstName : '',
             }}
             validationSchema={nameSchema}
             onSubmit={async (values, _) => {
