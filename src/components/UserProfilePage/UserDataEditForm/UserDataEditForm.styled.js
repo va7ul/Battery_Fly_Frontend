@@ -87,8 +87,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  color: rgba(218, 123, 106, 1);
-  font-size: 8px;
+  color: ${props => props.theme.colors.error};
 
   @media (min-width: 1280px) {
     font-size: 12px;
@@ -96,7 +95,7 @@ export const StyledErrorMessage = styled(ErrorMessage)`
 `;
 
 export const DivErrorMessage = styled.div`
-  color: rgba(218, 123, 106, 1);
+  color: ${props => props.theme.colors.error};
   font-size: 8px;
 
   @media (min-width: 1280px) {

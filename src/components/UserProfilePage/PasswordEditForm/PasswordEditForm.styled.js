@@ -59,7 +59,7 @@ export const StyledField = styled(Field)`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  color: rgba(218, 123, 106, 1);
+  color: ${props => props.theme.colors.error};
   font-size: 8px;
 
   @media (min-width: 1280px) {
