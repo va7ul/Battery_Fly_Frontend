@@ -1,10 +1,10 @@
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import { BadgeComponent } from './Badge';
 import { useSelector } from 'react-redux';
-import { selectFavoriteProducts } from '../../redux/products/productsSelectors';
+import { selectFavorites } from '../../redux/user/userSelectors';
 
 export const FavoriteIcon = () => {
-  const favorites = useSelector(selectFavoriteProducts);
+  const favorites = useSelector(selectFavorites);
 
   return (
     <BadgeComponent value={favorites?.length}>
@@ -15,9 +15,6 @@ export const FavoriteIcon = () => {
           width: {
             mobile: '24px',
             desktop: '35px',
-          },
-          ' &:hover': {
-            color: 'secondary.main',
           },
         }}
       />

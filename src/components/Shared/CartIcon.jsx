@@ -15,9 +15,6 @@ export const CartIcon = () => {
             mobile: '24px',
             desktop: '35px',
           },
-          ' &:hover': {
-            color: 'secondary.main',
-          },
         }}
       />
     </BadgeComponent>
