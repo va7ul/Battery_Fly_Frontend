@@ -13,7 +13,8 @@ import {
   getDeliveryWarehouses,
 } from '../../../redux/order/orderOperations';
 import { changeCity, changeWarehouse } from '../../../redux/order/orderSlice';
-import { selectStyles } from 'components/CheckoutPage/Delivery/Delivery.styled';
+import {Box, Text, selectStyles } from './DeliveryAddressForm.styled';
+
 
 export const DeliveryAddressForm = () => {
   const dispatch = useDispatch();
@@ -79,23 +80,26 @@ export const DeliveryAddressForm = () => {
 
   return (
     <>
-      <Select
-        options={optionsCities}
-        value={getCity()}
-        onChange={handleCityChange}
-        onInputChange={handleSelectCity}
-        onFocus={clearInputCity}
-        placeholder={'Місто'}
-        styles={selectStyles}
-      />
-      <Select
-        options={optionsWarehouses}
-        value={getWarehouse()}
-        onChange={handleWarehouseChange}
-        onFocus={clearInputWarehouse}
-        placeholder={'Відділення/поштомат'}
-        styles={selectStyles}
-      />
+      <Text>Додати адресу </Text>
+      <Box>
+        <Select
+          options={optionsCities}
+          value={getCity()}
+          onChange={handleCityChange}
+          onInputChange={handleSelectCity}
+          onFocus={clearInputCity}
+          placeholder={'Місто'}
+          styles={selectStyles}
+        />
+        <Select
+          options={optionsWarehouses}
+          value={getWarehouse()}
+          onChange={handleWarehouseChange}
+          onFocus={clearInputWarehouse}
+          placeholder={'Відділення/поштомат'}
+          styles={selectStyles}
+        />
+      </Box>
     </>
   );
 };

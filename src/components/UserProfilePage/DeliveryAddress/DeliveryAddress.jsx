@@ -12,9 +12,11 @@ export const DeliveryAddress = () => {
     <>
       <Subtitle>Адреса доставки</Subtitle>
       <Text>У вас ще немає збережених адрес.</Text>
-      <AddButton type="button" onClick={handleShowForm}>
-        Додати адресу
-      </AddButton>
+      {!showForm && (
+        <AddButton type="button" onClick={handleShowForm}>
+          Додати адресу
+        </AddButton>
+      )}
       {showForm && <DeliveryAddressForm />}
     </>
   );
