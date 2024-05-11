@@ -16,6 +16,7 @@ export const Text = styled.p`
 
   @media screen and (min-width: 1280px) {
     font-size: 15px;
+    margin-bottom: 20px;
   }
 `;
 

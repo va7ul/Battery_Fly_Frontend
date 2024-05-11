@@ -13,10 +13,10 @@ import {
   getDeliveryWarehouses,
 } from '../../../redux/order/orderOperations';
 import { changeCity, changeWarehouse } from '../../../redux/order/orderSlice';
-import {Box, Text, selectStyles } from './DeliveryAddressForm.styled';
+import {Box, BtnWrapper, CancelBtn, SubmitAddressBtn, Text, selectStyles } from './DeliveryAddressForm.styled';
 
 
-export const DeliveryAddressForm = () => {
+export const DeliveryAddressForm = ({ handleShowForm }) => {
   const dispatch = useDispatch();
 
   let cities = useSelector(selectCities);
@@ -100,6 +100,12 @@ export const DeliveryAddressForm = () => {
           styles={selectStyles}
         />
       </Box>
+      <BtnWrapper>
+        <SubmitAddressBtn type="submit">Зберегти адресу</SubmitAddressBtn>
+        <CancelBtn type="button" onClick={handleShowForm}>
+          Відмінити
+        </CancelBtn>
+      </BtnWrapper>
     </>
   );
 };

@@ -17,7 +17,7 @@ export const DeliveryAddress = () => {
           Додати адресу
         </AddButton>
       )}
-      {showForm && <DeliveryAddressForm />}
+      {showForm && <DeliveryAddressForm handleShowForm={handleShowForm} />}
     </>
   );
 };
