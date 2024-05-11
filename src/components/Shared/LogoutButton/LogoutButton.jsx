@@ -35,6 +35,11 @@ export const LogoutButton = () => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        sx={{
+          '& .MuiDialog-paper': {
+            bgcolor: 'secondary.main',
+          },
+        }}
       >
         <DialogTitle id="alert-dialog-title">{'Вихід'}</DialogTitle>
         <DialogContent>
@@ -43,8 +48,24 @@ export const LogoutButton = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={logout}>Підтвердити</Button>
-          <Button onClick={handleClose}>Скасувати</Button>
+          <Button
+            onClick={logout}
+            sx={{
+              color: 'text.primary',
+              '&:hover': { color: 'hoverColor.main' },
+            }}
+          >
+            Підтвердити
+          </Button>
+          <Button
+            onClick={handleClose}
+            sx={{
+              color: 'text.primary',
+              '&:hover': { color: 'hoverColor.main' },
+            }}
+          >
+            Скасувати
+          </Button>
         </DialogActions>
       </Dialog>
     </Fragment>
