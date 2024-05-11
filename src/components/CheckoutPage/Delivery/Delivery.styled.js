@@ -28,15 +28,23 @@ export const Button = styled.button`
   height: 40px;
   font-size: 12px;
   font-weight: 500;
-  background: ${props => props.theme.colors.greyBackgroundPaper};
+  /* background: ${props => props.theme.colors.greyBackgroundPaper}; */
   border-radius: 6px;
   cursor: pointer;
   text-align: center;
   padding: 14px;
+  background: ${props =>
+    props.$show
+      ? props.theme.colors.yellow
+      : props.theme.colors.greyBackgroundPaper};
 
   &:hover,
-  :focus {
-    background: ${props => props.theme.colors.secondary};
+  &:focus {
+    background: ${props => props.theme.colors.yellow};
+  }
+
+  &:focus {
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
   }
 
   @media screen and (min-width: 1280px) {
