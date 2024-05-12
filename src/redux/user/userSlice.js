@@ -24,7 +24,10 @@ const initialState = {
   isAuthModalOpen: false,
   errorStatus: null,
   verifiedEmail: false,
-  delivery: {},
+  delivery: {
+    city: 'Київ',
+    warehouse: '3',
+  },
   favorites: [],
   ordersHistory: [],
   ordersDetails: [],
@@ -66,7 +69,7 @@ const handleEntranceFulfilled = (state, { payload }) => {
   state.token = payload.token;
   state.errorStatus = '';
   state.verifiedEmail = payload.verifiedEmail;
-  state.delivery = payload.delivery;
+  // state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
   state.isLoading = false;
@@ -74,7 +77,7 @@ const handleEntranceFulfilled = (state, { payload }) => {
 
 const handleRefreshFulfilled = (state, { payload }) => {
   state.userData = payload.user;
-  state.delivery = payload.delivery;
+  // state.delivery = payload.delivery;
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
   state.isRefreshing = false;

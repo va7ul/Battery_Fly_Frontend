@@ -103,7 +103,7 @@ export default function PasswordEditForm() {
                   <Box>
                     <StyledField
                       name="password"
-                      maxlength="21"
+                      maxLength="21"
                       type={showPassword ? 'text' : 'password'}
                     />
                     <IconButton
@@ -142,7 +142,7 @@ export default function PasswordEditForm() {
                     <StyledField
                       name="newPassword"
                       type={showNewPassword ? 'text' : 'password'}
-                      maxlength="21"
+                      maxLength="21"
                     />
                     <IconButton
                       sx={{
@@ -180,6 +180,7 @@ export default function PasswordEditForm() {
                     <StyledField
                       name="newPasswordConfirmation"
                       type={showNewPasswordConfirmation ? 'text' : 'password'}
+                      maxLength="21"
                     />
                     <IconButton
                       sx={{

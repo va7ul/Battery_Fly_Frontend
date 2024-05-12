@@ -13,6 +13,14 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Box = styled.div`
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 66px;
+  }
+`;
+
 export const Title = styled.h2`
   font-size: 15px;
   font-weight: 600;
