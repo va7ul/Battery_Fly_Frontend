@@ -57,6 +57,9 @@ export const Delivery = () => {
 
     const [displayNP, setDisplayNP] = useState("none");
     const [displayAddress, setDisplayAddress] = useState("none");
+    const [showNP, setShowNP] = useState(false);
+    const [showAddress, setShowAddress] = useState(false);
+
     
     let cities = useSelector(selectCities);
     let warehouses = useSelector(selectWarehouses);
@@ -67,7 +70,9 @@ export const Delivery = () => {
     const openNP = () => {
         setDisplayAddress("none");
         setDisplayNP("flex");
-        dispatch(changeDeliveryType("Нова пошта"));   
+        dispatch(changeDeliveryType("Нова пошта"));
+        setShowNP(true);
+        setShowAddress(false);
     };
 
     const openAddress = () => {
@@ -76,6 +81,8 @@ export const Delivery = () => {
         dispatch(changeDeliveryType("Самовивіз"));
         dispatch(changeCity("null"))
         dispatch(changeWarehouse("null"));
+        setShowAddress(true);
+        setShowNP(false);
     };
 
     const handleRadioChange = (event) => {
@@ -105,7 +112,7 @@ export const Delivery = () => {
         };
     });
 
-     const getWarehouse = () => {
+    const getWarehouse = () => {
         return warehouse ? optionsWarehouses.find(w => w.value === warehouse) : ''
     }
     const handleCityChange = (event) => {
@@ -131,7 +138,7 @@ export const Delivery = () => {
         dispatch(changeWarehouse(''));
     };
 
-       const clearInputWarehouse = () => {
+    const clearInputWarehouse = () => {
         dispatch(changeWarehouse(''));
     };
 
@@ -139,7 +146,10 @@ export const Delivery = () => {
         <div>
             <Title>Спосіб доставки</Title>
             <ButtonBox>
-                <Button onClick={openNP}>
+                <Button
+                    onClick={openNP}
+                    $show={showNP}
+                >
                     <NPTitle>
                         <NPIcon>
                             <use href={`${sprite}#nova_poshta`}></use>
@@ -147,7 +157,11 @@ export const Delivery = () => {
                         <NPText>Нова пошта</NPText>
                     </NPTitle>
                 </Button>
-                <Button onClick={openAddress}>Самовивіз</Button>
+                <Button
+                    onClick={openAddress}
+                    $show={showAddress}
+                >
+                    Самовивіз</Button>
             </ButtonBox>
             <BoxNP style={{ display: displayNP }}>
                 <TextNp>Адреса доставки</TextNp>
