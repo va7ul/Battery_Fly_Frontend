@@ -2,17 +2,16 @@ import styled from 'styled-components';
 
 export const EditButton = styled.button`
   position: relative;
-  width: 115px;
+  width: 100px;
   height: 26px;
   margin-top: 10px;
-  padding: 4px;
   background-color: transparent;
   border: none;
   font-size: 10px;
   font-weight: 600;
 
   @media screen and (min-width: 1280px) {
-    width: 168px;
+    width: 156px;
     height: 36px;
     margin-top: 14px;
     font-size: 16px;
@@ -20,10 +19,10 @@ export const EditButton = styled.button`
 
   &::after {
     position: absolute;
-    left: 20%;
+    left: 18%;
     bottom: 3px;
     content: '';
-    width: 76%;
+    width: 84%;
     height: 1px;
     border-radius: 1px;
     background-color: currentColor;

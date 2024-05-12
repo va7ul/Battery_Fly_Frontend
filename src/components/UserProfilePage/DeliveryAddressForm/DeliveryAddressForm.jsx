@@ -16,13 +16,13 @@ import { changeCity, changeWarehouse } from '../../../redux/order/orderSlice';
 import {Box, BtnWrapper, CancelBtn, SubmitAddressBtn, Text, selectStyles } from './DeliveryAddressForm.styled';
 
 
-export const DeliveryAddressForm = ({ handleShowForm }) => {
+export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   const dispatch = useDispatch();
 
   let cities = useSelector(selectCities);
   const city = useSelector(selectCity);
-  const warehouse = useSelector(selectWarehouse);
   let warehouses = useSelector(selectWarehouses);
+  const warehouse = useSelector(selectWarehouse);
 
   const optionsCities = cities.map(city => {
     return {
@@ -80,7 +80,7 @@ export const DeliveryAddressForm = ({ handleShowForm }) => {
 
   return (
     <>
-      <Text>Додати адресу </Text>
+      <Text>{text}</Text>
       <Box>
         <Select
           options={optionsCities}

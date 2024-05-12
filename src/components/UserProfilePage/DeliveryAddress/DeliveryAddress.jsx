@@ -1,23 +1,47 @@
-import { useMediaQuery } from 'react-responsive';
-import { AddButton, Subtitle, Text } from './DeliveryAddress.styled';
+import { AddButton, EditButton, Subtitle, Text } from './DeliveryAddress.styled';
 import { useState } from 'react';
 import { DeliveryAddressForm } from '../DeliveryAddressForm/DeliveryAddressForm';
+import { useSelector } from 'react-redux';
+import { selectDelivery } from '../../../redux/user/userSelectors';
+import { LiaPenAltSolid } from 'react-icons/lia';
 
 export const DeliveryAddress = () => {
-  const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
   const [showForm, setShowForm] = useState(false);
 
+  const delivery = useSelector(selectDelivery);
+  
+  const text = delivery ? 'Редагувати адресу' : 'Додати адресу';
+
   const handleShowForm = () => setShowForm(!showForm);
+
   return (
     <>
       <Subtitle>Адреса доставки</Subtitle>
-      <Text>У вас ще немає збережених адрес.</Text>
-      {!showForm && (
-        <AddButton type="button" onClick={handleShowForm}>
-          Додати адресу
-        </AddButton>
+      {delivery ? (
+        <>
+          <Text>
+            {delivery.city}, {delivery.warehouse}.
+          </Text>
+          {!showForm && (
+            <EditButton type="button" onClick={handleShowForm}>
+              <LiaPenAltSolid />
+              Редагувати адресу
+            </EditButton>
+          )}
+        </>
+      ) : (
+        <>
+          <Text>У вас ще немає збережених адрес.</Text>
+          {!showForm && (
+            <AddButton type="button" onClick={handleShowForm}>
+              Додати адресу
+            </AddButton>
+          )}
+        </>
       )}
-      {showForm && <DeliveryAddressForm handleShowForm={handleShowForm} />}
+      {showForm && (
+        <DeliveryAddressForm text={text} handleShowForm={handleShowForm} />
+      )}
     </>
   );
 };
