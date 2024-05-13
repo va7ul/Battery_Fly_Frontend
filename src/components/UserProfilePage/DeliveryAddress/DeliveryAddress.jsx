@@ -9,7 +9,7 @@ export const DeliveryAddress = () => {
   const [showForm, setShowForm] = useState(false);
 
   const delivery = useSelector(selectDelivery);
-  
+
   const text = delivery ? 'Редагувати адресу' : 'Додати адресу';
 
   const handleShowForm = () => setShowForm(!showForm);

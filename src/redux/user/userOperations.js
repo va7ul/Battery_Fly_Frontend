@@ -84,6 +84,19 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
+export const editUserData = createAsyncThunk(
+  'user/edit',
+  async (dataUser, thunkApi) => {
+    try {
+      const { data } = await axios.post('user/change-info', dataUser);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkApi.rejectWithValue(errorMessage);
+    }
+  }
+);
+
 // export const verifyEmail = createAsyncThunk(
 //   'auth/verify-email',
 //   async (dataUser, thunkAPI) => {
@@ -96,24 +109,6 @@ export const refreshUser = createAsyncThunk(
 //   }
 // );
 
-export const updateUser = createAsyncThunk(
-  'user/update-profile',
-  async (dataUser, thunkAPI) => {
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-    try {
-      const { data } = await axios.put('user/update', dataUser, config);
-
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkAPI.rejectWithValue(errorMessage);
-    }
-  }
-);
 
 export const addToFavorite = createAsyncThunk(
   'user/addToFavorite',

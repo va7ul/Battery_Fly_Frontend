@@ -21,6 +21,8 @@ import {
   CancelBtn,
 } from './UserDataEditForm.styled';
 import PasswordEditForm from '../PasswordEditForm/PasswordEditForm';
+import { useDispatch } from 'react-redux';
+import { editUserData } from '../../../redux/user/userOperations';
 
 export const UserDataEditForm = ({ handleShowForm }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
@@ -33,6 +35,8 @@ export const UserDataEditForm = ({ handleShowForm }) => {
 
   const isValidPhone = isPhoneValid(formikTel);
 
+  const dispatch = useDispatch();
+
   return (
     <>
       <FormikWrapper>
@@ -44,7 +48,17 @@ export const UserDataEditForm = ({ handleShowForm }) => {
           }}
           validationSchema={userDataSchema}
           onSubmit={(values, _) => {
-            console.log('values', values);
+            const userData = {
+              firstName: values.firstName,
+              lastName: values.lastName,
+              patronymic: values.patronymic,
+              tel: formikTel,
+            };
+            dispatch(editUserData(userData)).then(result => {
+              if (result.meta.requestStatus === 'fulfilled') {
+                handleShowForm();
+              }
+            });
           }}
         >
           <StyledForm>
