@@ -41,6 +41,16 @@ export const forgotPassword = async email => {
   }
 };
 
+export const changePassword = async passwords => {
+  try {
+    const data = await axios.post('user/change-password', passwords);
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    console.log('errorMessage', errorMessage);
+  }
+};
+
 export const add3DPrintOrder = async orderData => {
   try {
     const data = await axios.post('3dprint-order', orderData);

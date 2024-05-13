@@ -9,18 +9,21 @@ export const DeliveryAddress = () => {
   const [showForm, setShowForm] = useState(false);
 
   const delivery = useSelector(selectDelivery);
-  
-  const text = delivery ? 'Редагувати адресу' : 'Додати адресу';
 
-  const handleShowForm = () => setShowForm(!showForm);
+  const handleShowForm = () => setShowForm(showForm => !showForm);
 
+  const isObjectEmpty = (obj) => {
+    return Object.keys(obj).length !== 0;
+  } 
+
+const text = isObjectEmpty(delivery) ? 'Редагувати адресу' : 'Додати адресу';
   return (
     <>
       <Subtitle>Адреса доставки</Subtitle>
-      {delivery ? (
+      {isObjectEmpty(delivery) ? (
         <>
           <Text>
-            {delivery.city}, {delivery.warehouse}.
+            м. {delivery.city}, Нова пошта: {delivery.warehouse}.
           </Text>
           {!showForm && (
             <EditButton type="button" onClick={handleShowForm}>
@@ -33,7 +36,10 @@ export const DeliveryAddress = () => {
         <>
           <Text>У вас ще немає збережених адрес.</Text>
           {!showForm && (
-            <AddButton type="button" onClick={handleShowForm}>
+            <AddButton
+              type="button"
+              onClick={handleShowForm}
+            >
               Додати адресу
             </AddButton>
           )}

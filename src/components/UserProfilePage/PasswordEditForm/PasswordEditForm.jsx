@@ -18,6 +18,7 @@ import {
   StyledField,
   StyledForm,
 } from './PasswordEditForm.styled';
+import { changePassword } from 'api';
 
 export default function PasswordEditForm() {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -29,7 +30,7 @@ export default function PasswordEditForm() {
     useState(false);
 
   const handleExpansion = () => {
-    setExpanded(!expanded);
+    setExpanded(expanded => !expanded);
   };
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleClickShowNewPassword = () => setShowNewPassword(show => !show);
@@ -93,11 +94,18 @@ export default function PasswordEditForm() {
                 newPasswordConfirmation: '',
               }}
               validationSchema={editPasswordSchema}
-              onSubmit={(values, _) => {
-                console.log('values', values);
+              onSubmit={async (values, actions) => {
+                const response = await changePassword({
+                  password: values.password,
+                  newPassword: values.newPassword,
+                });
+                if (response) {
+                  handleExpansion();
+                   actions.resetForm();
+                }
               }}
             >
-              <StyledForm>
+              <StyledForm id="form-change-password">
                 <Label>
                   Старий пароль
                   <Box>
@@ -228,10 +236,13 @@ export default function PasswordEditForm() {
                 color: themeMUI => themeMUI.palette.hoverColor.main,
               },
             }}
+            type="submit"
+            form="form-change-password"
           >
             Зберегти
           </Button>
           <Button
+            type="button"
             onClick={handleExpansion}
             sx={{
               '&.MuiButton-root': {
