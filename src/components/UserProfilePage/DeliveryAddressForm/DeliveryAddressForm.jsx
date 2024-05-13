@@ -14,6 +14,7 @@ import {
 } from '../../../redux/order/orderOperations';
 import { changeCity, changeWarehouse } from '../../../redux/order/orderSlice';
 import {Box, BtnWrapper, CancelBtn, SubmitAddressBtn, Text, selectStyles } from './DeliveryAddressForm.styled';
+import { editUserAddress } from '../../../redux/user/userOperations';
 
 
 export const DeliveryAddressForm = ({ text, handleShowForm }) => {
@@ -23,7 +24,6 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   const city = useSelector(selectCity);
   let warehouses = useSelector(selectWarehouses);
   const warehouse = useSelector(selectWarehouse);
-
   const optionsCities = cities.map(city => {
     return {
       value: city,
@@ -78,6 +78,19 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
     dispatch(changeWarehouse(''));
   };
 
+  const handleEditAddress = () => {
+    dispatch(
+      editUserAddress({
+        delivery: {
+          city: city,
+          warehouse: warehouse,
+        },
+      })).then(result => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          handleShowForm();
+        }
+      });
+    };
   return (
     <>
       <Text>{text}</Text>
@@ -101,7 +114,13 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
         />
       </Box>
       <BtnWrapper>
-        <SubmitAddressBtn type="submit">Зберегти адресу</SubmitAddressBtn>
+        <SubmitAddressBtn
+          type="button"
+          onClick={handleEditAddress}
+          disabled={!city || !warehouse}
+        >
+          Зберегти адресу
+        </SubmitAddressBtn>
         <CancelBtn type="button" onClick={handleShowForm}>
           Відмінити
         </CancelBtn>

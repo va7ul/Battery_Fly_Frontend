@@ -9,6 +9,7 @@ import {
   getOrdersHistory,
   getOrderDetails,
   editUserData,
+  editUserAddress,
 } from './userOperations';
 
 const defaultUserData = {
@@ -25,7 +26,7 @@ const initialState = {
   isAuthModalOpen: false,
   errorStatus: null,
   verifiedEmail: false,
-  delivery: '',
+  delivery: {},
   favorites: [],
   ordersHistory: [],
   ordersDetails: [],
@@ -88,6 +89,10 @@ const handleEditUserDataFulfilled = (state, { payload }) => {
   state.userData.tel = payload.result.tel;
 };
 
+const handleEditUserAddressFulfilled = (state, { payload }) => {
+  state.delivery = payload.delivery;
+};
+
 const handleFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
 };
@@ -119,10 +124,17 @@ const userSlice = createSlice({
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
       .addCase(editUserData.fulfilled, handleEditUserDataFulfilled)
+      .addCase(editUserAddress.fulfilled, handleEditUserAddressFulfilled)
       .addCase(getOrdersHistory.fulfilled, handleGetOrdersHistoryFulfilled)
       .addCase(getOrderDetails.fulfilled, handleGetOrderDetailsFulfilled)
       .addMatcher(
-        isAnyOf(register.pending, login.pending,editUserData.pending, getOrdersHistory.pending),
+        isAnyOf(
+          register.pending,
+          login.pending,
+          editUserData.pending,
+          editUserAddress.pending,
+          getOrdersHistory.pending
+        ),
         handlePending
       )
       .addMatcher(
@@ -130,6 +142,7 @@ const userSlice = createSlice({
           register.rejected,
           login.rejected,
           editUserData.rejected,
+          editUserAddress.rejected,
           addToFavorite.rejected,
           deleteFromFavorite.rejected,
           getOrdersHistory.rejected,
