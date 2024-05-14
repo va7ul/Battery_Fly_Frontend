@@ -42,9 +42,9 @@ export const OrderDetailsList = styled.ul`
       padding-bottom: 15px;
     }
 
-    /* :not(:last-child) {
-      border-bottom: 1px solid ${props => props.theme.colors.textDisabled};
-    } */
+    :not(:last-child) {
+      border-bottom: 1px solid rgba(157, 157, 157, 0.3);
+    }
   }
 `;
 
