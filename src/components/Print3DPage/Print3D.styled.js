@@ -58,22 +58,29 @@ export const OrderButton = styled.button`
   }
 `;
 
-export const FileWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
+export const StyledInput = styled.input`
+  height: 30px;
   font-size: 10px;
 
   @media screen and (min-width: 1280px) {
+    height: 42px;
     font-size: inherit;
   }
-`;
 
-export const UploadButton = styled.button`
-  width: 50%;
-  height: 30px;
+  ::-webkit-file-upload-button {
+    background: ${props => props.theme.colors.greyBackgroundPaper};
+    height: 30px;
+    padding: 8px 14px;
+    margin-right: 12px;
+    border-radius: 5px;
+    border: 1px solid;
 
-  @media screen and (min-width: 1280px) {
-    height: 42px;
+    @media screen and (min-width: 1280px) {
+      height: 42px;
+    }
+
+    :is(:hover, :focus) {
+      cursor: pointer;
+    }
   }
 `;

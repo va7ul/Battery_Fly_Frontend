@@ -13,6 +13,9 @@ const initialState = {
     table1: {},
     table2: {},
   },
+  selectedAccuracy: null,
+  selectedPlactic: null,
+  selectedColor: null,
   isLoading: false,
   error: null,
 };
@@ -20,6 +23,17 @@ const initialState = {
 const print3DSlice = createSlice({
   name: 'print3D',
   initialState,
+  reducers: {
+    setAccuracy(state, action) {
+      state.selectedAccuracy = action.payload;
+    },
+    setPlactic(state, action) {
+      state.selectedPlactic = action.payload;
+    },
+    setColor(state, action) {
+      state.selectedColor = action.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(getPrint3D.pending, state => {
@@ -36,4 +50,5 @@ const print3DSlice = createSlice({
       }),
 });
 
+export const { setAccuracy, setPlactic, setColor } = print3DSlice.actions;
 export const print3DReducer = print3DSlice.reducer;
