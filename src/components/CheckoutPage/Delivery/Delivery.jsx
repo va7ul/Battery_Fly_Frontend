@@ -3,53 +3,17 @@ import { debounce } from 'lodash';
 import Select from 'react-select';
 import { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-import { styled } from '@mui/material/styles';
 import { yellow } from '@mui/material/colors';
-import { themeMUI } from '../../../styles/GlobalStyled';
 import { changeCity, changeWarehouse, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment } from '../../../redux/order/orderSelectors';
-import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, BoxNP, selectStyles} from './Delivery.styled';
+import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment, selectDeliveryType } from '../../../redux/order/orderSelectors';
+import { selectDelivery } from '../../../redux/user/userSelectors';
+import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, BoxNP, selectStyles } from './Delivery.styled';
+import {StyledRadioGroup, StyledRadio} from '../Delivery/Delivery.mui'
 import sprite from '../../../assets/images/sprite.svg';
-
-const StyledRadioGroup = styled(RadioGroup)({
-    gap: '5px',
-    '& .MuiButtonBase-root': {
-        padding: '0px 5px 0px 0px',
-        [themeMUI.breakpoints.only('desktop')]: {
-            padding: '0px 10px 0px 0px',
-        },
-    },
-    '& .MuiFormControlLabel-root': {
-        margin: 0,
-        alignItems: "flex-start",
-          [themeMUI.breakpoints.only('desktop')]: {
-            alignItems: "baseline",
-        },
-    },
-    '& .MuiTypography-root': {
-        fontSize: '10px',
-        [themeMUI.breakpoints.only('desktop')]: {
-            fontSize: '20px',
-        },
-    }
-});
-
-const StyledRadio = styled(Radio)({
-    '& .MuiSvgIcon-root': {
-        width: '16px',
-        height: '16px',
-        [themeMUI.breakpoints.only('desktop')]: {
-            width: '18px',
-            height: '18px',
-        },
-    },
-});
 
 export const Delivery = () => {
     const dispatch = useDispatch();
@@ -60,14 +24,20 @@ export const Delivery = () => {
     const [showNP, setShowNP] = useState(false);
     const [showAddress, setShowAddress] = useState(false);
 
-    
     let cities = useSelector(selectCities);
     let warehouses = useSelector(selectWarehouses);
     const city = useSelector(selectCity);
     const warehouse = useSelector(selectWarehouse);
     const payment = useSelector(selectPayment);
+    const deliveryType = useSelector(selectDeliveryType);
+    const delivery = useSelector(selectDelivery);
 
     const openNP = () => {
+        if (deliveryType === "Нова пошта") {
+            return;
+        }
+        dispatch(changeCity(delivery.city));
+        dispatch(changeWarehouse(delivery.warehouse));
         setDisplayAddress("none");
         setDisplayNP("flex");
         dispatch(changeDeliveryType("Нова пошта"));
@@ -76,6 +46,9 @@ export const Delivery = () => {
     };
 
     const openAddress = () => {
+        if (deliveryType === "Самовивіз") {
+            return;
+        }
         setDisplayNP("none");
         setDisplayAddress("flex");
         dispatch(changeDeliveryType("Самовивіз"));
@@ -87,7 +60,6 @@ export const Delivery = () => {
 
     const handleRadioChange = (event) => {
         dispatch(changePayment(event.target.value));
-        
     };
 
     const optionsCities = cities.map(city => {
@@ -124,7 +96,6 @@ export const Delivery = () => {
         dispatch(changeWarehouse(event.value));
     };
 
-    
     const handleSelectCity = useCallback(event => {
         if (event === '') {
             return;
@@ -140,6 +111,20 @@ export const Delivery = () => {
 
     const clearInputWarehouse = () => {
         dispatch(changeWarehouse(''));
+    };
+
+    const cityOfUser = () => {
+        if (delivery.city) {
+            return delivery.city;
+        }
+        return "";
+    };
+
+    const warehouseOfUser = () => {
+        if (delivery.warehouse) {
+            return delivery.warehouse;
+        }
+        return "";
     };
 
     return (
@@ -169,6 +154,7 @@ export const Delivery = () => {
                 <Select
                     options={optionsCities}
                     value={getCity()}
+                    defaultInputValue={cityOfUser()}
                     onChange={handleCityChange}
                     onInputChange={handleSelectCity}
                     onFocus={clearInputCity}
@@ -178,6 +164,7 @@ export const Delivery = () => {
                 <Select
                     options={optionsWarehouses}
                     value={getWarehouse()}
+                    defaultInputValue={warehouseOfUser()}
                     onChange={handleWarehouseChange}
                     onFocus={clearInputWarehouse}
                     placeholder={"Відділення/поштомат"}

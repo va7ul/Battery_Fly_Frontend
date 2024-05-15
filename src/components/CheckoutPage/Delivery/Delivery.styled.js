@@ -28,7 +28,6 @@ export const Button = styled.button`
   height: 40px;
   font-size: 12px;
   font-weight: 500;
-  /* background: ${props => props.theme.colors.greyBackgroundPaper}; */
   border-radius: 6px;
   cursor: pointer;
   text-align: center;
