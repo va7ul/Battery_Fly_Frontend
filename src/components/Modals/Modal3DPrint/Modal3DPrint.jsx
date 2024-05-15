@@ -1,11 +1,18 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useMediaQuery } from 'react-responsive';
 import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
-import { add3DPrintOrder } from 'api';
+import {
+  selectedAccuracy,
+  selectedColor,
+  selectedPlactic,
+} from '../../../redux/print3D/print3DSelectors';
+import { add3DPrintOrder } from '../../../redux/print3D/print3DOperations';
+import { useAuth } from 'utils/hooks';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
@@ -23,12 +30,24 @@ import {
   Wrapper,
 } from './Modal3DPrint.styled';
 
+
 export const Modal3DPrint = ({
   isModal3DPrintOpen,
   handleClose3DPrintModal,
+  file,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const [tel, setTel] = useState('');
+  const {isLoggedIn,
+    userData: { firstName, tel: userTel },
+  } = useAuth();
+  const dispatch = useDispatch();
+  
+  const [tel, setTel] = useState(isLoggedIn ? userTel : '');
+
+  const accuracy = useSelector(selectedAccuracy);
+  const plactic = useSelector(selectedPlactic);
+  const color = useSelector(selectedColor);
+
   const isValidPhone = isPhoneValid(tel);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
@@ -53,20 +72,25 @@ export const Modal3DPrint = ({
           <Title>3D Друк</Title>
           <Formik
             initialValues={{
-              name: '',
-              comment:'',
+              name: isLoggedIn ? firstName : '',
+              text: '',
             }}
             validationSchema={nameSchema}
-            onSubmit={async (values, _) => {
-              const orderData = {
-                userName: values.name,
-                tel: tel,
-                comment: values.comment,
-              };
-              const response = await add3DPrintOrder(orderData);
-              if (response) {
-                handleOpenAgreeModal();
-              }
+            onSubmit={(values, _) => {
+              const formData = new FormData();
+              formData.append('userName', values.name);
+              formData.append('tel', tel);
+              formData.append('text', values.text);
+              formData.append('accuracy', accuracy);
+              formData.append('plactic', plactic);
+              formData.append('color', color);
+              formData.append('file', file);
+
+              dispatch(add3DPrintOrder(formData)).then(result => {
+                if (result.meta.requestStatus === 'fulfilled') {
+                  handleOpenAgreeModal();
+                }
+              });
               handleClose3DPrintModal();
             }}
           >
