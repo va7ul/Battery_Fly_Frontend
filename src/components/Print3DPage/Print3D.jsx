@@ -114,6 +114,7 @@ export const Print3D = () => {
       <Modal3DPrint
         isModal3DPrintOpen={isModal3DPrintOpen}
         handleClose3DPrintModal={handleClose3DPrintModal}
+        file={file}
       />
     </Wrapper>
   );

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
@@ -22,14 +23,24 @@ import {
   Title,
   Wrapper,
 } from './Modal3DPrint.styled';
+import {
+  selectedAccuracy,
+  selectedColor,
+  selectedPlactic,
+} from '../../../redux/print3D/print3DSelectors';
 
 export const Modal3DPrint = ({
   isModal3DPrintOpen,
   handleClose3DPrintModal,
+  file,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const [tel, setTel] = useState('');
+  const accuracy = useSelector(selectedAccuracy);
+  const plactic = useSelector(selectedPlactic);
+  const color = useSelector(selectedColor);
   const isValidPhone = isPhoneValid(tel);
+  const dispatch = useDispatch();
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
@@ -54,19 +65,24 @@ export const Modal3DPrint = ({
           <Formik
             initialValues={{
               name: '',
-              comment:'',
+              text: '',
             }}
             validationSchema={nameSchema}
-            onSubmit={async (values, _) => {
-              const orderData = {
-                userName: values.name,
-                tel: tel,
-                comment: values.comment,
-              };
-              const response = await add3DPrintOrder(orderData);
-              if (response) {
-                handleOpenAgreeModal();
-              }
+            onSubmit={(values, _) => {
+              const formData = new FormData();
+              formData.append('userName', values.name);
+              formData.append('tel', tel);
+              formData.append('text', values.text);
+              formData.append('accuracy', accuracy);
+              formData.append('plactic', plactic);
+              formData.append('color', color);
+              formData.append('file', file);
+
+              dispatch(add3DPrintOrder(formData)).then(result => {
+                if (result.meta.requestStatus === 'fulfilled') {
+                  handleOpenAgreeModal();
+                }
+              });
               handleClose3DPrintModal();
             }}
           >
