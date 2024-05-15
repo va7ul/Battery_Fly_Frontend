@@ -208,8 +208,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseAgreeModal={handleCloseAgreeModal}
       >
         <TextAgree>
-          Введена Вами адреса електронної пошти пов'язана з вже існуючим
-          обліковим записом.
+          Акаунт з такою е-поштою вже зареєстрований.
         </TextAgree>
       </ModalAgree>
     </>
