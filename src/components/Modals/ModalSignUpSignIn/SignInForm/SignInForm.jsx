@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useState, useEffect, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -19,6 +19,7 @@ import {
 } from './SignInForm.styled';
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
+
   const [showPassword, setShowPassword] = useState(false);
   const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
     useState(false);
@@ -26,19 +27,33 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const { isLoggedIn, errorStatus } = useAuth();
 
+  const dispatch = useDispatch();
+
+  const handleOpenAgreeModal = () => {
+    setIsModalAgreeOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseAgreeModal = useCallback(() => {
+    dispatch(changeErrorStatus(''));
+    setIsModalAgreeOpen(false);
+    document.body.style.overflow = 'unset';
+  }, [dispatch]);
+
   useEffect(() => {
     if (errorStatus === 401) {
       handleOpenAgreeModal();
     }
-  }, [errorStatus]);
+    if (!errorStatus) {
+      handleCloseAgreeModal();
+    }
+  }, [errorStatus, handleCloseAgreeModal]);
 
   useEffect(() => {
     if (isLoggedIn) {
       handleCloseSignUpSignInModal();
     }
   }, [isLoggedIn, handleCloseSignUpSignInModal]);
-
-  const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 
@@ -48,17 +63,6 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   };
   const handleCloseForgotPasswordModal = () => {
     setIsModalForgotPasswordOpen(false);
-    document.body.style.overflow = 'unset';
-  };
-
-  const handleOpenAgreeModal = () => {
-    setIsModalAgreeOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const handleCloseAgreeModal = () => {
-    setIsModalAgreeOpen(false);
-    dispatch(changeErrorStatus(''));
     document.body.style.overflow = 'unset';
   };
 
