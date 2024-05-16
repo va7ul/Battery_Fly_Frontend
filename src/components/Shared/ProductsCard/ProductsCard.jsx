@@ -24,7 +24,6 @@ import { selectFavorites } from '../../../redux/user/userSelectors';
 import { selectItems } from '../../../redux/basket/basketSelectors';
 import { getNewPrice } from 'utils/helpers/index';
 import { useAuth } from 'utils/hooks';
-import { ModalSignUpSignIn } from 'components/Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 
 export const ProductsCard = ({ product, category }) => {
   const dispatch = useDispatch();
@@ -35,7 +34,7 @@ export const ProductsCard = ({ product, category }) => {
   const addDefaultImg = e => {
     e.currentTarget.src = `${noImage}`;
   };
-  const { isLoggedIn, isAuthModalOpen } = useAuth();
+  const { isLoggedIn } = useAuth();
   const basketItems = useSelector(selectItems);
   const isInBasket = basketItems.some(
     basketItem => basketItem.codeOfGood === codeOfGood
@@ -77,10 +76,6 @@ export const ProductsCard = ({ product, category }) => {
         dispatch(setAuthModalOpen(true));
         document.body.style.overflow = 'hidden';
       }
-    };
-    const handleCloseSignUpSignInModal = () => {
-      dispatch(setAuthModalOpen(false));
-      document.body.style.overflow = 'unset';
     };
 
   return (
@@ -127,10 +122,6 @@ export const ProductsCard = ({ product, category }) => {
           </Link>
         )}
       </ContentWrapper>
-      <ModalSignUpSignIn
-        isModalSignUpSignInOpen={isAuthModalOpen}
-        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-      />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
@@ -34,26 +34,25 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     document.body.style.overflow = 'hidden';
   };
 
-  const handleCloseAgreeModal = useCallback(() => {
-    dispatch(changeErrorStatus(''));
+  const handleCloseAgreeModal = () => {
     setIsModalAgreeOpen(false);
+    dispatch(changeErrorStatus(''));
     document.body.style.overflow = 'unset';
-  }, [dispatch]);
+  };
+
 
   useEffect(() => {
     if (errorStatus === 401) {
       handleOpenAgreeModal();
     }
-    if (!errorStatus) {
-      handleCloseAgreeModal();
-    }
-  }, [errorStatus, handleCloseAgreeModal]);
+  }, [errorStatus]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      handleCloseSignUpSignInModal();
-    }
-  }, [isLoggedIn, handleCloseSignUpSignInModal]);
+    useEffect(() => {
+      if (isLoggedIn) {
+        handleCloseSignUpSignInModal();
+      }
+    }, [isLoggedIn, handleCloseSignUpSignInModal]);
+
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
 

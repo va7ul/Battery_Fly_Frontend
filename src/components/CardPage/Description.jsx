@@ -11,7 +11,6 @@ import {
   addToFavorite,
   deleteFromFavorite,
 } from '../../redux/user/userOperations';
-import { ModalSignUpSignIn } from 'components/Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import sprite from '../../assets/images/sprite.svg';
 import {
   DescBox,
@@ -36,7 +35,7 @@ import {
 
 export const Description = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn, isAuthModalOpen } = useAuth();
+  const { isLoggedIn } = useAuth();
   const { codeOfGood, description, price, sale, discount, quantity } =
     useSelector(selectOneProduct);
   const priceWithSale = useSelector(selectPriceWithSale);
@@ -61,10 +60,6 @@ export const Description = () => {
       dispatch(setAuthModalOpen(true));
       document.body.style.overflow = 'hidden';
     }
-  };
-  const handleCloseSignUpSignInModal = () => {
-    dispatch(setAuthModalOpen(false));
-    document.body.style.overflow = 'unset';
   };
 
   return (
@@ -126,10 +121,6 @@ export const Description = () => {
           ))}
         </Desc>
       </CapacityBox>
-      <ModalSignUpSignIn
-        isModalSignUpSignInOpen={isAuthModalOpen}
-        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-      />
     </DescBox>
   );
 };
