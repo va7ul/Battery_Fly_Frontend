@@ -11,7 +11,6 @@ import { selectMenu, selectCart } from '../../../redux/menu/menuSelectors';
 import { setCartOpen, setMenuOpen } from '../../../redux/menu/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from 'utils/hooks';
-import { ModalSignUpSignIn } from 'components/Modals/ModalSignUpSignIn/ModalSignUpSignIn';
 import { setAuthModalOpen } from '../../../redux/user/userSlice';
 
 export const Navigation = () => {
@@ -19,7 +18,7 @@ export const Navigation = () => {
 
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(selectMenu);
-  const { isLoggedIn, isAuthModalOpen } = useAuth();
+  const { isLoggedIn} = useAuth();
   const isCartOpen = useSelector(selectCart);
 
   const handleOpenSignUpSignInModal = () => {
@@ -27,10 +26,6 @@ export const Navigation = () => {
       dispatch(setAuthModalOpen(true));
       document.body.style.overflow = 'hidden';
     }
-  };
-  const handleCloseSignUpSignInModal = () => {
-    dispatch(setAuthModalOpen(false));
-    document.body.style.overflow = 'unset';
   };
 
   const closeMenu = () => {
@@ -44,45 +39,43 @@ export const Navigation = () => {
   };
 
   return (
-    <nav>
-      <NavList onClick={closeMenu}>
-        <NavItem page="/main" title="Головна" />
-        <NavItem page="/about" title="Про нас" />
-        <Assortment />
-        <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
-        <NavItem page="/contacts" title="Контакти" />
-        <Item>
-          <CartButton type="button" onClick={toggleCart}>
-            {mobileVersion ? (
-              <>
-                <HopeIconMobile /> <div>Кошик</div>
-              </>
-            ) : (
-              <>
-                <CartIcon />
-                <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
-              </>
-            )}
-          </CartButton>
-        </Item>
-        {mobileVersion ? (
-          <NavItem
-            handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}
-            page="/favorites"
-            title="Обране"
-          />
-        ) : (
-          <Item onClick={handleOpenSignUpSignInModal}>
-            <StyledLink to="/favorites">
-              <FavoriteIcon />
-            </StyledLink>
+    <>
+      <nav>
+        <NavList onClick={closeMenu}>
+          <NavItem page="/main" title="Головна" />
+          <NavItem page="/about" title="Про нас" />
+          <Assortment />
+          <NavItem page="/delivery-and-payment" title="Доставка та оплата" />
+          <NavItem page="/contacts" title="Контакти" />
+          <Item>
+            <CartButton type="button" onClick={toggleCart}>
+              {mobileVersion ? (
+                <>
+                  <HopeIconMobile /> <div>Кошик</div>
+                </>
+              ) : (
+                <>
+                  <CartIcon />
+                  <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
+                </>
+              )}
+            </CartButton>
           </Item>
-        )}
-      </NavList>
-      <ModalSignUpSignIn
-        isModalSignUpSignInOpen={isAuthModalOpen}
-        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-      />
-    </nav>
+          {mobileVersion ? (
+            <NavItem
+              handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}
+              page="/favorites"
+              title="Обране"
+            />
+          ) : (
+            <Item onClick={handleOpenSignUpSignInModal}>
+              <StyledLink to="/favorites">
+                <FavoriteIcon />
+              </StyledLink>
+            </Item>
+          )}
+        </NavList>
+      </nav>
+    </>
   );
 };

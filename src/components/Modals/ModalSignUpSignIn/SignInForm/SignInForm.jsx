@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -19,6 +19,7 @@ import {
 } from './SignInForm.styled';
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
+
   const [showPassword, setShowPassword] = useState(false);
   const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
     useState(false);
@@ -26,30 +27,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const { isLoggedIn, errorStatus } = useAuth();
 
-  useEffect(() => {
-    if (errorStatus === 401) {
-      handleOpenAgreeModal();
-    }
-  }, [errorStatus]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      handleCloseSignUpSignInModal();
-    }
-  }, [isLoggedIn, handleCloseSignUpSignInModal]);
-
   const dispatch = useDispatch();
-
-  const handleClickShowPassword = () => setShowPassword(show => !show);
-
-  const handleOpenForgotPasswordModal = () => {
-    setIsModalForgotPasswordOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-  const handleCloseForgotPasswordModal = () => {
-    setIsModalForgotPasswordOpen(false);
-    document.body.style.overflow = 'unset';
-  };
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -59,6 +37,31 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   const handleCloseAgreeModal = () => {
     setIsModalAgreeOpen(false);
     dispatch(changeErrorStatus(''));
+    document.body.style.overflow = 'unset';
+  };
+
+
+  useEffect(() => {
+    if (errorStatus === 401) {
+      handleOpenAgreeModal();
+    }
+  }, [errorStatus]);
+
+    useEffect(() => {
+      if (isLoggedIn) {
+        handleCloseSignUpSignInModal();
+      }
+    }, [isLoggedIn, handleCloseSignUpSignInModal]);
+
+
+  const handleClickShowPassword = () => setShowPassword(show => !show);
+
+  const handleOpenForgotPasswordModal = () => {
+    setIsModalForgotPasswordOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseForgotPasswordModal = () => {
+    setIsModalForgotPasswordOpen(false);
     document.body.style.overflow = 'unset';
   };
 

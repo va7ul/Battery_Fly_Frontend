@@ -24,28 +24,30 @@ export const Header = () => {
     document.body.style.overflow = 'unset';
   };
   return (
-    <StyledHeader>
-      {mobileVersion ? (
-        <MobileMenu />
-      ) : (
-        <>
-          <Logo />
-          <DesktopWrapper>
-            <Navigation />
-            {isLoggedIn ? (
-              <ProfileButton />
-            ) : (
-              <LoginButton
-                handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
-              />
-            )}
-            <ModalSignUpSignIn
-              isModalSignUpSignInOpen={isAuthModalOpen}
-              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-            />
-          </DesktopWrapper>
-        </>
-      )}
-    </StyledHeader>
+    <>
+      <StyledHeader>
+        {mobileVersion ? (
+          <MobileMenu />
+        ) : (
+          <>
+            <Logo />
+            <DesktopWrapper>
+              <Navigation />
+              {isLoggedIn ? (
+                <ProfileButton />
+              ) : (
+                <LoginButton
+                  handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+                />
+              )}
+            </DesktopWrapper>
+          </>
+        )}
+      </StyledHeader>
+      <ModalSignUpSignIn
+        isModalSignUpSignInOpen={isAuthModalOpen}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      />
+    </>
   );
 };
