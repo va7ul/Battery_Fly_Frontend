@@ -35,9 +35,17 @@ export const LogoutButton = () => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        slotProps={{
+          backdrop: {
+            sx: {
+              backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            },
+          },
+        }}
         sx={{
           '& .MuiDialog-paper': {
             bgcolor: 'secondary.main',
+            borderRadius: '18px',
           },
         }}
       >
