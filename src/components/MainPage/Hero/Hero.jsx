@@ -51,38 +51,40 @@ export const Hero = () => {
     arrows: false,
   };
   return (
-    <div className="slider-container" style={{ position: 'relative' }}>
-      <Slider
-        ref={slider => {
-          sliderRef = slider;
-        }}
-        {...settings}
-      >
-        {images.map(({ _id, image, text }) => (
-          <Wrapper background={image} key={_id}>
-            <TitleWrap>
-              <Title>{text}</Title>
-
-              <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
-              <ModalFeedback
-                isModalFeedbackOpen={isModalFeedbackOpen}
-                handleCloseFeedbackModal={handleCloseFeedbackModal}
-              />
-            </TitleWrap>
-          </Wrapper>
-        ))}
-      </Slider>
-      <SliderButtons $next onClick={next}>
-        <ArrowForwardIosIcon
-          sx={{
-            color: 'background.paper',
-            width: {
-              mobile: 16,
-              desktop: 24,
-            },
+    <>
+      <div className="slider-container" style={{ position: 'relative' }}>
+        <Slider
+          ref={slider => {
+            sliderRef = slider;
           }}
-        />
-      </SliderButtons>
-    </div>
+          {...settings}
+        >
+          {images.map(({ _id, image, text }) => (
+            <Wrapper background={image} key={_id}>
+              <TitleWrap>
+                <Title>{text}</Title>
+
+                <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
+              </TitleWrap>
+            </Wrapper>
+          ))}
+        </Slider>
+        <SliderButtons $next onClick={next}>
+          <ArrowForwardIosIcon
+            sx={{
+              color: 'background.paper',
+              width: {
+                mobile: 16,
+                desktop: 24,
+              },
+            }}
+          />
+        </SliderButtons>
+      </div>
+      <ModalFeedback
+        isModalFeedbackOpen={isModalFeedbackOpen}
+        handleCloseFeedbackModal={handleCloseFeedbackModal}
+      />
+    </>
   );
 };

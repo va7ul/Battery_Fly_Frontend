@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import ReactModal from 'react-modal';
 import { Formik } from 'formik';
@@ -55,12 +55,21 @@ export const ModalFeedback = ({
   handleCloseFeedbackModal,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-    const { isLoggedIn } = useAuth();
-    const {
-      userData: { firstName, tel: userTel },
-    } = useAuth();
-    const [tel, setTel] = useState(isLoggedIn ? userTel : '');
+  const { isLoggedIn } = useAuth();
+  const {
+    userData: { firstName, tel: userTel },
+  } = useAuth();
+  const [tel, setTel] = useState(isLoggedIn ? userTel : '+380');
   const isValidPhone = isPhoneValid(tel);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setTel(userTel);
+    }
+    if (!isLoggedIn) {
+      setTel('+380');
+    }
+  }, [isLoggedIn, userTel]);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
