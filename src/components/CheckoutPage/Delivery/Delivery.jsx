@@ -113,20 +113,6 @@ export const Delivery = () => {
         dispatch(changeWarehouse(''));
     };
 
-    const cityOfUser = () => {
-        if (delivery.city) {
-            return delivery.city;
-        }
-        return "";
-    };
-
-    const warehouseOfUser = () => {
-        if (delivery.warehouse) {
-            return delivery.warehouse;
-        }
-        return "";
-    };
-
     return (
         <div>
             <Title>Спосіб доставки</Title>
@@ -154,7 +140,7 @@ export const Delivery = () => {
                 <Select
                     options={optionsCities}
                     value={getCity()}
-                    defaultInputValue={cityOfUser()}
+                    defaultInputValue={delivery.city}
                     onChange={handleCityChange}
                     onInputChange={handleSelectCity}
                     onFocus={clearInputCity}
@@ -164,7 +150,7 @@ export const Delivery = () => {
                 <Select
                     options={optionsWarehouses}
                     value={getWarehouse()}
-                    defaultInputValue={warehouseOfUser()}
+                    defaultInputValue={delivery.warehouse}
                     onChange={handleWarehouseChange}
                     onFocus={clearInputWarehouse}
                     placeholder={"Відділення/поштомат"}
