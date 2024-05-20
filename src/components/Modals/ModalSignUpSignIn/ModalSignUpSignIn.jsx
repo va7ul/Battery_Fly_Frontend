@@ -15,39 +15,40 @@ export const ModalSignUpSignIn = ({
   const handleShowSignUpForm = () => setShowSignUpForm(true);
 
   return (
-      <ModalYellowGradient
-        isModalOpen={isModalSignUpSignInOpen}
-        handleCloseModal={handleCloseSignUpSignInModal}
-      >
-        <CloseButton handleCloseModal={handleCloseSignUpSignInModal} />
-        <Box>
-          <BtnWrapper>
-            <NavBtn
-              type="button"
-              $show={!showSignUpForm}
-              onClick={handleShowSignInForm}
-            >
-              Вхід
-            </NavBtn>
-            <NavBtn
-              type="button"
-              $show={showSignUpForm}
-              onClick={handleShowSignUpForm}
-            >
-              Реєстрація
-            </NavBtn>
-          </BtnWrapper>
-          {showSignUpForm && (
-            <SignUpForm
-              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-            />
-          )}
-          {!showSignUpForm && (
-            <SignInForm
-              handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
-            />
-          )}
-        </Box>
-      </ModalYellowGradient>
+    <ModalYellowGradient
+      isModalOpen={isModalSignUpSignInOpen}
+      handleCloseModal={handleCloseSignUpSignInModal}
+    >
+      <CloseButton handleCloseModal={handleCloseSignUpSignInModal} />
+      <Box>
+        <BtnWrapper>
+          <NavBtn
+            type="button"
+            $show={!showSignUpForm}
+            onClick={handleShowSignInForm}
+          >
+            Вхід
+          </NavBtn>
+          <NavBtn
+            type="button"
+            $show={showSignUpForm}
+            onClick={handleShowSignUpForm}
+          >
+            Реєстрація
+          </NavBtn>
+        </BtnWrapper>
+        {showSignUpForm && (
+          <SignUpForm
+            handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+          />
+        )}
+        {!showSignUpForm && (
+          <SignInForm
+            handleShowSignInForm={handleShowSignInForm}
+            // handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+          />
+        )}
+      </Box>
+    </ModalYellowGradient>
   );
 };

@@ -17,15 +17,17 @@ import {
   ForgotPasswordBtn,
   StyledForm,
 } from './SignInForm.styled';
+import { ModalVerifyEmail } from 'components/Modals/ModalVerifyEmail/ModalVerifyEmail';
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
   const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const { isLoggedIn, errorStatus } = useAuth();
+  const { verifiedEmail, isLoggedIn, errorStatus } = useAuth();
 
   const dispatch = useDispatch();
 
@@ -40,21 +42,28 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     document.body.style.overflow = 'unset';
   };
 
-
   useEffect(() => {
     if (errorStatus === 401) {
       handleOpenAgreeModal();
     }
   }, [errorStatus]);
 
-    useEffect(() => {
-      if (isLoggedIn) {
-        handleCloseSignUpSignInModal();
-      }
-    }, [isLoggedIn, handleCloseSignUpSignInModal]);
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      handleCloseSignUpSignInModal();
+    }
+  }, [isLoggedIn, handleCloseSignUpSignInModal]);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
+
+  const handleOpenVerifyEmailModal = () => {
+    setIsModalVerifyEmailOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseVerifyEmailModal = () => {
+    setIsModalVerifyEmailOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   const handleOpenForgotPasswordModal = () => {
     setIsModalForgotPasswordOpen(true);
@@ -72,7 +81,11 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     },
     validationSchema: signInSchema,
     onSubmit: (values, _) => {
-      dispatch(login(values));
+      if (verifiedEmail) {
+        dispatch(login(values));
+      } else {
+        handleOpenVerifyEmailModal();
+      }
     },
   });
 
@@ -143,6 +156,11 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
           </ForgotPasswordBtn>
         </BtnWrapper>
       </StyledForm>
+      <ModalVerifyEmail
+        isModalVerifyEmailOpen={isModalVerifyEmailOpen}
+        handleCloseVerifyEmailModal={handleCloseVerifyEmailModal}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      ></ModalVerifyEmail>
       <ModalForgotPassword
         isModalForgotPasswordOpen={isModalForgotPasswordOpen}
         handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}

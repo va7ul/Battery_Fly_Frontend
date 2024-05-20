@@ -13,15 +13,16 @@ import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { useMediaQuery } from 'react-responsive';
 
-export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
+export const SignUpForm = ({ handleShowSignInForm, handleCloseSignUpSignInModal }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirmation, setShowPasswordConfirmation] =
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+  const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
 
-  const { isLoggedIn, errorStatus } = useAuth();
+  const { verifiedEmail, errorStatus } = useAuth();
 
   useEffect(() => {
     if (errorStatus === 409) {
@@ -30,15 +31,27 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   }, [errorStatus]);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      handleCloseSignUpSignInModal();
+    if (verifiedEmail) {
+      handleShowSignInForm();
     }
-  }, [isLoggedIn, handleCloseSignUpSignInModal]);
+  }, [verifiedEmail, handleShowSignInForm]);
 
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleClickShowPasswordConfirmation = () => setShowPasswordConfirmation(show => !show);
+  const handleClickShowPasswordConfirmation = () =>
+    setShowPasswordConfirmation(show => !show);
+
+  const handleOpenVerifyEmailModal = () => {
+    console.log('first');
+    setIsModalVerifyEmailOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseVerifyEmailModal = () => {
+    setIsModalVerifyEmailOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -67,7 +80,13 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
         email: values.email,
         password: values.password,
       };
-      dispatch(register(userData));
+      dispatch(register(userData)).then(result => {
+        console.log('second');
+        if (result.meta.requestStatus === 'fulfilled') {
+          console.log('first');
+          handleOpenVerifyEmailModal();
+        }
+      });
     },
   });
 
@@ -204,12 +223,19 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
         </Btn>
       </StyledForm>
       <ModalAgree
+        isModalAgreeOpen={isModalVerifyEmailOpen}
+        handleCloseAgreeModal={handleCloseVerifyEmailModal}
+      >
+        <TextAgree>
+          На вашу електронну скриньку надіслано повідомлення для верифікації
+          пошти.
+        </TextAgree>
+      </ModalAgree>
+      <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
       >
-        <TextAgree>
-          Акаунт з такою е-поштою вже зареєстрований.
-        </TextAgree>
+        <TextAgree>Акаунт з такою е-поштою вже зареєстрований.</TextAgree>
       </ModalAgree>
     </>
   );
