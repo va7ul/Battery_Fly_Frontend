@@ -53,8 +53,7 @@ export const ModalVerifyEmail = ({
         <CloseButton handleCloseModal={handleCloseVerifyEmailModal} />
         <Wrapper>
           <Text>
-            Введена електронна адреса не була Вами верифікована. Введіть, будь
-            ласка, е-пошту для повторної верифікації.
+            Ваша е-пошта не верифікована. Введіть е-пошту для повторної верифікації.
           </Text>
           <StyledForm onSubmit={formik.handleSubmit}>
             <Field
@@ -79,8 +78,8 @@ export const ModalVerifyEmail = ({
         handleCloseAgreeModal={handleCloseAllModal}
       >
         <TextAgree>
-          Щоб верифікувати елкутронну адресу, перейдіть за посиланням, яке ми надіслали на
-          введену Вами e-пошту.
+          Щоб верифікуватись - перейдіть за посиланням, яке ми
+          надіслали на вказану e-пошту.
         </TextAgree>
       </ModalAgree>
     </>

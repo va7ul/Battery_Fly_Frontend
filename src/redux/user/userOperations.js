@@ -109,17 +109,17 @@ export const editUserAddress = createAsyncThunk(
   }
 );
 
-// export const verifyEmail = createAsyncThunk(
-//   'auth/verify-email',
-//   async (dataUser, thunkAPI) => {
-//     try {
-//       await axios.post('auth/verify-email', dataUser);
-//     } catch (error) {
-//       const errorMessage = handleError(error);
-//       return thunkAPI.rejectWithValue(errorMessage);
-//     }
-//   }
-// );
+export const verifyEmail = createAsyncThunk(
+  'auth/verify-email',
+  async (dataUser, thunkAPI) => {
+    try {
+      await axios.post('user/resend', dataUser);
+    } catch (error) {
+      const errorMessage = handleError(error);
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
 
 
 export const addToFavorite = createAsyncThunk(
