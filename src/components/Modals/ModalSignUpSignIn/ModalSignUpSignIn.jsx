@@ -45,7 +45,7 @@ export const ModalSignUpSignIn = ({
         {!showSignUpForm && (
           <SignInForm
             handleShowSignInForm={handleShowSignInForm}
-            // handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+            handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
           />
         )}
       </Box>

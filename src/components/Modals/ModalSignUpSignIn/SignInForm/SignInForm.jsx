@@ -43,10 +43,13 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   };
 
   useEffect(() => {
-    if (errorStatus === 401) {
+    if (errorStatus === 401 && verifiedEmail) {
       handleOpenAgreeModal();
     }
-  }, [errorStatus]);
+    if (errorStatus === 401 && !verifiedEmail) {
+      handleOpenVerifyEmailModal();
+    }
+  }, [errorStatus, verifiedEmail]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -81,11 +84,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     },
     validationSchema: signInSchema,
     onSubmit: (values, _) => {
-      if (verifiedEmail) {
         dispatch(login(values));
-      } else {
-        handleOpenVerifyEmailModal();
-      }
     },
   });
 

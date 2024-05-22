@@ -11,16 +11,12 @@ export const Wrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   text-align: center;
-  padding: 0px 52px;
-  margin-bottom: 26px;
 
   @media (min-width: 1280px) {
     font-size: 20px;
-    padding: 0px 132px;
-    margin-bottom: 50px;
   }
 `;
 
@@ -30,10 +26,12 @@ export const StyledForm = styled.form`
   width: 261px;
   gap: 12px;
   align-items: center;
+  margin-top: 26px;
 
   @media (min-width: 1280px) {
     width: 476px;
     gap: 26px;
+    margin-top: 50px;
   }
 `;
 

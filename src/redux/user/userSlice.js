@@ -10,6 +10,7 @@ import {
   getOrderDetails,
   editUserData,
   editUserAddress,
+  verifyEmail,
 } from './userOperations';
 
 const defaultUserData = {
@@ -63,7 +64,16 @@ const handleRefreshRejected = state => {
   state.isLoggedIn = false;
 };
 
-const handleEntranceFulfilled = (state, { payload }) => {
+const handleVerifyEmailFulfilled = (state, { payload }) => {
+  state.verifiedEmail = payload;
+};
+
+const handleRegisterFulfilled = (state, { payload }) => {
+  state.errorStatus = '';
+  state.isLoading = false;
+};
+
+const handleLoginFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
   state.errorStatus = '';
@@ -92,6 +102,7 @@ const handleEditUserDataFulfilled = (state, { payload }) => {
 const handleEditUserAddressFulfilled = (state, { payload }) => {
   state.delivery = payload.delivery;
 };
+
 
 const handleFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
@@ -123,6 +134,9 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
+      .addCase(register.fulfilled, handleRegisterFulfilled)
+      .addCase(login.fulfilled, handleLoginFulfilled)
+      .addCase(verifyEmail.fulfilled, handleVerifyEmailFulfilled)
       .addCase(editUserData.fulfilled, handleEditUserDataFulfilled)
       .addCase(editUserAddress.fulfilled, handleEditUserAddressFulfilled)
       .addCase(getOrdersHistory.fulfilled, handleGetOrdersHistoryFulfilled)
@@ -130,6 +144,7 @@ const userSlice = createSlice({
       .addMatcher(
         isAnyOf(
           register.pending,
+          verifyEmail.pending,
           login.pending,
           editUserData.pending,
           editUserAddress.pending,
@@ -140,6 +155,7 @@ const userSlice = createSlice({
       .addMatcher(
         isAnyOf(
           register.rejected,
+          verifyEmail.rejected,
           login.rejected,
           editUserData.rejected,
           editUserAddress.rejected,
@@ -149,10 +165,6 @@ const userSlice = createSlice({
           getOrderDetails.rejected
         ),
         handleRejected
-      )
-      .addMatcher(
-        isAnyOf(register.fulfilled, login.fulfilled),
-        handleEntranceFulfilled
       )
       .addMatcher(
         isAnyOf(addToFavorite.fulfilled, deleteFromFavorite.fulfilled),

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
-import { forgotPassword } from 'api';
-import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
+import { emailSchema } from '../../../common/schemas/emailSchema';
+import { verifyEmail } from '../../../redux/user/userOperations';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
+import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { Field } from '../SharedComponent/TextField/TextField';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
@@ -15,6 +16,8 @@ export const ModalVerifyEmail = ({
   handleCloseSignUpSignInModal,
 }) => {
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -34,16 +37,15 @@ export const ModalVerifyEmail = ({
     initialValues: {
       email: '',
     },
-    validationSchema: forgotPasswordSchema,
-    onSubmit: async (values, _) => {
-      const response = await forgotPassword(values);
-      if (response) {
-        handleOpenAgreeModal();
-      }
-        handleCloseVerifyEmailModal();
+    validationSchema: emailSchema,
+    onSubmit: (values, _) => {
+      dispatch(verifyEmail(values)).then(result => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          handleOpenAgreeModal();
+        }
+      });
     },
   });
-
   return (
     <>
       <ModalYellowGradient
@@ -52,9 +54,8 @@ export const ModalVerifyEmail = ({
       >
         <CloseButton handleCloseModal={handleCloseVerifyEmailModal} />
         <Wrapper>
-          <Text>
-            Ваша е-пошта не верифікована. Введіть е-пошту для повторної верифікації.
-          </Text>
+          <Text>Ваша е-пошта не верифікована.</Text>
+          <Text>Введіть е-пошту для повторної верифікації.</Text>
           <StyledForm onSubmit={formik.handleSubmit}>
             <Field
               id="email"
@@ -78,8 +79,8 @@ export const ModalVerifyEmail = ({
         handleCloseAgreeModal={handleCloseAllModal}
       >
         <TextAgree>
-          Щоб верифікуватись - перейдіть за посиланням, яке ми
-          надіслали на вказану e-пошту.
+          Щоб верифікуватись - перейдіть за посиланням, яке ми надіслали на
+          вказану e-пошту.
         </TextAgree>
       </ModalAgree>
     </>

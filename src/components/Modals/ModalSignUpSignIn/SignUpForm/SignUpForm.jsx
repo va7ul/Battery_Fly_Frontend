@@ -13,7 +13,10 @@ import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { useMediaQuery } from 'react-responsive';
 
-export const SignUpForm = ({ handleShowSignInForm, handleCloseSignUpSignInModal }) => {
+export const SignUpForm = ({
+  handleShowSignInForm,
+  handleCloseSignUpSignInModal,
+}) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,19 +25,13 @@ export const SignUpForm = ({ handleShowSignInForm, handleCloseSignUpSignInModal 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
   const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
 
-  const { verifiedEmail, errorStatus } = useAuth();
+  const { errorStatus } = useAuth();
 
   useEffect(() => {
     if (errorStatus === 409) {
       handleOpenAgreeModal();
     }
   }, [errorStatus]);
-
-  useEffect(() => {
-    if (verifiedEmail) {
-      handleShowSignInForm();
-    }
-  }, [verifiedEmail, handleShowSignInForm]);
 
   const dispatch = useDispatch();
 
@@ -43,13 +40,13 @@ export const SignUpForm = ({ handleShowSignInForm, handleCloseSignUpSignInModal 
     setShowPasswordConfirmation(show => !show);
 
   const handleOpenVerifyEmailModal = () => {
-    console.log('first');
     setIsModalVerifyEmailOpen(true);
     document.body.style.overflow = 'hidden';
   };
 
   const handleCloseVerifyEmailModal = () => {
     setIsModalVerifyEmailOpen(false);
+    handleCloseSignUpSignInModal();
     document.body.style.overflow = 'unset';
   };
 
@@ -81,9 +78,7 @@ export const SignUpForm = ({ handleShowSignInForm, handleCloseSignUpSignInModal 
         password: values.password,
       };
       dispatch(register(userData)).then(result => {
-        console.log('second');
         if (result.meta.requestStatus === 'fulfilled') {
-          console.log('first');
           handleOpenVerifyEmailModal();
         }
       });

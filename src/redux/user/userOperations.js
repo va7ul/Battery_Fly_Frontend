@@ -110,17 +110,17 @@ export const editUserAddress = createAsyncThunk(
 );
 
 export const verifyEmail = createAsyncThunk(
-  'auth/verify-email',
-  async (dataUser, thunkAPI) => {
+  'user/verifyEmail',
+  async (email, thunkAPI) => {
     try {
-      await axios.post('user/resend', dataUser);
+      const { data } = await axios.post('user/resend', email);
+      return data;
     } catch (error) {
       const errorMessage = handleError(error);
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );
-
 
 export const addToFavorite = createAsyncThunk(
   'user/addToFavorite',

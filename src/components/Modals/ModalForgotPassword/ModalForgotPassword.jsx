@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
+import { emailSchema} from '../../../common/schemas/emailSchema';
 import { forgotPassword } from 'api';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
@@ -34,7 +34,7 @@ export const ModalForgotPassword = ({
     initialValues: {
       email: '',
     },
-    validationSchema: forgotPasswordSchema,
+    validationSchema: emailSchema,
     onSubmit: async (values, _) => {
       const response = await forgotPassword(values);
       if (response) {
