@@ -23,6 +23,7 @@ import {
   Wrapper,
 } from './ModalQuickOrder.styled';
 import { useAuth } from 'utils/hooks';
+import LoaderForModals from '../LoaderForModals';
 
 export const ModalQuickOrder = ({
   product: { name, codeOfGood },
@@ -34,6 +35,7 @@ export const ModalQuickOrder = ({
   const {
     userData: { firstName, tel: userTel  },
   } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [tel, setTel] = useState(isLoggedIn ? userTel : '');
   const isValidPhone = isPhoneValid(tel);
   
@@ -50,81 +52,85 @@ export const ModalQuickOrder = ({
 
   return (
     <>
-      <ModalYellowGradient
-        isModalOpen={isModalQuickOrderOpen}
-        handleCloseModal={handleCloseQuickOrderModal}
-      >
-        <CloseButton handleCloseModal={handleCloseQuickOrderModal} />
-        <Wrapper>
-          <Title>{name}</Title>
-          <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
-          <Formik
-            initialValues={{
-              name: isLoggedIn ? firstName : '',
-            }}
-            validationSchema={nameSchema}
-            onSubmit={async (values, _) => {
-              const orderData = {
-                name,
-                codeOfGood,
-                userName: values.name,
-                tel: tel,
-              };
-              const response = await addQuickOrder(orderData);
-              if (response) {
-                handleOpenAgreeModal();
-              }
-              handleCloseQuickOrderModal();
-            }}
-          >
-            <StyledForm>
-              <StyledField
-                name="name"
-                type="text"
-                placeholder="Ваше ім’я"
-                aria-label="Ім'я"
-              />
-              <StyledErrorMessage name="name" component="div" />
-              <PhoneInput
-                style={{
-                  '--react-international-phone-height': !isBigScreen
-                    ? '28px'
-                    : '51px',
-                  '--react-international-phone-background-color': 'transparent',
-                  '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
-                  '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
-                  '--react-international-phone-font-size': !isBigScreen
-                    ? '14px'
-                    : '24px',
-                  '--react-international-phone-border-radius': !isBigScreen
-                    ? '6px'
-                    : '8px',
-                  '--react-international-phone-flag-width': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                  '--react-international-phone-flag-height': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                }}
-                defaultCountry="ua"
-                hideDropdown={true}
-                value={tel}
-                onChange={phone => setTel(phone)}
-                aria-label="Телефон"
-              />
-              {!isValidPhone && (
-                <DivErrorMessage>
-                  Введіть свій номер телефону, будь ласка
-                </DivErrorMessage>
-              )}
-              <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
-                <div>Оформити замовлення</div>
-              </Btn>
-            </StyledForm>
-          </Formik>
-        </Wrapper>
-        <PhoneFieldGlobalStyles />
-      </ModalYellowGradient>
+      {isLoading ? <LoaderForModals isLoading={isLoading} /> :
+        <ModalYellowGradient
+          isModalOpen={isModalQuickOrderOpen}
+          handleCloseModal={handleCloseQuickOrderModal}
+        >
+          <CloseButton handleCloseModal={handleCloseQuickOrderModal} />
+          <Wrapper>
+            <Title>{name}</Title>
+            <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
+            <Formik
+              initialValues={{
+                name: isLoggedIn ? firstName : '',
+              }}
+              validationSchema={nameSchema}
+              onSubmit={async (values, _) => {
+                const orderData = {
+                  name,
+                  codeOfGood,
+                  userName: values.name,
+                  tel: tel,
+                };
+                setIsLoading(true);
+                const response = await addQuickOrder(orderData);
+                 setIsLoading(false);
+                if (response) {
+                  handleOpenAgreeModal();
+                }
+                handleCloseQuickOrderModal();
+              }}
+            >
+              <StyledForm>
+                <StyledField
+                  name="name"
+                  type="text"
+                  placeholder="Ваше ім’я"
+                  aria-label="Ім'я"
+                />
+                <StyledErrorMessage name="name" component="div" />
+                <PhoneInput
+                  style={{
+                    '--react-international-phone-height': !isBigScreen
+                      ? '28px'
+                      : '51px',
+                    '--react-international-phone-background-color': 'transparent',
+                    '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
+                    '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
+                    '--react-international-phone-font-size': !isBigScreen
+                      ? '14px'
+                      : '24px',
+                    '--react-international-phone-border-radius': !isBigScreen
+                      ? '6px'
+                      : '8px',
+                    '--react-international-phone-flag-width': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                    '--react-international-phone-flag-height': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                  }}
+                  defaultCountry="ua"
+                  hideDropdown={true}
+                  value={tel}
+                  onChange={phone => setTel(phone)}
+                  aria-label="Телефон"
+                />
+                {!isValidPhone && (
+                  <DivErrorMessage>
+                    Введіть свій номер телефону, будь ласка
+                  </DivErrorMessage>
+                )}
+                <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
+                  <div>Оформити замовлення</div>
+                </Btn>
+              </StyledForm>
+            </Formik>
+          </Wrapper>
+          <PhoneFieldGlobalStyles />
+        </ModalYellowGradient>
+      }
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
