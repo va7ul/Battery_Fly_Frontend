@@ -13,6 +13,7 @@ import {
 } from '../../../redux/print3D/print3DSelectors';
 import { add3DPrintOrder } from '../../../redux/print3D/print3DOperations';
 import { useAuth } from 'utils/hooks';
+import LoaderForModals from '../LoaderForModals';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
@@ -30,18 +31,18 @@ import {
   Wrapper,
 } from './Modal3DPrint.styled';
 
-
 export const Modal3DPrint = ({
   isModal3DPrintOpen,
   handleClose3DPrintModal,
   file,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const {isLoggedIn,
+  const {
+    isLoggedIn,
     userData: { firstName, tel: userTel },
   } = useAuth();
   const dispatch = useDispatch();
-  
+  const [isLoading, setIsLoading] = useState(false);
   const [tel, setTel] = useState(isLoggedIn ? userTel : '');
 
   const accuracy = useSelector(selectedAccuracy);
@@ -63,92 +64,98 @@ export const Modal3DPrint = ({
 
   return (
     <>
-      <ModalYellowGradient
-        isModalOpen={isModal3DPrintOpen}
-        handleCloseModal={handleClose3DPrintModal}
-      >
-        <CloseButton handleCloseModal={handleClose3DPrintModal} />
-        <Wrapper>
-          <Title>3D Друк</Title>
-          <Formik
-            initialValues={{
-              name: isLoggedIn ? firstName : '',
-              text: '',
-            }}
-            validationSchema={nameSchema}
-            onSubmit={(values, _) => {
-              const formData = new FormData();
-              formData.append('userName', values.name);
-              formData.append('tel', tel);
-              formData.append('text', values.text);
-              formData.append('accuracy', accuracy);
-              formData.append('plactic', plactic);
-              formData.append('color', color);
-              formData.append('file', file);
-
-              dispatch(add3DPrintOrder(formData)).then(result => {
-                if (result.meta.requestStatus === 'fulfilled') {
-                  handleOpenAgreeModal();
-                }
-              });
-              handleClose3DPrintModal();
-            }}
-          >
-            <StyledForm>
-              <StyledField
-                name="name"
-                type="text"
-                placeholder="Ваше ім’я"
-                aria-label="Ім'я"
-              />
-              <StyledErrorMessage name="name" component="div" />
-              <PhoneInput
-                style={{
-                  '--react-international-phone-height': !isBigScreen
-                    ? '28px'
-                    : '51px',
-                  '--react-international-phone-background-color': 'transparent',
-                  '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
-                  '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
-                  '--react-international-phone-font-size': !isBigScreen
-                    ? '14px'
-                    : '24px',
-                  '--react-international-phone-border-radius': !isBigScreen
-                    ? '6px'
-                    : '8px',
-                  '--react-international-phone-flag-width': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                  '--react-international-phone-flag-height': !isBigScreen
-                    ? '16px'
-                    : '24px',
-                }}
-                defaultCountry="ua"
-                hideDropdown={true}
-                value={tel}
-                onChange={phone => setTel(phone)}
-                aria-label="Телефон"
-              />
-              {!isValidPhone && (
-                <DivErrorMessage>
-                  Введіть свій номер телефону, будь ласка
-                </DivErrorMessage>
-              )}
-              <StyledTextField
-                component="textarea"
-                name="comment"
-                type="text"
-                placeholder="Ваш коментар (за необхідності)"
-              />
-              <StyledErrorMessage name="comment" component="div" />
-              <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
-                <div>Оформити замовлення</div>
-              </Btn>
-            </StyledForm>
-          </Formik>
-        </Wrapper>
-        <PhoneFieldGlobalStyles />
-      </ModalYellowGradient>
+      {isLoading ? (
+        <LoaderForModals isLoading={isLoading} />
+      ) : (
+        <ModalYellowGradient
+          isModalOpen={isModal3DPrintOpen}
+          handleCloseModal={handleClose3DPrintModal}
+        >
+          <CloseButton handleCloseModal={handleClose3DPrintModal} />
+          <Wrapper>
+            <Title>3D Друк</Title>
+            <Formik
+              initialValues={{
+                name: isLoggedIn ? firstName : '',
+                text: '',
+              }}
+              validationSchema={nameSchema}
+              onSubmit={(values, _) => {
+                const formData = new FormData();
+                formData.append('userName', values.name);
+                formData.append('tel', tel);
+                formData.append('text', values.text);
+                formData.append('accuracy', accuracy);
+                formData.append('plactic', plactic);
+                formData.append('color', color);
+                formData.append('file', file);
+                setIsLoading(true);
+                dispatch(add3DPrintOrder(formData)).then(result => {
+                  setIsLoading(false);
+                  if (result.meta.requestStatus === 'fulfilled') {
+                    handleOpenAgreeModal();
+                  }
+                });
+                handleClose3DPrintModal();
+              }}
+            >
+              <StyledForm>
+                <StyledField
+                  name="name"
+                  type="text"
+                  placeholder="Ваше ім’я"
+                  aria-label="Ім'я"
+                />
+                <StyledErrorMessage name="name" component="div" />
+                <PhoneInput
+                  style={{
+                    '--react-international-phone-height': !isBigScreen
+                      ? '28px'
+                      : '51px',
+                    '--react-international-phone-background-color':
+                      'transparent',
+                    '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
+                    '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
+                    '--react-international-phone-font-size': !isBigScreen
+                      ? '14px'
+                      : '24px',
+                    '--react-international-phone-border-radius': !isBigScreen
+                      ? '6px'
+                      : '8px',
+                    '--react-international-phone-flag-width': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                    '--react-international-phone-flag-height': !isBigScreen
+                      ? '16px'
+                      : '24px',
+                  }}
+                  defaultCountry="ua"
+                  hideDropdown={true}
+                  value={tel}
+                  onChange={phone => setTel(phone)}
+                  aria-label="Телефон"
+                />
+                {!isValidPhone && (
+                  <DivErrorMessage>
+                    Введіть свій номер телефону, будь ласка
+                  </DivErrorMessage>
+                )}
+                <StyledTextField
+                  component="textarea"
+                  name="comment"
+                  type="text"
+                  placeholder="Ваш коментар (за необхідності)"
+                />
+                <StyledErrorMessage name="comment" component="div" />
+                <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
+                  <div>Оформити замовлення</div>
+                </Btn>
+              </StyledForm>
+            </Formik>
+          </Wrapper>
+          <PhoneFieldGlobalStyles />
+        </ModalYellowGradient>
+      )}
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
