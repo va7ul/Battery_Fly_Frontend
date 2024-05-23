@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
 import { forgotPassword } from 'api';
+import LoaderForModals from '../LoaderForModals';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { Field } from '../SharedComponent/TextField/TextField';
@@ -14,6 +15,7 @@ export const ModalForgotPassword = ({
   handleCloseForgotPasswordModal,
   handleCloseSignUpSignInModal,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const handleOpenAgreeModal = () => {
@@ -36,7 +38,9 @@ export const ModalForgotPassword = ({
     },
     validationSchema: forgotPasswordSchema,
     onSubmit: async (values, _) => {
+      setIsLoading(true);
       const response = await forgotPassword(values);
+      setIsLoading(false);
       if (response) {
         handleOpenAgreeModal();
       }
@@ -46,31 +50,35 @@ export const ModalForgotPassword = ({
 
   return (
     <>
-      <ModalYellowGradient
-        isModalOpen={isModalForgotPasswordOpen}
-        handleCloseModal={handleCloseForgotPasswordModal}
-      >
-        <CloseButton handleCloseModal={handleCloseForgotPasswordModal} />
-        <Wrapper>
-          <Text>Відновлення паролю</Text>
-          <StyledForm onSubmit={formik.handleSubmit}>
-            <Field
-              id="email"
-              name="email"
-              label="E-пошта"
-              type="text"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <Btn type="submit">
-              <div>Відправити</div>
-            </Btn>
-          </StyledForm>
-        </Wrapper>
-      </ModalYellowGradient>
+      {isLoading ? (
+        <LoaderForModals isLoading={isLoading} />
+      ) : (
+        <ModalYellowGradient
+          isModalOpen={isModalForgotPasswordOpen}
+          handleCloseModal={handleCloseForgotPasswordModal}
+        >
+          <CloseButton handleCloseModal={handleCloseForgotPasswordModal} />
+          <Wrapper>
+            <Text>Відновлення паролю</Text>
+            <StyledForm onSubmit={formik.handleSubmit}>
+              <Field
+                id="email"
+                name="email"
+                label="E-пошта"
+                type="text"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
+              />
+              <Btn type="submit">
+                <div>Відправити</div>
+              </Btn>
+            </StyledForm>
+          </Wrapper>
+        </ModalYellowGradient>
+      )}
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAllModal}

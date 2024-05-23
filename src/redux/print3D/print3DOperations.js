@@ -35,7 +35,6 @@ export const add3DPrintOrder = createAsyncThunk(
     };
     try {
       const { data } = await axios.post('3dprint', orderData, config);
-
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
