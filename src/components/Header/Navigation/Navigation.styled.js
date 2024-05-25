@@ -33,3 +33,17 @@ export const CartButton = styled.button`
     }
   }
 `;
+
+export const Box = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  @media screen and (max-width: 1280px) {
+    &:hover {
+      background-color: ${props => props.theme.colors.secondary};
+    }
+  }
+`;
