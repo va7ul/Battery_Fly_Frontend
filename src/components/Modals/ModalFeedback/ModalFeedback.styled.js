@@ -113,6 +113,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
 export const StyledTextField = styled(Field)`
   width: 261px;
   height: 46px;
+  resize: vertical;
   padding: 4px 8px;
   color: ${props => props.theme.colors.greyBackgroundPaper};
   border: 1px solid ${props => props.theme.colors.greyBackgroundPaper};
