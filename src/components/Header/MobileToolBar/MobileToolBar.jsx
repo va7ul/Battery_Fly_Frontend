@@ -4,7 +4,7 @@ import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { CartModal } from 'components/CartDrawer/CartDrawer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ProfileButton } from '../ProfileButton/ProfileButton';
 import { LoginButton } from '../LoginButton/LoginButton';
 import { useAuth } from 'utils/hooks';
@@ -13,6 +13,7 @@ import { selectCart } from '../../../redux/menu/menuSelectors';
 
 export const MobileToolBar = () => {
   const dispatch = useDispatch();
+    const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const isCartOpen = useSelector(selectCart);
 
@@ -20,6 +21,9 @@ export const MobileToolBar = () => {
     if (!isLoggedIn) {
       dispatch(setAuthModalOpen(true));
       document.body.style.overflow = 'hidden';
+    }
+    else {
+      navigate('/favorites');
     }
   };
 
@@ -34,9 +38,7 @@ export const MobileToolBar = () => {
           <CartIcon />
         </Button>
         <CartModal toggleCart={toggleCart} isCartOpen={isCartOpen} />
-        <Link to="/favorites" onClick={handleOpenSignUpSignInModal}>
-          <FavoriteIcon />
-        </Link>
+        <FavoriteIcon handleOpenSignUpSignInModal={handleOpenSignUpSignInModal} />
         {isLoggedIn ? (
           <ProfileButton />
         ) : (
