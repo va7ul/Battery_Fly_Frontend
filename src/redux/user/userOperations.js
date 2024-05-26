@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { baseURL } from 'utils/constants/baseURL';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = baseURL;
 
@@ -25,12 +26,18 @@ export const register = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('auth/signup', dataUser);
+      toast.success('Реєстрація пройшла успішно!', {
+        duration: 5000,
+      });
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 409) {
         return thunkApi.rejectWithValue(error.request.status);
       }
+      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+        duration: 5000,
+      });
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -42,12 +49,18 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post('auth/signin', dataUser);
       setAuthHeader(data.token);
+      toast.success('Вітаємо! Вхід виконано успішно!', {
+        duration: 5000,
+      });
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 401) {
         return thunkApi.rejectWithValue(error.response.data.message);
       }
+      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+        duration: 5000,
+      });
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -57,8 +70,14 @@ export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   try {
     await axios.post('auth/signout');
     clearAuthHeader();
+    toast.success('Вихід з профілю виконано успішно!', {
+      duration: 5000,
+    });
   } catch (error) {
     const errorMessage = handleError(error);
+    toast.success('Вихід з профілю виконано успішно!', {
+      duration: 5000,
+    });
     return thunkAPI.rejectWithValue(errorMessage);
   }
 });
@@ -88,9 +107,15 @@ export const editUserData = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-info', dataUser);
+      toast.success('Редагування даних виконано успішно!', {
+        duration: 5000,
+      });
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+        duration: 5000,
+      });
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -101,9 +126,15 @@ export const editUserAddress = createAsyncThunk(
   async (address, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-delivery', address);
+      toast.success('Редагування адреси доставки виконано успішно!', {
+        duration: 5000,
+      });
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+        duration: 5000,
+      });
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
