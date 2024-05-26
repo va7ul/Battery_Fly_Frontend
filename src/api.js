@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseURL } from './utils/constants/baseURL';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = baseURL;
 
@@ -16,8 +17,7 @@ export const addQuickOrder = async orderData => {
     const data = await axios.post('order/quick-order', orderData);
     return data;
   } catch (error) {
-    const errorMessage = handleError(error);
-    console.log('errorMessage', errorMessage);
+    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.');
   }
 };
 
@@ -26,8 +26,7 @@ export const addFeedback = async dataUser => {
     const data = await axios.post(`feedback`, dataUser);
     return data;
   } catch (error) {
-    const errorMessage = handleError(error);
-    console.log('errorMessage', errorMessage);
+    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.');
   }
 };
 
@@ -36,18 +35,21 @@ export const forgotPassword = async email => {
     const data = await axios.post('auth/forgot-password', email);
     return data;
   } catch (error) {
-    const errorMessage = handleError(error);
-    console.log('errorMessage', errorMessage);
+    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.');
   }
 };
 
 export const changePassword = async passwords => {
   try {
     const data = await axios.post('user/change-password', passwords);
+    toast.success('Зміну пароля виконано успішно!', {
+      duration: 5000,
+    });
     return data;
   } catch (error) {
-    const errorMessage = handleError(error);
-    console.log('errorMessage', errorMessage);
+    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+      duration: 5000,
+    });
   }
 };
 
