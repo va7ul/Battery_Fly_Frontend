@@ -36,7 +36,7 @@ const initialState = {
   isRefreshing: false,
 };
 
-const handlePending = (state, { payload }) => {
+const handlePending = (state) => {
   state.isLoading = true;
   state.errorStatus = '';
 };

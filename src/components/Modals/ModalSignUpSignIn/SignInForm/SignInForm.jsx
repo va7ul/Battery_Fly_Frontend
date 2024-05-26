@@ -43,10 +43,9 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   };
 
   useEffect(() => {
-    if (errorStatus === 401 && verifiedEmail) {
+    if (errorStatus === 'Email or password is wrong') {
       handleOpenAgreeModal();
-    }
-    if (errorStatus === 401 && !verifiedEmail) {
+    } else if (errorStatus === 'Your account is not verified') {
       handleOpenVerifyEmailModal();
     }
   }, [errorStatus, verifiedEmail]);
@@ -84,7 +83,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     },
     validationSchema: signInSchema,
     onSubmit: (values, _) => {
-        dispatch(login(values));
+      dispatch(login(values));
     },
   });
 

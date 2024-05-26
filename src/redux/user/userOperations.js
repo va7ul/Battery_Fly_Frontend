@@ -46,7 +46,7 @@ export const login = createAsyncThunk(
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 401) {
-        return thunkApi.rejectWithValue(error.request.status);
+        return thunkApi.rejectWithValue(error.response.data.message);
       }
       return thunkApi.rejectWithValue(errorMessage);
     }
