@@ -13,6 +13,8 @@ import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
 import { useMediaQuery } from 'react-responsive';
 
+const localStorageRegisterKey = 'register';
+
 export const SignUpForm = ({
   handleShowSignInForm,
   handleCloseSignUpSignInModal,
@@ -63,8 +65,12 @@ export const SignUpForm = ({
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
+      firstName: JSON.parse(localStorage.getItem(localStorageRegisterKey))
+        ? JSON.parse(localStorage.getItem(localStorageRegisterKey)).firstName
+        : '',
+      lastName: JSON.parse(localStorage.getItem(localStorageRegisterKey))
+        ? JSON.parse(localStorage.getItem(localStorageRegisterKey)).lastName
+        : '',
       email: '',
       password: '',
       passwordConfirmation: '',
@@ -77,8 +83,13 @@ export const SignUpForm = ({
         email: values.email,
         password: values.password,
       };
+      localStorage.setItem(
+        localStorageRegisterKey,
+        JSON.stringify({firstName: values.firstName,lastName:values.lastName })
+      );
       dispatch(register(userData)).then(result => {
         if (result.meta.requestStatus === 'fulfilled') {
+          localStorage.removeItem(localStorageRegisterKey);
           handleOpenVerifyEmailModal();
         }
       });

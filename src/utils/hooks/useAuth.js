@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import {
   selectErrorStatus,
   selectIsAuthModalOpen,
+  selectIsLoading,
   selectIsLoggedIn,
   selectIsRefreshing,
   selectUserData,
@@ -15,6 +16,7 @@ export const useAuth = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isAuthModalOpen = useSelector(selectIsAuthModalOpen);
   const errorStatus = useSelector(selectErrorStatus);
+  const isLoading = useSelector(selectIsLoading);
 
   return {
     userData,
@@ -23,5 +25,6 @@ export const useAuth = () => {
     isRefreshing,
     isAuthModalOpen,
     errorStatus,
+    isLoading,
   };
 };
