@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signUpSchema } from '../../../../common/schemas/signUpSchema';
 import { register } from '../../../../redux/user/userOperations';
-import { changeErrorStatus } from '../../../../redux/user/userSlice';
+import {
+  changeErrorStatus,
+  changeІsRegistered,
+} from '../../../../redux/user/userSlice';
 import { useAuth } from 'utils/hooks';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
-import { useMediaQuery } from 'react-responsive';
 
 const localStorageRegisterKey = 'register';
 
-export const SignUpForm = ({
-  handleShowSignInForm,
-  handleCloseSignUpSignInModal,
-}) => {
+export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -26,14 +26,22 @@ export const SignUpForm = ({
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
   const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
-
-  const { errorStatus } = useAuth();
+  const { errorStatus, isRegistered } = useAuth();
 
   useEffect(() => {
-    if (errorStatus === 409) {
+    if (errorStatus === 'Email in use') {
       handleOpenAgreeModal();
     }
   }, [errorStatus]);
+
+  useEffect(() => {
+    if (isRegistered === 'Singup successfully') {
+      handleOpenVerifyEmailModal();
+      console.log('isRegistered', isRegistered);
+      changeІsRegistered(true);
+      console.log('isRegistered', isRegistered);
+    }
+  }, [isRegistered]);
 
   const dispatch = useDispatch();
 
@@ -42,6 +50,7 @@ export const SignUpForm = ({
     setShowPasswordConfirmation(show => !show);
 
   const handleOpenVerifyEmailModal = () => {
+    console.log('first');
     setIsModalVerifyEmailOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -85,7 +94,10 @@ export const SignUpForm = ({
       };
       localStorage.setItem(
         localStorageRegisterKey,
-        JSON.stringify({firstName: values.firstName,lastName:values.lastName })
+        JSON.stringify({
+          firstName: values.firstName,
+          lastName: values.lastName,
+        })
       );
       dispatch(register(userData)).then(result => {
         if (result.meta.requestStatus === 'fulfilled') {

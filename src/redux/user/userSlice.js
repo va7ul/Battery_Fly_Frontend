@@ -26,6 +26,7 @@ const initialState = {
   token: '',
   isAuthModalOpen: false,
   errorStatus: null,
+  isRegistered: null,
   verifiedEmail: false,
   delivery: {},
   favorites: [],
@@ -71,6 +72,7 @@ const handleVerifyEmailFulfilled = (state, { payload }) => {
 const handleRegisterFulfilled = (state, { payload }) => {
   state.errorStatus = '';
   state.isLoading = false;
+  state.isRegistered = payload.message;
 };
 
 const handleLoginFulfilled = (state, { payload }) => {
@@ -124,6 +126,9 @@ const userSlice = createSlice({
     changeErrorStatus(state, { payload }) {
       state.errorStatus = payload;
     },
+    changeІsRegistered(state, { payload }) {
+      state.isRegistered = payload;
+    },
     setAuthModalOpen(state, { payload }) {
       state.isAuthModalOpen = payload;
     },
@@ -173,6 +178,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { changeErrorStatus, setAuthModalOpen } = userSlice.actions;
+export const { changeErrorStatus, setAuthModalOpen, changeІsRegistered } =
+  userSlice.actions;
 
 export const userReducer = userSlice.reducer;

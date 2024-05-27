@@ -29,11 +29,12 @@ export const register = createAsyncThunk(
       toast.success('Реєстрація пройшла успішно!', {
         duration: 5000,
       });
+      console.log('data', data);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 409) {
-        return thunkApi.rejectWithValue(error.request.status);
+        return thunkApi.rejectWithValue(error.response.data.message);
       }
       toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
         duration: 5000,
@@ -148,6 +149,9 @@ export const verifyEmail = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+         toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+           duration: 5000,
+         });
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }

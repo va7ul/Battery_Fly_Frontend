@@ -27,7 +27,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const { verifiedEmail, isLoggedIn, errorStatus } = useAuth();
+  const { isLoggedIn, errorStatus } = useAuth();
 
   const dispatch = useDispatch();
 
@@ -45,10 +45,10 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
   useEffect(() => {
     if (errorStatus === 'Email or password is wrong') {
       handleOpenAgreeModal();
-    } else if (errorStatus === 'Your account is not verified') {
+    } else if (errorStatus === 'Email not verified') {
       handleOpenVerifyEmailModal();
     }
-  }, [errorStatus, verifiedEmail]);
+  }, [errorStatus]);
 
   useEffect(() => {
     if (isLoggedIn) {
