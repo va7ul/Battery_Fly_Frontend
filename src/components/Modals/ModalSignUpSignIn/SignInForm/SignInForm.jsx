@@ -17,10 +17,12 @@ import {
   ForgotPasswordBtn,
   StyledForm,
 } from './SignInForm.styled';
+import { ModalVerifyEmail } from 'components/Modals/ModalVerifyEmail/ModalVerifyEmail';
 
 export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
   const [isModalForgotPasswordOpen, setIsModalForgotPasswordOpen] =
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
@@ -40,21 +42,30 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     document.body.style.overflow = 'unset';
   };
 
-
   useEffect(() => {
-    if (errorStatus === 401) {
+    if (errorStatus === 'Email or password is wrong') {
       handleOpenAgreeModal();
+    } else if (errorStatus === 'Email not verified') {
+      handleOpenVerifyEmailModal();
     }
   }, [errorStatus]);
 
-    useEffect(() => {
-      if (isLoggedIn) {
-        handleCloseSignUpSignInModal();
-      }
-    }, [isLoggedIn, handleCloseSignUpSignInModal]);
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      handleCloseSignUpSignInModal();
+    }
+  }, [isLoggedIn, handleCloseSignUpSignInModal]);
 
   const handleClickShowPassword = () => setShowPassword(show => !show);
+
+  const handleOpenVerifyEmailModal = () => {
+    setIsModalVerifyEmailOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+  const handleCloseVerifyEmailModal = () => {
+    setIsModalVerifyEmailOpen(false);
+    document.body.style.overflow = 'unset';
+  };
 
   const handleOpenForgotPasswordModal = () => {
     setIsModalForgotPasswordOpen(true);
@@ -143,6 +154,11 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
           </ForgotPasswordBtn>
         </BtnWrapper>
       </StyledForm>
+      <ModalVerifyEmail
+        isModalVerifyEmailOpen={isModalVerifyEmailOpen}
+        handleCloseVerifyEmailModal={handleCloseVerifyEmailModal}
+        handleCloseSignUpSignInModal={handleCloseSignUpSignInModal}
+      ></ModalVerifyEmail>
       <ModalForgotPassword
         isModalForgotPasswordOpen={isModalForgotPasswordOpen}
         handleCloseForgotPasswordModal={handleCloseForgotPasswordModal}

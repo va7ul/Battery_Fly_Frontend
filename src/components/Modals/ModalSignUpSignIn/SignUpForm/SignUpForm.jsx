@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -11,7 +12,8 @@ import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAg
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
-import { useMediaQuery } from 'react-responsive';
+
+const localStorageRegisterKey = 'register';
 
 export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -20,25 +22,19 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPasswordConfirmation, setShowPasswordConfirmation] =
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+  const { errorStatus } = useAuth();
 
-  const { isLoggedIn, errorStatus } = useAuth();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (errorStatus === 409) {
+    if (errorStatus === 'Email in use') {
       handleOpenAgreeModal();
     }
   }, [errorStatus]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      handleCloseSignUpSignInModal();
-    }
-  }, [isLoggedIn, handleCloseSignUpSignInModal]);
-
-  const dispatch = useDispatch();
-
   const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleClickShowPasswordConfirmation = () => setShowPasswordConfirmation(show => !show);
+  const handleClickShowPasswordConfirmation = () =>
+    setShowPasswordConfirmation(show => !show);
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -53,8 +49,12 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
+      firstName: JSON.parse(localStorage.getItem(localStorageRegisterKey))
+        ? JSON.parse(localStorage.getItem(localStorageRegisterKey)).firstName
+        : '',
+      lastName: JSON.parse(localStorage.getItem(localStorageRegisterKey))
+        ? JSON.parse(localStorage.getItem(localStorageRegisterKey)).lastName
+        : '',
       email: '',
       password: '',
       passwordConfirmation: '',
@@ -67,7 +67,19 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
         email: values.email,
         password: values.password,
       };
-      dispatch(register(userData));
+      localStorage.setItem(
+        localStorageRegisterKey,
+        JSON.stringify({
+          firstName: values.firstName,
+          lastName: values.lastName,
+        })
+      );
+      dispatch(register(userData)).then(result => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          localStorage.removeItem(localStorageRegisterKey);
+          handleCloseSignUpSignInModal();
+        }
+      });
     },
   });
 
@@ -207,9 +219,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
       >
-        <TextAgree>
-          Акаунт з такою е-поштою вже зареєстрований.
-        </TextAgree>
+        <TextAgree>Акаунт з такою е-поштою вже зареєстрований.</TextAgree>
       </ModalAgree>
     </>
   );

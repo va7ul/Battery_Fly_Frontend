@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import { forgotPasswordSchema } from '../../../common/schemas/forgotPasswordSchema';
+import { emailSchema } from '../../../common/schemas/emailSchema';
 import { forgotPassword } from 'api';
 import LoaderForModals from '../LoaderForModals';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
@@ -28,15 +28,15 @@ export const ModalForgotPassword = ({
   };
 
   const handleCloseAllModal = () => {
-    handleCloseAgreeModal();
     handleCloseSignUpSignInModal();
+    handleCloseAgreeModal();
   };
 
   const formik = useFormik({
     initialValues: {
       email: '',
     },
-    validationSchema: forgotPasswordSchema,
+    validationSchema: emailSchema,
     onSubmit: async (values, _) => {
       setIsLoading(true);
       const response = await forgotPassword(values);
@@ -85,7 +85,7 @@ export const ModalForgotPassword = ({
       >
         <TextAgree>
           Щоб відновити пароль, перейдіть за посиланням, яке ми надіслали на
-          Вашу електронну пошту.
+          Вашу е-пошту.
         </TextAgree>
       </ModalAgree>
     </>

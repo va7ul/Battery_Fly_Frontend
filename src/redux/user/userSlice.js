@@ -10,6 +10,7 @@ import {
   getOrderDetails,
   editUserData,
   editUserAddress,
+  verifyEmail,
 } from './userOperations';
 
 const defaultUserData = {
@@ -25,6 +26,7 @@ const initialState = {
   token: '',
   isAuthModalOpen: false,
   errorStatus: null,
+  messageOfSuccessfulRequest: null,
   verifiedEmail: false,
   delivery: {},
   favorites: [],
@@ -35,7 +37,7 @@ const initialState = {
   isRefreshing: false,
 };
 
-const handlePending = (state, { payload }) => {
+const handlePending = state => {
   state.isLoading = true;
   state.errorStatus = '';
 };
@@ -63,7 +65,19 @@ const handleRefreshRejected = state => {
   state.isLoggedIn = false;
 };
 
-const handleEntranceFulfilled = (state, { payload }) => {
+const handleVerifyEmailFulfilled = (state, { payload }) => {
+  state.errorStatus = '';
+  state.isLoading = false;
+  state.messageOfSuccessfulRequest = payload.message;
+};
+
+const handleRegisterFulfilled = (state, { payload }) => {
+  state.errorStatus = '';
+  state.isLoading = false;
+  state.messageOfSuccessfulRequest = payload.message;
+};
+
+const handleLoginFulfilled = (state, { payload }) => {
   state.userData = payload.user;
   state.token = payload.token;
   state.errorStatus = '';
@@ -113,6 +127,9 @@ const userSlice = createSlice({
     changeErrorStatus(state, { payload }) {
       state.errorStatus = payload;
     },
+    changeMessageOfSuccessfulRequest(state, { payload }) {
+      state.messageOfSuccessfulRequest = payload;
+    },
     setAuthModalOpen(state, { payload }) {
       state.isAuthModalOpen = payload;
     },
@@ -123,6 +140,9 @@ const userSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshPending)
       .addCase(refreshUser.fulfilled, handleRefreshFulfilled)
       .addCase(refreshUser.rejected, handleRefreshRejected)
+      .addCase(register.fulfilled, handleRegisterFulfilled)
+      .addCase(login.fulfilled, handleLoginFulfilled)
+      .addCase(verifyEmail.fulfilled, handleVerifyEmailFulfilled)
       .addCase(editUserData.fulfilled, handleEditUserDataFulfilled)
       .addCase(editUserAddress.fulfilled, handleEditUserAddressFulfilled)
       .addCase(getOrdersHistory.fulfilled, handleGetOrdersHistoryFulfilled)
@@ -130,6 +150,7 @@ const userSlice = createSlice({
       .addMatcher(
         isAnyOf(
           register.pending,
+          verifyEmail.pending,
           login.pending,
           editUserData.pending,
           editUserAddress.pending,
@@ -140,6 +161,7 @@ const userSlice = createSlice({
       .addMatcher(
         isAnyOf(
           register.rejected,
+          verifyEmail.rejected,
           login.rejected,
           editUserData.rejected,
           editUserAddress.rejected,
@@ -151,16 +173,16 @@ const userSlice = createSlice({
         handleRejected
       )
       .addMatcher(
-        isAnyOf(register.fulfilled, login.fulfilled),
-        handleEntranceFulfilled
-      )
-      .addMatcher(
         isAnyOf(addToFavorite.fulfilled, deleteFromFavorite.fulfilled),
         handleFavoriteFulfilled
       );
   },
 });
 
-export const { changeErrorStatus, setAuthModalOpen } = userSlice.actions;
+export const {
+  changeErrorStatus,
+  setAuthModalOpen,
+  changeMessageOfSuccessfulRequest,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

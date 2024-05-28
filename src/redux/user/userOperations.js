@@ -29,11 +29,12 @@ export const register = createAsyncThunk(
       toast.success('Реєстрація пройшла успішно!', {
         duration: 5000,
       });
+      console.log('data', data);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 409) {
-        return thunkApi.rejectWithValue(error.request.status);
+        return thunkApi.rejectWithValue(error.response.data.message);
       }
       toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
         duration: 5000,
@@ -56,7 +57,7 @@ export const login = createAsyncThunk(
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 401) {
-        return thunkApi.rejectWithValue(error.request.status);
+        return thunkApi.rejectWithValue(error.response.data.message);
       }
       toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
         duration: 5000,
@@ -140,17 +141,21 @@ export const editUserAddress = createAsyncThunk(
   }
 );
 
-// export const verifyEmail = createAsyncThunk(
-//   'auth/verify-email',
-//   async (dataUser, thunkAPI) => {
-//     try {
-//       await axios.post('auth/verify-email', dataUser);
-//     } catch (error) {
-//       const errorMessage = handleError(error);
-//       return thunkAPI.rejectWithValue(errorMessage);
-//     }
-//   }
-// );
+export const verifyEmail = createAsyncThunk(
+  'user/verifyEmail',
+  async (email, thunkAPI) => {
+    try {
+      const { data } = await axios.post('user/resend', email);
+      return data;
+    } catch (error) {
+      const errorMessage = handleError(error);
+         toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+           duration: 5000,
+         });
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
 
 export const addToFavorite = createAsyncThunk(
   'user/addToFavorite',
