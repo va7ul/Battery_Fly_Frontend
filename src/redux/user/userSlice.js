@@ -26,7 +26,7 @@ const initialState = {
   token: '',
   isAuthModalOpen: false,
   errorStatus: null,
-  isRegistered: null,
+  messageOfSuccessfulRequest: null,
   verifiedEmail: false,
   delivery: {},
   favorites: [],
@@ -37,7 +37,7 @@ const initialState = {
   isRefreshing: false,
 };
 
-const handlePending = (state) => {
+const handlePending = state => {
   state.isLoading = true;
   state.errorStatus = '';
 };
@@ -66,13 +66,15 @@ const handleRefreshRejected = state => {
 };
 
 const handleVerifyEmailFulfilled = (state, { payload }) => {
-  state.verifiedEmail = payload;
+  state.errorStatus = '';
+  state.isLoading = false;
+  state.messageOfSuccessfulRequest = payload.message;
 };
 
 const handleRegisterFulfilled = (state, { payload }) => {
   state.errorStatus = '';
   state.isLoading = false;
-  state.isRegistered = payload.message;
+  state.messageOfSuccessfulRequest = payload.message;
 };
 
 const handleLoginFulfilled = (state, { payload }) => {
@@ -105,7 +107,6 @@ const handleEditUserAddressFulfilled = (state, { payload }) => {
   state.delivery = payload.delivery;
 };
 
-
 const handleFavoriteFulfilled = (state, { payload }) => {
   state.favorites = payload.favorites;
 };
@@ -126,8 +127,8 @@ const userSlice = createSlice({
     changeErrorStatus(state, { payload }) {
       state.errorStatus = payload;
     },
-    changeІsRegistered(state, { payload }) {
-      state.isRegistered = payload;
+    changeMessageOfSuccessfulRequest(state, { payload }) {
+      state.messageOfSuccessfulRequest = payload;
     },
     setAuthModalOpen(state, { payload }) {
       state.isAuthModalOpen = payload;
@@ -178,7 +179,10 @@ const userSlice = createSlice({
   },
 });
 
-export const { changeErrorStatus, setAuthModalOpen, changeІsRegistered } =
-  userSlice.actions;
+export const {
+  changeErrorStatus,
+  setAuthModalOpen,
+  changeMessageOfSuccessfulRequest,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

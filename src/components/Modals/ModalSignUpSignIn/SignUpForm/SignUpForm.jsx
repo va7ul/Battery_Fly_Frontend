@@ -6,10 +6,7 @@ import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { signUpSchema } from '../../../../common/schemas/signUpSchema';
 import { register } from '../../../../redux/user/userOperations';
-import {
-  changeErrorStatus,
-  changeІsRegistered,
-} from '../../../../redux/user/userSlice';
+import { changeErrorStatus } from '../../../../redux/user/userSlice';
 import { useAuth } from 'utils/hooks';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
@@ -25,8 +22,9 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [showPasswordConfirmation, setShowPasswordConfirmation] =
     useState(false);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
-  const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
-  const { errorStatus, isRegistered } = useAuth();
+  const { errorStatus } = useAuth();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (errorStatus === 'Email in use') {
@@ -34,32 +32,9 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
     }
   }, [errorStatus]);
 
-  useEffect(() => {
-    if (isRegistered === 'Singup successfully') {
-      handleOpenVerifyEmailModal();
-      console.log('isRegistered', isRegistered);
-      changeІsRegistered(true);
-      console.log('isRegistered', isRegistered);
-    }
-  }, [isRegistered]);
-
-  const dispatch = useDispatch();
-
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const handleClickShowPasswordConfirmation = () =>
     setShowPasswordConfirmation(show => !show);
-
-  const handleOpenVerifyEmailModal = () => {
-    console.log('first');
-    setIsModalVerifyEmailOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const handleCloseVerifyEmailModal = () => {
-    setIsModalVerifyEmailOpen(false);
-    handleCloseSignUpSignInModal();
-    document.body.style.overflow = 'unset';
-  };
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -102,7 +77,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
       dispatch(register(userData)).then(result => {
         if (result.meta.requestStatus === 'fulfilled') {
           localStorage.removeItem(localStorageRegisterKey);
-          handleOpenVerifyEmailModal();
+          handleCloseSignUpSignInModal();
         }
       });
     },
@@ -240,15 +215,6 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
           <div>Зареєструватись</div>
         </Btn>
       </StyledForm>
-      <ModalAgree
-        isModalAgreeOpen={isModalVerifyEmailOpen}
-        handleCloseAgreeModal={handleCloseVerifyEmailModal}
-      >
-        <TextAgree>
-          На вашу електронну скриньку надіслано повідомлення для верифікації
-          пошти.
-        </TextAgree>
-      </ModalAgree>
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
