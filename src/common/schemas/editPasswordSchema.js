@@ -11,8 +11,7 @@ export const editPasswordSchema = Yup.object().shape({
     .max(20, 'Пароль має бути не довший 20 символів')
     .trim('Підтвердіть новий пароль, будь ласка')
     .required('Підтвердіть новий пароль, будь ласка'),
-  newPasswordConfirmation: Yup.string().oneOf(
-    [Yup.ref('newPassword'), null],
-    'Новий пароль не підтверджено'
-  ),
+  newPasswordConfirmation: Yup.string()
+    .oneOf([Yup.ref('newPassword'), null], 'Новий пароль не підтверджено')
+    .required('Введіть пароль, будь ласка'),
 });
