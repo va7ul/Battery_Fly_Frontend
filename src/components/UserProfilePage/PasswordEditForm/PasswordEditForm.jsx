@@ -29,6 +29,7 @@ export default function PasswordEditForm() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showNewPasswordConfirmation, setShowNewPasswordConfirmation] =
     useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleExpansion = () => {
     setExpanded(expanded => !expanded);
@@ -96,11 +97,13 @@ export default function PasswordEditForm() {
               }}
               validationSchema={editPasswordSchema}
               onSubmit={async (values, actions) => {
+                setIsLoading(true);
                 const toastId = toast.loading('Збереження...');
                 const response = await changePassword({
                   password: values.password,
                   newPassword: values.newPassword,
                 });
+                setIsLoading(false);
                 toast.dismiss(toastId);
                 if (response) {
                   handleExpansion();
@@ -241,6 +244,7 @@ export default function PasswordEditForm() {
             }}
             type="submit"
             form="form-change-password"
+            disabled={isLoading}
           >
             Зберегти
           </Button>
