@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
@@ -43,7 +43,7 @@ export const Modal3DPrint = ({
   } = useAuth();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [tel, setTel] = useState(isLoggedIn ? userTel : '');
+  const [tel, setTel] = useState(isLoggedIn ? userTel : '+380');
 
   const accuracy = useSelector(selectedAccuracy);
   const plactic = useSelector(selectedPlactic);
@@ -61,6 +61,15 @@ export const Modal3DPrint = ({
     setIsModalAgreeOpen(false);
     document.body.style.overflow = 'unset';
   };
+
+    useEffect(() => {
+      if (isLoggedIn) {
+        setTel(userTel);
+      }
+      if (!isLoggedIn) {
+        setTel('+380');
+      }
+    }, [isLoggedIn, userTel]);
 
   return (
     <>
