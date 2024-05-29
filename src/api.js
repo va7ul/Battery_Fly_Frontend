@@ -50,9 +50,9 @@ export const changePassword = async passwords => {
     return data;
   } catch (error) {
     if (error.response.data.message === 'Email or password is wrong') {
-    toast.error('Невірний пароль.', {
-      duration: 5000,
-    });
+      toast.error('Невірний пароль.', {
+        duration: 5000,
+      });
       return;
     }
     toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
