@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
@@ -36,7 +36,7 @@ export const ModalQuickOrder = ({
     userData: { firstName, tel: userTel  },
   } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const [tel, setTel] = useState(isLoggedIn ? userTel : '');
+  const [tel, setTel] = useState(isLoggedIn ? userTel : '+380');
   const isValidPhone = isPhoneValid(tel);
   
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
@@ -49,6 +49,15 @@ export const ModalQuickOrder = ({
     setIsModalAgreeOpen(false);
     document.body.style.overflow = 'unset';
   };
+
+    useEffect(() => {
+      if (isLoggedIn) {
+        setTel(userTel);
+      }
+      if (!isLoggedIn) {
+        setTel('+380');
+      }
+    }, [isLoggedIn, userTel]);
 
   return (
     <>
