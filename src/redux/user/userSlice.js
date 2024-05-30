@@ -97,6 +97,8 @@ const handleRefreshFulfilled = (state, { payload }) => {
 };
 
 const handleEditUserDataFulfilled = (state, { payload }) => {
+  state.errorStatus = '';
+  state.isLoading = false;
   state.userData.firstName = payload.result.firstName;
   state.userData.lastName = payload.result.lastName;
   state.userData.patronymic = payload.result.patronymic;
