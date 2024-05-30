@@ -1,29 +1,30 @@
 import Select from 'react-select';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectCities,
-  selectCity,
-  selectWarehouse,
   selectWarehouses,
 } from '../../../redux/order/orderSelectors';
 import {
   getDeliveryCities,
   getDeliveryWarehouses,
 } from '../../../redux/order/orderOperations';
-import { changeCity, changeWarehouse } from '../../../redux/order/orderSlice';
-import {Box, BtnWrapper, CancelBtn, SubmitAddressBtn, Text, selectStyles } from './DeliveryAddressForm.styled';
 import { editUserAddress } from '../../../redux/user/userOperations';
+import { selectDelivery } from '../../../redux/user/userSelectors';
+import {Box, BtnWrapper, CancelBtn, SubmitAddressBtn, Text, selectStyles } from './DeliveryAddressForm.styled';
 
 
 export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   const dispatch = useDispatch();
 
+  const deliveryAddress = useSelector(selectDelivery)
+
   let cities = useSelector(selectCities);
-  const city = useSelector(selectCity);
+  const [city, setCity] = useState(deliveryAddress?.city);
   let warehouses = useSelector(selectWarehouses);
-  const warehouse = useSelector(selectWarehouse);
+  const [warehouse, setWarehouse] = useState(deliveryAddress?.warehouse);;
+
   const optionsCities = cities.map(city => {
     return {
       value: city,
@@ -41,7 +42,7 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   );
 
   const handleCityChange = event => {
-    dispatch(changeCity(event.value));
+    setCity(event.value);
     dispatch(getDeliveryWarehouses(event.value));
   };
 
@@ -56,8 +57,8 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   );
 
   const clearInputCity = () => {
-    dispatch(changeCity(''));
-    dispatch(changeWarehouse(''));
+    setCity('');
+    setWarehouse('');
   };
 
   const optionsWarehouses = warehouses.map(warehouse => {
@@ -71,11 +72,11 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   };
 
   const handleWarehouseChange = event => {
-    dispatch(changeWarehouse(event.value));
+    setWarehouse(event.value);
   };
 
   const clearInputWarehouse = () => {
-    dispatch(changeWarehouse(''));
+    setWarehouse('');
   };
 
   const handleEditAddress = () => {
@@ -97,6 +98,10 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
       <Box>
         <Select
           options={optionsCities}
+          defaultValue={{
+            label: city,
+            value: city,
+          }}
           value={getCity()}
           onChange={handleCityChange}
           onInputChange={handleSelectCity}
@@ -106,6 +111,10 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
         />
         <Select
           options={optionsWarehouses}
+          defaultValue={{
+            label: warehouse,
+            value: warehouse,
+          }}
           value={getWarehouse()}
           onChange={handleWarehouseChange}
           onFocus={clearInputWarehouse}
