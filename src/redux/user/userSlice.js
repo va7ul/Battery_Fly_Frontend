@@ -106,6 +106,8 @@ const handleEditUserDataFulfilled = (state, { payload }) => {
 };
 
 const handleEditUserAddressFulfilled = (state, { payload }) => {
+  state.errorStatus = '';
+  state.isLoading = false;
   state.delivery = payload.delivery;
 };
 
