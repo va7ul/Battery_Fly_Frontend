@@ -3,6 +3,8 @@ import { baseURL } from './utils/constants/baseURL';
 import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = baseURL;
+axios.defaults.headers.common['Authorization'] =
+  JSON.parse(localStorage.getItem('user'))?.token ?? '';
 
 const handleError = error => {
   if (error.response && error.response.data && error.response.data.message) {
@@ -47,6 +49,12 @@ export const changePassword = async passwords => {
     });
     return data;
   } catch (error) {
+    if (error.response.data.message === 'Email or password is wrong') {
+      toast.error('Невірний пароль.', {
+        duration: 5000,
+      });
+      return;
+    }
     toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
       duration: 5000,
     });

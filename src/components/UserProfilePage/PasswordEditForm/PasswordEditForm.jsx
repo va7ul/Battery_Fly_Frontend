@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import toast from 'react-hot-toast';
 import { Formik } from 'formik';
 import { LiaPenAltSolid } from 'react-icons/lia';
 import Accordion from '@mui/material/Accordion';
@@ -10,6 +11,7 @@ import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { editPasswordSchema } from 'common/schemas/editPasswordSchema';
+import { changePassword } from 'api';
 import {
   Box,
   FormikWrapper,
@@ -18,7 +20,6 @@ import {
   StyledField,
   StyledForm,
 } from './PasswordEditForm.styled';
-import { changePassword } from 'api';
 
 export default function PasswordEditForm() {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -28,6 +29,7 @@ export default function PasswordEditForm() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showNewPasswordConfirmation, setShowNewPasswordConfirmation] =
     useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleExpansion = () => {
     setExpanded(expanded => !expanded);
@@ -95,13 +97,17 @@ export default function PasswordEditForm() {
               }}
               validationSchema={editPasswordSchema}
               onSubmit={async (values, actions) => {
+                setIsLoading(true);
+                const toastId = toast.loading('Збереження...');
                 const response = await changePassword({
                   password: values.password,
                   newPassword: values.newPassword,
                 });
+                setIsLoading(false);
+                toast.dismiss(toastId);
                 if (response) {
                   handleExpansion();
-                   actions.resetForm();
+                  actions.resetForm();
                 }
               }}
             >
@@ -238,6 +244,7 @@ export default function PasswordEditForm() {
             }}
             type="submit"
             form="form-change-password"
+            disabled={isLoading}
           >
             Зберегти
           </Button>

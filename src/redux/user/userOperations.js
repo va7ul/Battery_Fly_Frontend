@@ -127,7 +127,7 @@ export const editUserAddress = createAsyncThunk(
   async (address, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-delivery', address);
-      toast.success('Редагування адреси доставки виконано успішно!', {
+      toast.success('Aдресу доставки збережено!', {
         duration: 5000,
       });
       return data;

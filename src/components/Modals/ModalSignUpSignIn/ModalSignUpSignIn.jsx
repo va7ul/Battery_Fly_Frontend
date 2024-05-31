@@ -47,7 +47,7 @@ export const ModalSignUpSignIn = ({
   };
 
   useEffect(() => {
-    if (messageOfSuccessfulRequest === 'Singup successfully') {
+    if (messageOfSuccessfulRequest === 'Signup successfully') {
       handleOpenAgreeModal();
       dispatch(changeMessageOfSuccessfulRequest(''));
     }
