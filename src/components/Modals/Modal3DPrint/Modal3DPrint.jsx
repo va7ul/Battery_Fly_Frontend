@@ -91,7 +91,7 @@ export const Modal3DPrint = ({
               validationSchema={nameSchema}
               onSubmit={(values, _) => {
                 const formData = new FormData();
-                formData.append('userName', values.name);
+                formData.append('userName', values.name.trim());
                 formData.append('tel', tel);
                 formData.append('text', values.text);
                 formData.append('accuracy', accuracy);
