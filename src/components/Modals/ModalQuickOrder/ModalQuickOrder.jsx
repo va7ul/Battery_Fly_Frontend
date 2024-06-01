@@ -79,7 +79,7 @@ export const ModalQuickOrder = ({
                 const orderData = {
                   name,
                   codeOfGood,
-                  userName: values.name,
+                  userName: values.name.trim(),
                   tel: tel,
                 };
                 setIsLoading(true);

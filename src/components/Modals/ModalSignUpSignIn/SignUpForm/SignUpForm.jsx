@@ -62,10 +62,10 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
     validationSchema: signUpSchema,
     onSubmit: (values, _) => {
       const userData = {
-        firstName: values.firstName,
-        lastName: values.lastName,
+        firstName: values.firstName.trim(),
+        lastName: values.lastName.trim(),
         email: values.email,
-        password: values.password,
+        password: values.password.trim(),
       };
       localStorage.setItem(
         localStorageRegisterKey,

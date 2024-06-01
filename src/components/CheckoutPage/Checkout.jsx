@@ -37,9 +37,9 @@ export const Checkout = () => {
     deliveryType,
   } = useOrder();
 
-    const {
-      userData: { firstName, lastName, email, tel: userTel  },
-    } = useAuth();
+  const {
+    userData: { firstName, lastName, email, tel: userTel },
+  } = useAuth();
 
   const isValidPhone = isPhoneValid(isLoggedIn && !tel ? userTel : tel);
 
@@ -48,7 +48,6 @@ export const Checkout = () => {
       handleOpenAgreeModal();
     }
   }, [orderNum]);
-
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -70,8 +69,15 @@ export const Checkout = () => {
     },
     validationSchema: personalDataSchema,
     onSubmit: (values, _) => {
+      const userData = {
+        firstName: values.firstName.trim(),
+        lastName: values.lastName.trim(),
+        tel: tel,
+        email: values.email,
+        text: text,
+      };
       const orderData = {
-        userData: { ...values, tel },
+        userData: userData,
         total,
         promoCode,
         promoCodeDiscount,
@@ -94,10 +100,7 @@ export const Checkout = () => {
         <Title>Оформлення замовлення</Title>
         <Grid container rowGap="15px">
           <Grid item desktop={6}>
-            <PersonalData
-              formik={formik}
-              isValidPhone={isValidPhone}
-            />
+            <PersonalData formik={formik} isValidPhone={isValidPhone} />
             <Delivery />
           </Grid>
           <Grid item desktop={6}>
@@ -105,11 +108,7 @@ export const Checkout = () => {
             <TotalPrice />
           </Grid>
         </Grid>
-        <OrderButton
-          type="submit"
-          form="form-order"
-          disabled={!isValidPhone}
-        >
+        <OrderButton type="submit" form="form-order" disabled={!isValidPhone}>
           Оформити замовлення
         </OrderButton>
       </Wrapper>

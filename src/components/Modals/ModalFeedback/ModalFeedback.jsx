@@ -112,8 +112,13 @@ export const ModalFeedback = ({
               }}
               validationSchema={nameSchema}
               onSubmit={async (values, actions) => {
+                const userData = {
+                  name: values.name.trim(),
+                  text: values.text,
+                  tel: tel,
+                };
                 setIsLoading(true);
-                const response = await addFeedback({ ...values, tel: tel });
+                const response = await addFeedback(userData);
                 setIsLoading(false);
                 if (!response) {
                   localStorage.setItem(

@@ -4,8 +4,8 @@ export const editPasswordSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, 'Пароль має бути не менший 8 символів')
     .max(20, 'Пароль має бути не довший 20 символів')
-    .trim('Введіть старий пароль, будь ласка')
-    .required('Введіть старий пароль, будь ласка'),
+    .required('Введіть старий пароль, будь ласка')
+    .trim(),
   newPassword: Yup.string()
     .notOneOf(
       [Yup.ref('password'), null],
@@ -13,9 +13,10 @@ export const editPasswordSchema = Yup.object().shape({
     )
     .min(8, 'Пароль має бути не менший 8 символів')
     .max(20, 'Пароль має бути не довший 20 символів')
-    .trim('Введіть пароль, будь ласка')
-    .required('Введіть пароль, будь ласка'),
+    .required('Введіть пароль, будь ласка')
+    .trim(),
   newPasswordConfirmation: Yup.string()
     .oneOf([Yup.ref('newPassword'), null], 'Новий пароль не підтверджено')
-    .required('Підтвердіть новий пароль, будь ласка'),
+    .required('Підтвердіть новий пароль, будь ласка')
+    .trim(),
 });
