@@ -83,7 +83,11 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
     },
     validationSchema: signInSchema,
     onSubmit: (values, _) => {
-      dispatch(login(values));
+      const userData = {
+        email: values.email,
+        password: values.password.trim(),
+      };
+      dispatch(login(userData));
     },
   });
 

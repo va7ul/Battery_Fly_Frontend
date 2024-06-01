@@ -7,6 +7,6 @@ export const signInSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, 'Пароль має бути не менший 8 символів')
     .max(20, 'Пароль має бути не довший 20 символів')
-    .trim('Введіть пароль, будь ласка')
+    .trim()
     .required('Введіть пароль, будь ласка'),
 });
