@@ -49,9 +49,9 @@ export const UserDataEditForm = ({ handleShowForm }) => {
           validationSchema={userDataSchema}
           onSubmit={(values, _) => {
             const userData = {
-              firstName: values.firstName,
-              lastName: values.lastName,
-              patronymic: values.patronymic,
+              firstName: values.firstName.trim(),
+              lastName: values.lastName.trim(),
+              patronymic: values.patronymic.trim(),
               tel: formikTel,
             };
             dispatch(editUserData(userData)).then(result => {

@@ -29,7 +29,6 @@ export const register = createAsyncThunk(
       toast.success('Реєстрація пройшла успішно!', {
         duration: 5000,
       });
-      console.log('data', data);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);

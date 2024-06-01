@@ -100,8 +100,8 @@ export default function PasswordEditForm() {
                 setIsLoading(true);
                 const toastId = toast.loading('Збереження...');
                 const response = await changePassword({
-                  password: values.password,
-                  newPassword: values.newPassword,
+                  password: values.password.trim(),
+                  newPassword: values.newPassword.trim(),
                 });
                 setIsLoading(false);
                 toast.dismiss(toastId);
