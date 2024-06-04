@@ -16,6 +16,7 @@ import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAg
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
+import { clearBasket } from '../../redux/basket/basketSlice';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
@@ -96,7 +97,11 @@ export const Checkout = () => {
           },
         });
       } else {
-        dispatch(addOrder(orderData));
+        dispatch(addOrder(orderData)).then(result => {
+          if (result.meta.requestStatus === 'fulfilled') {
+            dispatch(clearBasket());
+          }
+        });
       }
     },
   });
@@ -115,10 +120,7 @@ export const Checkout = () => {
             <TotalPrice />
           </Grid>
         </Grid>
-        <OrderButton
-          type="submit"
-          form="form-order"
-        >
+        <OrderButton type="submit" form="form-order">
           Оформити замовлення
         </OrderButton>
       </Wrapper>
