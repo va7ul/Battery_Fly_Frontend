@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
-import { useAuth, useOrder } from 'utils/hooks';
+import { useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Delivery } from './Delivery/Delivery';
 import { Cart } from './Cart/Cart';
@@ -18,8 +18,6 @@ import { Title, Wrapper, OrderButton } from './Checkout.styled';
 export const Checkout = () => {
   const dispatch = useDispatch();
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
-
-  const { isLoggedIn } = useAuth();
 
   const {
     text,
@@ -37,9 +35,6 @@ export const Checkout = () => {
     deliveryType,
   } = useOrder();
 
-  const {
-    userData: { firstName, lastName, email},
-  } = useAuth();
 
   const isValidPhone = isPhoneValid(tel);
 
@@ -63,9 +58,9 @@ export const Checkout = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: isLoggedIn ? firstName : '',
-      lastName: isLoggedIn ? lastName : '',
-      email: isLoggedIn ? email : '',
+      firstName:  '',
+      lastName: '',
+      email: '',
       text: text,
     },
     validationSchema: personalDataSchema,

@@ -24,20 +24,35 @@ export const PersonalData = ({ formik, isValidPhone }) => {
 
   const {
     isLoggedIn,
-    userData: { tel: userTel },
+    userData: { firstName, lastName, email, tel: userTel },
   } = useAuth();
   const { tel } = useOrder();
 
   const dispatch = useDispatch();
+  console.log('formik', formik.initialValues);
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(changeUserTel(userTel));
+      formik.initialValues.firstName = firstName;
+      formik.initialValues.lastName = lastName;
+      formik.initialValues.email = email;
     }
     if (!isLoggedIn) {
       dispatch(changeUserTel('+380'));
+      formik.initialValues.firstName = '';
+      formik.initialValues.lastName = '';
+      formik.initialValues.email = '';
     }
-  }, [dispatch, isLoggedIn, userTel]);
+  }, [
+    dispatch,
+    isLoggedIn,
+    userTel,
+    formik.initialValues,
+    firstName,
+    lastName,
+    email,
+  ]);
 
   return (
     <FormikProvider value={formik}>
