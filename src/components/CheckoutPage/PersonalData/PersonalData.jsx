@@ -29,7 +29,6 @@ export const PersonalData = ({ formik, isValidPhone }) => {
   const { tel } = useOrder();
 
   const dispatch = useDispatch();
-  console.log('formik', formik.initialValues);
 
   useEffect(() => {
     if (isLoggedIn) {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
 import { useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Delivery } from './Delivery/Delivery';
@@ -13,6 +14,7 @@ import { addOrder } from '../../redux/order/orderOperations';
 import { changeOrderNum } from '../../redux/order/orderSlice';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
+import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
 
 export const Checkout = () => {
@@ -35,7 +37,6 @@ export const Checkout = () => {
     deliveryType,
   } = useOrder();
 
-
   const isValidPhone = isPhoneValid(tel);
 
   useEffect(() => {
@@ -43,7 +44,6 @@ export const Checkout = () => {
       handleOpenAgreeModal();
     }
   }, [orderNum]);
-
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -58,7 +58,7 @@ export const Checkout = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName:  '',
+      firstName: '',
       lastName: '',
       email: '',
       text: text,
@@ -85,8 +85,19 @@ export const Checkout = () => {
         warehouse,
         payment,
       };
-      console.log(orderData);
-      dispatch(addOrder(orderData));
+      if (!isValidPhone || tel === '+380' || !city || !payment) {
+        toast('Введіть особисті дані, спосіб доставки і спосіб оплати.', {
+          icon: '👀',
+          duration: 5000,
+          style: {
+            borderRadius: '10px',
+            background: `${theme.colors.secondary}`,
+            color: `${theme.colors.textPrimary}`,
+          },
+        });
+      } else {
+        dispatch(addOrder(orderData));
+      }
     },
   });
 
@@ -104,7 +115,10 @@ export const Checkout = () => {
             <TotalPrice />
           </Grid>
         </Grid>
-        <OrderButton type="submit" form="form-order" disabled={!isValidPhone}>
+        <OrderButton
+          type="submit"
+          form="form-order"
+        >
           Оформити замовлення
         </OrderButton>
       </Wrapper>
