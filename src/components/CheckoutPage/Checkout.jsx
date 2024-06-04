@@ -38,16 +38,17 @@ export const Checkout = () => {
   } = useOrder();
 
   const {
-    userData: { firstName, lastName, email, tel: userTel },
+    userData: { firstName, lastName, email},
   } = useAuth();
 
-  const isValidPhone = isPhoneValid(isLoggedIn && !tel ? userTel : tel);
+  const isValidPhone = isPhoneValid(tel);
 
   useEffect(() => {
     if (orderNum) {
       handleOpenAgreeModal();
     }
   }, [orderNum]);
+
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);

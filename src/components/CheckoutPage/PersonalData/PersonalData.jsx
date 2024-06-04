@@ -20,6 +20,8 @@ import {
 } from './PersonalData.styled';
 
 export const PersonalData = ({ formik, isValidPhone }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+
   const {
     isLoggedIn,
     userData: { tel: userTel },
@@ -28,12 +30,15 @@ export const PersonalData = ({ formik, isValidPhone }) => {
 
   const dispatch = useDispatch();
 
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(changeUserTel(userTel));
+    }
+    if (!isLoggedIn) {
+      dispatch(changeUserTel('+380'));
+    }
+  }, [dispatch, isLoggedIn, userTel]);
 
-   useEffect(() => {
-     dispatch(changeUserTel(userTel));
-   }, [dispatch, userTel]);
-  
   return (
     <FormikProvider value={formik}>
       <Wrapper>
