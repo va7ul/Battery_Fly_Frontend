@@ -6,6 +6,7 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useAuth, useOrder } from 'utils/hooks';
 import { changeUserTel } from '../../../redux/order/orderSlice';
+import { theme } from '../../../styles/GlobalStyled';
 import {
   DivErrorMessage,
   Label,
@@ -78,12 +79,11 @@ export const PersonalData = ({ formik, isValidPhone }) => {
                   ? '39px'
                   : '51px',
                 '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color':
-                  'rgba(157, 157, 157, 1)',
-                '--react-international-phone-text-color': 'rgba(31, 31, 31, 1)',
+                '--react-international-phone-border-color': `${theme.colors.textDisabled}`,
+                '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
                 '--react-international-phone-font-size': !isBigScreen
                   ? '10px'
-                  : '14px',
+                  : '20px',
                 '--react-international-phone-border-radius': !isBigScreen
                   ? '8px'
                   : '8px',
