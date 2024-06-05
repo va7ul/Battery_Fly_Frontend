@@ -72,6 +72,9 @@ const orderSlice = createSlice({
     changeUserTel(state, { payload }) {
       state.userData.tel = payload;
     },
+    changeUserComment(state, { payload }) {
+      state.userData.text = payload;
+    },
     changeOrderNum(state, { payload }) {
       state.orderNum = payload;
     },
@@ -112,6 +115,7 @@ const orderSlice = createSlice({
 
 export const {
   changeUserTel,
+  changeUserComment,
   changeOrderNum,
   changeCity,
   changeWarehouse,

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
-import { useOrder } from 'utils/hooks';
+import { useAuth, useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Delivery } from './Delivery/Delivery';
 import { Cart } from './Cart/Cart';
@@ -12,7 +12,11 @@ import { TotalPrice } from './TotalPrice/TotalPrice';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addOrder } from '../../redux/order/orderOperations';
-import { changeOrderNum } from '../../redux/order/orderSlice';
+import {
+  changeOrderNum,
+  changeUserComment,
+  changeUserTel,
+} from '../../redux/order/orderSlice';
 import { clearBasket } from '../../redux/basket/basketSlice';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
@@ -25,6 +29,7 @@ export const Checkout = () => {
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
+  const { isLoggedIn, userData: { firstName, lastName, email} } = useAuth();
   const {
     text,
     tel,
@@ -63,9 +68,9 @@ export const Checkout = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
+      firstName: isLoggedIn ? firstName : '',
+      lastName: isLoggedIn ? lastName : '',
+      email: isLoggedIn ? email : '',
       text: text,
     },
     validationSchema: personalDataSchema,
@@ -75,7 +80,7 @@ export const Checkout = () => {
         lastName: values.lastName.trim(),
         tel: tel,
         email: values.email,
-        text: text,
+        text: values.text,
       };
       const orderData = {
         userData: userData,
@@ -90,6 +95,7 @@ export const Checkout = () => {
         warehouse,
         payment,
       };
+      dispatch(changeUserComment(orderData.userData.text));
       if (!isValidPhone || tel === '+380' || !city || !payment) {
         toast('Введіть особисті дані, спосіб доставки і спосіб оплати.', {
           icon: '👀',
@@ -104,6 +110,8 @@ export const Checkout = () => {
         dispatch(addOrder(orderData)).then(result => {
           if (result.meta.requestStatus === 'fulfilled') {
             dispatch(clearBasket());
+            dispatch(changeUserComment(''));
+            dispatch(changeUserTel(''));
           }
         });
       }
