@@ -27,13 +27,14 @@ export const ModalAgree = ({
   children,
   isModalAgreeOpen,
   handleCloseAgreeModal,
+  buttonText = 'Гаразд',
 }) => {
   return (
     <ReactModal isOpen={isModalAgreeOpen} style={customStyles}>
       <Box>
         {children}
         <Btn type="button" onClick={handleCloseAgreeModal}>
-          <div>Гаразд</div>
+          <div>{buttonText}</div>
         </Btn>
       </Box>
     </ReactModal>

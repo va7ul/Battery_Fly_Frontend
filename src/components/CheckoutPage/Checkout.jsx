@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
@@ -12,14 +13,16 @@ import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addOrder } from '../../redux/order/orderOperations';
 import { changeOrderNum } from '../../redux/order/orderSlice';
+import { clearBasket } from '../../redux/basket/basketSlice';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
-import { clearBasket } from '../../redux/basket/basketSlice';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const {
@@ -55,6 +58,7 @@ export const Checkout = () => {
     setIsModalAgreeOpen(false);
     dispatch(changeOrderNum(''));
     document.body.style.overflow = 'unset';
+    navigate('/main');
   };
 
   const formik = useFormik({
@@ -127,6 +131,7 @@ export const Checkout = () => {
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="На головну сторінку"
       >
         <TextAgree>Ваш номер замовлення {orderNum}.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
