@@ -14,7 +14,6 @@ export const Box = styled.div`
 `;
 
 export const Btn = styled.button`
-  max-width: 87px;
   margin-top: 10px;
   padding: 10px 26px;
   border-radius: 6px;
@@ -29,7 +28,6 @@ export const Btn = styled.button`
   }
 
   @media (min-width: 1280px) {
-    max-width: 199px;
     margin-top: 20px;
     padding: 16px 60px;
     border-radius: 12px;

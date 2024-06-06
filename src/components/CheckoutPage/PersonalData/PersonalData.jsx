@@ -6,6 +6,7 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useAuth, useOrder } from 'utils/hooks';
 import { changeUserTel } from '../../../redux/order/orderSlice';
+import { theme } from '../../../styles/GlobalStyled';
 import {
   DivErrorMessage,
   Label,
@@ -20,20 +21,39 @@ import {
 } from './PersonalData.styled';
 
 export const PersonalData = ({ formik, isValidPhone }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+
   const {
     isLoggedIn,
-    userData: { tel: userTel },
+    userData: { firstName, lastName, email, tel: userTel },
   } = useAuth();
   const { tel } = useOrder();
 
   const dispatch = useDispatch();
 
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(changeUserTel(userTel));
+      formik.initialValues.firstName = firstName;
+      formik.initialValues.lastName = lastName;
+      formik.initialValues.email = email;
+    }
+    if (!isLoggedIn) {
+      dispatch(changeUserTel('+380'));
+      formik.initialValues.firstName = '';
+      formik.initialValues.lastName = '';
+      formik.initialValues.email = '';
+    }
+  }, [
+    dispatch,
+    isLoggedIn,
+    userTel,
+    formik.initialValues,
+    firstName,
+    lastName,
+    email,
+  ]);
 
-   useEffect(() => {
-     dispatch(changeUserTel(userTel));
-   }, [dispatch, userTel]);
-  
   return (
     <FormikProvider value={formik}>
       <Wrapper>
@@ -59,12 +79,11 @@ export const PersonalData = ({ formik, isValidPhone }) => {
                   ? '39px'
                   : '51px',
                 '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color':
-                  'rgba(157, 157, 157, 1)',
-                '--react-international-phone-text-color': 'rgba(31, 31, 31, 1)',
+                '--react-international-phone-border-color': `${theme.colors.textDisabled}`,
+                '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
                 '--react-international-phone-font-size': !isBigScreen
                   ? '10px'
-                  : '14px',
+                  : '20px',
                 '--react-international-phone-border-radius': !isBigScreen
                   ? '8px'
                   : '8px',

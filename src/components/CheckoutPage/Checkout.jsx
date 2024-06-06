@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate} from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
 import { useAuth, useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
 import { Delivery } from './Delivery/Delivery';
@@ -10,17 +12,28 @@ import { TotalPrice } from './TotalPrice/TotalPrice';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { addOrder } from '../../redux/order/orderOperations';
-import { changeOrderNum } from '../../redux/order/orderSlice';
+import {
+  changeOrderNum,
+  changeUserComment,
+} from '../../redux/order/orderSlice';
+import { clearBasket } from '../../redux/basket/basketSlice';
+import { selectIsLoading } from '../../redux/order/orderSelectors';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
+import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
+import LoaderForModals from 'components/Modals/LoaderForModals';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const { isLoggedIn } = useAuth();
-
+  const {
+    isLoggedIn,
+    userData: { firstName, lastName, email },
+  } = useAuth();
   const {
     text,
     tel,
@@ -37,11 +50,9 @@ export const Checkout = () => {
     deliveryType,
   } = useOrder();
 
-  const {
-    userData: { firstName, lastName, email, tel: userTel },
-  } = useAuth();
+  const isLoading = useSelector(selectIsLoading);
 
-  const isValidPhone = isPhoneValid(isLoggedIn && !tel ? userTel : tel);
+  const isValidPhone = isPhoneValid(tel);
 
   useEffect(() => {
     if (orderNum) {
@@ -58,6 +69,7 @@ export const Checkout = () => {
     setIsModalAgreeOpen(false);
     dispatch(changeOrderNum(''));
     document.body.style.overflow = 'unset';
+    navigate('/main');
   };
 
   const formik = useFormik({
@@ -74,7 +86,7 @@ export const Checkout = () => {
         lastName: values.lastName.trim(),
         tel: tel,
         email: values.email,
-        text: text,
+        text: values.text,
       };
       const orderData = {
         userData: userData,
@@ -89,13 +101,31 @@ export const Checkout = () => {
         warehouse,
         payment,
       };
-      console.log(orderData);
-      dispatch(addOrder(orderData));
+      dispatch(changeUserComment(orderData.userData.text));
+      if (!isValidPhone || tel === '+380' || !city || !payment) {
+        toast('Введіть особисті дані, спосіб доставки і спосіб оплати.', {
+          id: 'warning',
+          icon: '👀',
+          duration: 5000,
+          style: {
+            borderRadius: '10px',
+            background: `${theme.colors.textPrimary}`,
+            color: `${theme.colors.secondary}`,
+          },
+        });
+      } else {
+        dispatch(addOrder(orderData)).then(result => {
+          if (result.meta.requestStatus === 'fulfilled') {
+            dispatch(clearBasket());
+          }
+        });
+      }
     },
   });
 
   return (
     <>
+      {isLoading && <LoaderForModals isLoading={isLoading} />}
       <Wrapper>
         <Title>Оформлення замовлення</Title>
         <Grid container rowGap="15px">
@@ -108,13 +138,14 @@ export const Checkout = () => {
             <TotalPrice />
           </Grid>
         </Grid>
-        <OrderButton type="submit" form="form-order" disabled={!isValidPhone}>
+        <OrderButton type="submit" form="form-order">
           Оформити замовлення
         </OrderButton>
       </Wrapper>
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="На головну сторінку"
       >
         <TextAgree>Ваш номер замовлення {orderNum}.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>

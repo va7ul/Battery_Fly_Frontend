@@ -37,6 +37,12 @@ export const handlePending = state => {
 };
 
 export const handleFulfilledAddOrder = (state, { payload }) => {
+  state.userData = { ...defaultUserData };
+  state.delivery = deliveryInfo;
+  state.promoCode = '';
+  state.promoCodeDiscount = 0;
+  state.discountValue = 0;
+  state.together = 0;
   state.orderNum = payload.orderNum;
   state.isLoading = false;
   state.error = '';
@@ -71,6 +77,9 @@ const orderSlice = createSlice({
   reducers: {
     changeUserTel(state, { payload }) {
       state.userData.tel = payload;
+    },
+    changeUserComment(state, { payload }) {
+      state.userData.text = payload;
     },
     changeOrderNum(state, { payload }) {
       state.orderNum = payload;
@@ -112,6 +121,7 @@ const orderSlice = createSlice({
 
 export const {
   changeUserTel,
+  changeUserComment,
   changeOrderNum,
   changeCity,
   changeWarehouse,

@@ -123,7 +123,7 @@ export const UserDataEditForm = ({ handleShowForm }) => {
             <BtnWrapper>
               <SubmitUserDataBtn
                 type="submit"
-                disabled={!isValidPhone || tel === '+380'}
+                disabled={!isValidPhone}
               >
                 Зберегти дані
               </SubmitUserDataBtn>

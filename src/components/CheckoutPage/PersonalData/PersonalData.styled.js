@@ -67,7 +67,7 @@ export const StyledField = styled(Field)`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {
@@ -80,7 +80,7 @@ export const PhoneFieldGlobalStyles = createGlobalStyle`
   .react-international-phone-input-container .react-international-phone-input{
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.hoverColor};
   }
 }  
   
@@ -115,7 +115,7 @@ export const StyledTextField = styled(Field)`
   }
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.hoverColor};
   }
 
   @media (min-width: 1280px) {

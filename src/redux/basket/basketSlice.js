@@ -137,6 +137,10 @@ const basketSlice = createSlice({
       state.items[findingIndex].totalPrice = newTotalPrice;
       state.items[findingIndex].quantityOrdered = quantityOrdered;
     },
+    clearBasket(state) {
+      state.items = [];
+      state.total = 0;
+    },
   },
 });
 
@@ -146,5 +150,6 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   changeQuantity,
+  clearBasket,
 } = basketSlice.actions;
 export const basketReducer = basketSlice.reducer;
