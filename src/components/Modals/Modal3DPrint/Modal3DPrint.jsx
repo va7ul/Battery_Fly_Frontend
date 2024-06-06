@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useMediaQuery } from 'react-responsive';
+import toast from 'react-hot-toast';
 import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import {
@@ -62,14 +63,14 @@ export const Modal3DPrint = ({
     document.body.style.overflow = 'unset';
   };
 
-    useEffect(() => {
-      if (isLoggedIn) {
-        setTel(userTel);
-      }
-      if (!isLoggedIn) {
-        setTel('+380');
-      }
-    }, [isLoggedIn, userTel]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      setTel(userTel);
+    }
+    if (!isLoggedIn) {
+      setTel('+380');
+    }
+  }, [isLoggedIn, userTel]);
 
   return (
     <>
@@ -98,14 +99,28 @@ export const Modal3DPrint = ({
                 formData.append('plactic', plactic);
                 formData.append('color', color);
                 formData.append('file', file);
-                setIsLoading(true);
-                dispatch(add3DPrintOrder(formData)).then(result => {
-                  setIsLoading(false);
-                  if (result.meta.requestStatus === 'fulfilled') {
-                    handleOpenAgreeModal();
-                  }
-                });
-                handleClose3DPrintModal();
+
+                if (!isValidPhone || tel === '+380') {
+                  toast('Введіть свої особисті дані', {
+                    id: 'warning',
+                    icon: '👀',
+                    duration: 5000,
+                    style: {
+                      borderRadius: '10px',
+                      background: `${theme.colors.secondary}`,
+                      color: `${theme.colors.textPrimary}`,
+                    },
+                  });
+                } else {
+                  setIsLoading(true);
+                  dispatch(add3DPrintOrder(formData)).then(result => {
+                    setIsLoading(false);
+                    if (result.meta.requestStatus === 'fulfilled') {
+                      handleOpenAgreeModal();
+                    }
+                  });
+                  handleClose3DPrintModal();
+                }
               }}
             >
               <StyledForm>
@@ -151,12 +166,12 @@ export const Modal3DPrint = ({
                 )}
                 <StyledTextField
                   component="textarea"
-                  name="comment"
+                  name="text"
                   type="text"
                   placeholder="Ваш коментар (за необхідності)"
                 />
-                <StyledErrorMessage name="comment" component="div" />
-                <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
+                <StyledErrorMessage name="text" component="div" />
+                <Btn type="submit">
                   <div>Оформити замовлення</div>
                 </Btn>
               </StyledForm>
