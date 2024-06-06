@@ -37,6 +37,12 @@ export const handlePending = state => {
 };
 
 export const handleFulfilledAddOrder = (state, { payload }) => {
+  state.userData = { ...defaultUserData };
+  state.delivery = deliveryInfo;
+  state.promoCode = '';
+  state.promoCodeDiscount = 0;
+  state.discountValue = 0;
+  state.together = 0;
   state.orderNum = payload.orderNum;
   state.isLoading = false;
   state.error = '';

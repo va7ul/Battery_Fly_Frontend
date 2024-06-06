@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
@@ -15,7 +15,6 @@ import { addOrder } from '../../redux/order/orderOperations';
 import {
   changeOrderNum,
   changeUserComment,
-  changeUserTel,
 } from '../../redux/order/orderSlice';
 import { clearBasket } from '../../redux/basket/basketSlice';
 import { selectIsLoading } from '../../redux/order/orderSelectors';
@@ -118,8 +117,6 @@ export const Checkout = () => {
         dispatch(addOrder(orderData)).then(result => {
           if (result.meta.requestStatus === 'fulfilled') {
             dispatch(clearBasket());
-            dispatch(changeUserComment(''));
-            dispatch(changeUserTel(''));
           }
         });
       }
