@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
@@ -18,10 +18,12 @@ import {
   changeUserTel,
 } from '../../redux/order/orderSlice';
 import { clearBasket } from '../../redux/basket/basketSlice';
+import { selectIsLoading } from '../../redux/order/orderSelectors';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
+import LoaderForModals from 'components/Modals/LoaderForModals';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
@@ -29,7 +31,10 @@ export const Checkout = () => {
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
-  const { isLoggedIn, userData: { firstName, lastName, email} } = useAuth();
+  const {
+    isLoggedIn,
+    userData: { firstName, lastName, email },
+  } = useAuth();
   const {
     text,
     tel,
@@ -45,6 +50,8 @@ export const Checkout = () => {
     payment,
     deliveryType,
   } = useOrder();
+
+  const isLoading = useSelector(selectIsLoading);
 
   const isValidPhone = isPhoneValid(tel);
 
@@ -98,12 +105,13 @@ export const Checkout = () => {
       dispatch(changeUserComment(orderData.userData.text));
       if (!isValidPhone || tel === '+380' || !city || !payment) {
         toast('Введіть особисті дані, спосіб доставки і спосіб оплати.', {
+          id: 'warning',
           icon: '👀',
           duration: 5000,
           style: {
             borderRadius: '10px',
-            background: `${theme.colors.secondary}`,
-            color: `${theme.colors.textPrimary}`,
+            background: `${theme.colors.textPrimary}`,
+            color: `${theme.colors.secondary}`,
           },
         });
       } else {
@@ -120,6 +128,7 @@ export const Checkout = () => {
 
   return (
     <>
+      {isLoading && <LoaderForModals isLoading={isLoading} />}
       <Wrapper>
         <Title>Оформлення замовлення</Title>
         <Grid container rowGap="15px">
