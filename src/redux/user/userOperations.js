@@ -70,15 +70,13 @@ export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   try {
     await axios.post('auth/signout');
     clearAuthHeader();
-    toast.success('Вихід з профілю виконано успішно!', {
-      duration: 5000,
-    });
   } catch (error) {
     const errorMessage = handleError(error);
+    return thunkAPI.rejectWithValue(errorMessage);
+  } finally {
     toast.success('Вихід з профілю виконано успішно!', {
       duration: 5000,
     });
-    return thunkAPI.rejectWithValue(errorMessage);
   }
 });
 
@@ -148,9 +146,9 @@ export const verifyEmail = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-         toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-           duration: 5000,
-         });
+      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+        duration: 5000,
+      });
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
