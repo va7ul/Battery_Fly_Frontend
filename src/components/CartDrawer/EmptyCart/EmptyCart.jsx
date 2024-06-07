@@ -1,9 +1,9 @@
 import sprite from '../../../assets/images/sprite.svg';
 import { Wrapper, CartIcon, Text, Button } from './EmptyCart.styled';
 
-export const EmptyCart = ({ closeCart }) => {
+export const EmptyCart = ({ closeCart, isOrder=false}) => {
   return (
-    <Wrapper>
+    <Wrapper $isOrder={isOrder}>
       <CartIcon>
         <use href={`${sprite}#icon-cart`}></use>
       </CartIcon>
