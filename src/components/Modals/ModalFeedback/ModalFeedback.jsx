@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
+import toast from 'react-hot-toast';
 import { nameSchema } from '../../../common/schemas/nameSchema';
 import { isPhoneValid } from '../../../common/schemas/phoneSchema';
 import { useAuth } from 'utils/hooks';
@@ -117,21 +118,35 @@ export const ModalFeedback = ({
                   text: values.text,
                   tel: tel,
                 };
-                setIsLoading(true);
-                const response = await addFeedback(userData);
-                setIsLoading(false);
-                if (!response) {
-                  localStorage.setItem(
-                    localStorageFeedbacksKey,
-                    JSON.stringify(values)
-                  );
+
+                if (!isValidPhone || tel === '+380') {
+                  toast('Введіть свої особисті дані', {
+                    id: 'warning',
+                    icon: '👀',
+                    duration: 5000,
+                    style: {
+                      borderRadius: '10px',
+                      background: `${theme.colors.secondary}`,
+                      color: `${theme.colors.textPrimary}`,
+                    },
+                  });
+                } else {
+                  setIsLoading(true);
+                  const response = await addFeedback(userData);
+                  setIsLoading(false);
+                  if (!response) {
+                    localStorage.setItem(
+                      localStorageFeedbacksKey,
+                      JSON.stringify(values)
+                    );
+                  }
+                  actions.resetForm();
+                  if (response) {
+                    localStorage.removeItem(localStorageFeedbacksKey);
+                    handleOpenAgreeModal();
+                  }
+                  handleCloseFeedbackModal();
                 }
-                actions.resetForm();
-                if (response) {
-                  localStorage.removeItem(localStorageFeedbacksKey);
-                  handleOpenAgreeModal();
-                }
-                handleCloseFeedbackModal();
               }}
             >
               <StyledForm>
@@ -186,7 +201,7 @@ export const ModalFeedback = ({
                   />
                   <StyledErrorMessage name="text" component="div" />
                 </Label>
-                <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
+                <Btn type="submit">
                   Зв'язатись
                 </Btn>
               </StyledForm>

@@ -24,6 +24,7 @@ import {
 } from './ModalQuickOrder.styled';
 import { useAuth } from 'utils/hooks';
 import LoaderForModals from '../LoaderForModals';
+import toast from 'react-hot-toast';
 
 export const ModalQuickOrder = ({
   product: { name, codeOfGood },
@@ -33,12 +34,12 @@ export const ModalQuickOrder = ({
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const { isLoggedIn } = useAuth();
   const {
-    userData: { firstName, tel: userTel  },
+    userData: { firstName, tel: userTel },
   } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [tel, setTel] = useState(isLoggedIn ? userTel : '+380');
   const isValidPhone = isPhoneValid(tel);
-  
+
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const handleOpenAgreeModal = () => {
@@ -50,18 +51,20 @@ export const ModalQuickOrder = ({
     document.body.style.overflow = 'unset';
   };
 
-    useEffect(() => {
-      if (isLoggedIn) {
-        setTel(userTel);
-      }
-      if (!isLoggedIn) {
-        setTel('+380');
-      }
-    }, [isLoggedIn, userTel]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      setTel(userTel);
+    }
+    if (!isLoggedIn) {
+      setTel('+380');
+    }
+  }, [isLoggedIn, userTel]);
 
   return (
     <>
-      {isLoading ? <LoaderForModals isLoading={isLoading} /> :
+      {isLoading ? (
+        <LoaderForModals isLoading={isLoading} />
+      ) : (
         <ModalYellowGradient
           isModalOpen={isModalQuickOrderOpen}
           handleCloseModal={handleCloseQuickOrderModal}
@@ -82,13 +85,27 @@ export const ModalQuickOrder = ({
                   userName: values.name.trim(),
                   tel: tel,
                 };
-                setIsLoading(true);
-                const response = await addQuickOrder(orderData);
-                 setIsLoading(false);
-                if (response) {
-                  handleOpenAgreeModal();
+
+                if (!isValidPhone || tel === '+380') {
+                  toast('Введіть свої особисті дані', {
+                    id: 'warning',
+                    icon: '👀',
+                    duration: 5000,
+                    style: {
+                      borderRadius: '10px',
+                      background: `${theme.colors.secondary}`,
+                      color: `${theme.colors.textPrimary}`,
+                    },
+                  });
+                } else {
+                  setIsLoading(true);
+                  const response = await addQuickOrder(orderData);
+                  setIsLoading(false);
+                  if (response) {
+                    handleOpenAgreeModal();
+                  }
+                  handleCloseQuickOrderModal();
                 }
-                handleCloseQuickOrderModal();
               }}
             >
               <StyledForm>
@@ -104,7 +121,8 @@ export const ModalQuickOrder = ({
                     '--react-international-phone-height': !isBigScreen
                       ? '28px'
                       : '51px',
-                    '--react-international-phone-background-color': 'transparent',
+                    '--react-international-phone-background-color':
+                      'transparent',
                     '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
                     '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
                     '--react-international-phone-font-size': !isBigScreen
@@ -131,7 +149,7 @@ export const ModalQuickOrder = ({
                     Введіть свій номер телефону, будь ласка
                   </DivErrorMessage>
                 )}
-                <Btn type="submit" disabled={!isValidPhone || tel === '+380'}>
+                <Btn type="submit">
                   <div>Оформити замовлення</div>
                 </Btn>
               </StyledForm>
@@ -139,7 +157,7 @@ export const ModalQuickOrder = ({
           </Wrapper>
           <PhoneFieldGlobalStyles />
         </ModalYellowGradient>
-      }
+      )}
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
