@@ -4,6 +4,7 @@ import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectCities,
+  selectIsLoading,
   selectWarehouses,
 } from '../../../redux/order/orderSelectors';
 import {
@@ -12,18 +13,27 @@ import {
 } from '../../../redux/order/orderOperations';
 import { editUserAddress } from '../../../redux/user/userOperations';
 import { selectDelivery } from '../../../redux/user/userSelectors';
-import {Box, BtnWrapper, CancelBtn, SubmitAddressBtn, Text, selectStyles } from './DeliveryAddressForm.styled';
-
+import {
+  Box,
+  BtnWrapper,
+  CancelBtn,
+  SubmitAddressBtn,
+  Text,
+  selectStyles,
+} from './DeliveryAddressForm.styled';
+import LoaderForModals from 'components/Modals/LoaderForModals';
 
 export const DeliveryAddressForm = ({ text, handleShowForm }) => {
+  
   const dispatch = useDispatch();
-
-  const deliveryAddress = useSelector(selectDelivery)
+  
+  const isLoading = useSelector(selectIsLoading);
+  const deliveryAddress = useSelector(selectDelivery);
 
   let cities = useSelector(selectCities);
   const [city, setCity] = useState(deliveryAddress.city ?? '');
   let warehouses = useSelector(selectWarehouses);
-  const [warehouse, setWarehouse] = useState(deliveryAddress.warehouse ?? '');;
+  const [warehouse, setWarehouse] = useState(deliveryAddress.warehouse ?? '');
 
   const optionsCities = cities.map(city => {
     return {
@@ -67,6 +77,7 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
       label: warehouse,
     };
   });
+
   const getWarehouse = () => {
     return warehouse ? optionsWarehouses.find(w => w.value === warehouse) : '';
   };
@@ -76,6 +87,9 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   };
 
   const clearInputWarehouse = () => {
+    if (city) {
+      dispatch(getDeliveryWarehouses(city));
+    } 
     setWarehouse('');
   };
 
@@ -86,14 +100,16 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
           city: city,
           warehouse: warehouse,
         },
-      })).then(result => {
-        if (result.meta.requestStatus === 'fulfilled') {
-          handleShowForm();
-        }
-      });
-    };
+      })
+    ).then(result => {
+      if (result.meta.requestStatus === 'fulfilled') {
+        handleShowForm();
+      }
+    });
+  };
   return (
     <>
+      {isLoading && <LoaderForModals isLoading={isLoading} />}
       <Text>{text}</Text>
       <Box>
         <Select
