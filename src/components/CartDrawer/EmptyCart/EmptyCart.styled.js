@@ -5,7 +5,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 45%;
+  margin-top: ${props => (props.$isOrder ? '20%' : '45%')};
+  margin-bottom: ${props => (props.$isOrder ? '20%' : '0')};
 `;
 
 export const CartIcon = styled.svg`
