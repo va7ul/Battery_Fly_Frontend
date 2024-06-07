@@ -113,18 +113,16 @@ export const UserDataEditForm = ({ handleShowForm }) => {
                   value={formikTel}
                   onChange={formikTel => setTel(formikTel)}
                 />
-                {!isValidPhone && (
-                  <DivErrorMessage>
-                    Введіть свій номер телефону, будь ласка
-                  </DivErrorMessage>
-                )}
+                {(formikTel &&
+                  !isValidPhone) && (
+                    <DivErrorMessage>
+                      Введіть свій номер телефону, будь ласка
+                    </DivErrorMessage>
+                  )}
               </Box>
             </Label>
             <BtnWrapper>
-              <SubmitUserDataBtn
-                type="submit"
-                disabled={!isValidPhone}
-              >
+              <SubmitUserDataBtn type="submit">
                 Зберегти дані
               </SubmitUserDataBtn>
               <CancelBtn type="button" onClick={handleShowForm}>
