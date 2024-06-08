@@ -25,10 +25,16 @@ import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAg
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
+import { selectProducts } from '../../redux/products/productsSelectors';
+import { getAssortment } from '../../redux/products/productsOperations';
+import { nanoid } from '@reduxjs/toolkit';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(getAssortment());
+  }, [dispatch]);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
@@ -55,7 +61,19 @@ export const Checkout = () => {
   const isLoading = useSelector(selectIsLoading);
 
   const products = useSelector(selectItems);
+  const allProducts = useSelector(selectProducts);
+  console.log('allProducts', allProducts);
+  console.log('products', products);
 
+  const changedProducts = products.flatMap(product => {
+    return allProducts.filter(
+      oneOfProduct =>
+        oneOfProduct.codeOfGood === product.codeOfGood &&
+        oneOfProduct.quantity < product.quantityOrdered
+    );
+  });
+
+  console.log('changedProducts', changedProducts);
   const isValidPhone = isPhoneValid(tel);
 
   useEffect(() => {
@@ -147,6 +165,13 @@ export const Checkout = () => {
               </Grid>
               <Grid item desktop={6}>
                 <Cart />
+                {changedProducts.length > 0 &&
+                  changedProducts.map(item => (
+                    <p key={nanoid()}>
+                      Товару {item.name} залишилось всього у кількості{' '}
+                      {item.quantity}
+                    </p>
+                  ))}
                 <TotalPrice />
               </Grid>
             </Grid>
