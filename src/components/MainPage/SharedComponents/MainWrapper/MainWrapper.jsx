@@ -1,6 +1,6 @@
 import { Wrapper } from "./MainWrapper.styled";
 
 
-export const MainWrapper = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+export const MainWrapper = ({ children, isCategories = false }) => {
+  return <Wrapper $isCategories={isCategories}>{children}</Wrapper>;
 };

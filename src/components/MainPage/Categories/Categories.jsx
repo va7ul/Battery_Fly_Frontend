@@ -3,6 +3,7 @@ import butteries from '../../../assets/images/main-butteries.png';
 import fpv from '../../../assets/images/main-for-fpv.png';
 import transport from '../../../assets/images/main-for-transport.png';
 import toys from '../../../assets/images/main-for-toys.png';
+import print3d from '../../../assets/images/main-3d-print.png';
 import { Image, LinkToProducts, List, ListItem, Subtitle } from './Categories.styled';
 import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
 
@@ -32,11 +33,16 @@ const categories = [
     description: 'Батареї для іграшок',
     path: '/batteries-for-toys',
   },
+  {
+    imgUrl: `${print3d}`,
+    description: 'Друк на 3D-принтері',
+    path: '/3D-print',
+  },
 ];
 
 export const Categories = () => {
   return (
-    <MainWrapper>
+    <MainWrapper isCategories={true}>
       <List>
         {categories.map((item, idx) => (
           <ListItem key={idx}>
@@ -44,8 +50,8 @@ export const Categories = () => {
               <Image
                 src={item.imgUrl}
                 alt={item.description}
-                width="60"
-                height="46"
+                width="50"
+                height="38"
               />
               <Subtitle>{item.description}</Subtitle>
             </LinkToProducts>

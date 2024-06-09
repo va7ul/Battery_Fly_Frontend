@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 export const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, 60px);
-  gap: 4px;
   padding-top: 20px;
   padding-bottom: 20px;
   align-items: center;
   justify-items: center;
   @media (min-width: 1280px) {
-    grid-template-columns: repeat(auto-fit, 200px);
+    grid-template-columns: repeat(auto-fit, 164px);
     gap: 14px;
     padding-top: 36px;
     padding-bottom: 60px;
@@ -18,17 +17,19 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  height: 66px;
+  width: 50px;
+  height: 60px;
   text-align: center;
   @media (min-width: 1280px) {
+    width: 164px;
     height: 140px;
   }
 `;
 
 export const Image = styled.img`
   @media (min-width: 1280px) {
-    width: 200px;
-    height: 140px;
+    width: 164px;
+    height: 116px;
     transition: ${props => props.theme.transition.main};
 
     &:hover {
@@ -39,15 +40,15 @@ export const Image = styled.img`
 
 export const Subtitle = styled.p`
   margin-top: 4px;
-  font-size: 7px;
+  font-size: 6px;
 
   @media (min-width: 1280px) {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 18px;
     position: absolute;
     top: calc(100%);
     visibility: hidden;
-    width: 200px;
+    width: 164px;
     transform: scale(0);
     transition: visibility 220ms cubic-bezier(0.4, 0, 0.2, 1),
       transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -60,7 +61,7 @@ export const LinkToProducts = styled(Link)`
     position: relative;
     & ${Image}:hover + ${Subtitle} {
       visibility: visible;
-      width: 200px;
+      width: 164px;
       transform: scale(1);
     }
   }
