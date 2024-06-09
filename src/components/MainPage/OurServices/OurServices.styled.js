@@ -53,8 +53,7 @@ export const Button = styled.button`
   margin-right: auto;
   background: ${props => props.theme.colors.secondary};
 
-  &:hover,
-  &:focus {
+  &:hover {
     background: ${props => props.theme.colors.hoverColor};
   }
 
