@@ -11,14 +11,16 @@ import {
   Wrapper,
 } from './OurServices.styled';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
-import { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
 
-import { register } from 'swiper/element/bundle';
-register();
+
+import 'swiper/css';
+
+
 
 export const OurServices = ({ services }) => {
-  const swiperElRef = useRef(null);
-    const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (
     <Wrapper>
@@ -45,55 +47,56 @@ export const OurServices = ({ services }) => {
         </Button>
       </ButtonWrapper>
 
-      <swiper-container
-        ref={swiperElRef}
-        slides-per-view="2"
-        space-between="10"
-        navigation="true"
-        grab-cursor="true"
-        breakpoints={JSON.stringify({
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        slidesPerView={2}
+        spaceBetween={10}
+        navigation={{
+          nextEl: '.custom-next-button',
+          prevEl: '.custom-prev-button',
+        }}
+        style={{
+          height: `${!isBigScreen ? '284px' : '450px'}`,
+        }}
+        grabCursor={true}
+        breakpoints={{
           1280: {
             slidesPerView: 4,
             spaceBetween: 34,
           },
-        })}
-        navigation-next-el=".custom-next-button"
-        navigation-prev-el=".custom-prev-button"
-        autoplay-delay="5000"
+        }}
         loop={true}
-        inject-styles={JSON.stringify([
-          `.swiper{
-            height: ${!isBigScreen ? '284px' : '450px'};
-          }
-          `,
-        ])}
+        autoplay={{
+          delay: 5000,
+          pauseOnMouseEnter: true,
+        }}
       >
-        <swiper-slide>
+        <SwiperSlide>
           <ListItem>
             <OurServicesCard text={services[0]} />
           </ListItem>
-        </swiper-slide>
-        <swiper-slide>
+        </SwiperSlide>
+        <SwiperSlide>
           <ListItem>
             <OurServicesCard text={services[1]} />
           </ListItem>
-        </swiper-slide>
-        <swiper-slide>
+        </SwiperSlide>
+        <SwiperSlide>
           <ListItem>
             <OurServicesCard text={services[2]} />
           </ListItem>
-        </swiper-slide>
-        <swiper-slide>
+        </SwiperSlide>
+        <SwiperSlide>
           <ListItem>
             <OurServicesCard text={services[3]} />
           </ListItem>
-        </swiper-slide>
-        <swiper-slide>
+        </SwiperSlide>
+        <SwiperSlide>
           <ListItem>
             <OurServicesCard text={services[4]} />
           </ListItem>
-        </swiper-slide>
-      </swiper-container>
+        </SwiperSlide>
+      </Swiper>
     </Wrapper>
   );
 };
