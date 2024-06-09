@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.section`
   position: relative;
@@ -47,24 +46,22 @@ export const ButtonWrapper = styled.div`
 export const Button = styled.button`
   width: 32px;
   height: 20px;
-  background: ${props => props.theme.colors.gradient};
   box-shadow: 6px 4px 5px 0px rgba(0, 0, 0, 0.08);
   border: transparent;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
+  background: ${props => props.theme.colors.secondary};
+
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.hoverColor};
+  }
 
   @media (min-width: 1280px) {
     width: 66px;
     height: 66px;
     border-radius: 16px;
-    position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-
-    &::after {
-      border-radius: 16px;
-    }
   }
 
   svg {
@@ -77,7 +74,6 @@ export const Button = styled.button`
     }
   }
 `;
-
 
 export const ListItem = styled.div`
   background: ${props => props.theme.colors.gradient};
