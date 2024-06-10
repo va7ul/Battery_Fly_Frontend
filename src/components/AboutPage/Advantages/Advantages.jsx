@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
-import { Title } from '../SharedComponents/Title/Title';
-import { Box, IconSun, LinkToAssortment, List, ListItem, Text } from './Advantages.styled';
-import { AdvantagesCard } from '../AdvantagesCard/AdvantagesCard';
 import sprite from '../../../assets/images/sprite.svg'
+import { Title } from '../SharedComponents/Title/Title';
+import { AdvantagesCard } from '../AdvantagesCard/AdvantagesCard';
+import { Box, IconSun, LinkToAssortment, List, ListItem, Text } from './Advantages.styled';
 
 export const Advantages = ({ advantages }) => {
   return (

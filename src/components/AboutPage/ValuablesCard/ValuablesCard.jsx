@@ -1,5 +1,5 @@
-import { Text } from '../SharedComponents/Text/Text';
 import sprite from '../../../assets/images/sprite.svg';
+import { Text } from '../SharedComponents/Text/Text';
 import { Box, Icon, SmallTitle } from './ValuablesCard.styled';
 
 export const ValuablesCard = ({ text: { title, text, icon } }) => {

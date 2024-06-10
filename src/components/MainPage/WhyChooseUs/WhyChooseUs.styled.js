@@ -88,12 +88,13 @@ export const ListItem = styled.li`
 `;
 
 export const IconHope = styled.svg`
+  z-index: 2;
   height: 35px;
   width: 35px;
   position: absolute;
   transform: rotate(64deg);
-  top: 190px;
-  left: 16px;
+  top: 228px;
+  left: 22px;
   fill: ${props => props.theme.colors.secondary};
 
   @media (min-width: 1280px) {

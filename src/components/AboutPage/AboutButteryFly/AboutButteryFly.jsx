@@ -1,9 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
-import { Text } from '../SharedComponents/Text/Text';
-import { MainTitle, Wrapper } from './AboutButteryFly.styled';
+import { Grid } from '@mui/material';
 import battery from '../../../assets/images/about-us-battery.jpeg';
 import battery2x from '../../../assets/images/about-us-battery-2x.jpeg';
-import { Grid } from '@mui/material';
+import { Text } from '../SharedComponents/Text/Text';
+import { MainTitle, Wrapper } from './AboutButteryFly.styled';
 
 export const AboutButteryFly = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });

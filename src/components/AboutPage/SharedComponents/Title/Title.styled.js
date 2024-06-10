@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SecondaryTitle = styled.h2`
   font-size: 15px;
   font-weight: 500;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
   margin-bottom: 10px;
 
   @media (min-width: 1280px) {
