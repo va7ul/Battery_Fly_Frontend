@@ -10,6 +10,6 @@ export const SecondaryTitle = styled.h2`
     font-size: 40px;
     font-weight: 600;
     color: ${props => props.theme.colors.textPrimary};
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 `;
