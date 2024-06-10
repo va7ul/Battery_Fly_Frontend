@@ -1,11 +1,11 @@
+import { useMediaQuery } from 'react-responsive';
+import valuables from '../../utils/json/about-page-valuables.json';
+import advantages from '../../utils/json/about-page-advantages.json'
+import { MainWrapper } from './SharedComponents/MainWrapper/MainWrapper';
 import { AboutButteryFly } from './AboutButteryFly/AboutButteryFly';
 import { Mission } from './Mission/Mission';
 import { Valuables } from './Valuables/Valuables';
-import valuables from '../../utils/json/about-page-valuables.json';
-import { MainWrapper } from './SharedComponents/MainWrapper/MainWrapper';
-import { useMediaQuery } from 'react-responsive';
 import { Advantages } from './Advantages/Advantages';
-import advantages from '../../utils/json/about-page-advantages.json'
 
 
 export const AboutUsPage = () => {

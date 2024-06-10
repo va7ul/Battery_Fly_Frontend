@@ -19,7 +19,7 @@ export const SmallTitle = styled.h3`
 export const Icon = styled.svg`
   height: 14px;
   width: 14px;
-  fill: ${props => props.theme.colors.secondary};
+  fill: ${props => props.theme.colors.hoverColor};
 
   @media (min-width: 1280px) {
     height: 24px;

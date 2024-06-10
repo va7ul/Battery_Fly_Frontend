@@ -1,4 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
+import sprite from '../../../assets/images/sprite.svg';
 import { Title } from '../SharedComponents/Title/Title';
 import { ValuablesCard } from '../ValuablesCard/ValuablesCard';
 import {
@@ -9,7 +10,6 @@ import {
   ListItem,
   Wrapper,
 } from './Valuables.styled';
-import sprite from '../../../assets/images/sprite.svg';
 
 export const Valuables = ({ valuables }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });

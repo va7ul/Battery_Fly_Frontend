@@ -15,7 +15,7 @@ export const Box = styled.div`
 export const Title = styled.h2`
   font-size: 15px;
   font-weight: 500;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.hoverColor};
   margin-bottom: 10px;
 
   @media (min-width: 1280px) {
@@ -42,7 +42,7 @@ export const IconEllipse = styled.svg`
     position: absolute;
     bottom: -28px;
     right: 144px;
-    fill: ${props => props.theme.colors.secondary};
+    fill: ${props => props.theme.colors.hoverColor};
     z-index: 1;
   }
 `;
