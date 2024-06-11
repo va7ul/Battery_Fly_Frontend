@@ -52,8 +52,8 @@ export const Delivery = () => {
         setDisplayNP("none");
         setDisplayAddress("flex");
         dispatch(changeDeliveryType("Самовивіз"));
-        dispatch(changeCity("null"))
-        dispatch(changeWarehouse("null"));
+        dispatch(changeCity("м. Львів"))
+        dispatch(changeWarehouse("вул. Зелена, 109"));
         setShowAddress(true);
         setShowNP(false);
     };
@@ -110,7 +110,13 @@ export const Delivery = () => {
     };
 
     const clearInputWarehouse = () => {
+ 
+       if (city) {
+           dispatch(getDeliveryWarehouses(city));
+           return;
+    } 
         dispatch(changeWarehouse(''));
+ 
     };
 
     return (
