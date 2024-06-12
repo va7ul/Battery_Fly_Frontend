@@ -152,7 +152,7 @@ export const Checkout = () => {
   return (
     <>
       {isLoading && <LoaderForModals isLoading={isLoading} />}
-      {products.length < 1 ? (
+      {products.length < 1 && !orderNum ? (
         <EmptyCart closeCart={handleEmptyBasket} isOrder={true} />
       ) : (
         <>
