@@ -13,10 +13,10 @@ export const Num = styled.span`
 `;
 
 export const SmallTitle = styled.h3`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
 `;
 
 export const Text = styled.p`
-  font-size: 14px;
+  font-size: 20px;
 `;

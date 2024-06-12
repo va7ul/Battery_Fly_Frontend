@@ -6,7 +6,7 @@ import { Confidential } from "./Confidential";
 import { ForClients } from "./ForClients";
 import { Catalog } from './Catalog';
 import { Container, Logo, BoxFooter, Wrapper, Div } from "./Footer.styled";
-// import { MultiButton } from "components/MultiButton/MultiButton";
+import { MultiButton } from "components/MultiButton/MultiButton";
 
 export const Footer = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
@@ -24,7 +24,7 @@ export const Footer = () => {
         </BoxFooter>
         <ForClients />
       </Container>
-      {/* <MultiButton /> */}
+      <MultiButton />
     </Wrapper>) : (<Wrapper>
       <BoxFooter>
         <Logo src={logo} alt='logo' />
@@ -38,7 +38,7 @@ export const Footer = () => {
           <TimeTable />
         </Div>
       </Container>
-      {/* <MultiButton /> */}
+      <MultiButton />
     </Wrapper>)
   );
 };

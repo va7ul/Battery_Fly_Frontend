@@ -1,6 +1,6 @@
 import sprite from '../../../assets/images/sprite.svg';
-import { Icon } from './WhyChooseUsCard.styled';
 import { CardText } from '../SharedComponents/CardText/CardText';
+import { Icon } from './WhyChooseUsCard.styled';
 
 
 export const WhyChooseUsCard = ({ text: {text, icon } }) => {

@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Box = styled.div`
   height: 70px;
+  margin-bottom: 6px;
 
   @media (min-width: 1280px) {
     height: 158px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -26,4 +28,3 @@ export const Icon = styled.svg`
     margin-bottom: 16px;
   }
 `;
-

@@ -1,5 +1,9 @@
-import { Text } from '../SharedComponents/Text/Text';
+import { useMediaQuery } from 'react-responsive';
+import { Grid } from '@mui/material';
+import sprite from '../../../assets/images/sprite.svg';
 import { Title } from '../SharedComponents/Title/Title';
+import { Text } from '../SharedComponents/Text/Text';
+import { WhyChooseUsCard } from '../WhyChooseUsCard/WhyChooseUsCard';
 import {
   Box,
   Holder,
@@ -9,10 +13,6 @@ import {
   List,
   ListItem,
 } from './WhyChooseUs.styled';
-import { WhyChooseUsCard } from '../WhyChooseUsCard/WhyChooseUsCard';
-import sprite from '../../../assets/images/sprite.svg';
-import { Grid } from '@mui/material';
-import { useMediaQuery } from 'react-responsive';
 
 
 

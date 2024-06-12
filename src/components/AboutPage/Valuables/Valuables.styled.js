@@ -54,5 +54,5 @@ export const IconRectangle = styled.svg`
   position: absolute;
   top: 200px;
   right: -4px;
-  fill: ${props => props.theme.colors.secondary};
+  fill: ${props => props.theme.colors.hoverColor};
 `;

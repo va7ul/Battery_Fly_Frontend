@@ -1,7 +1,12 @@
+import { nanoid } from '@reduxjs/toolkit';
 import { useMediaQuery } from 'react-responsive';
-import { OurServicesCard } from '../OurServicesCard/OurServicesCard';
-import { Text } from '../SharedComponents/Text/Text';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import { Title } from '../SharedComponents/Title/Title';
+import { Text } from '../SharedComponents/Text/Text';
+import { OurServicesCard } from '../OurServicesCard/OurServicesCard';
 import {
   Button,
   ButtonWrapper,
@@ -10,15 +15,9 @@ import {
   TextBox,
   Wrapper,
 } from './OurServices.styled';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
-import { useRef } from 'react';
-
-import { register } from 'swiper/element/bundle';
-register();
 
 export const OurServices = ({ services }) => {
-  const swiperElRef = useRef(null);
-    const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (
     <Wrapper>
@@ -45,55 +44,38 @@ export const OurServices = ({ services }) => {
         </Button>
       </ButtonWrapper>
 
-      <swiper-container
-        ref={swiperElRef}
-        slides-per-view="2"
-        space-between="10"
-        navigation="true"
-        grab-cursor="true"
-        breakpoints={JSON.stringify({
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        slidesPerView={2}
+        spaceBetween={10}
+        breakpoints={{
           1280: {
             slidesPerView: 4,
             spaceBetween: 34,
           },
-        })}
-        navigation-next-el=".custom-next-button"
-        navigation-prev-el=".custom-prev-button"
-        autoplay-delay="5000"
+        }}
+        navigation={{
+          nextEl: '.custom-next-button',
+          prevEl: '.custom-prev-button',
+        }}
         loop={true}
-        inject-styles={JSON.stringify([
-          `.swiper{
-            height: ${!isBigScreen ? '284px' : '450px'};
-          }
-          `,
-        ])}
+        autoplay={{
+          delay: 5000,
+          pauseOnMouseEnter: true,
+        }}
+        grabCursor={true}
+        style={{
+          height: `${!isBigScreen ? '284px' : '450px'}`,
+        }}
       >
-        <swiper-slide>
-          <ListItem>
-            <OurServicesCard text={services[0]} />
-          </ListItem>
-        </swiper-slide>
-        <swiper-slide>
-          <ListItem>
-            <OurServicesCard text={services[1]} />
-          </ListItem>
-        </swiper-slide>
-        <swiper-slide>
-          <ListItem>
-            <OurServicesCard text={services[2]} />
-          </ListItem>
-        </swiper-slide>
-        <swiper-slide>
-          <ListItem>
-            <OurServicesCard text={services[3]} />
-          </ListItem>
-        </swiper-slide>
-        <swiper-slide>
-          <ListItem>
-            <OurServicesCard text={services[4]} />
-          </ListItem>
-        </swiper-slide>
-      </swiper-container>
+        {services.map(item => (
+          <SwiperSlide key={nanoid()}>
+            <ListItem key={nanoid()}>
+              <OurServicesCard text={item} />
+            </ListItem>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </Wrapper>
   );
 };

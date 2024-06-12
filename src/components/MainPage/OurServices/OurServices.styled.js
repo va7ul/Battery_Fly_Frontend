@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { gradientTransitionBtn } from 'styles/GlobalStyled';
 
 export const Wrapper = styled.section`
   position: relative;
@@ -9,7 +8,6 @@ export const Wrapper = styled.section`
 
   @media (min-width: 1280px) {
     max-width: 1280px;
-    margin: 0 auto;
     padding: 0 30px 0 110px;
   }
 `;
@@ -48,24 +46,21 @@ export const ButtonWrapper = styled.div`
 export const Button = styled.button`
   width: 32px;
   height: 20px;
-  background: ${props => props.theme.colors.gradient};
   box-shadow: 6px 4px 5px 0px rgba(0, 0, 0, 0.08);
   border: transparent;
   border-radius: 4px;
   margin-left: auto;
   margin-right: auto;
+  background: ${props => props.theme.colors.secondary};
+
+  &:hover {
+    background: ${props => props.theme.colors.hoverColor};
+  }
 
   @media (min-width: 1280px) {
     width: 66px;
     height: 66px;
     border-radius: 16px;
-    position: relative;
-    z-index: 0;
-    ${gradientTransitionBtn}
-
-    &::after {
-      border-radius: 16px;
-    }
   }
 
   svg {
@@ -79,19 +74,18 @@ export const Button = styled.button`
   }
 `;
 
-
 export const ListItem = styled.div`
   background: ${props => props.theme.colors.gradient};
   width: 154px;
   height: 254px;
-  padding: 14px 10px 24px 10px;
+  padding: 14px 10px;
   border-radius: 12px;
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.07);
 
   @media (min-width: 1280px) {
     width: 255px;
     height: 360px;
-    padding: 18px 12px 28px 12px;
+    padding: 18px 12px;
     border-radius: 20px;
   }
 `;

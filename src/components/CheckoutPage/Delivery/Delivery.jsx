@@ -1,15 +1,15 @@
 import { useMediaQuery } from 'react-responsive';
 import { debounce } from 'lodash';
-import Select from 'react-select';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { yellow } from '@mui/material/colors';
 import { changeCity, changeWarehouse, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses, selectCity, selectWarehouse, selectPayment, selectDeliveryType } from '../../../redux/order/orderSelectors';
+import { selectCities, selectWarehouses, selectCity, selectPayment, selectDeliveryType } from '../../../redux/order/orderSelectors';
 import { selectDelivery } from '../../../redux/user/userSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, BoxNP, selectStyles } from './Delivery.styled';
 import {StyledRadioGroup, StyledRadio} from '../Delivery/Delivery.mui'
@@ -27,10 +27,13 @@ export const Delivery = () => {
     let cities = useSelector(selectCities);
     let warehouses = useSelector(selectWarehouses);
     const city = useSelector(selectCity);
-    const warehouse = useSelector(selectWarehouse);
+    // const warehouse = useSelector(selectWarehouse);
     const payment = useSelector(selectPayment);
     const deliveryType = useSelector(selectDeliveryType);
     const delivery = useSelector(selectDelivery);
+
+    const selectInputCityRef = useRef();
+    const selectInputWarehouseRef = useRef();
 
     const openNP = () => {
         if (deliveryType === "Нова пошта") {
@@ -52,8 +55,8 @@ export const Delivery = () => {
         setDisplayNP("none");
         setDisplayAddress("flex");
         dispatch(changeDeliveryType("Самовивіз"));
-        dispatch(changeCity("null"))
-        dispatch(changeWarehouse("null"));
+        dispatch(changeCity("м. Львів"))
+        dispatch(changeWarehouse("вул. Зелена, 109"));
         setShowAddress(true);
         setShowNP(false);
     };
@@ -67,10 +70,6 @@ export const Delivery = () => {
             value: city, label: city
         };
     });
-
-    const getCity = () => {
-        return city ? optionsCities.find(c => c.value === city) : ''
-    }
     
     const debouncedGetCities = useMemo(
         () =>
@@ -84,11 +83,11 @@ export const Delivery = () => {
         };
     });
 
-    const getWarehouse = () => {
-        return warehouse ? optionsWarehouses.find(w => w.value === warehouse) : ''
-    }
     const handleCityChange = (event) => {
         dispatch(changeCity(event.value));
+        if (event === '') {
+            return
+        }
         dispatch(getDeliveryWarehouses(event.value));
     };
 
@@ -107,10 +106,16 @@ export const Delivery = () => {
     const clearInputCity = () => {
         dispatch(changeCity(''));
         dispatch(changeWarehouse(''));
+        selectInputCityRef.current.setValue('');
+        selectInputWarehouseRef.current.setValue('');
     };
 
     const clearInputWarehouse = () => {
         dispatch(changeWarehouse(''));
+        selectInputWarehouseRef.current.setValue('');
+        if (city) {
+            dispatch(getDeliveryWarehouses(city));
+        }
     };
 
     return (
@@ -138,9 +143,11 @@ export const Delivery = () => {
                 <TextNp>Адреса доставки</TextNp>
             
                 <Select
+                    ref={selectInputCityRef}
                     options={optionsCities}
-                    value={getCity()}
-                    defaultInputValue={delivery.city}
+                    defaultValue={{
+                        value: delivery.city, label: delivery.city
+                    }}
                     onChange={handleCityChange}
                     onInputChange={handleSelectCity}
                     onFocus={clearInputCity}
@@ -148,9 +155,11 @@ export const Delivery = () => {
                     styles={selectStyles}
                 />
                 <Select
+                    ref={selectInputWarehouseRef}
                     options={optionsWarehouses}
-                    value={getWarehouse()}
-                    defaultInputValue={delivery.warehouse}
+                    defaultValue={{
+                        value: delivery.warehouse, label: delivery.warehouse
+                    }}
                     onChange={handleWarehouseChange}
                     onFocus={clearInputWarehouse}
                     placeholder={"Відділення/поштомат"}

@@ -1,8 +1,9 @@
 import { Grid } from '@mui/material';
-import { Title } from '../SharedComponents/Title/Title';
-import { Box, IconSun, LinkToAssortment, List, ListItem, Text } from './Advantages.styled';
-import { AdvantagesCard } from '../AdvantagesCard/AdvantagesCard';
 import sprite from '../../../assets/images/sprite.svg'
+import { Title } from '../SharedComponents/Title/Title';
+import { AdvantagesCard } from '../AdvantagesCard/AdvantagesCard';
+import { Box, IconSun, LinkToAssortment, List, ListItem, Text } from './Advantages.styled';
+
 export const Advantages = ({ advantages }) => {
   return (
     <section>
@@ -22,10 +23,10 @@ export const Advantages = ({ advantages }) => {
           desktop={6}
           sx={{
             '&.MuiGrid-item': {
-              paddingTop: '66px',
-              paddingBottom: '66px',
-              paddingRight: '90px',
-              paddingLeft: '90px',
+              paddingTop: '44px',
+              paddingBottom: '44px',
+              paddingRight: '60px',
+              paddingLeft: '50px',
             },
           }}
         >
@@ -41,7 +42,9 @@ export const Advantages = ({ advantages }) => {
               нами, і ми будемо раді допомогти вам у всьому, що стосується
               Li-Ion акумуляторів.
             </Text>
-            <LinkToAssortment to="/assortment"><div>До асортименту</div></LinkToAssortment>
+            <LinkToAssortment to="/assortment">
+              <div>До асортименту</div>
+            </LinkToAssortment>
           </Box>
         </Grid>
       </Grid>
