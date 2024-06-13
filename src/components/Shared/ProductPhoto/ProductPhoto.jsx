@@ -1,9 +1,15 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import noImage from '../../../assets/images/no-image-available.webp';
 import { SliderDiv, ImageSmall, ImageBig, Image } from './ProductPhoto.styled';
 
 export const ProductPhoto = ({ name, image }) => {
+
+  const addDefaultImg = e => {
+    e.currentTarget.src = `${noImage}`;
+  };
+  
   const settings = {
     customPaging: function (i) {
       return (
@@ -33,6 +39,6 @@ export const ProductPhoto = ({ name, image }) => {
       </Slider>
     </SliderDiv>
   ) : (
-    <Image src={image[0]} alt={name} />
+    <Image src={image[0] || noImage} alt={name} onError={addDefaultImg}/>
   );
 };
