@@ -10,6 +10,8 @@ import {
   OrderDetailsContainer,
   OrderDetailsList,
   PriceContainer,
+  TextTitle,
+  Text,
   Sum,
   Discount,
   Total,
@@ -58,6 +60,20 @@ export const OrdersHistoryListEl = ({ el }) => {
             ))}
           </OrderDetailsList>
           <PriceContainer>
+            <p>
+              <TextTitle>Доставка: </TextTitle>
+              <Text>{data?.deliveryType}</Text>
+            </p>
+            <p>
+              <TextTitle>Адреса: </TextTitle>
+              <Text>
+                {data?.city}, {data?.warehouse}
+              </Text>
+            </p>
+            <p>
+              <TextTitle>Спосіб оплати: </TextTitle>
+              <Text>{data?.payment}</Text>
+            </p>
             <Sum>
               Загальна сума:
               <span> {prettyTotal} грн</span>

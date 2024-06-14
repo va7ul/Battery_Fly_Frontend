@@ -59,6 +59,29 @@ export const PriceContainer = styled.div`
     gap: 8px;
     padding: 10px;
   }
+
+  p:not(:first-child) {
+    text-align: unset;
+  }
+`;
+
+export const TextTitle = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: ${props => props.theme.colors.textDisabled};
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
+`;
+
+export const Text = styled.span`
+  font-weight: 600;
+  font-size: 12px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
 `;
 
 export const Sum = styled.p`
@@ -66,9 +89,11 @@ export const Sum = styled.p`
   display: flex;
   justify-content: space-between;
   font-size: 12px;
+  margin-top: 10px;
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+    margin-top: 20px;
   }
 `;
 
