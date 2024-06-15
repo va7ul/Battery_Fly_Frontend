@@ -39,8 +39,12 @@ export const Delivery = () => {
         if (deliveryType === "Нова пошта") {
             return;
         }
-        dispatch(changeCity(delivery.city));
-        dispatch(changeWarehouse(delivery.warehouse));
+        if (delivery.city) {
+            dispatch(changeCity(delivery.city));
+            dispatch(changeWarehouse(delivery.warehouse));
+            selectInputCityRef.current.setValue({ value: delivery.city, label: delivery.city })
+            selectInputWarehouseRef.current.setValue({ value: delivery.warehouse, label: delivery.warehouse })
+        }
         setDisplayAddress("none");
         setDisplayNP("flex");
         dispatch(changeDeliveryType("Нова пошта"));
@@ -85,8 +89,9 @@ export const Delivery = () => {
 
     const handleCityChange = (event) => {
         dispatch(changeCity(event.value));
-        if (event === '') {
-            return
+
+        if (event.value === '' || {}) {
+            return;
         }
         dispatch(getDeliveryWarehouses(event.value));
     };
@@ -145,9 +150,6 @@ export const Delivery = () => {
                 <Select
                     ref={selectInputCityRef}
                     options={optionsCities}
-                    defaultValue={{
-                        value: delivery.city, label: delivery.city
-                    }}
                     onChange={handleCityChange}
                     onInputChange={handleSelectCity}
                     onFocus={clearInputCity}
@@ -157,9 +159,6 @@ export const Delivery = () => {
                 <Select
                     ref={selectInputWarehouseRef}
                     options={optionsWarehouses}
-                    defaultValue={{
-                        value: delivery.warehouse, label: delivery.warehouse
-                    }}
                     onChange={handleWarehouseChange}
                     onFocus={clearInputWarehouse}
                     placeholder={"Відділення/поштомат"}
