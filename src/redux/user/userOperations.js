@@ -162,10 +162,13 @@ export const addToFavorite = createAsyncThunk(
     try {
       setAuthHeader(token);
       const { data } = await axios.post(`user/favorite/${id}`);
+      toast.remove();
+      toast.success('Товар додано!');
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Сталася помилка, спробуйте ще раз!');
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -176,10 +179,13 @@ export const deleteFromFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await axios.delete(`user/favorite/${id}`);
+      toast.remove();
+      toast.success('Товар видалено!');
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Сталася помилка, спробуйте ще раз!');
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
