@@ -1,4 +1,6 @@
 export const selectUserDataInOrder = state => state.order.userData;
+export const selectIsChangedProductInCart = state =>
+  state.order.isChangedProductInCart;
 export const selectOrderNum = state => state.order.orderNum;
 export const selectIsLoading = state => state.order.isLoading;
 export const selectError = state => state.order.error;

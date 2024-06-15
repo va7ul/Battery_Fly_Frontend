@@ -27,6 +27,7 @@ const initialState = {
   promoCodeDiscount: 0,
   discountValue: 0,
   together: 0,
+  isChangedProductInCart: false,
   orderNum: '',
   isLoading: false,
   error: null,
@@ -43,6 +44,7 @@ export const handleFulfilledAddOrder = (state, { payload }) => {
   state.promoCodeDiscount = 0;
   state.discountValue = 0;
   state.together = 0;
+  state.isChangedProductInCart = false;
   state.orderNum = payload.orderNum;
   state.isLoading = false;
   state.error = '';
@@ -80,6 +82,9 @@ const orderSlice = createSlice({
     },
     changeUserComment(state, { payload }) {
       state.userData.text = payload;
+    },
+    checkChangeProductInCart(state, { payload }) {
+      state.isChangedProductInCart = payload;
     },
     changeOrderNum(state, { payload }) {
       state.orderNum = payload;
@@ -122,6 +127,7 @@ const orderSlice = createSlice({
 export const {
   changeUserTel,
   changeUserComment,
+  checkChangeProductInCart,
   changeOrderNum,
   changeCity,
   changeWarehouse,

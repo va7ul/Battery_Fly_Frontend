@@ -1,4 +1,17 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaMinus, FaPlus } from 'react-icons/fa6';
+import { AiOutlineClose } from 'react-icons/ai';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Battery0BarIcon from '@mui/icons-material/Battery0Bar';
+import {
+  deleteItem,
+  increaseQuantity,
+  decreaseQuantity,
+  changeQuantity,
+} from '../../../../redux/basket/basketSlice';
+import { setCartOpen } from '../../../../redux/menu/menuSlice';
+import { selectProducts } from '../../../../redux/products/productsSelectors';
+import { selectIsChangedProductInCart } from '../../../../redux/order/orderSelectors';
 import {
   Item,
   GoodWrap,
@@ -12,18 +25,9 @@ import {
   CapacityWrap,
   Capacity,
   SealingHolders,
+  Advert,
 } from './CartItem.styled';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
-import { AiOutlineClose } from 'react-icons/ai';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import Battery0BarIcon from '@mui/icons-material/Battery0Bar';
-import {
-  deleteItem,
-  increaseQuantity,
-  decreaseQuantity,
-  changeQuantity,
-} from '../../../../redux/basket/basketSlice';
-import { setCartOpen } from '../../../../redux/menu/menuSlice';
+
 
 export const CartItem = ({ item }) => {
   const {
@@ -39,6 +43,17 @@ export const CartItem = ({ item }) => {
   } = item;
 
   const dispatch = useDispatch();
+
+  const newProducts = useSelector(selectProducts);
+  const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
+
+  let updatedProduct = null;
+
+  if (isChangedProductInCart) {
+   updatedProduct = newProducts.find(
+      item => item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
+    );
+  }
 
   const closeCart = () => {
     dispatch(setCartOpen(false));
@@ -180,12 +195,14 @@ export const CartItem = ({ item }) => {
           </CapacityWrap>
         )}
       </Item>
-      {/* {isChangedProductsInCart && numberOfProductsWithUpdatedQuantity && (
+      {updatedProduct?.quantity > 0 && (
         <Advert>
-          *Цей товар є в наявності у кількості{' '}
-          {numberOfProductsWithUpdatedQuantity.quantity} шт.
+          *Цей товар є в наявності у кількості {updatedProduct.quantity} шт.
         </Advert>
-      )} */}
+      )}
+      {updatedProduct?.quantity === 0 && (
+        <Advert>*Цього товару немає в наявності.</Advert>
+      )}
     </>
   );
 };
