@@ -17,8 +17,9 @@ const hideCard = props => {
 export const StyledList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 16px 12px;
+  justify-content: ${props =>
+    props.category === 'Акції' ? 'space-between' : 'inherit'};
 
   @media screen and (min-width: 1280px) {
     gap: 20px;
