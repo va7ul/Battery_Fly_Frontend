@@ -1,5 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { selectFavorites } from '../user/userSelectors';
 
 export const selectOneProductIsLoading = state =>
   state.products.oneProduct.isLoading;
@@ -28,16 +27,4 @@ export const selectProducts = state => state.products.productsList.allProducts;
 export const selectPopularProducts = createSelector(
   [selectProducts],
   allProducts => allProducts.filter(({ popular }) => popular === true)
-);
-
-export const selectFavoriteProducts = createSelector(
-  [selectProducts, selectFavorites],
-  (allProducts, favorites) => {
-    if (allProducts.length > 0) {
-      const favoriteProducts = favorites.map(favorite =>
-        allProducts.find(product => product.codeOfGood === favorite)
-      );
-      return favoriteProducts;
-    }
-  }
 );

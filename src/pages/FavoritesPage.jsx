@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAssortment } from '../redux/products/productsOperations';
+import { selectFavorites } from '../redux/user/userSelectors';
+import { getProducts } from '../redux/products/productsOperations';
 import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { Favorites } from 'components/FavoritesPage/Favorites';
@@ -8,10 +9,11 @@ import { Favorites } from 'components/FavoritesPage/Favorites';
 const FavoritesPage = () => {
   const dispatch = useDispatch();
   const { isLoading, error } = useLoader();
+  const codeOfGoods = useSelector(selectFavorites);
 
   useEffect(() => {
-    dispatch(getAssortment());
-  }, [dispatch]);
+    dispatch(getProducts(codeOfGoods));
+  }, [dispatch, codeOfGoods]);
 
   return (
     <>
