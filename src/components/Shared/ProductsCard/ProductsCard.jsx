@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import noImage from '../../../assets/images/no-image-available.webp';
 import {
   addToFavorite,
@@ -65,18 +66,19 @@ export const ProductsCard = ({ product, category }) => {
         totalPrice: sale ? newPrice : price,
       })
     );
+    toast.success('Товар додано!');
   };
 
   const goToBasket = () => {
     dispatch(setCartOpen(true));
   };
 
-    const handleOpenSignUpSignInModal = () => {
-      if (!isLoggedIn) {
-        dispatch(setAuthModalOpen(true));
-        document.body.style.overflow = 'hidden';
-      }
-    };
+  const handleOpenSignUpSignInModal = () => {
+    if (!isLoggedIn) {
+      dispatch(setAuthModalOpen(true));
+      document.body.style.overflow = 'hidden';
+    }
+  };
 
   return (
     <>
