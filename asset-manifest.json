@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Battery_Fly_Frontend/static/css/main.b5c977ee.css",
-    "main.js": "/Battery_Fly_Frontend/static/js/main.0d5c3744.js",
+    "main.js": "/Battery_Fly_Frontend/static/js/main.f0b3e476.js",
     "static/js/149.28399538.chunk.js": "/Battery_Fly_Frontend/static/js/149.28399538.chunk.js",
     "static/js/20.de56a81d.chunk.js": "/Battery_Fly_Frontend/static/js/20.de56a81d.chunk.js",
     "static/js/791.8712a01b.chunk.js": "/Battery_Fly_Frontend/static/js/791.8712a01b.chunk.js",
@@ -20,12 +20,12 @@
     "static/js/465.1233cb1e.chunk.js": "/Battery_Fly_Frontend/static/js/465.1233cb1e.chunk.js",
     "static/js/297.edaeb58a.chunk.js": "/Battery_Fly_Frontend/static/js/297.edaeb58a.chunk.js",
     "static/js/481.1da506c0.chunk.js": "/Battery_Fly_Frontend/static/js/481.1da506c0.chunk.js",
-    "static/js/714.1ae34028.chunk.js": "/Battery_Fly_Frontend/static/js/714.1ae34028.chunk.js",
+    "static/js/714.48f1cc12.chunk.js": "/Battery_Fly_Frontend/static/js/714.48f1cc12.chunk.js",
     "static/js/341.6c91f4a2.chunk.js": "/Battery_Fly_Frontend/static/js/341.6c91f4a2.chunk.js",
     "static/css/700.69798e6b.chunk.css": "/Battery_Fly_Frontend/static/css/700.69798e6b.chunk.css",
     "static/js/700.6876ffd4.chunk.js": "/Battery_Fly_Frontend/static/js/700.6876ffd4.chunk.js",
     "static/js/494.d8353710.chunk.js": "/Battery_Fly_Frontend/static/js/494.d8353710.chunk.js",
-    "static/js/521.864126b4.chunk.js": "/Battery_Fly_Frontend/static/js/521.864126b4.chunk.js",
+    "static/js/521.d4f8fe82.chunk.js": "/Battery_Fly_Frontend/static/js/521.d4f8fe82.chunk.js",
     "static/css/947.f9a58974.chunk.css": "/Battery_Fly_Frontend/static/css/947.f9a58974.chunk.css",
     "static/js/947.8b918444.chunk.js": "/Battery_Fly_Frontend/static/js/947.8b918444.chunk.js",
     "static/js/796.db3b696d.chunk.js": "/Battery_Fly_Frontend/static/js/796.db3b696d.chunk.js",
@@ -55,7 +55,7 @@
     "static/media/slick.woff": "/Battery_Fly_Frontend/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Battery_Fly_Frontend/index.html",
     "main.b5c977ee.css.map": "/Battery_Fly_Frontend/static/css/main.b5c977ee.css.map",
-    "main.0d5c3744.js.map": "/Battery_Fly_Frontend/static/js/main.0d5c3744.js.map",
+    "main.f0b3e476.js.map": "/Battery_Fly_Frontend/static/js/main.f0b3e476.js.map",
     "149.28399538.chunk.js.map": "/Battery_Fly_Frontend/static/js/149.28399538.chunk.js.map",
     "20.de56a81d.chunk.js.map": "/Battery_Fly_Frontend/static/js/20.de56a81d.chunk.js.map",
     "791.8712a01b.chunk.js.map": "/Battery_Fly_Frontend/static/js/791.8712a01b.chunk.js.map",
@@ -74,12 +74,12 @@
     "465.1233cb1e.chunk.js.map": "/Battery_Fly_Frontend/static/js/465.1233cb1e.chunk.js.map",
     "297.edaeb58a.chunk.js.map": "/Battery_Fly_Frontend/static/js/297.edaeb58a.chunk.js.map",
     "481.1da506c0.chunk.js.map": "/Battery_Fly_Frontend/static/js/481.1da506c0.chunk.js.map",
-    "714.1ae34028.chunk.js.map": "/Battery_Fly_Frontend/static/js/714.1ae34028.chunk.js.map",
+    "714.48f1cc12.chunk.js.map": "/Battery_Fly_Frontend/static/js/714.48f1cc12.chunk.js.map",
     "341.6c91f4a2.chunk.js.map": "/Battery_Fly_Frontend/static/js/341.6c91f4a2.chunk.js.map",
     "700.69798e6b.chunk.css.map": "/Battery_Fly_Frontend/static/css/700.69798e6b.chunk.css.map",
     "700.6876ffd4.chunk.js.map": "/Battery_Fly_Frontend/static/js/700.6876ffd4.chunk.js.map",
     "494.d8353710.chunk.js.map": "/Battery_Fly_Frontend/static/js/494.d8353710.chunk.js.map",
-    "521.864126b4.chunk.js.map": "/Battery_Fly_Frontend/static/js/521.864126b4.chunk.js.map",
+    "521.d4f8fe82.chunk.js.map": "/Battery_Fly_Frontend/static/js/521.d4f8fe82.chunk.js.map",
     "947.f9a58974.chunk.css.map": "/Battery_Fly_Frontend/static/css/947.f9a58974.chunk.css.map",
     "947.8b918444.chunk.js.map": "/Battery_Fly_Frontend/static/js/947.8b918444.chunk.js.map",
     "796.db3b696d.chunk.js.map": "/Battery_Fly_Frontend/static/js/796.db3b696d.chunk.js.map",
@@ -95,6 +95,6 @@
   },
   "entrypoints": [
     "static/css/main.b5c977ee.css",
-    "static/js/main.0d5c3744.js"
+    "static/js/main.f0b3e476.js"
   ]
 }
