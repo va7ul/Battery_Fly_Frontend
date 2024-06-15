@@ -173,3 +173,14 @@ export const SealingHolders = styled.div`
     gap: 5px;
   }
 `;
+
+export const Advert = styled.div`
+  font-size: 10px;
+  margin-top: 4px;
+  margin-left: 4px;
+  color: ${props => props.theme.colors.error};
+
+  @media screen and (min-width: 1280px) {
+    font-size: 14px;
+  }
+`;

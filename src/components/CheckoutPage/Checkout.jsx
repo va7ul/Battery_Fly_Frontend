@@ -139,7 +139,20 @@ export const Checkout = () => {
             color: `${theme.colors.secondary}`,
           },
         });
-      } else {
+      }
+      // else if () {
+      //   toast(`Змініть, буль ласка, кількість товарів у кошику`, {
+      //     id: 'warning',
+      //     icon: '👀',
+      //     duration: 5000,
+      //     style: {
+      //       borderRadius: '10px',
+      //       background: `${theme.colors.textPrimary}`,
+      //       color: `${theme.colors.secondary}`,
+      //     },
+      //   });
+      // }
+      else {
         dispatch(addOrder(orderData)).then(result => {
           if (result.meta.requestStatus === 'fulfilled') {
             dispatch(clearBasket());

@@ -98,86 +98,94 @@ export const CartItem = ({ item }) => {
   };
 
   return (
-    <Item>
-      <GoodWrap>
-        <Image src={image[0]} alt={name} />
-        <GoodName onClick={closeCart} to={`/assortment/${codeOfGood}`}>
-          {name}
-        </GoodName>
-        <QuantityWrap>
-          <Button type="button" onClick={decrease}>
-            <FaMinus />
-          </Button>
-          <Input
-            type="number"
-            onChange={changeValue}
-            value={quantityOrdered}
-            min={1}
-          />
-          <Button type="button" onClick={increase}>
-            <FaPlus />
-          </Button>
-        </QuantityWrap>
-        <Price>{totalPrice} грн</Price>
-        <DeleteBtn type="button" onClick={deleteFromCart}>
-          <AiOutlineClose />
-        </DeleteBtn>
-      </GoodWrap>
-      {capacityKey && (
-        <CapacityWrap>
-          <Capacity>
-            <Battery0BarIcon
-              sx={{
-                width: {
-                  mobile: 14,
-                  desktop: 19,
-                },
-                height: {
-                  mobile: 14,
-                  desktop: 19,
-                },
-              }}
+    <>
+      <Item>
+        <GoodWrap>
+          <Image src={image[0]} alt={name} />
+          <GoodName onClick={closeCart} to={`/assortment/${codeOfGood}`}>
+            {name}
+          </GoodName>
+          <QuantityWrap>
+            <Button type="button" onClick={decrease}>
+              <FaMinus />
+            </Button>
+            <Input
+              type="number"
+              onChange={changeValue}
+              value={quantityOrdered}
+              min={1}
             />
-            <p>{capacityKey}Ah</p>
-          </Capacity>
-          {selectedSealing && (
-            <SealingHolders>
-              <CheckCircleOutlineIcon
+            <Button type="button" onClick={increase}>
+              <FaPlus />
+            </Button>
+          </QuantityWrap>
+          <Price>{totalPrice} грн</Price>
+          <DeleteBtn type="button" onClick={deleteFromCart}>
+            <AiOutlineClose />
+          </DeleteBtn>
+        </GoodWrap>
+        {capacityKey && (
+          <CapacityWrap>
+            <Capacity>
+              <Battery0BarIcon
                 sx={{
-                  color: ' rgb(20, 211, 16)',
                   width: {
-                    mobile: 12,
-                    desktop: 16,
+                    mobile: 14,
+                    desktop: 19,
                   },
                   height: {
-                    mobile: 12,
-                    desktop: 16,
+                    mobile: 14,
+                    desktop: 19,
                   },
                 }}
               />
-              <p>Герметизація</p>
-            </SealingHolders>
-          )}
-          {selectedHolder && (
-            <SealingHolders>
-              <CheckCircleOutlineIcon
-                sx={{
-                  color: ' rgb(20, 211, 16)',
-                  width: {
-                    mobile: 12,
-                    desktop: 16,
-                  },
-                  height: {
-                    mobile: 12,
-                    desktop: 16,
-                  },
-                }}
-              />
-              <p>Використовувати холдери</p>
-            </SealingHolders>
-          )}
-        </CapacityWrap>
-      )}
-    </Item>
+              <p>{capacityKey}Ah</p>
+            </Capacity>
+            {selectedSealing && (
+              <SealingHolders>
+                <CheckCircleOutlineIcon
+                  sx={{
+                    color: ' rgb(20, 211, 16)',
+                    width: {
+                      mobile: 12,
+                      desktop: 16,
+                    },
+                    height: {
+                      mobile: 12,
+                      desktop: 16,
+                    },
+                  }}
+                />
+                <p>Герметизація</p>
+              </SealingHolders>
+            )}
+            {selectedHolder && (
+              <SealingHolders>
+                <CheckCircleOutlineIcon
+                  sx={{
+                    color: ' rgb(20, 211, 16)',
+                    width: {
+                      mobile: 12,
+                      desktop: 16,
+                    },
+                    height: {
+                      mobile: 12,
+                      desktop: 16,
+                    },
+                  }}
+                />
+                <p>Використовувати холдери</p>
+              </SealingHolders>
+            )}
+          </CapacityWrap>
+        )}
+      </Item>
+      {/* {isChangedProductsInCart && numberOfProductsWithUpdatedQuantity && (
+        <Advert>
+          *Цей товар є в наявності у кількості{' '}
+          {numberOfProductsWithUpdatedQuantity.quantity} шт.
+        </Advert>
+      )} */}
+    </>
   );
 };
