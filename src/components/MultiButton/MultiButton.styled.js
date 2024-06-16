@@ -2,13 +2,18 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: fixed;
-  right: 30px;
-  bottom: 50px;
+  right: 20px;
+  bottom: 20px;
   display: flex;
   gap: 12px;
   flex-direction: column;
   align-items: center;
   z-index: 100;
+
+  @media screen and (min-width: 1280px) {
+    right: 30px;
+    bottom: 50px;
+  }
 `;
 
 export const List = styled.ul`
