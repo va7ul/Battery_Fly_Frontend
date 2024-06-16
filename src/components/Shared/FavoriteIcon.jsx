@@ -3,7 +3,7 @@ import { BadgeComponent } from './Badge';
 import { useSelector } from 'react-redux';
 import { selectFavorites } from '../../redux/user/userSelectors';
 
-export const FavoriteIcon = ({ handleOpenSignUpSignInModal}) => {
+export const FavoriteIcon = ({ handleOpenSignUpSignInModal }) => {
   const favorites = useSelector(selectFavorites);
 
   return (
@@ -17,6 +17,7 @@ export const FavoriteIcon = ({ handleOpenSignUpSignInModal}) => {
             mobile: '24px',
             desktop: '35px',
           },
+          cursor: 'pointer',
         }}
       />
     </BadgeComponent>
