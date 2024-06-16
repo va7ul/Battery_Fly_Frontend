@@ -1,7 +1,8 @@
-import Select from 'react-select';
 import { useCallback, useMemo, useState } from 'react';
-import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+import toast from 'react-hot-toast';
+import { debounce } from 'lodash';
 import {
   selectCities,
   selectIsLoading,
@@ -13,6 +14,8 @@ import {
 } from '../../../redux/order/orderOperations';
 import { editUserAddress } from '../../../redux/user/userOperations';
 import { selectDelivery } from '../../../redux/user/userSelectors';
+import LoaderForModals from 'components/Modals/LoaderForModals';
+import { theme } from 'styles/GlobalStyled';
 import {
   Box,
   BtnWrapper,
@@ -21,12 +24,11 @@ import {
   Text,
   selectStyles,
 } from './DeliveryAddressForm.styled';
-import LoaderForModals from 'components/Modals/LoaderForModals';
+
 
 export const DeliveryAddressForm = ({ text, handleShowForm }) => {
-  
   const dispatch = useDispatch();
-  
+
   const isLoading = useSelector(selectIsLoading);
   const deliveryAddress = useSelector(selectDelivery);
 
@@ -89,23 +91,36 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   const clearInputWarehouse = () => {
     if (city) {
       dispatch(getDeliveryWarehouses(city));
-    } 
+    }
     setWarehouse('');
   };
 
   const handleEditAddress = () => {
-    dispatch(
-      editUserAddress({
-        delivery: {
-          city: city,
-          warehouse: warehouse,
+    if (!city || !warehouse) {
+      toast('Введіть адресу доставки', {
+        id: 'warning',
+        icon: '👀',
+        duration: 5000,
+        style: {
+          borderRadius: '10px',
+          background: `${theme.colors.secondary}`,
+          color: `${theme.colors.textPrimary}`,
         },
-      })
-    ).then(result => {
-      if (result.meta.requestStatus === 'fulfilled') {
-        handleShowForm();
-      }
-    });
+      });
+    } else {
+      dispatch(
+        editUserAddress({
+          delivery: {
+            city: city,
+            warehouse: warehouse,
+          },
+        })
+      ).then(result => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          handleShowForm();
+        }
+      });
+    }
   };
   return (
     <>
@@ -139,11 +154,7 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
         />
       </Box>
       <BtnWrapper>
-        <SubmitAddressBtn
-          type="button"
-          onClick={handleEditAddress}
-          disabled={!city || !warehouse}
-        >
+        <SubmitAddressBtn type="button" onClick={handleEditAddress}>
           Зберегти адресу
         </SubmitAddressBtn>
         <CancelBtn type="button" onClick={handleShowForm}>
