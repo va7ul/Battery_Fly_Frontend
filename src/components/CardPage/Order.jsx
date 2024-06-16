@@ -1,4 +1,4 @@
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
@@ -239,9 +239,6 @@ export const Order = () => {
                 >Швидке замовлення
                 </OrderButton>
             </ButtonBox>
-            <div>
-                <Toaster position="top-center" reverseOrder={false} />
-            </div>
             <ModalQuickOrder
                 product={{ name, codeOfGood, priceWithSale }}
                 isModalQuickOrderOpen={isModalQuickOrderOpen}
