@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import noImage from '../../../assets/images/no-image-available.webp';
-import { SliderDiv, ImageSmall, ImageBig, Image } from './ProductPhoto.styled';
+import { SliderDiv, ImageBig, Image } from './ProductPhoto.styled';
 
 export const ProductPhoto = ({ name, image }) => {
 
@@ -11,21 +11,11 @@ export const ProductPhoto = ({ name, image }) => {
   };
   
   const settings = {
-    customPaging: function (i) {
-      return (
-        <a href={image[i]}>
-          <ImageSmall src={image[i]} alt={name} />
-        </a>
-      );
-    },
     dots: true,
-    dotsClass: 'slick-dots slick-thumb',
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    adaptiveHeight: true,
+    slidesToScroll: 1
   };
 
   return image.length > 1 ? (
