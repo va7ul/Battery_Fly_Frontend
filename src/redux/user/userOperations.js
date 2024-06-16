@@ -105,7 +105,7 @@ export const editUserData = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-info', dataUser);
-      toast.success('Данні збережено!', {
+      toast.success('Дані збережено!', {
         duration: 5000,
       });
       return data;

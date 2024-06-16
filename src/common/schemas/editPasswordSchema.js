@@ -9,7 +9,7 @@ export const editPasswordSchema = Yup.object().shape({
   newPassword: Yup.string()
     .notOneOf(
       [Yup.ref('password'), null],
-      'Старий і новий паролі не мають співпадати'
+      'Старий і новий паролі однакові'
     )
     .min(8, 'Пароль має бути не менший 8 символів')
     .max(20, 'Пароль має бути не довший 20 символів')
