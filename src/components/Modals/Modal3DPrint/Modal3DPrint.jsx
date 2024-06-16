@@ -101,7 +101,7 @@ export const Modal3DPrint = ({
                 formData.append('file', file);
 
                 if (!isValidPhone || tel === '+380') {
-                  toast('Введіть свої особисті дані', {
+                  toast('Введіть номер телефону', {
                     id: 'warning',
                     icon: '👀',
                     duration: 5000,
