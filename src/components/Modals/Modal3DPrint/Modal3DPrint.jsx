@@ -14,7 +14,7 @@ import {
 } from '../../../redux/print3D/print3DSelectors';
 import { add3DPrintOrder } from '../../../redux/print3D/print3DOperations';
 import { useAuth } from 'utils/hooks';
-import LoaderForModals from '../LoaderForModals';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
@@ -31,6 +31,7 @@ import {
   Title,
   Wrapper,
 } from './Modal3DPrint.styled';
+
 
 export const Modal3DPrint = ({
   isModal3DPrintOpen,
@@ -75,7 +76,7 @@ export const Modal3DPrint = ({
   return (
     <>
       {isLoading ? (
-        <LoaderForModals isLoading={isLoading} />
+        <CustomLoader/>
       ) : (
         <ModalYellowGradient
           isModalOpen={isModal3DPrintOpen}

@@ -21,7 +21,7 @@ import {
   StyledForm,
 } from './PasswordEditForm.styled';
 
-export default function PasswordEditForm() {
+export const PasswordEditForm = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const [expanded, setExpanded] = useState(false);

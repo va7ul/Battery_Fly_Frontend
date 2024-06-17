@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { emailSchema } from '../../../common/schemas/emailSchema';
 import { forgotPassword } from 'api';
-import LoaderForModals from '../LoaderForModals';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { Field } from '../SharedComponent/TextField/TextField';
@@ -51,7 +51,7 @@ export const ModalForgotPassword = ({
   return (
     <>
       {isLoading ? (
-        <LoaderForModals isLoading={isLoading} />
+        <CustomLoader/>
       ) : (
         <ModalYellowGradient
           isModalOpen={isModalForgotPasswordOpen}

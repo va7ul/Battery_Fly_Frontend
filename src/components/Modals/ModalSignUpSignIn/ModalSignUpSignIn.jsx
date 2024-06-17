@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'utils/hooks';
 import { changeMessageOfSuccessfulRequest } from '../../../redux/user/userSlice';
-import LoaderForModals from '../LoaderForModals';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { SignUpForm } from './SignUpForm/SignUpForm';
@@ -63,7 +63,7 @@ export const ModalSignUpSignIn = ({
   return (
     <>
       {isLoading ? (
-        <LoaderForModals isLoading={isLoading} />
+        <CustomLoader/>
       ) : (
         <ModalYellowGradient
           isModalOpen={isModalSignUpSignInOpen}

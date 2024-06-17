@@ -9,7 +9,7 @@ import { nameSchema } from '../../../common/schemas/nameSchema';
 import { isPhoneValid } from '../../../common/schemas/phoneSchema';
 import { useAuth } from 'utils/hooks';
 import { addFeedback } from 'api';
-import LoaderForModals from '../LoaderForModals';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
@@ -88,7 +88,7 @@ export const ModalFeedback = ({
   return (
     <>
       {isLoading ? (
-        <LoaderForModals isLoading={isLoading} />
+        <CustomLoader />
       ) : (
         <ReactModal
           isOpen={isModalFeedbackOpen}
@@ -201,9 +201,7 @@ export const ModalFeedback = ({
                   />
                   <StyledErrorMessage name="text" component="div" />
                 </Label>
-                <Btn type="submit">
-                  Зв'язатись
-                </Btn>
+                <Btn type="submit">Зв'язатись</Btn>
               </StyledForm>
             </Formik>
           </Wrapper>
