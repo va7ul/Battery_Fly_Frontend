@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -27,7 +28,7 @@ import {
   SealingHolders,
   Advert,
 } from './CartItem.styled';
-
+import noImage from '../../../../assets/images/no-image-available.webp';
 
 export const CartItem = ({ item }) => {
   const {
@@ -50,7 +51,7 @@ export const CartItem = ({ item }) => {
   let updatedProduct = null;
 
   if (isChangedProductInCart) {
-   updatedProduct = newProducts.find(
+    updatedProduct = newProducts.find(
       item => item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
     );
   }
@@ -94,9 +95,15 @@ export const CartItem = ({ item }) => {
       dispatch(decreaseQuantity(item));
     }
   };
+
   const increase = () => {
     if (quantityOrdered < quantity) {
       dispatch(increaseQuantity(item));
+    } else {
+      toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
+        id: 'clipboard',
+        duration: 4000,
+      });
     }
   };
 
@@ -116,7 +123,7 @@ export const CartItem = ({ item }) => {
     <>
       <Item>
         <GoodWrap>
-          <Image src={image[0]} alt={name} />
+          <Image src={image[0] || noImage} alt={name} />
           <GoodName onClick={closeCart} to={`/assortment/${codeOfGood}`}>
             {name}
           </GoodName>
