@@ -173,7 +173,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
         handleCloseAgreeModal={handleCloseAgreeModal}
       >
         <TextAgree>Некоректно введені дані.</TextAgree>
-        <TextAgree>Перевірте, будь ласка, введення логіну та паролю.</TextAgree>
+        <TextAgree>Перевірте, будь ласка, введений логін та пароль.</TextAgree>
       </ModalAgree>
     </>
   );
