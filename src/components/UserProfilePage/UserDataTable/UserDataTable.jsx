@@ -1,12 +1,12 @@
-import { useAuth } from 'utils/hooks';
 import { useMediaQuery } from 'react-responsive';
+import TableContainer from '@mui/material/TableContainer';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import TableCell from '@mui/material/TableCell';
 import { LiaPenAltSolid } from 'react-icons/lia';
+import { useAuth } from 'utils/hooks';
 import { EditButton } from './UserDataTable.styled';
 
 export const UserDataTable = ({ handleShowForm }) => {

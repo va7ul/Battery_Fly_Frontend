@@ -45,7 +45,7 @@ export const AddButton = styled.button`
 
 export const EditButton = styled.button`
   position: relative;
-  width: 115px;
+  width: 116px;
   height: 26px;
   background-color: transparent;
   border: none;
@@ -60,17 +60,15 @@ export const EditButton = styled.button`
 
   &::after {
     position: absolute;
-    left: 16%;
+    left: 15%;
     bottom: 3px;
     content: '';
-    width: 86%;
+    width: 85%;
     height: 1px;
     border-radius: 1px;
     background-color: currentColor;
 
     @media screen and (min-width: 1280px) {
-      left: 18%;
-      width: 82%;
       height: 2px;
     }
   }

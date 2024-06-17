@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { useAuth } from 'utils/hooks';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import toast from 'react-hot-toast';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
+import { useAuth } from 'utils/hooks';
+import { editUserData } from '../../../redux/user/userOperations';
 import { userDataSchema } from 'common/schemas/userDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
+import PasswordEditForm from '../PasswordEditForm/PasswordEditForm';
 import { theme } from 'styles/GlobalStyled';
 import {
   StyledForm,
@@ -20,9 +24,6 @@ import {
   SubmitUserDataBtn,
   CancelBtn,
 } from './UserDataEditForm.styled';
-import PasswordEditForm from '../PasswordEditForm/PasswordEditForm';
-import { useDispatch } from 'react-redux';
-import { editUserData } from '../../../redux/user/userOperations';
 
 export const UserDataEditForm = ({ handleShowForm }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
@@ -54,11 +55,24 @@ export const UserDataEditForm = ({ handleShowForm }) => {
               patronymic: values.patronymic.trim(),
               tel: formikTel,
             };
-            dispatch(editUserData(userData)).then(result => {
-              if (result.meta.requestStatus === 'fulfilled') {
-                handleShowForm();
-              }
-            });
+            if (!isValidPhone || formikTel === '+380') {
+              toast('Введіть номер телефону', {
+                id: 'warning',
+                icon: '👀',
+                duration: 5000,
+                style: {
+                  borderRadius: '10px',
+                  background: `${theme.colors.secondary}`,
+                  color: `${theme.colors.textPrimary}`,
+                },
+              });
+            } else {
+              dispatch(editUserData(userData)).then(result => {
+                if (result.meta.requestStatus === 'fulfilled') {
+                  handleShowForm();
+                }
+              });
+            }
           }}
         >
           <StyledForm>
@@ -113,18 +127,15 @@ export const UserDataEditForm = ({ handleShowForm }) => {
                   value={formikTel}
                   onChange={formikTel => setTel(formikTel)}
                 />
-                {(formikTel &&
-                  !isValidPhone) && (
-                    <DivErrorMessage>
-                      Введіть свій номер телефону, будь ласка
-                    </DivErrorMessage>
-                  )}
+                {!isValidPhone && (
+                  <DivErrorMessage>
+                    Введіть свій номер телефону, будь ласка
+                  </DivErrorMessage>
+                )}
               </Box>
             </Label>
             <BtnWrapper>
-              <SubmitUserDataBtn type="submit">
-                Зберегти дані
-              </SubmitUserDataBtn>
+              <SubmitUserDataBtn type="submit">Зберегти дані</SubmitUserDataBtn>
               <CancelBtn type="button" onClick={handleShowForm}>
                 Відмінити
               </CancelBtn>

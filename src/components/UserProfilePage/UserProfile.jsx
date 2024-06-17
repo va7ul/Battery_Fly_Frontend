@@ -3,8 +3,8 @@ import { useMediaQuery } from 'react-responsive';
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
 import { UserDataTable } from './UserDataTable/UserDataTable';
 import { UserDataEditForm } from './UserDataEditForm/UserDataEditForm';
-import { Wrapper, Title, Box } from './UserProfile.styled';
 import { DeliveryAddress } from './DeliveryAddress/DeliveryAddress';
+import { Wrapper, Title, Box } from './UserProfile.styled';
 
 export const UserProfile = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });

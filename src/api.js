@@ -44,7 +44,7 @@ export const forgotPassword = async email => {
 export const changePassword = async passwords => {
   try {
     const data = await axios.post('user/change-password', passwords);
-    toast.success('Зміну пароля виконано успішно!', {
+    toast.success('Новий пароль збережено!', {
       duration: 5000,
     });
     return data;
