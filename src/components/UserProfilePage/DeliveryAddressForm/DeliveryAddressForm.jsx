@@ -14,7 +14,7 @@ import {
 } from '../../../redux/order/orderOperations';
 import { editUserAddress } from '../../../redux/user/userOperations';
 import { selectDelivery } from '../../../redux/user/userSelectors';
-import LoaderForModals from 'components/Modals/LoaderForModals';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { theme } from 'styles/GlobalStyled';
 import {
   Box,
@@ -124,7 +124,7 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   };
   return (
     <>
-      {isLoading && <LoaderForModals isLoading={isLoading} />}
+      {isLoading && <CustomLoader/>}
       <Text>{text}</Text>
       <Box>
         <Select

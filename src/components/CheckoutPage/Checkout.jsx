@@ -22,7 +22,7 @@ import { selectItems } from '../../redux/basket/basketSelectors';
 import { clearBasket } from '../../redux/basket/basketSlice';
 import { selectProducts } from '../../redux/products/productsSelectors';
 import { getProducts } from '../../redux/products/productsOperations';
-import LoaderForModals from 'components/Modals/LoaderForModals';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { EmptyCart } from 'components/CartDrawer/EmptyCart/EmptyCart';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
@@ -174,7 +174,7 @@ export const Checkout = () => {
 
   return (
     <>
-      {isLoading && <LoaderForModals isLoading={isLoading} />}
+      {isLoading && <CustomLoader/>}
       {products.length < 1 && !orderNum ? (
         <EmptyCart closeCart={handleEmptyBasket} isOrder={true} />
       ) : (

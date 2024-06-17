@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Formik } from 'formik';
+import toast from 'react-hot-toast';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useMediaQuery } from 'react-responsive';
 import { nameSchema } from 'common/schemas/nameSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
+import { useAuth } from 'utils/hooks';
 import { addQuickOrder } from 'api';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
@@ -22,9 +25,7 @@ import {
   Title,
   Wrapper,
 } from './ModalQuickOrder.styled';
-import { useAuth } from 'utils/hooks';
-import LoaderForModals from '../LoaderForModals';
-import toast from 'react-hot-toast';
+
 
 export const ModalQuickOrder = ({
   product: { name, codeOfGood },
@@ -63,7 +64,7 @@ export const ModalQuickOrder = ({
   return (
     <>
       {isLoading ? (
-        <LoaderForModals isLoading={isLoading} />
+        <CustomLoader />
       ) : (
         <ModalYellowGradient
           isModalOpen={isModalQuickOrderOpen}
