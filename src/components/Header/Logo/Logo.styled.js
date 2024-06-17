@@ -6,5 +6,6 @@ export const StyledLogo = styled.img`
 
   @media screen and (min-width: 1280px) {
     width: 177px;
+    padding-right: 0;
   }
 `;
