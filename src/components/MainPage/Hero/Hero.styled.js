@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  display: flex;
+  display: inline-block;
   align-content: center;
   width: 100%;
   height: 234px;
@@ -11,6 +11,7 @@ export const Wrapper = styled.section`
   background-size: cover;
   background-position: center;
   @media (min-width: 1280px) {
+    display: flex;
     height: 590px;
   }
 `;
