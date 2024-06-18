@@ -9,7 +9,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { yellow } from '@mui/material/colors';
 import { changeCity, changeWarehouse, changeDeliveryType, changePayment } from '../../../redux/order/orderSlice';
 import { getDeliveryCities, getDeliveryWarehouses } from '../../../redux/order/orderOperations';
-import { selectCities, selectWarehouses, selectCity, selectPayment, selectDeliveryType } from '../../../redux/order/orderSelectors';
+import { selectCities, selectWarehouses, selectCity, selectPayment } from '../../../redux/order/orderSelectors';
 import { selectDelivery } from '../../../redux/user/userSelectors';
 import { Button, ButtonBox, Title, TextNp, NPTitle, NPText, NPIcon, BoxAddress, BoxIcon, Text, Address, BoxNP, selectStyles } from './Delivery.styled';
 import {StyledRadioGroup, StyledRadio} from '../Delivery/Delivery.mui'
@@ -27,9 +27,7 @@ export const Delivery = () => {
     let cities = useSelector(selectCities);
     let warehouses = useSelector(selectWarehouses);
     const city = useSelector(selectCity);
-    // const warehouse = useSelector(selectWarehouse);
     const payment = useSelector(selectPayment);
-    const deliveryType = useSelector(selectDeliveryType);
     const delivery = useSelector(selectDelivery);
 
     const selectInputCityRef = useRef();
