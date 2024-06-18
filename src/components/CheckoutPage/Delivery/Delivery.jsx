@@ -36,9 +36,6 @@ export const Delivery = () => {
     const selectInputWarehouseRef = useRef();
 
     const openNP = () => {
-        if (deliveryType === "Нова пошта") {
-            return;
-        }
         if (delivery.city) {
             dispatch(changeCity(delivery.city));
             dispatch(changeWarehouse(delivery.warehouse));
@@ -53,9 +50,6 @@ export const Delivery = () => {
     };
 
     const openAddress = () => {
-        if (deliveryType === "Самовивіз") {
-            return;
-        }
         setDisplayNP("none");
         setDisplayAddress("flex");
         dispatch(changeDeliveryType("Самовивіз"));
