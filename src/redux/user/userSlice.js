@@ -35,6 +35,8 @@ const initialState = {
   isLoading: false,
   isLoggedIn: false,
   isRefreshing: false,
+  errorOrder: null,
+  isLoadingOrder: false,
 };
 
 const handlePending = state => {
@@ -120,7 +122,18 @@ const handleGetOrdersHistoryFulfilled = (state, { payload }) => {
   state.ordersHistory = payload.result;
 };
 
+const handleGetOrderDetailsPending = state => {
+  state.isLoadingOrder = true;
+  state.errorOrder = null;
+};
+
+const handleGetOrderDetailsRejected = (state, { payload }) => {
+  state.isLoadingOrder = false;
+  state.errorOrder = payload;
+};
+
 const handleGetOrderDetailsFulfilled = (state, { payload }) => {
+  state.isLoadingOrder = false;
   state.ordersDetails.push(payload.result);
 };
 
@@ -150,6 +163,8 @@ const userSlice = createSlice({
       .addCase(editUserData.fulfilled, handleEditUserDataFulfilled)
       .addCase(editUserAddress.fulfilled, handleEditUserAddressFulfilled)
       .addCase(getOrdersHistory.fulfilled, handleGetOrdersHistoryFulfilled)
+      .addCase(getOrderDetails.pending, handleGetOrderDetailsPending)
+      .addCase(getOrderDetails.rejected, handleGetOrderDetailsRejected)
       .addCase(getOrderDetails.fulfilled, handleGetOrderDetailsFulfilled)
       .addMatcher(
         isAnyOf(
@@ -171,8 +186,7 @@ const userSlice = createSlice({
           editUserAddress.rejected,
           addToFavorite.rejected,
           deleteFromFavorite.rejected,
-          getOrdersHistory.rejected,
-          getOrderDetails.rejected
+          getOrdersHistory.rejected
         ),
         handleRejected
       )

@@ -6,6 +6,7 @@ import {
   selectPrint3DError,
 } from '../redux/print3D/print3DSelectors';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { Print3D } from 'components/Print3DPage/Print3D';
 
 const Print3DPage = () => {
@@ -20,7 +21,7 @@ const Print3DPage = () => {
   return (
     <>
       {isLoading && <CustomLoader />}
-      {!isLoading && !error && <Print3D />}
+      {!isLoading && error ? <CustomError /> : <Print3D />}
     </>
   );
 };

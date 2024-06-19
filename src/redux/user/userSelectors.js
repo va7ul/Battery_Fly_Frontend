@@ -5,9 +5,12 @@ export const selectIsAuthModalOpen = state => state.user.isAuthModalOpen;
 export const selectIsLoading = state => state.user.isLoading;
 export const selectErrorStatus = state => state.user.errorStatus;
 export const selectVerifiedEmail = state => state.user.verifiedEmail;
-export const selectMessageOfSuccessfulRequest = state => state.user.messageOfSuccessfulRequest;
+export const selectMessageOfSuccessfulRequest = state =>
+  state.user.messageOfSuccessfulRequest;
 export const selectOrders = state => state.user.orders;
 export const selectDelivery = state => state.user.delivery;
 export const selectFavorites = state => state.user.favorites;
 export const selectOrdersHistory = state => state.user.ordersHistory;
 export const selectOrderDetails = state => state.user.ordersDetails;
+export const selectIsLoadingOrder = state => state.user.isLoadingOrder;
+export const selectErrorOrder = state => state.user.errorOrder;

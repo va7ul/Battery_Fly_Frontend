@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import {
-  selectErrorStatus,
   selectIsLoading,
+  selectIsLoadingOrder,
 } from '../redux/user/userSelectors';
 import { getOrdersHistory } from '../redux/user/userOperations';
 import { OrdersHistory } from 'components/OrdersHistoryPage/OrdersHistory';
@@ -11,7 +11,7 @@ import { OrdersHistory } from 'components/OrdersHistoryPage/OrdersHistory';
 const OrdersHistoryPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectErrorStatus);
+  const isLoadingOrder = useSelector(selectIsLoadingOrder);
 
   useEffect(() => {
     dispatch(getOrdersHistory());
@@ -19,8 +19,8 @@ const OrdersHistoryPage = () => {
 
   return (
     <>
-      {isLoading && <CustomLoader />}
-      {!isLoading && !error && <OrdersHistory />}
+      {(isLoading || isLoadingOrder) && <CustomLoader />}
+      {!isLoading && <OrdersHistory />}
     </>
   );
 };
