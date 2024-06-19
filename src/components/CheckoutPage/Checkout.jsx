@@ -88,6 +88,9 @@ export const Checkout = () => {
       return newProducts.some(
         oneOfProduct =>
           oneOfProduct.codeOfGood === product.codeOfGood &&
+          // oneOfProduct.capacityKey === product.capacityKey &&
+          // oneOfProduct.selectedSealing === product.selectedSealing &&
+          // oneOfProduct.selectedHolder === product.selectedHolder &&
           oneOfProduct.quantity < product.quantityOrdered
       );
     });
@@ -174,7 +177,7 @@ export const Checkout = () => {
 
   return (
     <>
-      {isLoading && <CustomLoader/>}
+      {isLoading && <CustomLoader />}
       {products.length < 1 && !orderNum ? (
         <EmptyCart closeCart={handleEmptyBasket} isOrder={true} />
       ) : (

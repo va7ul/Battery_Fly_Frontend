@@ -9,6 +9,7 @@ import {
   increaseQuantity,
   decreaseQuantity,
   changeQuantity,
+  changeAllQuantity,
 } from '../../../../redux/basket/basketSlice';
 import { setCartOpen } from '../../../../redux/menu/menuSlice';
 import { selectProducts } from '../../../../redux/products/productsSelectors';
@@ -29,6 +30,7 @@ import {
   Advert,
 } from './CartItem.styled';
 import noImage from '../../../../assets/images/no-image-available.webp';
+import { useEffect } from 'react';
 
 export const CartItem = ({ item }) => {
   const {
@@ -52,9 +54,39 @@ export const CartItem = ({ item }) => {
 
   if (isChangedProductInCart) {
     updatedProduct = newProducts.find(
-      item => item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
+      item =>
+        item.codeOfGood === codeOfGood &&
+        // item.capacityKey === capacityKey &&
+        // item.selectedSealing === selectedSealing &&
+        // item.selectedHolder === selectedHolder &&
+        item.quantity < quantityOrdered
     );
   }
+
+  console.log('item', item);
+  console.log('newProducts', newProducts);
+
+     useEffect(() => {
+     if (updatedProduct) {
+       dispatch(
+         changeAllQuantity({
+           codeOfGood,
+           capacityKey,
+           selectedSealing,
+           selectedHolder,
+           quantity: updatedProduct.quantity
+         }
+         )
+       );
+     }
+   }, [
+     dispatch,
+     codeOfGood,
+     capacityKey,
+     selectedSealing,
+     selectedHolder,
+     updatedProduct,
+   ]);
 
   const closeCart = () => {
     dispatch(setCartOpen(false));

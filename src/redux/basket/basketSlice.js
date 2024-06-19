@@ -137,6 +137,26 @@ const basketSlice = createSlice({
       state.items[findingIndex].totalPrice = newTotalPrice;
       state.items[findingIndex].quantityOrdered = quantityOrdered;
     },
+
+    changeAllQuantity(state, action) {
+      const {
+        codeOfGood,
+        capacityKey,
+        selectedSealing,
+        selectedHolder,
+        quantity,
+      } = action.payload;
+
+      const findingIndex = state.items.findIndex(
+        item =>
+          item.codeOfGood === codeOfGood &&
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolder === selectedHolder
+      );
+      state.items[findingIndex].quantity = quantity;
+    },
+
     clearBasket(state) {
       state.items = [];
       state.total = 0;
@@ -150,6 +170,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   changeQuantity,
+  changeAllQuantity,
   clearBasket,
 } = basketSlice.actions;
 export const basketReducer = basketSlice.reducer;
