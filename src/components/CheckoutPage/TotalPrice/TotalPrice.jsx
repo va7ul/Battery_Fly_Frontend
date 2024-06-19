@@ -11,9 +11,10 @@ import {
   Advert,
 } from './TotalPrice.styled';
 import { addPromoCode } from '../../../redux/order/orderOperations';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 
 export const TotalPrice = () => {
-  const { promoCodeDiscount } = useOrder();
+  const { promoCodeDiscount, errorPromoCode, isLoadingPromoCode } = useOrder();
   const { prettyTotal, prettyDiscount, prettyTogether } = usePrettyPrice();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -54,10 +55,13 @@ export const TotalPrice = () => {
       {promoCodeDiscount ? (
         <Advert>*Знижка за промокодом не поширюється на акційні товари!</Advert>
       ) : isOpen ? (
-        <UsePromo onSubmit={getDiscount}>
-          <input type="text" name="promo" placeholder="Промокод"></input>
-          <button type="submit">Застосувати</button>
-        </UsePromo>
+        <>
+          <UsePromo onSubmit={getDiscount}>
+            <input type="text" name="promo" placeholder="Промокод"></input>
+            <button type="submit">Застосувати</button>
+          </UsePromo>
+          {errorPromoCode && <Advert>{errorPromoCode}</Advert>}
+        </>
       ) : (
         <AddPromo>
           <button type="button" onClick={handleOpen}>
@@ -65,6 +69,7 @@ export const TotalPrice = () => {
           </button>
         </AddPromo>
       )}
+      {isLoadingPromoCode && <CustomLoader />}
     </>
   );
 };
