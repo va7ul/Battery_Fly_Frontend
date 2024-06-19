@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import { selectItems, selectTotal } from '../../redux/basket/basketSelectors';
 import {
+  selectIsLoadingPromoCode,
+  selectErrorPromoCode,
   selectUserDataInOrder,
   selectCity,
   selectDeliveryType,
@@ -14,10 +16,10 @@ import {
 } from '../../redux/order/orderSelectors';
 
 export const useOrder = () => {
-  const { text, tel } = useSelector(
-    selectUserDataInOrder
-  );
+  const { text, tel } = useSelector(selectUserDataInOrder);
 
+  const isLoadingPromoCode = useSelector(selectIsLoadingPromoCode);
+  const errorPromoCode = useSelector(selectErrorPromoCode);
   const orderNum = useSelector(selectOrderNum);
   const total = useSelector(selectTotal);
   const promoCode = useSelector(selectPromoCode);
@@ -31,6 +33,8 @@ export const useOrder = () => {
   const deliveryType = useSelector(selectDeliveryType);
 
   return {
+    isLoadingPromoCode,
+    errorPromoCode,
     text,
     tel,
     orderNum,

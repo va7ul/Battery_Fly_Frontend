@@ -163,12 +163,13 @@ export const addToFavorite = createAsyncThunk(
       setAuthHeader(token);
       const { data } = await axios.post(`user/favorite/${id}`);
       toast.remove();
-      toast.success('Товар додано!');
+      toast.success('Додано до улюблених!');
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       toast.error('Сталася помилка, спробуйте ще раз!');
+
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -180,12 +181,13 @@ export const deleteFromFavorite = createAsyncThunk(
     try {
       const { data } = await axios.delete(`user/favorite/${id}`);
       toast.remove();
-      toast.success('Товар видалено!');
+      toast.success('Видалено з улюблених!');
 
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       toast.error('Сталася помилка, спробуйте ще раз!');
+
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -203,6 +205,8 @@ export const getOrdersHistory = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Сталася помилка, спробуйте ще раз!');
+
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -220,6 +224,9 @@ export const getOrderDetails = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.remove();
+      toast.error('Сталася помилка, спробуйте ще раз!');
+
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }

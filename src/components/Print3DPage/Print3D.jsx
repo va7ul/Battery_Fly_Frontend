@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -41,11 +42,13 @@ export const Print3D = () => {
     // dispatch(add3DPrintOrder(formData));
 
     if (!accuracy || !plactic || !color) {
-      return window.alert('Оберіть параметри друку!');
+      toast.remove();
+      return toast.error('Оберіть параметри друку!');
     }
 
     if (!file) {
-      return window.alert('Прикріпіть файл для друку!');
+      toast.remove();
+      return toast.error('Прикріпіть файл для друку!');
     }
 
     setIsModal3DPrintOpen(true);
