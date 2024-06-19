@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { getAssortment } from '../redux/products/productsOperations';
 import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { Assortment } from 'components/AssortmentPage/Assortment';
 
 const AssortmentPage = () => {
@@ -16,7 +17,7 @@ const AssortmentPage = () => {
   return (
     <>
       {isLoading && <CustomLoader />}
-      {!isLoading && !error && <Assortment />}
+      {!isLoading && error ? <CustomError /> : <Assortment />}
     </>
   );
 };

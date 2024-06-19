@@ -4,8 +4,9 @@ import { useMediaQuery } from 'react-responsive';
 import { getMaterials } from '../redux/products/productsOperations';
 import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
-import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { SubNavBar } from 'components/Shared/SubNavBar/SubNavBar';
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
 
 const MaterialsPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,9 @@ const MaterialsPage = () => {
     <>
       {!isLoading && !error && desktopVersion && <SubNavBar />}
       {isLoading && <CustomLoader />}
-      {!isLoading && !error && (
+      {!isLoading && error ? (
+        <CustomError />
+      ) : (
         <ProductsSection category={'Розхідні матеріали'} />
       )}
     </>
