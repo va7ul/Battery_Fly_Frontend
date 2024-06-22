@@ -32,7 +32,7 @@ import {
 import noImage from '../../../../assets/images/no-image-available.webp';
 import { useEffect } from 'react';
 
-export const CartItem = ({ item }) => {
+export const CartItem = ({ item, newPrice }) => {
   const {
     codeOfGood,
     image,
@@ -49,11 +49,41 @@ export const CartItem = ({ item }) => {
 
   const newProducts = useSelector(selectProducts);
   const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
+  let isNewPrice = null;
+  let productWithUpdatedQuantity = null;
 
-  let updatedProduct = null;
+  if (isChangedProductInCart && newPrice.length > 0) {
+    isNewPrice = newPrice.find(
+      item => item.codeOfGood === codeOfGood
+      // &&item.capacityKey === capacityKey &&
+      // item.selectedSealing === selectedSealing &&
+      // item.selectedHolder === selectedHolder &&
+    );
+  }
+  
+  useEffect(() => {
+    if (productWithUpdatedQuantity) {
+      dispatch(
+        changeAllQuantity({
+          codeOfGood,
+          capacityKey,
+          selectedSealing,
+          selectedHolder,
+          quantity: productWithUpdatedQuantity.quantity,
+        })
+      );
+    }
+  }, [
+    dispatch,
+    codeOfGood,
+    capacityKey,
+    selectedSealing,
+    selectedHolder,
+    productWithUpdatedQuantity,
+  ]);
 
   if (isChangedProductInCart) {
-    updatedProduct = newProducts.find(
+    productWithUpdatedQuantity = newProducts.find(
       item =>
         item.codeOfGood === codeOfGood &&
         // item.capacityKey === capacityKey &&
@@ -62,31 +92,6 @@ export const CartItem = ({ item }) => {
         item.quantity < quantityOrdered
     );
   }
-
-  console.log('item', item);
-  console.log('newProducts', newProducts);
-
-     useEffect(() => {
-     if (updatedProduct) {
-       dispatch(
-         changeAllQuantity({
-           codeOfGood,
-           capacityKey,
-           selectedSealing,
-           selectedHolder,
-           quantity: updatedProduct.quantity
-         }
-         )
-       );
-     }
-   }, [
-     dispatch,
-     codeOfGood,
-     capacityKey,
-     selectedSealing,
-     selectedHolder,
-     updatedProduct,
-   ]);
 
   const closeCart = () => {
     dispatch(setCartOpen(false));
@@ -234,13 +239,17 @@ export const CartItem = ({ item }) => {
           </CapacityWrap>
         )}
       </Item>
-      {updatedProduct?.quantity > 0 && (
+      {productWithUpdatedQuantity?.quantity > 0 && (
         <Advert>
-          *Цей товар є в наявності у кількості {updatedProduct.quantity} шт.
+          *Цей товар є в наявності у кількості {productWithUpdatedQuantity.quantity}{' '}
+          шт.
         </Advert>
       )}
-      {updatedProduct?.quantity === 0 && (
+      {productWithUpdatedQuantity?.quantity === 0 && (
         <Advert>*Цього товару немає в наявності.</Advert>
+      )}
+      {isNewPrice && (
+        <Advert>*Ціна на цей товар змінилась.</Advert>
       )}
     </>
   );
