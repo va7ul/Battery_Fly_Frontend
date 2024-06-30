@@ -22,27 +22,37 @@ export const CartList = () => {
 
   const productsWithUpdatedPrice = useMemo(() => {
     return products?.flatMap(product => {
-      return newProducts.filter(item => {
-        if (!product.capacityKey) {
-          return (
-            item.codeOfGood === product.codeOfGood &&
-            (item.price !== product.price ||
-              item.sale !== product.sale ||
-              item.discount !== product.discount)
-          );
-        } else {
-          return (
-            item.codeOfGood === product.codeOfGood &&
-            (item.capacity[product.capacityKey].price !==
-              product.priceOneProduct ||
-              item.sale !== product.sale ||
-              item.discount !== product.discount)
-            
-          );
-        }
-      });
+      const obj = {
+        ...newProducts.filter(item => {
+          if (!product?.capacityKey) {
+            return (
+              item.codeOfGood === product.codeOfGood &&
+              (item.price !== product.price ||
+                item.sale !== product.sale ||
+                item.discount !== product.discount)
+            );
+          } else {
+            return (
+              item.codeOfGood === product.codeOfGood &&
+              (item.capacity[product.capacityKey].price !==
+                product.priceOneProduct ||
+                item.sale !== product.sale ||
+                item.discount !== product.discount ||
+                item.capacity[product.capacityKey].holder !==
+                  product.capacity[product.capacityKey].holder)
+            );
+          }
+        }),
+      };
+      return {
+        ...obj[0],
+        capacityKey: product.capacityKey,
+        selectedSealing: product.selectedSealing,
+        selectedHolder: product.selectedHolder,
+      };
     });
   }, [products, newProducts]);
+
   console.log('productsWithUpdatedPrice', productsWithUpdatedPrice);
 
   const getNewPrice = useMemo(() => {
@@ -50,9 +60,14 @@ export const CartList = () => {
       let updatedPrice = null;
       return productsWithUpdatedPrice.map(updatedProduct => {
         let product = products?.find(
-          item => item.codeOfGood === updatedProduct.codeOfGood
+          item =>
+            item.codeOfGood === updatedProduct.codeOfGood &&
+            item.capacityKey === updatedProduct.capacityKey &&
+            item.selectedSealing === updatedProduct.selectedSealing &&
+            item.selectedHolder === updatedProduct.selectedHolder
         );
-        if (!product.capacityKey) {
+        //Without capacityKey
+        if (!product?.capacityKey) {
           if (updatedProduct.sale) {
             updatedPrice = Math.round(
               updatedProduct.price -
@@ -66,9 +81,9 @@ export const CartList = () => {
             }
             let obj = {
               codeOfGood: updatedProduct.codeOfGood,
-              capacityKey: updatedProduct.capacityKey,
-              selectedSealing: updatedProduct.selectedSealing,
-              selectedHolder: updatedProduct.selectedHolder,
+              capacityKey: '',
+              selectedSealing: false,
+              selectedHolder: false,
               quantityOrdered: product.quantityOrdered,
               price: updatedPrice,
             };
@@ -80,9 +95,9 @@ export const CartList = () => {
             }
             let obj = {
               codeOfGood: updatedProduct.codeOfGood,
-              capacityKey: updatedProduct.capacityKey,
-              selectedSealing: updatedProduct.selectedSealing,
-              selectedHolder: updatedProduct.selectedHolder,
+              capacityKey: '',
+              selectedSealing: false,
+              selectedHolder: false,
               quantityOrdered: product.quantityOrdered,
               price: updatedProduct.price,
             };
@@ -91,8 +106,10 @@ export const CartList = () => {
           } else {
             return null;
           }
-        } else {
-          if (updatedProduct.sale) {
+        } //With capacityKey
+        else {
+          //With updatedProduct.sale and without selectedHolder
+          if (updatedProduct.sale && !product.selectedHolder) {
             updatedPrice = Math.round(
               updatedProduct.capacity[product.capacityKey].price -
                 (updatedProduct.capacity[product.capacityKey].price *
@@ -115,7 +132,55 @@ export const CartList = () => {
             };
             dispatch(addProductWithUpdatedPrice(obj));
             return obj;
-          } else if (!updatedProduct.sale) {
+          } //With updatedProduct.sale and  With selectedHolder
+          else if (updatedProduct.sale && product.selectedHolder) {
+            updatedPrice = Math.round(
+              updatedProduct.capacity[product.capacityKey].price -
+                (updatedProduct.capacity[product.capacityKey].price *
+                  updatedProduct.discount) /
+                  100 +
+                updatedProduct.capacity[product.capacityKey].holder * 2
+            );
+            // With product.selectedSealing
+            if (product.selectedSealing) {
+              if (
+                updatedPrice + 100 ===
+                product?.totalPrice / product?.quantityOrdered
+              ) {
+                return null;
+              }
+              let obj = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price: updatedPrice + 100,
+              };
+              dispatch(addProductWithUpdatedPrice(obj));
+              return obj;
+            }
+            // Without product.selectedSealing
+            else {
+              if (
+                updatedPrice ===
+                product?.totalPrice / product?.quantityOrdered
+              ) {
+                return null;
+              }
+              let obj = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price: updatedPrice,
+              };
+              dispatch(addProductWithUpdatedPrice(obj));
+              return obj;
+            }
+          } //without updatedProduct.sale and without selectedHolder
+          else if (!updatedProduct.sale && !product.selectedHolder) {
             if (
               updatedProduct.capacity[product.capacityKey].price ===
               product?.priceOneProduct
@@ -132,6 +197,52 @@ export const CartList = () => {
             };
             dispatch(addProductWithUpdatedPrice(obj));
             return obj;
+          } //without updatedProduct.sale and With selectedHolder
+          else if (!updatedProduct.sale && product.selectedHolder) {
+            // With product.selectedSealing
+            if (product.selectedSealing) {
+              if (
+                updatedProduct.capacity[product.capacityKey].price +
+                  updatedProduct.capacity[product.capacityKey].holder * 2 +
+                  100 ===
+                product?.totalPrice
+              ) {
+                return null;
+              }
+              let obj = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price:
+                  updatedProduct.capacity[product.capacityKey].price +
+                  updatedProduct.capacity[product.capacityKey].holder * 2 +
+                  100,
+              };
+              dispatch(addProductWithUpdatedPrice(obj));
+              return obj;
+            } else {
+              if (
+                updatedProduct.capacity[product.capacityKey].price +
+                  updatedProduct.capacity[product.capacityKey].holder ===
+                product?.totalPrice
+              ) {
+                return null;
+              }
+              let obj = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price:
+                  updatedProduct.capacity[product.capacityKey].price +
+                  updatedProduct.capacity[product.capacityKey].holder,
+              };
+              dispatch(addProductWithUpdatedPrice(obj));
+              return obj;
+            }
           } else {
             return null;
           }
@@ -145,6 +256,7 @@ export const CartList = () => {
       setArrOfProductsWithNewPrice(getNewPrice?.filter(item => item !== null));
     }
   }, [isChangedProductInCart, getNewPrice]);
+  // console.log('arrOfProductsWithNewPrice', arrOfProductsWithNewPrice);
 
   useEffect(() => {
     if (isChangedProductInCart) {
