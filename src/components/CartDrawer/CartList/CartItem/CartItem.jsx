@@ -62,6 +62,14 @@ export const CartItem = ({ item }) => {
 
   let productWithUpdatedQuantity = null;
 
+   if (isChangedProductInCart) {
+     productWithUpdatedQuantity = newProducts.find(
+       item =>
+         item.codeOfGood === codeOfGood &&
+         item.quantity < quantityOrdered
+     );
+   }
+
   useEffect(() => {
     if (productWithUpdatedQuantity) {
       dispatch(
@@ -83,17 +91,7 @@ export const CartItem = ({ item }) => {
     productWithUpdatedQuantity,
   ]);
 
-  if (isChangedProductInCart) {
-    productWithUpdatedQuantity = newProducts.find(
-      item =>
-        item.codeOfGood === codeOfGood &&
-        // item.capacityKey === capacityKey &&
-        // item.selectedSealing === selectedSealing &&
-        // item.selectedHolder === selectedHolder &&
-        item.quantity < quantityOrdered
-    );
-  }
-
+ 
   const closeCart = () => {
     dispatch(setCartOpen(false));
   };
