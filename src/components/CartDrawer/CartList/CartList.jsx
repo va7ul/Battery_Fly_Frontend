@@ -222,10 +222,12 @@ export const CartList = () => {
               };
               dispatch(addProductWithUpdatedPrice(obj));
               return obj;
-            } else {
+            }
+            //Without product.selectedSealing
+            else {
               if (
                 updatedProduct.capacity[product.capacityKey].price +
-                  updatedProduct.capacity[product.capacityKey].holder ===
+                  updatedProduct.capacity[product.capacityKey].holder*2 ===
                 product?.totalPrice
               ) {
                 return null;
@@ -238,7 +240,7 @@ export const CartList = () => {
                 quantityOrdered: product.quantityOrdered,
                 price:
                   updatedProduct.capacity[product.capacityKey].price +
-                  updatedProduct.capacity[product.capacityKey].holder,
+                  updatedProduct.capacity[product.capacityKey].holder*2,
               };
               dispatch(addProductWithUpdatedPrice(obj));
               return obj;
