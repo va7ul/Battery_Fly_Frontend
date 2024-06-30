@@ -185,21 +185,13 @@ const basketSlice = createSlice({
     },
 
     addProductWithUpdatedPrice(state, { payload }) {
-      if (
-        !state.arrOfProductsWithUpdatedPrice.find(
-          item =>
-            item.codeOfGood === payload.codeOfGood &&
-            item.capacityKey === payload.capacityKey &&
-            item.selectedSealing === payload.selectedSealing &&
-            item.selectedHolder === payload.selectedHolder
-        )
-      ) {
-        state.arrOfProductsWithUpdatedPrice.push(payload);
-      }
+      state.arrOfProductsWithUpdatedPrice.push(payload);
     },
+
     clearArrOfProductsWithUpdatedPrice(state, { payload }) {
       state.arrOfProductsWithUpdatedPrice = payload;
     },
+
     clearBasket(state) {
       state.items = [];
       state.total = 0;

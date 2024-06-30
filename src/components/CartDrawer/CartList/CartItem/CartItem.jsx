@@ -52,6 +52,7 @@ export const CartItem = ({ item }) => {
   const arrOfProductsWithUpdatedPrice = useSelector(
     selectArrOfProductsWithUpdatedPrice
   );
+  
   let productWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
     item =>
       item.codeOfGood === codeOfGood &&
