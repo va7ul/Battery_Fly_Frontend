@@ -4,8 +4,11 @@ import { CartItem } from './CartItem/CartItem';
 import { List } from './CartList.styled';
 import { selectProducts } from '../../../redux/products/productsSelectors';
 import { selectIsChangedProductInCart } from '../../../redux/order/orderSelectors';
-import { useEffect, useState } from 'react';
-import { changePrice } from '../../../redux/basket/basketSlice';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  addProductWithUpdatedPrice,
+  changePrice,
+} from '../../../redux/basket/basketSlice';
 
 export const CartList = () => {
   const dispatch = useDispatch();
@@ -13,91 +16,149 @@ export const CartList = () => {
   const products = useSelector(selectItems);
   const newProducts = useSelector(selectProducts);
   const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
-
-  const [newPrice, setNewPrice] = useState([]);
-  let productsWithUpdatedPrice = [];
-  let arrOfProductsWithNewPrice = getNewPrice(products).filter(
-    item => item !== null
+  const [arrOfProductsWithNewPrice, setArrOfProductsWithNewPrice] = useState(
+    []
   );
 
-  useEffect(() => {
-    if (arrOfProductsWithNewPrice.length > 0) {
-      setNewPrice(arrOfProductsWithNewPrice);
-      newPrice.forEach(item => dispatch(changePrice(item)));
-    }
-  }, [dispatch, arrOfProductsWithNewPrice, newPrice]);
-
-  function checkPriceOfProducts () {
-    return products.flatMap(product => {
-      return newProducts.filter(
-        item =>
-          item.codeOfGood === product.codeOfGood &&
-          // item.capacityKey === capacityKey &&
-          // item.selectedSealing === selectedSealing &&
-          // item.selectedHolder === selectedHolder &&
-          (item.price !== product.price ||
-            item.sale !== product.sale ||
-            item.discount !== product.discount)
-      );
+  const productsWithUpdatedPrice = useMemo(() => {
+    return products?.flatMap(product => {
+      return newProducts.filter(item => {
+        if (!product.capacityKey) {
+          return (
+            item.codeOfGood === product.codeOfGood &&
+            (item.price !== product.price ||
+              item.sale !== product.sale ||
+              item.discount !== product.discount)
+          );
+        } else {
+          return (
+            item.codeOfGood === product.codeOfGood &&
+            (item.capacity[product.capacityKey].price !==
+              product.priceOneProduct ||
+              item.sale !== product.sale ||
+              item.discount !== product.discount)
+            
+          );
+        }
+      });
     });
-  };
+  }, [products, newProducts]);
+  console.log('productsWithUpdatedPrice', productsWithUpdatedPrice);
 
-  function getNewPrice (products) {
-    if (isChangedProductInCart) {
-      productsWithUpdatedPrice = checkPriceOfProducts();
-    }
+  const getNewPrice = useMemo(() => {
     if (productsWithUpdatedPrice) {
       let updatedPrice = null;
       return productsWithUpdatedPrice.map(updatedProduct => {
         let product = products?.find(
           item => item.codeOfGood === updatedProduct.codeOfGood
-          //  &&item.capacityKey === capacityKey &&
-          // item.selectedSealing === selectedSealing &&
-          // item.selectedHolder === selectedHolder &&
         );
-        if (updatedProduct.sale) {
-          updatedPrice = Math.round(
-            updatedProduct.price -
-              (updatedProduct.price * updatedProduct.discount) / 100
-          );
-          if (updatedPrice === product?.totalPrice / product?.quantityOrdered) {
+        if (!product.capacityKey) {
+          if (updatedProduct.sale) {
+            updatedPrice = Math.round(
+              updatedProduct.price -
+                (updatedProduct.price * updatedProduct.discount) / 100
+            );
+            if (
+              updatedPrice ===
+              product?.totalPrice / product?.quantityOrdered
+            ) {
+              return null;
+            }
+            let obj = {
+              codeOfGood: updatedProduct.codeOfGood,
+              capacityKey: updatedProduct.capacityKey,
+              selectedSealing: updatedProduct.selectedSealing,
+              selectedHolder: updatedProduct.selectedHolder,
+              quantityOrdered: product.quantityOrdered,
+              price: updatedPrice,
+            };
+            dispatch(addProductWithUpdatedPrice(obj));
+            return obj;
+          } else if (!updatedProduct.sale) {
+            if (updatedProduct.price === product?.price) {
+              return null;
+            }
+            let obj = {
+              codeOfGood: updatedProduct.codeOfGood,
+              capacityKey: updatedProduct.capacityKey,
+              selectedSealing: updatedProduct.selectedSealing,
+              selectedHolder: updatedProduct.selectedHolder,
+              quantityOrdered: product.quantityOrdered,
+              price: updatedProduct.price,
+            };
+            dispatch(addProductWithUpdatedPrice(obj));
+            return obj;
+          } else {
             return null;
           }
-          let obj = {
-            codeOfGood: updatedProduct.codeOfGood,
-            capacityKey: updatedProduct.capacityKey,
-            selectedSealing: updatedProduct.selectedSealing,
-            selectedHolder: updatedProduct.selectedHolder,
-            quantityOrdered: product.quantityOrdered,
-            price: updatedPrice,
-          };
-          return obj;
-        } else if (!updatedProduct.sale) {
-          let obj = {
-            codeOfGood: updatedProduct.codeOfGood,
-            capacityKey: updatedProduct.capacityKey,
-            selectedSealing: updatedProduct.selectedSealing,
-            selectedHolder: updatedProduct.selectedHolder,
-            quantityOrdered: product.quantityOrdered,
-            price: updatedProduct.price,
-          };
-          return obj;
         } else {
-          return null;
+          if (updatedProduct.sale) {
+            updatedPrice = Math.round(
+              updatedProduct.capacity[product.capacityKey].price -
+                (updatedProduct.capacity[product.capacityKey].price *
+                  updatedProduct.discount) /
+                  100
+            );
+            if (
+              updatedPrice ===
+              product?.totalPrice / product?.quantityOrdered
+            ) {
+              return null;
+            }
+            let obj = {
+              codeOfGood: updatedProduct.codeOfGood,
+              capacityKey: product.capacityKey,
+              selectedSealing: product.selectedSealing,
+              selectedHolder: product.selectedHolder,
+              quantityOrdered: product.quantityOrdered,
+              price: updatedPrice,
+            };
+            dispatch(addProductWithUpdatedPrice(obj));
+            return obj;
+          } else if (!updatedProduct.sale) {
+            if (
+              updatedProduct.capacity[product.capacityKey].price ===
+              product?.priceOneProduct
+            ) {
+              return null;
+            }
+            let obj = {
+              codeOfGood: updatedProduct.codeOfGood,
+              capacityKey: product.capacityKey,
+              selectedSealing: product.selectedSealing,
+              selectedHolder: product.selectedHolder,
+              quantityOrdered: product.quantityOrdered,
+              price: updatedProduct.capacity[product.capacityKey].price,
+            };
+            dispatch(addProductWithUpdatedPrice(obj));
+            return obj;
+          } else {
+            return null;
+          }
         }
       });
     }
-  };
+  }, [dispatch, products, productsWithUpdatedPrice]);
+
+  useEffect(() => {
+    if (isChangedProductInCart) {
+      setArrOfProductsWithNewPrice(getNewPrice?.filter(item => item !== null));
+    }
+  }, [isChangedProductInCart, getNewPrice]);
+
+  useEffect(() => {
+    if (isChangedProductInCart) {
+      if (arrOfProductsWithNewPrice?.length > 0) {
+        arrOfProductsWithNewPrice.forEach(item => dispatch(changePrice(item)));
+      }
+    }
+  }, [dispatch, isChangedProductInCart, arrOfProductsWithNewPrice]);
 
   return (
     <>
       <List>
         {products.map((item, index) => (
-          <CartItem
-            key={item.codeOfGood + index}
-            item={item}
-            newPrice={newPrice}
-          />
+          <CartItem key={item.codeOfGood + index} item={item} />
         ))}
       </List>
     </>

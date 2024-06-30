@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   items: [],
   total: 0,
+  arrOfProductsWithUpdatedPrice: [],
   isLoading: false,
   error: null,
 };
@@ -157,23 +158,22 @@ const basketSlice = createSlice({
       state.items[findingIndex].quantity = quantity;
     },
 
-    changePrice(state, action) {
+    changePrice(state, { payload }) {
       const {
         codeOfGood,
-        // capacityKey,
-        // selectedSealing,
-        // selectedHolder,
+        capacityKey,
+        selectedSealing,
+        selectedHolder,
         quantityOrdered,
         price,
-      } = action.payload;
-      
+      } = payload;
+
       const findingIndex = state.items.findIndex(
         item =>
-          item.codeOfGood === codeOfGood
-          // &&
-          // item.capacityKey === capacityKey &&
-          // item.selectedSealing === selectedSealing &&
-          // item.selectedHolder === selectedHolder
+          item.codeOfGood === codeOfGood &&
+          item.capacityKey === capacityKey &&
+          item.selectedSealing === selectedSealing &&
+          item.selectedHolder === selectedHolder
       );
 
       const newTotalPrice = price * quantityOrdered;
@@ -184,6 +184,22 @@ const basketSlice = createSlice({
       state.items[findingIndex].price = price;
     },
 
+    addProductWithUpdatedPrice(state, { payload }) {
+      if (
+        !state.arrOfProductsWithUpdatedPrice.find(
+          item =>
+            item.codeOfGood === payload.codeOfGood &&
+            item.capacityKey === payload.capacityKey &&
+            item.selectedSealing === payload.selectedSealing &&
+            item.selectedHolder === payload.selectedHolder
+        )
+      ) {
+        state.arrOfProductsWithUpdatedPrice.push(payload);
+      }
+    },
+    clearArrOfProductsWithUpdatedPrice(state, { payload }) {
+      state.arrOfProductsWithUpdatedPrice = payload;
+    },
     clearBasket(state) {
       state.items = [];
       state.total = 0;
@@ -199,6 +215,8 @@ export const {
   changeQuantity,
   changeAllQuantity,
   changePrice,
+  addProductWithUpdatedPrice,
+  clearArrOfProductsWithUpdatedPrice,
   clearBasket,
 } = basketSlice.actions;
 export const basketReducer = basketSlice.reducer;

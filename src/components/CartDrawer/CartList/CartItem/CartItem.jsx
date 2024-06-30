@@ -31,8 +31,9 @@ import {
 } from './CartItem.styled';
 import noImage from '../../../../assets/images/no-image-available.webp';
 import { useEffect } from 'react';
+import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
 
-export const CartItem = ({ item, newPrice }) => {
+export const CartItem = ({ item }) => {
   const {
     codeOfGood,
     image,
@@ -46,21 +47,21 @@ export const CartItem = ({ item, newPrice }) => {
   } = item;
 
   const dispatch = useDispatch();
-
   const newProducts = useSelector(selectProducts);
   const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
-  let isNewPrice = null;
+  const arrOfProductsWithUpdatedPrice = useSelector(
+    selectArrOfProductsWithUpdatedPrice
+  );
+  let productWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
+    item =>
+      item.codeOfGood === codeOfGood &&
+      item.capacityKey === capacityKey &&
+      item.selectedSealing === selectedSealing &&
+      item.selectedHolder === selectedHolder
+  );
+
   let productWithUpdatedQuantity = null;
 
-  if (isChangedProductInCart && newPrice.length > 0) {
-    isNewPrice = newPrice.find(
-      item => item.codeOfGood === codeOfGood
-      // &&item.capacityKey === capacityKey &&
-      // item.selectedSealing === selectedSealing &&
-      // item.selectedHolder === selectedHolder &&
-    );
-  }
-  
   useEffect(() => {
     if (productWithUpdatedQuantity) {
       dispatch(
@@ -241,14 +242,14 @@ export const CartItem = ({ item, newPrice }) => {
       </Item>
       {productWithUpdatedQuantity?.quantity > 0 && (
         <Advert>
-          *Цей товар є в наявності у кількості {productWithUpdatedQuantity.quantity}{' '}
-          шт.
+          *Цей товар є в наявності у кількості{' '}
+          {productWithUpdatedQuantity.quantity} шт.
         </Advert>
       )}
       {productWithUpdatedQuantity?.quantity === 0 && (
         <Advert>*Цього товару немає в наявності.</Advert>
       )}
-      {isNewPrice && (
+      {productWithUpdatedPrice && (
         <Advert>*Ціна на цей товар змінилась.</Advert>
       )}
     </>

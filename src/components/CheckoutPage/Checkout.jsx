@@ -19,7 +19,10 @@ import {
   checkChangeProductInCart,
 } from '../../redux/order/orderSlice';
 import { selectItems } from '../../redux/basket/basketSelectors';
-import { clearBasket } from '../../redux/basket/basketSlice';
+import {
+  clearArrOfProductsWithUpdatedPrice,
+  clearBasket,
+} from '../../redux/basket/basketSlice';
 import { selectProducts } from '../../redux/products/productsSelectors';
 import { getProducts } from '../../redux/products/productsOperations';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
@@ -71,6 +74,10 @@ export const Checkout = () => {
 
   useEffect(() => {
     dispatch(checkChangeProductInCart(true));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(clearArrOfProductsWithUpdatedPrice([]));
   }, [dispatch]);
 
   useEffect(() => {
