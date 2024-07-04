@@ -81,7 +81,7 @@ export const handleFulfilledGetWarehouses = (state, { payload }) => {
 export const handleFulfilledAddPromoCode = (state, { payload }) => {
   state.promoCode = payload.promoCode.name;
   state.promoCodeDiscount = payload.promoCode.discount;
-  state.isLoading = false;
+  state.isLoadingPromoCode = false;
   state.errorPromoCode = null;
 };
 
