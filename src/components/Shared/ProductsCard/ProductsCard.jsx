@@ -66,7 +66,7 @@ export const ProductsCard = ({ product, category }) => {
         totalPrice: sale ? newPrice : price,
       })
     );
-    toast.success('Товар додано!');
+    toast.success('Товар додано до кошика!');
   };
 
   const goToBasket = () => {

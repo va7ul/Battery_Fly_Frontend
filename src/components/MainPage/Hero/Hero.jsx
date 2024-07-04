@@ -52,39 +52,43 @@ export const Hero = () => {
   };
   return (
     <>
-      <div className="slider-container" style={{ position: 'relative' }}>
-        <Slider
-          ref={slider => {
-            sliderRef = slider;
-          }}
-          {...settings}
-        >
-          {images.map(({ _id, image, text }) => (
-            <Wrapper background={image} key={_id}>
-              <TitleWrap>
-                <Title>{text}</Title>
+      {images && (
+        <>
+          <div className="slider-container" style={{ position: 'relative' }}>
+            <Slider
+              ref={slider => {
+                sliderRef = slider;
+              }}
+              {...settings}
+            >
+              {images.map(({ _id, image, text }) => (
+                <Wrapper background={image} key={_id}>
+                  <TitleWrap>
+                    <Title>{text}</Title>
 
-                <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
-              </TitleWrap>
-            </Wrapper>
-          ))}
-        </Slider>
-        <SliderButtons $next onClick={next}>
-          <ArrowForwardIosIcon
-            sx={{
-              color: 'background.paper',
-              width: {
-                mobile: 16,
-                desktop: 24,
-              },
-            }}
+                    <FeedBackButton handleOpenModal={handleOpenFeedbackModal} />
+                  </TitleWrap>
+                </Wrapper>
+              ))}
+            </Slider>
+            <SliderButtons $next onClick={next}>
+              <ArrowForwardIosIcon
+                sx={{
+                  color: 'background.paper',
+                  width: {
+                    mobile: 16,
+                    desktop: 24,
+                  },
+                }}
+              />
+            </SliderButtons>
+          </div>
+          <ModalFeedback
+            isModalFeedbackOpen={isModalFeedbackOpen}
+            handleCloseFeedbackModal={handleCloseFeedbackModal}
           />
-        </SliderButtons>
-      </div>
-      <ModalFeedback
-        isModalFeedbackOpen={isModalFeedbackOpen}
-        handleCloseFeedbackModal={handleCloseFeedbackModal}
-      />
+        </>
+      )}
     </>
   );
 };

@@ -70,10 +70,27 @@ export const addPromoCode = createAsyncThunk(
     try {
       setAuthHeader(token);
       const { data } = await axios.get(`order/promo-code/${name}`);
+      toast.success('Промокод застосовано!');
+
       return data;
     } catch (error) {
-      const errorMessage = handleError(error);
-      return thunkApi.rejectWithValue(errorMessage);
+      console.log(error.response);
+      if (error.response.data.message === 'Bad request') {
+        return thunkApi.rejectWithValue(
+          '*Промокод недійсний, спробуйте інший!'
+        );
+      } else if (error.response.data.message === 'promoCode not valid') {
+        return thunkApi.rejectWithValue(
+          '*Термін дій промокоду завершився, спробуйте інший!'
+        );
+      } else if (error.response.data.message === 'promoCode already in use') {
+        return thunkApi.rejectWithValue(
+          '*Ви вже використали даний промокод, спробуйте інший!'
+        );
+      } else {
+        toast.error('Сталася помилка, спробуйте ще раз!');
+        return thunkApi.rejectWithValue('Сталася помилка, спробуйте ще раз!');
+      }
     }
   }
 );
