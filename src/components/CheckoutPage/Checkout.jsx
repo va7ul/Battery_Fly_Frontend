@@ -396,7 +396,7 @@ export const Checkout = () => {
       };
       dispatch(changeUserComment(orderData.userData.text));
       isChangedProducts = checkChangedProducts();
-      if (isChangedProducts) {
+      if (isChangedProducts || products.length !== newProducts.length) {
         toast(`Перевірте, будь ласка, кількість товарів у кошику.`, {
           id: 'warning',
           icon: '👀',

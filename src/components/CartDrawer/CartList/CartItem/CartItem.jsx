@@ -52,7 +52,7 @@ export const CartItem = ({ item }) => {
   const arrOfProductsWithUpdatedPrice = useSelector(
     selectArrOfProductsWithUpdatedPrice
   );
-  
+
   let productWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
     item =>
       item.codeOfGood === codeOfGood &&
@@ -63,13 +63,21 @@ export const CartItem = ({ item }) => {
 
   let productWithUpdatedQuantity = null;
 
-   if (isChangedProductInCart) {
-     productWithUpdatedQuantity = newProducts.find(
-       item =>
-         item.codeOfGood === codeOfGood &&
-         item.quantity < quantityOrdered
-     );
-   }
+  if (isChangedProductInCart) {
+    productWithUpdatedQuantity = newProducts.find(
+      item => item.codeOfGood === codeOfGood
+    );
+    if (!productWithUpdatedQuantity) {
+      productWithUpdatedQuantity = {
+        quantity: 0,
+      };
+    } else if (productWithUpdatedQuantity.quantity!==0) {
+      productWithUpdatedQuantity = newProducts.find(
+        item =>
+          item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
+      );
+    }
+  }
 
   useEffect(() => {
     if (productWithUpdatedQuantity) {
@@ -92,7 +100,6 @@ export const CartItem = ({ item }) => {
     productWithUpdatedQuantity,
   ]);
 
- 
   const closeCart = () => {
     dispatch(setCartOpen(false));
   };
