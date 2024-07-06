@@ -4,6 +4,7 @@ import { selectFavorites } from '../redux/user/userSelectors';
 import { getProducts } from '../redux/products/productsOperations';
 import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { Favorites } from 'components/FavoritesPage/Favorites';
 
 const FavoritesPage = () => {
@@ -18,7 +19,7 @@ const FavoritesPage = () => {
   return (
     <>
       {isLoading && <CustomLoader />}
-      {!isLoading && !error && <Favorites />}
+      {!isLoading && error ? <CustomError /> : <Favorites />}
     </>
   );
 };

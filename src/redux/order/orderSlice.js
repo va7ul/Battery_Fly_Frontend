@@ -30,11 +30,17 @@ const initialState = {
   isChangedProductInCart: false,
   orderNum: '',
   isLoading: false,
+  isLoadingPromoCode: false,
   error: null,
+  errorPromoCode: null,
 };
 
 export const handlePending = state => {
   state.isLoading = true;
+};
+
+export const handlePendingAddPromoCode = state => {
+  state.isLoadingPromoCode = true;
 };
 
 export const handleFulfilledAddOrder = (state, { payload }) => {
@@ -47,7 +53,7 @@ export const handleFulfilledAddOrder = (state, { payload }) => {
   state.isChangedProductInCart = false;
   state.orderNum = payload.orderNum;
   state.isLoading = false;
-  state.error = '';
+  state.error = null;
 };
 
 export const handleRejected = (state, { payload }) => {
@@ -55,22 +61,28 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 
+export const handleRejectedPromoCode = (state, { payload }) => {
+  state.isLoadingPromoCode = false;
+  state.errorPromoCode = payload;
+};
+
 export const handleFulfilledGetCities = (state, { payload }) => {
   state.delivery.cities = payload.cities;
   state.isLoading = false;
-  state.error = '';
+  state.error = null;
 };
 
 export const handleFulfilledGetWarehouses = (state, { payload }) => {
   state.delivery.warehouses = payload.werehouses;
   state.isLoading = false;
-  state.error = '';
+  state.error = null;
 };
 
 export const handleFulfilledAddPromoCode = (state, { payload }) => {
   state.promoCode = payload.promoCode.name;
   state.promoCodeDiscount = payload.promoCode.discount;
-  state.error = '';
+  state.isLoadingPromoCode = false;
+  state.errorPromoCode = null;
 };
 
 const orderSlice = createSlice({
@@ -119,8 +131,9 @@ const orderSlice = createSlice({
       .addCase(getDeliveryWarehouses.pending, handlePending)
       .addCase(getDeliveryWarehouses.fulfilled, handleFulfilledGetWarehouses)
       .addCase(getDeliveryWarehouses.rejected, handleRejected)
+      .addCase(addPromoCode.pending, handlePendingAddPromoCode)
       .addCase(addPromoCode.fulfilled, handleFulfilledAddPromoCode)
-      .addCase(addPromoCode.rejected, handleRejected);
+      .addCase(addPromoCode.rejected, handleRejectedPromoCode);
   },
 });
 

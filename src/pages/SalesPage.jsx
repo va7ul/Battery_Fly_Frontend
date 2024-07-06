@@ -4,8 +4,9 @@ import { useMediaQuery } from 'react-responsive';
 import { getSales } from '../redux/products/productsOperations';
 import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
-import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
+import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { SubNavBar } from 'components/Shared/SubNavBar/SubNavBar';
+import { ProductsSection } from 'components/Shared/ProductsSection/ProductsSection';
 
 const SalesPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,11 @@ const SalesPage = () => {
     <>
       {!isLoading && !error && desktopVersion && <SubNavBar />}
       {isLoading && <CustomLoader />}
-      {!isLoading && !error && <ProductsSection category={'Акції'} />}
+      {!isLoading && error ? (
+        <CustomError />
+      ) : (
+        <ProductsSection category={'Акції'} />
+      )}
     </>
   );
 };

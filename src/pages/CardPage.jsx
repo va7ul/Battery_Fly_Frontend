@@ -7,6 +7,7 @@ import {
   selectOneProductIsLoading,
 } from '../redux/products/productsSelectors';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { Card } from 'components/CardPage/Card';
 
 const CardPage = () => {
@@ -22,7 +23,7 @@ const CardPage = () => {
   return (
     <>
       {isLoading && <CustomLoader />}
-      {!isLoading && !error && <Card />}
+      {!isLoading && error ? <CustomError /> : <Card />}
     </>
   );
 };
