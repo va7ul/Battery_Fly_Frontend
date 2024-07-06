@@ -17,7 +17,31 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <ThemeProvider theme={theme}>
             <App />
             <GlobalStyle />
-            <Toaster/>
+            <Toaster
+              toastOptions={{
+                duration: 3000,
+                style: {
+                  borderRadius: '10px',
+                  fontSize: '16px',
+                },
+                loading: {
+                  style: {
+                    border: `1px solid ${theme.colors.hoverColor}`,
+                  },
+                },
+                success: {
+                  style: {
+                    border: `1px solid ${theme.colors.success}`,
+                  },
+                },
+                error: {
+                  duration: 4000,
+                  style: {
+                    border: `1px solid ${theme.colors.error}`,
+                  },
+                },
+              }}
+            />
           </ThemeProvider>
         </BrowserRouter>
       </PersistGate>

@@ -26,18 +26,14 @@ export const register = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('auth/signup', dataUser);
-      toast.success('Реєстрація пройшла успішно!', {
-        duration: 5000,
-      });
+      toast.success('Реєстрація пройшла успішно!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 409) {
         return thunkApi.rejectWithValue(error.response.data.message);
       }
-      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-        duration: 5000,
-      });
+      toast.error('Сталася помилка, спробуйте ще раз');
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -49,18 +45,14 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post('auth/signin', dataUser);
       setAuthHeader(data.token);
-      toast.success('Вітаємо! Вхід виконано успішно!', {
-        duration: 5000,
-      });
+      toast.success('Вітаємо! Вхід виконано успішно!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
       if (error.request.status === 401) {
         return thunkApi.rejectWithValue(error.response.data.message);
       }
-      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-        duration: 5000,
-      });
+      toast.error('Сталася помилка, спробуйте ще раз');
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -74,9 +66,7 @@ export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
     const errorMessage = handleError(error);
     return thunkAPI.rejectWithValue(errorMessage);
   } finally {
-    toast.success('Вихід з профілю виконано успішно!', {
-      duration: 5000,
-    });
+    toast.success('Вихід з профілю виконано успішно!');
   }
 });
 
@@ -95,6 +85,7 @@ export const refreshUser = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Сталася помилка, спробуйте ще раз');
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -105,14 +96,12 @@ export const editUserData = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-info', dataUser);
-      toast.success('Дані збережено!', {
-        duration: 5000,
-      });
+      toast.success('Дані збережено!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-        duration: 5000,
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
       });
       return thunkApi.rejectWithValue(errorMessage);
     }
@@ -124,14 +113,12 @@ export const editUserAddress = createAsyncThunk(
   async (address, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-delivery', address);
-      toast.success('Aдресу доставки збережено!', {
-        duration: 5000,
-      });
+      toast.success('Aдресу доставки збережено!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-        duration: 5000,
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
       });
       return thunkApi.rejectWithValue(errorMessage);
     }
@@ -146,9 +133,7 @@ export const verifyEmail = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-        duration: 5000,
-      });
+      toast.error('Сталася помилка, спробуйте ще раз');
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -168,7 +153,9 @@ export const addToFavorite = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз!');
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
+      });
 
       return thunkAPI.rejectWithValue(errorMessage);
     }
@@ -186,7 +173,9 @@ export const deleteFromFavorite = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз!');
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
+      });
 
       return thunkAPI.rejectWithValue(errorMessage);
     }
@@ -205,7 +194,7 @@ export const getOrdersHistory = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз!');
+      toast.error('Сталася помилка, спробуйте ще раз');
 
       return thunkAPI.rejectWithValue(errorMessage);
     }
@@ -225,7 +214,7 @@ export const getOrderDetails = createAsyncThunk(
     } catch (error) {
       const errorMessage = handleError(error);
       toast.remove();
-      toast.error('Сталася помилка, спробуйте ще раз!');
+      toast.error('Сталася помилка, спробуйте ще раз');
 
       return thunkAPI.rejectWithValue(errorMessage);
     }

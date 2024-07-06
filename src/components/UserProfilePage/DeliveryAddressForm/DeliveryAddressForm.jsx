@@ -100,9 +100,7 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
       toast('Введіть адресу доставки', {
         id: 'warning',
         icon: '👀',
-        duration: 5000,
         style: {
-          borderRadius: '10px',
           background: `${theme.colors.secondary}`,
           color: `${theme.colors.textPrimary}`,
         },

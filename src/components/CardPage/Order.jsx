@@ -22,6 +22,7 @@ import {
   setPriceWithSale,
 } from '../../redux/products/oneProductSlice';
 import { ModalQuickOrder } from 'components/Modals/ModalQuickOrder/ModalQuickOrder';
+import { theme } from 'styles/GlobalStyled';
 import {
   OrderBox,
   Input,
@@ -132,9 +133,11 @@ export const Order = () => {
         if (quantityOrders < quantity) {
             dispatch(setQuantityOrders(quantityOrders + 1));
         } else {
-            toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
-                id: 'clipboard',
-                duration: 4000,
+            toast(`Максимальна кількість в наявності: ${quantity} шт`, {
+              style: {
+                border: `1px solid ${theme.colors.error}`,
+              },
+              id: 'clipboard',
             });
         }
     };
@@ -151,11 +154,10 @@ export const Order = () => {
         if (value > quantity) {
             dispatch(setQuantityOrders(quantity));
             toast(`Максимальна кількість в наявності: ${quantity} шт`, {
-                 style: {
-                    border: '1px solid green',
-                },
-                id: 'clipboard',
-                duration: 4000,
+              style: {
+                border: `1px solid ${theme.colors.error}`,
+              },
+              id: 'clipboard',
             });
         }
 
@@ -174,13 +176,16 @@ export const Order = () => {
         const itemInBasket = quantityItemsInBasket.find(item => item.codeOfGood === codeOfGood);
 
         if (itemInBasket && quantity < itemInBasket.quantityOrdered + quantityOrders) {
-            return toast(`Цей товар вже є в кошику в кількості ${itemInBasket.quantityOrdered} шт. Максимальна кількість в наявності: ${quantity} шт.`, {
+            return toast(
+              `Цей товар вже є в кошику в кількості ${itemInBasket.quantityOrdered} шт. Максимальна кількість в наявності: ${quantity} шт.`,
+              {
                 style: {
-                    border: '1px solid red',
+                  border: `1px solid ${theme.colors.error}`,
                 },
                 id: 'clipboard',
                 duration: 5000,
-            });
+              }
+            );
         }
         
         dispatch(
@@ -195,11 +200,7 @@ export const Order = () => {
             })
         );
         toast.success(`Товар доданий до кошика`, {
-             style: {
-                    border: '1px solid green',
-                },
-            id: 'clipboard',
-            duration: 4000,
+          id: 'clipboard',
         });
     };
 

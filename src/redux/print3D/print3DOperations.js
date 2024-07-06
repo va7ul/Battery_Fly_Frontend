@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { baseURL } from 'utils/constants/baseURL';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = baseURL;
 
@@ -38,6 +39,7 @@ export const add3DPrintOrder = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Сталася помилка, спробуйте ще раз');
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
