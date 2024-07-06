@@ -200,9 +200,6 @@ export const Order = () => {
             })
         );
         toast.success(`Товар доданий до кошика`, {
-          style: {
-            border: `1px solid ${theme.colors.success}`,
-          },
           id: 'clipboard',
         });
     };

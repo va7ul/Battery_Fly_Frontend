@@ -26,8 +26,7 @@ export const register = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('auth/signup', dataUser);
-      toast.success('Реєстрація пройшла успішно!', {
-      });
+      toast.success('Реєстрація пройшла успішно!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
@@ -46,8 +45,7 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post('auth/signin', dataUser);
       setAuthHeader(data.token);
-      toast.success('Вітаємо! Вхід виконано успішно!', {
-      });
+      toast.success('Вітаємо! Вхід виконано успішно!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
@@ -68,8 +66,7 @@ export const logOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
     const errorMessage = handleError(error);
     return thunkAPI.rejectWithValue(errorMessage);
   } finally {
-    toast.success('Вихід з профілю виконано успішно!', {
-    });
+    toast.success('Вихід з профілю виконано успішно!');
   }
 });
 
@@ -88,6 +85,7 @@ export const refreshUser = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
+      toast.error('Сталася помилка, спробуйте ще раз');
       return thunkAPI.rejectWithValue(errorMessage);
     }
   }
@@ -98,12 +96,13 @@ export const editUserData = createAsyncThunk(
   async (dataUser, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-info', dataUser);
-      toast.success('Дані збережено!', {
-      });
+      toast.success('Дані збережено!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз');
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
+      });
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -114,12 +113,13 @@ export const editUserAddress = createAsyncThunk(
   async (address, thunkApi) => {
     try {
       const { data } = await axios.post('user/change-delivery', address);
-      toast.success('Aдресу доставки збережено!', {
-      });
+      toast.success('Aдресу доставки збережено!');
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз');
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
+      });
       return thunkApi.rejectWithValue(errorMessage);
     }
   }
@@ -153,7 +153,9 @@ export const addToFavorite = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз');
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
+      });
 
       return thunkAPI.rejectWithValue(errorMessage);
     }
@@ -171,7 +173,9 @@ export const deleteFromFavorite = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз');
+      toast.error('Сталася помилка, спробуйте ще раз', {
+        id: 'error',
+      });
 
       return thunkAPI.rejectWithValue(errorMessage);
     }

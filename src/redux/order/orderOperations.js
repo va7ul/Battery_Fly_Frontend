@@ -25,9 +25,8 @@ export const addOrder = createAsyncThunk(
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
-      toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
+      toast.error('Сталася помилка, спробуйте ще раз', {
         id: 'error',
-        duration: 5000,
       });
       return thunkApi.rejectWithValue(errorMessage);
     }
@@ -88,7 +87,7 @@ export const addPromoCode = createAsyncThunk(
           '*Ви вже використали даний промокод, спробуйте інший!'
         );
       } else {
-        toast.error('Сталася помилка, спробуйте ще раз!');
+        toast.error('Сталася помилка, спробуйте ще раз');
         return thunkApi.rejectWithValue('Сталася помилка, спробуйте ще раз!');
       }
     }

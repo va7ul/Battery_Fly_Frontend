@@ -35,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                   },
                 },
                 error: {
+                  duration: 4000,
                   style: {
                     border: `1px solid ${theme.colors.error}`,
                   },
