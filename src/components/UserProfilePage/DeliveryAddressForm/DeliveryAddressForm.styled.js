@@ -135,7 +135,7 @@ export const BtnWrapper = styled.div`
 
 export const SubmitAddressBtn = styled.button`
   max-width: 138px;
-  padding: 12px 14px;
+  padding: 12px;
   border-radius: 6px;
   border: none;
   font-size: 13px;

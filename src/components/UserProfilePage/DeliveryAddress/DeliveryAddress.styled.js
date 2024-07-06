@@ -22,7 +22,7 @@ export const Text = styled.p`
 
 export const AddButton = styled.button`
   max-width: 138px;
-  padding: 12px 20px;
+  padding: 12px 18px;
   border-radius: 6px;
   border: none;
   font-size: 13px;

@@ -32,6 +32,7 @@ import {
 import noImage from '../../../../assets/images/no-image-available.webp';
 import { useEffect } from 'react';
 import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
+import { theme } from 'styles/GlobalStyled';
 
 export const CartItem = ({ item }) => {
   const {
@@ -144,9 +145,11 @@ export const CartItem = ({ item }) => {
     if (quantityOrdered < quantity) {
       dispatch(increaseQuantity(item));
     } else {
-      toast.success(`Максимальна кількість в наявності: ${quantity} шт`, {
+      toast(`Максимальна кількість в наявності: ${quantity} шт`, {
+        style: {
+          border: `1px solid ${theme.colors.error}`,
+        },
         id: 'clipboard',
-        duration: 4000,
       });
     }
   };

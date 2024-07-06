@@ -400,20 +400,34 @@ export const Checkout = () => {
         toast(`Перевірте, будь ласка, кількість товарів у кошику.`, {
           id: 'warning',
           icon: '👀',
-          duration: 5000,
           style: {
-            borderRadius: '10px',
             background: `${theme.colors.textPrimary}`,
             color: `${theme.colors.secondary}`,
           },
         });
-      } else if (!isValidPhone || tel === '+380' || !city || !payment) {
-        toast('Введіть номер телефону, спосіб доставки і спосіб оплати.', {
+      } else if (!isValidPhone || tel === '+380') {
+        toast('Введіть номер телефону', {
           id: 'warning',
           icon: '👀',
-          duration: 5000,
           style: {
-            borderRadius: '10px',
+            background: `${theme.colors.textPrimary}`,
+            color: `${theme.colors.secondary}`,
+          },
+        });
+      } else if (!city) {
+        toast('Введіть спосіб доставки', {
+          id: 'warning',
+          icon: '👀',
+          style: {
+            background: `${theme.colors.textPrimary}`,
+            color: `${theme.colors.secondary}`,
+          },
+        });
+      } else if (!payment) {
+        toast('Введіть спосіб оплати', {
+          id: 'warning',
+          icon: '👀',
+          style: {
             background: `${theme.colors.textPrimary}`,
             color: `${theme.colors.secondary}`,
           },

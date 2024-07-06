@@ -105,9 +105,7 @@ export const Modal3DPrint = ({
                   toast('Введіть номер телефону', {
                     id: 'warning',
                     icon: '👀',
-                    duration: 5000,
                     style: {
-                      borderRadius: '10px',
                       background: `${theme.colors.secondary}`,
                       color: `${theme.colors.textPrimary}`,
                     },
