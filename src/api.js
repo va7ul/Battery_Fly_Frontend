@@ -19,7 +19,7 @@ export const addQuickOrder = async orderData => {
     const data = await axios.post('order/quick-order', orderData);
     return data;
   } catch (error) {
-    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.');
+    toast.error('Сталася помилка, спробуйте ще раз');
   }
 };
 
@@ -28,7 +28,7 @@ export const addFeedback = async dataUser => {
     const data = await axios.post(`feedback`, dataUser);
     return data;
   } catch (error) {
-    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.');
+    toast.error('Сталася помилка, спробуйте ще раз');
   }
 };
 
@@ -37,7 +37,7 @@ export const forgotPassword = async email => {
     const data = await axios.post('auth/forgot-password', email);
     return data;
   } catch (error) {
-    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.');
+    toast.error('Сталася помилка, спробуйте ще раз');
   }
 };
 
@@ -45,18 +45,15 @@ export const changePassword = async passwords => {
   try {
     const data = await axios.post('user/change-password', passwords);
     toast.success('Новий пароль збережено!', {
-      duration: 5000,
     });
     return data;
   } catch (error) {
     if (error.response.data.message === 'Email or password is wrong') {
       toast.error('Невірний пароль.', {
-        duration: 5000,
       });
       return;
     }
-    toast.error('Вибачте, сталася помилка. Спробуйте ще раз.', {
-      duration: 5000,
+    toast.error('Сталася помилка, спробуйте ще раз', {
     });
   }
 };
