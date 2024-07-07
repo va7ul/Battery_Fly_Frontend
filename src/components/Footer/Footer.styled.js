@@ -96,7 +96,7 @@ export const TextDate = styled.p`
   }
 `;
 
-// Confidential (Box, TextDate)
+// Confidential (Box, TextDate, Text)
 
 // ForClients (Box, Title)
 
