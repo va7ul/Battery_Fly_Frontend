@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.section`
   display: flex;
-  align-content: center;
   width: 100%;
   height: 234px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -30,7 +29,10 @@ export const Title = styled.h1`
 export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
-
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-start;
   width: 204px;
   gap: 5px;
   margin-left: 20px;
