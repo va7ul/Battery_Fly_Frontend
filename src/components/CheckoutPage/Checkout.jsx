@@ -11,7 +11,10 @@ import { Cart } from './Cart/Cart';
 import { TotalPrice } from './TotalPrice/TotalPrice';
 import { personalDataSchema } from 'common/schemas/personalDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
-import { selectIsLoading } from '../../redux/order/orderSelectors';
+import {
+  selectIsChangedProductInCart,
+  selectIsLoading,
+} from '../../redux/order/orderSelectors';
 import { addOrder } from '../../redux/order/orderOperations';
 import {
   changeOrderNum,
@@ -19,7 +22,12 @@ import {
   checkChangeProductInCart,
 } from '../../redux/order/orderSlice';
 import { selectItems } from '../../redux/basket/basketSelectors';
-import { clearBasket } from '../../redux/basket/basketSlice';
+import {
+  addProductWithUpdatedPrice,
+  changePrice,
+  clearArrOfProductsWithUpdatedPrice,
+  clearBasket,
+} from '../../redux/basket/basketSlice';
 import { selectProducts } from '../../redux/products/productsSelectors';
 import { getProducts } from '../../redux/products/productsOperations';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
@@ -28,12 +36,11 @@ import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAg
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/GlobalStyled';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
+import { useNewPrice } from 'utils/hooks/useNewPrice';
 
 export const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const {
     isLoggedIn,
@@ -56,9 +63,17 @@ export const Checkout = () => {
     deliveryType,
   } = useOrder();
 
+  const getNewPrice = useNewPrice();
+
   const isLoading = useSelector(selectIsLoading);
   const products = useSelector(selectItems);
   const newProducts = useSelector(selectProducts);
+  const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
+
+  const [arrOfProductsWithNewPrice, setArrOfProductsWithNewPrice] = useState(
+    []
+  );
+  const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const codeOfProductsInBasket = useMemo(
     () => products.map(item => item.codeOfGood),
@@ -74,8 +89,29 @@ export const Checkout = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch(clearArrOfProductsWithUpdatedPrice([]));
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(getProducts(codeOfProductsInBasket));
   }, [dispatch, codeOfProductsInBasket]);
+
+  useEffect(() => {
+    if (isChangedProductInCart) {
+      setArrOfProductsWithNewPrice(getNewPrice?.filter(item => item !== null));
+    }
+  }, [isChangedProductInCart, getNewPrice]);
+
+  useEffect(() => {
+    if (isChangedProductInCart) {
+      if (arrOfProductsWithNewPrice?.length > 0) {
+        arrOfProductsWithNewPrice.forEach(item => dispatch(changePrice(item)));
+        arrOfProductsWithNewPrice.forEach(item =>
+          dispatch(addProductWithUpdatedPrice(item))
+        );
+      }
+    }
+  }, [dispatch, isChangedProductInCart, arrOfProductsWithNewPrice]);
 
   useEffect(() => {
     if (orderNum) {
@@ -140,7 +176,7 @@ export const Checkout = () => {
       };
       dispatch(changeUserComment(orderData.userData.text));
       isChangedProducts = checkChangedProducts();
-      if (isChangedProducts) {
+      if (isChangedProducts || products.length !== newProducts.length) {
         toast(`Перевірте, будь ласка, кількість товарів у кошику.`, {
           id: 'warning',
           icon: '👀',
@@ -188,7 +224,7 @@ export const Checkout = () => {
 
   return (
     <>
-      {isLoading && <CustomLoader/>}
+      {isLoading && <CustomLoader />}
       {products.length < 1 && !orderNum ? (
         <EmptyCart closeCart={handleEmptyBasket} isOrder={true} />
       ) : (

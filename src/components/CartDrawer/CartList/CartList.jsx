@@ -4,8 +4,8 @@ import { CartItem } from './CartItem/CartItem';
 import { List } from './CartList.styled';
 
 export const CartList = () => {
-  const products = useSelector(selectItems);
-
+ const products = useSelector(selectItems);
+  
   return (
     <>
       <List>

@@ -9,6 +9,7 @@ import {
   increaseQuantity,
   decreaseQuantity,
   changeQuantity,
+  changeAllQuantity,
 } from '../../../../redux/basket/basketSlice';
 import { setCartOpen } from '../../../../redux/menu/menuSlice';
 import { selectProducts } from '../../../../redux/products/productsSelectors';
@@ -29,6 +30,8 @@ import {
   Advert,
 } from './CartItem.styled';
 import noImage from '../../../../assets/images/no-image-available.webp';
+import { useEffect } from 'react';
+import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
 import { theme } from 'styles/GlobalStyled';
 
 export const CartItem = ({ item }) => {
@@ -45,17 +48,58 @@ export const CartItem = ({ item }) => {
   } = item;
 
   const dispatch = useDispatch();
-
   const newProducts = useSelector(selectProducts);
   const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
+  const arrOfProductsWithUpdatedPrice = useSelector(
+    selectArrOfProductsWithUpdatedPrice
+  );
 
-  let updatedProduct = null;
+  let productWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
+    item =>
+      item.codeOfGood === codeOfGood &&
+      item.capacityKey === capacityKey &&
+      item.selectedSealing === selectedSealing &&
+      item.selectedHolder === selectedHolder
+  );
+
+  let productWithUpdatedQuantity = null;
 
   if (isChangedProductInCart) {
-    updatedProduct = newProducts.find(
-      item => item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
+    productWithUpdatedQuantity = newProducts.find(
+      item => item.codeOfGood === codeOfGood
     );
+    if (!productWithUpdatedQuantity) {
+      productWithUpdatedQuantity = {
+        quantity: 0,
+      };
+    } else if (productWithUpdatedQuantity.quantity!==0) {
+      productWithUpdatedQuantity = newProducts.find(
+        item =>
+          item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
+      );
+    }
   }
+
+  useEffect(() => {
+    if (productWithUpdatedQuantity) {
+      dispatch(
+        changeAllQuantity({
+          codeOfGood,
+          capacityKey,
+          selectedSealing,
+          selectedHolder,
+          quantity: productWithUpdatedQuantity.quantity,
+        })
+      );
+    }
+  }, [
+    dispatch,
+    codeOfGood,
+    capacityKey,
+    selectedSealing,
+    selectedHolder,
+    productWithUpdatedQuantity,
+  ]);
 
   const closeCart = () => {
     dispatch(setCartOpen(false));
@@ -205,13 +249,17 @@ export const CartItem = ({ item }) => {
           </CapacityWrap>
         )}
       </Item>
-      {updatedProduct?.quantity > 0 && (
+      {productWithUpdatedQuantity?.quantity > 0 && (
         <Advert>
-          *Цей товар є в наявності у кількості {updatedProduct.quantity} шт.
+          *Цей товар є в наявності у кількості{' '}
+          {productWithUpdatedQuantity.quantity} шт.
         </Advert>
       )}
-      {updatedProduct?.quantity === 0 && (
+      {productWithUpdatedQuantity?.quantity === 0 && (
         <Advert>*Цього товару немає в наявності.</Advert>
+      )}
+      {productWithUpdatedPrice && (
+        <Advert>*Ціна на цей товар змінилась.</Advert>
       )}
     </>
   );
