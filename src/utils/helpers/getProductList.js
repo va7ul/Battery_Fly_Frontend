@@ -3,6 +3,6 @@ export const getProductList = (popularProducts, categoryName) => {
     if (categoryName === 'sale') {
       return sale === true;
     }
-    return category === categoryName && sale === false;
+    return category === categoryName;
   });
 };
