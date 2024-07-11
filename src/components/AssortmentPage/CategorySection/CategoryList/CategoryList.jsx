@@ -1,14 +1,16 @@
 import { useSelector } from 'react-redux';
 import { ProductsCard } from '../../../Shared/ProductsCard/ProductsCard';
 import { StyledList, StyledListCard } from './CategoryList.styled';
-import { selectPopularProducts } from '../../../../redux/products/productsSelectors';
+import { selectProducts } from '../../../../redux/products/productsSelectors';
 import { getCategoryName, getProductList } from 'utils/helpers/index';
 
 export const CategoryList = ({ category }) => {
-  const popularProducts = useSelector(selectPopularProducts);
+  const popularProducts = useSelector(selectProducts);
   const categoryName = getCategoryName(category);
   const productList = getProductList(popularProducts, categoryName);
-  const limitProductList = productList.slice(0, 4);
+
+  const limitProductList =
+    categoryName === 'sale' ? productList.slice(-4) : productList.slice(0, 4);
 
   return (
     <StyledList category={category}>
