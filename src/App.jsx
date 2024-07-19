@@ -34,6 +34,7 @@ const CheckoutPage = lazyLoadPage('CheckoutPage');
 const UserProfilePage = lazyLoadPage('UserProfilePage');
 const OrdersHistoryPage = lazyLoadPage('OrdersHistoryPage');
 const FavoritesPage = lazyLoadPage('FavoritesPage');
+const PrivacyPolicyPage = lazyLoadPage('PrivacyPolicyPage');
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ export const App = () => {
         <Route path="/delivery-and-payment" element={<DeliveryPaymentPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="/guarantees" element={<GuaranteesPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/assortment" element={<AssortmentPage />} />
         <Route path="/sales" element={<SalesPage />} />
