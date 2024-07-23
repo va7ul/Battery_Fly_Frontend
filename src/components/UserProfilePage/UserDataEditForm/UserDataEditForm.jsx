@@ -10,7 +10,7 @@ import { editUserData } from '../../../redux/user/userOperations';
 import { userDataSchema } from 'common/schemas/userDataSchema';
 import { isPhoneValid } from 'common/schemas/phoneSchema';
 import { PasswordEditForm } from '../PasswordEditForm/PasswordEditForm';
-import { theme } from 'styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   StyledForm,
   Label,

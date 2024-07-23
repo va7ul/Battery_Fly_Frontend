@@ -22,7 +22,7 @@ import {
   setPriceWithSale,
 } from '../../redux/products/oneProductSlice';
 import { ModalQuickOrder } from 'components/Modals/ModalQuickOrder/ModalQuickOrder';
-import { theme } from 'styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   OrderBox,
   Input,

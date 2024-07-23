@@ -19,7 +19,7 @@ import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
-import { theme } from '../../../styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   Btn,
   DivErrorMessage,
@@ -31,7 +31,6 @@ import {
   Title,
   Wrapper,
 } from './Modal3DPrint.styled';
-
 
 export const Modal3DPrint = ({
   isModal3DPrintOpen,
@@ -76,7 +75,7 @@ export const Modal3DPrint = ({
   return (
     <>
       {isLoading ? (
-        <CustomLoader/>
+        <CustomLoader />
       ) : (
         <ModalYellowGradient
           isModalOpen={isModal3DPrintOpen}

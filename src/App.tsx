@@ -7,7 +7,8 @@ import { useAuth } from './utils/hooks';
 import { refreshUser } from './redux/user/userOperations';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 
-const lazyLoadPage = importPath => lazy(() => import(`./pages/${importPath}`));
+const lazyLoadPage = (importPath: string) =>
+  lazy(() => import(`./pages/${importPath}`));
 
 const MainPage = lazyLoadPage('MainPage');
 const AboutPage = lazyLoadPage('AboutPage');

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseURL } from './utils/constants/baseURL';
+import { baseURL } from './utils/constants/baseURL.ts';
 import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = baseURL;

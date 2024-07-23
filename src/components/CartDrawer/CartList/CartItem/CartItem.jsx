@@ -32,7 +32,7 @@ import {
 import noImage from '../../../../assets/images/no-image-available.webp';
 import { useEffect } from 'react';
 import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
-import { theme } from 'styles/GlobalStyled';
+import { theme } from 'styles/theme';
 
 export const CartItem = ({ item }) => {
   const {
@@ -72,7 +72,7 @@ export const CartItem = ({ item }) => {
       productWithUpdatedQuantity = {
         quantity: 0,
       };
-    } else if (productWithUpdatedQuantity.quantity!==0) {
+    } else if (productWithUpdatedQuantity.quantity !== 0) {
       productWithUpdatedQuantity = newProducts.find(
         item =>
           item.codeOfGood === codeOfGood && item.quantity < quantityOrdered

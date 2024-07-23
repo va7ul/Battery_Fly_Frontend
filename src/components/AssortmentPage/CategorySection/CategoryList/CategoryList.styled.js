@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gradientTransitionCard, hidden } from 'styles/GlobalStyled';
+import { gradientTransitionCard, hidden } from 'styles/globalStyles';
 
 const getCardSize = props => {
   if (props.category === 'Акції') {

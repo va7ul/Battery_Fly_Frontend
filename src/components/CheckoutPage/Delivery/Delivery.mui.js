@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { themeMUI } from '../../../styles/GlobalStyled';
+import { themeMUI } from 'styles/themeMUI';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 
