@@ -34,7 +34,7 @@ import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { EmptyCart } from 'components/CartDrawer/EmptyCart/EmptyCart';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
-import { theme } from 'styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
 import { useNewPrice } from 'utils/hooks/useNewPrice';
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getSectionBackground } from 'styles/GlobalStyled';
+import { getSectionBackground } from 'styles/globalStyles';
 
 const getColor = props => {
   if (props.category === 'Акції') {

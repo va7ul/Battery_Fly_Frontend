@@ -1,6 +1,6 @@
 import Backdrop from '@mui/material/Backdrop';
 import { Hourglass } from 'react-loader-spinner';
-import { theme } from 'styles/GlobalStyled';
+import { theme } from 'styles/theme';
 
 export const CustomLoader = ({ isLoading = true }) => {
   return (

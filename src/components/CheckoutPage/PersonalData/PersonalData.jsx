@@ -6,7 +6,7 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useAuth, useOrder } from 'utils/hooks';
 import { changeUserTel } from '../../../redux/order/orderSlice';
-import { theme } from '../../../styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   DivErrorMessage,
   Label,

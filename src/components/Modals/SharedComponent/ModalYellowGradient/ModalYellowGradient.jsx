@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal';
-import { theme } from '../../../../styles/GlobalStyled';
+import { theme } from 'styles/theme';
 
 const customStyles = {
   overlay: {
@@ -22,7 +22,8 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-export const ModalYellowGradient = ({children,
+export const ModalYellowGradient = ({
+  children,
   isModalOpen,
   handleCloseModal,
 }) => {

@@ -13,7 +13,7 @@ import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
-import { theme } from '../../../styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   Btn,
   DivErrorMessage,

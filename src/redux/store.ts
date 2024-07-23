@@ -30,6 +30,12 @@ const basketPersistConfig = {
   whitelist: ['items', 'total'],
 };
 
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
+const persistedBasketReducer = persistReducer(
+  basketPersistConfig,
+  basketReducer
+);
+
 const productsReducer = combineReducers({
   oneProduct: oneProductReducer,
   productsList: productsListReducer,
@@ -37,10 +43,10 @@ const productsReducer = combineReducers({
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer(userPersistConfig, userReducer),
+    user: persistedUserReducer,
     products: productsReducer,
     print3D: print3DReducer,
-    basket: persistReducer(basketPersistConfig, basketReducer),
+    basket: persistedBasketReducer,
     menu: menuReducer,
     order: orderReducer,
   },
@@ -52,4 +58,6 @@ export const store = configureStore({
     }),
 });
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export const persistor = persistStore(store);

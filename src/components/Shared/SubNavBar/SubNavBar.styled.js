@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { getRotation } from 'styles/GlobalStyled';
+import { getRotation } from 'styles/globalStyles';
 
 export const StyledNav = styled.nav`
   padding: 30px 110px 0px;

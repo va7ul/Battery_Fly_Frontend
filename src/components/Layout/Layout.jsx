@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
-import { themeMUI } from 'styles/GlobalStyled';
+import { themeMUI } from 'styles/themeMUI';
 import { Container } from './Layout.styled';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../../components/Header/Header';

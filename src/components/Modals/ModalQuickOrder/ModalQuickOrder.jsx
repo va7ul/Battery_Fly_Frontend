@@ -13,7 +13,7 @@ import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/ModalYellowGradient';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
-import { theme } from '../../../styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   Btn,
   CodeOfGoodText,
@@ -25,7 +25,6 @@ import {
   Title,
   Wrapper,
 } from './ModalQuickOrder.styled';
-
 
 export const ModalQuickOrder = ({
   product: { name, codeOfGood },

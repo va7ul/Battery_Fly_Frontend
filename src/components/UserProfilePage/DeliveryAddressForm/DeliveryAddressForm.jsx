@@ -15,7 +15,7 @@ import {
 import { editUserAddress } from '../../../redux/user/userOperations';
 import { selectDelivery } from '../../../redux/user/userSelectors';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
-import { theme } from 'styles/GlobalStyled';
+import { theme } from 'styles/theme';
 import {
   Box,
   BtnWrapper,
@@ -24,7 +24,6 @@ import {
   Text,
   selectStyles,
 } from './DeliveryAddressForm.styled';
-
 
 export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   const dispatch = useDispatch();
@@ -122,7 +121,7 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   };
   return (
     <>
-      {isLoading && <CustomLoader/>}
+      {isLoading && <CustomLoader />}
       <Text>{text}</Text>
       <Box>
         <Select

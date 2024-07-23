@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gradientTransitionCard } from 'styles/GlobalStyled';
+import { gradientTransitionCard } from 'styles/globalStyles';
 
 export const StyledList = styled.ul`
   display: grid;
