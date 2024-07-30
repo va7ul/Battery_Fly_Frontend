@@ -1,13 +1,13 @@
+import { ChangeEvent, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useTypedSelector } from '../../redux/hooks/hooks.ts';
 import {
   selectPrint3D,
   selectedAccuracy,
   selectedPlactic,
   selectedColor,
-} from '../../redux/print3D/print3DSelectors';
+} from '../../redux/print3D/print3DSelectors.ts';
 import { ProductPhoto } from 'components/Shared/ProductPhoto/ProductPhoto';
 import { Modal3DPrint } from 'components/Modals/Modal3DPrint/Modal3DPrint';
 import {
@@ -19,7 +19,7 @@ import {
   OrderButton,
   StyledInput,
   Text,
-} from './Print3D.styled';
+} from './Print3D.styled.ts';
 import { ProductInformation } from 'components/Shared/ProductInformation/ProductInformation';
 import { Description } from './Description/Description';
 import { Options } from './Options/Options';
@@ -28,7 +28,7 @@ import { PriceList } from './PriceList/PriceList';
 export const Print3D = () => {
   const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
   const [isModal3DPrintOpen, setIsModal3DPrintOpen] = useState(false);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<File[]>([]);
 
   const handleOpen3DPrintModal = () => {
     if (!accuracy || !plactic || !color) {
@@ -49,13 +49,13 @@ export const Print3D = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const { name, image, information } = useSelector(selectPrint3D);
-  const accuracy = useSelector(selectedAccuracy);
-  const plactic = useSelector(selectedPlactic);
-  const color = useSelector(selectedColor);
+  const { name, image, information } = useTypedSelector(selectPrint3D);
+  const accuracy = useTypedSelector(selectedAccuracy);
+  const plactic = useTypedSelector(selectedPlactic);
+  const color = useTypedSelector(selectedColor);
 
-  const attachFiles = e => {
-    const selectedFiles = Array.from(e.target.files);
+  const attachFiles = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(e.target.files || []);
     const allowedExtensions = [
       '.stl',
       '.3mf',
@@ -72,8 +72,8 @@ export const Print3D = () => {
     ];
 
     const validFiles = selectedFiles.filter(file => {
-      const fileExtension = file.name.split('.').pop().toLowerCase();
-      return allowedExtensions.includes(`.${fileExtension}`);
+      const fileExtension = file.name.split('.').pop()?.toLowerCase();
+      return fileExtension && allowedExtensions.includes(fileExtension);
     });
 
     if (validFiles.length !== selectedFiles.length) {

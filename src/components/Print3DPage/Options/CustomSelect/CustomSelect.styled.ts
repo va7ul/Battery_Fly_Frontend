@@ -1,4 +1,7 @@
-export const selectStyles = {
+import { StylesConfig, GroupBase } from 'react-select';
+import { Option } from '../../../../@types/customSelect.types';
+
+export const selectStyles: StylesConfig<Option, false, GroupBase<Option>> = {
   control: styles => ({
     ...styles,
     backgroundColor: 'rgba(225, 225, 225, 1)',

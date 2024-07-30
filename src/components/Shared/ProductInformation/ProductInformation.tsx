@@ -1,6 +1,12 @@
 import { InfoBox, Subject, Info } from './ProductInformation.styled';
 
-export const ProductInformation = ({ information }) => {
+type ProductInformationProps = {
+  information: string;
+};
+
+export const ProductInformation: React.FC<ProductInformationProps> = ({
+  information,
+}) => {
   const newInfo = information.split(';');
   return (
     <InfoBox>
