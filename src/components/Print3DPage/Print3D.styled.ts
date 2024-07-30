@@ -88,7 +88,6 @@ export const StyledInput = styled.input`
 export const Text = styled.p`
   margin-top: 5px;
   font-size: 10px;
-  /* color: ${props => props.theme.colors.hoverColor}; */
 
   @media screen and (min-width: 1280px) {
     font-size: 16px;

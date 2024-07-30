@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
 import { CustomSelect } from './CustomSelect/CustomSelect';
+import { useTypedSelector } from '../../../redux/hooks';
 import { selectPrint3D } from '../../../redux/print3D/print3DSelectors';
 import { OptionsContainer, Subtitle } from './Options.styled';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../redux/print3D/print3DSlice';
 
 export const Options = () => {
-  const { accuracy, plactic, color } = useSelector(selectPrint3D);
+  const { accuracy, plactic, color } = useTypedSelector(selectPrint3D);
 
   return (
     <OptionsContainer>

@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useTypedSelector } from '../../../redux/hooks';
 import { selectPrint3D } from '../../../redux/print3D/print3DSelectors';
 import { Container, Desc, Item, Subtitle } from './Description.styled';
 
 export const Description = () => {
-  const { description } = useSelector(selectPrint3D);
+  const { description } = useTypedSelector(selectPrint3D);
 
   const newDescription = description.split(';');
 

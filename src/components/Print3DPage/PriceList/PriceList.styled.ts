@@ -40,7 +40,6 @@ export const Table = styled.table`
 
   th,
   td {
-    /* font-weight: 400; */
     border: 1px solid black;
     padding: 7px 0px;
   }

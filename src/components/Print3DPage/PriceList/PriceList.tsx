@@ -1,21 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useTypedSelector } from '../../../redux/hooks';
 import { selectPrint3D } from '../../../redux/print3D/print3DSelectors';
 import { Wrapper, Title, Table } from './PriceList.styled';
 
 export const PriceList = () => {
-  const { table1, table2 } = useSelector(selectPrint3D);
+  const { table1, table2 } = useTypedSelector(selectPrint3D);
 
-  const data = [table1, table2];
+  const tables = [table1, table2];
 
   return (
     <>
       <Title>Ціни на друк</Title>
       <Wrapper>
-        {data.map(
-          data =>
-            data[100] && (
-              <Table key={data.nameTable}>
-                <caption>{data.nameTable}</caption>
+        {tables.map(
+          table =>
+            table && (
+              <Table key={table.nameTable}>
+                <caption>{table.nameTable}</caption>
                 <thead>
                   <tr>
                     <th rowSpan={2}>Точність</th>
@@ -32,24 +32,24 @@ export const PriceList = () => {
                 <tbody>
                   <tr>
                     <td>100 мікрон</td>
-                    <td>{data[100][1]} грн</td>
-                    <td>{data[100][50]} грн</td>
-                    <td>{data[100][100]} грн</td>
-                    <td>{data[100][250]} грн</td>
+                    <td>{table[100][1]} грн</td>
+                    <td>{table[100][50]} грн</td>
+                    <td>{table[100][100]} грн</td>
+                    <td>{table[100][250]} грн</td>
                   </tr>
                   <tr>
                     <td>200 мікрон</td>
-                    <td>{data[200][1]} грн</td>
-                    <td>{data[200][50]} грн</td>
-                    <td>{data[200][100]} грн</td>
-                    <td>{data[200][250]} грн</td>
+                    <td>{table[200][1]} грн</td>
+                    <td>{table[200][50]} грн</td>
+                    <td>{table[200][100]} грн</td>
+                    <td>{table[200][250]} грн</td>
                   </tr>
                   <tr>
                     <td>300 мікрон</td>
-                    <td>{data[300][1]} грн</td>
-                    <td>{data[300][50]} грн</td>
-                    <td>{data[300][100]} грн</td>
-                    <td>{data[300][250]} грн</td>
+                    <td>{table[300][1]} грн</td>
+                    <td>{table[300][50]} грн</td>
+                    <td>{table[300][100]} грн</td>
+                    <td>{table[300][250]} грн</td>
                   </tr>
                 </tbody>
               </Table>
