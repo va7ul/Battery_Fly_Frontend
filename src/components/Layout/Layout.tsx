@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { themeMUI } from 'styles/themeMUI';
 import { Container } from './Layout.styled';
 import { Footer } from '../Footer/Footer';
-import { Header } from '../../components/Header/Header';
+import { Header } from '../Header/Header';
 
 export const Layout = () => {
   return (
