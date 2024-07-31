@@ -25,7 +25,7 @@ export const Sum = styled.p`
   }
 `;
 
-export const Discount = styled.p`
+export const Discount = styled.p<{ discount: number }>`
   width: 100%;
   display: flex;
   justify-content: space-between;

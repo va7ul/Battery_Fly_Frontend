@@ -1,10 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DeliveryInfo, PromoCode, UserData } from '../../@types/order.types';
 import {
   addOrder,
   getDeliveryCities,
   getDeliveryWarehouses,
   addPromoCode,
 } from './orderOperations';
+
+type InitialState = {
+  userData: UserData;
+  delivery: DeliveryInfo;
+  promoCode: string;
+  promoCodeDiscount: number;
+  discountValue: number;
+  together: number;
+  isChangedProductInCart: boolean;
+  orderNum: string;
+  isLoading: boolean;
+  isLoadingPromoCode: boolean;
+  error: string | null;
+  errorPromoCode: string | null;
+};
 
 const defaultUserData = {
   tel: '',
@@ -20,7 +36,7 @@ const deliveryInfo = {
   warehouse: '',
 };
 
-const initialState = {
+const initialState: InitialState = {
   userData: { ...defaultUserData },
   delivery: deliveryInfo,
   promoCode: '',
@@ -39,7 +55,7 @@ export const handlePending = state => {
   state.isLoading = true;
 };
 
-export const handlePendingAddPromoCode = state => {
+export const handlePendingAddPromoCode = (state: InitialState) => {
   state.isLoadingPromoCode = true;
 };
 
@@ -61,9 +77,12 @@ export const handleRejected = (state, { payload }) => {
   state.error = payload;
 };
 
-export const handleRejectedPromoCode = (state, { payload }) => {
+export const handleRejectedPromoCode = (
+  state: InitialState,
+  { payload }: PayloadAction<string | undefined>
+) => {
   state.isLoadingPromoCode = false;
-  state.errorPromoCode = payload;
+  state.errorPromoCode = payload ?? 'Unknown error';
 };
 
 export const handleFulfilledGetCities = (state, { payload }) => {
@@ -78,7 +97,10 @@ export const handleFulfilledGetWarehouses = (state, { payload }) => {
   state.error = null;
 };
 
-export const handleFulfilledAddPromoCode = (state, { payload }) => {
+export const handleFulfilledAddPromoCode = (
+  state: InitialState,
+  { payload }: PayloadAction<{ promoCode: PromoCode }>
+) => {
   state.promoCode = payload.promoCode.name;
   state.promoCodeDiscount = payload.promoCode.discount;
   state.isLoadingPromoCode = false;
