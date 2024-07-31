@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { FormEvent, useState } from 'react';
 import { useOrder, usePrettyPrice } from 'utils/hooks';
+import { useTypedDispatch } from '../../../redux/hooks';
+import { addPromoCode } from '../../../redux/order/orderOperations';
+import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import {
   PriceContainer,
   Sum,
@@ -10,8 +12,6 @@ import {
   UsePromo,
   Advert,
 } from './TotalPrice.styled';
-import { addPromoCode } from '../../../redux/order/orderOperations';
-import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 
 export const TotalPrice = () => {
   const { promoCodeDiscount, errorPromoCode, isLoadingPromoCode } = useOrder();
@@ -19,19 +19,13 @@ export const TotalPrice = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // const promoCode = {
-  //   _id: '662e4d87b7322ab63b9d14cd',
-  //   discount: 10,
-  //   valid: true,
-  // };
-
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
-  const getDiscount = e => {
+  const getDiscount = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(addPromoCode(e.currentTarget.promo.value.toString()));
   };
