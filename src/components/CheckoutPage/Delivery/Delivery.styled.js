@@ -34,12 +34,12 @@ export const Button = styled.button`
   padding: 14px;
   background: ${props =>
     props.$show
-      ? props.theme.colors.yellow
+      ? props.theme.colors.secondary
       : props.theme.colors.greyBackgroundPaper};
 
   &:hover,
   &:focus {
-    background: ${props => props.theme.colors.yellow};
+    background: ${props => props.theme.colors.secondary};
   }
 
   &:focus {
