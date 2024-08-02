@@ -1,4 +1,5 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
+import { Product, ProductZbirky } from '../../@types/products.types';
 import {
   logOut,
   login,
@@ -13,6 +14,10 @@ import {
   verifyEmail,
 } from './userOperations';
 
+type InitialState = {
+  favorites: (Product | ProductZbirky)[];
+};
+
 const defaultUserData = {
   firstName: '',
   lastName: '',
@@ -21,7 +26,7 @@ const defaultUserData = {
   email: '',
 };
 
-const initialState = {
+const initialState: InitialState = {
   userData: { ...defaultUserData },
   token: '',
   isAuthModalOpen: false,
@@ -39,7 +44,7 @@ const initialState = {
   isLoadingOrder: false,
 };
 
-const handlePending = state => {
+const handlePending = (state: InitialState) => {
   state.isLoading = true;
   state.errorStatus = '';
 };
@@ -57,9 +62,12 @@ const handleLogoutPending = state => {
   state.verifiedEmail = false;
 };
 
-const handleRejected = (state, { payload }) => {
+const handleRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | undefined>
+) => {
   state.isLoading = false;
-  state.errorStatus = payload;
+  state.errorStatus = payload ?? 'Unknown error';
 };
 
 const handleRefreshRejected = state => {
@@ -113,7 +121,10 @@ const handleEditUserAddressFulfilled = (state, { payload }) => {
   state.delivery = payload.delivery;
 };
 
-const handleFavoriteFulfilled = (state, { payload }) => {
+const handleFavoriteFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<{ favorites: (Product | ProductZbirky)[] }>
+) => {
   state.favorites = payload.favorites;
 };
 

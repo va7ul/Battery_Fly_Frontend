@@ -1,16 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useLoader } from 'utils/hooks';
+import { useTypedDispatch, useTypedSelector } from '../redux/hooks';
 import { selectFavorites } from '../redux/user/userSelectors';
 import { getProducts } from '../redux/products/productsOperations';
-import { useLoader } from 'utils/hooks';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { Favorites } from 'components/FavoritesPage/Favorites';
 
 const FavoritesPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const { isLoading, error } = useLoader();
-  const codeOfGoods = useSelector(selectFavorites);
+  const codeOfGoods = useTypedSelector(selectFavorites);
 
   useEffect(() => {
     dispatch(getProducts(codeOfGoods));

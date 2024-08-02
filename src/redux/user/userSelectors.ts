@@ -1,3 +1,5 @@
+import { RootState } from 'redux/store';
+
 export const selectUserData = state => state.user.userData;
 export const selectIsLoggedIn = state => state.user.isLoggedIn;
 export const selectIsRefreshing = state => state.user.isRefreshing;
@@ -9,7 +11,7 @@ export const selectMessageOfSuccessfulRequest = state =>
   state.user.messageOfSuccessfulRequest;
 export const selectOrders = state => state.user.orders;
 export const selectDelivery = state => state.user.delivery;
-export const selectFavorites = state => state.user.favorites;
+export const selectFavorites = (state: RootState) => state.user.favorites;
 export const selectOrdersHistory = state => state.user.ordersHistory;
 export const selectOrderDetails = state => state.user.ordersDetails;
 export const selectIsLoadingOrder = state => state.user.isLoadingOrder;

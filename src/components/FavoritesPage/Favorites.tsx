@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
-import { useSelector } from 'react-redux';
+import { useTypedSelector } from '../../redux/hooks';
 import { selectProducts } from '../../redux/products/productsSelectors';
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
 import { FavoritesList } from './FavoritesList/FavoritesList';
@@ -8,7 +8,7 @@ import { NoFavorites } from './NoFavorites/NoFavorites';
 
 export const Favorites = () => {
   const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
-  const favorites = useSelector(selectProducts);
+  const favorites = useTypedSelector(selectProducts);
 
   return (
     <Wrapper>
