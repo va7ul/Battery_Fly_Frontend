@@ -36,7 +36,7 @@ export const ProfileButton = () => {
         />
         {userData.firstName}
 
-        <ArrowIcon handleopen={anchorEl}>
+        <ArrowIcon handleOpen={anchorEl}>
           <svg>
             <use href={`${sprite}#arrow-left`}></use>
           </svg>
