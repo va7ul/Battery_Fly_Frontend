@@ -2,10 +2,11 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { baseURL } from 'utils/constants/baseURL';
 import toast from 'react-hot-toast';
+import { RootState } from 'redux/store';
 
 axios.defaults.baseURL = baseURL;
 
-const setAuthHeader = token => {
+const setAuthHeader = (token: string) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -13,7 +14,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-const handleError = error => {
+const handleError = (error: any): string => {
   if (error.response && error.response.data && error.response.data.message) {
     return `Oops! Something was wrong... ${error.response.data.message}`;
   } else {
@@ -139,56 +140,56 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
-export const addToFavorite = createAsyncThunk(
-  'user/addToFavorite',
-  async (id, thunkAPI) => {
-    const { token } = thunkAPI.getState().user;
+export const addToFavorite = createAsyncThunk<
+  { favorites: string[] },
+  string,
+  { rejectValue: string }
+>('user/addToFavorite', async (id, thunkAPI) => {
+  try {
+    const { data } = await axios.post<{ favorites: string[] }>(
+      `user/favorite/${id}`
+    );
+    toast.remove();
+    toast.success('Додано до улюблених!');
 
-    try {
-      setAuthHeader(token);
-      const { data } = await axios.post(`user/favorite/${id}`);
-      toast.remove();
-      toast.success('Додано до улюблених!');
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    toast.error('Сталася помилка, спробуйте ще раз', {
+      id: 'error',
+    });
 
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз', {
-        id: 'error',
-      });
-
-      return thunkAPI.rejectWithValue(errorMessage);
-    }
+    return thunkAPI.rejectWithValue(errorMessage);
   }
-);
+});
 
-export const deleteFromFavorite = createAsyncThunk(
-  'user/deleteFromFavorite',
-  async (id, thunkAPI) => {
-    try {
-      const { data } = await axios.delete(`user/favorite/${id}`);
-      toast.remove();
-      toast.success('Видалено з улюблених!');
+export const deleteFromFavorite = createAsyncThunk<
+  { favorites: string[] },
+  string,
+  { rejectValue: string }
+>('user/deleteFromFavorite', async (id, thunkAPI) => {
+  try {
+    const { data } = await axios.delete<{ favorites: string[] }>(
+      `user/favorite/${id}`
+    );
+    toast.remove();
+    toast.success('Видалено з улюблених!');
 
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз', {
-        id: 'error',
-      });
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    toast.error('Сталася помилка, спробуйте ще раз', {
+      id: 'error',
+    });
 
-      return thunkAPI.rejectWithValue(errorMessage);
-    }
+    return thunkAPI.rejectWithValue(errorMessage);
   }
-);
+});
 
 export const getOrdersHistory = createAsyncThunk(
   'user/getOrdersHistory',
   async (_, thunkAPI) => {
-    const { token } = thunkAPI.getState().user;
-
     try {
-      setAuthHeader(token);
       const { data } = await axios.get('order/get-orders');
 
       return data;
@@ -204,10 +205,7 @@ export const getOrdersHistory = createAsyncThunk(
 export const getOrderDetails = createAsyncThunk(
   'user/getOrderDetails',
   async (id, thunkAPI) => {
-    const { token } = thunkAPI.getState().user;
-
     try {
-      setAuthHeader(token);
       const { data } = await axios.get(`order/get-order/${id}`);
 
       return data;

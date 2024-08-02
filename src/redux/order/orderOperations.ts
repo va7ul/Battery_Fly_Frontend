@@ -3,17 +3,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { PromoCode } from '../../@types/order.types';
 import { baseURL } from 'utils/constants/baseURL';
 import toast from 'react-hot-toast';
-import { RootState } from 'redux/store';
 
 type ErrorResponse = {
   message: string;
 };
 
 axios.defaults.baseURL = baseURL;
-
-const setAuthHeader = (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
 
 const handleError = (error: any): string => {
   if (error.response && error.response.data && error.response.data.message) {
@@ -72,10 +67,7 @@ export const addPromoCode = createAsyncThunk<
   string,
   { rejectValue: string }
 >('order/addPromoCode', async (name, thunkApi) => {
-  const { token } = (thunkApi.getState() as RootState).user;
-
   try {
-    setAuthHeader(token);
     const { data } = await axios.get<{ promoCode: PromoCode }>(
       `order/promo-code/${name}`
     );
