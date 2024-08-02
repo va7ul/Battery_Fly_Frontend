@@ -1,6 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components';
 import 'modern-normalize';
 import { theme } from './theme';
+import { Props, PropsGetRotation } from '../@types/globalStyles.types';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -104,49 +105,15 @@ export const gradientTransitionCard = css`
   }
 `;
 
-// встав змінну нижче в css свого елемента для transition з градієнтом!!!
-export const gradientTransitionBtn = css`
-  // position: relative; додай на свій елемент ховеру
-  // z-index: 0; додай на свій елемент ховеру
-
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: ${props =>
-      props.disabled
-        ? props.theme.colors.greyBackgroundPaper
-        : props.theme.colors.gradient};
-    transition: ${theme.transition.main};
-    z-index: 1;
-    opacity: 0;
-    //   &::after {border-radius: 20px;} - додай свій радіус таким чином
-  }
-
-  &:hover::after {
-    opacity: 1;
-    background: ${props => props.theme.colors.gradientHover};
-  }
-
-  //і перенеси весь свій контент всередину div
-  div {
-    position: relative;
-    z-index: 2;
-  }
-`;
-
-export const getSectionBackground = props => {
+export const getSectionBackground = (props: Props): string => {
   if (props.category === 'Акції') {
     return `${props.theme.colors.gradientBackground}`;
   }
   return 'inherit';
 };
 
-export const getRotation = props => {
-  if (props.handleopen) {
+export const getRotation = (props: PropsGetRotation): string => {
+  if (props.handleOpen) {
     return `rotate(90deg)`;
   }
   return 'rotate(270deg)';

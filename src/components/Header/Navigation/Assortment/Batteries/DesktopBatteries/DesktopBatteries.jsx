@@ -25,7 +25,7 @@ export const DesktopBatteries = () => {
       </StyledLink>
       <BatteryButton
         type="button"
-        handleopen={anchorEl}
+        handleOpen={anchorEl}
         aria-owns={open ? 'desktop-sub-menu' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
