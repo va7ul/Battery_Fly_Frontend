@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Product, ProductZbirky } from '../../../@types/products.types';
+import { Product } from '../../../@types/products.types';
 import noImage from '../../../assets/images/no-image-available.webp';
 import { useAuth } from 'utils/hooks';
 import { getNewPrice } from 'utils/helpers/index';
@@ -28,7 +28,7 @@ import {
 } from './ProductsCard.styled';
 
 type ProductsCardProps = {
-  product: Product | ProductZbirky;
+  product: Product;
   category: string;
 };
 

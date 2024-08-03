@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Product, ProductZbirky } from '../../@types/products.types';
+import { Product } from '../../@types/products.types';
 import { baseURL } from 'utils/constants/baseURL';
 
 axios.defaults.baseURL = baseURL;
@@ -14,14 +14,12 @@ const handleError = (error: any): string => {
 };
 
 export const getAssortment = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getAssortment', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
-      'products'
-    );
+    const { data } = await axios.get<{ result: Product[] }>('products');
 
     return data;
   } catch (error) {
@@ -31,37 +29,31 @@ export const getAssortment = createAsyncThunk<
 });
 
 export const getProducts = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   string[],
   { rejectValue: string }
 >('products/getProducts', async (products, thunkApi) => {
   try {
-    const { data } = await axios.post<{ result: (Product | ProductZbirky)[] }>(
-      'products',
-      {
-        products,
-      }
-    );
+    const { data } = await axios.post<{ result: Product[] }>('products', {
+      products,
+    });
 
     return data;
   } catch (error) {
     const errorMessage = handleError(error);
     console.error(errorMessage);
-    // toast.error('Сталася помилка, спробуйте ще раз!');
 
     return thunkApi.rejectWithValue(errorMessage);
   }
 });
 
 export const getSales = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getSales', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
-      'products/sale'
-    );
+    const { data } = await axios.get<{ result: Product[] }>('products/sale');
 
     return data;
   } catch (error) {
@@ -71,12 +63,12 @@ export const getSales = createAsyncThunk<
 });
 
 export const getAllBatteries = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getAllBatteries', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries'
     );
 
@@ -88,12 +80,12 @@ export const getAllBatteries = createAsyncThunk<
 });
 
 export const getBatteries18650 = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatteries18650', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries/18650'
     );
 
@@ -105,12 +97,12 @@ export const getBatteries18650 = createAsyncThunk<
 });
 
 export const getBatteries21700 = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatteries21700', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries/21700'
     );
 
@@ -122,12 +114,12 @@ export const getBatteries21700 = createAsyncThunk<
 });
 
 export const getBatteries32650 = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatteries32650', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries/32650'
     );
 
@@ -139,12 +131,12 @@ export const getBatteries32650 = createAsyncThunk<
 });
 
 export const getBatterieslipo = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatterieslipo', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries/lipo'
     );
 
@@ -156,12 +148,12 @@ export const getBatterieslipo = createAsyncThunk<
 });
 
 export const getBatterieslifepo4 = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatterieslifepo4', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries/lifepo4'
     );
 
@@ -173,12 +165,12 @@ export const getBatterieslifepo4 = createAsyncThunk<
 });
 
 export const getAssemblies = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getAssemblies', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/assemblies'
     );
 
@@ -190,12 +182,12 @@ export const getAssemblies = createAsyncThunk<
 });
 
 export const getBatteriesForFPV = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatteriesForFPV', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries-for-fpv'
     );
 
@@ -207,12 +199,12 @@ export const getBatteriesForFPV = createAsyncThunk<
 });
 
 export const getBatteriesForTransport = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatteriesForTransport', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries-for-transport'
     );
 
@@ -224,12 +216,12 @@ export const getBatteriesForTransport = createAsyncThunk<
 });
 
 export const getBatteriesForToys = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getBatteriesForToys', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/batteries-for-toys'
     );
 
@@ -241,14 +233,12 @@ export const getBatteriesForToys = createAsyncThunk<
 });
 
 export const getDevices = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getDevices', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
-      'products/devices'
-    );
+    const { data } = await axios.get<{ result: Product[] }>('products/devices');
 
     return data;
   } catch (error) {
@@ -258,12 +248,12 @@ export const getDevices = createAsyncThunk<
 });
 
 export const getMaterials = createAsyncThunk<
-  { result: (Product | ProductZbirky)[] },
+  { result: Product[] },
   undefined,
   { rejectValue: string }
 >('products/getMaterials', async (_, thunkApi) => {
   try {
-    const { data } = await axios.get<{ result: (Product | ProductZbirky)[] }>(
+    const { data } = await axios.get<{ result: Product[] }>(
       'products/materials'
     );
 

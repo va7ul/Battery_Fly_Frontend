@@ -1,9 +1,9 @@
-import { Product, ProductZbirky } from '../../../@types/products.types';
+import { Product } from '../../../@types/products.types';
 import { ProductsCard } from 'components/Shared/ProductsCard/ProductsCard';
 import { StyledList, StyledListCard } from './FavoritesList.styled';
 
 type PropsFavoritesList = {
-  favorites: (Product | ProductZbirky)[];
+  favorites: Product[];
 };
 
 export const FavoritesList: React.FC<PropsFavoritesList> = ({ favorites }) => {

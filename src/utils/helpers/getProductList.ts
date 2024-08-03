@@ -1,12 +1,9 @@
-import { Product, ProductZbirky } from '../../@types/products.types';
-
-type PopularProduct = Product | ProductZbirky;
-type CategoryName = string;
+import { Product } from '../../@types/products.types';
 
 export const getProductList = (
-  popularProducts: PopularProduct[],
-  categoryName?: CategoryName
-): PopularProduct[] => {
+  popularProducts: Product[],
+  categoryName?: string
+): Product[] => {
   return popularProducts.filter(({ category, sale }) => {
     if (categoryName === 'sale') {
       return sale === true;

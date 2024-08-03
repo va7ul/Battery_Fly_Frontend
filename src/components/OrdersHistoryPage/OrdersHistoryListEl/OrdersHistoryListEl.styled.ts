@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
+import { OrderStatus } from '../../../@types/user.types';
 
-export const getStatusColor = props => {
+type Props = {
+  type: OrderStatus;
+  theme: DefaultTheme;
+};
+
+export const getStatusColor = (props: Props) => {
   switch (props.type) {
     case 'Нове':
       return props.theme.colors.warning;
@@ -15,7 +21,7 @@ export const getStatusColor = props => {
   }
 };
 
-export const StyledText = styled.p`
+export const StyledText = styled.p<{ type: OrderStatus }>`
   font-weight: 700;
   color: ${getStatusColor};
 `;
@@ -100,7 +106,7 @@ export const Sum = styled.p`
   }
 `;
 
-export const Discount = styled.p`
+export const Discount = styled.p<{ discount: number | undefined }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
