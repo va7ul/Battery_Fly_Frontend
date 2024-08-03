@@ -1,5 +1,7 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
-import { Product, ProductZbirky } from '../../@types/products.types';
+import { Product } from '../../@types/products.types';
+import { OrderData } from '../../@types/user.types';
+import { Order } from '../../@types/order.types';
 import {
   logOut,
   login,
@@ -15,7 +17,11 @@ import {
 } from './userOperations';
 
 type InitialState = {
-  favorites: (Product | ProductZbirky)[];
+  favorites: Product[];
+  ordersHistory: OrderData[];
+  ordersDetails: Order[];
+  errorOrder: string | null;
+  isLoadingOrder: boolean;
 };
 
 const defaultUserData = {
@@ -123,27 +129,36 @@ const handleEditUserAddressFulfilled = (state, { payload }) => {
 
 const handleFavoriteFulfilled = (
   state: InitialState,
-  { payload }: PayloadAction<{ favorites: (Product | ProductZbirky)[] }>
+  { payload }: PayloadAction<{ favorites: Product[] }>
 ) => {
   state.favorites = payload.favorites;
 };
 
-const handleGetOrdersHistoryFulfilled = (state, { payload }) => {
+const handleGetOrdersHistoryFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<{ result: OrderData[] }>
+) => {
   state.isLoading = false;
   state.ordersHistory = payload.result;
 };
 
-const handleGetOrderDetailsPending = state => {
+const handleGetOrderDetailsPending = (state: InitialState) => {
   state.isLoadingOrder = true;
   state.errorOrder = null;
 };
 
-const handleGetOrderDetailsRejected = (state, { payload }) => {
+const handleGetOrderDetailsRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | undefined>
+) => {
   state.isLoadingOrder = false;
-  state.errorOrder = payload;
+  state.errorOrder = payload ?? 'Unknown error';
 };
 
-const handleGetOrderDetailsFulfilled = (state, { payload }) => {
+const handleGetOrderDetailsFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<{ result: Order }>
+) => {
   state.isLoadingOrder = false;
   state.ordersDetails.push(payload.result);
 };

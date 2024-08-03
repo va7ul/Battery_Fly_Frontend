@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+import { useTypedDispatch, useTypedSelector } from '../redux/hooks';
 import {
   selectIsLoading,
   selectIsLoadingOrder,
@@ -9,9 +9,9 @@ import { getOrdersHistory } from '../redux/user/userOperations';
 import { OrdersHistory } from 'components/OrdersHistoryPage/OrdersHistory';
 
 const OrdersHistoryPage = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const isLoadingOrder = useSelector(selectIsLoadingOrder);
+  const dispatch = useTypedDispatch();
+  const isLoading = useTypedSelector(selectIsLoading);
+  const isLoadingOrder = useTypedSelector(selectIsLoadingOrder);
 
   useEffect(() => {
     dispatch(getOrdersHistory());

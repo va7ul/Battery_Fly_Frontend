@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, MouseEvent } from 'react';
 import { TfiArrowCircleDown, TfiArrowCircleUp } from 'react-icons/tfi';
+import { OrderData } from '../../../@types/user.types';
 import { getDate, getOrderInfo, getPrettyValue } from 'utils/helpers';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { getOrderDetails } from '../../../redux/user/userOperations';
 import {
   selectOrderDetails,
@@ -22,21 +23,27 @@ import {
 } from './OrdersHistoryListEl.styled';
 import { CustomError } from 'components/Shared/CustomError/CustomError';
 
-export const OrdersHistoryListEl = ({ el }) => {
+type PropsOrdersHistoryListEl = {
+  el: OrderData;
+};
+
+export const OrdersHistoryListEl: React.FC<PropsOrdersHistoryListEl> = ({
+  el,
+}) => {
   const { numberOfOrder, status, date, together } = el;
 
-  const allOrdersDetails = useSelector(selectOrderDetails);
-  const error = useSelector(selectErrorOrder);
+  const allOrdersDetails = useTypedSelector(selectOrderDetails);
+  const error = useTypedSelector(selectErrorOrder);
   const dateCorrected = getDate(date);
   const data = getOrderInfo(allOrdersDetails, numberOfOrder);
   const prettyTogether = !together || getPrettyValue(together);
   const prettyTotal = !data || getPrettyValue(data.total);
   const prettyDiscount = !data || getPrettyValue(data.discountValue);
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = async e => {
+  const handleOpen = async (e: MouseEvent<SVGElement>) => {
     if (!isOpen) {
       if (allOrdersDetails.length < 1 || !data) {
         dispatch(getOrderDetails(numberOfOrder));

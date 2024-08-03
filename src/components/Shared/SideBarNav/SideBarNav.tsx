@@ -1,13 +1,13 @@
-import { useDispatch } from 'react-redux';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { useTypedDispatch } from '../../../redux/hooks';
 import { logOut } from '../../../redux/user/userOperations';
 import { StyledList, StyledNavLink } from './SideBarNav.styled';
 
 export const SideBarNav = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const logout = () => {
     dispatch(logOut());
   };

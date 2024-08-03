@@ -1,12 +1,6 @@
-import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { SideBarNav } from 'components/Shared/SideBarNav/SideBarNav';
-import {
-  Wrapper,
-  Title,
-  ContentWrapper,
-  StyledOrdersHistoryEl,
-} from './OrdersHistory.styled';
+import { useTypedSelector } from '../../redux/hooks';
 import {
   selectOrdersHistory,
   selectErrorStatus,
@@ -14,10 +8,16 @@ import {
 import { OrdersHistoryListEl } from './OrdersHistoryListEl/OrdersHistoryListEl';
 import { NoOrders } from './NoOrders/NoOrders';
 import { CustomError } from 'components/Shared/CustomError/CustomError';
+import {
+  Wrapper,
+  Title,
+  ContentWrapper,
+  StyledOrdersHistoryEl,
+} from './OrdersHistory.styled';
 
 export const OrdersHistory = () => {
-  const ordersHistory = useSelector(selectOrdersHistory);
-  const error = useSelector(selectErrorStatus);
+  const ordersHistory = useTypedSelector(selectOrdersHistory);
+  const error = useTypedSelector(selectErrorStatus);
   const desktopVersion = useMediaQuery({ query: '(min-width:1280px)' });
 
   return (
@@ -25,7 +25,7 @@ export const OrdersHistory = () => {
       {desktopVersion && <SideBarNav />}
       {error ? (
         <CustomError />
-      ) : ordersHistory?.length ? (
+      ) : ordersHistory.length ? (
         <div>
           <Title>Замовлення</Title>
           <ContentWrapper>

@@ -12,7 +12,10 @@ export const selectMessageOfSuccessfulRequest = state =>
 export const selectOrders = state => state.user.orders;
 export const selectDelivery = state => state.user.delivery;
 export const selectFavorites = (state: RootState) => state.user.favorites;
-export const selectOrdersHistory = state => state.user.ordersHistory;
-export const selectOrderDetails = state => state.user.ordersDetails;
-export const selectIsLoadingOrder = state => state.user.isLoadingOrder;
-export const selectErrorOrder = state => state.user.errorOrder;
+export const selectOrdersHistory = (state: RootState) =>
+  state.user.ordersHistory;
+export const selectOrderDetails = (state: RootState) =>
+  state.user.ordersDetails;
+export const selectIsLoadingOrder = (state: RootState) =>
+  state.user.isLoadingOrder;
+export const selectErrorOrder = (state: RootState) => state.user.errorOrder;

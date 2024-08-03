@@ -1,6 +1,7 @@
 import noImage from '../../../../assets/images/no-image-available.webp';
 import Battery0BarIcon from '@mui/icons-material/Battery0Bar';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { CartItem } from '../../../../@types/order.types';
 import {
   StyledLink,
   StyledImage,
@@ -10,7 +11,11 @@ import {
   SealingHolders,
 } from './OrderDetails.styled';
 
-export const OrderDetails = ({ el }) => {
+type PropsOrderDetails = {
+  el: CartItem;
+};
+
+export const OrderDetails: React.FC<PropsOrderDetails> = ({ el }) => {
   const {
     codeOfGood,
     name,
@@ -23,7 +28,9 @@ export const OrderDetails = ({ el }) => {
     selectedHolder,
   } = el;
 
-  const addDefaultImg = e => {
+  const addDefaultImg = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ): void => {
     e.currentTarget.src = `${noImage}`;
   };
 

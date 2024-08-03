@@ -2,7 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { baseURL } from 'utils/constants/baseURL';
 import toast from 'react-hot-toast';
-import { RootState } from 'redux/store';
+import { OrderData } from '../../@types/user.types';
+import { Order } from '../../@types/order.types';
 
 axios.defaults.baseURL = baseURL;
 
@@ -186,35 +187,41 @@ export const deleteFromFavorite = createAsyncThunk<
   }
 });
 
-export const getOrdersHistory = createAsyncThunk(
-  'user/getOrdersHistory',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await axios.get('order/get-orders');
+export const getOrdersHistory = createAsyncThunk<
+  { result: OrderData[] },
+  undefined,
+  { rejectValue: string }
+>('user/getOrdersHistory', async (_, thunkAPI) => {
+  try {
+    const { data } = await axios.get<{ result: OrderData[] }>(
+      'order/get-orders'
+    );
 
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз');
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    toast.error('Сталася помилка, спробуйте ще раз');
 
-      return thunkAPI.rejectWithValue(errorMessage);
-    }
+    return thunkAPI.rejectWithValue(errorMessage);
   }
-);
+});
 
-export const getOrderDetails = createAsyncThunk(
-  'user/getOrderDetails',
-  async (id, thunkAPI) => {
-    try {
-      const { data } = await axios.get(`order/get-order/${id}`);
+export const getOrderDetails = createAsyncThunk<
+  { result: Order },
+  string,
+  { rejectValue: string }
+>('user/getOrderDetails', async (id, thunkAPI) => {
+  try {
+    const { data } = await axios.get<{ result: Order }>(
+      `order/get-order/${id}`
+    );
 
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      toast.remove();
-      toast.error('Сталася помилка, спробуйте ще раз');
+    return data;
+  } catch (error) {
+    const errorMessage = handleError(error);
+    toast.remove();
+    toast.error('Сталася помилка, спробуйте ще раз');
 
-      return thunkAPI.rejectWithValue(errorMessage);
-    }
+    return thunkAPI.rejectWithValue(errorMessage);
   }
-);
+});
