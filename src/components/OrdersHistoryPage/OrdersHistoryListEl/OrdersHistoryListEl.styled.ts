@@ -68,10 +68,10 @@ export const PriceContainer = styled.div`
     gap: 8px;
     padding: 10px;
   }
+`;
 
-  p:not(:first-child) {
-    text-align: unset;
-  }
+export const TextContainer = styled.div`
+  text-align: unset;
 `;
 
 export const TextTitle = styled.span`

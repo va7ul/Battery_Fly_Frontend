@@ -15,6 +15,7 @@ import {
   OrderDetailsContainer,
   OrderDetailsList,
   PriceContainer,
+  TextContainer,
   TextTitle,
   Text,
   Sum,
@@ -78,20 +79,20 @@ export const OrdersHistoryListEl: React.FC<PropsOrdersHistoryListEl> = ({
               ))}
             </OrderDetailsList>
             <PriceContainer>
-              <p>
+              <TextContainer>
                 <TextTitle>Доставка: </TextTitle>
                 <Text>{data?.deliveryType}</Text>
-              </p>
-              <p>
+              </TextContainer>
+              <TextContainer>
                 <TextTitle>Адреса: </TextTitle>
                 <Text>
                   {data?.city}, {data?.warehouse}
                 </Text>
-              </p>
-              <p>
+              </TextContainer>
+              <TextContainer>
                 <TextTitle>Спосіб оплати: </TextTitle>
                 <Text>{data?.payment}</Text>
-              </p>
+              </TextContainer>
               <Sum>
                 Загальна сума:
                 <span> {prettyTotal} грн</span>
