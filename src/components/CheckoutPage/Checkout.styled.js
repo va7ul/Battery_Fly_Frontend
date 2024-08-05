@@ -46,5 +46,6 @@ export const OrderButton = styled.button`
     margin-top: 20px;
     font-size: 20px;
     margin: 15px 0px 0px;
+    border-radius: 12px;
   }
 `;
