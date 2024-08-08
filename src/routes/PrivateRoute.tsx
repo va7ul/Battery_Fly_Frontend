@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useTypedSelector } from '../redux/hooks';
 import {
@@ -7,7 +7,7 @@ import {
 } from '../redux/user/userSelectors';
 
 type PrivateRouteProps = {
-  component: ReactNode;
+  component: React.ComponentType;
   redirectTo?: string;
 };
 
@@ -23,6 +23,6 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = ({
   return shouldRedirect ? (
     <Navigate to={redirectTo} state={{ from: location }} />
   ) : (
-    Component
+    <Component />
   );
 };

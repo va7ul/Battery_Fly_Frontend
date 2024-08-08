@@ -78,21 +78,17 @@ export const App = () => {
         <Route path="/assortment/:cardId" element={<CardPage />} />
         <Route
           path="/profile"
-          element={
-            <PrivateRoute redirectTo="/" component={<UserProfilePage />} />
-          }
+          element={<PrivateRoute redirectTo="/" component={UserProfilePage} />}
         />
         <Route
           path="/orders"
           element={
-            <PrivateRoute redirectTo="/" component={<OrdersHistoryPage />} />
+            <PrivateRoute redirectTo="/" component={OrdersHistoryPage} />
           }
         />
         <Route
           path="/favorites"
-          element={
-            <PrivateRoute redirectTo="/" component={<FavoritesPage />} />
-          }
+          element={<PrivateRoute redirectTo="/" component={FavoritesPage} />}
         />
         <Route path="*" element={<MainPage />} />
       </Route>
