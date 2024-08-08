@@ -1,5 +1,4 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../@types/products.types';
 import { OrderData } from '../../@types/user.types';
 import { Order } from '../../@types/order.types';
 import {
@@ -17,7 +16,7 @@ import {
 } from './userOperations';
 
 type InitialState = {
-  favorites: Product[];
+  favorites: string[];
   ordersHistory: OrderData[];
   ordersDetails: Order[];
   errorOrder: string | null;
@@ -129,7 +128,7 @@ const handleEditUserAddressFulfilled = (state, { payload }) => {
 
 const handleFavoriteFulfilled = (
   state: InitialState,
-  { payload }: PayloadAction<{ favorites: Product[] }>
+  { payload }: PayloadAction<{ favorites: string[] }>
 ) => {
   state.favorites = payload.favorites;
 };

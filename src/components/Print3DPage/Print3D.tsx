@@ -1,13 +1,13 @@
 import { ChangeEvent, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useMediaQuery } from 'react-responsive';
-import { useTypedSelector } from '../../redux/hooks/hooks.ts';
+import { useTypedSelector } from '../../redux/hooks/hooks';
 import {
   selectPrint3D,
   selectedAccuracy,
   selectedPlactic,
   selectedColor,
-} from '../../redux/print3D/print3DSelectors.ts';
+} from '../../redux/print3D/print3DSelectors';
 import { ProductPhoto } from 'components/Shared/ProductPhoto/ProductPhoto';
 import { Modal3DPrint } from 'components/Modals/Modal3DPrint/Modal3DPrint';
 import {
@@ -19,7 +19,7 @@ import {
   OrderButton,
   StyledInput,
   Text,
-} from './Print3D.styled.ts';
+} from './Print3D.styled';
 import { ProductInformation } from 'components/Shared/ProductInformation/ProductInformation';
 import { Description } from './Description/Description';
 import { Options } from './Options/Options';
