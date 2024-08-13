@@ -6,3 +6,16 @@ export type OrderData = {
   together: number;
   status: OrderStatus;
 };
+
+export type UserData = {
+  firstName: string;
+  lastName: string;
+  patronymic: string;
+  tel: string;
+  email: string;
+};
+
+export type Delivery = {
+  city: string;
+  warehouse: string;
+};

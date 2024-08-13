@@ -13,10 +13,13 @@ export const DeliveryAddress = () => {
   const handleShowForm = () => setShowForm(showForm => !showForm);
 
   const isObjectEmpty = (obj) => {
-    return Object.keys(obj).length !== 0;
+    if (obj.city === '' && obj.warehouse === '') {
+      return true;
+    }
+      return false;
   } 
 
-const text = isObjectEmpty(delivery) ? 'Редагувати адресу' : 'Додати адресу';
+const text = isObjectEmpty(delivery) ? 'Додати адресу' : 'Редагувати адресу';
   return (
     <>
       <Subtitle>Адреса доставки</Subtitle>

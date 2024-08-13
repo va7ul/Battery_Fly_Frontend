@@ -32,9 +32,9 @@ export const DeliveryAddressForm = ({ text, handleShowForm }) => {
   const deliveryAddress = useSelector(selectDelivery);
 
   let cities = useSelector(selectCities);
-  const [city, setCity] = useState(deliveryAddress.city ?? '');
+  const [city, setCity] = useState(deliveryAddress.city);
   let warehouses = useSelector(selectWarehouses);
-  const [warehouse, setWarehouse] = useState(deliveryAddress.warehouse ?? '');
+  const [warehouse, setWarehouse] = useState(deliveryAddress.warehouse);
 
   const optionsCities = cities.map(city => {
     return {
