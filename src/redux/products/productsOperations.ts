@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Product } from '../../@types/products.types';
+import { Product, ResultOneProduct } from '../../@types/products.types';
 import { baseURL } from 'utils/constants/baseURL';
 
 axios.defaults.baseURL = baseURL;
@@ -264,11 +264,15 @@ export const getMaterials = createAsyncThunk<
   }
 });
 
-export const getOneProduct = createAsyncThunk(
+export const getOneProduct = createAsyncThunk<
+  { result: ResultOneProduct },
+  { productId: string },
+  { rejectValue: string }
+>(
   'products/getOneProduct',
   async (productId, thunkApi) => {
     try {
-      const { data } = await axios.get(`products/${productId}`);
+      const { data } = await axios.get<{ result: ResultOneProduct }>(`products/${productId}`);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
