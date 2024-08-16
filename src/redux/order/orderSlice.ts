@@ -51,7 +51,7 @@ const initialState: InitialState = {
   errorPromoCode: null,
 };
 
-export const handlePending = state => {
+export const handlePending = (state: InitialState) => {
   state.isLoading = true;
 };
 
@@ -59,7 +59,7 @@ export const handlePendingAddPromoCode = (state: InitialState) => {
   state.isLoadingPromoCode = true;
 };
 
-export const handleFulfilledAddOrder = (state, { payload }) => {
+export const handleFulfilledAddOrder = (state: InitialState, { payload }: PayloadAction<{ orderNum: string }>) => {
   state.userData = { ...defaultUserData };
   state.delivery = deliveryInfo;
   state.promoCode = '';
@@ -72,9 +72,12 @@ export const handleFulfilledAddOrder = (state, { payload }) => {
   state.error = null;
 };
 
-export const handleRejected = (state, { payload }) => {
+export const handleRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | undefined>
+) => {
   state.isLoading = false;
-  state.error = payload;
+  state.error = payload ?? 'Unknown error';
 };
 
 export const handleRejectedPromoCode = (
@@ -111,16 +114,16 @@ const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    changeUserTel(state, { payload }) {
+    changeUserTel(state, { payload }: PayloadAction<string>) {
       state.userData.tel = payload;
     },
-    changeUserComment(state, { payload }) {
+    changeUserComment(state, { payload }: PayloadAction<string>) {
       state.userData.text = payload;
     },
-    checkChangeProductInCart(state, { payload }) {
+    checkChangeProductInCart(state, { payload }: PayloadAction<boolean>) {
       state.isChangedProductInCart = payload;
     },
-    changeOrderNum(state, { payload }) {
+    changeOrderNum(state, { payload }: PayloadAction<string>) {
       state.orderNum = payload;
     },
     changeCity(state, { payload }) {

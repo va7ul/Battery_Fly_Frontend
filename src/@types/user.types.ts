@@ -19,3 +19,19 @@ export type Delivery = {
   city: string;
   warehouse: string;
 };
+
+export type LoginFulfilled = {
+  user: UserData;
+  token: string;
+  verifiedEmail: boolean;
+  delivery: Delivery;
+  favorites: string[];
+};
+
+export type RefreshFulfilled = Pick<
+  LoginFulfilled,
+  'user' | 'delivery' | 'favorites'
+>;
+
+export type EditUserData = Omit<UserData, 'email'>;  
+

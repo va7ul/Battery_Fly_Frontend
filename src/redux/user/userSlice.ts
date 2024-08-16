@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
-import { OrderData, UserData, Delivery } from '../../@types/user.types';
+import { OrderData, UserData, Delivery, LoginFulfilled, RefreshFulfilled, EditUserData } from '../../@types/user.types';
 import { Order } from '../../@types/order.types';
 import {
   logOut,
@@ -33,17 +33,6 @@ type InitialState = {
   isLoadingOrder: boolean;
 };
 
-export type LoginFulfilled = {
-  user: UserData;
-  token: string;
-  verifiedEmail: boolean;
-  delivery: Delivery;
-  favorites: string[];
-};
-
-export type RefreshFulfilled = Pick<LoginFulfilled, 'user' | 'delivery' | 'favorites'>;
-
-export type EditUserData = Omit<UserData, 'email'>;  
 
 const defaultUserData: UserData = {
   firstName: '',

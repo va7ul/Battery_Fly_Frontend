@@ -2,10 +2,10 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { baseURL } from 'utils/constants/baseURL';
 import toast from 'react-hot-toast';
-import { Delivery, OrderData, UserData } from '../../@types/user.types';
+import { Delivery, EditUserData, LoginFulfilled, OrderData, RefreshFulfilled, UserData } from '../../@types/user.types';
 import { Order } from '../../@types/order.types';
 import { RootState } from 'redux/store';
-import { EditUserData, LoginFulfilled, RefreshFulfilled } from './userSlice';
+
 
 axios.defaults.baseURL = baseURL;
 
