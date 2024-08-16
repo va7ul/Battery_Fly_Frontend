@@ -1,13 +1,19 @@
+import { FC, SyntheticEvent } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import noImage from '../../../assets/images/no-image-available.webp';
 import { SliderDiv, ImageBig, Image } from './ProductPhoto.styled';
 
-export const ProductPhoto = ({ name, image }) => {
+type ProductPhotoProps = {
+  name: string;
+  image: string[];
+};
 
-  const addDefaultImg = e => {
-    e.currentTarget.src = `${noImage}`;
+export const ProductPhoto: FC<ProductPhotoProps>  = ({ name, image }) => {
+
+    const addDefaultImg = (e: SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = noImage;
   };
   
   const settings = {
