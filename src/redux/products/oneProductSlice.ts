@@ -44,7 +44,7 @@ const oneProductSlice = createSlice({
     setCapacityKey(state, action: PayloadAction<string>) {
       state.result.capacityKey = action.payload;
     },
-    setPriceOneProduct(state, action: PayloadAction<string>) {
+    setPriceOneProduct(state, action: PayloadAction<string | number>) {
       state.result.priceOneProduct = action.payload;
     },
     setSelectedHolder(state, action: PayloadAction<boolean>) {
