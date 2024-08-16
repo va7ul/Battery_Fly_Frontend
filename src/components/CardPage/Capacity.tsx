@@ -1,6 +1,6 @@
 import Select, { SingleValue } from 'react-select';
 import { useState } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
 import { setPrice, setCapacityKey, setPriceOneProduct, setSelectedHolder, setSelectedSealing, setQuantityOrders, setPriceWithSale } from '../../redux/products/oneProductSlice';
 import { CapacityBox, Subtitle, Desc, selectStyles } from "./Card.styled";
