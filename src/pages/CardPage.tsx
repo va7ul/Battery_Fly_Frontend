@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../redux/hooks';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getOneProduct } from '../redux/products/productsOperations';
@@ -11,13 +11,13 @@ import { CustomError } from 'components/Shared/CustomError/CustomError';
 import { Card } from 'components/CardPage/Card';
 
 const CardPage = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectOneProductIsLoading);
-  const error = useSelector(selectOneProductError);
+  const dispatch = useTypedDispatch();
+  const isLoading = useTypedSelector(selectOneProductIsLoading);
+  const error = useTypedSelector(selectOneProductError);
   const { cardId } = useParams();
 
   useEffect(() => {
-    dispatch(getOneProduct(cardId));
+   cardId && dispatch(getOneProduct(cardId));
   }, [dispatch, cardId]);
 
   return (
