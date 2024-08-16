@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState, ChangeEvent } from 'react';
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { addItem } from '../../redux/basket/basketSlice';
 import {
@@ -33,6 +33,12 @@ import {
   OrderButton,
 } from './Card.styled';
 
+type Product = {
+    name: string;
+    codeOfGood: string;
+    priceWithSale: number;
+};
+
 export const Order = () => {
     const [isModalQuickOrderOpen, setIsModalQuickOrderOpen] = useState(false);
 
@@ -45,18 +51,18 @@ export const Order = () => {
         document.body.style.overflow = 'unset';
     };
 
-    const dispatch = useDispatch();
+    const dispatch = useTypedDispatch();
 
-    const product = useSelector(selectOneProduct);
+    const product = useTypedSelector(selectOneProduct);
     const { name, codeOfGood, price, quantity, capacity, capacityKey, discount, sale } = product;
-    const oneProductPrice = useSelector(selectOneProductPrice);
-    const selectedSealing = useSelector(selectSelectedSealing);
-    const selectedHolder = useSelector(selectSelectedHolder);
-    const quantityOrders = useSelector(selectQuantityOrders);
-    const sealingPrice = useSelector(selectSealingPrice);
-    const holderPrice = useSelector(selectHolderPrice);
-    const priceWithSale = useSelector(selectPriceWithSale);
-    const quantityItemsInBasket = useSelector(selectItems);
+    const oneProductPrice = useTypedSelector(selectOneProductPrice);
+    const selectedSealing = useTypedSelector(selectSelectedSealing);
+    const selectedHolder = useTypedSelector(selectSelectedHolder);
+    const quantityOrders = useTypedSelector(selectQuantityOrders);
+    const sealingPrice = useTypedSelector(selectSealingPrice);
+    const holderPrice = useTypedSelector(selectHolderPrice);
+    const priceWithSale = useTypedSelector(selectPriceWithSale);
+    const quantityItemsInBasket = useTypedSelector(selectItems);
 
     useEffect(() => {
         dispatch(setSealingPrice(100 * quantityOrders));
@@ -64,8 +70,9 @@ export const Order = () => {
 
     useEffect(() => {
         let holderCost = 0;
-        if (capacity) {
-            holderCost = capacity[capacityKey]?.holder * 2 || 0;
+        let isHolder = capacity && capacity[capacityKey]?.holder
+        if (isHolder) {
+            holderCost = isHolder * 2 || 0;
         }
         dispatch(setHolderPrice(holderCost * quantityOrders));
     }, [dispatch, quantityOrders, capacityKey, capacity]);
@@ -101,7 +108,7 @@ export const Order = () => {
     useEffect(() => {
         if (typeof oneProductPrice === 'string') {
             return;
-        }
+        };
 
         let totalPrice = quantityOrders * oneProductPrice;
         let totalPriceWithSale = totalPrice * ((100 - discount) / 100);
@@ -109,12 +116,12 @@ export const Order = () => {
         if (selectedSealing) {
             totalPrice += sealingPrice;
             totalPriceWithSale += sealingPrice;
-        }
+        };
 
         if (selectedHolder) {
             totalPrice += holderPrice;
             totalPriceWithSale += holderPrice;
-        }
+        };
 
         dispatch(setPrice(totalPrice));
         dispatch(setPriceWithSale(totalPriceWithSale));
@@ -139,16 +146,16 @@ export const Order = () => {
               },
               id: 'clipboard',
             });
-        }
+        };
     };
 
     const minusOne = () => {
         if (quantityOrders > 1) {
             dispatch(setQuantityOrders(quantityOrders - 1));
-        }
+        };
     };
 
-    const setValue = e => {
+    const setValue = (e: ChangeEvent<HTMLInputElement>) => {
 
         const value = Number(e.target.value)
         if (value > quantity) {
@@ -159,17 +166,17 @@ export const Order = () => {
               },
               id: 'clipboard',
             });
-        }
+        };
 
         if (value <= quantity) {
-            dispatch(setQuantityOrders(value || ''));
-        }
+            dispatch(setQuantityOrders(value || 0));
+        };
     };
 
     const minValue = () => {
-        if (quantityOrders === '') {
+        if (quantityOrders === 0) {
             dispatch(setQuantityOrders(1));
-        }
+        };
     };
 
     const addToBasket = () => {
@@ -177,21 +184,27 @@ export const Order = () => {
 
         if (itemInBasket && quantity < itemInBasket.quantityOrdered + quantityOrders) {
             return toast(
-              `Цей товар вже є в кошику в кількості ${itemInBasket.quantityOrdered} шт. Максимальна кількість в наявності: ${quantity} шт.`,
-              {
-                style: {
-                  border: `1px solid ${theme.colors.error}`,
-                },
-                id: 'clipboard',
-                duration: 5000,
-              }
+                `Цей товар вже є в кошику в кількості ${itemInBasket.quantityOrdered} шт. Максимальна кількість в наявності: ${quantity} шт.`,
+                {
+                    style: {
+                        border: `1px solid ${theme.colors.error}`,
+                    },
+                    id: 'clipboard',
+                    duration: 5000,
+                }
             );
+        };
+
+        let itemPrice: number = 0;
+        
+        if (typeof price === 'number') {
+            itemPrice = sale ? priceWithSale / quantityOrders : price / quantityOrders;
         }
         
         dispatch(
             addItem({
                 ...product,
-                price: sale ? priceWithSale / quantityOrders : price / quantityOrders,
+                price: itemPrice,
                 capacityKey: capacityKey || '',
                 selectedSealing,
                 selectedHolder,
@@ -200,51 +213,57 @@ export const Order = () => {
             })
         );
         toast.success(`Товар доданий до кошика`, {
-          id: 'clipboard',
+            id: 'clipboard',
         });
     };
+    
+    const forModalQuickOrder: Product = {
+        name,
+        codeOfGood,
+        priceWithSale,
+    };
 
-    return (
-        <OrderBox>
-            <CounterBox>
-                <Button
-                    onClick={minusOne}
-                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                >
-                    <FaMinus />
-                </Button>
-                <Input
-                    min="1"
-                    max={quantity}
-                    onBlur={minValue}
-                    onChange={setValue}
-                    value={quantityOrders}
-                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                ></Input>
-                <Button
-                    onClick={plusOne}
-                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                >
-                    <FaPlus />
-                </Button>
-            </CounterBox>
-            <ButtonBox>
-                <BasketButton
-                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                    onClick={addToBasket}
-                >В кошик
-                </BasketButton>
-                <OrderButton
-                    onClick={handleOpenQuickOrderModal}
-                    disabled={quantity < 1}
-                >Швидке замовлення
-                </OrderButton>
-            </ButtonBox>
-            <ModalQuickOrder
-                product={{ name, codeOfGood, priceWithSale }}
-                isModalQuickOrderOpen={isModalQuickOrderOpen}
-                handleCloseQuickOrderModal={handleCloseQuickOrderModal}
-            />
-        </OrderBox>
-    )
-};
+        return (
+            <OrderBox>
+                <CounterBox>
+                    <Button
+                        onClick={minusOne}
+                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                    >
+                        <FaMinus />
+                    </Button>
+                    <Input
+                        min="1"
+                        max={quantity}
+                        onBlur={minValue}
+                        onChange={setValue}
+                        value={quantityOrders}
+                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                    ></Input>
+                    <Button
+                        onClick={plusOne}
+                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                    >
+                        <FaPlus />
+                    </Button>
+                </CounterBox>
+                <ButtonBox>
+                    <BasketButton
+                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                        onClick={addToBasket}
+                    >В кошик
+                    </BasketButton>
+                    <OrderButton
+                        onClick={handleOpenQuickOrderModal}
+                        disabled={quantity < 1}
+                    >Швидке замовлення
+                    </OrderButton>
+                </ButtonBox>
+                <ModalQuickOrder
+                    product={forModalQuickOrder}
+                    isModalQuickOrderOpen={isModalQuickOrderOpen}
+                    handleCloseQuickOrderModal={handleCloseQuickOrderModal}
+                />
+            </OrderBox>
+        )
+    };
