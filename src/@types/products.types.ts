@@ -1,6 +1,7 @@
 type BatteryCapacity = {
   description: string;
   price: number;
+  holder?: number;
 };
 
 type BatteryConfig = {
@@ -26,3 +27,20 @@ export type Product = {
   updatedAt: string;
   discount: number;
 };
+
+export type ResultOneProduct = Product & {
+  capacityKey: string;
+  priceOneProduct: string | number;
+}
+
+export type InitialStateOneProduct = {
+  result: ResultOneProduct;
+  selectedHolder: boolean;
+  selectedSealing: boolean;
+  holderPrice: number;
+  sealingPrice: number;
+  quantityOrders: number;
+  priceWithSale: number;
+  isLoading: boolean;
+  error: string | null;
+}
