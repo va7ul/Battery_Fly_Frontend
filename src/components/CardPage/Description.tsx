@@ -1,6 +1,6 @@
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { getNewPrice } from '../../utils/helpers/getNewPrice';
-import { useAuth } from 'utils/hooks';
+import { useAuth } from '../../utils/hooks';
 import { setAuthModalOpen } from '../../redux/user/userSlice';
 import {
   selectOneProduct,

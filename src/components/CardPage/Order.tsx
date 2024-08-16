@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { useEffect, useState, ChangeEvent } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { addItem } from '../../redux/basket/basketSlice';
 import {
@@ -22,7 +22,7 @@ import {
   setPriceWithSale,
 } from '../../redux/products/oneProductSlice';
 import { ModalQuickOrder } from 'components/Modals/ModalQuickOrder/ModalQuickOrder';
-import { theme } from 'styles/theme';
+import { theme } from '../../styles/theme';
 import {
   OrderBox,
   Input,

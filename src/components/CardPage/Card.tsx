@@ -1,6 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
 import { useEffect } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
 import { ProductPhoto } from '../Shared/ProductPhoto/ProductPhoto';
 import { Description } from './Description';
