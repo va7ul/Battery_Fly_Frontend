@@ -266,7 +266,7 @@ export const getMaterials = createAsyncThunk<
 
 export const getOneProduct = createAsyncThunk<
   { result: ResultOneProduct },
-  { productId: string },
+  string,
   { rejectValue: string }
 >(
   'products/getOneProduct',
