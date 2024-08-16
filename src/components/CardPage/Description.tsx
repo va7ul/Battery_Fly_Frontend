@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import { getNewPrice } from '../../utils/helpers/getNewPrice';
 import { useAuth } from 'utils/hooks';
 import { setAuthModalOpen } from '../../redux/user/userSlice';
@@ -34,12 +34,12 @@ import {
 } from './Card.styled';
 
 export const Description = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const { isLoggedIn } = useAuth();
   const { codeOfGood, description, price, sale, discount, quantity } =
-    useSelector(selectOneProduct);
-  const priceWithSale = useSelector(selectPriceWithSale);
-  const favoriteItems = useSelector(selectFavorites);
+    useTypedSelector(selectOneProduct);
+  const priceWithSale = useTypedSelector(selectPriceWithSale);
+  const favoriteItems = useTypedSelector(selectFavorites);
 
   const newDescription = description.split(';');
 
