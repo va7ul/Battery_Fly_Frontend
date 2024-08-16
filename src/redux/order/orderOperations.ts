@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { PromoCode } from '../../@types/order.types';
+import { orderData, PromoCode } from '../../@types/order.types';
 import { baseURL } from 'utils/constants/baseURL';
 import toast from 'react-hot-toast';
 
@@ -18,21 +18,25 @@ const handleError = (error: any): string => {
   }
 };
 
-export const addOrder = createAsyncThunk(
-  'order/addOrder',
-  async (orderData, thunkApi) => {
-    try {
-      const { data } = await axios.post('order/add-order', orderData);
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз', {
-        id: 'error',
-      });
-      return thunkApi.rejectWithValue(errorMessage);
-    }
+export const addOrder = createAsyncThunk<
+  { orderNum: string },
+  orderData,
+  { rejectValue: string }
+>('order/addOrder', async (orderData, thunkApi) => {
+  try {
+    const { data } = await axios.post<{ orderNum: string }>(
+      'order/add-order',
+      orderData
+    );
+    return data;
+  } catch (error:any) {
+    const errorMessage = handleError(error);
+    toast.error('Сталася помилка, спробуйте ще раз', {
+      id: 'error',
+    });
+    return thunkApi.rejectWithValue(errorMessage);
   }
-);
+});
 
 export const getDeliveryCities = createAsyncThunk(
   'order/getDeliveryCity',
