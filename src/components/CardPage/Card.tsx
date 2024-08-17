@@ -1,6 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
 import { ProductPhoto } from '../Shared/ProductPhoto/ProductPhoto';
 import { Description } from './Description';
@@ -17,8 +17,8 @@ import { Wrapper, Box, Title, Case } from './Card.styled';
 
 export const Card = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
-  const dispatch = useDispatch();
-  const { name, image, capacity, information } = useSelector(selectOneProduct);
+  const dispatch = useTypedDispatch();
+  const { name, image, capacity, information } = useTypedSelector(selectOneProduct);
 
   useEffect(() => {
     dispatch(setQuantityOrders(1));

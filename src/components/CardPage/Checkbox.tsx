@@ -1,8 +1,9 @@
+import { ChangeEvent } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import {
   selectOneProduct,
   selectSelectedSealing,
@@ -50,20 +51,20 @@ const StyledCheckbox = styled(Checkbox)({
 });
 
 export const CheckBox = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
-  const { holder } = useSelector(selectOneProduct);
-  const selectedSealing = useSelector(selectSelectedSealing);
-  const selectedHolder = useSelector(selectSelectedHolder);
-  const oneProductPrice = useSelector(selectOneProductPrice);
-  const sealingPrice = useSelector(selectSealingPrice);
-  const holderPrice = useSelector(selectHolderPrice);
+  const { holder } = useTypedSelector(selectOneProduct);
+  const selectedSealing = useTypedSelector(selectSelectedSealing);
+  const selectedHolder = useTypedSelector(selectSelectedHolder);
+  const oneProductPrice = useTypedSelector(selectOneProductPrice);
+  const sealingPrice = useTypedSelector(selectSealingPrice);
+  const holderPrice = useTypedSelector(selectHolderPrice);
 
-  const handleSealing = e => {
+  const handleSealing = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSelectedSealing(e.target.checked));
   };
 
-  const handleHolder = e => {
+  const handleHolder = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSelectedHolder(e.target.checked));
   };
 

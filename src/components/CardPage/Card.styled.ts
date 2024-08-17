@@ -1,18 +1,34 @@
 import { FaRegHeart, FaHeartCircleCheck } from 'react-icons/fa6';
+import { StylesConfig, GroupBase } from 'react-select';
 import styled from 'styled-components';
 
-const backgroundButton = props =>
+interface Theme {
+  colors: {
+    greyBackgroundPaper: string;
+    secondary: string;
+    hoverColor: string;
+    textDisabled: string;
+    textPrimary: string;
+  };
+}
+
+interface ButtonProps {
+  disabled: boolean;
+  theme: Theme;
+}
+
+const backgroundButton = (props: ButtonProps) =>
   props.disabled
     ? props.theme.colors.greyBackgroundPaper
     : props.theme.colors.secondary;
 
-const backgroundHoverButton = props =>
+const backgroundHoverButton = (props: ButtonProps) =>
   props.disabled
     ? props.theme.colors.greyBackgroundPaper
     : props.theme.colors.hoverColor;
 
-const cursorButton = props => (props.disabled ? 'default' : 'pointer');
-const colorButton = props =>
+const cursorButton = (props: ButtonProps) => (props.disabled ? 'default' : 'pointer');
+const colorButton = (props: ButtonProps) =>
   props.disabled
     ? props.theme.colors.textDisabled
     : props.theme.colors.textPrimary;
@@ -398,7 +414,7 @@ export const Subtitle = styled.p`
   }
 `;
 
-export const selectStyles = {
+export const selectStyles: StylesConfig<any, false, GroupBase<any>> = {
   control: styles => ({
     ...styles,
     backgroundColor: 'rgba(225, 225, 225, 1)',

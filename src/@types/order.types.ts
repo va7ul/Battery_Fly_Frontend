@@ -5,6 +5,12 @@ export type UserData = {
   text: string;
 };
 
+export type UserDataInOrder = {
+  firstName: string;
+  lastName: string;
+  email: string
+};
+
 export type DeliveryInfo = {
   deliveryType: string;
   cities: string[];
@@ -53,4 +59,18 @@ export type Order = {
   payment: string;
   createdAt: string;
   updatedAt: string;
+};
+
+export type orderData = {
+  userData: UserDataInOrder & UserData;
+  total: number;
+  promoCode: string;
+  promoCodeDiscount: number;
+  discountValue: number;
+  together: number;
+  cartItems: CartItem[];
+  deliveryType: string;
+  city: string;
+  warehouse: string;
+  payment: string;
 };

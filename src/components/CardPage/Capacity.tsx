@@ -1,19 +1,24 @@
-import Select from 'react-select';
+import Select, { SingleValue } from 'react-select';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks';
 import { selectOneProduct } from '../../redux/products/productsSelectors';
 import { setPrice, setCapacityKey, setPriceOneProduct, setSelectedHolder, setSelectedSealing, setQuantityOrders, setPriceWithSale } from '../../redux/products/oneProductSlice';
 import { CapacityBox, Subtitle, Desc, selectStyles } from "./Card.styled";
 
+type Option = {
+  value: string;
+  label: string;
+};
+
 export const Capacity = () => {
 
-    const dispatch = useDispatch();
-    const { capacity, discount } = useSelector(selectOneProduct);
+    const dispatch = useTypedDispatch();
+    const { capacity, discount } = useTypedSelector(selectOneProduct);
 
-    const capacityKeys = Object.keys(capacity);
-    const sortKeys = [...capacityKeys].sort((a, b) => a - b);
+    const capacityKeys = capacity ? Object.keys(capacity) : [];
+    const sortKeys = [...capacityKeys].sort((a, b) => Number(a) - Number(b));
 
-    const options = sortKeys.map((item) => {
+    const options: Option[] = sortKeys.map((item) => {
         return {
             value: item, label: item + " Ah",
         }
@@ -21,7 +26,8 @@ export const Capacity = () => {
     
     const [descr, setDescr] = useState('');
 
-    const handleSelect = (option) => {
+    const handleSelect = (option: SingleValue<Option>) => {
+        if (!option || !capacity) return;
         const value = option.value;
         setDescr(capacity[value].description);
         dispatch(setPrice(capacity[value].price));

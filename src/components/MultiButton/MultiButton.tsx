@@ -10,11 +10,13 @@ import { RiChatSmile2Line } from 'react-icons/ri';
 import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
 import { Wrapper, List, Icon, Item, Insta, Button } from './MultiButton.styled';
 
+type Visibility = 'hidden' | 'visible';
+
 export const MultiButton = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   const [isHovered, setIsHovered] = useState(false);
-  const [visibility, setVisibility] = useState('hidden');
+  const [visibility, setVisibility] = useState<Visibility>('hidden');
   const [transition, setTransition] = useState(' ');
   const [opacity, setOpacity] = useState('0');
   const [transform, setTransform] = useState(

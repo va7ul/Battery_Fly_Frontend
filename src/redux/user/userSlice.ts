@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
-import { OrderData } from '../../@types/user.types';
+import { OrderData, UserData, Delivery, LoginFulfilled, RefreshFulfilled, EditUserData } from '../../@types/user.types';
 import { Order } from '../../@types/order.types';
 import {
   logOut,
@@ -16,14 +16,25 @@ import {
 } from './userOperations';
 
 type InitialState = {
+  userData: UserData;
+  token: string;
+  isAuthModalOpen: boolean;
+  errorStatus: string | null;
+  messageOfSuccessfulRequest: string | null;
+  verifiedEmail: boolean;
+  delivery: Delivery;
   favorites: string[];
   ordersHistory: OrderData[];
   ordersDetails: Order[];
+  isLoading: boolean;
+  isLoggedIn: boolean;
+  isRefreshing: boolean;
   errorOrder: string | null;
   isLoadingOrder: boolean;
 };
 
-const defaultUserData = {
+
+const defaultUserData: UserData = {
   firstName: '',
   lastName: '',
   patronymic: '',
@@ -38,7 +49,10 @@ const initialState: InitialState = {
   errorStatus: null,
   messageOfSuccessfulRequest: null,
   verifiedEmail: false,
-  delivery: {},
+  delivery: {
+    city: '',
+    warehouse: '',
+  },
   favorites: [],
   ordersHistory: [],
   ordersDetails: [],
@@ -54,14 +68,17 @@ const handlePending = (state: InitialState) => {
   state.errorStatus = '';
 };
 
-const handleRefreshPending = state => {
+const handleRefreshPending = (state: InitialState) => {
   state.isRefreshing = true;
 };
 
-const handleLogoutPending = state => {
+const handleLogoutPending = (state: InitialState) => {
   state.userData = { ...defaultUserData };
   state.token = '';
-  state.delivery = {};
+  state.delivery = {
+    city: '',
+    warehouse: '',
+  };
   state.favorites = [];
   state.isLoggedIn = false;
   state.verifiedEmail = false;
@@ -75,24 +92,33 @@ const handleRejected = (
   state.errorStatus = payload ?? 'Unknown error';
 };
 
-const handleRefreshRejected = state => {
+const handleRefreshRejected = (state: InitialState) => {
   state.isRefreshing = false;
   state.isLoggedIn = false;
 };
 
-const handleVerifyEmailFulfilled = (state, { payload }) => {
+const handleVerifyEmailFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<{ message: string }>
+) => {
   state.errorStatus = '';
   state.isLoading = false;
   state.messageOfSuccessfulRequest = payload.message;
 };
 
-const handleRegisterFulfilled = (state, { payload }) => {
+const handleRegisterFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<{ message: string }>
+) => {
   state.errorStatus = '';
   state.isLoading = false;
   state.messageOfSuccessfulRequest = payload.message;
 };
 
-const handleLoginFulfilled = (state, { payload }) => {
+const handleLoginFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<LoginFulfilled>
+) => {
   state.userData = payload.user;
   state.token = payload.token;
   state.errorStatus = '';
@@ -103,7 +129,10 @@ const handleLoginFulfilled = (state, { payload }) => {
   state.isLoading = false;
 };
 
-const handleRefreshFulfilled = (state, { payload }) => {
+const handleRefreshFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<RefreshFulfilled>
+) => {
   state.userData = payload.user;
   state.delivery = payload.delivery;
   state.favorites = payload.favorites;
@@ -111,7 +140,14 @@ const handleRefreshFulfilled = (state, { payload }) => {
   state.isRefreshing = false;
 };
 
-const handleEditUserDataFulfilled = (state, { payload }) => {
+const handleEditUserDataFulfilled = (
+  state: InitialState,
+  {
+    payload,
+  }: PayloadAction<{
+    result: EditUserData;
+  }>
+) => {
   state.errorStatus = '';
   state.isLoading = false;
   state.userData.firstName = payload.result.firstName;
@@ -120,7 +156,14 @@ const handleEditUserDataFulfilled = (state, { payload }) => {
   state.userData.tel = payload.result.tel;
 };
 
-const handleEditUserAddressFulfilled = (state, { payload }) => {
+const handleEditUserAddressFulfilled = (
+  state: InitialState,
+  {
+    payload,
+  }: PayloadAction<{
+    delivery: Delivery;
+  }>
+) => {
   state.errorStatus = '';
   state.isLoading = false;
   state.delivery = payload.delivery;
@@ -166,13 +209,16 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    changeErrorStatus(state, { payload }) {
+    changeErrorStatus(state, { payload }: PayloadAction<string>) {
       state.errorStatus = payload;
     },
-    changeMessageOfSuccessfulRequest(state, { payload }) {
+    changeMessageOfSuccessfulRequest(
+      state,
+      { payload }: PayloadAction<string>
+    ) {
       state.messageOfSuccessfulRequest = payload;
     },
-    setAuthModalOpen(state, { payload }) {
+    setAuthModalOpen(state, { payload }: PayloadAction<boolean>) {
       state.isAuthModalOpen = payload;
     },
   },
