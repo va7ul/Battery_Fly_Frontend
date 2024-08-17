@@ -1,9 +1,10 @@
 import { useMediaQuery } from 'react-responsive';
-import { Grid } from '@mui/material';
+import { Grid, SxProps, Theme } from '@mui/material';
 import battery from '../../../assets/images/about-us-battery.jpeg';
 import battery2x from '../../../assets/images/about-us-battery-2x.jpeg';
 import { Text } from '../SharedComponents/Text/Text';
 import { MainTitle, Wrapper } from './AboutButteryFly.styled';
+
 
 export const AboutButteryFly = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -14,14 +15,16 @@ export const AboutButteryFly = () => {
           item
           xs={12}
           desktop={7}
-          sx={{
-            '&.MuiGrid-item': {
-              paddingRight: isBigScreen && '18px',
-              paddingTop: isBigScreen && '158px',
-              paddingBottom: isBigScreen && '158px',
-              marginBottom: isBigScreen && '20px',
-            },
-          }}
+          sx={
+            {
+              '&.MuiGrid-item': {
+                paddingRight: isBigScreen && '18px',
+                paddingTop: isBigScreen && '158px',
+                paddingBottom: isBigScreen && '158px',
+                marginBottom: isBigScreen && '20px',
+              },
+            } as SxProps<Theme>
+          }
         >
           <Wrapper>
             <MainTitle>Про BATTERYFLY</MainTitle>

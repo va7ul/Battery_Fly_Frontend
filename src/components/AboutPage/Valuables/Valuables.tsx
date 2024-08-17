@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import sprite from '../../../assets/images/sprite.svg';
 import { Title } from '../SharedComponents/Title/Title';
@@ -10,8 +11,13 @@ import {
   ListItem,
   Wrapper,
 } from './Valuables.styled';
+import { Value } from '../../../@types/aboutUsPage.types';
 
-export const Valuables = ({ valuables }) => {
+type Props = {
+  valuables: Value[];
+};
+
+export const Valuables: FC<Props> = ({ valuables }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (

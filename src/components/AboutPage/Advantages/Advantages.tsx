@@ -1,10 +1,16 @@
+import { FC } from 'react';
 import { Grid } from '@mui/material';
 import sprite from '../../../assets/images/sprite.svg'
 import { Title } from '../SharedComponents/Title/Title';
 import { AdvantagesCard } from '../AdvantagesCard/AdvantagesCard';
 import { Box, IconSun, LinkToAssortment, List, ListItem, Text } from './Advantages.styled';
+import { Advantage } from '../../../@types/aboutUsPage.types';
 
-export const Advantages = ({ advantages }) => {
+type Props = {
+  advantages: Advantage[];
+};
+
+export const Advantages: FC<Props> = ({ advantages }) => {
   return (
     <section>
       <Title>Наші переваги</Title>
