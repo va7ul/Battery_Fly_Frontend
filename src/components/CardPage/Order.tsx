@@ -33,12 +33,6 @@ import {
   OrderButton,
 } from './Card.styled';
 
-type Product = {
-    name: string;
-    codeOfGood: string;
-    priceWithSale: number;
-};
-
 export const Order = () => {
     const [isModalQuickOrderOpen, setIsModalQuickOrderOpen] = useState(false);
 
@@ -141,10 +135,10 @@ export const Order = () => {
             dispatch(setQuantityOrders(quantityOrders + 1));
         } else {
             toast(`Максимальна кількість в наявності: ${quantity} шт`, {
-              style: {
-                border: `1px solid ${theme.colors.error}`,
-              },
-              id: 'clipboard',
+                style: {
+                    border: `1px solid ${theme.colors.error}`,
+                },
+                id: 'clipboard',
             });
         };
     };
@@ -161,10 +155,10 @@ export const Order = () => {
         if (value > quantity) {
             dispatch(setQuantityOrders(quantity));
             toast(`Максимальна кількість в наявності: ${quantity} шт`, {
-              style: {
-                border: `1px solid ${theme.colors.error}`,
-              },
-              id: 'clipboard',
+                style: {
+                    border: `1px solid ${theme.colors.error}`,
+                },
+                id: 'clipboard',
             });
         };
 
@@ -216,54 +210,48 @@ export const Order = () => {
             id: 'clipboard',
         });
     };
-    
-    const forModalQuickOrder: Product = {
-        name,
-        codeOfGood,
-        priceWithSale,
-    };
 
-        return (
-            <OrderBox>
-                <CounterBox>
-                    <Button
-                        onClick={minusOne}
-                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                    >
-                        <FaMinus />
-                    </Button>
-                    <Input
-                        min="1"
-                        max={quantity}
-                        onBlur={minValue}
-                        onChange={setValue}
-                        value={quantityOrders}
-                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                    ></Input>
-                    <Button
-                        onClick={plusOne}
-                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                    >
-                        <FaPlus />
-                    </Button>
-                </CounterBox>
-                <ButtonBox>
-                    <BasketButton
-                        disabled={typeof oneProductPrice === 'string' || quantity < 1}
-                        onClick={addToBasket}
-                    >В кошик
-                    </BasketButton>
-                    <OrderButton
-                        onClick={handleOpenQuickOrderModal}
-                        disabled={quantity < 1}
-                    >Швидке замовлення
-                    </OrderButton>
-                </ButtonBox>
-                <ModalQuickOrder
-                    product={forModalQuickOrder}
-                    isModalQuickOrderOpen={isModalQuickOrderOpen}
-                    handleCloseQuickOrderModal={handleCloseQuickOrderModal}
-                />
-            </OrderBox>
-        )
-    };
+    return (
+        <OrderBox>
+            <CounterBox>
+                <Button
+                    onClick={minusOne}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                >
+                    <FaMinus />
+                </Button>
+                <Input
+                    min="1"
+                    max={quantity}
+                    onBlur={minValue}
+                    onChange={setValue}
+                    value={quantityOrders}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                ></Input>
+                <Button
+                    onClick={plusOne}
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                >
+                    <FaPlus />
+                </Button>
+            </CounterBox>
+            <ButtonBox>
+                <BasketButton
+                    disabled={typeof oneProductPrice === 'string' || quantity < 1}
+                    onClick={addToBasket}
+                >В кошик
+                </BasketButton>
+                <OrderButton
+                    onClick={handleOpenQuickOrderModal}
+                    disabled={quantity < 1}
+                >Швидке замовлення
+                </OrderButton>
+            </ButtonBox>
+            <ModalQuickOrder
+                product={{ name, codeOfGood }}
+                isModalQuickOrderOpen={isModalQuickOrderOpen}
+                handleCloseQuickOrderModal={handleCloseQuickOrderModal}
+            />
+        </OrderBox>
+    );
+};
