@@ -28,21 +28,22 @@ export const getPrint3D = createAsyncThunk<
   }
 });
 
-export const add3DPrintOrder = createAsyncThunk(
-  'print3D/add3DPrintOrder',
-  async (orderData, thunkApi) => {
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-    try {
-      const { data } = await axios.post('3dprint', orderData, config);
-      return data;
-    } catch (error) {
-      const errorMessage = handleError(error);
-      toast.error('Сталася помилка, спробуйте ще раз');
-      return thunkApi.rejectWithValue(errorMessage);
-    }
+export const add3DPrintOrder = createAsyncThunk<
+  undefined,
+  FormData,
+  { rejectValue: string }
+>('print3D/add3DPrintOrder', async (orderData, thunkApi) => {
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  try {
+    const { data } = await axios.post<undefined>('3dprint', orderData, config);
+    return data;
+  } catch (error: any) {
+    const errorMessage = handleError(error);
+    toast.error('Сталася помилка, спробуйте ще раз');
+    return thunkApi.rejectWithValue(errorMessage);
   }
-);
+});

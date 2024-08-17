@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
@@ -32,7 +32,26 @@ import {
   Wrapper,
 } from './Modal3DPrint.styled';
 
-export const Modal3DPrint = ({
+type Props = {
+  isModal3DPrintOpen: boolean;
+  handleClose3DPrintModal: () => void;
+  file: File[];
+};
+
+type UserData = {
+  isLoggedIn: boolean;
+  userData: {
+    firstName: string;
+    tel: string;
+  };
+};
+
+type FormValues = {
+  name: string;
+  text: string;
+};
+
+export const Modal3DPrint: FC<Props> = ({
   isModal3DPrintOpen,
   handleClose3DPrintModal,
   file,
@@ -41,14 +60,18 @@ export const Modal3DPrint = ({
   const {
     isLoggedIn,
     userData: { firstName, tel: userTel },
-  } = useAuth();
-  const dispatch = useDispatch();
+  }: UserData = useAuth();
+  const initialValues: FormValues = {
+    name: isLoggedIn ? firstName : '',
+    text: '',
+  };
+  const dispatch = useTypedDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [tel, setTel] = useState(isLoggedIn ? userTel : '+380');
 
-  const accuracy = useSelector(selectedAccuracy);
-  const plactic = useSelector(selectedPlactic);
-  const color = useSelector(selectedColor);
+  const accuracy = useTypedSelector(selectedAccuracy);
+  const plactic = useTypedSelector(selectedPlactic);
+  const color = useTypedSelector(selectedColor);
 
   const isValidPhone = isPhoneValid(tel);
 
@@ -85,20 +108,17 @@ export const Modal3DPrint = ({
           <Wrapper>
             <Title>3D Друк</Title>
             <Formik
-              initialValues={{
-                name: isLoggedIn ? firstName : '',
-                text: '',
-              }}
+              initialValues={initialValues}
               validationSchema={nameSchema}
               onSubmit={(values, _) => {
                 const formData = new FormData();
                 formData.append('userName', values.name.trim());
                 formData.append('tel', tel);
                 formData.append('text', values.text);
-                formData.append('accuracy', accuracy);
-                formData.append('plactic', plactic);
-                formData.append('color', color);
-                formData.append('file', file);
+                formData.append('accuracy', accuracy ?? '');
+                formData.append('plactic', plactic ?? '');
+                formData.append('color', color ?? '');
+                formData.append('file', file as any);
 
                 if (!isValidPhone || tel === '+380') {
                   toast('Введіть номер телефону', {
@@ -130,27 +150,29 @@ export const Modal3DPrint = ({
                 />
                 <StyledErrorMessage name="name" component="div" />
                 <PhoneInput
-                  style={{
-                    '--react-international-phone-height': !isBigScreen
-                      ? '28px'
-                      : '51px',
-                    '--react-international-phone-background-color':
-                      'transparent',
-                    '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
-                    '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
-                    '--react-international-phone-font-size': !isBigScreen
-                      ? '14px'
-                      : '24px',
-                    '--react-international-phone-border-radius': !isBigScreen
-                      ? '6px'
-                      : '8px',
-                    '--react-international-phone-flag-width': !isBigScreen
-                      ? '16px'
-                      : '24px',
-                    '--react-international-phone-flag-height': !isBigScreen
-                      ? '16px'
-                      : '24px',
-                  }}
+                  style={
+                    {
+                      '--react-international-phone-height': !isBigScreen
+                        ? '28px'
+                        : '51px',
+                      '--react-international-phone-background-color':
+                        'transparent',
+                      '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
+                      '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
+                      '--react-international-phone-font-size': !isBigScreen
+                        ? '14px'
+                        : '24px',
+                      '--react-international-phone-border-radius': !isBigScreen
+                        ? '6px'
+                        : '8px',
+                      '--react-international-phone-flag-width': !isBigScreen
+                        ? '16px'
+                        : '24px',
+                      '--react-international-phone-flag-height': !isBigScreen
+                        ? '16px'
+                        : '24px',
+                    } as React.CSSProperties
+                  }
                   defaultCountry="ua"
                   hideDropdown={true}
                   value={tel}
