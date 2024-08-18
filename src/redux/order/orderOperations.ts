@@ -38,12 +38,16 @@ export const addOrder = createAsyncThunk<
   }
 });
 
-export const getDeliveryCities = createAsyncThunk(
+export const getDeliveryCities = createAsyncThunk<
+  { cities: string[] },
+  string,
+  { rejectValue: string }
+  >(
   'order/getDeliveryCity',
   async (reqCity, thunkApi) => {
     const reqData = { query: reqCity };
     try {
-      const { data } = await axios.post('order/getDeliveryCity', reqData);
+      const { data } = await axios.post<{ cities: string[] }>('order/getDeliveryCity', reqData);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
@@ -52,12 +56,16 @@ export const getDeliveryCities = createAsyncThunk(
   }
 );
 
-export const getDeliveryWarehouses = createAsyncThunk(
+export const getDeliveryWarehouses = createAsyncThunk<
+  { werehouses: string[] },
+  string,
+  { rejectValue: string }
+  >(
   'order/getWarehouses',
   async (reqWarehouses, thunkApi) => {
     try {
       const reqData = { query: reqWarehouses };
-      const { data } = await axios.post('order/getWarehouses', reqData);
+      const { data } = await axios.post<{ werehouses: string[] }>('order/getWarehouses', reqData);
       return data;
     } catch (error) {
       const errorMessage = handleError(error);
