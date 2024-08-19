@@ -134,7 +134,7 @@ export const editUserData = createAsyncThunk<
 
 export const editUserAddress = createAsyncThunk<
   { delivery: Delivery },
-  Delivery,
+  { delivery: Delivery },
   { rejectValue: string }
 >('user/editUseAddress', async (address, thunkApi) => {
   try {
