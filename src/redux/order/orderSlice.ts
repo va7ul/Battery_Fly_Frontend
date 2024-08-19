@@ -88,13 +88,13 @@ export const handleRejectedPromoCode = (
   state.errorPromoCode = payload ?? 'Unknown error';
 };
 
-export const handleFulfilledGetCities = (state, { payload }) => {
+export const handleFulfilledGetCities = (state: InitialState, { payload }: PayloadAction<{ cities: string[]}>) => {
   state.delivery.cities = payload.cities;
   state.isLoading = false;
   state.error = null;
 };
 
-export const handleFulfilledGetWarehouses = (state, { payload }) => {
+export const handleFulfilledGetWarehouses = (state: InitialState, { payload }: PayloadAction<{ werehouses: string[]}>) => {
   state.delivery.warehouses = payload.werehouses;
   state.isLoading = false;
   state.error = null;
@@ -126,22 +126,22 @@ const orderSlice = createSlice({
     changeOrderNum(state, { payload }: PayloadAction<string>) {
       state.orderNum = payload;
     },
-    changeCity(state, { payload }) {
+    changeCity(state, { payload }: PayloadAction<string>) {
       state.delivery.city = payload;
     },
-    changeWarehouse(state, { payload }) {
+    changeWarehouse(state, { payload }: PayloadAction<string>) {
       state.delivery.warehouse = payload;
     },
-    changeDeliveryType(state, { payload }) {
+    changeDeliveryType(state, { payload }: PayloadAction<string>) {
       state.delivery.deliveryType = payload;
     },
-    changePayment(state, { payload }) {
+    changePayment(state, { payload }: PayloadAction<string>) {
       state.delivery.payment = payload;
     },
-    changeDiscount(state, { payload }) {
+    changeDiscount(state, { payload }: PayloadAction<number>) {
       state.discountValue = payload;
     },
-    changeTogether(state, { payload }) {
+    changeTogether(state, { payload }: PayloadAction<number>) {
       state.together = payload;
     },
   },

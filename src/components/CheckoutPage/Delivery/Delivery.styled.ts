@@ -1,6 +1,23 @@
 import styled from 'styled-components';
+import { StylesConfig, GroupBase } from 'react-select';
 
-export const Title = styled.p`
+interface ThemeProps {
+  theme: {
+    colors: {
+      textPrimary: string;
+      secondary: string;
+      greyBackgroundPaper: string;
+      backgroundPaper: string;
+      error: string;
+    };
+  };
+}
+
+interface ButtonProps {
+  $show: boolean;
+}
+
+export const Title = styled.p<ThemeProps>`
   color: ${props => props.theme.colors.textPrimary};
   font-size: 15px;
   font-weight: 500;
@@ -23,7 +40,7 @@ export const ButtonBox = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps & ThemeProps>`
   width: 155px;
   height: 40px;
   font-size: 12px;
@@ -99,14 +116,14 @@ export const BoxAddress = styled.div`
   }
 `;
 
-export const BoxIcon = styled.div`
+export const BoxIcon = styled.div<ThemeProps>`
   color: ${props => props.theme.colors.backgroundPaper};
   display: flex;
   align-items: flex-end;
   gap: 5px;
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<ThemeProps>`
   color: ${props => props.theme.colors.textPrimary};
   font-size: 15px;
 
@@ -115,7 +132,7 @@ export const Text = styled.p`
   }
 `;
 
-export const TextNp = styled.p`
+export const TextNp = styled.p<ThemeProps>`
   color: ${props => props.theme.colors.textPrimary};
   font-size: 15px;
 
@@ -130,7 +147,7 @@ export const TextNp = styled.p`
   }
 `;
 
-export const Address = styled.a`
+export const Address = styled.a<ThemeProps>`
   color: ${props => props.theme.colors.textPrimary};
   font-size: 15px;
   font-weight: 600;
@@ -152,7 +169,7 @@ export const BoxNP = styled.div`
   }
 `;
 
-export const selectStyles = {
+export const selectStyles: StylesConfig<any, false, GroupBase<any>> = {
   control: styles => ({
     ...styles,
     backgroundColor: 'rgba(247, 247, 247, 1)',
@@ -187,31 +204,29 @@ export const selectStyles = {
       fontSize: '20px',
     },
   }),
-  option: (styles, { isDisabled, isFocused, isSelected }) => {
-    return {
-      ...styles,
-      backgroundColor: isFocused ? 'rgb(255, 208, 100)' : undefined,
-      color: !isDisabled
+  option: (styles, { isDisabled, isFocused, isSelected }) => ({
+    ...styles,
+    backgroundColor: isFocused ? 'rgb(255, 208, 100)' : undefined,
+    color: !isDisabled
+      ? isSelected
+        ? 'rgb(31, 31, 31)'
+        : 'rgb(31, 31, 31)'
+      : undefined,
+    cursor: isDisabled ? 'not-allowed' : 'default',
+    padding: '2px 8px',
+    ':active': {
+      ...styles[':active'],
+      backgroundColor: !isDisabled
         ? isSelected
-          ? 'rgb(31, 31, 31);'
-          : 'rgb(31, 31, 31);'
+          ? 'rgb(255, 208, 100)'
+          : 'rgb(255, 208, 100)'
         : undefined,
-      cursor: isDisabled ? 'not-allowed' : 'default',
-      padding: '2px 8px',
-      ':active': {
-        ...styles[':active'],
-        backgroundColor: !isDisabled
-          ? isSelected
-            ? 'rgb(255, 208, 100)'
-            : 'rgb(255, 208, 100)'
-          : undefined,
-      },
-      '@media only screen and (min-width: 1280px)': {
-        borderRadius: '6px',
-      },
-    };
-  },
-  placeholder: styles => ({
+    },
+    '@media only screen and (min-width: 1280px)': {
+      borderRadius: '6px',
+    },
+  }),
+  placeholder: styles=> ({
     ...styles,
     fontSize: '10px',
     padding: '0px 8px',
