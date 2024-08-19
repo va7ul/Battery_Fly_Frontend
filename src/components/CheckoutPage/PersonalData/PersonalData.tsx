@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { FormikProvider } from 'formik';
+import { FC, useEffect } from 'react';
+import { useTypedDispatch } from 'redux/hooks';
 import { useMediaQuery } from 'react-responsive';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
@@ -19,8 +18,20 @@ import {
   Title,
   Wrapper,
 } from './PersonalData.styled';
+import { UserData } from '../../../@types/user.types';
 
-export const PersonalData = ({ formik, isValidPhone }) => {
+
+type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };  
+
+type Props = {
+  formik: {
+    initialValues: FormValues;
+    handleSubmit: () => void ;
+  };
+  isValidPhone: boolean;
+};
+
+export const PersonalData: FC<Props> = ({ formik, isValidPhone }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const {
@@ -29,7 +40,7 @@ export const PersonalData = ({ formik, isValidPhone }) => {
   } = useAuth();
   const { tel } = useOrder();
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -55,7 +66,7 @@ export const PersonalData = ({ formik, isValidPhone }) => {
   ]);
 
   return (
-    <FormikProvider value={formik}>
+    <>
       <Wrapper>
         <Title>Особисті дані</Title>
         <StyledForm onSubmit={formik.handleSubmit} id="form-order">
@@ -74,26 +85,28 @@ export const PersonalData = ({ formik, isValidPhone }) => {
           <Label>
             <LabelText>Телефон</LabelText>
             <PhoneInput
-              style={{
-                '--react-international-phone-height': !isBigScreen
-                  ? '39px'
-                  : '51px',
-                '--react-international-phone-background-color': 'transparent',
-                '--react-international-phone-border-color': `${theme.colors.textDisabled}`,
-                '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
-                '--react-international-phone-font-size': !isBigScreen
-                  ? '10px'
-                  : '20px',
-                '--react-international-phone-border-radius': !isBigScreen
-                  ? '8px'
-                  : '8px',
-                '--react-international-phone-flag-width': !isBigScreen
-                  ? '16px'
-                  : '24px',
-                '--react-international-phone-flag-height': !isBigScreen
-                  ? '16px'
-                  : '24px',
-              }}
+              style={
+                {
+                  '--react-international-phone-height': !isBigScreen
+                    ? '39px'
+                    : '51px',
+                  '--react-international-phone-background-color': 'transparent',
+                  '--react-international-phone-border-color': `${theme.colors.textDisabled}`,
+                  '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
+                  '--react-international-phone-font-size': !isBigScreen
+                    ? '10px'
+                    : '20px',
+                  '--react-international-phone-border-radius': !isBigScreen
+                    ? '8px'
+                    : '8px',
+                  '--react-international-phone-flag-width': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                  '--react-international-phone-flag-height': !isBigScreen
+                    ? '16px'
+                    : '24px',
+                } as React.CSSProperties
+              }
               defaultCountry="ua"
               hideDropdown={true}
               value={isLoggedIn ? userTel : tel}
@@ -129,6 +142,6 @@ export const PersonalData = ({ formik, isValidPhone }) => {
         </StyledForm>
       </Wrapper>
       <PhoneFieldGlobalStyles />
-    </FormikProvider>
+    </>
   );
 };
