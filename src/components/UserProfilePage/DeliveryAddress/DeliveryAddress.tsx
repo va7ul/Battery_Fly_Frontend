@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { useTypedSelector } from 'redux/hooks';
+import { useTypedSelector } from '../../../redux/hooks/hooks';
 import { LiaPenAltSolid } from 'react-icons/lia';
 import { selectDelivery } from '../../../redux/user/userSelectors';
 import { DeliveryAddressForm } from '../DeliveryAddressForm/DeliveryAddressForm';
@@ -16,14 +16,14 @@ export const DeliveryAddress: FC = () => {
 
   const isObjectEmpty = (obj: Delivery): boolean => {
     if (obj.city === '' && obj.warehouse === '') {
-      return true;
+      return false;
     }
-    return false;
-  }; 
+    return true;
+  };
 
 const text: string = isObjectEmpty(delivery)
-  ? 'Додати адресу'
-  : 'Редагувати адресу';
+  ? 'Редагувати адресу'
+  : 'Додати адресу';
   return (
     <>
       <Subtitle>Адреса доставки</Subtitle>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import toast from 'react-hot-toast';
 import { Formik } from 'formik';
@@ -21,7 +21,8 @@ import {
   StyledForm,
 } from './PasswordEditForm.styled';
 
-export const PasswordEditForm = () => {
+export const PasswordEditForm: FC = () => {
+
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const [expanded, setExpanded] = useState(false);
@@ -71,9 +72,9 @@ export const PasswordEditForm = () => {
             },
 
             '&:hover, &:focus': {
-              color: themeMUI => themeMUI.palette.hoverColor.main,
+              color: 'hoverColor.main',
               svg: {
-                fill: themeMUI => themeMUI.palette.hoverColor.main,
+                fill: 'hoverColor.main',
               },
               transition: '500ms cubic-bezier(0.4, 0, 0.2, 1)',
             },
@@ -239,7 +240,7 @@ export const PasswordEditForm = () => {
               '&.MuiButton-root': {
                 textTransform: 'none',
                 fontSize: !isBigScreen ? '13px' : '20px',
-                color: themeMUI => themeMUI.palette.hoverColor.main,
+                color: 'hoverColor.main',
               },
             }}
             type="submit"

@@ -1,3 +1,4 @@
+import { GroupBase, StylesConfig } from 'react-select';
 import styled from 'styled-components';
 
 export const Text = styled.p`
@@ -24,7 +25,7 @@ export const Box = styled.div`
   }
 `;
 
-export const selectStyles = {
+export const selectStyles: StylesConfig<any, false, GroupBase<any>> = {
   control: styles => ({
     ...styles,
     backgroundColor: 'rgba(247, 247, 247, 1)',

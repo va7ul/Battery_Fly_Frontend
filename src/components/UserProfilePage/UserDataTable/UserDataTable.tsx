@@ -8,15 +8,20 @@ import TableCell from '@mui/material/TableCell';
 import { LiaPenAltSolid } from 'react-icons/lia';
 import { useAuth } from 'utils/hooks';
 import { EditButton } from './UserDataTable.styled';
+import { FC } from 'react';
 
-export const UserDataTable = ({ handleShowForm }) => {
+type Props = {
+  handleShowForm: () => void;
+};
+
+export const UserDataTable: FC<Props> = ({ handleShowForm }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
 
   const {
     userData: { firstName, lastName, patronymic, tel, email },
   } = useAuth();
 
-  function createData(userData, value) {
+  function createData(userData:string, value:string) {
     return { userData, value };
   }
 
@@ -39,8 +44,7 @@ export const UserDataTable = ({ handleShowForm }) => {
         }}
       >
         <Table sx={{ minWidth: 175 }} aria-label="user data table">
-          <TableBody
-          >
+          <TableBody>
             {rows.map(row => (
               <TableRow key={row.userData}>
                 <TableCell

@@ -23,7 +23,7 @@ export const signUpSchema = Yup.object().shape({
     .trim()
     .required('Введіть пароль, будь ласка'),
   passwordConfirmation: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Паролі мають збігатися')
+    .oneOf([Yup.ref('password')], 'Паролі мають збігатися')
     .required('Введіть пароль, будь ласка')
     .trim(),
 });

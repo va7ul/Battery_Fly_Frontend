@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.section`
+type Props = {
+  $isCategories: boolean;
+};
+
+
+export const Wrapper = styled.section<Props>`
   width: 100%;
   margin: 0 auto;
   padding: ${props => (props.$isCategories ? '0' : '0 20px')};

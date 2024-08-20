@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { FC, useState } from 'react';
+import { useTypedDispatch } from '../../../redux/hooks/hooks';
 import { useMediaQuery } from 'react-responsive';
 import toast from 'react-hot-toast';
 import { Formik } from 'formik';
@@ -25,28 +25,40 @@ import {
   CancelBtn,
 } from './UserDataEditForm.styled';
 
-export const UserDataEditForm = ({ handleShowForm }) => {
+
+type Props = {
+  handleShowForm: () => void;
+};
+
+type FormValues = {
+  firstName: string;
+  lastName: string;
+  patronymic: string;
+};
+export const UserDataEditForm: FC<Props> = ({ handleShowForm }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width:1280px)' });
 
   const {
     userData: { firstName, lastName, patronymic, tel },
   } = useAuth();
 
+  const initialValues: FormValues = {
+    firstName: firstName,
+    lastName: lastName,
+    patronymic: patronymic,
+  };
+
   const [formikTel, setTel] = useState(tel);
 
   const isValidPhone = isPhoneValid(formikTel);
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   return (
     <>
       <FormikWrapper>
         <Formik
-          initialValues={{
-            firstName: firstName,
-            lastName: lastName,
-            patronymic: patronymic,
-          }}
+          initialValues={initialValues}
           validationSchema={userDataSchema}
           onSubmit={(values, _) => {
             const userData = {
@@ -101,25 +113,27 @@ export const UserDataEditForm = ({ handleShowForm }) => {
               Мобільний номер
               <Box>
                 <PhoneInput
-                  style={{
-                    '--react-international-phone-height': !isBigScreen
-                      ? '22px'
-                      : '34px',
-                    '--react-international-phone-background-color':
-                      'transparent',
-                    '--react-international-phone-border-color': `${theme.colors.greyOutput}`,
-                    '--react-international-phone-text-color': `${theme.colors.greyOutput}`,
-                    '--react-international-phone-font-size': !isBigScreen
-                      ? '10px'
-                      : '15px',
-                    '--react-international-phone-border-radius': '8px',
-                    '--react-international-phone-flag-width': !isBigScreen
-                      ? '16px'
-                      : '24px',
-                    '--react-international-phone-flag-height': !isBigScreen
-                      ? '16px'
-                      : '24px',
-                  }}
+                  style={
+                    {
+                      '--react-international-phone-height': !isBigScreen
+                        ? '22px'
+                        : '34px',
+                      '--react-international-phone-background-color':
+                        'transparent',
+                      '--react-international-phone-border-color': `${theme.colors.greyOutput}`,
+                      '--react-international-phone-text-color': `${theme.colors.greyOutput}`,
+                      '--react-international-phone-font-size': !isBigScreen
+                        ? '10px'
+                        : '15px',
+                      '--react-international-phone-border-radius': '8px',
+                      '--react-international-phone-flag-width': !isBigScreen
+                        ? '16px'
+                        : '24px',
+                      '--react-international-phone-flag-height': !isBigScreen
+                        ? '16px'
+                        : '24px',
+                    } as React.CSSProperties
+                  }
                   defaultCountry="ua"
                   hideDropdown={true}
                   value={formikTel}

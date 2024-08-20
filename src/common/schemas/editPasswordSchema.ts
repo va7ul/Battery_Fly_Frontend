@@ -16,7 +16,7 @@ export const editPasswordSchema = Yup.object().shape({
     .required('Введіть пароль, будь ласка')
     .trim(),
   newPasswordConfirmation: Yup.string()
-    .oneOf([Yup.ref('newPassword'), null], 'Новий пароль не підтверджено')
+    .oneOf([Yup.ref('newPassword')], 'Новий пароль не підтверджено')
     .required('Підтвердіть новий пароль, будь ласка')
     .trim(),
 });
