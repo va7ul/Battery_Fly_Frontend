@@ -1,14 +1,21 @@
 import { createTheme, TypeBackground } from '@mui/material/styles';
-import { PaletteColorOptions } from '@mui/material/styles/createPalette';
+// import { PaletteColorOptions } from '@mui/material/styles/createPalette';
 
 declare module '@mui/material/styles' {
-  interface Palette {
-    hoverColor?: PaletteColorOptions;
-  }
+  // interface Palette {
+  //   hoverColor?: PaletteColorOptions;
+  // }
 
-  interface PaletteOptions {
-    hoverColor?: PaletteColorOptions;
-  }
+  // interface PaletteOptions {
+  //   hoverColor?: PaletteColorOptions;
+  // }
+
+    interface Palette {
+      hoverColor: Palette['primary'];
+    }
+    interface PaletteOptions {
+      hoverColor: PaletteOptions['primary'];
+    }
 
   interface BreakpointOverrides {
     xs: true;
