@@ -6,8 +6,15 @@ import toys from '../../../assets/images/main-for-toys.png';
 import print3d from '../../../assets/images/main-3d-print.png';
 import { MainWrapper } from '../SharedComponents/MainWrapper/MainWrapper';
 import { Image, LinkToProducts, List, ListItem, Subtitle } from './Categories.styled';
+import { FC } from 'react';
 
-const categories = [
+type Categorie = {
+  imgUrl: string;
+  description: string;
+  path: string;
+};
+
+const categories: Categorie[] = [
   {
     imgUrl: `${accumulator}`,
     description: 'Акумулятори',
@@ -40,7 +47,7 @@ const categories = [
   },
 ];
 
-export const Categories = () => {
+export const Categories:FC = () => {
   return (
     <MainWrapper isCategories={true}>
       <List>

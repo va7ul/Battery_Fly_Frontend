@@ -15,8 +15,14 @@ import {
   TextBox,
   Wrapper,
 } from './OurServices.styled';
+import { FC } from 'react';
+import { Service } from '../../../@types/mainPage.types';
 
-export const OurServices = ({ services }) => {
+type Props = {
+  services: Service[];
+};
+
+export const OurServices: FC<Props> = ({ services }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (
