@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks/hooks';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';

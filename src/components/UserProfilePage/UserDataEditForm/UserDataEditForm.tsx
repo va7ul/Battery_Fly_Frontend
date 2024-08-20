@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch } from '../../../redux/hooks/hooks';
 import { useMediaQuery } from 'react-responsive';
 import toast from 'react-hot-toast';
 import { Formik } from 'formik';

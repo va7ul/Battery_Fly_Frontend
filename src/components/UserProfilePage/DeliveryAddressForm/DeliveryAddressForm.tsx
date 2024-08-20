@@ -1,5 +1,5 @@
-import { FC, useCallback, useMemo, useState } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks/hooks';
 import Select, { SingleValue } from 'react-select';
 import toast from 'react-hot-toast';
 import { debounce } from 'lodash';
@@ -42,6 +42,27 @@ export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
   let warehouses = useTypedSelector(selectWarehouses);
   const [warehouse, setWarehouse] = useState(deliveryAddress.warehouse);
 
+  const selectInputCityRef = useRef<any>(null);
+  const selectInputWarehouseRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (city) {
+      if (selectInputCityRef.current && selectInputWarehouseRef.current) {
+        selectInputCityRef.current.setValue({
+          value: city,
+          label: city,
+        });
+        if (warehouse) {
+          selectInputWarehouseRef.current.setValue({
+            value: warehouse,
+            label: warehouse,
+          });
+        }
+      }
+    }
+  }, [city, warehouse]);
+
+
   const optionsCities: Option[] = cities.map(city => {
     return {
       value: city,
@@ -76,6 +97,10 @@ export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
   const clearInputCity = () => {
     setCity('');
     setWarehouse('');
+    if (selectInputCityRef.current && selectInputWarehouseRef.current) {
+      selectInputCityRef.current.setValue('');
+      selectInputWarehouseRef.current.setValue('');
+    }
   };
 
   const optionsWarehouses: Option[] = warehouses.map(warehouse => {
@@ -92,10 +117,13 @@ export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
   };
 
   const clearInputWarehouse = () => {
+    setWarehouse('');
+    if (selectInputWarehouseRef.current) {
+      selectInputWarehouseRef.current.setValue('');
+    }
     if (city) {
       dispatch(getDeliveryWarehouses(city));
     }
-    setWarehouse('');
   };
 
   const handleEditAddress = () => {
@@ -129,11 +157,8 @@ export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
       <Text>{text}</Text>
       <Box>
         <Select
+          ref={selectInputCityRef}
           options={optionsCities}
-          defaultValue={{
-            label: city,
-            value: city,
-          }}
           onChange={handleCityChange}
           onInputChange={handleSelectCity}
           onFocus={clearInputCity}
@@ -141,11 +166,8 @@ export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
           styles={selectStyles}
         />
         <Select
+          ref={selectInputWarehouseRef}
           options={optionsWarehouses}
-          defaultValue={{
-            label: warehouse,
-            value: warehouse,
-          }}
           onChange={handleWarehouseChange}
           onFocus={clearInputWarehouse}
           placeholder={'Відділення/поштомат'}
