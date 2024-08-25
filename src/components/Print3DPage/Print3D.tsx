@@ -97,7 +97,6 @@ export const Print3D = () => {
               name="file"
               type="file"
               accept=".stl, .3mf, .step, .svg, .obj, .amf, .usd*, .abc, .ply, .rar, .7z, .zip"
-              multiple
               onChange={attachFiles}
             />
           </form>

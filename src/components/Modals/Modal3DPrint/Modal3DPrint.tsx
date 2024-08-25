@@ -118,7 +118,7 @@ export const Modal3DPrint: FC<Props> = ({
                 formData.append('accuracy', accuracy ?? '');
                 formData.append('plactic', plactic ?? '');
                 formData.append('color', color ?? '');
-                formData.append('file', file as any);
+                formData.append('file', file[0]);
 
                 if (!isValidPhone || tel === '+380') {
                   toast('Введіть номер телефону', {
