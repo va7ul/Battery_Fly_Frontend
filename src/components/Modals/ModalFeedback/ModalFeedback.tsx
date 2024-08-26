@@ -58,8 +58,8 @@ type Props = {
 };
 
 type FormValues = {
-  name: string | null;
-  text: string | null;
+  name: string ;
+  text: string;
 };
 
 export const ModalFeedback: FC<Props> = ({
@@ -127,7 +127,7 @@ export const ModalFeedback: FC<Props> = ({
               validationSchema={nameSchema}
               onSubmit={async (values, actions) => {
                 const userData = {
-                  name: values.name?.trim(),
+                  name: values.name.trim(),
                   text: values.text,
                   tel: tel,
                 };

@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { useTypedDispatch } from 'redux/hooks';
 import { useAuth } from 'utils/hooks';
 import { changeMessageOfSuccessfulRequest } from '../../../redux/user/userSlice';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
@@ -11,7 +11,13 @@ import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
 
-export const ModalSignUpSignIn = ({
+
+type Props = {
+  isModalSignUpSignInOpen: boolean;
+  handleCloseSignUpSignInModal: () => void;
+};
+
+export const ModalSignUpSignIn: FC<Props> = ({
   isModalSignUpSignInOpen,
   handleCloseSignUpSignInModal,
 }) => {
@@ -24,7 +30,7 @@ export const ModalSignUpSignIn = ({
   const handleShowSignInForm = () => setShowSignUpForm(false);
   const handleShowSignUpForm = () => setShowSignUpForm(true);
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const handleOpenAgreeModal = useCallback(() => {
     setIsModalAgreeOpen(true);
@@ -63,7 +69,7 @@ export const ModalSignUpSignIn = ({
   return (
     <>
       {isLoading ? (
-        <CustomLoader/>
+        <CustomLoader />
       ) : (
         <ModalYellowGradient
           isModalOpen={isModalSignUpSignInOpen}

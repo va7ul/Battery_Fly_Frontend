@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
+import { useTypedDispatch } from 'redux/hooks';
 import { useMediaQuery } from 'react-responsive';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
@@ -13,9 +13,22 @@ import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
 
+
 const localStorageRegisterKey = 'register';
 
-export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
+type Props = {
+  handleCloseSignUpSignInModal: () => void;
+};
+
+type FormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirmation?: string;
+};
+
+export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +37,11 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
   const { errorStatus } = useAuth();
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
+
+  let localStorageValue: string | null;
+  
+  localStorageValue = localStorage.getItem(localStorageRegisterKey);
 
   useEffect(() => {
     if (errorStatus === 'Email in use') {
@@ -49,19 +66,17 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: JSON.parse(localStorage.getItem(localStorageRegisterKey))
-        ? JSON.parse(localStorage.getItem(localStorageRegisterKey)).firstName
+      firstName: localStorageValue
+        ? JSON.parse(localStorageValue).firstName
         : '',
-      lastName: JSON.parse(localStorage.getItem(localStorageRegisterKey))
-        ? JSON.parse(localStorage.getItem(localStorageRegisterKey)).lastName
-        : '',
+      lastName: localStorageValue ? JSON.parse(localStorageValue).lastName : '',
       email: '',
       password: '',
       passwordConfirmation: '',
     },
     validationSchema: signUpSchema,
-    onSubmit: (values, _) => {
-      const userData = {
+    onSubmit: (values: FormValues, _) => {
+      const userData: FormValues = {
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),
         email: values.email,
@@ -131,7 +146,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
           helperText={formik.touched.password && formik.errors.password}
           InputProps={{
             endAdornment: (
-              <InputAdornment name="password" position="end">
+              <InputAdornment  position="end">
                 <IconButton
                   sx={{
                     width: isBigScreen ? '20px' : '16px',
@@ -178,7 +193,7 @@ export const SignUpForm = ({ handleCloseSignUpSignInModal }) => {
           }
           InputProps={{
             endAdornment: (
-              <InputAdornment name="passwordConfirmation" position="end">
+              <InputAdornment  position="end">
                 <IconButton
                   sx={{
                     width: isBigScreen ? '20px' : '16px',
