@@ -155,7 +155,7 @@ export const editUserAddress = createAsyncThunk<
 
 export const verifyEmail = createAsyncThunk<
   { message: string },
-  string,
+  { email: string },
   { rejectValue: string }
 >('user/verifyEmail', async (email, thunkAPI) => {
   try {

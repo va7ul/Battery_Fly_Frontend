@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useTypedDispatch } from 'redux/hooks';
 import { useFormik } from 'formik';
 import { emailSchema } from '../../../common/schemas/emailSchema';
 import { verifyEmail } from '../../../redux/user/userOperations';
@@ -6,21 +6,31 @@ import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/Moda
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { Field } from '../SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text, Wrapper } from './ModalVerifyEmail.styled';
+import { FC } from 'react';
 
-export const ModalVerifyEmail = ({
+type Props = {
+  isModalVerifyEmailOpen: boolean;
+  handleCloseVerifyEmailModal: () => void;
+  handleCloseSignUpSignInModal: () => void;
+};
+
+type FormValues = {
+  email: string;
+};
+
+export const ModalVerifyEmail: FC<Props> = ({
   isModalVerifyEmailOpen,
   handleCloseVerifyEmailModal,
   handleCloseSignUpSignInModal,
 }) => {
-  
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     validationSchema: emailSchema,
-    onSubmit: (values, _) => {
+    onSubmit: (values: FormValues, _) => {
       dispatch(verifyEmail(values)).then(result => {
         if (result.meta.requestStatus === 'fulfilled') {
           handleCloseSignUpSignInModal();
