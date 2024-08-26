@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import toast from 'react-hot-toast';
 import { PhoneInput } from 'react-international-phone';
@@ -26,7 +26,17 @@ import {
   Wrapper,
 } from './ModalQuickOrder.styled';
 
-export const ModalQuickOrder = ({
+type Props = {
+  product: { name: string; codeOfGood: string; };
+  isModalQuickOrderOpen: boolean;
+  handleCloseQuickOrderModal: () => void;
+};
+
+type FormValues = {
+  name: string;
+};
+
+export const ModalQuickOrder: FC<Props> = ({
   product: { name, codeOfGood },
   isModalQuickOrderOpen,
   handleCloseQuickOrderModal,
@@ -41,6 +51,10 @@ export const ModalQuickOrder = ({
   const isValidPhone = isPhoneValid(tel);
 
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
+
+  const initialValues: FormValues = {
+    name: isLoggedIn ? firstName : '',
+  };
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -74,9 +88,7 @@ export const ModalQuickOrder = ({
             <Title>{name}</Title>
             <CodeOfGoodText>Код товару:{codeOfGood}</CodeOfGoodText>
             <Formik
-              initialValues={{
-                name: isLoggedIn ? firstName : '',
-              }}
+              initialValues={initialValues}
               validationSchema={nameSchema}
               onSubmit={async (values, _) => {
                 const orderData = {
@@ -115,27 +127,29 @@ export const ModalQuickOrder = ({
                 />
                 <StyledErrorMessage name="name" component="div" />
                 <PhoneInput
-                  style={{
-                    '--react-international-phone-height': !isBigScreen
-                      ? '28px'
-                      : '51px',
-                    '--react-international-phone-background-color':
-                      'transparent',
-                    '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
-                    '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
-                    '--react-international-phone-font-size': !isBigScreen
-                      ? '14px'
-                      : '24px',
-                    '--react-international-phone-border-radius': !isBigScreen
-                      ? '6px'
-                      : '8px',
-                    '--react-international-phone-flag-width': !isBigScreen
-                      ? '16px'
-                      : '24px',
-                    '--react-international-phone-flag-height': !isBigScreen
-                      ? '16px'
-                      : '24px',
-                  }}
+                  style={
+                    {
+                      '--react-international-phone-height': !isBigScreen
+                        ? '28px'
+                        : '51px',
+                      '--react-international-phone-background-color':
+                        'transparent',
+                      '--react-international-phone-border-color': `${theme.colors.textPrimary}`,
+                      '--react-international-phone-text-color': `${theme.colors.textPrimary}`,
+                      '--react-international-phone-font-size': !isBigScreen
+                        ? '14px'
+                        : '24px',
+                      '--react-international-phone-border-radius': !isBigScreen
+                        ? '6px'
+                        : '8px',
+                      '--react-international-phone-flag-width': !isBigScreen
+                        ? '16px'
+                        : '24px',
+                      '--react-international-phone-flag-height': !isBigScreen
+                        ? '16px'
+                        : '24px',
+                    } as React.CSSProperties
+                  }
                   defaultCountry="ua"
                   hideDropdown={true}
                   value={tel}
