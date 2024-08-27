@@ -1,5 +1,5 @@
 import { useState, useEffect, FC } from 'react';
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch } from '../../../../redux/hooks/hooks';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -20,7 +20,7 @@ import {
 import { ModalVerifyEmail } from 'components/Modals/ModalVerifyEmail/ModalVerifyEmail';
 
 type Props = {
-  handleCloseSignUpSignInModal: () => void,
+  handleCloseSignUpSignInModal: () => void;
 };
 
 type FormValues = {
@@ -180,6 +180,7 @@ export const SignInForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Некоректно введені дані.</TextAgree>
         <TextAgree>Перевірте, будь ласка, введений логін та пароль.</TextAgree>

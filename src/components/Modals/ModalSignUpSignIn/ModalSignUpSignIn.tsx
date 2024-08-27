@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch } from '../../../redux/hooks/hooks';
 import { useAuth } from 'utils/hooks';
 import { changeMessageOfSuccessfulRequest } from '../../../redux/user/userSlice';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
@@ -10,7 +10,6 @@ import { SignInForm } from './SignInForm/SignInForm';
 import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
 import { Box, BtnWrapper, NavBtn } from './ModalSignUpSignIn.styled';
-
 
 type Props = {
   isModalSignUpSignInOpen: boolean;
@@ -109,6 +108,7 @@ export const ModalSignUpSignIn: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>
           На вашу електронну скриньку надіслано повідомлення для верифікації
@@ -118,6 +118,7 @@ export const ModalSignUpSignIn: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalFulfilledResendOpen}
         handleCloseAgreeModal={handleCloseFulfilledResendModal}
+        buttonText="Гаразд"
       >
         <TextAgree>
           Щоб верифікуватись - перейдіть за посиланням, яке ми надіслали на

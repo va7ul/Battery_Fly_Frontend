@@ -27,7 +27,7 @@ import {
 } from './ModalQuickOrder.styled';
 
 type Props = {
-  product: { name: string; codeOfGood: string; };
+  product: { name: string; codeOfGood: string };
   isModalQuickOrderOpen: boolean;
   handleCloseQuickOrderModal: () => void;
 };
@@ -173,6 +173,7 @@ export const ModalQuickOrder: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Дякуємо за замовлення.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>

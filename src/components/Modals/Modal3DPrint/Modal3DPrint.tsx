@@ -203,6 +203,7 @@ export const Modal3DPrint: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Дякуємо за замовлення.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>

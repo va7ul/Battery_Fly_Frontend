@@ -48,7 +48,7 @@ const customStyles = {
   },
 };
 
-const localStorageFeedbacksKey:string = 'feedback';
+const localStorageFeedbacksKey: string = 'feedback';
 
 ReactModal.setAppElement('#modal-root');
 
@@ -58,7 +58,7 @@ type Props = {
 };
 
 type FormValues = {
-  name: string ;
+  name: string;
   text: string;
 };
 
@@ -67,7 +67,8 @@ export const ModalFeedback: FC<Props> = ({
   handleCloseFeedbackModal,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const {isLoggedIn, 
+  const {
+    isLoggedIn,
     userData: { firstName, tel: userTel },
   } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
@@ -76,7 +77,7 @@ export const ModalFeedback: FC<Props> = ({
 
   let localStorageValue: string | null;
 
-  let initialValues:FormValues;
+  let initialValues: FormValues;
 
   localStorageValue = localStorage.getItem(localStorageFeedbacksKey);
 
@@ -223,6 +224,7 @@ export const ModalFeedback: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Ваш запит успішно прийнято.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>

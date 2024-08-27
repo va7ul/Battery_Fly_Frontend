@@ -1,4 +1,4 @@
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch } from '../../../redux/hooks/hooks';
 import { useFormik } from 'formik';
 import { emailSchema } from '../../../common/schemas/emailSchema';
 import { verifyEmail } from '../../../redux/user/userOperations';

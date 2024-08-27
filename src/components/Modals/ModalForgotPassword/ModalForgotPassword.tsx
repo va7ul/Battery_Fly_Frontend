@@ -47,7 +47,7 @@ export const ModalForgotPassword: FC<Props> = ({
       email: '',
     },
     validationSchema: emailSchema,
-    onSubmit: async (values:FormValues, _) => {
+    onSubmit: async (values: FormValues, _) => {
       setIsLoading(true);
       const response = await forgotPassword(values);
       setIsLoading(false);
@@ -92,6 +92,7 @@ export const ModalForgotPassword: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAllModal}
+        buttonText="Гаразд"
       >
         <TextAgree>
           Щоб відновити пароль, перейдіть за посиланням, яке ми надіслали на

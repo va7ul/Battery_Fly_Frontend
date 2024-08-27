@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch } from '../../../../redux/hooks/hooks';
 import { useMediaQuery } from 'react-responsive';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
@@ -12,7 +12,6 @@ import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAg
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { Field } from 'components/Modals/SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text } from './SignUpForm.styled';
-
 
 const localStorageRegisterKey = 'register';
 
@@ -40,7 +39,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
   const dispatch = useTypedDispatch();
 
   let localStorageValue: string | null;
-  
+
   localStorageValue = localStorage.getItem(localStorageRegisterKey);
 
   useEffect(() => {
@@ -146,7 +145,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
           helperText={formik.touched.password && formik.errors.password}
           InputProps={{
             endAdornment: (
-              <InputAdornment  position="end">
+              <InputAdornment position="end">
                 <IconButton
                   sx={{
                     width: isBigScreen ? '20px' : '16px',
@@ -193,7 +192,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
           }
           InputProps={{
             endAdornment: (
-              <InputAdornment  position="end">
+              <InputAdornment position="end">
                 <IconButton
                   sx={{
                     width: isBigScreen ? '20px' : '16px',
@@ -233,6 +232,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Акаунт з такою е-поштою вже зареєстрований.</TextAgree>
       </ModalAgree>

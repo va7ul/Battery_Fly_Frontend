@@ -1,6 +1,8 @@
 import ReactModal from 'react-modal';
 import { theme } from 'styles/theme';
 import { Box, Btn } from './ModalAgree.styled';
+import { FC } from 'react';
+import { PropsChildren } from '../../../../@types/modals.types';
 
 const customStyles = {
   overlay: {
@@ -23,11 +25,17 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-export const ModalAgree = ({
+type Props = {
+  isModalAgreeOpen: boolean;
+  handleCloseAgreeModal: () => void;
+  buttonText: string;
+};
+
+export const ModalAgree: FC<PropsChildren & Props> = ({
   children,
   isModalAgreeOpen,
   handleCloseAgreeModal,
-  buttonText = 'Гаразд',
+  buttonText,
 }) => {
   return (
     <ReactModal isOpen={isModalAgreeOpen} style={customStyles}>
