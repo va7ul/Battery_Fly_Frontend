@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type Props = {
+  $show: boolean;
+};
+
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +24,7 @@ export const BtnWrapper = styled.div`
   }
 `;
 
-export const NavBtn = styled.button`
+export const NavBtn = styled.button<Props>`
   font-size: 15px;
   font-weight: 600;
   background-color: transparent;

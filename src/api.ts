@@ -1,12 +1,32 @@
 import axios from 'axios';
-import { baseURL } from './utils/constants/baseURL.ts';
+import { baseURL } from './utils/constants/baseURL';
 import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = baseURL;
-axios.defaults.headers.common['Authorization'] =
-  JSON.parse(localStorage.getItem('user'))?.token ?? '';
 
-const handleError = error => {
+type Email = {
+  email: string;
+}
+
+type DataUser = {
+  name: string;
+  text: string;
+  tel: string;
+};
+
+type Passwords = {
+  password: string;
+  newPassword: string;
+};
+
+type OrderData = {
+  name: string;
+  codeOfGood: string;
+  userName: string;
+  tel: string;
+};
+
+const handleError = (error: any): string => {
   if (error.response && error.response.data && error.response.data.message) {
     return `Oops! Something was wrong... ${error.response.data.message}`;
   } else {
@@ -14,40 +34,49 @@ const handleError = error => {
   }
 };
 
-export const addQuickOrder = async orderData => {
+export const addQuickOrder = async (orderData: OrderData) => {
   try {
-    const data = await axios.post('order/quick-order', orderData);
+    const data = await axios.post<{ message: string }>(
+      'order/quick-order',
+      orderData
+    );
     return data;
-  } catch (error) {
+  } catch (error: any) {
     toast.error('Сталася помилка, спробуйте ще раз');
   }
 };
 
-export const addFeedback = async dataUser => {
+export const addFeedback = async (dataUser: DataUser)  => {
   try {
-    const data = await axios.post(`feedback`, dataUser);
+    const data = await axios.post<{ message: string }>(`feedback`, dataUser);
     return data;
-  } catch (error) {
+  } catch (error: any) {
     toast.error('Сталася помилка, спробуйте ще раз');
   }
 };
 
-export const forgotPassword = async email => {
+export const forgotPassword = async (email: Email) => {
   try {
-    const data = await axios.post('auth/forgot-password', email);
+    const  data = await axios.post<{ message: string }>(
+      'auth/forgot-password',
+      email
+    );
     return data;
-  } catch (error) {
+  } catch (error: any) {
     toast.error('Сталася помилка, спробуйте ще раз');
   }
 };
 
-export const changePassword = async passwords => {
+export const changePassword = async (passwords: Passwords) => {
   try {
-    const data = await axios.post('user/change-password', passwords);
+    const data = await axios.post<{ message: string }>(
+      'user/change-password',
+      passwords
+    );
     toast.success('Новий пароль збережено!', {
     });
     return data;
-  } catch (error) {
+  } catch (error:any) {
     if (error.response.data.message === 'Email or password is wrong') {
       toast.error('Невірний пароль.', {
       });

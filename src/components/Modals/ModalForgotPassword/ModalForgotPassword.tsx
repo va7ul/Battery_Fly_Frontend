@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useFormik } from 'formik';
 import { emailSchema } from '../../../common/schemas/emailSchema';
 import { forgotPassword } from 'api';
@@ -10,7 +10,17 @@ import { ModalAgree } from '../SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from '../SharedComponent/Text/Text';
 import { Btn, StyledForm, Text, Wrapper } from './ModalForgotPassword.styled';
 
-export const ModalForgotPassword = ({
+type Props = {
+  isModalForgotPasswordOpen: boolean;
+  handleCloseForgotPasswordModal: () => void;
+  handleCloseSignUpSignInModal: () => void;
+};
+
+type FormValues = {
+  email: string;
+};
+
+export const ModalForgotPassword: FC<Props> = ({
   isModalForgotPasswordOpen,
   handleCloseForgotPasswordModal,
   handleCloseSignUpSignInModal,
@@ -37,7 +47,7 @@ export const ModalForgotPassword = ({
       email: '',
     },
     validationSchema: emailSchema,
-    onSubmit: async (values, _) => {
+    onSubmit: async (values: FormValues, _) => {
       setIsLoading(true);
       const response = await forgotPassword(values);
       setIsLoading(false);
@@ -51,7 +61,7 @@ export const ModalForgotPassword = ({
   return (
     <>
       {isLoading ? (
-        <CustomLoader/>
+        <CustomLoader />
       ) : (
         <ModalYellowGradient
           isModalOpen={isModalForgotPasswordOpen}
@@ -82,6 +92,7 @@ export const ModalForgotPassword = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAllModal}
+        buttonText="Гаразд"
       >
         <TextAgree>
           Щоб відновити пароль, перейдіть за посиланням, яке ми надіслали на

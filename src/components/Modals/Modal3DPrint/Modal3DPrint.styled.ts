@@ -171,7 +171,7 @@ export const Btn = styled.button`
   }
 
   @media (min-width: 1280px) {
-    max-width: 310px;
+    max-width: 312px;
     margin-top: 30px;
     padding: 16px 20px;
     border-radius: 12px;

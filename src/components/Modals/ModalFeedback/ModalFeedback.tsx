@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import ReactModal from 'react-modal';
 import { Formik } from 'formik';
@@ -48,22 +48,47 @@ const customStyles = {
   },
 };
 
-const localStorageFeedbacksKey = 'feedback';
+const localStorageFeedbacksKey: string = 'feedback';
 
 ReactModal.setAppElement('#modal-root');
 
-export const ModalFeedback = ({
+type Props = {
+  isModalFeedbackOpen: boolean;
+  handleCloseFeedbackModal: () => void;
+};
+
+type FormValues = {
+  name: string;
+  text: string;
+};
+
+export const ModalFeedback: FC<Props> = ({
   isModalFeedbackOpen,
   handleCloseFeedbackModal,
 }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
-  const { isLoggedIn } = useAuth();
   const {
+    isLoggedIn,
     userData: { firstName, tel: userTel },
   } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [tel, setTel] = useState(isLoggedIn ? userTel : '+380');
   const isValidPhone = isPhoneValid(tel);
+
+  let localStorageValue: string | null;
+
+  let initialValues: FormValues;
+
+  localStorageValue = localStorage.getItem(localStorageFeedbacksKey);
+
+  initialValues = {
+    name: isLoggedIn
+      ? firstName
+      : localStorageValue
+      ? JSON.parse(localStorageValue).name
+      : '',
+    text: localStorageValue ? JSON.parse(localStorageValue).text : '',
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -99,18 +124,7 @@ export const ModalFeedback = ({
           <Wrapper>
             <Text>Залиште свої дані, ми вам передзвонимо</Text>
             <Formik
-              initialValues={{
-                name: isLoggedIn
-                  ? firstName
-                  : JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
-                  ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
-                      .name
-                  : '',
-                text: JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
-                  ? JSON.parse(localStorage.getItem(localStorageFeedbacksKey))
-                      .text
-                  : '',
-              }}
+              initialValues={initialValues}
               validationSchema={nameSchema}
               onSubmit={async (values, actions) => {
                 const userData = {
@@ -157,27 +171,28 @@ export const ModalFeedback = ({
                 <Label>
                   <LabelText>Телефон</LabelText>
                   <PhoneInput
-                    style={{
-                      '--react-international-phone-height': !isBigScreen
-                        ? '28px'
-                        : '51px',
-                      '--react-international-phone-background-color':
-                        'transparent',
-                      '--react-international-phone-border-color': `${theme.colors.greyBackgroundPaper}`,
-                      '--react-international-phone-text-color': `${theme.colors.greyBackgroundPaper}`,
-                      '--react-international-phone-font-size': !isBigScreen
-                        ? '10px'
-                        : '14px',
-                      '--react-international-phone-border-radius': !isBigScreen
-                        ? '6px'
-                        : '8px',
-                      '--react-international-phone-flag-width': !isBigScreen
-                        ? '16px'
-                        : '24px',
-                      '--react-international-phone-flag-height': !isBigScreen
-                        ? '16px'
-                        : '24px',
-                    }}
+                    style={
+                      {
+                        '--react-international-phone-height': !isBigScreen
+                          ? '28px'
+                          : '51px',
+                        '--react-international-phone-background-color':
+                          'transparent',
+                        '--react-international-phone-border-color': `${theme.colors.greyBackgroundPaper}`,
+                        '--react-international-phone-text-color': `${theme.colors.greyBackgroundPaper}`,
+                        '--react-international-phone-font-size': !isBigScreen
+                          ? '10px'
+                          : '14px',
+                        '--react-international-phone-border-radius':
+                          !isBigScreen ? '6px' : '8px',
+                        '--react-international-phone-flag-width': !isBigScreen
+                          ? '16px'
+                          : '24px',
+                        '--react-international-phone-flag-height': !isBigScreen
+                          ? '16px'
+                          : '24px',
+                      } as React.CSSProperties
+                    }
                     defaultCountry="ua"
                     hideDropdown={true}
                     value={tel}
@@ -209,6 +224,7 @@ export const ModalFeedback = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Ваш запит успішно прийнято.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>
