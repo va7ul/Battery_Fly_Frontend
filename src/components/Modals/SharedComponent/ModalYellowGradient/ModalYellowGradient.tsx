@@ -1,3 +1,5 @@
+import { PropsChildren } from '../../../../@types/modals.types';
+import { FC } from 'react';
 import ReactModal from 'react-modal';
 import { theme } from 'styles/theme';
 
@@ -22,7 +24,12 @@ const customStyles = {
 
 ReactModal.setAppElement('#modal-root');
 
-export const ModalYellowGradient = ({
+type Props = {
+  isModalOpen: boolean,
+  handleCloseModal: () => void,
+};
+
+export const ModalYellowGradient: FC<PropsChildren & Props> = ({
   children,
   isModalOpen,
   handleCloseModal,

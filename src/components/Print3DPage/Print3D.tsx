@@ -57,18 +57,18 @@ export const Print3D = () => {
   const attachFiles = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || []);
     const allowedExtensions = [
-      '.stl',
-      '.3mf',
-      '.step',
-      '.svg',
-      '.obj',
-      '.amf',
-      '.usd',
-      '.abc',
-      '.ply',
-      '.zip',
-      '.7z',
-      '.rar',
+      'stl',
+      '3mf',
+      'step',
+      'svg',
+      'obj',
+      'amf',
+      'usd',
+      'abc',
+      'ply',
+      'zip',
+      '7z',
+      'rar',
     ];
 
     const validFiles = selectedFiles.filter(file => {
@@ -97,7 +97,6 @@ export const Print3D = () => {
               name="file"
               type="file"
               accept=".stl, .3mf, .step, .svg, .obj, .amf, .usd*, .abc, .ply, .rar, .7z, .zip"
-              multiple
               onChange={attachFiles}
             />
           </form>

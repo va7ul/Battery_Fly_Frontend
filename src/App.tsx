@@ -1,11 +1,12 @@
 import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useTypedDispatch } from './redux/hooks/hooks';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { Layout } from './components/Layout/Layout';
 import { useAuth } from './utils/hooks';
 import { refreshUser } from './redux/user/userOperations';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+
 
 const lazyLoadPage = (importPath: string) =>
   lazy(() => import(`./pages/${importPath}`));
@@ -38,7 +39,7 @@ const FavoritesPage = lazyLoadPage('FavoritesPage');
 const PrivacyPolicyPage = lazyLoadPage('PrivacyPolicyPage');
 
 export const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const { isRefreshing } = useAuth();
 
   useEffect(() => {

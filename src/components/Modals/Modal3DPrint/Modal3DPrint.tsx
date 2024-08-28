@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks/hooks';
 import { Formik } from 'formik';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
@@ -118,7 +118,7 @@ export const Modal3DPrint: FC<Props> = ({
                 formData.append('accuracy', accuracy ?? '');
                 formData.append('plactic', plactic ?? '');
                 formData.append('color', color ?? '');
-                formData.append('file', file as any);
+                formData.append('file', file[0]);
 
                 if (!isValidPhone || tel === '+380') {
                   toast('Введіть номер телефону', {
@@ -203,6 +203,7 @@ export const Modal3DPrint: FC<Props> = ({
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Дякуємо за замовлення.</TextAgree>
         <TextAgree>Очікуйте на дзвінок від менеджера.</TextAgree>

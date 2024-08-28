@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, FC } from 'react';
+import { useTypedDispatch } from '../../../../redux/hooks/hooks';
 import { useFormik } from 'formik';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -19,7 +19,16 @@ import {
 } from './SignInForm.styled';
 import { ModalVerifyEmail } from 'components/Modals/ModalVerifyEmail/ModalVerifyEmail';
 
-export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
+type Props = {
+  handleCloseSignUpSignInModal: () => void;
+};
+
+type FormValues = {
+  email: string;
+  password: string;
+};
+
+export const SignInForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [isModalVerifyEmailOpen, setIsModalVerifyEmailOpen] = useState(false);
@@ -29,7 +38,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
 
   const { isLoggedIn, errorStatus } = useAuth();
 
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const handleOpenAgreeModal = () => {
     setIsModalAgreeOpen(true);
@@ -82,7 +91,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
       password: '',
     },
     validationSchema: signInSchema,
-    onSubmit: (values, _) => {
+    onSubmit: (values: FormValues, _) => {
       const userData = {
         email: values.email,
         password: values.password.trim(),
@@ -117,7 +126,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
           helperText={formik.touched.password && formik.errors.password}
           InputProps={{
             endAdornment: (
-              <InputAdornment name="password" position="end">
+              <InputAdornment position="end">
                 <IconButton
                   sx={{
                     width: '20px',
@@ -171,6 +180,7 @@ export const SignInForm = ({ handleCloseSignUpSignInModal }) => {
       <ModalAgree
         isModalAgreeOpen={isModalAgreeOpen}
         handleCloseAgreeModal={handleCloseAgreeModal}
+        buttonText="Гаразд"
       >
         <TextAgree>Некоректно введені дані.</TextAgree>
         <TextAgree>Перевірте, будь ласка, введений логін та пароль.</TextAgree>

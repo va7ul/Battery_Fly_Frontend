@@ -1,6 +1,6 @@
-import { ChangeEvent, FC, useCallback, useMemo, useState } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
-import Select from 'react-select';
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks/hooks';
+import Select, { SingleValue } from 'react-select';
 import toast from 'react-hot-toast';
 import { debounce } from 'lodash';
 import {
@@ -24,16 +24,11 @@ import {
   Text,
   selectStyles,
 } from './DeliveryAddressForm.styled';
-
+import { Option } from '../../../@types/customSelect.types';
 
 type Props = {
   text: string;
   handleShowForm: () => void;
-};
-
-type Options = {
-  value: string;
-  label: string;
 };
 
 export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
@@ -43,128 +38,146 @@ export const DeliveryAddressForm: FC<Props> = ({ text, handleShowForm }) => {
   const deliveryAddress = useTypedSelector(selectDelivery);
 
   let cities = useTypedSelector(selectCities);
-  const [city, setCity] = useState(deliveryAddress.city);
+  const [city, setCity] = useState<string>(deliveryAddress.city);
   let warehouses = useTypedSelector(selectWarehouses);
   const [warehouse, setWarehouse] = useState(deliveryAddress.warehouse);
 
-  const optionsCities: Options[] = cities.map((city: string): Options => {
+  const selectInputCityRef = useRef<any>(null);
+  const selectInputWarehouseRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (city) {
+      if (selectInputCityRef.current && selectInputWarehouseRef.current) {
+        selectInputCityRef.current.setValue({
+          value: city,
+          label: city,
+        });
+        if (warehouse) {
+          selectInputWarehouseRef.current.setValue({
+            value: warehouse,
+            label: warehouse,
+          });
+        }
+      }
+    }
+  }, [city, warehouse]);
+
+
+  const optionsCities: Option[] = cities.map(city => {
     return {
       value: city,
       label: city,
     };
   });
 
-  const getCity = (): Options | string | undefined => {
-    return city ? optionsCities.find(c => c.value === city) : '';
+  const debouncedGetCities = useMemo(
+    () => debounce((value: string) => dispatch(getDeliveryCities(value)), 1000),
+    [dispatch]
+  );
+
+  const handleCityChange = (event: SingleValue<Option>) => {
+    if (event) {
+      setCity(event.value);
+      if (event.value !== '') {
+        dispatch(getDeliveryWarehouses(event.value));
+      }
+    }
   };
 
-  // const debouncedGetCities = useMemo(
-  //   () => debounce((value) => dispatch(getDeliveryCities(value)), 1000),
-  //   [dispatch]
-  // );
-
-  // const handleCityChange = (event) => {
-  //   setCity(event.value);
-  //   dispatch(getDeliveryWarehouses(event.value));
-  // };
-
-  // const handleSelectCity = useCallback(
-  //   event => {
-  //     if (event === '') {
-  //       return;
-  //     }
-  //     debouncedGetCities(event);
-  //   },
-  //   [debouncedGetCities]
-  // );
+  const handleSelectCity = useCallback(
+    (inputValue: string) => {
+      if (inputValue === '') {
+        return;
+      }
+      debouncedGetCities(inputValue);
+    },
+    [debouncedGetCities]
+  );
 
   const clearInputCity = () => {
     setCity('');
     setWarehouse('');
+    if (selectInputCityRef.current && selectInputWarehouseRef.current) {
+      selectInputCityRef.current.setValue('');
+      selectInputWarehouseRef.current.setValue('');
+    }
   };
 
-  const optionsWarehouses: Options[] = warehouses.map((warehouse: string): Options => {
+  const optionsWarehouses: Option[] = warehouses.map(warehouse => {
     return {
       value: warehouse,
       label: warehouse,
     };
   });
 
-  const getWarehouse = (): Options | string | undefined  => {
-    return warehouse ? optionsWarehouses.find(w => w.value === warehouse) : '';
+  const handleWarehouseChange = (event: SingleValue<Option>) => {
+    if (event) {
+      setWarehouse(event.value);
+    }
   };
 
-  // const handleWarehouseChange = event => {
-  //   setWarehouse(event.value);
-  // };
+  const clearInputWarehouse = () => {
+    setWarehouse('');
+    if (selectInputWarehouseRef.current) {
+      selectInputWarehouseRef.current.setValue('');
+    }
+    if (city) {
+      dispatch(getDeliveryWarehouses(city));
+    }
+  };
 
-  // const clearInputWarehouse = () => {
-  //   if (city) {
-  //     dispatch(getDeliveryWarehouses(city));
-  //   }
-  //   setWarehouse('');
-  // };
-
-  // const handleEditAddress = () => {
-  //   if (!city || !warehouse) {
-  //     toast('Введіть адресу доставки', {
-  //       id: 'warning',
-  //       icon: '👀',
-  //       style: {
-  //         background: `${theme.colors.secondary}`,
-  //         color: `${theme.colors.textPrimary}`,
-  //       },
-  //     });
-  //   } else {
-  //     dispatch(
-  //       editUserAddress({
-  //         delivery: {
-  //           city: city,
-  //           warehouse: warehouse,
-  //         },
-  //       })
-  //     ).then(result => {
-  //       if (result.meta.requestStatus === 'fulfilled') {
-  //         handleShowForm();
-  //       }
-  //     });
-  //   }
-  // };
+  const handleEditAddress = () => {
+    if (!city || !warehouse) {
+      toast('Введіть адресу доставки', {
+        id: 'warning',
+        icon: '👀',
+        style: {
+          background: `${theme.colors.secondary}`,
+          color: `${theme.colors.textPrimary}`,
+        },
+      });
+    } else {
+      dispatch(
+        editUserAddress({
+          delivery: {
+            city: city,
+            warehouse: warehouse,
+          },
+        })
+      ).then(result => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          handleShowForm();
+        }
+      });
+    }
+  };
   return (
     <>
       {isLoading && <CustomLoader />}
       <Text>{text}</Text>
       <Box>
         <Select
+          ref={selectInputCityRef}
           options={optionsCities}
-          defaultValue={{
-            label: city,
-            value: city,
-          }}
-          value={getCity()}
-          // onChange={handleCityChange}
-          // onInputChange={handleSelectCity}
+          onChange={handleCityChange}
+          onInputChange={handleSelectCity}
           onFocus={clearInputCity}
           placeholder={'Місто'}
           styles={selectStyles}
         />
         <Select
+          ref={selectInputWarehouseRef}
           options={optionsWarehouses}
-          defaultValue={{
-            label: warehouse,
-            value: warehouse,
-          }}
-          value={getWarehouse()}
-          // onChange={handleWarehouseChange}
-          // onFocus={clearInputWarehouse}
+          onChange={handleWarehouseChange}
+          onFocus={clearInputWarehouse}
           placeholder={'Відділення/поштомат'}
           styles={selectStyles}
         />
       </Box>
       <BtnWrapper>
-        {/* <SubmitAddressBtn type="button" onClick={handleEditAddress}>
+        <SubmitAddressBtn type="button" onClick={handleEditAddress}>
           Зберегти адресу
-        </SubmitAddressBtn> */}
+        </SubmitAddressBtn>
         <CancelBtn type="button" onClick={handleShowForm}>
           Відмінити
         </CancelBtn>
