@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useFormik } from 'formik';
@@ -37,9 +37,13 @@ import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/theme';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
 import { useNewPrice } from 'utils/hooks/useNewPrice';
+import { UserData } from '../../@types/user.types';
+import { orderData } from '../../@types/order.types';
 
-export const Checkout = () => {
-  const dispatch = useDispatch();
+type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };
+
+export const Checkout: FC = () => {
+  const dispatch = useTypedDispatch();
   const navigate = useNavigate();
 
   const {
@@ -65,10 +69,10 @@ export const Checkout = () => {
 
   const getNewPrice = useNewPrice();
 
-  const isLoading = useSelector(selectIsLoading);
-  const products = useSelector(selectItems);
-  const newProducts = useSelector(selectProducts);
-  const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
+  const isLoading = useTypedSelector(selectIsLoading);
+  const products = useTypedSelector(selectItems);
+  const newProducts = useTypedSelector(selectProducts);
+  const isChangedProductInCart = useTypedSelector(selectIsChangedProductInCart);
 
   const [arrOfProductsWithNewPrice, setArrOfProductsWithNewPrice] = useState(
     []
@@ -153,15 +157,16 @@ export const Checkout = () => {
       text: text,
     },
     validationSchema: personalDataSchema,
-    onSubmit: (values, _) => {
-      const userData = {
+    onSubmit: (
+      values: FormValues) => {
+      const userData: FormValues & { tel: string } = {
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),
         tel: tel,
         email: values.email,
         text: values.text,
       };
-      const orderData = {
+      const orderData: orderData = {
         userData: userData,
         total,
         promoCode,
