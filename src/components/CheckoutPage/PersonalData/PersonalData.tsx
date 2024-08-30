@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useTypedDispatch } from 'redux/hooks';
+import { useTypedDispatch } from '../../../redux/hooks/hooks';
 import { useMediaQuery } from 'react-responsive';
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';

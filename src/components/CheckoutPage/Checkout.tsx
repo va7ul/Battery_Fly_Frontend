@@ -1,8 +1,8 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import { useTypedDispatch, useTypedSelector } from '../../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import { FormikHelpers, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import { useAuth, useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
@@ -149,7 +149,7 @@ export const Checkout: FC = () => {
     navigate('/main');
   };
 
-  const formik = useFormik<FormValues>({
+  const formik = useFormik({
     initialValues: {
       firstName: isLoggedIn ? firstName : '',
       lastName: isLoggedIn ? lastName : '',
@@ -158,10 +158,7 @@ export const Checkout: FC = () => {
     },
     validationSchema: personalDataSchema,
     onSubmit: (
-      values: FormValues,
-      { setSubmitting }: FormikHelpers<FormValues>
-    ) => {
-      setSubmitting(false);
+      values: FormValues) => {
       const userData: FormValues & { tel: string } = {
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),

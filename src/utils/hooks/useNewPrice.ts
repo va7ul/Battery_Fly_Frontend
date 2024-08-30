@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useTypedSelector } from '../../redux/hooks/hooks';
 import { selectItems } from '../../redux/basket/basketSelectors';
 import { selectProducts } from '../../redux/products/productsSelectors';
 
+
 export const useNewPrice = () => {
-  const products = useSelector(selectItems);
-  const newProducts = useSelector(selectProducts);
+  const products = useTypedSelector(selectItems);
+  const newProducts = useTypedSelector(selectProducts);
 
   const productsWithUpdatedPrice = useMemo(() => {
     return products?.flatMap(product => {
