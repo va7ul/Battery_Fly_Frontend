@@ -1,7 +1,7 @@
-import { PropsChildren } from '../../../../@types/modals.types';
 import { FC } from 'react';
 import ReactModal from 'react-modal';
 import { theme } from 'styles/theme';
+import { PropsChildren } from '../../../../@types/modals.types';
 
 const customStyles = {
   overlay: {

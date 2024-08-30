@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import toast from 'react-hot-toast';
 import { Formik } from 'formik';
@@ -21,7 +21,7 @@ import {
   StyledForm,
 } from './PasswordEditForm.styled';
 
-export const PasswordEditForm: FC = () => {
+export const PasswordEditForm = () => {
 
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 

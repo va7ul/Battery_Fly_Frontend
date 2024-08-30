@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,7 +16,6 @@ import {
   TextBox,
   Wrapper,
 } from './OurServices.styled';
-import { FC } from 'react';
 import { Service } from '../../../@types/mainPage.types';
 
 type Props = {

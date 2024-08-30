@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
@@ -8,7 +9,6 @@ import TableCell from '@mui/material/TableCell';
 import { LiaPenAltSolid } from 'react-icons/lia';
 import { useAuth } from 'utils/hooks';
 import { EditButton } from './UserDataTable.styled';
-import { FC } from 'react';
 
 type Props = {
   handleShowForm: () => void;
@@ -21,7 +21,7 @@ export const UserDataTable: FC<Props> = ({ handleShowForm }) => {
     userData: { firstName, lastName, patronymic, tel, email },
   } = useAuth();
 
-  function createData(userData:string, value:string) {
+  function createData(userData: string, value: string) {
     return { userData, value };
   }
 

@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import { FiX } from 'react-icons/fi';
 import { CloseBtn } from './CloseButton.styled.styled';
-import { FC } from 'react';
 
 
 type Props = {

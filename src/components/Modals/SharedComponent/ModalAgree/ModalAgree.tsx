@@ -1,7 +1,7 @@
+import { FC } from 'react';
 import ReactModal from 'react-modal';
 import { theme } from 'styles/theme';
 import { Box, Btn } from './ModalAgree.styled';
-import { FC } from 'react';
 import { PropsChildren } from '../../../../@types/modals.types';
 
 const customStyles = {

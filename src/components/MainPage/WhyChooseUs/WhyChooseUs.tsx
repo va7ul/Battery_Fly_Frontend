@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Grid, SxProps, Theme } from '@mui/material';
 import sprite from '../../../assets/images/sprite.svg';
@@ -14,7 +15,6 @@ import {
   ListItem,
 } from './WhyChooseUs.styled';
 import { Reason } from '../../../@types/mainPage.types';
-import { FC } from 'react';
 
 type Props = {
   reasons: Reason[];
