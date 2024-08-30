@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useTypedDispatch } from '../../../redux/hooks/hooks';
 import { useFormik } from 'formik';
 import { emailSchema } from '../../../common/schemas/emailSchema';
@@ -6,7 +7,6 @@ import { ModalYellowGradient } from '../SharedComponent/ModalYellowGradient/Moda
 import { CloseButton } from '../SharedComponent/CloseButton/CloseButton';
 import { Field } from '../SharedComponent/TextField/TextField';
 import { Btn, StyledForm, Text, Wrapper } from './ModalVerifyEmail.styled';
-import { FC } from 'react';
 
 type Props = {
   isModalVerifyEmailOpen: boolean;

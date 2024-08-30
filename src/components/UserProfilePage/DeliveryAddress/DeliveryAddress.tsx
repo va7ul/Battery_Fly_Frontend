@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { useTypedSelector } from '../../../redux/hooks/hooks';
 import { LiaPenAltSolid } from 'react-icons/lia';
 import { selectDelivery } from '../../../redux/user/userSelectors';
@@ -7,7 +7,7 @@ import { AddButton, EditButton, Subtitle, Text } from './DeliveryAddress.styled'
 import { Delivery } from '../../../@types/user.types';
 
 
-export const DeliveryAddress: FC = () => {
+export const DeliveryAddress = () => {
   const [showForm, setShowForm] = useState(false);
 
   const delivery = useTypedSelector(selectDelivery);

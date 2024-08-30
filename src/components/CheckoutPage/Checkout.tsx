@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
@@ -30,19 +30,19 @@ import {
 } from '../../redux/basket/basketSlice';
 import { selectProducts } from '../../redux/products/productsSelectors';
 import { getProducts } from '../../redux/products/productsOperations';
+import { useNewPrice } from 'utils/hooks/useNewPrice';
 import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
 import { EmptyCart } from 'components/CartDrawer/EmptyCart/EmptyCart';
 import { ModalAgree } from 'components/Modals/SharedComponent/ModalAgree/ModalAgree';
 import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/theme';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
-import { useNewPrice } from 'utils/hooks/useNewPrice';
 import { UserData } from '../../@types/user.types';
 import { orderData } from '../../@types/order.types';
 
 type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };
 
-export const Checkout: FC = () => {
+export const Checkout = () => {
   const dispatch = useTypedDispatch();
   const navigate = useNavigate();
 

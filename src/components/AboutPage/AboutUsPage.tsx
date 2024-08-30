@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import valuables from '../../utils/json/about-page-valuables.json';
 import advantages from '../../utils/json/about-page-advantages.json'
@@ -9,7 +8,7 @@ import { Valuables } from './Valuables/Valuables';
 import { Advantages } from './Advantages/Advantages';
 
 
-export const AboutUsPage: FC = () => {
+export const AboutUsPage = () => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
   return (
