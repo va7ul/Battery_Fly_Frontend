@@ -3,3 +3,5 @@ export const nameRegexForFeedback: RegExp =
 
 export const nameRegex: RegExp =
   /^[а-яієїґА-ЯҐЄІЇ]+(([' \\-][а-яієїґА-ЯҐЄІЇ])?[а-яієїґА-ЯҐЄІЇ]*)*$/;
+
+ export const emailRegex: RegExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;

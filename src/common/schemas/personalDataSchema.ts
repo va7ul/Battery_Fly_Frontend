@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { nameRegex } from '../regex';
+import { emailRegex, nameRegex } from '../regex';
 
 export const personalDataSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -12,12 +12,10 @@ export const personalDataSchema = Yup.object().shape({
     .min(2, 'Введіть своє прізвище, будь ласка')
     .max(30, 'Введіть своє прізвище, будь ласка')
     .trim()
-    .matches(
-      nameRegex,
-      'Введіть своє прізвище кирилицею, будь ласка'
-    )
+    .matches(nameRegex, 'Введіть своє прізвище кирилицею, будь ласка')
     .required('Введіть своє прізвище, будь ласка'),
   email: Yup.string()
     .email('Введіть свою електронну адресу, будь ласка')
+    .matches(emailRegex, 'Введіть свою електронну адресу, будь ласка')
     .required('Введіть свою електронну адресу, будь ласка'),
 });
