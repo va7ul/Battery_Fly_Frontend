@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   Item,
   StyledLink,
@@ -5,8 +6,9 @@ import {
 import { useMediaQuery } from 'react-responsive';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
+import { ListItemProps } from '../../../../../../../@types/header.types';
 
-export const ListItem = ({ page, title }) => {
+export const ListItem: FC<ListItemProps> = ({ page, title }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   return (
