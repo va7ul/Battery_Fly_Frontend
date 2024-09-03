@@ -1,7 +1,12 @@
+import { FC } from 'react';
 import { List, Item, StyledLink } from './ProfileList.styled';
 import { LogoutButton } from 'components/Shared/LogoutButton/LogoutButton';
 
-export const ProfileList = ({ handleClose }) => {
+interface ProfileListProps {
+  handleClose: () => void;
+}
+
+export const ProfileList: FC<ProfileListProps> = ({ handleClose }) => {
   return (
     <List>
       <Item onClick={handleClose}>
