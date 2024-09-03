@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
 import { NavList, CartButton, Box } from './Navigation.styled';
 import { Item} from './NavItem/NavItem.styled';
 import { useMediaQuery } from 'react-responsive';
@@ -9,18 +11,17 @@ import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile'
 import { CartModal } from 'components/CartDrawer/CartDrawer';
 import { selectMenu, selectCart } from '../../../redux/menu/menuSelectors';
 import { setCartOpen, setMenuOpen } from '../../../redux/menu/menuSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from 'utils/hooks';
 import { setAuthModalOpen } from '../../../redux/user/userSlice';
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
 
-export const Navigation = () => {
+export const Navigation: FC = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isMenuOpen = useSelector(selectMenu);
+  const dispatch = useTypedDispatch();
+  const isMenuOpen = useTypedSelector(selectMenu);
   const { isLoggedIn } = useAuth();
-  const isCartOpen = useSelector(selectCart);
+  const isCartOpen = useTypedSelector(selectCart);
 
   const handleOpenSignUpSignInModal = () => {
     if (!isLoggedIn) {
@@ -72,7 +73,7 @@ export const Navigation = () => {
             </Item>
           ) : (
             <Item onClick={handleOpenSignUpSignInModal}>
-              <FavoriteIcon />
+              <FavoriteIcon handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}/>
             </Item>
           )}
         </NavList>

@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../AssortmentList/ListItem/ListItem.styled';
 import { Menu } from '@mui/material';
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 import { BatteryButton } from './DesktopBatteries.styled';
 import { HopeIconDesktop } from 'components/Shared/HopeIconDesktop/HopeIconDesktop';
-export const DesktopBatteries = () => {
-  const [anchorEl, setAnchorEl] = useState();
+
+export const DesktopBatteries: FC = () => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = e => {
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+    const handleSubMenuClick = (newOpen: boolean) => {
+    setAnchorEl(newOpen ? anchorEl : null);
   };
 
   return (
@@ -24,8 +29,8 @@ export const DesktopBatteries = () => {
         Акумулятори
       </StyledLink>
       <BatteryButton
-        type="button"
         handleOpen={anchorEl}
+        type="button"
         aria-owns={open ? 'desktop-sub-menu' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
@@ -54,7 +59,7 @@ export const DesktopBatteries = () => {
           },
         }}
       >
-        <BatteriesList />
+        <BatteriesList handleClick={handleSubMenuClick}/>
       </Menu>
     </>
   );

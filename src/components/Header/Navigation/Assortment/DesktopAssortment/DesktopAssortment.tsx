@@ -1,15 +1,15 @@
 import { StyledLink } from '../../NavItem/NavItem.styled';
 import sprite from '../../../../../assets/images/sprite.svg';
 import { Wrapper, ArrowButton } from './DesktopAssortment.styled';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { Menu } from '@mui/material';
 import { AssortmentList } from '../AssortmentList/AssortmentList';
 
 export const DesktopAssortment = () => {
-  const [anchorEl, setAnchorEl] = useState();
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = e => {
+  const handleClick = (e: MouseEvent<HTMLElement>)  => {
     setAnchorEl(e.currentTarget);
   };
 

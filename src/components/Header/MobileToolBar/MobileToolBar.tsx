@@ -1,21 +1,21 @@
+import { useTypedDispatch, useTypedSelector } from '../../../redux/hooks';
+import { useAuth } from 'utils/hooks';
+import { useNavigate } from 'react-router-dom';
 import { Wrapper, Button } from './MobileToolBar.styled';
 import { CartIcon } from 'components/Shared/CartIcon';
 import { FavoriteIcon } from 'components/Shared/FavoriteIcon';
 import { CartModal } from 'components/CartDrawer/CartDrawer';
-import { useDispatch, useSelector } from 'react-redux';
 import { setCartOpen } from '../../../redux/menu/menuSlice';
-import { useNavigate } from 'react-router-dom';
 import { ProfileButton } from '../ProfileButton/ProfileButton';
 import { LoginButton } from '../LoginButton/LoginButton';
-import { useAuth } from 'utils/hooks';
 import { setAuthModalOpen } from '../../../redux/user/userSlice';
 import { selectCart } from '../../../redux/menu/menuSelectors';
 
 export const MobileToolBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
     const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
-  const isCartOpen = useSelector(selectCart);
+  const isCartOpen = useTypedSelector(selectCart);
 
   const handleOpenSignUpSignInModal = () => {
     if (!isLoggedIn) {
@@ -43,7 +43,7 @@ export const MobileToolBar = () => {
           <ProfileButton />
         ) : (
           <LoginButton
-            handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+            handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}
           />
         )}
       </Wrapper>

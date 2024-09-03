@@ -1,8 +1,8 @@
-import styled from 'styled-components';
 import { getRotation } from 'styles/globalStyles';
+import styled from 'styled-components';
 
 export const BatteryButton = styled.button`
-  display: flex;
+   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;

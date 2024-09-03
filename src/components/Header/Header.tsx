@@ -8,11 +8,11 @@ import { ModalSignUpSignIn } from '../Modals/ModalSignUpSignIn/ModalSignUpSignIn
 import { ProfileButton } from './ProfileButton/ProfileButton';
 import { useAuth } from 'utils/hooks';
 import { setAuthModalOpen } from '../../redux/user/userSlice';
-import { useDispatch } from 'react-redux';
+import { useTypedDispatch } from '../../redux/hooks';
 
 export const Header = () => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
-  const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
   const { isLoggedIn, isAuthModalOpen } = useAuth();
 
   const handleOpenSignUpSignInModal = () => {
@@ -37,7 +37,7 @@ export const Header = () => {
                 <ProfileButton />
               ) : (
                 <LoginButton
-                  handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+                  handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}
                 />
               )}
             </DesktopWrapper>

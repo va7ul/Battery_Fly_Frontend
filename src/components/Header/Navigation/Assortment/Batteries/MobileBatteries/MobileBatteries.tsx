@@ -1,3 +1,4 @@
+import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../../NavItem/NavItem.styled';
 import {
@@ -9,7 +10,6 @@ import {
 import { BatteriesList } from '../BatteriesList/BatteriesList';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 import { MobileDrawer } from 'components/Shared/MobileDrawer';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMenu,
   selectThirdMenu,
@@ -19,13 +19,14 @@ import {
   setSubMenuOpen,
   setThirdMenuOpen,
 } from '../../../../../../redux/menu/menuSlice';
+import { MouseEvent } from 'react';
 
 export const MobileBatteries = () => {
-  const dispatch = useDispatch();
-  const isMenuOpen = useSelector(selectMenu);
-  const isThirdMenuOpen = useSelector(selectThirdMenu);
+  const dispatch = useTypedDispatch();
+  const isMenuOpen = useTypedSelector(selectMenu);
+  const isThirdMenuOpen = useTypedSelector(selectThirdMenu);
 
-  const openAll = newOpen => e => {
+  const openAll = (newOpen: boolean) => (e: MouseEvent<HTMLElement>) => {
     if (isMenuOpen) {
       dispatch(setMenuOpen(newOpen));
       dispatch(setSubMenuOpen(newOpen));
