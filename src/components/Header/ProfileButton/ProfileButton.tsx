@@ -1,18 +1,19 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Button, ArrowIcon } from './ProfileButton.styled';
 import sprite from '../../../assets/images/sprite.svg';
-import { useSelector } from 'react-redux';
 import { selectUserData } from '../../../redux/user/userSelectors';
 import { Menu } from '@mui/material';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { ProfileList } from './ProfileList/ProfileList';
+import { useTypedSelector } from '../../../redux/hooks';
 
 export const ProfileButton = () => {
-  const userData = useSelector(selectUserData);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const userData = useTypedSelector(selectUserData);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  
   const open = Boolean(anchorEl);
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
