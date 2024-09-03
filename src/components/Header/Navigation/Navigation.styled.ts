@@ -24,7 +24,7 @@ export const CartButton = styled.button`
 
   @media screen and (min-width: 1280px) {
     padding: 28px 0;
-    color: ${props => props.theme.colors.backgroundPaper};
+    color: ${props => props.theme.colors.background};
   }
 
   @media screen and (max-width: 1280px) {
