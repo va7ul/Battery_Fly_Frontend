@@ -6,5 +6,5 @@ export type Props = {
 };
 
 export type PropsGetRotation = {
-  handleOpen: string;
+ handleOpen?: HTMLElement | null;
 };
