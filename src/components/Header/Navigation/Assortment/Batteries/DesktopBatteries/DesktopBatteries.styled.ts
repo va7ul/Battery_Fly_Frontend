@@ -1,11 +1,7 @@
 import { getRotation } from 'styles/globalStyles';
 import styled from 'styled-components';
 
-type BatteryButtonProps = {
-  handleOpen?: HTMLElement | null;
-}
-
-export const BatteryButton = styled.button<BatteryButtonProps>`
+export const BatteryButton = styled.button`
    display: flex;
   align-items: center;
   justify-content: center;
