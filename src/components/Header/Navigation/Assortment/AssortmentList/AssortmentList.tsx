@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../../../../../redux/hooks';
 import { Batteries } from '../Batteries/Batteries';
 import { ListItem } from './ListItem/ListItem';
 import { selectSubMenu } from '../../../../../redux/menu/menuSelectors';
@@ -8,8 +8,8 @@ import {
 } from '../../../../../redux/menu/menuSlice';
 
 export const AssortmentList = () => {
-  const dispatch = useDispatch();
-  const isSubMenuOpen = useSelector(selectSubMenu);
+  const dispatch = useTypedDispatch();
+  const isSubMenuOpen = useTypedSelector(selectSubMenu);
 
   const closeSubDrawer = () => {
     if (isSubMenuOpen) {
