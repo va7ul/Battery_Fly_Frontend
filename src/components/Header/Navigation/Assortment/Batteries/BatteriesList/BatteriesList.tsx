@@ -3,7 +3,7 @@ import { selectThirdMenu } from '../../../../../../redux/menu/menuSelectors';
 import { FC } from 'react';
 import { useTypedSelector } from '../../../../../../redux/hooks';
 
-interface BatteriesListProps {
+type BatteriesListProps = {
   handleClick: (newOpen: boolean) => void;
 }
 
