@@ -123,7 +123,13 @@ const handleLoginFulfilled = (
   state.token = payload.token;
   state.errorStatus = '';
   state.verifiedEmail = payload.verifiedEmail;
-  state.delivery = payload.delivery;
+  state.delivery =
+    Object.keys(payload.delivery).length > 0
+      ? payload.delivery
+      : {
+          city: '',
+          warehouse: '',
+        };
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
   state.isLoading = false;
@@ -134,7 +140,13 @@ const handleRefreshFulfilled = (
   { payload }: PayloadAction<RefreshFulfilled>
 ) => {
   state.userData = payload.user;
-  state.delivery = payload.delivery;
+  state.delivery =
+    Object.keys(payload.delivery).length > 0
+      ? payload.delivery
+      : {
+          city: '',
+          warehouse: '',
+        };
   state.favorites = payload.favorites;
   state.isLoggedIn = true;
   state.isRefreshing = false;
