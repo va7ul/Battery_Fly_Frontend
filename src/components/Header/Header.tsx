@@ -37,7 +37,7 @@ export const Header = () => {
                 <ProfileButton />
               ) : (
                 <LoginButton
-                  handleOpenSignUpSighInModal={handleOpenSignUpSignInModal}
+                  handleOpenSignUpSignInModal={handleOpenSignUpSignInModal}
                 />
               )}
             </DesktopWrapper>
