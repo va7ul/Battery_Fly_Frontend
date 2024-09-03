@@ -1,10 +1,12 @@
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import { BadgeComponent } from './Badge';
-import { useSelector } from 'react-redux';
 import { selectFavorites } from '../../redux/user/userSelectors';
+import { FC } from 'react';
+import { SignUpModalProps } from '../../@types/header.types';
+import { useTypedSelector } from '../../redux/hooks';
 
-export const FavoriteIcon = ({ handleOpenSignUpSignInModal }) => {
-  const favorites = useSelector(selectFavorites);
+export const FavoriteIcon: FC<SignUpModalProps> = ({ handleOpenSignUpSignInModal }) => {
+  const favorites = useTypedSelector(selectFavorites);
 
   return (
     <BadgeComponent value={favorites?.length}>
