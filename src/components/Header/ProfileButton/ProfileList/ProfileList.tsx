@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { List, Item, StyledLink } from './ProfileList.styled';
 import { LogoutButton } from 'components/Shared/LogoutButton/LogoutButton';
 
-interface ProfileListProps {
+type ProfileListProps = {
   handleClose: () => void;
 }
 
