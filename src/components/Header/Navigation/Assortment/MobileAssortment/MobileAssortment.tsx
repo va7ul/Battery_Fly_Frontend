@@ -1,4 +1,5 @@
-import sprite from '../../../../../assets/images/sprite.svg';
+import { useTypedDispatch, useTypedSelector } from '../../../../../redux/hooks';
+import { MouseEvent } from 'react';import sprite from '../../../../../assets/images/sprite.svg';
 import {
   ArrowButton,
   Wrap,
@@ -9,7 +10,6 @@ import { StyledLink } from '../../NavItem/NavItem.styled';
 import { AssortmentList } from '../AssortmentList/AssortmentList';
 import { HopeIconMobile } from 'components/Shared/HopeIconMobile/HopeIconMobile';
 import { MobileDrawer } from 'components/Shared/MobileDrawer';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMenu,
   selectSubMenu,
@@ -19,12 +19,13 @@ import {
   setSubMenuOpen,
 } from '../../../../../redux/menu/menuSlice';
 
-export const MobileAssortment = () => {
-  const dispatch = useDispatch();
-  const isMenuOpen = useSelector(selectMenu);
-  const isSubMenuOpen = useSelector(selectSubMenu);
 
-  const closeBoth = newOpen => e => {
+export const MobileAssortment = () => {
+  const dispatch = useTypedDispatch();
+  const isMenuOpen = useTypedSelector(selectMenu);
+  const isSubMenuOpen = useTypedSelector(selectSubMenu);
+
+  const closeBoth = (newOpen: boolean) => (e: MouseEvent<HTMLElement>) => {
     if (isMenuOpen) {
       dispatch(setSubMenuOpen(newOpen));
       dispatch(setMenuOpen(newOpen));
