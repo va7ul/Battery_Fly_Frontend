@@ -1,9 +1,11 @@
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { Button } from './LoginButton.styled';
+import { FC } from 'react';
+import { SignUpModalProps } from '../../../@types/header.types';
 
-export const LoginButton = ({ handleOpenSignUpSighInModal }) => {
+export const LoginButton: FC<SignUpModalProps> = ({ handleOpenSignUpSignInModal }) => {
   return (
-    <Button type="button" onClick={handleOpenSignUpSighInModal}>
+    <Button type="button" onClick={handleOpenSignUpSignInModal}>
       Увійти
       <LoginOutlinedIcon
         sx={{
