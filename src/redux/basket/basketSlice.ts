@@ -1,6 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+type BasketItem = {
+  codeOfGood: string;
+  capacityKey?: string;
+  selectedSealing?: boolean;
+  selectedHolder?: boolean;
+  quantityOrdered: number;
+  totalPrice: number;
+  price?: number; 
+  quantity?: number; 
+}
+
+type InitialState = {
+  items: BasketItem[];
+  total: number;
+  arrOfProductsWithUpdatedPrice: BasketItem[];
+  isLoading: boolean;
+  error: string | null;
+}
+
+const initialState: InitialState = {
   items: [],
   total: 0,
   arrOfProductsWithUpdatedPrice: [],
