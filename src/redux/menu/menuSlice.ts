@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+type InitialState = {
+  isMenuOpen: boolean;
+  isSubMenuOpen: boolean;
+  isThirdMenuOpen: boolean;
+  isCartOpen: boolean;
+}
+
+const initialState: InitialState = {
   isMenuOpen: false,
   isSubMenuOpen: false,
   isThirdMenuOpen: false,
