@@ -1,7 +1,15 @@
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { FC, ReactNode } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-export const MobileDrawer = ({ children, toggle, isOpen, anchor }) => {
+type MobileDrawerProps = {
+  children: ReactNode;
+  toggle: () => void;
+  isOpen: boolean;
+  anchor: 'left' | 'top' | 'right' | 'bottom';
+}
+
+export const MobileDrawer: FC<MobileDrawerProps> = ({ children, toggle, isOpen, anchor }) => {
   const mobileVersion = useMediaQuery({ query: '(max-width:1279px)' });
 
   return (
