@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {  Fragment, useState } from 'react';
+import { useTypedDispatch } from '../../../redux/hooks';
 import { logOut } from '../../../redux/user/userOperations';
 import {
   Dialog,
@@ -9,12 +9,11 @@ import {
   DialogContentText,
   Button,
 } from '@mui/material';
-
 import { StyledButton } from './LogoutButton.styled';
 
 export const LogoutButton = () => {
-  const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useTypedDispatch();
 
   const logout = () => {
     dispatch(logOut());
