@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { useTypedDispatch, useTypedSelector } from '../../../../redux/hooks';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { AiOutlineClose } from 'react-icons/ai';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -30,11 +30,33 @@ import {
   Advert,
 } from './CartItem.styled';
 import noImage from '../../../../assets/images/no-image-available.webp';
-import { useEffect } from 'react';
+import { ChangeEvent, FC, useEffect } from 'react';
 import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
 import { theme } from 'styles/theme';
 
-export const CartItem = ({ item }) => {
+type CartItemProps = {
+  item: {
+    codeOfGood: string;
+    image: string[];
+    name: string;
+    quantity: number;
+    quantityOrdered: number;
+    totalPrice: number;
+    capacityKey?: string;
+    selectedSealing?: boolean;
+    selectedHolder?: boolean;
+  };
+}
+
+type ProductWithUpdatedPrice = {
+  codeOfGood: string;
+  capacityKey?: string;
+  selectedSealing?: boolean;
+  selectedHolder?: boolean;
+  quantity: number;
+}
+
+export const CartItem: FC<CartItemProps> = ({ item }) => {
   const {
     codeOfGood,
     image,
@@ -47,38 +69,40 @@ export const CartItem = ({ item }) => {
     selectedHolder,
   } = item;
 
-  const dispatch = useDispatch();
-  const newProducts = useSelector(selectProducts);
-  const isChangedProductInCart = useSelector(selectIsChangedProductInCart);
-  const arrOfProductsWithUpdatedPrice = useSelector(
+  const dispatch = useTypedDispatch();
+  const newProducts = useTypedSelector(selectProducts);
+  const isChangedProductInCart = useTypedSelector(selectIsChangedProductInCart);
+  const arrOfProductsWithUpdatedPrice = useTypedSelector(
     selectArrOfProductsWithUpdatedPrice
   );
 
-  let productWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
-    item =>
+ let productWithUpdatedPrice: ProductWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
+    (item: ProductWithUpdatedPrice) =>
       item.codeOfGood === codeOfGood &&
       item.capacityKey === capacityKey &&
       item.selectedSealing === selectedSealing &&
       item.selectedHolder === selectedHolder
   );
 
-  let productWithUpdatedQuantity = null;
-
+  let productWithUpdatedQuantity: { quantity: number } | null = null;
+  
   if (isChangedProductInCart) {
-    productWithUpdatedQuantity = newProducts.find(
-      item => item.codeOfGood === codeOfGood
-    );
-    if (!productWithUpdatedQuantity) {
-      productWithUpdatedQuantity = {
-        quantity: 0,
-      };
-    } else if (productWithUpdatedQuantity.quantity !== 0) {
-      productWithUpdatedQuantity = newProducts.find(
-        item =>
-          item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
-      );
-    }
+  const foundProduct = newProducts.find(
+    (item) => item.codeOfGood === codeOfGood
+  );
+
+  productWithUpdatedQuantity = foundProduct
+    ? { quantity: foundProduct.quantity }
+    : { quantity: 0 };
+
+  if (
+    foundProduct &&
+    foundProduct.quantity !== 0 &&
+    foundProduct.quantity < quantityOrdered
+  ) {
+    productWithUpdatedQuantity = { quantity: foundProduct.quantity };
   }
+}
 
   useEffect(() => {
     if (productWithUpdatedQuantity) {
@@ -105,7 +129,7 @@ export const CartItem = ({ item }) => {
     dispatch(setCartOpen(false));
   };
 
-  const changeValue = e => {
+  const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
     if (Number(e.target.value) > quantity) {
       dispatch(
         changeQuantity({
@@ -249,7 +273,7 @@ export const CartItem = ({ item }) => {
           </CapacityWrap>
         )}
       </Item>
-      {productWithUpdatedQuantity?.quantity > 0 && (
+      {productWithUpdatedQuantity && productWithUpdatedQuantity?.quantity > 0 && (
         <Advert>
           *Цей товар є в наявності у кількості{' '}
           {productWithUpdatedQuantity.quantity} шт.
