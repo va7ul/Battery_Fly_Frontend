@@ -4,7 +4,7 @@ type BatteryCapacity = {
   holder?: number;
 };
 
-type BatteryConfig = {
+export type BatteryConfig = {
   [key: string]: BatteryCapacity;
 };
 
