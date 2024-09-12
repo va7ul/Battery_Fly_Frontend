@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import { Menu } from '@mui/material';
 import sprite from '../../../assets/images/sprite.svg';
 import { BatteriesList } from 'components/Header/Navigation/Assortment/Batteries/BatteriesList/BatteriesList';
@@ -10,16 +10,20 @@ import {
 } from './SubNavBar.styled';
 
 export const SubNavBar = () => {
-  const [anchorEl, setAnchorEl] = useState();
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const handleOpen = e => {
+  const handleOpen = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSubMenuClick = (newOpen: boolean) => {
+    setAnchorEl(newOpen ? anchorEl : null);
   };
 
   return (
@@ -103,7 +107,7 @@ export const SubNavBar = () => {
           },
         }}
       >
-        <BatteriesList />
+        <BatteriesList handleClick={handleSubMenuClick} />
       </Menu>
     </section>
   );

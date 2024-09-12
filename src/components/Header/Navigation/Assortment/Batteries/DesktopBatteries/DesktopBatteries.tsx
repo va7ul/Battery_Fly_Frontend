@@ -18,7 +18,7 @@ export const DesktopBatteries: FC = () => {
     setAnchorEl(null);
   };
 
-    const handleSubMenuClick = (newOpen: boolean) => {
+  const handleSubMenuClick = (newOpen: boolean) => {
     setAnchorEl(newOpen ? anchorEl : null);
   };
 
@@ -59,7 +59,7 @@ export const DesktopBatteries: FC = () => {
           },
         }}
       >
-        <BatteriesList handleClick={handleSubMenuClick}/>
+        <BatteriesList handleClick={handleSubMenuClick} />
       </Menu>
     </>
   );

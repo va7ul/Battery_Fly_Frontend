@@ -1,4 +1,7 @@
-import { useTypedDispatch, useTypedSelector } from 'redux/hooks';
+import {
+  useTypedDispatch,
+  useTypedSelector,
+} from '../../../../../../redux/hooks';
 import sprite from '../../../../../../assets/images/sprite.svg';
 import { StyledLink } from '../../../NavItem/NavItem.styled';
 import {
