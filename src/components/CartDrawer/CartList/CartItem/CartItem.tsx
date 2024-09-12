@@ -46,7 +46,7 @@ type CartItemProps = {
     selectedSealing?: boolean;
     selectedHolder?: boolean;
   };
-}
+};
 
 type ProductWithUpdatedPrice = {
   codeOfGood: string;
@@ -54,7 +54,7 @@ type ProductWithUpdatedPrice = {
   selectedSealing?: boolean;
   selectedHolder?: boolean;
   quantity: number;
-}
+};
 
 export const CartItem: FC<CartItemProps> = ({ item }) => {
   const {
@@ -76,33 +76,33 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
     selectArrOfProductsWithUpdatedPrice
   );
 
- let productWithUpdatedPrice: ProductWithUpdatedPrice | undefined = arrOfProductsWithUpdatedPrice.find(
-    (item: ProductWithUpdatedPrice) =>
-      item.codeOfGood === codeOfGood &&
-      item.capacityKey === capacityKey &&
-      item.selectedSealing === selectedSealing &&
-      item.selectedHolder === selectedHolder
-  );
+  let productWithUpdatedPrice: ProductWithUpdatedPrice | undefined =
+    arrOfProductsWithUpdatedPrice.find(
+      (item: ProductWithUpdatedPrice) =>
+        item.codeOfGood === codeOfGood &&
+        item.capacityKey === capacityKey &&
+        item.selectedSealing === selectedSealing &&
+        item.selectedHolder === selectedHolder
+    );
 
   let productWithUpdatedQuantity: { quantity: number } | null = null;
-  
+
   if (isChangedProductInCart) {
-  const foundProduct = newProducts.find(
-    (item) => item.codeOfGood === codeOfGood
-  );
-
-  productWithUpdatedQuantity = foundProduct
-    ? { quantity: foundProduct.quantity }
-    : { quantity: 0 };
-
-  if (
-    foundProduct &&
-    foundProduct.quantity !== 0 &&
-    foundProduct.quantity < quantityOrdered
-  ) {
-    productWithUpdatedQuantity = { quantity: foundProduct.quantity };
+    const foundProduct = newProducts.find(
+      item => item.codeOfGood === codeOfGood
+    );
+    if (!foundProduct) {
+      productWithUpdatedQuantity = {
+        quantity: 0,
+      };
+    }
+    else if (
+      foundProduct.quantity !== 0 &&
+      foundProduct.quantity < quantityOrdered
+    ) {
+      productWithUpdatedQuantity = { quantity: foundProduct.quantity };
+    }
   }
-}
 
   useEffect(() => {
     if (productWithUpdatedQuantity) {
@@ -273,12 +273,13 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
           </CapacityWrap>
         )}
       </Item>
-      {productWithUpdatedQuantity && productWithUpdatedQuantity?.quantity > 0 && (
-        <Advert>
-          *Цей товар є в наявності у кількості{' '}
-          {productWithUpdatedQuantity.quantity} шт.
-        </Advert>
-      )}
+      {productWithUpdatedQuantity &&
+        productWithUpdatedQuantity?.quantity > 0 && (
+          <Advert>
+            *Цей товар є в наявності у кількості{' '}
+            {productWithUpdatedQuantity.quantity} шт.
+          </Advert>
+        )}
       {productWithUpdatedQuantity?.quantity === 0 && (
         <Advert>*Цього товару немає в наявності.</Advert>
       )}
