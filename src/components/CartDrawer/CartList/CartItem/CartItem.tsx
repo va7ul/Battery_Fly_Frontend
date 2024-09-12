@@ -76,7 +76,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
     selectArrOfProductsWithUpdatedPrice
   );
 
- let productWithUpdatedPrice: ProductWithUpdatedPrice = arrOfProductsWithUpdatedPrice.find(
+ let productWithUpdatedPrice: ProductWithUpdatedPrice | undefined = arrOfProductsWithUpdatedPrice.find(
     (item: ProductWithUpdatedPrice) =>
       item.codeOfGood === codeOfGood &&
       item.capacityKey === capacityKey &&
