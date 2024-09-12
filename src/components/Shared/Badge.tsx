@@ -1,6 +1,12 @@
 import { Badge } from '@mui/material';
+import { FC, ReactNode } from 'react';
 
-export const BadgeComponent = ({ children, value }) => {
+type BadgeComponentProps = {
+  children: ReactNode; 
+  value: number | string;
+}
+
+export const BadgeComponent: FC<BadgeComponentProps> = ({ children, value }) => {
   return (
     <Badge
       badgeContent={value}

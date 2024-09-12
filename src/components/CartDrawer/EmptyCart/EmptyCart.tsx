@@ -1,7 +1,13 @@
+import { FC } from 'react';
 import sprite from '../../../assets/images/sprite.svg';
 import { Wrapper, CartIcon, Text, Button } from './EmptyCart.styled';
 
-export const EmptyCart = ({ closeCart, isOrder=false}) => {
+type EmptyCartProps = {
+  closeCart: () => void;
+  isOrder?: boolean; 
+}
+
+export const EmptyCart: FC<EmptyCartProps> = ({ closeCart, isOrder=false}) => {
   return (
     <Wrapper $isOrder={isOrder}>
       <CartIcon>

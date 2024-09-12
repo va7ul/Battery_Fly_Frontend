@@ -1,13 +1,19 @@
 import { EmptyCart } from './EmptyCart/EmptyCart';
 import { Title, CloseBtn } from './CartDrawer.styled';
 import { MobileDrawer } from '../Shared/MobileDrawer';
-import { useSelector } from 'react-redux';
 import { selectItems } from '../../redux/basket/basketSelectors';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FilledCart } from './FilledCart/FilledCart';
+import { FC } from 'react';
+import { useTypedSelector } from '../../redux/hooks';
 
-export const CartModal = ({ toggleCart, isCartOpen }) => {
-  const products = useSelector(selectItems);
+type CartModalProps = {
+  toggleCart: () => void;
+  isCartOpen: boolean; 
+}
+
+export const CartModal: FC<CartModalProps> = ({ toggleCart, isCartOpen }) => {
+  const products = useTypedSelector(selectItems);
 
   return (
     <>

@@ -3,7 +3,6 @@ import { useTypedSelector } from '../../redux/hooks/hooks';
 import { selectItems } from '../../redux/basket/basketSelectors';
 import { selectProducts } from '../../redux/products/productsSelectors';
 
-
 export const useNewPrice = () => {
   const products = useTypedSelector(selectItems);
   const newProducts = useTypedSelector(selectProducts);
@@ -15,19 +14,21 @@ export const useNewPrice = () => {
           if (!product?.capacityKey) {
             return (
               item.codeOfGood === product.codeOfGood &&
-              (item.price !== product.price ||
+              (Number(item.price) !== product.price ||
                 item.sale !== product.sale ||
                 item.discount !== product.discount)
             );
           } else {
+            const itemCapacity = item.capacity?.[product.capacityKey];
+          const productCapacity = product.capacity?.[product.capacityKey];
             return (
               item.codeOfGood === product.codeOfGood &&
-              (item.capacity[product.capacityKey].price !==
+              (itemCapacity?.price !==
                 product.priceOneProduct ||
                 item.sale !== product.sale ||
                 item.discount !== product.discount ||
-                item.capacity[product.capacityKey].holder !==
-                  product.capacity[product.capacityKey].holder)
+                itemCapacity?.holder !==
+                  productCapacity?.holder)
             );
           }
         }),
@@ -52,16 +53,24 @@ export const useNewPrice = () => {
             item.selectedSealing === updatedProduct.selectedSealing &&
             item.selectedHolder === updatedProduct.selectedHolder
         );
+
+  if (!product || typeof product.totalPrice === 'undefined' || typeof product.quantityOrdered === 'undefined') {
+        return null;
+      }
+        const price = typeof updatedProduct.price === 'string' 
+                 ? parseFloat(updatedProduct.price) 
+          : updatedProduct.price;
+        
         //Without capacityKey
         if (!product?.capacityKey) {
           if (updatedProduct.sale) {
             updatedPrice = Math.round(
-              updatedProduct.price -
-                (updatedProduct.price * updatedProduct.discount) / 100
+              price -
+                (price * updatedProduct.discount) / 100
             );
             if (
               updatedPrice ===
-              product?.totalPrice / product?.quantityOrdered
+              product.totalPrice / product.quantityOrdered
             ) {
               return null;
             }
@@ -70,7 +79,7 @@ export const useNewPrice = () => {
               capacityKey: '',
               selectedSealing: false,
               selectedHolder: false,
-              quantityOrdered: product.quantityOrdered,
+              quantityOrdered: product?.quantityOrdered,
               price: updatedPrice,
             };
             return obj;
@@ -83,7 +92,7 @@ export const useNewPrice = () => {
               capacityKey: '',
               selectedSealing: false,
               selectedHolder: false,
-              quantityOrdered: product.quantityOrdered,
+              quantityOrdered: product?.quantityOrdered,
               price: updatedProduct.price,
             };
             return obj;
@@ -93,10 +102,14 @@ export const useNewPrice = () => {
         } //With capacityKey
         else {
           //With updatedProduct.sale and without selectedHolder
+          const capacity = updatedProduct.capacity?.[product.capacityKey];
+          if (!capacity) return null;
+          const holderPrice = capacity.holder ? capacity.holder * 2 : 0;
+          
           if (updatedProduct.sale && !product.selectedHolder) {
             updatedPrice = Math.round(
-              updatedProduct.capacity[product.capacityKey].price -
-                (updatedProduct.capacity[product.capacityKey].price *
+              capacity.price -
+                (capacity.price *
                   updatedProduct.discount) /
                   100
             );
@@ -117,12 +130,13 @@ export const useNewPrice = () => {
             return obj;
           } //With updatedProduct.sale and  With selectedHolder
           else if (updatedProduct.sale && product.selectedHolder) {
+            
             updatedPrice = Math.round(
-              updatedProduct.capacity[product.capacityKey].price -
-                (updatedProduct.capacity[product.capacityKey].price *
+              capacity.price -
+                (capacity.price *
                   updatedProduct.discount) /
                   100 +
-                updatedProduct.capacity[product.capacityKey].holder * 2
+              holderPrice
             );
             // With product.selectedSealing
             if (product.selectedSealing) {
@@ -163,7 +177,7 @@ export const useNewPrice = () => {
           } //without updatedProduct.sale and without selectedHolder
           else if (!updatedProduct.sale && !product.selectedHolder) {
             if (
-              updatedProduct.capacity[product.capacityKey].price ===
+              capacity.price ===
               product?.priceOneProduct
             ) {
               return null;
@@ -174,7 +188,7 @@ export const useNewPrice = () => {
               selectedSealing: product.selectedSealing,
               selectedHolder: product.selectedHolder,
               quantityOrdered: product.quantityOrdered,
-              price: updatedProduct.capacity[product.capacityKey].price,
+              price: capacity.price,
             };
             return obj;
           } //without updatedProduct.sale and With selectedHolder
@@ -182,8 +196,8 @@ export const useNewPrice = () => {
             // With product.selectedSealing
             if (product.selectedSealing) {
               if (
-                updatedProduct.capacity[product.capacityKey].price +
-                  updatedProduct.capacity[product.capacityKey].holder * 2 +
+                capacity.price +
+                  holderPrice +
                   100 ===
                 product?.totalPrice
               ) {
@@ -196,8 +210,8 @@ export const useNewPrice = () => {
                 selectedHolder: product.selectedHolder,
                 quantityOrdered: product.quantityOrdered,
                 price:
-                  updatedProduct.capacity[product.capacityKey].price +
-                  updatedProduct.capacity[product.capacityKey].holder * 2 +
+                  capacity.price +
+                  holderPrice +
                   100,
               };
               return obj;
@@ -205,8 +219,8 @@ export const useNewPrice = () => {
             //Without product.selectedSealing
             else {
               if (
-                updatedProduct.capacity[product.capacityKey].price +
-                  updatedProduct.capacity[product.capacityKey].holder * 2 ===
+                capacity.price +
+                  holderPrice ===
                 product?.totalPrice
               ) {
                 return null;
@@ -218,8 +232,8 @@ export const useNewPrice = () => {
                 selectedHolder: product.selectedHolder,
                 quantityOrdered: product.quantityOrdered,
                 price:
-                  updatedProduct.capacity[product.capacityKey].price +
-                  updatedProduct.capacity[product.capacityKey].holder * 2,
+                  capacity.price +
+                  holderPrice,
               };
               return obj;
             }

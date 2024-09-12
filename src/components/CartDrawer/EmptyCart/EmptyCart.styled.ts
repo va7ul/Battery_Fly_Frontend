@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+type WrapperProps = {
+  $isOrder: boolean;
+}
+export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,6 +11,7 @@ export const Wrapper = styled.div`
   margin-top: ${props => (props.$isOrder ? '20%' : '45%')};
   margin-bottom: ${props => (props.$isOrder ? '20%' : '0')};
 `;
+
 
 export const CartIcon = styled.svg`
   width: 91px;

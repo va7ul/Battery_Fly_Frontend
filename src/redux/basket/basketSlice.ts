@@ -1,6 +1,41 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { BatteryConfig } from '../../@types/products.types';
 
-const initialState = {
+export type BasketItem = {
+  capacityKey?: string;
+  selectedSealing?: boolean;
+  selectedHolder?: boolean;
+  quantityOrdered: number;
+  totalPrice: number;
+  priceOneProduct: number;
+    _id: string;
+  codeOfGood: string;
+  name: string;
+  description: string;
+  image: string[];
+  price: number | string;
+  quantity: number;
+  sale: boolean;
+  discount: number;
+  popular: boolean;
+  category: string;
+  type?: string;
+  information: string;
+  capacity?: BatteryConfig;
+  holder?: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+type InitialState = {
+  items: BasketItem[];
+  total: number;
+  arrOfProductsWithUpdatedPrice: BasketItem[];
+  isLoading: boolean;
+  error: string | null;
+}
+
+const initialState: InitialState = {
   items: [],
   total: 0,
   arrOfProductsWithUpdatedPrice: [],
