@@ -20,20 +20,22 @@ import {
 } from './PersonalData.styled';
 import { UserData } from '../../../@types/user.types';
 
+type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };
 
-type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };  
+type FormProps = {
+  formik:{
+  initialValues: FormValues;
+  handleSubmit: () => void;
+  }
+};
 
-type Props = {
-  formik: {
-    initialValues: FormValues;
-    handleSubmit: () => void ;
-  };
+type OtherProps = {
   isValidPhone: boolean;
 };
 
-export const PersonalData: FC<Props> = ({ formik, isValidPhone }) => {
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
 
+export const PersonalData: FC<FormProps & OtherProps> = ({ formik, isValidPhone }) => {
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const {
     isLoggedIn,
     userData: { firstName, lastName, email, tel: userTel },

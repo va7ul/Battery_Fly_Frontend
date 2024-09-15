@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import { useTypedSelector } from '../../redux/hooks/hooks';
 import { selectItems } from '../../redux/basket/basketSelectors';
 import { selectProducts } from '../../redux/products/productsSelectors';
+import { ProductWithUpdatedPrice } from '../../@types/order.types';
+
 
 export const useNewPrice = () => {
   const products = useTypedSelector(selectItems);
@@ -73,7 +75,7 @@ export const useNewPrice = () => {
             if (updatedPrice === product.totalPrice / product.quantityOrdered) {
               return null;
             }
-            let obj = {
+            let obj: ProductWithUpdatedPrice = {
               codeOfGood: updatedProduct.codeOfGood,
               capacityKey: '',
               selectedSealing: false,
@@ -86,13 +88,13 @@ export const useNewPrice = () => {
             if (updatedProduct.price === product?.price) {
               return null;
             }
-            let obj = {
+            let obj: ProductWithUpdatedPrice = {
               codeOfGood: updatedProduct.codeOfGood,
               capacityKey: '',
               selectedSealing: false,
               selectedHolder: false,
               quantityOrdered: product?.quantityOrdered,
-              price: updatedProduct.price,
+              price: Number(updatedProduct.price),
             };
             return obj;
           } else {
@@ -115,7 +117,7 @@ export const useNewPrice = () => {
             ) {
               return null;
             }
-            let obj = {
+            let obj: ProductWithUpdatedPrice = {
               codeOfGood: updatedProduct.codeOfGood,
               capacityKey: product.capacityKey,
               selectedSealing: product.selectedSealing,
@@ -139,7 +141,7 @@ export const useNewPrice = () => {
               ) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithUpdatedPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
@@ -157,7 +159,7 @@ export const useNewPrice = () => {
               ) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithUpdatedPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
@@ -172,7 +174,7 @@ export const useNewPrice = () => {
             if (capacity.price === product?.priceOneProduct) {
               return null;
             }
-            let obj = {
+            let obj: ProductWithUpdatedPrice = {
               codeOfGood: updatedProduct.codeOfGood,
               capacityKey: product.capacityKey,
               selectedSealing: product.selectedSealing,
@@ -188,7 +190,7 @@ export const useNewPrice = () => {
               if (capacity.price + holderPrice + 100 === product?.totalPrice) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithUpdatedPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
@@ -203,7 +205,7 @@ export const useNewPrice = () => {
               if (capacity.price + holderPrice === product?.totalPrice) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithUpdatedPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,

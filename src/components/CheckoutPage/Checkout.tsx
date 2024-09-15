@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTypedDispatch, useTypedSelector } from '../../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import { useFormik } from 'formik';
+import { FormikProvider, useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import { useAuth, useOrder } from 'utils/hooks';
 import { PersonalData } from './PersonalData/PersonalData';
@@ -38,7 +38,7 @@ import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/theme';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
 import { UserData } from '../../@types/user.types';
-import { orderData } from '../../@types/order.types';
+import { orderData, ProductWithUpdatedPrice } from '../../@types/order.types';
 
 type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };
 
@@ -74,9 +74,9 @@ export const Checkout = () => {
   const newProducts = useTypedSelector(selectProducts);
   const isChangedProductInCart = useTypedSelector(selectIsChangedProductInCart);
 
-  const [arrOfProductsWithNewPrice, setArrOfProductsWithNewPrice] = useState(
-    []
-  );
+  const [arrOfProductsWithNewPrice, setArrOfProductsWithNewPrice] = useState<
+    (ProductWithUpdatedPrice | null)[] | undefined
+  >([]);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
   const codeOfProductsInBasket = useMemo(
@@ -107,8 +107,8 @@ export const Checkout = () => {
   }, [isChangedProductInCart, getNewPrice]);
 
   useEffect(() => {
-    if (isChangedProductInCart) {
-      if (arrOfProductsWithNewPrice?.length > 0) {
+    if (isChangedProductInCart && arrOfProductsWithNewPrice) {
+      if (arrOfProductsWithNewPrice.length > 0) {
         arrOfProductsWithNewPrice.forEach(item => dispatch(changePrice(item)));
         arrOfProductsWithNewPrice.forEach(item =>
           dispatch(addProductWithUpdatedPrice(item))
@@ -157,8 +157,7 @@ export const Checkout = () => {
       text: text,
     },
     validationSchema: personalDataSchema,
-    onSubmit: (
-      values: FormValues) => {
+    onSubmit: (values: FormValues) => {
       const userData: FormValues & { tel: string } = {
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),
@@ -238,7 +237,9 @@ export const Checkout = () => {
             <Title>Оформлення замовлення</Title>
             <Grid container rowGap="15px">
               <Grid item desktop={6}>
-                <PersonalData formik={formik} isValidPhone={isValidPhone} />
+                <FormikProvider value={formik}>
+                  <PersonalData formik={formik} isValidPhone={isValidPhone} />
+                </FormikProvider>
                 <Delivery />
               </Grid>
               <Grid item desktop={6}>

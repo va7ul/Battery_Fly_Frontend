@@ -1,3 +1,4 @@
+import { BasketItem } from 'redux/basket/basketSlice';
 import { Product } from './products.types';
 
 export type UserData = {
@@ -68,9 +69,19 @@ export type orderData = {
   promoCodeDiscount: number;
   discountValue: number;
   together: number;
-  cartItems: CartItem[];
+  cartItems: BasketItem[];
   deliveryType: string;
   city: string;
   warehouse: string;
   payment: string;
 };
+
+
+ export type ProductWithUpdatedPrice = {
+   codeOfGood: string;
+   capacityKey: string;
+   selectedSealing: boolean | undefined;
+   selectedHolder: boolean | false | undefined;
+   quantityOrdered: number;
+   price: number;
+ };
