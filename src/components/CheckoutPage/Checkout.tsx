@@ -38,7 +38,7 @@ import { TextAgree } from 'components/Modals/SharedComponent/Text/Text';
 import { theme } from 'styles/theme';
 import { Title, Wrapper, OrderButton } from './Checkout.styled';
 import { UserData } from '../../@types/user.types';
-import { orderData, ProductWithUpdatedPrice } from '../../@types/order.types';
+import { orderData, ProductWithNewPrice } from '../../@types/order.types';
 
 type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };
 
@@ -75,7 +75,7 @@ export const Checkout = () => {
   const isChangedProductInCart = useTypedSelector(selectIsChangedProductInCart);
 
   const [arrOfProductsWithNewPrice, setArrOfProductsWithNewPrice] = useState<
-    (ProductWithUpdatedPrice | null)[] | undefined
+    (ProductWithNewPrice | null)[] | undefined
   >([]);
   const [isModalAgreeOpen, setIsModalAgreeOpen] = useState(false);
 
@@ -86,7 +86,7 @@ export const Checkout = () => {
 
   const isValidPhone = isPhoneValid(tel);
 
-  let isChangedProducts = null;
+  let isChangedProducts: boolean | null = null;
 
   useEffect(() => {
     dispatch(checkChangeProductInCart(true));
@@ -217,6 +217,7 @@ export const Checkout = () => {
           },
         });
       } else {
+        console.log('first')
         dispatch(addOrder(orderData)).then(result => {
           if (result.meta.requestStatus === 'fulfilled') {
             dispatch(clearBasket());

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BatteryConfig } from '../../@types/products.types';
+import { ProductWithNewPrice } from '../../@types/order.types';
 
 export type BasketItem = {
   capacityKey?: string;
@@ -30,10 +31,10 @@ export type BasketItem = {
 type InitialState = {
   items: BasketItem[];
   total: number;
-  arrOfProductsWithUpdatedPrice: BasketItem[];
+  arrOfProductsWithUpdatedPrice: ProductWithNewPrice[];
   isLoading: boolean;
   error: string | null;
-}
+};
 
 const initialState: InitialState = {
   items: [],

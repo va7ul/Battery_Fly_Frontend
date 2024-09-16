@@ -33,6 +33,7 @@ import noImage from '../../../../assets/images/no-image-available.webp';
 import { ChangeEvent, FC, useEffect } from 'react';
 import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
 import { theme } from 'styles/theme';
+import { ProductWithNewPrice } from '../../../../@types/order.types';
 
 type CartItemProps = {
   item: {
@@ -48,13 +49,13 @@ type CartItemProps = {
   };
 };
 
-type ProductWithUpdatedPrice = {
-  codeOfGood: string;
-  capacityKey?: string;
-  selectedSealing?: boolean;
-  selectedHolder?: boolean;
-  quantity: number;
-};
+// type ProductWithUpdatedPrice = {
+//   codeOfGood: string;
+//   capacityKey?: string;
+//   selectedSealing?: boolean;
+//   selectedHolder?: boolean;
+//   quantity: number;
+// };
 
 export const CartItem: FC<CartItemProps> = ({ item }) => {
   const {
@@ -76,9 +77,9 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
     selectArrOfProductsWithUpdatedPrice
   );
 
-  let productWithUpdatedPrice: ProductWithUpdatedPrice | undefined =
+  let productWithUpdatedPrice: ProductWithNewPrice | undefined =
     arrOfProductsWithUpdatedPrice.find(
-      (item: ProductWithUpdatedPrice) =>
+      (item) =>
         item.codeOfGood === codeOfGood &&
         item.capacityKey === capacityKey &&
         item.selectedSealing === selectedSealing &&

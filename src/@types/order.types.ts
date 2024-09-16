@@ -9,7 +9,7 @@ export type UserData = {
 export type UserDataInOrder = {
   firstName: string;
   lastName: string;
-  email: string
+  email: string;
 };
 
 export type DeliveryInfo = {
@@ -76,12 +76,11 @@ export type orderData = {
   payment: string;
 };
 
-
- export type ProductWithUpdatedPrice = {
-   codeOfGood: string;
-   capacityKey: string;
-   selectedSealing: boolean | undefined;
-   selectedHolder: boolean | false | undefined;
-   quantityOrdered: number;
-   price: number;
- };
+export type ProductWithNewPrice = {
+  codeOfGood: string;
+  capacityKey: string;
+  selectedSealing: boolean | undefined;
+  selectedHolder: boolean | false | undefined;
+  quantityOrdered: number;
+  price: number;
+};
