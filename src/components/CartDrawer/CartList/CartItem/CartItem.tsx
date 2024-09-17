@@ -97,8 +97,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
         quantity: 0,
       };
     }
-    else if (
-      foundProduct.quantity !== 0 &&
+    else if (!productWithUpdatedQuantity  &&
       foundProduct.quantity < quantityOrdered
     ) {
       productWithUpdatedQuantity = { quantity: foundProduct.quantity };

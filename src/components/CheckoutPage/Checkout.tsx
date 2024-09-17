@@ -217,7 +217,6 @@ export const Checkout = () => {
           },
         });
       } else {
-        console.log('first')
         dispatch(addOrder(orderData)).then(result => {
           if (result.meta.requestStatus === 'fulfilled') {
             dispatch(clearBasket());
