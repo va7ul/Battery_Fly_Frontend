@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.section<{ background: string }>`
   display: flex;
   width: 100%;
   height: 234px;
@@ -45,14 +45,14 @@ export const TitleWrap = styled.div`
   }
 `;
 
-export const SliderButtons = styled.button`
+export const SliderButtons = styled.button<{ 'data-next'?: boolean }>`
   background-color: transparent;
   position: absolute;
   top: 50%;
   transform: translate(50%, -50%);
-  right: ${props => props.$next && '20px'};
+  right: ${props => props['data-next'] && '20px'};
 
   @media screen and (min-width: 1280px) {
-    right: ${props => props.$next && '110px'};
+    right: ${props => props['data-next'] && '110px'};
   }
 `;

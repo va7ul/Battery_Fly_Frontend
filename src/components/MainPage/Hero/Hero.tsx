@@ -8,9 +8,15 @@ import { FeedBackButton } from 'components/Shared/FeedbackButton/FeedbackButton'
 import { ModalFeedback } from 'components/Modals/ModalFeedback/ModalFeedback';
 import { TitleWrap, Title, Wrapper, SliderButtons } from './Hero.styled';
 
+type HeroImage = {
+  _id: string;
+  image: string;
+  text: string;
+}
+
 export const Hero = () => {
-  const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState(false);
-  const [images, setImages] = useState([]);
+  const [isModalFeedbackOpen, setIsModalFeedbackOpen] = useState<boolean>(false);
+  const [images, setImages] = useState<HeroImage[]>([]);
 
   useEffect(() => {
     const getHeroImagesSync = async () => {
@@ -33,9 +39,12 @@ export const Hero = () => {
     document.body.style.overflow = 'unset';
   };
 
-  let sliderRef = useRef(null);
+  let sliderRef = useRef<Slider | null>(null);
+  
   const next = () => {
-    sliderRef.slickNext();
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
   };
 
   const settings = {
@@ -57,7 +66,7 @@ export const Hero = () => {
           <div className="slider-container" style={{ position: 'relative' }}>
             <Slider
               ref={slider => {
-                sliderRef = slider;
+                sliderRef.current = slider;
               }}
               {...settings}
             >
@@ -71,7 +80,7 @@ export const Hero = () => {
                 </Wrapper>
               ))}
             </Slider>
-            <SliderButtons $next onClick={next}>
+            <SliderButtons data-next={true} onClick={next}>
               <ArrowForwardIosIcon
                 sx={{
                   color: 'background.paper',
