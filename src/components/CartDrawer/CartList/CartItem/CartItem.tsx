@@ -34,6 +34,7 @@ import { ChangeEvent, FC, useEffect } from 'react';
 import { selectArrOfProductsWithUpdatedPrice } from '../../../../redux/basket/basketSelectors';
 import { theme } from 'styles/theme';
 import { ProductWithNewPrice } from '../../../../@types/order.types';
+import { Product } from '../../../../@types/products.types';
 
 type CartItemProps = {
   item: {
@@ -48,14 +49,6 @@ type CartItemProps = {
     selectedHolder?: boolean;
   };
 };
-
-// type ProductWithUpdatedPrice = {
-//   codeOfGood: string;
-//   capacityKey?: string;
-//   selectedSealing?: boolean;
-//   selectedHolder?: boolean;
-//   quantity: number;
-// };
 
 export const CartItem: FC<CartItemProps> = ({ item }) => {
   const {
@@ -79,28 +72,27 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 
   let productWithUpdatedPrice: ProductWithNewPrice | undefined =
     arrOfProductsWithUpdatedPrice.find(
-      (item) =>
+      item =>
         item.codeOfGood === codeOfGood &&
         item.capacityKey === capacityKey &&
         item.selectedSealing === selectedSealing &&
         item.selectedHolder === selectedHolder
     );
 
-  let productWithUpdatedQuantity: { quantity: number } | null = null;
-
+  let productWithUpdatedQuantity: Product | undefined | null = null;
+  let removedProduct: { quantity: number } | null = null;
+  
   if (isChangedProductInCart) {
-    const foundProduct = newProducts.find(
+    productWithUpdatedQuantity = newProducts.find(
       item => item.codeOfGood === codeOfGood
     );
-    if (!foundProduct) {
-      productWithUpdatedQuantity = {
-        quantity: 0,
-      };
-    }
-    else if (!productWithUpdatedQuantity  &&
-      foundProduct.quantity < quantityOrdered
-    ) {
-      productWithUpdatedQuantity = { quantity: foundProduct.quantity };
+    if (!productWithUpdatedQuantity) {
+      removedProduct = { quantity: 0 };
+    } else if (productWithUpdatedQuantity.quantity !== 0) {
+      productWithUpdatedQuantity = newProducts.find(
+        item =>
+          item.codeOfGood === codeOfGood && item.quantity < quantityOrdered
+      );
     }
   }
 
@@ -280,7 +272,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
             {productWithUpdatedQuantity.quantity} шт.
           </Advert>
         )}
-      {productWithUpdatedQuantity?.quantity === 0 && (
+      {(productWithUpdatedQuantity?.quantity === 0 || removedProduct) && (
         <Advert>*Цього товару немає в наявності.</Advert>
       )}
       {productWithUpdatedPrice && (
