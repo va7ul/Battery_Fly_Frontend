@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTypedSelector } from '../../redux/hooks/hooks';
 import { selectItems } from '../../redux/basket/basketSelectors';
 import { selectProducts } from '../../redux/products/productsSelectors';
+import { ProductWithNewPrice } from '../../@types/order.types';
 
 export const useNewPrice = () => {
   const products = useTypedSelector(selectItems);
@@ -14,21 +15,19 @@ export const useNewPrice = () => {
           if (!product?.capacityKey) {
             return (
               item.codeOfGood === product.codeOfGood &&
-              (Number(item.price) !== product.price ||
+              (Number(item.price) !== Number(product.price) ||
                 item.sale !== product.sale ||
                 item.discount !== product.discount)
             );
           } else {
             const itemCapacity = item.capacity?.[product.capacityKey];
-          const productCapacity = product.capacity?.[product.capacityKey];
+            const productCapacity = product.capacity?.[product.capacityKey];
             return (
               item.codeOfGood === product.codeOfGood &&
-              (itemCapacity?.price !==
-                product.priceOneProduct ||
+              (itemCapacity?.price !== product.price ||
                 item.sale !== product.sale ||
                 item.discount !== product.discount ||
-                itemCapacity?.holder !==
-                  productCapacity?.holder)
+                itemCapacity?.holder !== productCapacity?.holder)
             );
           }
         }),
@@ -44,7 +43,7 @@ export const useNewPrice = () => {
 
   const getNewPrice = useMemo(() => {
     if (productsWithUpdatedPrice) {
-      let updatedPrice = null;
+      let updatedPrice: number | null = null;
       return productsWithUpdatedPrice.map(updatedProduct => {
         let product = products?.find(
           item =>
@@ -54,27 +53,28 @@ export const useNewPrice = () => {
             item.selectedHolder === updatedProduct.selectedHolder
         );
 
-  if (!product || typeof product.totalPrice === 'undefined' || typeof product.quantityOrdered === 'undefined') {
-        return null;
-      }
-        const price = typeof updatedProduct.price === 'string' 
-                 ? parseFloat(updatedProduct.price) 
-          : updatedProduct.price;
-        
+        if (
+          !product ||
+          typeof product.totalPrice === 'undefined' ||
+          typeof product.quantityOrdered === 'undefined'
+        ) {
+          return null;
+        }
+        const price =
+          typeof updatedProduct.price === 'string'
+            ? Number(updatedProduct.price)
+            : updatedProduct.price;
+
         //Without capacityKey
         if (!product?.capacityKey) {
           if (updatedProduct.sale) {
             updatedPrice = Math.round(
-              price -
-                (price * updatedProduct.discount) / 100
+              price - (price * updatedProduct.discount) / 100
             );
-            if (
-              updatedPrice ===
-              product.totalPrice / product.quantityOrdered
-            ) {
+            if (updatedPrice === product.totalPrice / product.quantityOrdered) {
               return null;
             }
-            let obj = {
+            let obj: ProductWithNewPrice = {
               codeOfGood: updatedProduct.codeOfGood,
               capacityKey: '',
               selectedSealing: false,
@@ -87,13 +87,13 @@ export const useNewPrice = () => {
             if (updatedProduct.price === product?.price) {
               return null;
             }
-            let obj = {
+            let obj: ProductWithNewPrice = {
               codeOfGood: updatedProduct.codeOfGood,
               capacityKey: '',
               selectedSealing: false,
               selectedHolder: false,
               quantityOrdered: product?.quantityOrdered,
-              price: updatedProduct.price,
+              price: Number(updatedProduct.price),
             };
             return obj;
           } else {
@@ -105,54 +105,27 @@ export const useNewPrice = () => {
           const capacity = updatedProduct.capacity?.[product.capacityKey];
           if (!capacity) return null;
           const holderPrice = capacity.holder ? capacity.holder * 2 : 0;
-          
+          const sealingPrice = 100;
+
           if (updatedProduct.sale && !product.selectedHolder) {
             updatedPrice = Math.round(
-              capacity.price -
-                (capacity.price *
-                  updatedProduct.discount) /
-                  100
-            );
-            if (
-              updatedPrice ===
-              product?.totalPrice / product?.quantityOrdered
-            ) {
-              return null;
-            }
-            let obj = {
-              codeOfGood: updatedProduct.codeOfGood,
-              capacityKey: product.capacityKey,
-              selectedSealing: product.selectedSealing,
-              selectedHolder: product.selectedHolder,
-              quantityOrdered: product.quantityOrdered,
-              price: updatedPrice,
-            };
-            return obj;
-          } //With updatedProduct.sale and  With selectedHolder
-          else if (updatedProduct.sale && product.selectedHolder) {
-            
-            updatedPrice = Math.round(
-              capacity.price -
-                (capacity.price *
-                  updatedProduct.discount) /
-                  100 +
-              holderPrice
+              capacity.price - (capacity.price * updatedProduct.discount) / 100
             );
             // With product.selectedSealing
             if (product.selectedSealing) {
               if (
-                updatedPrice + 100 ===
+                updatedPrice + sealingPrice ===
                 product?.totalPrice / product?.quantityOrdered
               ) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithNewPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
                 selectedHolder: product.selectedHolder,
                 quantityOrdered: product.quantityOrdered,
-                price: updatedPrice + 100,
+                price: updatedPrice + sealingPrice,
               };
               return obj;
             }
@@ -164,7 +137,50 @@ export const useNewPrice = () => {
               ) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithNewPrice = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price: updatedPrice,
+              };
+              return obj;
+            }
+          } //With updatedProduct.sale and  With selectedHolder
+          else if (updatedProduct.sale && product.selectedHolder) {
+            updatedPrice = Math.round(
+              capacity.price -
+                (capacity.price * updatedProduct.discount) / 100 +
+                holderPrice
+            );
+            // With product.selectedSealing
+            if (product.selectedSealing) {
+              if (
+                updatedPrice + sealingPrice ===
+                product?.totalPrice / product?.quantityOrdered
+              ) {
+                return null;
+              }
+              let obj: ProductWithNewPrice = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price: updatedPrice + sealingPrice,
+              };
+              return obj;
+            }
+            // Without product.selectedSealing
+            else {
+              if (
+                updatedPrice ===
+                product?.totalPrice / product?.quantityOrdered
+              ) {
+                return null;
+              }
+              let obj: ProductWithNewPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
@@ -176,64 +192,71 @@ export const useNewPrice = () => {
             }
           } //without updatedProduct.sale and without selectedHolder
           else if (!updatedProduct.sale && !product.selectedHolder) {
-            if (
-              capacity.price ===
-              product?.priceOneProduct
-            ) {
+            if (capacity.price === product?.price) {
               return null;
             }
-            let obj = {
-              codeOfGood: updatedProduct.codeOfGood,
-              capacityKey: product.capacityKey,
-              selectedSealing: product.selectedSealing,
-              selectedHolder: product.selectedHolder,
-              quantityOrdered: product.quantityOrdered,
-              price: capacity.price,
-            };
-            return obj;
+            // With product.selectedSealing
+            if (product.selectedSealing) {
+              if (capacity.price + sealingPrice === product?.price) {
+                return null;
+              }
+              let obj: ProductWithNewPrice = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price: capacity.price + sealingPrice,
+              };
+              return obj;
+            }
+            // Without product.selectedSealing
+            else {
+              if (capacity.price === product?.price) {
+                return null;
+              }
+              let obj: ProductWithNewPrice = {
+                codeOfGood: updatedProduct.codeOfGood,
+                capacityKey: product.capacityKey,
+                selectedSealing: product.selectedSealing,
+                selectedHolder: product.selectedHolder,
+                quantityOrdered: product.quantityOrdered,
+                price: capacity.price,
+              };
+              return obj;
+            }
           } //without updatedProduct.sale and With selectedHolder
           else if (!updatedProduct.sale && product.selectedHolder) {
             // With product.selectedSealing
             if (product.selectedSealing) {
               if (
-                capacity.price +
-                  holderPrice +
-                  100 ===
-                product?.totalPrice
+                capacity.price + holderPrice + sealingPrice ===
+                product?.price
               ) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithNewPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
                 selectedHolder: product.selectedHolder,
                 quantityOrdered: product.quantityOrdered,
-                price:
-                  capacity.price +
-                  holderPrice +
-                  100,
+                price: capacity.price + holderPrice + sealingPrice,
               };
               return obj;
             }
             //Without product.selectedSealing
             else {
-              if (
-                capacity.price +
-                  holderPrice ===
-                product?.totalPrice
-              ) {
+              if (capacity.price + holderPrice === product?.price) {
                 return null;
               }
-              let obj = {
+              let obj: ProductWithNewPrice = {
                 codeOfGood: updatedProduct.codeOfGood,
                 capacityKey: product.capacityKey,
                 selectedSealing: product.selectedSealing,
                 selectedHolder: product.selectedHolder,
                 quantityOrdered: product.quantityOrdered,
-                price:
-                  capacity.price +
-                  holderPrice,
+                price: capacity.price + holderPrice,
               };
               return obj;
             }
