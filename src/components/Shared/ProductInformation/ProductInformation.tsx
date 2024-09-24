@@ -14,7 +14,7 @@ export const ProductInformation: React.FC<ProductInformationProps> = ({
       <Info>
         {newInfo.map(item => (
           <div key={item}>
-            <div>{item}</div>
+            <div>{item}</div><br />
           </div>
         ))}
       </Info>
