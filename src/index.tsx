@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/Battery_Fly_Frontend">
+        <BrowserRouter basename="/">
           <ThemeProvider theme={theme}>
             <App />
             <GlobalStyle />

@@ -5,7 +5,7 @@ import { PrivateRoute } from 'routes/PrivateRoute';
 import { Layout } from './components/Layout/Layout';
 import { useAuth } from './utils/hooks';
 import { refreshUser } from './redux/user/userOperations';
-import { CustomLoader } from 'components/Shared/CustomLoader/CustomLoader';
+import { CustomLoader } from './components/Shared/CustomLoader/CustomLoader';
 
 
 const lazyLoadPage = (importPath: string) =>
