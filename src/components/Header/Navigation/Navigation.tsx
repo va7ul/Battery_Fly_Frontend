@@ -46,7 +46,7 @@ export const Navigation: FC = () => {
     <>
       <nav>
         <NavList onClick={closeMenu}>
-          <NavItem page="/main" title="Головна" />
+          <NavItem page="/" title="Головна" />
           <NavItem page="/about" title="Про нас" />
           <Assortment />
           <NavItem page="/delivery-and-payment" title="Доставка та оплата" />

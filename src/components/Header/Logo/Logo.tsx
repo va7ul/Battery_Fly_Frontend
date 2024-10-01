@@ -16,7 +16,7 @@ export const Logo = () => {
   };
 
   return (
-    <Link to="/main" onClick={closeDrawer}>
+    <Link to="/" onClick={closeDrawer}>
       <StyledLogo src={logo} alt="logo" />
     </Link>
   );
