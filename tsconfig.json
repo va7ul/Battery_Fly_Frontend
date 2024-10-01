@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "target": "es5",
+    "target": "es2021",
     "lib": ["dom", "dom.iterable", "esnext", "ES2021"],
     "allowJs": false,
     "skipLibCheck": true,
@@ -14,9 +14,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
   "include": ["src", "src/@types"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
