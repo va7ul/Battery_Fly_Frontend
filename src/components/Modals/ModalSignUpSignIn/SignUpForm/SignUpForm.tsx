@@ -78,7 +78,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
       const userData: FormValues = {
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),
-        email: values.email,
+        email: values.email.toLowerCase().trim(),
         password: values.password.trim(),
       };
       localStorage.setItem(
@@ -127,7 +127,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
           name="email"
           label="E-пошта"
           type="text"
-          value={formik.values.email}
+          value={formik.values.email.toLowerCase()}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.email && Boolean(formik.errors.email)}

@@ -23,18 +23,21 @@ import { UserData } from '../../../@types/user.types';
 type FormValues = Omit<UserData, 'tel' | 'patronymic'> & { text: string };
 
 type FormProps = {
-  formik:{
-  initialValues: FormValues;
-  handleSubmit: () => void;
-  }
+  formik: {
+    initialValues: FormValues;
+    values: FormValues;
+    handleSubmit: () => void;
+  };
 };
 
 type OtherProps = {
   isValidPhone: boolean;
 };
 
-
-export const PersonalData: FC<FormProps & OtherProps> = ({ formik, isValidPhone }) => {
+export const PersonalData: FC<FormProps & OtherProps> = ({
+  formik,
+  isValidPhone,
+}) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 1280px)' });
   const {
     isLoggedIn,
@@ -127,7 +130,11 @@ export const PersonalData: FC<FormProps & OtherProps> = ({ formik, isValidPhone 
 
           <Label>
             <LabelText>E-пошта</LabelText>
-            <StyledField name="email" type="text" />
+            <StyledField
+              name="email"
+              type="text"
+              value={formik.values.email.toLowerCase()}
+            />
             <StyledErrorMessage name="email" component="div" />
           </Label>
 

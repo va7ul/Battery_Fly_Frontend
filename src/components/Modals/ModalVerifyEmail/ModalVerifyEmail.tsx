@@ -31,7 +31,10 @@ export const ModalVerifyEmail: FC<Props> = ({
     },
     validationSchema: emailSchema,
     onSubmit: (values: FormValues, _) => {
-      dispatch(verifyEmail(values)).then(result => {
+      const data = {
+        email: values.email.toLowerCase().trim(),
+      };
+      dispatch(verifyEmail(data)).then(result => {
         if (result.meta.requestStatus === 'fulfilled') {
           handleCloseSignUpSignInModal();
         }
@@ -54,7 +57,7 @@ export const ModalVerifyEmail: FC<Props> = ({
               name="email"
               label="E-пошта"
               type="text"
-              value={formik.values.email}
+              value={formik.values.email.toLowerCase()}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.email && Boolean(formik.errors.email)}

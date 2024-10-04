@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 export const signInSchema = Yup.object().shape({
   email: Yup.string()
     .email('Введіть свою електронну адресу, будь ласка')
+    .trim()
     .matches(emailRegex, 'Введіть свою електронну адресу, будь ласка')
     .required('Введіть свою електронну адресу, будь ласка'),
   password: Yup.string()
