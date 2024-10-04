@@ -81,7 +81,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
 
   let productWithUpdatedQuantity: Product | undefined | null = null;
   let removedProduct: { quantity: number } | null = null;
-  
+
   if (isChangedProductInCart) {
     productWithUpdatedQuantity = newProducts.find(
       item => item.codeOfGood === codeOfGood
@@ -199,6 +199,7 @@ export const CartItem: FC<CartItemProps> = ({ item }) => {
               onChange={changeValue}
               value={quantityOrdered}
               min={1}
+              onKeyDown={e => e.key === ',' && e.preventDefault()}
             />
             <Button type="button" onClick={increase}>
               <FaPlus />

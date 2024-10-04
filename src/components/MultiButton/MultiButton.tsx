@@ -106,7 +106,7 @@ export const MultiButton = () => {
             </Icon>
           </Item>
           <Item style={{ background: '#80CDC1' }}>
-            <Icon onClick={handleOpenFeedbackModal}>
+            <Icon href="#!" onClick={handleOpenFeedbackModal}>
               {mobileVersion ? (
                 <VscCallIncoming size={20} />
               ) : (
