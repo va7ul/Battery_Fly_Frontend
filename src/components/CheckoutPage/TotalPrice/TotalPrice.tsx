@@ -14,7 +14,7 @@ import {
 } from './TotalPrice.styled';
 
 export const TotalPrice = () => {
-  const { promoCodeDiscount, errorPromoCode, isLoadingPromoCode } = useOrder();
+  const { discountValue, errorPromoCode, isLoadingPromoCode } = useOrder();
   const { prettyTotal, prettyDiscount, prettyTogether } = usePrettyPrice();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,7 @@ export const TotalPrice = () => {
           Загальна сума:
           <span> {prettyTotal} грн</span>
         </Sum>
-        <Discount discount={promoCodeDiscount}>
+        <Discount discount={discountValue}>
           Знижка:
           <span> - {prettyDiscount} грн</span>
         </Discount>
@@ -46,7 +46,7 @@ export const TotalPrice = () => {
           <span>{prettyTogether} грн</span>
         </Total>
       </PriceContainer>
-      {promoCodeDiscount ? (
+      {discountValue ? (
         <Advert>*Знижка за промокодом не поширюється на акційні товари!</Advert>
       ) : isOpen ? (
         <>
