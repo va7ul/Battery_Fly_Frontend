@@ -64,7 +64,7 @@ export const Box = styled.div`
   }
 `;
 
-export const Title = styled.h4`
+export const Title = styled.p`
   font-size: 10px;
   font-weight: 600;
 
