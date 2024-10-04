@@ -98,7 +98,7 @@ export const OrdersHistoryListEl: React.FC<PropsOrdersHistoryListEl> = ({
                 <span> {prettyTotal} грн</span>
               </Sum>
               <Discount discount={data?.promoCodeDiscount}>
-                Знижка за промокодом:
+                Знижка:
                 <span> - {prettyDiscount} грн</span>
               </Discount>
               <Total>

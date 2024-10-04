@@ -38,7 +38,7 @@ export const TotalPrice = () => {
           <span> {prettyTotal} грн</span>
         </Sum>
         <Discount discount={promoCodeDiscount}>
-          Знижка за промокодом:
+          Знижка:
           <span> - {prettyDiscount} грн</span>
         </Discount>
         <Total>
