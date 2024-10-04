@@ -93,7 +93,7 @@ export const SignInForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
     validationSchema: signInSchema,
     onSubmit: (values: FormValues, _) => {
       const userData = {
-        email: values.email,
+        email: values.email.toLowerCase().trim(),
         password: values.password.trim(),
       };
       dispatch(login(userData));
@@ -108,7 +108,7 @@ export const SignInForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
           name="email"
           label="E-пошта"
           type="text"
-          value={formik.values.email}
+          value={formik.values.email.toLowerCase()}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.email && Boolean(formik.errors.email)}

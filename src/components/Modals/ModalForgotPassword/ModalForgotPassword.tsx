@@ -49,7 +49,10 @@ export const ModalForgotPassword: FC<Props> = ({
     validationSchema: emailSchema,
     onSubmit: async (values: FormValues, _) => {
       setIsLoading(true);
-      const response = await forgotPassword(values);
+      const data = {
+        email: values.email.toLowerCase().trim(),
+      };
+      const response = await forgotPassword(data);
       setIsLoading(false);
       if (response) {
         handleOpenAgreeModal();
@@ -76,7 +79,7 @@ export const ModalForgotPassword: FC<Props> = ({
                 name="email"
                 label="E-пошта"
                 type="text"
-                value={formik.values.email}
+                value={formik.values.email.toLowerCase()}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 error={formik.touched.email && Boolean(formik.errors.email)}

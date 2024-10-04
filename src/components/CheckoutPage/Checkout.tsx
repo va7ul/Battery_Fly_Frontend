@@ -162,7 +162,7 @@ export const Checkout = () => {
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim(),
         tel: tel,
-        email: values.email,
+        email: values.email.toLowerCase().trim(),
         text: values.text,
       };
       const orderData: orderData = {

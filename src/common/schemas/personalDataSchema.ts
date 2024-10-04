@@ -16,6 +16,7 @@ export const personalDataSchema = Yup.object().shape({
     .required('Введіть своє прізвище, будь ласка'),
   email: Yup.string()
     .email('Введіть свою електронну адресу, будь ласка')
+    .trim()
     .matches(emailRegex, 'Введіть свою електронну адресу, будь ласка')
     .required('Введіть свою електронну адресу, будь ласка'),
 });
