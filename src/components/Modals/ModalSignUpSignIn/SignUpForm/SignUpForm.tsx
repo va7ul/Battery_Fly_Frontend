@@ -127,7 +127,7 @@ export const SignUpForm: FC<Props> = ({ handleCloseSignUpSignInModal }) => {
           name="email"
           label="E-пошта"
           type="text"
-          value={formik.values.email.toLowerCase()}
+          value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           error={formik.touched.email && Boolean(formik.errors.email)}
