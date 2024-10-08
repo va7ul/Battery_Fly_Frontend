@@ -133,7 +133,7 @@ export const PersonalData: FC<FormProps & OtherProps> = ({
             <StyledField
               name="email"
               type="text"
-              value={formik.values.email.toLowerCase()}
+              value={formik.values.email}
             />
             <StyledErrorMessage name="email" component="div" />
           </Label>
