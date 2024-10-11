@@ -55,7 +55,7 @@ export const Categories = () => {
             <LinkToProducts to={item.path}>
               <Image
                 src={item.imgUrl}
-                alt={item.description}
+                alt= {'Фото \'' + item.description + '\''}
                 width="50"
                 height="38"
               />
