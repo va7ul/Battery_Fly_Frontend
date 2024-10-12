@@ -59,7 +59,7 @@ export const LinkToProducts = styled(Link)`
   @media (min-width: 1280px) {
     display: block;
     position: relative;
-    & ${Image}:hover + ${Subtitle} {
+    & picture:hover + ${Subtitle} {
       visibility: visible;
       width: 164px;
       transform: scale(1);

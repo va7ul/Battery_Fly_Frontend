@@ -38,12 +38,20 @@ export const OurServices: FC<Props> = ({ services }) => {
         </TextBox>
       </Holder>
       <ButtonWrapper>
-        <Button type="button" className="custom-prev-button">
+        <Button
+          type="button"
+          className="custom-prev-button"
+          aria-label="Previous slider button"
+        >
           <div>
             <KeyboardArrowLeft />
           </div>
         </Button>
-        <Button type="button" className="custom-next-button">
+        <Button
+          type="button"
+          className="custom-next-button"
+          aria-label="Next slider button"
+        >
           <div>
             <KeyboardArrowRight />
           </div>
